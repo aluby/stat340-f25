@@ -13,7 +13,7 @@ website:
 
   sidebar:
     background: "#E2583E" # Pantone tigerlily
-    logo: "images/logo.png"
+    logo: "images/bayes-logo.png"
     pinned: true
     align: center
     tools:
@@ -31,32 +31,26 @@ website:
     search: true
     collapse-level: 1
     contents:
-      - section: "Course information"
-        contents:
-          - href: course-syllabus.qmd
-            text: Syllabus
-          - href: index.qmd
-            text: Schedule
-          - href: course-links.qmd
-            text: Useful links
-          - href: course-faq.qmd
-            text: FAQ
+      - text: "Syllabus"
+        href: course-syllabus.qmd
+      - text: "Schedule"
+        href: index.qmd
       - section: "Computing"
         contents:
-          - href: computing/computing-access.qmd
-            text: Access
-          - href: computing/rstudio-stat220.qmd
-            text: Rstudio in Stat 220
-          - href: computing/git-stat220.qmd
-            text: Git/Github in Stat 220
+          - href: computing/computing-setup.qmd
+            text: Setup
+          - href: computing/rstudio-stat340.qmd
+            text: Rstudio in Stat 340
+          - href: computing/r-basics-refresher.qmd
+            text: R Refresher
+          - href: https://r-primers.andrewheiss.com/
+            text: R Primers for more practice
           - href: computing/computing-cheatsheets.qmd
             text: Cheatsheets
-      - section: "Portfolio Projects"
+      - section: "Assignments"
         contents:
-      - section: "Final Project"
+      - section: "Projects"
         contents: 
-          - href: portfolio/portfolio-1.qmd
-            text: Portfolio 1
           
   page-footer:
     right: "This page is built with ☕️ and [Quarto](https://quarto.org/)."
@@ -66,14 +60,14 @@ website:
 format:
   html:
     theme:
-      light: [cosmo, style/stat220.scss]
-      dark: [cosmo, style/stat220.scss, style/dark.scss]
+      light: [cosmo, style/stat340.scss]
+      dark: [cosmo, style/stat340.scss, style/dark.scss]
     linkcolor: "#866fa3" # Glossy Grape
     toc: true
     code-copy: true
     code-overflow: wrap
     mainfont: "Atkinson Hyperlegible"
-    highlight-style: a11y-dark
+    highlight-style: a11y-light
     code-link: true
 
 execute:

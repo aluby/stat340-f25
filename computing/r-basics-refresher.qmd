@@ -1,7 +1,6 @@
 ---
 title: "R Basics"
 author: "Written by Adam Loy"
-format: html
 ---
 
 ```{r setup, include=FALSE}

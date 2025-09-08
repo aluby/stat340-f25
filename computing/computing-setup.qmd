@@ -1,0 +1,39 @@
+---
+title: "Computing Setup for Stat340"
+format: html
+---
+
+For Stat340, I *highly recommend* using R on your local computer, instead of the maize server. Why?
+
+- It's likely the 4th time (or more!) that you've seen R in a classroom setting
+- You're graduating soon and won't be able to access maize
+- Bayesian statistics is much more computationally expensive than traditional statistics, and your model fitting will run faster on a local installation
+
+First, download the most recent versions of R and RStudio for your operating system: 
+
+- R (<https://www.r-project.org/>)
+- RStudio (<https://rstudio.com/products/rstudio/download/>)
+- Quarto (<https://quarto.org/docs/get-started/>)
+
+Next, we need to install a version of LaTeX in order to render quarto files to PDF. I recommend using the `tinytex` installation that is included with quarto. To install it, click on "Terminal" within RStudio and type the following: 
+
+```bash
+quarto install tinytex
+```
+
+After doing all of the following, you can check that it is working correctly by: 
+
+1. Open rstudio
+2. Click "File --> New File --> Quarto document" and choose the "PDF" output option
+3. Make a small change to the file within the editor and click "render". If all goes well, you should end up with a PDF document! 
+
+For Stat340 coursework, it will be helpful to have some additional R packages installed. You can install these all at once with:
+
+```{r}
+#| eval: false
+
+install.packages(c("bayesrules", "tidyverse", "janitor", "rstanarm",
+                   "bayesplot", "tidybayes", "broom.mixed", "modelr",
+                   "e1071", "forcats"), 
+                 dependencies = TRUE)
+```
