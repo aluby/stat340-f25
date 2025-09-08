@@ -1,0 +1,82 @@
+project:
+  type: website
+  resources: 
+    - "data/"
+    - "files/"
+
+website:
+  page-navigation: true
+  title: "Stat 340"
+  description: "Homepage for Stat 340 - Bayesian Statistics at Carleton College, Fall 2025."
+
+  repo-url: https://github.com/aluby/stat340-f25
+
+  sidebar:
+    background: "#E2583E" # Pantone tigerlily
+    logo: "images/logo.png"
+    pinned: true
+    align: center
+    tools:
+      - icon: github
+        href: https://github.com/stat220-s25
+        text: "GitHub organization"
+      - icon: code-square
+        href: https://maize.mathcs.carleton.edu/
+        text: "RStudio Server"
+      - icon: person-fill
+        href: https://moodle.carleton.edu/course/view.php?id=44937
+        text: "Moodle"
+
+    style: docked
+    search: true
+    collapse-level: 1
+    contents:
+      - section: "Course information"
+        contents:
+          - href: course-syllabus.qmd
+            text: Syllabus
+          - href: index.qmd
+            text: Schedule
+          - href: course-links.qmd
+            text: Useful links
+          - href: course-faq.qmd
+            text: FAQ
+      - section: "Computing"
+        contents:
+          - href: computing/computing-access.qmd
+            text: Access
+          - href: computing/rstudio-stat220.qmd
+            text: Rstudio in Stat 220
+          - href: computing/git-stat220.qmd
+            text: Git/Github in Stat 220
+          - href: computing/computing-cheatsheets.qmd
+            text: Cheatsheets
+      - section: "Portfolio Projects"
+        contents:
+      - section: "Final Project"
+        contents: 
+          - href: portfolio/portfolio-1.qmd
+            text: Portfolio 1
+          
+  page-footer:
+    right: "This page is built with ☕️ and [Quarto](https://quarto.org/)."
+    left: "Material 2025, Amanda Luby <br> Design by Mine Çetinkaya-Rundel"
+    background: "#E2583E" # Pantone Tigerlily
+    
+format:
+  html:
+    theme:
+      light: [cosmo, style/stat220.scss]
+      dark: [cosmo, style/stat220.scss, style/dark.scss]
+    linkcolor: "#866fa3" # Glossy Grape
+    toc: true
+    code-copy: true
+    code-overflow: wrap
+    mainfont: "Atkinson Hyperlegible"
+    highlight-style: a11y-dark
+    code-link: true
+
+execute:
+  freeze: auto
+
+editor: source
