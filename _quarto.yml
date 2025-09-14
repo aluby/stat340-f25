@@ -17,14 +17,11 @@ website:
     pinned: true
     align: center
     tools:
-      - icon: github
-        href: https://github.com/stat220-s25
-        text: "GitHub organization"
       - icon: code-square
         href: https://maize.mathcs.carleton.edu/
         text: "RStudio Server"
       - icon: person-fill
-        href: https://moodle.carleton.edu/course/view.php?id=44937
+        href: https://moodle.carleton.edu/course/view.php?id=47069
         text: "Moodle"
 
     style: docked
