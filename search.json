@@ -1,0 +1,791 @@
+[
+  {
+    "objectID": "course-syllabus.html",
+    "href": "course-syllabus.html",
+    "title": "Stat340: Bayesian Statistics",
+    "section": "",
+    "text": "MEETINGS:\nMWF 3a\n11:10-12:20 MW; 12-1 F\nCMC 306\n\n\nPROFESSOR:\nAmanda Luby\naluby@carleton\nCMC 223\n\n\nDROP-IN HOURS:\nMon 12:30-1:30\nTues 2-3\nWed 3-4 (120 priority)\nFri 10-11 (340 priority)\nCMC 307\n\n\nWEBSITE:\nmoodle.carleton.edu\naluby.github.io/stat340-s25\n\n\n\nTEXT:\nBayes Rules! An Introduction to Applied Bayesian Modeling\n\n\n\nSOFTWARE\nR: free download from r-project.org/\nRStudio: free download from rstudio.com/downloads\n{rstan}: R package for MCMC sampling",
+    "crumbs": [
+      "Syllabus"
+    ]
+  },
+  {
+    "objectID": "course-syllabus.html#meetings",
+    "href": "course-syllabus.html#meetings",
+    "title": "Stat340: Bayesian Statistics",
+    "section": "Meetings",
+    "text": "Meetings\nThere will be three course meetings per week (Mondays, Wednesdays, and Fridays). Daily attendance and active participation is expected. Course meetings will combine demonstrations/lecture and in-class group exercises. Each course day has an associated reading from the textbook. I expect you to complete the reading before class, and returning to the textbook afterwards if you have any lingering confusion about the material from the day.",
+    "crumbs": [
+      "Syllabus"
+    ]
+  },
+  {
+    "objectID": "course-syllabus.html#individual-assignments",
+    "href": "course-syllabus.html#individual-assignments",
+    "title": "Stat340: Bayesian Statistics",
+    "section": "Individual Assignments",
+    "text": "Individual Assignments\nIndividual homework will be assigned once-ish per week, typically due on Fridays at the beginning of class. You will submit homework assignments via gradescope. You will use {quarto} for all assignments. Individual assignments will be graded on completion.",
+    "crumbs": [
+      "Syllabus"
+    ]
+  },
+  {
+    "objectID": "course-syllabus.html#group-assignments",
+    "href": "course-syllabus.html#group-assignments",
+    "title": "Stat340: Bayesian Statistics",
+    "section": "Group Assignments",
+    "text": "Group Assignments\nEach course day, you’ll be assigned a few problems as “group homework”. On the day homework is due (typically Fridays), you’ll submit solutions to these problems as a group via gradescope. Group assignments will be graded on correctness and completion.",
+    "crumbs": [
+      "Syllabus"
+    ]
+  },
+  {
+    "objectID": "course-syllabus.html#homework-quizzes",
+    "href": "course-syllabus.html#homework-quizzes",
+    "title": "Stat340: Bayesian Statistics",
+    "section": "Homework quizzes",
+    "text": "Homework quizzes\nOn days that homework is due, we will begin class with a short “homework quiz”. I will ask you 1-2 questions that are based entirely on the homework you just submitted. These will be graded on correctness, and your lowest score will be dropped.",
+    "crumbs": [
+      "Syllabus"
+    ]
+  },
+  {
+    "objectID": "course-syllabus.html#exams",
+    "href": "course-syllabus.html#exams",
+    "title": "Stat340: Bayesian Statistics",
+    "section": "Exams",
+    "text": "Exams\nThere will be two in-class exams, tentatively scheduled for Fridays of Week 4 and 8.",
+    "crumbs": [
+      "Syllabus"
+    ]
+  },
+  {
+    "objectID": "course-syllabus.html#projects",
+    "href": "course-syllabus.html#projects",
+    "title": "Stat340: Bayesian Statistics",
+    "section": "Projects",
+    "text": "Projects\nThere will be two projects (one midterm project and one final project). You will work in groups of 2-3 for each project.",
+    "crumbs": [
+      "Syllabus"
+    ]
+  },
+  {
+    "objectID": "course-syllabus.html#regrade-requests",
+    "href": "course-syllabus.html#regrade-requests",
+    "title": "Stat340: Bayesian Statistics",
+    "section": "Regrade requests",
+    "text": "Regrade requests\nGrading is often a tedious task, and the grading team will sometimes make mistakes. I am always happy to fix these mistakes, and gradescope makes it easy to do so. Regrade requests must be submitted on gradescope within two weekdays after an assignment or exam has been returned to you. Regrade requests are for administrative errors or obvious grading mistakes. I will not consider regrade requests for anything that applied to the entire class (e.g. “I think this mistake should only be worth 1 point instead of 2” or “I didn’t realize we had to do X”). If you submit two or more inappropriate regrade requests, I will not consider additional regrade requests from you for the remainder of the term. If you’re unsure whether you should file a regrade request or not, just ask! You are always welcome to discuss any grading questions with me in office hours.",
+    "crumbs": [
+      "Syllabus"
+    ]
+  },
+  {
+    "objectID": "course-syllabus.html#exam-revisions",
+    "href": "course-syllabus.html#exam-revisions",
+    "title": "Stat340: Bayesian Statistics",
+    "section": "Exam revisions",
+    "text": "Exam revisions\nI offer the opportunity to submit exam revisions for two reasons: (1) to correct any major misunderstandings and have a chance to revisit material that you struggled with, (2) to mitigate the impact that a bad exam day can have on your final course grade. You can submit corrections to your exam to earn back 50% of your missed points. Corrected exam grades are capped at 80%. Exam revisions are due 1 week after graded exams are returned to you, or the last day of class at 11:59pm, whichever is earlier.",
+    "crumbs": [
+      "Syllabus"
+    ]
+  },
+  {
+    "objectID": "course-syllabus.html#missing-homework-quizzes-and-exams",
+    "href": "course-syllabus.html#missing-homework-quizzes-and-exams",
+    "title": "Stat340: Bayesian Statistics",
+    "section": "Missing homework quizzes and exams",
+    "text": "Missing homework quizzes and exams\nIf you miss a class when there is an exam or homework quiz and don’t make arrangements with me at least a week in advance, then there are no makeups offered. If must miss an exam due to an illness or other last minute emergency, please let me know in advance to arrange an alternative. There are no makeup homework quizzes.",
+    "crumbs": [
+      "Syllabus"
+    ]
+  },
+  {
+    "objectID": "course-syllabus.html#textbook",
+    "href": "course-syllabus.html#textbook",
+    "title": "Stat340: Bayesian Statistics",
+    "section": "Textbook",
+    "text": "Textbook\nOur textbook is freely available online:\n\nBayes Rules! An Introduction to Applied Bayesian Mdoeling https://www.bayesrulesbook.com/\n\nIf you prefer a hard copy, they are also available for purchase through the bookstore and/or publisher.\nI may also periodically assign or recommend readings from other sources. These will either be freely available online or I will provide a PDF. If you require readings in another format, please let me know during the first week of class.",
+    "crumbs": [
+      "Syllabus"
+    ]
+  },
+  {
+    "objectID": "course-syllabus.html#software",
+    "href": "course-syllabus.html#software",
+    "title": "Stat340: Bayesian Statistics",
+    "section": "Software",
+    "text": "Software\nThe use of the R programming language, with the RStudio interface is an essential component of this course. Bayesian Statistics is more computationally intense than traditional frequentist methods, and so you will need to install local versions of the software on your own computer, or plan to complete assignments on a lab computer.",
+    "crumbs": [
+      "Syllabus"
+    ]
+  },
+  {
+    "objectID": "course-syllabus.html#communication",
+    "href": "course-syllabus.html#communication",
+    "title": "Stat340: Bayesian Statistics",
+    "section": "Communication",
+    "text": "Communication\nAssignments and slides will be shared publicly on our course website. Grades will be posted on gradescope and/or Moodle. Please use our slack workspace for any homework or course content questions; email me privately with any personal matters (grade discussions, illness, emergency, etc.). Any time-sensitive announcements will be sent via email. It is your responsibility to make sure that your notification settings allow time-sensitive announcements to reach you.",
+    "crumbs": [
+      "Syllabus"
+    ]
+  },
+  {
+    "objectID": "course-syllabus.html#professor-availability",
+    "href": "course-syllabus.html#professor-availability",
+    "title": "Stat340: Bayesian Statistics",
+    "section": "Professor availability",
+    "text": "Professor availability\nPlease reach out to me if you have any questions! You can reach me on slack, email, drop-in hours, or make an appointment. Slack is typically the best venue for homework/content questions outside of drop-in hours. I’ll respond to slack messages at least 3 times each week day, and try to respond to emails within 48 hours You will receive responses faster on slack than email. I am online irregularly over the weekend to devote time to family and rest, and I hope that you also find time over the weekend to recharge and reset!",
+    "crumbs": [
+      "Syllabus"
+    ]
+  },
+  {
+    "objectID": "course-syllabus.html#accomodations",
+    "href": "course-syllabus.html#accomodations",
+    "title": "Stat340: Bayesian Statistics",
+    "section": "Accomodations",
+    "text": "Accomodations\nCarleton College is committed to providing equitable access to learning opportunities for all students. The Office of Accessibility Resources (Henry House, 107 Union Street) is the campus office that collaborates with students who have disabilities to provide and/or arrange reasonable accommodations. If you have, or think you may have, a disability, please contact OAR@carleton.edu to arrange a confidential discussion regarding equitable access and reasonable accommodations. You are also welcome to contact me privately to discuss your academic needs. However, all disability-related accommodations must be arranged, in advance, through OAR.",
+    "crumbs": [
+      "Syllabus"
+    ]
+  },
+  {
+    "objectID": "course-syllabus.html#title-ix",
+    "href": "course-syllabus.html#title-ix",
+    "title": "Stat340: Bayesian Statistics",
+    "section": "Title IX",
+    "text": "Title IX\nPlease be aware that all faculty are “responsible employees”, which means that if you tell me about a situation involving sexual harassment, sexual assault, dating violence, domestic violence, or stalking, I must share that information with the Title IX Coordinator. Although I have to make this notification, you will control how your case will be handled, including whether or not you wish to meet with the Title IX coordinator or pursue a formal complaint.",
+    "crumbs": [
+      "Syllabus"
+    ]
+  },
+  {
+    "objectID": "course-syllabus.html#take-care-of-yourself",
+    "href": "course-syllabus.html#take-care-of-yourself",
+    "title": "Stat340: Bayesian Statistics",
+    "section": "Take care of yourself",
+    "text": "Take care of yourself\nDo your best to maintain a healthy lifestyle this term by wearing a mask when you’re sick, eating a vegetable every now and then, exercising, avoiding excessive drug and alcohol use, getting enough sleep, and taking some time to relax. Your physical and mental health is more important than your grade in this course. There are many helpful resources available on campus and an important part of the college experience is learning how to ask for help. For more information, see Student Health and Counseling (SHAC), the Office of Health Promotion, or the Office of the Chaplain. If you are experiencing physical or mental health symptoms as a result of coursework, please speak with me so we can address the problem together.",
+    "crumbs": [
+      "Syllabus"
+    ]
+  },
+  {
+    "objectID": "computing/computing-cheatsheets.html",
+    "href": "computing/computing-cheatsheets.html",
+    "title": "R cheatsheets",
+    "section": "",
+    "text": "The following cheatsheets come from https://posit.co/resources/cheatsheets. We haven’t covered every function and functionality listed on them, but you might still find them useful as references.",
+    "crumbs": [
+      "Computing",
+      "Cheatsheets"
+    ]
+  },
+  {
+    "objectID": "computing/rstudio-stat340.html",
+    "href": "computing/rstudio-stat340.html",
+    "title": "Using R/RStudio for Homework in Stat340",
+    "section": "",
+    "text": "In Stat340, I will distribute homework assignment templates in.qmd format.",
+    "crumbs": [
+      "Computing",
+      "Rstudio in Stat 340"
+    ]
+  },
+  {
+    "objectID": "computing/rstudio-stat340.html#uploading-files-to-maize",
+    "href": "computing/rstudio-stat340.html#uploading-files-to-maize",
+    "title": "Using R/RStudio for Homework in Stat340",
+    "section": "Uploading files to maize",
+    "text": "Uploading files to maize\n\nClick the “upload” button in the files pane\nSelect the file from your local computer (likely in your Downloads folder if you downloaded from moodle)\nChoose the “Target Directory” – this is the folder on your maize account where the file will be saved. I recommend creating a separate folder for this class.",
+    "crumbs": [
+      "Computing",
+      "Rstudio in Stat 340"
+    ]
+  },
+  {
+    "objectID": "computing/rstudio-stat340.html#accessing-maize-from-off-campus",
+    "href": "computing/rstudio-stat340.html#accessing-maize-from-off-campus",
+    "title": "Using R/RStudio for Homework in Stat340",
+    "section": "Accessing maize from off campus",
+    "text": "Accessing maize from off campus\nIf you are using the maize server, you should be able to access it on campus with only your Carleton ID and password. If you plan to use the maize server and you plan to do any work off campus this term (e.g., while on a field trip, travel for athletics, or just sitting in Little Joy) you need to install Carleton’s VPN to have access.\nTo install the GlobalProtect VPN follow directions provided by ITS.",
+    "crumbs": [
+      "Computing",
+      "Rstudio in Stat 340"
+    ]
+  },
+  {
+    "objectID": "computing/rstudio-stat340.html#installing-latex-not-needed-if-you-are-using-the-maize-server",
+    "href": "computing/rstudio-stat340.html#installing-latex-not-needed-if-you-are-using-the-maize-server",
+    "title": "Using R/RStudio for Homework in Stat340",
+    "section": "Installing LaTeX (not needed if you are using the maize server)",
+    "text": "Installing LaTeX (not needed if you are using the maize server)\nIf you don’t already have a tex package installed on your computer, the easiest option to create pdf’s is to use the tinytex R package. This can be installed with the following R commands:\n\ninstall.packages(\"tinytex\")\ntinytex::install_tinytex()  # install TinyTeX\n\nIf you’d like a standalone LaTeX package that will work with programs other than RStudio, you could install the basic installations of either:\nIf you’d like a stand alone LaTeX package, you could install the basic installations of either:\n\n\nMacTeX for Mac (3.2GB!)\n\nMiKTeX for Windows (190MB)",
+    "crumbs": [
+      "Computing",
+      "Rstudio in Stat 340"
+    ]
+  },
+  {
+    "objectID": "course-faq.html",
+    "href": "course-faq.html",
+    "title": "FAQ",
+    "section": "",
+    "text": "The best place to come for help is Amanda’s office hours! I can help with anything related to the course. You can also check my calendar for one-on-one appointment slots.\n\n\n\nStudents needing help with their Statistics coursework and R/Rstudio questions can get help from Stats Lab Assistants in the Stats Lab in CMC 304. Stats Lab Assistants are primiarily for Stat 120 (Intro Stats), but they may also be able to assist with general R/Rstudio questions."
+  },
+  {
+    "objectID": "course-faq.html#where-can-i-get-help",
+    "href": "course-faq.html#where-can-i-get-help",
+    "title": "FAQ",
+    "section": "",
+    "text": "The best place to come for help is Amanda’s office hours! I can help with anything related to the course. You can also check my calendar for one-on-one appointment slots.\n\n\n\nStudents needing help with their Statistics coursework and R/Rstudio questions can get help from Stats Lab Assistants in the Stats Lab in CMC 304. Stats Lab Assistants are primiarily for Stat 120 (Intro Stats), but they may also be able to assist with general R/Rstudio questions."
+  },
+  {
+    "objectID": "slides/slides01.html#plan-for-today",
+    "href": "slides/slides01.html#plan-for-today",
+    "title": "Welcome to Bayes!",
+    "section": "Plan for today",
+    "text": "Plan for today\n\nIntros\nContext for the class\nSyllabus\nSetting course expectations"
+  },
+  {
+    "objectID": "slides/slides01.html#about-me",
+    "href": "slides/slides01.html#about-me",
+    "title": "Welcome to Bayes!",
+    "section": "About me",
+    "text": "About me\n\n\n\nEllis (almost 1.5!)\nSecond year at Carleton\nTaught at Swarthmore for 5 years before moving to MN\nPhD in Statistics & Data Science from Carnegie Mellon University\nGrew up in Minnesota, went to St Ben’s as an undergrad"
+  },
+  {
+    "objectID": "slides/slides01.html#my-crochet-journey-this-summer",
+    "href": "slides/slides01.html#my-crochet-journey-this-summer",
+    "title": "Welcome to Bayes!",
+    "section": "My crochet journey this summer",
+    "text": "My crochet journey this summer\n\n\n\n\n\nDecided I wanted to make a basket\nSkipped “practice these stitches” and just went for it\nDidn’t understand the pattern, watched a couple of youtube videos from random creators and went for it\nKept going even when I was very clearly doing something wrong"
+  },
+  {
+    "objectID": "slides/slides01.html#my-crochet-journey-this-summer-1",
+    "href": "slides/slides01.html#my-crochet-journey-this-summer-1",
+    "title": "Welcome to Bayes!",
+    "section": "My crochet journey this summer",
+    "text": "My crochet journey this summer\n\n\n\n\n\nAsked an expert (my sister) for advice\nDid “practice problems” using easier material (yarn) and bigger hook\nFound a reliable internet source for videos and tutorials\nStarted being way more careful about checking my work and redoing things if I wasn’t sure"
+  },
+  {
+    "objectID": "slides/slides01.html#intros",
+    "href": "slides/slides01.html#intros",
+    "title": "Welcome to Bayes!",
+    "section": "Intros",
+    "text": "Intros\n\nName\nSomething you did over the summer\nWhat makes you nervous about this class or term?\nSomething about yourself you are proud of\n\n\n\n\n−+\n05:00"
+  },
+  {
+    "objectID": "slides/slides01.html#warm-up",
+    "href": "slides/slides01.html#warm-up",
+    "title": "Welcome to Bayes!",
+    "section": "Warm Up",
+    "text": "Warm Up\n\nWhat are the key takeaways from:\n\nStat250: Stat Inference\nStat230: Regression\n\nWhat do you already know about Bayesian statistics?\n\n\n\n\n−+\n05:00"
+  },
+  {
+    "objectID": "slides/slides01.html#statistical-models",
+    "href": "slides/slides01.html#statistical-models",
+    "title": "Welcome to Bayes!",
+    "section": "Statistical models",
+    "text": "Statistical models\nA statistical model consists of\n\na collection of random variables to describe observable data,\nthe possible joint distribution(s) of the random variables,\nand the parameters, \\(\\boldsymbol \\theta\\), that define those distributions\n\n\n\nMorris and DeGroot, 377"
+  },
+  {
+    "objectID": "slides/slides01.html#r.a.-fisher",
+    "href": "slides/slides01.html#r.a.-fisher",
+    "title": "Welcome to Bayes!",
+    "section": "R.A. Fisher",
+    "text": "R.A. Fisher\n1890-1962\n\n\n\n\n\nVariance\nANOVA\nNull hypothesis\nMaximum likelihood estimation\np-value\nLots of contributions in genetics\nAlso a eugenecist"
+  },
+  {
+    "objectID": "slides/slides01.html#neyman-pearson",
+    "href": "slides/slides01.html#neyman-pearson",
+    "title": "Welcome to Bayes!",
+    "section": "Neyman & Pearson",
+    "text": "Neyman & Pearson\n\n\n\n\n\nConfidence interval\nCorrelation\nRegression\nStandard deviation\nEffect size\n“Optimal” tests\n\\(\\alpha\\) and \\(\\beta\\)\nType I and II error"
+  },
+  {
+    "objectID": "slides/slides01.html#frequentist-vs-bayesian",
+    "href": "slides/slides01.html#frequentist-vs-bayesian",
+    "title": "Welcome to Bayes!",
+    "section": "Frequentist vs Bayesian",
+    "text": "Frequentist vs Bayesian"
+  },
+  {
+    "objectID": "slides/slides01.html#bayes",
+    "href": "slides/slides01.html#bayes",
+    "title": "Welcome to Bayes!",
+    "section": "Bayes",
+    "text": "Bayes\n\n\n\n\nAll this guy did was Bayes’ rule:\n\\(P(A|B) = \\frac{P(B|A) P(A)}{ P(B)}\\)"
+  },
+  {
+    "objectID": "slides/slides01.html#frequentist-vs-bayesian-1",
+    "href": "slides/slides01.html#frequentist-vs-bayesian-1",
+    "title": "Welcome to Bayes!",
+    "section": "Frequentist vs Bayesian",
+    "text": "Frequentist vs Bayesian\n\n\nFrequentist\n\n“Classical” statistics\nProbability is a long-run frequency\nType I and Type II errors\nConfidence intervals\n\n\nBayesian\n\nProbability is a subjective belief\nUpdate “prior” probabilities with data to obtain “posterior” probabilities\n“Credible” intervals"
+  },
+  {
+    "objectID": "slides/slides01.html#tentative-schedule",
+    "href": "slides/slides01.html#tentative-schedule",
+    "title": "Welcome to Bayes!",
+    "section": "Tentative schedule",
+    "text": "Tentative schedule\n\n\n\n\nTopic\nChapters\nApprox. Duration\n\n\n\n\nIntro\n1-2\n1 week\n\n\nConjugate Analysis\n3-5\n2 weeks\n\n\nMCMC\n7\n1 weeks\n\n\nBayesian Regression\n9-14\n4 weeks\n\n\nHierarchical Models\n15\n2 weeks"
+  },
+  {
+    "objectID": "slides/slides01.html#course-description",
+    "href": "slides/slides01.html#course-description",
+    "title": "Welcome to Bayes!",
+    "section": "Course description",
+    "text": "Course description\nThe Bayesian approach to statistics provides a powerful framework for incorporating prior knowledge into statistical analyses, updating this knowledge with data, and quantifying uncertainty in results. This course serves as a comprehensive introduction to Bayesian statistical inference and modeling, an alternative to the frequentist approach to statistics covered in previous classes. Topics include: Bayes’ Theorem; prior and posterior distributions; Bayesian regression; hierarchical models; and model adequacy and posterior predictive checks. Computational techniques will also be covered, including Markov Chain Monte Carlo methods, and modern Bayesian modeling packages in R."
+  },
+  {
+    "objectID": "slides/slides01.html#course-objectives",
+    "href": "slides/slides01.html#course-objectives",
+    "title": "Welcome to Bayes!",
+    "section": "Course Objectives",
+    "text": "Course Objectives\nAfter completing this course, you should be be able to demonstrate your competency with:\n\nExplaining the differences between frequentist and Bayesian approaches to statistics and data analysis\nSelecting appropriate prior distributions and likelihood models for Bayesian analysis\nUsing modern software to fit Bayesian models and assess their performance\nInterpreting results from Bayesian analyses"
+  },
+  {
+    "objectID": "slides/slides01.html#textbook",
+    "href": "slides/slides01.html#textbook",
+    "title": "Welcome to Bayes!",
+    "section": "Textbook:",
+    "text": "Textbook:\nBayes Rules! An Introduction to Applied Bayesian Modeling by Johnson, Ott, and Dogucu\nThe book is freely available at &lt;bayesrulesbook.com&gt;"
+  },
+  {
+    "objectID": "slides/slides01.html#computing",
+    "href": "slides/slides01.html#computing",
+    "title": "Welcome to Bayes!",
+    "section": "Computing:",
+    "text": "Computing:\nWe’ll be using R and RStudio throughout the course. If you’ve downloaded R to your own computer from a different class, great! If not, there are instructions available on the course website"
+  },
+  {
+    "objectID": "slides/slides01.html#what-will-you-do-in-this-course",
+    "href": "slides/slides01.html#what-will-you-do-in-this-course",
+    "title": "Welcome to Bayes!",
+    "section": "What will you do in this course?",
+    "text": "What will you do in this course?\nEach of the following components are important for your learning and therefore part of your final grade calculation:\n\n30% Homework due once per week\n\n10% Individual (graded on completion)\n10% Group (correctness and completion)\n10% Homework quizzes (correctness)\n\n10% Midterm project + presentation\n20% Final project + presentation\n20% Exam I\n20% Exam II"
+  },
+  {
+    "objectID": "slides/slides01.html#what-will-a-typical-dayweek-look-like",
+    "href": "slides/slides01.html#what-will-a-typical-dayweek-look-like",
+    "title": "Welcome to Bayes!",
+    "section": "What will a typical day/week look like?",
+    "text": "What will a typical day/week look like?\n\n\nBefore class:\n\nRead a chapter\nCome with questions\nBe prepared to try what was covered\n\n\nIn class:\n\nLecture/demo\n\nSometimes review of chapter\nSometimes new\n\nHands-on work or coding in R\nTime for group assignments\n\n\nAfter class:\n\nFinish group assignments\nWork on individual assignments"
+  },
+  {
+    "objectID": "slides/slides01.html#office-hours-tentative",
+    "href": "slides/slides01.html#office-hours-tentative",
+    "title": "Welcome to Bayes!",
+    "section": "Office hours (tentative)",
+    "text": "Office hours (tentative)\n\n\n\nDay\nTime\nType\nLocation\n\n\n\n\nMonday\n12:30-1:30\nDrop-in\nCMC 307\n\n\nTuesday\n2-3\nDrop-in\nCMC 307\n\n\nWednesday\n3-41\nDrop-in\nCMC 307\n\n\nFriday\n10-112\nDrop-in\nCMC 307\n\n\n\nI will also have at least 1 hour of individual appointments available on my calendar per week\nStat120 PriorityStat340 Priority"
+  },
+  {
+    "objectID": "slides/slides01.html#communication",
+    "href": "slides/slides01.html#communication",
+    "title": "Welcome to Bayes!",
+    "section": "Communication",
+    "text": "Communication\n\n\nMoodle: assignments, slides, and grades\nSlack: homework questions, announcements, discussion\nEmail: personal matters, time-sensitive announcements\n\n\n\nSlack is the fastest way to reach me. I typically will respond to messages 3x per weekday. I try to respond to emails within 48 hours. I’m online sporadically on evenings and weekends to devote time to family and rest – I hope you also use this time to reset and recharge!"
+  },
+  {
+    "objectID": "slides/slides01.html#advice-from-past-students",
+    "href": "slides/slides01.html#advice-from-past-students",
+    "title": "Welcome to Bayes!",
+    "section": "Advice from past students:",
+    "text": "Advice from past students:\n\nSTART HOMEWORKS EARLY\nDo the reading! The textbook is really great and can help give you a motivation for everything that’s happening in class.\nStart the problem sets early and go to office hours!\nask questions! you will inevitably not understand everything in the course at first pass.\nGo to her office hours!!!!!\nRead the book, and ask questions!\nTry to start the homework problems on the day that they are assigned.\nThis course is very fast-paced and intensive, so it may not be the right fit for everyone. Students who are not prepared for a compact schedule, or who are looking for an easier workload, may find it challenging. A solid foundation in statistics and a strong level of commitment are essential to keep up with the material and succeed in the class.\nAsk questions in class, Amanda has no problem reviewing a previously discussed concept.\nWork with other people in the class, collaboration is key\nStart the homework early! Give yourself time to get things done, to understand, and to pause. Don’t feel afraid to ask questions; she’s so accessible.\nSpend some time reviewing handouts before doing homework."
+  },
+  {
+    "objectID": "slides/slides01.html#the-genius-myth",
+    "href": "slides/slides01.html#the-genius-myth",
+    "title": "Welcome to Bayes!",
+    "section": "The “Genius Myth”",
+    "text": "The “Genius Myth”\nIt’s sometimes easy to buy into the “genius myth” when it comes to math/stat courses: that you need to be a “math person” and have some innate mathematical ability in order to do well or become a statistics major. This could not be further from the truth! The best statisticians don’t necessarily have the “best” math or programming background, but are people that are able to formulate interesting questions and use math and programming to rigorously answer those questions. Many of the best statisticians I know became statisticians because they were initially interested in something else (biology, public health, psychology, neuroscience, physics, etc.) and realized that being able to answer important questions with data was not only valuable but fun and interesting. Being able to perform interesting statistical analyses is a skill that is learned, not an innate ability, and working hard at developing that skill is the point of this course."
+  },
+  {
+    "objectID": "slides/slides01.html#academic-integrity",
+    "href": "slides/slides01.html#academic-integrity",
+    "title": "Welcome to Bayes!",
+    "section": "Academic Integrity",
+    "text": "Academic Integrity\nYou are expected to follow Carleton’s policies regarding academic integrity. I encourage you to discuss the homework problems with others and use the resources available to you to try to figure out tough problems. You should code and write up your solutions on your own. Exams must be done by yourself without communicating with others; all work must be your own. The use of textbook solution manuals (physical or online), course materials from other students, or materials from previous versions of this course are not allowed. Copying, paraphrasing, summarizing, or submitting work generated by anyone but yourself without proper attribution is considered academic dishonesty (this includes output from LLMs).\nPlease ask if you are unsure of whether or not your actions are complying with the assignment/exam/project instructions. Always default to acknowledging any help received. Cases of suspected academic dishonesty are handled by the Provost’s Office and I am obligated to report any suspected violations of this policy."
+  },
+  {
+    "objectID": "slides/slides01.html#more-on-ai",
+    "href": "slides/slides01.html#more-on-ai",
+    "title": "Welcome to Bayes!",
+    "section": "More on “AI”",
+    "text": "More on “AI”\nLarge-language models (e.g. ChatGPT, Gemini, etc.) should only be used for help interpreting R’s error messages or suggestions for your own code once you have already attempted the problem. You should not copy and paste course material into or out of an AI text generator.\nI also have a few rules in place to protect my intellectual property. You may not record my lectures using tools such as Otter.ai or upload any video or audio recordings to generate transcripts or study notes. You may not upload my course materials (slides, assignment prompts, note sets, etc.) into AI tools or homework help sites (such as chegg).\n“AI” tools are new for all of us and it’s OK to have questions about what is and isn’t appropriate!"
+  },
+  {
+    "objectID": "slides/slides01.html#diversity-inclusion",
+    "href": "slides/slides01.html#diversity-inclusion",
+    "title": "Welcome to Bayes!",
+    "section": "Diversity & Inclusion",
+    "text": "Diversity & Inclusion\nWe all come to class with different backgrounds and experiences, and this diversity makes our class environment richer. We value diversity and inclusion, and are committed to a climate of mutual respect and full participation in and out of the classroom. This class strives to be a learning environment that is usable, equitable, inclusive and welcoming, regardless of race, ethnicity, religion, gender and gender identities, sexual orientation, ability, socioeconomic background, and nationality. If you anticipate or experience any barriers to learning, please discuss your concerns with me."
+  },
+  {
+    "objectID": "slides/slides01.html#accomodations",
+    "href": "slides/slides01.html#accomodations",
+    "title": "Welcome to Bayes!",
+    "section": "Accomodations",
+    "text": "Accomodations\nCarleton College is committed to providing equitable access to learning opportunities for all students. The Office of Accessibility Resources (Henry House, 107 Union Street) is the campus office that collaborates with students who have disabilities to provide and/or arrange reasonable accommodations. If you have, or think you may have, a disability, please contact OAR@carleton.edu to arrange a confidential discussion regarding equitable access and reasonable accommodations. You are also welcome to contact me privately to discuss your academic needs. However, all disability-related accommodations must be arranged, in advance, through OAR."
+  },
+  {
+    "objectID": "slides/slides01.html#title-ix",
+    "href": "slides/slides01.html#title-ix",
+    "title": "Welcome to Bayes!",
+    "section": "Title IX",
+    "text": "Title IX\nPlease be aware that all faculty are “responsible employees”, which means that if you tell me about a situation involving sexual harassment, sexual assault, dating violence, domestic violence, or stalking, I must share that information with the Title IX Coordinator. Although I have to make this notification, you will control how your case will be handled, including whether or not you wish to meet with the Title IX coordinator or pursue a formal complaint."
+  },
+  {
+    "objectID": "slides/slides01.html#take-care-of-yourself",
+    "href": "slides/slides01.html#take-care-of-yourself",
+    "title": "Welcome to Bayes!",
+    "section": "Take care of yourself",
+    "text": "Take care of yourself\nDo your best to maintain a healthy lifestyle this semester by wearing a mask if you don’t feel well, eating a vegetable every day, exercising, avoiding excessive drug and alcohol use, getting enough sleep, and taking some time to relax. Your mental health is more important than your grade in this course. There are many helpful resources available on campus and an important part of the college experience is learning how to ask for help. If you are experiencing mental health symptoms as a result of coursework, please speak with me so we can address the problem together."
+  },
+  {
+    "objectID": "slides/slides-cheat-sheet.html#columns",
+    "href": "slides/slides-cheat-sheet.html#columns",
+    "title": "Slides Cheat Sheet",
+    "section": "Columns",
+    "text": "Columns\n\n\n\nFirst year at Carleton!\nTaught at Swarthmore for 5 years before moving here this fall\nPhD in Statistics & Data Science from Carnegie Mellon University\nGrew up in Minnesota, went to St Ben’s as an undergrad"
+  },
+  {
+    "objectID": "slides/slides-cheat-sheet.html#only-graph-from-code",
+    "href": "slides/slides-cheat-sheet.html#only-graph-from-code",
+    "title": "Slides Cheat Sheet",
+    "section": "Only graph from code",
+    "text": "Only graph from code"
+  },
+  {
+    "objectID": "slides/slides-cheat-sheet.html#background-image-half",
+    "href": "slides/slides-cheat-sheet.html#background-image-half",
+    "title": "Slides Cheat Sheet",
+    "section": "Background Image (half)",
+    "text": "Background Image (half)\n\n\nWhat skills do you need?\n\nprogramming with data\nstatistical modeling\ndomain knowledge\ncommunication"
+  },
+  {
+    "objectID": "slides/slides-cheat-sheet.html#full-size-image",
+    "href": "slides/slides-cheat-sheet.html#full-size-image",
+    "title": "Slides Cheat Sheet",
+    "section": "Full size image",
+    "text": "Full size image\n\n\n\nImage by Adam Loy  adapted from work of Joe Blitzstein, Hanspeter Pfister, and Hadley Wickham"
+  },
+  {
+    "objectID": "slides/slides-cheat-sheet.html#background-image-full-size",
+    "href": "slides/slides-cheat-sheet.html#background-image-full-size",
+    "title": "Slides Cheat Sheet",
+    "section": "Background image (full size)",
+    "text": "Background image (full size)"
+  },
+  {
+    "objectID": "slides/slides-cheat-sheet.html#countdown",
+    "href": "slides/slides-cheat-sheet.html#countdown",
+    "title": "Slides Cheat Sheet",
+    "section": "Countdown",
+    "text": "Countdown\n\nWith your neighbor(s):\nChoose two countries to compare to the U.S. voting record in the U.N. over the years.\nWhat did you learn?\n\n\n\n\n−+\n04:00"
+  },
+  {
+    "objectID": "slides/slides-cheat-sheet.html#table-column-widths",
+    "href": "slides/slides-cheat-sheet.html#table-column-widths",
+    "title": "Slides Cheat Sheet",
+    "section": "table column widths",
+    "text": "table column widths\n\n\n\n\n\n\n\n\nCollaboration Allowed\n\n\n\n\nHomework Problems\nYou are allowed and encouraged to collaborate on homework. You may also use outside resources, but your submitted work must be your own and reflect your own understanding .\n\n\nLab Quiz Problems\nNo collaboration is allowed at all . You may use your own notes for resubmissions, but should not use outside resources.\n\n\nPortfolio Projects\nYou are expected to collaborate with your group, but cannot rely on external sources other than to help motivate the questions or provide other background information. Getting answers on significant parts of solutions from outside resources is not allowed.\n\n\nFinal Project\nYou are expected to collaborate with your group, but cannot rely on external sources other than to help motivate the questions or provide other background information. Any outside resources should be properly cited."
+  },
+  {
+    "objectID": "slides/slides-cheat-sheet.html#use-of-generative-artificial-intelligence-ai",
+    "href": "slides/slides-cheat-sheet.html#use-of-generative-artificial-intelligence-ai",
+    "title": "Slides Cheat Sheet",
+    "section": "Use of generative artificial intelligence (AI)",
+    "text": "Use of generative artificial intelligence (AI)\n\nTreat generative AI, such as ChatGPT or Gemini, the same as other online resources.\nGuiding principles:\n\n(1) Cognitive dimension: Working with AI should not reduce your ability to think clearly. AI should facilitate—rather than hinder—learning.\n(2) Ethical dimension: Students using AI should be transparent about their use and make sure it aligns with academic integrity.\n\n❌ AI tools for writing code: You may not use generative AI to take a “first pass” at a coding task. Do not type coursework prompts directly into AI tools.\n✅ AI tools for debugging code: You may make use of the technology to get help with error messages or trying to fix issues\n❌ AI tools for narrative: Unless instructed otherwise, you may not use generative AI to write narrative on assignments. In general, you may use generative AI as a resource as you complete assignments but not to answer the exercises for you.\n\n\n\nAdapted from Mine Çetinkaya-Rundel"
+  },
+  {
+    "objectID": "slides/slides-cheat-sheet.html#linktask",
+    "href": "slides/slides-cheat-sheet.html#linktask",
+    "title": "Slides Cheat Sheet",
+    "section": "Link/task",
+    "text": "Link/task\n\nhttps://github.com/stat220-w25\n\n\nFill out the Welcome Survey for collection of your account names, later this week you will be invited to the course organization."
+  },
+  {
+    "objectID": "slides/slides-cheat-sheet.html#handwriting-font",
+    "href": "slides/slides-cheat-sheet.html#handwriting-font",
+    "title": "Slides Cheat Sheet",
+    "section": "handwriting font",
+    "text": "handwriting font\n\nin case you don’t yet have a GitHub account…"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Stat 340: Bayesian Statistics",
+    "section": "",
+    "text": "This page contains an outline of the topics, content, and assignments for the term. Note that this schedule will be updated as the term progresses and the timeline of topics and assignments might be updated. Any major changes to due dates will be announced in class and indicated in bold here.\n\n\n\n\n\n\nWEEK\nDOW\nDATE\nPREPARE\nTOPIC\nMATERIALS\nDUE\n\n\n\n1\nM\nMon, Sep 15\n📝complete welcome survey  📚 Bayes Rules Ch1  💻 Join Slack workspace\n\nIntro to Bayesian Thinking\nslides01\n\n\n\n1\nW\nWed, Sep 17\n📚 Bayes Rules Ch2  💻 Complete computing setup\n\nBayes Rule, R Setup\ntbd\n\n\n\n1\nF\nFri, Sep 19\n\nProbability and Likelihood Review\ntbd\nHW 1\n\n\n2\nM\nMon, Sep 22\n📚 Bayes Rules Ch3 \n\nBeta-Binomial Model\ntbd\n\n\n\n2\nW\nWed, Sep 24\n📚 Bayes Rules Ch4 \n\nBalance and Sequentiality\ntbd\n\n\n\n2\nF\nFri, Sep 26\n📚 Bayes Rules Ch5.1-2 \n\nGamma-Gamma\ntbd\nHW 2\n\n\n3\nM\nMon, Sep 29\n📚 Bayes Rules Ch5.3-5.6 \n\nNormal-Normal\ntbd\n\n\n\n3\nW\nWed, Oct 1\n📚 Bayes Rules Ch6.1-2 \n\nGrid approximation and Markov Chains\ntbd\n\n\n\n3\nF\nFri, Oct 3\n📚 Bayes Rules Ch6.3 \n\nDiagnostics\ntbd\nHW3\n\n\n4\nM\nMon, Oct 6\n📚 Bayes Rules Ch7.1-7.3 \n\nMCMC I\ntbd\nHand out computing project\n\n\n4\nW\nWed, Oct 8\n📚 Bayes Rules Ch7.4-7 \n\nMCMC II\ntbd\n\n\n\n4\nF\nFri, Oct 10\n\nExam I\ntbd\nHW4\n\n\n5\nM\nMon, Oct 13\n\nPosterior Inference\ntbd\n\n\n\n5\nW\nWed, Oct 15\n\nPosterior Prediction\ntbd\n\n\n\n5\nF\nFri, Oct 17\n\nRegression\ntbd\nHW5\n\n\n6\nM\nMon, Oct 20\n\n❌ Midterm Break; no class\ntbd\n\n\n\n6\nW\nWed, Oct 22\n\nEvaluating I\ntbd\nComputing Project Due\n\n\n6\nF\nFri, Oct 24\n\nEvaluating II\ntbd\nHW6\n\n\n7\nM\nMon, Oct 27\n\nExtending Regression Model\ntbd\n\n\n\n7\nW\nWed, Oct 29\n\nPoisson Regression\ntbd\n\n\n\n7\nF\nFri, Oct 31\n\nNegative Binomial Regression\ntbd\nHW7\n\n\n8\nM\nMon, Nov 3\n\nLogistic Regression\ntbd\n\n\n\n8\nW\nWed, Nov 5\n\nNaive Bayes Classification\ntbd\n\n\n\n8\nF\nFri, Nov 7\n\nExam II\ntbd\nHW8\n\n\n9\nM\nMon, Nov 10\n\nHierarchical Models I\ntbd\n\n\n\n9\nW\nWed, Nov 12\n\nHierarchical Models II\ntbd\n\n\n\n9\nF\nFri, Nov 14\n\nHierarchical Models III\ntbd\n\n\n\n10\nM\nMon, Nov 17\n\nProject work day\ntbd\nHW 9\n\n\n10\nW\nWed, Nov 19\n\nLightning talks\ntbd\n\n\n\n\nM\nFri, Nov 21\n\nFinal Project Due @ noon\ntbd",
+    "crumbs": [
+      "Schedule"
+    ]
+  },
+  {
+    "objectID": "slides/slides02.html#warm-up",
+    "href": "slides/slides02.html#warm-up",
+    "title": "Bayes Rule",
+    "section": "Warm Up",
+    "text": "Warm Up\nadd contingency table\n\nCalculate the following probabilities and write them using formal notation\n\nP(A)\nP(B and A)\nP(B|A)"
+  },
+  {
+    "objectID": "slides/slides02.html#marginal-probability",
+    "href": "slides/slides02.html#marginal-probability",
+    "title": "Bayes Rule",
+    "section": "Marginal Probability",
+    "text": "Marginal Probability\nadd table\n\n\n\n\n\n\nMarginal Probability"
+  },
+  {
+    "objectID": "slides/slides02.html#joint-probability",
+    "href": "slides/slides02.html#joint-probability",
+    "title": "Bayes Rule",
+    "section": "Joint Probability",
+    "text": "Joint Probability\nadd table\n\n\n\n\n\n\nJoint Probability"
+  },
+  {
+    "objectID": "slides/slides02.html#conditional-probability",
+    "href": "slides/slides02.html#conditional-probability",
+    "title": "Bayes Rule",
+    "section": "Conditional Probability",
+    "text": "Conditional Probability\nadd table\n\n\n\n\n\n\nConditional Probability"
+  },
+  {
+    "objectID": "slides/slides02.html#section",
+    "href": "slides/slides02.html#section",
+    "title": "Bayes Rule",
+    "section": "",
+    "text": "LLMs are obsessed with em dashes:\n\nImagine you have an idea or belief about something–like whether it’s going to rain today. Then, you get some new information–like seeing dark clouds in the sky. Bayes’ Rule helps you recalculate how confident you should be in your belief after seeing that new information. Let me know if you want a real-world example (like medical tests or crime investigations)—those make it even clearer.\n\n\n–ChatGPT. Prompt: “Can you summarize Bayes Rule without any math?”\n\nBut humans also use em dashes."
+  },
+  {
+    "objectID": "slides/slides02.html#notation",
+    "href": "slides/slides02.html#notation",
+    "title": "Bayes Rule",
+    "section": "Notation",
+    "text": "Notation\nIdea: what if our data….\n\nGreek letters (\\(\\pi, \\beta, \\mu\\) etc) denote our primary variables of interest (sometimes called parameters)\nCapital letters near the end of the alphabet (\\(X, Y, Z\\)) denote random variables related to our data\nWe denote an observed outcome of \\(Y\\) using lower case \\(y\\)"
+  },
+  {
+    "objectID": "slides/slides02.html#example-phd-admissions",
+    "href": "slides/slides02.html#example-phd-admissions",
+    "title": "Bayes Rule",
+    "section": "Example: PhD admissions",
+    "text": "Example: PhD admissions"
+  },
+  {
+    "objectID": "slides/slides02.html#prior-model-for-pi",
+    "href": "slides/slides02.html#prior-model-for-pi",
+    "title": "Bayes Rule",
+    "section": "Prior model for \\(\\pi\\)",
+    "text": "Prior model for \\(\\pi\\)\n\n\n\n\\(\\pi\\)\n0.2\n0.4\n0.87\n\n\n\n\n\\(f(\\pi)\\)"
+  },
+  {
+    "objectID": "slides/slides02.html#from-prior-to-posterior",
+    "href": "slides/slides02.html#from-prior-to-posterior",
+    "title": "Bayes Rule",
+    "section": "From prior to posterior",
+    "text": "From prior to posterior\n\n\n\n\\(\\pi\\)\n0.2\n0.4\n0.87\n\n\n\n\n\\(f(\\pi)\\)\n\n\n\n\n\n\\(f(\\pi | y = 5)\\) (1)\n\n\n\n\n\n\\(f(\\pi | y = 0)\\) (2)\n\n\n\n\n\n\n\nFor the two scenarios below, use your intuition to “guesstimate” the posterior (fill out each row based on ~ vibes ~ )\n\nThe program accepted five of five applicants?\nThe program accepted none of the five applicants?"
+  },
+  {
+    "objectID": "slides/slides02.html#intuition-vs-reality",
+    "href": "slides/slides02.html#intuition-vs-reality",
+    "title": "Bayes Rule",
+    "section": "Intuition vs Reality",
+    "text": "Intuition vs Reality\nYour intuition may not be Bayesian if:\n\n\n\n\nBayesian statistics is a balancing act! We will take both the prior and the data to get to the posterior. Don’t worry if your intuition was wrong. As we practice more, you will learn to think like a Bayesian."
+  },
+  {
+    "objectID": "slides/slides02.html#the-binomial-model",
+    "href": "slides/slides02.html#the-binomial-model",
+    "title": "Bayes Rule",
+    "section": "The Binomial Model",
+    "text": "The Binomial Model\nLet random variable \\(Y\\) be the number of successes in n trials. Assume that the number of trials is fixed, the trials are independent and the probability of success in each trial is \\(\\pi\\). Then, the dependence of \\(Y\\) on \\(\\pi\\) can be modeled by the Binomial model with parameters \\(n\\) and \\(\\pi\\):"
+  },
+  {
+    "objectID": "slides/slides02.html#section-2",
+    "href": "slides/slides02.html#section-2",
+    "title": "Bayes Rule",
+    "section": "",
+    "text": "conditional pmf:\n\\[f(y | \\pi) = {n \\choose y} \\pi^y (1-\\pi)^{n-y} \\text{ for } y \\in \\{0, 1, 2, ..., n\\}\\]\nif \\(\\pi = .2\\) and \\(y = 3\\):"
+  },
+  {
+    "objectID": "slides/slides02.html#section-3",
+    "href": "slides/slides02.html#section-3",
+    "title": "Bayes Rule",
+    "section": "",
+    "text": "(or we can use R)\n\ndbinom(3, size = 5, prob = .2)\n\n[1] 0.0512"
+  },
+  {
+    "objectID": "slides/slides02.html#section-4",
+    "href": "slides/slides02.html#section-4",
+    "title": "Bayes Rule",
+    "section": "",
+    "text": "Rather than doing this one by one, we can let R consider all different possible values of \\(y\\):\n\ndbinom(0:5, size = 5, prob = .2)\n\n[1] 0.32768 0.40960 0.20480 0.05120 0.00640 0.00032\n\n\n\n\n\n\\(y\\)\n0\n1\n2\n3\n4\n5\n\n\n\n\n\\(f(y | \\pi = .2)\\)"
+  },
+  {
+    "objectID": "slides/slides02.html#bayes-rule-from-events-to-random-variables",
+    "href": "slides/slides02.html#bayes-rule-from-events-to-random-variables",
+    "title": "Bayes Rule",
+    "section": "Bayes Rule: from events to random variables",
+    "text": "Bayes Rule: from events to random variables"
+  },
+  {
+    "objectID": "slides/slides02.html#normalizing-constant",
+    "href": "slides/slides02.html#normalizing-constant",
+    "title": "Bayes Rule",
+    "section": "Normalizing constant",
+    "text": "Normalizing constant\nTherefore \\(f(y=3)=\\)\n\ndbinom(3, size = 5, prob = .2) * .7 + \n  dbinom(3, size = 5, prob = .4) * .2 + \n  dbinom(3, size = 5, prob = .8) * .1 \n\n[1] 0.1024"
+  },
+  {
+    "objectID": "slides/test.html#quarto",
+    "href": "slides/test.html#quarto",
+    "title": "Untitled",
+    "section": "Quarto",
+    "text": "Quarto\nQuarto enables you to weave together content and executable code into a finished presentation. To learn more about Quarto presentations see https://quarto.org/docs/presentations/."
+  },
+  {
+    "objectID": "slides/test.html#bullets",
+    "href": "slides/test.html#bullets",
+    "title": "Untitled",
+    "section": "Bullets",
+    "text": "Bullets\nWhen you click the Render button a document will be generated that includes:\n\nContent authored with markdown\nOutput from executable code"
+  },
+  {
+    "objectID": "slides/test.html#code",
+    "href": "slides/test.html#code",
+    "title": "Untitled",
+    "section": "Code",
+    "text": "Code\nWhen you click the Render button a presentation will be generated that includes both content and the output of embedded code. You can embed code like this:\n\n1 + 1\n\n[1] 2"
+  },
+  {
+    "objectID": "computing/computing-setup.html",
+    "href": "computing/computing-setup.html",
+    "title": "Computing Setup for Stat340",
+    "section": "",
+    "text": "For Stat340, I highly recommend using R on your local computer, instead of the maize server. Why?\n\nIt’s likely the 4th time (or more!) that you’ve seen R in a classroom setting\nYou’re graduating soon and won’t be able to access maize\nBayesian statistics is much more computationally expensive than traditional statistics, and your model fitting will run faster on a local installation\n\nFirst, download the most recent versions of R and RStudio for your operating system:\n\nR (https://www.r-project.org/)\nRStudio (https://rstudio.com/products/rstudio/download/)\nQuarto (https://quarto.org/docs/get-started/)\n\nNext, we need to install a version of LaTeX in order to render quarto files to PDF. I recommend using the tinytex installation that is included with quarto. To install it, click on “Terminal” within RStudio and type the following:\nquarto install tinytex\nAfter doing all of the following, you can check that it is working correctly by:\n\nOpen rstudio\nClick “File –&gt; New File –&gt; Quarto document” and choose the “PDF” output option\nMake a small change to the file within the editor and click “render”. If all goes well, you should end up with a PDF document!\n\nFor Stat340 coursework, it will be helpful to have some additional R packages installed. You can install these all at once with:\n\ninstall.packages(c(\"bayesrules\", \"tidyverse\", \"janitor\", \"rstanarm\",\n                   \"bayesplot\", \"tidybayes\", \"broom.mixed\", \"modelr\",\n                   \"e1071\", \"forcats\"), \n                 dependencies = TRUE)",
+    "crumbs": [
+      "Computing",
+      "Setup"
+    ]
+  },
+  {
+    "objectID": "computing/computing-access.html",
+    "href": "computing/computing-access.html",
+    "title": "Computing Access",
+    "section": "",
+    "text": "I expect you to use RStudio to run R in this course. You have two options for using RStudio:\n\nWe have a Carleton server hosting Rstudio at https://maize.mathcs.carleton.edu/. Your files on this account will be accessible as long as you are a student at Carleton. Use your Carleton credentials to access your account and you need to be running the Carleton VPN (below) to access this server. Use this option if\n\nyour personal computer is old and/or slow\nyou prefer to use school computers (lab or library computers)\n\nYou can also run R/RStudio from your personal computer. If you use a local version of R/RStudio this term, make sure that you have recently updated both R and RStudio.\nTo check your version of R, run the command getRversion() and compare your version to the newest version posted on https://cran.r-project.org/. If you need an update, then install the newer version using the installation directions above.\nIn RStudio, check for updates with the menu option Help &gt; Check for updates. Follow directions if an update is needed.\nFor a fresh download:\n\nDownload the latest version of R for your operating system from https://cran.r-project.org/\nDownload the free RStudio desktop version from https://posit.co/download/rstudio-desktop/\n\nUse the default download and install options for each. For R, download the “precompiled binary” distribution rather than the source code."
+  },
+  {
+    "objectID": "computing/computing-access.html#rrstudio",
+    "href": "computing/computing-access.html#rrstudio",
+    "title": "Computing Access",
+    "section": "",
+    "text": "I expect you to use RStudio to run R in this course. You have two options for using RStudio:\n\nWe have a Carleton server hosting Rstudio at https://maize.mathcs.carleton.edu/. Your files on this account will be accessible as long as you are a student at Carleton. Use your Carleton credentials to access your account and you need to be running the Carleton VPN (below) to access this server. Use this option if\n\nyour personal computer is old and/or slow\nyou prefer to use school computers (lab or library computers)\n\nYou can also run R/RStudio from your personal computer. If you use a local version of R/RStudio this term, make sure that you have recently updated both R and RStudio.\nTo check your version of R, run the command getRversion() and compare your version to the newest version posted on https://cran.r-project.org/. If you need an update, then install the newer version using the installation directions above.\nIn RStudio, check for updates with the menu option Help &gt; Check for updates. Follow directions if an update is needed.\nFor a fresh download:\n\nDownload the latest version of R for your operating system from https://cran.r-project.org/\nDownload the free RStudio desktop version from https://posit.co/download/rstudio-desktop/\n\nUse the default download and install options for each. For R, download the “precompiled binary” distribution rather than the source code."
+  },
+  {
+    "objectID": "computing/computing-access.html#vpn",
+    "href": "computing/computing-access.html#vpn",
+    "title": "Computing Access",
+    "section": "VPN",
+    "text": "VPN\nIf you plan to use the maize server and you plan to do any work off campus this term (e.g., while on a field trip, travel for athletics, or just sitting in Little Joy) you need to install Carleton’s VPN to have access.\nTo install the GlobalProtect VPN follow directions provided by ITS."
+  },
+  {
+    "objectID": "computing/computing-access.html#git-and-github",
+    "href": "computing/computing-access.html#git-and-github",
+    "title": "Computing Access",
+    "section": "Git and GitHub",
+    "text": "Git and GitHub\nGit is version control software that you install locally on your computer. Git is already installed on the maize RStudio server.\nGithub is a cloud-based service for hosting git projects. It allows multiple users to share and contribute to projects and it is how you will be submitting homework assignments and projects for this class. More information about Github for this class is found on Moodle.\nIf you are using a local install of R/RStudio, then you will need to install Git.\nInstalling Git\nDirections for both Windows & Mac here at http://happygitwithr.com/install-git.html.\n\nIf you are using maize, then there is nothing you need to install.\nWindows users should follow Option 1 in 6.2.\nMac users can follow Option 1 in 6.3 if comfortable, otherwise follow Option 2\nLinux users can follow 6.4."
+  },
+  {
+    "objectID": "computing/computing-access.html#latex",
+    "href": "computing/computing-access.html#latex",
+    "title": "Computing Access",
+    "section": "LaTeX",
+    "text": "LaTeX\nYou need a LaTeX compiler to create a pdf document from a R Markdown file. If you use the maize server, you don’t need to install anything (the server already has a LaTeX compiler). If you are using a local RStudio, you should install a Latex compiler.\nInstalling LaTeX (not needed if you are using the maize server)\nIf you don’t already have a tex package installed on your computer, the easiest option to create pdf’s is to use the tinytex R package. This can be installed with the following R commands:\n\ninstall.packages(\"tinytex\")\ntinytex::install_tinytex()  # install TinyTeX\n\nIf you’d like a stand alone LaTeX package, you could install the basic installations of either:\n\nMacTeX for Mac (3.2GB!)\nMiKTeX for Windows (190MB)\n\n\nAcknowledgements\nThis installation guide was written by Adam Loy and is based on the guide from stat545.com and is licensed under the CC BY-NC 3.0 Creative Commons License."
+  },
+  {
+    "objectID": "computing/r-basics-refresher.html",
+    "href": "computing/r-basics-refresher.html",
+    "title": "R Basics",
+    "section": "",
+    "text": "In your previous statistics course at Carleton, you likely loaded at least one add-on R package. In this course, we’ll use a lot of tools found in the tidyverse of R packages. To load many of these packages at once, you can use the library(&lt;package_name&gt;) command. So to load the tidyverse we run:\n\nlibrary(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.4     ✔ readr     2.1.5\n✔ forcats   1.0.0     ✔ stringr   1.5.1\n✔ ggplot2   3.5.2     ✔ tibble    3.2.1\n✔ lubridate 1.9.3     ✔ tidyr     1.3.1\n✔ purrr     1.0.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\n\n\n\n\n\n\n\nNote\n\n\n\nAbove we see a lot of extra info printed when we load the tidyverse. These messages are just telling you what packages are now available to you and warning you that a few functions (e.g., filter) has been replaced by the tidyverse version. We’ll see how to suppress these messages later.",
+    "crumbs": [
+      "Computing",
+      "R Refresher"
+    ]
+  },
+  {
+    "objectID": "computing/r-basics-refresher.html#loading-r-packages",
+    "href": "computing/r-basics-refresher.html#loading-r-packages",
+    "title": "R Basics",
+    "section": "",
+    "text": "In your previous statistics course at Carleton, you likely loaded at least one add-on R package. In this course, we’ll use a lot of tools found in the tidyverse of R packages. To load many of these packages at once, you can use the library(&lt;package_name&gt;) command. So to load the tidyverse we run:\n\nlibrary(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.4     ✔ readr     2.1.5\n✔ forcats   1.0.0     ✔ stringr   1.5.1\n✔ ggplot2   3.5.2     ✔ tibble    3.2.1\n✔ lubridate 1.9.3     ✔ tidyr     1.3.1\n✔ purrr     1.0.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\n\n\n\n\n\n\n\nNote\n\n\n\nAbove we see a lot of extra info printed when we load the tidyverse. These messages are just telling you what packages are now available to you and warning you that a few functions (e.g., filter) has been replaced by the tidyverse version. We’ll see how to suppress these messages later.",
+    "crumbs": [
+      "Computing",
+      "R Refresher"
+    ]
+  },
+  {
+    "objectID": "computing/r-basics-refresher.html#creating-and-naming-objects",
+    "href": "computing/r-basics-refresher.html#creating-and-naming-objects",
+    "title": "R Basics",
+    "section": "Creating and naming objects",
+    "text": "Creating and naming objects\nAll R statements where you create objects have the form:\n\nobject_name &lt;- value\n\nAt first, we’ll be creating a lot of data objects. For example, we an load a data set containing the ratings for each episode of The Office using the code\n\noffice_ratings &lt;- readr::read_csv(\"https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-03-17/office_ratings.csv\")\n\nIn this class you will be creating a lot of objects, so you’ll need to come up with names for those objects. Trying to think of informative/meaningful names for objects is hard, but necessary work! Below are the fundamental rules for naming objects in R:\n\nnames can’t start with a number\nnames are case-sensitive\nsome common letters are used internally by R and should be avoided as variable names (c, q, t, C, D, F, T, I)\nThere are reserved words that R won’t let you use for variable names (for, in, while, if, else, repeat, break, next)\nR will let you use the name of a predefined function—but don’t do it!\n\nYou can always check to see if you the name you want to use is already taken via exists():\nFor example lm exists\n\nexists(\"lm\")\n\n[1] TRUE\n\n\nbut carleton_college doesn’t.\n\nexists(\"carleton_college\")\n\n[1] FALSE\n\n\nThere are also a lot of naming styles out there, and if you have coded in another language, you may have already developed a preference. Below is an illustration by Allison Horst\n\n\n\n\n\n\n\n\nI generally following the tidyverse style guide, so you’ll see that I use only lowercase letters, numbers, and _ (snake case).",
+    "crumbs": [
+      "Computing",
+      "R Refresher"
+    ]
+  },
+  {
+    "objectID": "computing/r-basics-refresher.html#overviews-of-data-frames",
+    "href": "computing/r-basics-refresher.html#overviews-of-data-frames",
+    "title": "R Basics",
+    "section": "Overviews of data frames",
+    "text": "Overviews of data frames\nAbove, you loaded in a data set called office_ratings. Data sets are stored as a special data structure called a data frame. Data frames are the most-commonly used data structure for data analysis in R. For now, think of them like spreadsheets.\nOnce you have your data frame, you can get a quick overview of it using a few commands (below I use data_set as a generic placeholder for the data frame’s name):\n\n\n\n\n\n\nCommand\nDescription\n\n\n\nhead(data_set)\nprint the first 6 rows\n\n\ntail(data_set)\nprint the last 6 rows\n\n\nglimpse(data_set)\na quick overview where columns run down the screen and the data values run across. This allows you to see every column in the data frame.\n\n\nstr(data_set)\na quick overview like glimpse(), but without some of the formatting\n\n\nsummary(data_set)\nquick summary statistics for each column\n\n\ndim(data_set)\nthe number of rows and columns\n\n\nnrow(data_set)\nthe number of rows\n\n\nncol(data_set)\nthe number of columns",
+    "crumbs": [
+      "Computing",
+      "R Refresher"
+    ]
+  },
+  {
+    "objectID": "computing/r-basics-refresher.html#tibbles",
+    "href": "computing/r-basics-refresher.html#tibbles",
+    "title": "R Basics",
+    "section": "Tibbles",
+    "text": "Tibbles\nA tibble, or a tbl_df is another version of a data frame which is used by default in a lot of the tidyverse packages that we’ll use.\n\nTibbles are data.frames that are lazy and surly: they do less (i.e. they don’t change variable names or types, and don’t do partial matching) and complain more (e.g. when a variable does not exist). This forces you to confront problems earlier, typically leading to cleaner, more expressive code. Tibbles also have an enhanced print() method which makes them easier to use with large datasets containing complex objects.\n\n\n\n\n\n\n\nNone Check point\n\n\n\nRun the above commands on the office_ratings data set. Compare and contrast the information returned by each command.\n\n\n\n\n\n\n\n\nTipGetting a spreadsheet\n\n\n\nIn RStudio, you can run the command View(data_set) to pull up a spreadsheet representation of a data frame. You can also click on the name of the data frame in the Environment pane. This can be a great way help you think about the data, and even has some interactive functions (e.g., filtering and searching); however, never include View(data_set) in an .Rmd file!!\n\n\n\n\n\n\n\n\nNoteReview from intro stats\n\n\n\nIn intro stats we used the terms cases (or observations) and variables to describe the rows and columns of a data frame, respectively.",
+    "crumbs": [
+      "Computing",
+      "R Refresher"
+    ]
+  },
+  {
+    "objectID": "computing/r-basics-refresher.html#extracting-pieces-of-data-frames",
+    "href": "computing/r-basics-refresher.html#extracting-pieces-of-data-frames",
+    "title": "R Basics",
+    "section": "Extracting pieces of data frames",
+    "text": "Extracting pieces of data frames\nSince data frames are the fundamental data structure for most analyses in R, it’s important to know how to work with them. You already know how to get an overview of a data frame, but that isn’t always very informative. Often, you want to extract pieces of a data frame, such as a specific column or row.\nExtracting rows\nData frames can be indexed by their row/column numbers. To extract elements of a data frame, the basic syntax is data_set[row.index, column.index]. So, to extract the 10th row of office_ratings we run\n\noffice_ratings[10, ]\n\n# A tibble: 1 × 6\n  season episode title    imdb_rating total_votes air_date  \n   &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;          &lt;dbl&gt;       &lt;dbl&gt; &lt;date&gt;    \n1      2       4 The Fire         8.4        2713 2005-10-11\n\n\nNotice that to extract an entire row, we leave the column index position blank.\nWe can also extract multiple rows by creating a vector of row indices. For example, we can extract the first 5 rows via\n\noffice_ratings[1:5, ]\n\n# A tibble: 5 × 6\n  season episode title         imdb_rating total_votes air_date  \n   &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;               &lt;dbl&gt;       &lt;dbl&gt; &lt;date&gt;    \n1      1       1 Pilot                 7.6        3706 2005-03-24\n2      1       2 Diversity Day         8.3        3566 2005-03-29\n3      1       3 Health Care           7.9        2983 2005-04-05\n4      1       4 The Alliance          8.1        2886 2005-04-12\n5      1       5 Basketball            8.4        3179 2005-04-19\n\n\nHere, 1:5 create a sequence of integers from 1 to 5.\nWe could also specify arbitrary row index values by combing the values into a vector. For example, we could extract the 1st, 13th, 64th, and 128th rows via\n\noffice_ratings[c(1, 13, 64, 128), ]\n\n# A tibble: 4 × 6\n  season episode title            imdb_rating total_votes air_date  \n   &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;                  &lt;dbl&gt;       &lt;dbl&gt; &lt;date&gt;    \n1      1       1 Pilot                    7.6        3706 2005-03-24\n2      2       7 The Client               8.6        2631 2005-11-08\n3      4      13 Job Fair                 7.9        1977 2008-05-08\n4      7      11 Classy Christmas         8.9        2138 2010-12-09\n\n\nExtracting columns\nSimilar to extracting rows, we can use a numeric index to extract the columns of a data frame. For example, to extract the 3rd column, we can run\n\noffice_ratings[,3]\n\n# A tibble: 188 × 1\n   title            \n   &lt;chr&gt;            \n 1 Pilot            \n 2 Diversity Day    \n 3 Health Care      \n 4 The Alliance     \n 5 Basketball       \n 6 Hot Girl         \n 7 The Dundies      \n 8 Sexual Harassment\n 9 Office Olympics  \n10 The Fire         \n# ℹ 178 more rows\n\n\nAlternatively, we can pass in the column name in quotes instead of the column number\n\noffice_ratings[,\"title\"]\n\n# A tibble: 188 × 1\n   title            \n   &lt;chr&gt;            \n 1 Pilot            \n 2 Diversity Day    \n 3 Health Care      \n 4 The Alliance     \n 5 Basketball       \n 6 Hot Girl         \n 7 The Dundies      \n 8 Sexual Harassment\n 9 Office Olympics  \n10 The Fire         \n# ℹ 178 more rows\n\n\nNotice that the extracted column is still formatted as a data frame (or tibble). If you want to extract the contents of the column and just have a vector of titles, you have a few options.\n\nYou could use double brackets with the column number:\n\n\noffice_ratings[[3]]\n\n\nYou could use double brackets with the column name in quotes:\n\n\noffice_ratings[[\"title\"]]\n\n\nYou could use the $ extractor with the column name (not in quotes):\n\n\noffice_ratings$title\n\n\n\n\n\n\n\nNone Check point\n\n\n\n\nExtract the 35th row of office_ratings.\nExtract rows 35, 36, 37, and 38 of office_ratings.\nExtract the imdb_rating column from office ratings using the column index number.\nExtract the imdb_rating column from office ratings using the column name.",
+    "crumbs": [
+      "Computing",
+      "R Refresher"
+    ]
+  },
+  {
+    "objectID": "computing/r-basics-refresher.html#lists",
+    "href": "computing/r-basics-refresher.html#lists",
+    "title": "R Basics",
+    "section": "Lists",
+    "text": "Lists\nIt turns out that data frames are special cases of lists, a more general data structure. In a data frame, each column is an element of the data list and each column must be of the same length. In general, lists can be comprised of elements of vastly different lengths and data types.\nAs an example, let’s construct a list of the faculty in the MAST department and what is being taught this winter.\n\nstat_faculty &lt;- c(\"Kelling\", \"Loy\", \"Luby\", \"Poppick\", \"St. Clair\", \"Wadsworth\")\nstat_courses &lt;- c(120, 220, 230, 250, 285, 330)\nmath_faculty &lt;- c(\"Brooke\", \"Davis\", \"Egge\", \"Gomez-Gonzales\", \"Haunsperger\", \"Johnson\", \n                  \"Meyer\", \"Montee\", \"Shrestha\",\"Terry\", \"Thompson\", \"Turnage-Butterbaugh\")\nmath_courses &lt;- c(101, 106, 111, 120, 210, 211, 232, 236, 240, 241, 251, 321, 333, 395)\n\nmast &lt;- list(stat_faculty = stat_faculty, stat_courses = stat_courses, \n             math_faculty = math_faculty, math_courses = math_courses)\n\nOverview of a list\nYou can get an overview of a list a few ways:\n\n\nglimpse(list_name) and str(list_name) list the elements of the list and the first few entries of each element.\n\n\nglimpse(mast)\n\nList of 4\n $ stat_faculty: chr [1:6] \"Kelling\" \"Loy\" \"Luby\" \"Poppick\" ...\n $ stat_courses: num [1:6] 120 220 230 250 285 330\n $ math_faculty: chr [1:12] \"Brooke\" \"Davis\" \"Egge\" \"Gomez-Gonzales\" ...\n $ math_courses: num [1:14] 101 106 111 120 210 211 232 236 240 241 ...\n\n\n\n\nlength(list_name) will tell you how many elements are in the list\n\n\nlength(mast)\n\n[1] 4\n\n\nExtracting elements of a list\nSince data frames are lists, you’ve already seen how to extract elements of a list. For example, to extract the stat_faculty you could run\n\nmast[[1]]\n\n[1] \"Kelling\"   \"Loy\"       \"Luby\"      \"Poppick\"   \"St. Clair\" \"Wadsworth\"\n\n\nor\n\nmast[[\"stat_faculty\"]]\n\n[1] \"Kelling\"   \"Loy\"       \"Luby\"      \"Poppick\"   \"St. Clair\" \"Wadsworth\"\n\n\n\n\n\n\n\n\nNote\n\n\n\nIf you had only used a single bracket above, the returned object would still be a list, which is typically not what we would want.\n\nmast[1]\n\n$stat_faculty\n[1] \"Kelling\"   \"Loy\"       \"Luby\"      \"Poppick\"   \"St. Clair\" \"Wadsworth\"\n\n\n\n\n\n\n\n\n\n\nNone Check point\n\n\n\nExtract the statistics courses offered this term.",
+    "crumbs": [
+      "Computing",
+      "R Refresher"
+    ]
+  },
+  {
+    "objectID": "computing/r-basics-refresher.html#vectors",
+    "href": "computing/r-basics-refresher.html#vectors",
+    "title": "R Basics",
+    "section": "Vectors",
+    "text": "Vectors\nThe columns of the office_ratings data frame and the elements of the mast list were comprised of (atomic) vectors. Unlike lists, all elements within a vector share the same type. For example, all names in the stat_faculty vector were character strings and all ratings in the imdb_rating column were numeric. We’ll deal with a variety of types of vectors in this course, including:\n\nnumeric\ncharacter (text)\nlogical (TRUE/FALSE)\n\nExtracting elements of a vector\nJust like with lists (and therefore data frames), we use brackets to extract elements from a vector. As an example, let’s work with the title column from office_ratings.\n\ntitle &lt;- office_ratings$title # vector of titles\n\nTo extract the 111th title, we run\n\ntitle[111]\n\n[1] \"New Leads\"\n\n\nor two extract the 100th through 111th titles, we run\n\ntitle[100:111]\n\n [1] \"Double Date\"          \"Murder\"               \"Shareholder Meeting\" \n [4] \"Scott's Tots\"         \"Secret Santa\"         \"The Banker\"          \n [7] \"Sabre\"                \"Manager and Salesman\" \"The Delivery: Part 1\"\n[10] \"The Delivery: Part 2\" \"St. Patrick's Day\"    \"New Leads\"           \n\n\nNegative indices\nSometimes, we want to “kick out” elements of our vector. To do this, we can use a negative index value. For example,\n\ntitle[-1]\n\nreturns all but the first title—that is, it kicks out the first title. To kick out multiple elements, we need to negate a vector of indices. For example, below we kick out the first 10 titles\n\ntitle[-c(1:10)]\n\nAnd now we kick out the 5th, 50th, and 150th titles\n\ntitle[-c(5, 50, 150)]\n\nThis idea can be adapted to lists and data frames. For example, to kick out the first row of office_ratings, we run\n\noffice_ratings[-1,]\n\n# A tibble: 187 × 6\n   season episode title             imdb_rating total_votes air_date  \n    &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;                   &lt;dbl&gt;       &lt;dbl&gt; &lt;date&gt;    \n 1      1       2 Diversity Day             8.3        3566 2005-03-29\n 2      1       3 Health Care               7.9        2983 2005-04-05\n 3      1       4 The Alliance              8.1        2886 2005-04-12\n 4      1       5 Basketball                8.4        3179 2005-04-19\n 5      1       6 Hot Girl                  7.8        2852 2005-04-26\n 6      2       1 The Dundies               8.7        3213 2005-09-20\n 7      2       2 Sexual Harassment         8.2        2736 2005-09-27\n 8      2       3 Office Olympics           8.4        2742 2005-10-04\n 9      2       4 The Fire                  8.4        2713 2005-10-11\n10      2       5 Halloween                 8.2        2561 2005-10-18\n# ℹ 177 more rows\n\n\nor to kick out the math courses from the mast list we run\n\nmast[-4]\n\n$stat_faculty\n[1] \"Kelling\"   \"Loy\"       \"Luby\"      \"Poppick\"   \"St. Clair\" \"Wadsworth\"\n\n$stat_courses\n[1] 120 220 230 250 285 330\n\n$math_faculty\n [1] \"Brooke\"              \"Davis\"               \"Egge\"               \n [4] \"Gomez-Gonzales\"      \"Haunsperger\"         \"Johnson\"            \n [7] \"Meyer\"               \"Montee\"              \"Shrestha\"           \n[10] \"Terry\"               \"Thompson\"            \"Turnage-Butterbaugh\"\n\n\nLogical indices\nIt’s great to be able to extract (or omit) elements using indices, but sometimes we don’t know what index value we should use. For example, if you wanted to extract all of the 300-level statistics courses from the stat_courses vector, you would need to manually determine that positions 2:5 meet that requirement. That’s a lot of work! A better alternative is to allow R to find the elements meeting that requirement using logical operators. Below is a table summarizing common logical operators in R.\n\n\nComparison\nMeaning\n\n\n\n&lt;\nless than\n\n\n&gt;\ngreater than\n\n\n&lt;=\nless than or equal to\n\n\n&gt;=\ngreater than or equal to\n\n\n==\nis equal to\n\n\n!=\nnot equal to\n\n\n\nIn order to extract the 300-level statistics courses, we’ll take two steps:\n\nWe’ll determine whether each course is numbered at least 300,\nthen we’ll use that sequence of TRUEs/FALSEs to extract the course.\n\nSo, first we use the logical operator &gt;= to compare stat_courses and 300. This returns TRUE if the element meets the specification and FALSE otherwise.\n\nstat_courses &gt;= 300\n\n[1] FALSE FALSE FALSE FALSE FALSE  TRUE\n\n\nNow, we can use this vector as our index. Only the TRUE elements will be extracted:\n\nstat_courses[stat_courses &gt;= 300]\n\n[1] 330\n\n\nThe same idea can be used with data frames and lists, just remember how to format the brackets and indices!\n\n\n\n\n\n\nNone Check point\n\n\n\n\nExtract all statistics courses below 250 from stat_courses.\nExtract all math courses except for 240 (probability) from math_courses.\nExtract all rows from season 3 of The Office.",
+    "crumbs": [
+      "Computing",
+      "R Refresher"
+    ]
+  }
+]
