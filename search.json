@@ -225,18 +225,224 @@
     ]
   },
   {
-    "objectID": "course-faq.html",
-    "href": "course-faq.html",
-    "title": "FAQ",
+    "objectID": "homework/hw01.html",
+    "href": "homework/hw01.html",
+    "title": "hw01",
     "section": "",
-    "text": "The best place to come for help is Amanda’s office hours! I can help with anything related to the course. You can also check my calendar for one-on-one appointment slots.\n\n\n\nStudents needing help with their Statistics coursework and R/Rstudio questions can get help from Stats Lab Assistants in the Stats Lab in CMC 304. Stats Lab Assistants are primiarily for Stat 120 (Intro Stats), but they may also be able to assist with general R/Rstudio questions."
+    "text": "BR Exercise 1.5\n\n\nBR Exercise 1.6\n\n\nTBA on Wed\n\n\nTBA on Wed\n\n\nTBA on Wed\n\n\nTBA on Wed\n\n\nTBA on Wed\n\n\nTBA on Wed"
   },
   {
-    "objectID": "course-faq.html#where-can-i-get-help",
-    "href": "course-faq.html#where-can-i-get-help",
-    "title": "FAQ",
+    "objectID": "slides/test.html#quarto",
+    "href": "slides/test.html#quarto",
+    "title": "Untitled",
+    "section": "Quarto",
+    "text": "Quarto\nQuarto enables you to weave together content and executable code into a finished presentation. To learn more about Quarto presentations see https://quarto.org/docs/presentations/."
+  },
+  {
+    "objectID": "slides/test.html#bullets",
+    "href": "slides/test.html#bullets",
+    "title": "Untitled",
+    "section": "Bullets",
+    "text": "Bullets\nWhen you click the Render button a document will be generated that includes:\n\nContent authored with markdown\nOutput from executable code"
+  },
+  {
+    "objectID": "slides/test.html#code",
+    "href": "slides/test.html#code",
+    "title": "Untitled",
+    "section": "Code",
+    "text": "Code\nWhen you click the Render button a presentation will be generated that includes both content and the output of embedded code. You can embed code like this:\n\n1 + 1\n\n[1] 2"
+  },
+  {
+    "objectID": "slides/slides02.html#warm-up",
+    "href": "slides/slides02.html#warm-up",
+    "title": "Bayes Rule",
+    "section": "Warm Up",
+    "text": "Warm Up\nadd contingency table\n\nCalculate the following probabilities and write them using formal notation\n\nP(A)\nP(B and A)\nP(B|A)"
+  },
+  {
+    "objectID": "slides/slides02.html#marginal-probability",
+    "href": "slides/slides02.html#marginal-probability",
+    "title": "Bayes Rule",
+    "section": "Marginal Probability",
+    "text": "Marginal Probability\nadd table\n\n\n\n\n\n\nMarginal Probability"
+  },
+  {
+    "objectID": "slides/slides02.html#joint-probability",
+    "href": "slides/slides02.html#joint-probability",
+    "title": "Bayes Rule",
+    "section": "Joint Probability",
+    "text": "Joint Probability\nadd table\n\n\n\n\n\n\nJoint Probability"
+  },
+  {
+    "objectID": "slides/slides02.html#conditional-probability",
+    "href": "slides/slides02.html#conditional-probability",
+    "title": "Bayes Rule",
+    "section": "Conditional Probability",
+    "text": "Conditional Probability\nadd table\n\n\n\n\n\n\nConditional Probability"
+  },
+  {
+    "objectID": "slides/slides02.html#section",
+    "href": "slides/slides02.html#section",
+    "title": "Bayes Rule",
     "section": "",
-    "text": "The best place to come for help is Amanda’s office hours! I can help with anything related to the course. You can also check my calendar for one-on-one appointment slots.\n\n\n\nStudents needing help with their Statistics coursework and R/Rstudio questions can get help from Stats Lab Assistants in the Stats Lab in CMC 304. Stats Lab Assistants are primiarily for Stat 120 (Intro Stats), but they may also be able to assist with general R/Rstudio questions."
+    "text": "LLMs are obsessed with em dashes:\n\nImagine you have an idea or belief about something–like whether it’s going to rain today. Then, you get some new information–like seeing dark clouds in the sky. Bayes’ Rule helps you recalculate how confident you should be in your belief after seeing that new information. Let me know if you want a real-world example (like medical tests or crime investigations)—those make it even clearer.\n\n\n–ChatGPT. Prompt: “Can you summarize Bayes Rule without any math?”\n\nBut humans also use em dashes."
+  },
+  {
+    "objectID": "slides/slides02.html#notation",
+    "href": "slides/slides02.html#notation",
+    "title": "Bayes Rule",
+    "section": "Notation",
+    "text": "Notation\nIdea: what if our data….\n\nGreek letters (\\(\\pi, \\beta, \\mu\\) etc) denote our primary variables of interest (sometimes called parameters)\nCapital letters near the end of the alphabet (\\(X, Y, Z\\)) denote random variables related to our data\nWe denote an observed outcome of \\(Y\\) using lower case \\(y\\)"
+  },
+  {
+    "objectID": "slides/slides02.html#example-phd-admissions",
+    "href": "slides/slides02.html#example-phd-admissions",
+    "title": "Bayes Rule",
+    "section": "Example: PhD admissions",
+    "text": "Example: PhD admissions"
+  },
+  {
+    "objectID": "slides/slides02.html#prior-model-for-pi",
+    "href": "slides/slides02.html#prior-model-for-pi",
+    "title": "Bayes Rule",
+    "section": "Prior model for \\(\\pi\\)",
+    "text": "Prior model for \\(\\pi\\)\n\n\n\n\\(\\pi\\)\n0.2\n0.4\n0.87\n\n\n\n\n\\(f(\\pi)\\)"
+  },
+  {
+    "objectID": "slides/slides02.html#from-prior-to-posterior",
+    "href": "slides/slides02.html#from-prior-to-posterior",
+    "title": "Bayes Rule",
+    "section": "From prior to posterior",
+    "text": "From prior to posterior\n\n\n\n\\(\\pi\\)\n0.2\n0.4\n0.87\n\n\n\n\n\\(f(\\pi)\\)\n\n\n\n\n\n\\(f(\\pi | y = 5)\\) (1)\n\n\n\n\n\n\\(f(\\pi | y = 0)\\) (2)\n\n\n\n\n\n\n\nFor the two scenarios below, use your intuition to “guesstimate” the posterior (fill out each row based on ~ vibes ~ )\n\nThe program accepted five of five applicants?\nThe program accepted none of the five applicants?"
+  },
+  {
+    "objectID": "slides/slides02.html#intuition-vs-reality",
+    "href": "slides/slides02.html#intuition-vs-reality",
+    "title": "Bayes Rule",
+    "section": "Intuition vs Reality",
+    "text": "Intuition vs Reality\nYour intuition may not be Bayesian if:\n\n\n\n\nBayesian statistics is a balancing act! We will take both the prior and the data to get to the posterior. Don’t worry if your intuition was wrong. As we practice more, you will learn to think like a Bayesian."
+  },
+  {
+    "objectID": "slides/slides02.html#the-binomial-model",
+    "href": "slides/slides02.html#the-binomial-model",
+    "title": "Bayes Rule",
+    "section": "The Binomial Model",
+    "text": "The Binomial Model\nLet random variable \\(Y\\) be the number of successes in n trials. Assume that the number of trials is fixed, the trials are independent and the probability of success in each trial is \\(\\pi\\). Then, the dependence of \\(Y\\) on \\(\\pi\\) can be modeled by the Binomial model with parameters \\(n\\) and \\(\\pi\\):"
+  },
+  {
+    "objectID": "slides/slides02.html#section-2",
+    "href": "slides/slides02.html#section-2",
+    "title": "Bayes Rule",
+    "section": "",
+    "text": "conditional pmf:\n\\[f(y | \\pi) = {n \\choose y} \\pi^y (1-\\pi)^{n-y} \\text{ for } y \\in \\{0, 1, 2, ..., n\\}\\]\nif \\(\\pi = .2\\) and \\(y = 3\\):"
+  },
+  {
+    "objectID": "slides/slides02.html#section-3",
+    "href": "slides/slides02.html#section-3",
+    "title": "Bayes Rule",
+    "section": "",
+    "text": "(or we can use R)\n\ndbinom(3, size = 5, prob = .2)\n\n[1] 0.0512"
+  },
+  {
+    "objectID": "slides/slides02.html#section-4",
+    "href": "slides/slides02.html#section-4",
+    "title": "Bayes Rule",
+    "section": "",
+    "text": "Rather than doing this one by one, we can let R consider all different possible values of \\(y\\):\n\ndbinom(0:5, size = 5, prob = .2)\n\n[1] 0.32768 0.40960 0.20480 0.05120 0.00640 0.00032\n\n\n\n\n\n\\(y\\)\n0\n1\n2\n3\n4\n5\n\n\n\n\n\\(f(y | \\pi = .2)\\)"
+  },
+  {
+    "objectID": "slides/slides02.html#bayes-rule-from-events-to-random-variables",
+    "href": "slides/slides02.html#bayes-rule-from-events-to-random-variables",
+    "title": "Bayes Rule",
+    "section": "Bayes Rule: from events to random variables",
+    "text": "Bayes Rule: from events to random variables"
+  },
+  {
+    "objectID": "slides/slides02.html#normalizing-constant",
+    "href": "slides/slides02.html#normalizing-constant",
+    "title": "Bayes Rule",
+    "section": "Normalizing constant",
+    "text": "Normalizing constant\nTherefore \\(f(y=3)=\\)\n\ndbinom(3, size = 5, prob = .2) * .7 + \n  dbinom(3, size = 5, prob = .4) * .2 + \n  dbinom(3, size = 5, prob = .8) * .1 \n\n[1] 0.1024"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Stat 340: Bayesian Statistics",
+    "section": "",
+    "text": "This page contains an outline of the topics, content, and assignments for the term. Note that this schedule will be updated as the term progresses and the timeline of topics and assignments might be updated. Any major changes to due dates will be announced in class and indicated in bold here.\n\n\n\n\n\n\nWEEK\nDOW\nDATE\nPREPARE\nTOPIC\nMATERIALS\nDUE\n\n\n\n1\nM\nMon, Sep 15\n📝complete welcome survey  📚 Bayes Rules Ch1  💻 Join Slack workspace\n\nIntro to Bayesian Thinking\n\n\n\n\n1\nW\nWed, Sep 17\n📚 Bayes Rules Ch2  💻 Complete computing setup\n\nBayes Rule, R Setup\ntbd\n\n\n\n1\nF\nFri, Sep 19\n\nProbability and Likelihood Review\ntbd\nHW 1\n\n\n2\nM\nMon, Sep 22\n📚 Bayes Rules Ch3 \n\nBeta-Binomial Model\ntbd\n\n\n\n2\nW\nWed, Sep 24\n📚 Bayes Rules Ch4 \n\nBalance and Sequentiality\ntbd\n\n\n\n2\nF\nFri, Sep 26\n📚 Bayes Rules Ch5.1-2 \n\nGamma-Gamma\ntbd\nHW 2\n\n\n3\nM\nMon, Sep 29\n📚 Bayes Rules Ch5.3-5.6 \n\nNormal-Normal\ntbd\n\n\n\n3\nW\nWed, Oct 1\n📚 Bayes Rules Ch6.1-2 \n\nGrid approximation and Markov Chains\ntbd\n\n\n\n3\nF\nFri, Oct 3\n📚 Bayes Rules Ch6.3 \n\nDiagnostics\ntbd\nHW3\n\n\n4\nM\nMon, Oct 6\n📚 Bayes Rules Ch7.1-7.3 \n\nMCMC I\ntbd\nHand out computing project\n\n\n4\nW\nWed, Oct 8\n📚 Bayes Rules Ch7.4-7 \n\nMCMC II\ntbd\n\n\n\n4\nF\nFri, Oct 10\n\nExam I\ntbd\nHW4\n\n\n5\nM\nMon, Oct 13\n\nPosterior Inference\ntbd\n\n\n\n5\nW\nWed, Oct 15\n\nPosterior Prediction\ntbd\n\n\n\n5\nF\nFri, Oct 17\n\nRegression\ntbd\nHW5\n\n\n6\nM\nMon, Oct 20\n\n❌ Midterm Break; no class\ntbd\n\n\n\n6\nW\nWed, Oct 22\n\nEvaluating I\ntbd\nComputing Project Due\n\n\n6\nF\nFri, Oct 24\n\nEvaluating II\ntbd\nHW6\n\n\n7\nM\nMon, Oct 27\n\nExtending Regression Model\ntbd\n\n\n\n7\nW\nWed, Oct 29\n\nPoisson Regression\ntbd\n\n\n\n7\nF\nFri, Oct 31\n\nNegative Binomial Regression\ntbd\nHW7\n\n\n8\nM\nMon, Nov 3\n\nLogistic Regression\ntbd\n\n\n\n8\nW\nWed, Nov 5\n\nNaive Bayes Classification\ntbd\n\n\n\n8\nF\nFri, Nov 7\n\nExam II\ntbd\nHW8\n\n\n9\nM\nMon, Nov 10\n\nHierarchical Models I\ntbd\n\n\n\n9\nW\nWed, Nov 12\n\nHierarchical Models II\ntbd\n\n\n\n9\nF\nFri, Nov 14\n\nHierarchical Models III\ntbd\n\n\n\n10\nM\nMon, Nov 17\n\nProject work day\ntbd\nHW 9\n\n\n10\nW\nWed, Nov 19\n\nLightning talks\ntbd\n\n\n\n\nM\nFri, Nov 21\n\nFinal Project Due @ noon\ntbd",
+    "crumbs": [
+      "Schedule"
+    ]
+  },
+  {
+    "objectID": "slides/slides-cheat-sheet.html#columns",
+    "href": "slides/slides-cheat-sheet.html#columns",
+    "title": "Slides Cheat Sheet",
+    "section": "Columns",
+    "text": "Columns\n\n\n\nFirst year at Carleton!\nTaught at Swarthmore for 5 years before moving here this fall\nPhD in Statistics & Data Science from Carnegie Mellon University\nGrew up in Minnesota, went to St Ben’s as an undergrad"
+  },
+  {
+    "objectID": "slides/slides-cheat-sheet.html#only-graph-from-code",
+    "href": "slides/slides-cheat-sheet.html#only-graph-from-code",
+    "title": "Slides Cheat Sheet",
+    "section": "Only graph from code",
+    "text": "Only graph from code"
+  },
+  {
+    "objectID": "slides/slides-cheat-sheet.html#background-image-half",
+    "href": "slides/slides-cheat-sheet.html#background-image-half",
+    "title": "Slides Cheat Sheet",
+    "section": "Background Image (half)",
+    "text": "Background Image (half)\n\n\nWhat skills do you need?\n\nprogramming with data\nstatistical modeling\ndomain knowledge\ncommunication"
+  },
+  {
+    "objectID": "slides/slides-cheat-sheet.html#full-size-image",
+    "href": "slides/slides-cheat-sheet.html#full-size-image",
+    "title": "Slides Cheat Sheet",
+    "section": "Full size image",
+    "text": "Full size image\n\n\n\nImage by Adam Loy  adapted from work of Joe Blitzstein, Hanspeter Pfister, and Hadley Wickham"
+  },
+  {
+    "objectID": "slides/slides-cheat-sheet.html#background-image-full-size",
+    "href": "slides/slides-cheat-sheet.html#background-image-full-size",
+    "title": "Slides Cheat Sheet",
+    "section": "Background image (full size)",
+    "text": "Background image (full size)"
+  },
+  {
+    "objectID": "slides/slides-cheat-sheet.html#countdown",
+    "href": "slides/slides-cheat-sheet.html#countdown",
+    "title": "Slides Cheat Sheet",
+    "section": "Countdown",
+    "text": "Countdown\n\nWith your neighbor(s):\nChoose two countries to compare to the U.S. voting record in the U.N. over the years.\nWhat did you learn?\n\n\n\n\n−+\n04:00"
+  },
+  {
+    "objectID": "slides/slides-cheat-sheet.html#table-column-widths",
+    "href": "slides/slides-cheat-sheet.html#table-column-widths",
+    "title": "Slides Cheat Sheet",
+    "section": "table column widths",
+    "text": "table column widths\n\n\n\n\n\n\n\n\nCollaboration Allowed\n\n\n\n\nHomework Problems\nYou are allowed and encouraged to collaborate on homework. You may also use outside resources, but your submitted work must be your own and reflect your own understanding .\n\n\nLab Quiz Problems\nNo collaboration is allowed at all . You may use your own notes for resubmissions, but should not use outside resources.\n\n\nPortfolio Projects\nYou are expected to collaborate with your group, but cannot rely on external sources other than to help motivate the questions or provide other background information. Getting answers on significant parts of solutions from outside resources is not allowed.\n\n\nFinal Project\nYou are expected to collaborate with your group, but cannot rely on external sources other than to help motivate the questions or provide other background information. Any outside resources should be properly cited."
+  },
+  {
+    "objectID": "slides/slides-cheat-sheet.html#use-of-generative-artificial-intelligence-ai",
+    "href": "slides/slides-cheat-sheet.html#use-of-generative-artificial-intelligence-ai",
+    "title": "Slides Cheat Sheet",
+    "section": "Use of generative artificial intelligence (AI)",
+    "text": "Use of generative artificial intelligence (AI)\n\nTreat generative AI, such as ChatGPT or Gemini, the same as other online resources.\nGuiding principles:\n\n(1) Cognitive dimension: Working with AI should not reduce your ability to think clearly. AI should facilitate—rather than hinder—learning.\n(2) Ethical dimension: Students using AI should be transparent about their use and make sure it aligns with academic integrity.\n\n❌ AI tools for writing code: You may not use generative AI to take a “first pass” at a coding task. Do not type coursework prompts directly into AI tools.\n✅ AI tools for debugging code: You may make use of the technology to get help with error messages or trying to fix issues\n❌ AI tools for narrative: Unless instructed otherwise, you may not use generative AI to write narrative on assignments. In general, you may use generative AI as a resource as you complete assignments but not to answer the exercises for you.\n\n\n\nAdapted from Mine Çetinkaya-Rundel"
+  },
+  {
+    "objectID": "slides/slides-cheat-sheet.html#linktask",
+    "href": "slides/slides-cheat-sheet.html#linktask",
+    "title": "Slides Cheat Sheet",
+    "section": "Link/task",
+    "text": "Link/task\n\nhttps://github.com/stat220-w25\n\n\nFill out the Welcome Survey for collection of your account names, later this week you will be invited to the course organization."
+  },
+  {
+    "objectID": "slides/slides-cheat-sheet.html#handwriting-font",
+    "href": "slides/slides-cheat-sheet.html#handwriting-font",
+    "title": "Slides Cheat Sheet",
+    "section": "handwriting font",
+    "text": "handwriting font\n\nin case you don’t yet have a GitHub account…"
   },
   {
     "objectID": "slides/slides01.html#plan-for-today",
@@ -477,217 +683,18 @@
     "text": "Take care of yourself\nDo your best to maintain a healthy lifestyle this semester by wearing a mask if you don’t feel well, eating a vegetable every day, exercising, avoiding excessive drug and alcohol use, getting enough sleep, and taking some time to relax. Your mental health is more important than your grade in this course. There are many helpful resources available on campus and an important part of the college experience is learning how to ask for help. If you are experiencing mental health symptoms as a result of coursework, please speak with me so we can address the problem together."
   },
   {
-    "objectID": "slides/slides-cheat-sheet.html#columns",
-    "href": "slides/slides-cheat-sheet.html#columns",
-    "title": "Slides Cheat Sheet",
-    "section": "Columns",
-    "text": "Columns\n\n\n\nFirst year at Carleton!\nTaught at Swarthmore for 5 years before moving here this fall\nPhD in Statistics & Data Science from Carnegie Mellon University\nGrew up in Minnesota, went to St Ben’s as an undergrad"
-  },
-  {
-    "objectID": "slides/slides-cheat-sheet.html#only-graph-from-code",
-    "href": "slides/slides-cheat-sheet.html#only-graph-from-code",
-    "title": "Slides Cheat Sheet",
-    "section": "Only graph from code",
-    "text": "Only graph from code"
-  },
-  {
-    "objectID": "slides/slides-cheat-sheet.html#background-image-half",
-    "href": "slides/slides-cheat-sheet.html#background-image-half",
-    "title": "Slides Cheat Sheet",
-    "section": "Background Image (half)",
-    "text": "Background Image (half)\n\n\nWhat skills do you need?\n\nprogramming with data\nstatistical modeling\ndomain knowledge\ncommunication"
-  },
-  {
-    "objectID": "slides/slides-cheat-sheet.html#full-size-image",
-    "href": "slides/slides-cheat-sheet.html#full-size-image",
-    "title": "Slides Cheat Sheet",
-    "section": "Full size image",
-    "text": "Full size image\n\n\n\nImage by Adam Loy  adapted from work of Joe Blitzstein, Hanspeter Pfister, and Hadley Wickham"
-  },
-  {
-    "objectID": "slides/slides-cheat-sheet.html#background-image-full-size",
-    "href": "slides/slides-cheat-sheet.html#background-image-full-size",
-    "title": "Slides Cheat Sheet",
-    "section": "Background image (full size)",
-    "text": "Background image (full size)"
-  },
-  {
-    "objectID": "slides/slides-cheat-sheet.html#countdown",
-    "href": "slides/slides-cheat-sheet.html#countdown",
-    "title": "Slides Cheat Sheet",
-    "section": "Countdown",
-    "text": "Countdown\n\nWith your neighbor(s):\nChoose two countries to compare to the U.S. voting record in the U.N. over the years.\nWhat did you learn?\n\n\n\n\n−+\n04:00"
-  },
-  {
-    "objectID": "slides/slides-cheat-sheet.html#table-column-widths",
-    "href": "slides/slides-cheat-sheet.html#table-column-widths",
-    "title": "Slides Cheat Sheet",
-    "section": "table column widths",
-    "text": "table column widths\n\n\n\n\n\n\n\n\nCollaboration Allowed\n\n\n\n\nHomework Problems\nYou are allowed and encouraged to collaborate on homework. You may also use outside resources, but your submitted work must be your own and reflect your own understanding .\n\n\nLab Quiz Problems\nNo collaboration is allowed at all . You may use your own notes for resubmissions, but should not use outside resources.\n\n\nPortfolio Projects\nYou are expected to collaborate with your group, but cannot rely on external sources other than to help motivate the questions or provide other background information. Getting answers on significant parts of solutions from outside resources is not allowed.\n\n\nFinal Project\nYou are expected to collaborate with your group, but cannot rely on external sources other than to help motivate the questions or provide other background information. Any outside resources should be properly cited."
-  },
-  {
-    "objectID": "slides/slides-cheat-sheet.html#use-of-generative-artificial-intelligence-ai",
-    "href": "slides/slides-cheat-sheet.html#use-of-generative-artificial-intelligence-ai",
-    "title": "Slides Cheat Sheet",
-    "section": "Use of generative artificial intelligence (AI)",
-    "text": "Use of generative artificial intelligence (AI)\n\nTreat generative AI, such as ChatGPT or Gemini, the same as other online resources.\nGuiding principles:\n\n(1) Cognitive dimension: Working with AI should not reduce your ability to think clearly. AI should facilitate—rather than hinder—learning.\n(2) Ethical dimension: Students using AI should be transparent about their use and make sure it aligns with academic integrity.\n\n❌ AI tools for writing code: You may not use generative AI to take a “first pass” at a coding task. Do not type coursework prompts directly into AI tools.\n✅ AI tools for debugging code: You may make use of the technology to get help with error messages or trying to fix issues\n❌ AI tools for narrative: Unless instructed otherwise, you may not use generative AI to write narrative on assignments. In general, you may use generative AI as a resource as you complete assignments but not to answer the exercises for you.\n\n\n\nAdapted from Mine Çetinkaya-Rundel"
-  },
-  {
-    "objectID": "slides/slides-cheat-sheet.html#linktask",
-    "href": "slides/slides-cheat-sheet.html#linktask",
-    "title": "Slides Cheat Sheet",
-    "section": "Link/task",
-    "text": "Link/task\n\nhttps://github.com/stat220-w25\n\n\nFill out the Welcome Survey for collection of your account names, later this week you will be invited to the course organization."
-  },
-  {
-    "objectID": "slides/slides-cheat-sheet.html#handwriting-font",
-    "href": "slides/slides-cheat-sheet.html#handwriting-font",
-    "title": "Slides Cheat Sheet",
-    "section": "handwriting font",
-    "text": "handwriting font\n\nin case you don’t yet have a GitHub account…"
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Stat 340: Bayesian Statistics",
+    "objectID": "course-faq.html",
+    "href": "course-faq.html",
+    "title": "FAQ",
     "section": "",
-    "text": "This page contains an outline of the topics, content, and assignments for the term. Note that this schedule will be updated as the term progresses and the timeline of topics and assignments might be updated. Any major changes to due dates will be announced in class and indicated in bold here.\n\n\n\n\n\n\nWEEK\nDOW\nDATE\nPREPARE\nTOPIC\nMATERIALS\nDUE\n\n\n\n1\nM\nMon, Sep 15\n📝complete welcome survey  📚 Bayes Rules Ch1  💻 Join Slack workspace\n\nIntro to Bayesian Thinking\n\n\n\n\n1\nW\nWed, Sep 17\n📚 Bayes Rules Ch2  💻 Complete computing setup\n\nBayes Rule, R Setup\ntbd\n\n\n\n1\nF\nFri, Sep 19\n\nProbability and Likelihood Review\ntbd\nHW 1\n\n\n2\nM\nMon, Sep 22\n📚 Bayes Rules Ch3 \n\nBeta-Binomial Model\ntbd\n\n\n\n2\nW\nWed, Sep 24\n📚 Bayes Rules Ch4 \n\nBalance and Sequentiality\ntbd\n\n\n\n2\nF\nFri, Sep 26\n📚 Bayes Rules Ch5.1-2 \n\nGamma-Gamma\ntbd\nHW 2\n\n\n3\nM\nMon, Sep 29\n📚 Bayes Rules Ch5.3-5.6 \n\nNormal-Normal\ntbd\n\n\n\n3\nW\nWed, Oct 1\n📚 Bayes Rules Ch6.1-2 \n\nGrid approximation and Markov Chains\ntbd\n\n\n\n3\nF\nFri, Oct 3\n📚 Bayes Rules Ch6.3 \n\nDiagnostics\ntbd\nHW3\n\n\n4\nM\nMon, Oct 6\n📚 Bayes Rules Ch7.1-7.3 \n\nMCMC I\ntbd\nHand out computing project\n\n\n4\nW\nWed, Oct 8\n📚 Bayes Rules Ch7.4-7 \n\nMCMC II\ntbd\n\n\n\n4\nF\nFri, Oct 10\n\nExam I\ntbd\nHW4\n\n\n5\nM\nMon, Oct 13\n\nPosterior Inference\ntbd\n\n\n\n5\nW\nWed, Oct 15\n\nPosterior Prediction\ntbd\n\n\n\n5\nF\nFri, Oct 17\n\nRegression\ntbd\nHW5\n\n\n6\nM\nMon, Oct 20\n\n❌ Midterm Break; no class\ntbd\n\n\n\n6\nW\nWed, Oct 22\n\nEvaluating I\ntbd\nComputing Project Due\n\n\n6\nF\nFri, Oct 24\n\nEvaluating II\ntbd\nHW6\n\n\n7\nM\nMon, Oct 27\n\nExtending Regression Model\ntbd\n\n\n\n7\nW\nWed, Oct 29\n\nPoisson Regression\ntbd\n\n\n\n7\nF\nFri, Oct 31\n\nNegative Binomial Regression\ntbd\nHW7\n\n\n8\nM\nMon, Nov 3\n\nLogistic Regression\ntbd\n\n\n\n8\nW\nWed, Nov 5\n\nNaive Bayes Classification\ntbd\n\n\n\n8\nF\nFri, Nov 7\n\nExam II\ntbd\nHW8\n\n\n9\nM\nMon, Nov 10\n\nHierarchical Models I\ntbd\n\n\n\n9\nW\nWed, Nov 12\n\nHierarchical Models II\ntbd\n\n\n\n9\nF\nFri, Nov 14\n\nHierarchical Models III\ntbd\n\n\n\n10\nM\nMon, Nov 17\n\nProject work day\ntbd\nHW 9\n\n\n10\nW\nWed, Nov 19\n\nLightning talks\ntbd\n\n\n\n\nM\nFri, Nov 21\n\nFinal Project Due @ noon\ntbd",
-    "crumbs": [
-      "Schedule"
-    ]
+    "text": "The best place to come for help is Amanda’s office hours! I can help with anything related to the course. You can also check my calendar for one-on-one appointment slots.\n\n\n\nStudents needing help with their Statistics coursework and R/Rstudio questions can get help from Stats Lab Assistants in the Stats Lab in CMC 304. Stats Lab Assistants are primiarily for Stat 120 (Intro Stats), but they may also be able to assist with general R/Rstudio questions."
   },
   {
-    "objectID": "slides/slides02.html#warm-up",
-    "href": "slides/slides02.html#warm-up",
-    "title": "Bayes Rule",
-    "section": "Warm Up",
-    "text": "Warm Up\nadd contingency table\n\nCalculate the following probabilities and write them using formal notation\n\nP(A)\nP(B and A)\nP(B|A)"
-  },
-  {
-    "objectID": "slides/slides02.html#marginal-probability",
-    "href": "slides/slides02.html#marginal-probability",
-    "title": "Bayes Rule",
-    "section": "Marginal Probability",
-    "text": "Marginal Probability\nadd table\n\n\n\n\n\n\nMarginal Probability"
-  },
-  {
-    "objectID": "slides/slides02.html#joint-probability",
-    "href": "slides/slides02.html#joint-probability",
-    "title": "Bayes Rule",
-    "section": "Joint Probability",
-    "text": "Joint Probability\nadd table\n\n\n\n\n\n\nJoint Probability"
-  },
-  {
-    "objectID": "slides/slides02.html#conditional-probability",
-    "href": "slides/slides02.html#conditional-probability",
-    "title": "Bayes Rule",
-    "section": "Conditional Probability",
-    "text": "Conditional Probability\nadd table\n\n\n\n\n\n\nConditional Probability"
-  },
-  {
-    "objectID": "slides/slides02.html#section",
-    "href": "slides/slides02.html#section",
-    "title": "Bayes Rule",
+    "objectID": "course-faq.html#where-can-i-get-help",
+    "href": "course-faq.html#where-can-i-get-help",
+    "title": "FAQ",
     "section": "",
-    "text": "LLMs are obsessed with em dashes:\n\nImagine you have an idea or belief about something–like whether it’s going to rain today. Then, you get some new information–like seeing dark clouds in the sky. Bayes’ Rule helps you recalculate how confident you should be in your belief after seeing that new information. Let me know if you want a real-world example (like medical tests or crime investigations)—those make it even clearer.\n\n\n–ChatGPT. Prompt: “Can you summarize Bayes Rule without any math?”\n\nBut humans also use em dashes."
-  },
-  {
-    "objectID": "slides/slides02.html#notation",
-    "href": "slides/slides02.html#notation",
-    "title": "Bayes Rule",
-    "section": "Notation",
-    "text": "Notation\nIdea: what if our data….\n\nGreek letters (\\(\\pi, \\beta, \\mu\\) etc) denote our primary variables of interest (sometimes called parameters)\nCapital letters near the end of the alphabet (\\(X, Y, Z\\)) denote random variables related to our data\nWe denote an observed outcome of \\(Y\\) using lower case \\(y\\)"
-  },
-  {
-    "objectID": "slides/slides02.html#example-phd-admissions",
-    "href": "slides/slides02.html#example-phd-admissions",
-    "title": "Bayes Rule",
-    "section": "Example: PhD admissions",
-    "text": "Example: PhD admissions"
-  },
-  {
-    "objectID": "slides/slides02.html#prior-model-for-pi",
-    "href": "slides/slides02.html#prior-model-for-pi",
-    "title": "Bayes Rule",
-    "section": "Prior model for \\(\\pi\\)",
-    "text": "Prior model for \\(\\pi\\)\n\n\n\n\\(\\pi\\)\n0.2\n0.4\n0.87\n\n\n\n\n\\(f(\\pi)\\)"
-  },
-  {
-    "objectID": "slides/slides02.html#from-prior-to-posterior",
-    "href": "slides/slides02.html#from-prior-to-posterior",
-    "title": "Bayes Rule",
-    "section": "From prior to posterior",
-    "text": "From prior to posterior\n\n\n\n\\(\\pi\\)\n0.2\n0.4\n0.87\n\n\n\n\n\\(f(\\pi)\\)\n\n\n\n\n\n\\(f(\\pi | y = 5)\\) (1)\n\n\n\n\n\n\\(f(\\pi | y = 0)\\) (2)\n\n\n\n\n\n\n\nFor the two scenarios below, use your intuition to “guesstimate” the posterior (fill out each row based on ~ vibes ~ )\n\nThe program accepted five of five applicants?\nThe program accepted none of the five applicants?"
-  },
-  {
-    "objectID": "slides/slides02.html#intuition-vs-reality",
-    "href": "slides/slides02.html#intuition-vs-reality",
-    "title": "Bayes Rule",
-    "section": "Intuition vs Reality",
-    "text": "Intuition vs Reality\nYour intuition may not be Bayesian if:\n\n\n\n\nBayesian statistics is a balancing act! We will take both the prior and the data to get to the posterior. Don’t worry if your intuition was wrong. As we practice more, you will learn to think like a Bayesian."
-  },
-  {
-    "objectID": "slides/slides02.html#the-binomial-model",
-    "href": "slides/slides02.html#the-binomial-model",
-    "title": "Bayes Rule",
-    "section": "The Binomial Model",
-    "text": "The Binomial Model\nLet random variable \\(Y\\) be the number of successes in n trials. Assume that the number of trials is fixed, the trials are independent and the probability of success in each trial is \\(\\pi\\). Then, the dependence of \\(Y\\) on \\(\\pi\\) can be modeled by the Binomial model with parameters \\(n\\) and \\(\\pi\\):"
-  },
-  {
-    "objectID": "slides/slides02.html#section-2",
-    "href": "slides/slides02.html#section-2",
-    "title": "Bayes Rule",
-    "section": "",
-    "text": "conditional pmf:\n\\[f(y | \\pi) = {n \\choose y} \\pi^y (1-\\pi)^{n-y} \\text{ for } y \\in \\{0, 1, 2, ..., n\\}\\]\nif \\(\\pi = .2\\) and \\(y = 3\\):"
-  },
-  {
-    "objectID": "slides/slides02.html#section-3",
-    "href": "slides/slides02.html#section-3",
-    "title": "Bayes Rule",
-    "section": "",
-    "text": "(or we can use R)\n\ndbinom(3, size = 5, prob = .2)\n\n[1] 0.0512"
-  },
-  {
-    "objectID": "slides/slides02.html#section-4",
-    "href": "slides/slides02.html#section-4",
-    "title": "Bayes Rule",
-    "section": "",
-    "text": "Rather than doing this one by one, we can let R consider all different possible values of \\(y\\):\n\ndbinom(0:5, size = 5, prob = .2)\n\n[1] 0.32768 0.40960 0.20480 0.05120 0.00640 0.00032\n\n\n\n\n\n\\(y\\)\n0\n1\n2\n3\n4\n5\n\n\n\n\n\\(f(y | \\pi = .2)\\)"
-  },
-  {
-    "objectID": "slides/slides02.html#bayes-rule-from-events-to-random-variables",
-    "href": "slides/slides02.html#bayes-rule-from-events-to-random-variables",
-    "title": "Bayes Rule",
-    "section": "Bayes Rule: from events to random variables",
-    "text": "Bayes Rule: from events to random variables"
-  },
-  {
-    "objectID": "slides/slides02.html#normalizing-constant",
-    "href": "slides/slides02.html#normalizing-constant",
-    "title": "Bayes Rule",
-    "section": "Normalizing constant",
-    "text": "Normalizing constant\nTherefore \\(f(y=3)=\\)\n\ndbinom(3, size = 5, prob = .2) * .7 + \n  dbinom(3, size = 5, prob = .4) * .2 + \n  dbinom(3, size = 5, prob = .8) * .1 \n\n[1] 0.1024"
-  },
-  {
-    "objectID": "slides/test.html#quarto",
-    "href": "slides/test.html#quarto",
-    "title": "Untitled",
-    "section": "Quarto",
-    "text": "Quarto\nQuarto enables you to weave together content and executable code into a finished presentation. To learn more about Quarto presentations see https://quarto.org/docs/presentations/."
-  },
-  {
-    "objectID": "slides/test.html#bullets",
-    "href": "slides/test.html#bullets",
-    "title": "Untitled",
-    "section": "Bullets",
-    "text": "Bullets\nWhen you click the Render button a document will be generated that includes:\n\nContent authored with markdown\nOutput from executable code"
-  },
-  {
-    "objectID": "slides/test.html#code",
-    "href": "slides/test.html#code",
-    "title": "Untitled",
-    "section": "Code",
-    "text": "Code\nWhen you click the Render button a presentation will be generated that includes both content and the output of embedded code. You can embed code like this:\n\n1 + 1\n\n[1] 2"
+    "text": "The best place to come for help is Amanda’s office hours! I can help with anything related to the course. You can also check my calendar for one-on-one appointment slots.\n\n\n\nStudents needing help with their Statistics coursework and R/Rstudio questions can get help from Stats Lab Assistants in the Stats Lab in CMC 304. Stats Lab Assistants are primiarily for Stat 120 (Intro Stats), but they may also be able to assist with general R/Rstudio questions."
   },
   {
     "objectID": "computing/computing-setup.html",
