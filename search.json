@@ -243,7 +243,7 @@
     "href": "slides/slides01.html#plan-for-today",
     "title": "Welcome to Bayes!",
     "section": "Plan for today",
-    "text": "Plan for today\n\nIntros\nContext for the class\nSyllabus\nSetting course expectations"
+    "text": "Plan for today\n\nIntros\nIntro to Bayesian Thinking\nSyllabus"
   },
   {
     "objectID": "slides/slides01.html#about-me",
@@ -320,7 +320,42 @@
     "href": "slides/slides01.html#frequentist-vs-bayesian-1",
     "title": "Welcome to Bayes!",
     "section": "Frequentist vs Bayesian",
-    "text": "Frequentist vs Bayesian\n\n\nFrequentist\n\n“Classical” statistics\nProbability is a long-run frequency\nType I and Type II errors\nConfidence intervals\n\n\nBayesian\n\nProbability is a subjective belief\nUpdate “prior” probabilities with data to obtain “posterior” probabilities\n“Credible” intervals"
+    "text": "Frequentist vs Bayesian\n\n\nFrequentist\n\n“Classical” statistics\nProbability is a long-run frequency\nMake decisions based on a p-value\nType I and Type II errors\nConfidence intervals\n\n\nBayesian\n\nProbability is a subjective belief\nUpdate “prior” probabilities with data to obtain “posterior” probabilities\nMake decisions according to posterior probabilities\n“Credible” intervals"
+  },
+  {
+    "objectID": "slides/slides01.html#q1",
+    "href": "slides/slides01.html#q1",
+    "title": "Welcome to Bayes!",
+    "section": "Q1",
+    "text": "Q1\nWhen flipping a fair coin, we say that “the probability of flipping Heads is 0.5.” How do you interpret this probability?\n\nIf I flip this coin over and over, roughly 50% will be Heads.\nHeads and Tails are equally plausible.\nBoth a and b make sense."
+  },
+  {
+    "objectID": "slides/slides01.html#q2",
+    "href": "slides/slides01.html#q2",
+    "title": "Welcome to Bayes!",
+    "section": "Q2",
+    "text": "Q2\nAn election is coming up and a pollster claims that candidate A has a 0.9 probability of winning. How do you interpret this probability?\n\nIf we observe the election over and over, candidate A will win roughly 90% of the time.\nCandidate A is much more likely to win than to lose.\nThe pollster’s calculation is wrong. Candidate A will either win or lose, thus their probability of winning can only be 0 or 1."
+  },
+  {
+    "objectID": "slides/slides01.html#q3",
+    "href": "slides/slides01.html#q3",
+    "title": "Welcome to Bayes!",
+    "section": "Q3",
+    "text": "Q3\nConsider two claims.\n\nZuofu claims that he can predict the outcome of a coin flip. To test his claim, you flip a fair coin 10 times and he correctly predicts all 10.\nKavya claims that she can distinguish natural and artificial sweeteners. To test her claim, you give her 10 sweetener samples and she correctly identifies each.\n\nIn light of these experiments, what do you conclude?\n\nYou’re more confident in Kavya’s claim than Zuofu’s claim.\nThe evidence supporting Zuofu’s claim is just as strong as the evidence supporting Kavya’s claim."
+  },
+  {
+    "objectID": "slides/slides01.html#q4",
+    "href": "slides/slides01.html#q4",
+    "title": "Welcome to Bayes!",
+    "section": "Q4",
+    "text": "Q4\nSuppose that during a recent doctor’s visit, you tested positive for a very rare disease. If you only get to ask the doctor one question, which would it be?\n\nWhat’s the chance that I actually have the disease?\nIf in fact I don’t have the disease, what’s the chance that I would’ve gotten this positive test result?"
+  },
+  {
+    "objectID": "slides/slides01.html#results",
+    "href": "slides/slides01.html#results",
+    "title": "Welcome to Bayes!",
+    "section": "Results",
+    "text": "Results\nGive yourself:\n\n+1 for each A\n+3 for each B\n+2 for C on Q1\n-2 for C on Q2\n\nResults:\n\nScore &lt;5: your thinking is pretty frequentist\nScore &gt;9: your thinking is pretty Bayesian\n6-8: your leaning changes depending on the scenario"
   },
   {
     "objectID": "slides/slides01.html#tentative-schedule",

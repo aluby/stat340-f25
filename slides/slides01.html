@@ -151,9 +151,8 @@ Prof Amanda Luby
 <h2>Plan for today</h2>
 <ol type="1">
 <li class="fragment">Intros</li>
-<li class="fragment">Context for the class</li>
+<li class="fragment">Intro to Bayesian Thinking</li>
 <li class="fragment">Syllabus</li>
-<li class="fragment">Setting course expectations</li>
 </ol>
 </section>
 <section id="about-me" class="slide level2">
@@ -209,7 +208,7 @@ Prof Amanda Luby
 </ul>
 <div class="cell">
 <div class="cell-output-display">
-<div class="countdown" id="timer_6f7c22de" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown" id="timer_89321d8b" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
@@ -228,7 +227,7 @@ Prof Amanda Luby
 </ol>
 <div class="cell">
 <div class="cell-output-display">
-<div class="countdown" id="timer_fbe45249" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown" id="timer_336d5d07" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
@@ -302,6 +301,11 @@ Prof Amanda Luby
 <p><span class="math inline">\(P(A|B) = \frac{P(B|A) P(A)}{ P(B)}\)</span></p>
 </div></div>
 </section>
+<section>
+<section id="example-coin-flip" class="title-slide slide level1 center">
+<h1>Example: coin flip</h1>
+
+</section>
 <section id="frequentist-vs-bayesian-1" class="slide level2">
 <h2>Frequentist vs Bayesian</h2>
 <div class="columns">
@@ -310,6 +314,7 @@ Prof Amanda Luby
 <ul>
 <li class="fragment">“Classical” statistics</li>
 <li class="fragment">Probability is a long-run frequency</li>
+<li class="fragment">Make decisions based on a p-value</li>
 <li class="fragment">Type I and Type II errors</li>
 <li class="fragment">Confidence intervals</li>
 </ul>
@@ -318,9 +323,70 @@ Prof Amanda Luby
 <ul>
 <li class="fragment">Probability is a subjective belief</li>
 <li class="fragment">Update “prior” probabilities with data to obtain “posterior” probabilities</li>
+<li class="fragment">Make decisions according to posterior probabilities</li>
 <li class="fragment">“Credible” intervals</li>
 </ul>
 </div></div>
+</section></section>
+<section>
+<section id="bayesian-personality-quiz" class="title-slide slide level1 center">
+<h1>Bayesian Personality Quiz</h1>
+
+</section>
+<section id="q1" class="slide level2 scrollable">
+<h2>Q1</h2>
+<p>When flipping a fair coin, we say that “the probability of flipping Heads is 0.5.” How do you interpret this probability?</p>
+<ol type="a">
+<li>If I flip this coin over and over, roughly 50% will be Heads.</li>
+<li>Heads and Tails are equally plausible.</li>
+<li>Both a and b make sense.</li>
+</ol>
+</section>
+<section id="q2" class="slide level2 scrollable">
+<h2>Q2</h2>
+<p>An election is coming up and a pollster claims that candidate A has a 0.9 probability of winning. How do you interpret this probability?</p>
+<ol type="a">
+<li>If we observe the election over and over, candidate A will win roughly 90% of the time.</li>
+<li>Candidate A is much more likely to win than to lose.</li>
+<li>The pollster’s calculation is wrong. Candidate A will either win or lose, thus their probability of winning can only be 0 or 1.</li>
+</ol>
+</section>
+<section id="q3" class="slide level2 scrollable">
+<h2>Q3</h2>
+<p>Consider two claims.</p>
+<ol type="1">
+<li>Zuofu claims that he can predict the outcome of a coin flip. To test his claim, you flip a fair coin 10 times and he correctly predicts all 10.</li>
+<li>Kavya claims that she can distinguish natural and artificial sweeteners. To test her claim, you give her 10 sweetener samples and she correctly identifies each.</li>
+</ol>
+<p>In light of these experiments, what do you conclude?</p>
+<ol type="a">
+<li>You’re more confident in Kavya’s claim than Zuofu’s claim.</li>
+<li>The evidence supporting Zuofu’s claim is just as strong as the evidence supporting Kavya’s claim.</li>
+</ol>
+</section>
+<section id="q4" class="slide level2 scrollable">
+<h2>Q4</h2>
+<p>Suppose that during a recent doctor’s visit, you tested positive for a very rare disease. If you only get to ask the doctor one question, which would it be?</p>
+<ol type="a">
+<li>What’s the chance that I actually have the disease?</li>
+<li>If in fact I don’t have the disease, what’s the chance that I would’ve gotten this positive test result?</li>
+</ol>
+</section>
+<section id="results" class="slide level2">
+<h2>Results</h2>
+<p>Give yourself:</p>
+<ul>
+<li>+1 for each <strong>A</strong></li>
+<li>+3 for each <strong>B</strong></li>
+<li>+2 for <strong>C</strong> on Q1</li>
+<li>-2 for <strong>C</strong> on Q2</li>
+</ul>
+<p>Results:</p>
+<ul>
+<li class="fragment">Score &lt;5: your thinking is pretty frequentist</li>
+<li class="fragment">Score &gt;9: your thinking is pretty Bayesian</li>
+<li class="fragment">6-8: your leaning changes depending on the scenario</li>
+</ul>
 </section>
 <section id="tentative-schedule" class="slide level2">
 <h2>Tentative schedule</h2>
@@ -361,7 +427,7 @@ Prof Amanda Luby
 </tr>
 </tbody>
 </table>
-</section>
+</section></section>
 <section>
 <section id="syllabus" class="title-slide slide level1 center">
 <h1>Syllabus</h1>
