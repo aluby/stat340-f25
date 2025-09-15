@@ -1,6 +1,6 @@
 institute: "Carleton College <br> Stat 340 - Fall 2025"
 author: "Prof Amanda Luby"
-footer: "[🔗 aluby.github.io/stat340-f25](aluby.github.io/stat340-f25)"
+footer: "[aluby.github.io/stat340-f25](aluby.github.io/stat340-f25)"
 format:
   revealjs:
     theme: slides.scss

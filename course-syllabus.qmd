@@ -57,16 +57,16 @@ When you analyze data about weather patterns in Minnesota, effectiveness of diff
 
 After completing this course, you should be be able to demonstrate your competency with:
 
--   objective 1
--   objective 2
--   objective 3
--   objective 4
+-   Explaining the differences between frequentist and Bayesian approaches to statistics and data analysis
+-   Selecting appropriate prior distributions and likelihood models for Bayesian analysis
+-   Using modern software to fit Bayesian models and assess their performance
+-   Interpreting results from Bayesian analyses
 
 # Course Components
 
 ## Meetings
 
-There will be three course meetings per week (Mondays, Wednesdays, and Fridays). Daily attendance and active participation is expected. Course meetings will combine demonstrations/lecture and in-class group exercises. Each course day has an associated reading from the textbook. I recommend completing the reading before class, and returning to the textbook afterwards if you have any lingering confusion about the material from the day.
+There will be three course meetings per week (Mondays, Wednesdays, and Fridays). Daily attendance and active participation is expected. Course meetings will combine demonstrations/lecture and in-class group exercises. Each course day has an associated reading from the textbook. I expect you to complete the reading before class, and returning to the textbook afterwards if you have any lingering confusion about the material from the day.
 
 ## Individual Assignments
 
@@ -94,9 +94,10 @@ Grades are an imperfect measure of learning, and no grading scheme will perfectl
 
 Final grades will be calculated as follows:
 
--   10% Individual homework
--   10% Group homework
--   10% Homework quizzes
+-   30% Homework
+    - 10% Individual 
+    - 10% Group 
+    - 10% Homework quizzes
 -   10% Midterm project + presentation
 -   20% Final project + presentation
 -   20% Exam I
@@ -112,13 +113,11 @@ Grading is often a tedious task, and the grading team will sometimes make mistak
 
 ## Exam revisions
 
-I offer the opportunity to submit exam revisions for two reasons: (1) to correct any major misunderstandings and have a chance to revisit material that you struggled with, (2) to mitigate the impact that a bad exam day can have on your final course grade. You can submit corrections to your exam to earn back 50% of your missed points. Corrected exam grades are capped at 88%. Exam revisions are due 1 week after graded exams are returned to you, or the last day of class at 11:59pm, whichever is earlier.
+I offer the opportunity to submit exam revisions for two reasons: (1) to correct any major misunderstandings and have a chance to revisit material that you struggled with, (2) to mitigate the impact that a bad exam day can have on your final course grade. You can submit corrections to your exam to earn back 50% of your missed points. Corrected exam grades are capped at 80%. Exam revisions are due 1 week after graded exams are returned to you, or the last day of class at 11:59pm, whichever is earlier.
 
 ## Missing homework quizzes and exams
 
-There are no makeup homework quizzes.
-
-If you miss a class when there is an exam and don’t make arrangements with me at least a week in advance, then there are no makeups offered. If must miss an exam due to an illness or other last minute emergency, please let me know in advance to arrange an alternative.
+If you miss a class when there is an exam or homework quiz and don’t make arrangements with me at least a week in advance, then there are no makeups offered. If must miss an exam due to an illness or other last minute emergency, please let me know in advance to arrange an alternative. There are no makeup homework quizzes. 
 
 # Materials
 
@@ -126,7 +125,7 @@ If you miss a class when there is an exam and don’t make arrangements with me 
 
 Our textbook is freely available online:
 
--   [Bayes Rules! An Introduction to Applied Bayesian Mdoeling](https://www.bayesrulesbook.com/)
+-   *Bayes Rules! An Introduction to Applied Bayesian Mdoeling* <https://www.bayesrulesbook.com/>
 
 If you prefer a hard copy, they are also available for purchase through the bookstore and/or publisher.
 
@@ -134,7 +133,7 @@ I may also periodically assign or recommend readings from other sources. These w
 
 ## Software
 
-The use of the [R](https://cran.rstudio.com/) programming language, with the [RStudio](https://posit.co/download/rstudio-desktop/) interface is an essential component of this course. Bayesian Statistics is computationally intense, and so you will need to install local versions of the software on your own computer, or plan to complete assignments on a lab computer.
+The use of the [R](https://cran.rstudio.com/) programming language, with the [RStudio](https://posit.co/download/rstudio-desktop/) interface is an essential component of this course. Bayesian Statistics is more computationally intense than traditional frequentist methods, and so you will need to install local versions of the software on your own computer, or plan to complete assignments on a lab computer.
 
 # Academic Integrity
 

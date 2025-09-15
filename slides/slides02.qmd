@@ -1,0 +1,183 @@
+---
+title: Bayes Rule
+subtitle: Day 02
+title-slide-attributes:
+  data-background-color: "#e2583eff"
+  data-slide-number: none
+format: 
+  revealjs:
+    incremental: true
+auto-stretch: false
+editor_options: 
+  chunk_output_type: console
+editor: 
+  markdown: 
+    wrap: 72
+---
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+
+library(gtrendsR)
+library(countdown)
+library(tidyverse)
+library(lubridate)
+```
+
+## Warm Up
+
+add contingency table
+
+::: {.task .nonincremental}
+Calculate the following probabilities and write them using formal
+notation
+
+1.  P(A)
+2.  P(B and A)
+3.  P(B\|A)
+:::
+
+## Marginal Probability
+
+add table
+
+::: callout-note
+## Marginal Probability
+
+<br> <br> <br>
+:::
+
+## Joint Probability
+
+add table
+
+::: callout-note
+## Joint Probability
+
+<br> <br> <br>
+:::
+
+## Conditional Probability
+
+add table
+
+::: callout-note
+## Conditional Probability
+
+<br> <br> <br>
+:::
+
+# Example: em dashes {.colorslide}
+
+## 
+
+LLMs are **obsessed** with em dashes:
+
+> Imagine you have an idea or belief about something--like whether it's
+> going to rain today. Then, you get some new information--like seeing
+> dark clouds in the sky. Bayes' Rule helps you **recalculate how
+> confident you should be** in your belief after seeing that new
+> information. Let me know if you want a real-world example (like
+> medical tests or crime investigations)—those make it even clearer.
+
+> --ChatGPT. Prompt: "Can you summarize Bayes Rule without any math?"
+
+But humans *also* use em dashes.
+
+## 
+
+# Moving to Random Variables {.colorslide}
+
+## Notation
+
+Idea: what if our data....
+
+-   Greek letters ($\pi, \beta, \mu$ etc) denote our primary variables
+    of interest (sometimes called **parameters**)
+-   Capital letters near the end of the alphabet ($X, Y, Z$) denote
+    random variables related to our **data**
+-   We denote an observed **outcome** of $Y$ using lower case $y$
+
+## Example: PhD admissions
+
+## Prior model for $\pi$
+
+| $\pi$    | 0.2 | 0.4 | 0.87 |
+|----------|-----|-----|------|
+| $f(\pi)$ |     |     |      |
+
+## From prior to posterior
+
+| $\pi$    | 0.2 | 0.4 | 0.87 |
+|----------|-----|-----|------|
+| $f(\pi)$ |     |     |      |
+| $f(\pi | y = 5)$ (1) |     |     |      |
+| $f(\pi | y = 0)$ (2) |     |     |      |
+
+
+::: {.task .nonincremental}
+For the two scenarios below, use your intuition to "guesstimate" the posterior (fill out each row based on ~ vibes ~ )
+
+1. The program accepted five of five applicants?
+2. The program accepted none of the five applicants?
+:::
+
+## Intuition vs Reality
+
+Your intuition may **not** be Bayesian if: 
+
+::: {.nonincremental}
+1. 
+2. 
+:::
+
+Bayesian statistics is a balancing act! We will take both the prior and the data to get to the posterior. Don't worry if your intuition was wrong. As we practice more, you will learn to think like a Bayesian.
+
+## The Binomial Model
+
+Let random variable $Y$ be the *number of successes* in n *trials*. Assume that the number of trials is *fixed*, the trials are *independent* and the *probability of success* in each trial is $\pi$. Then, the dependence of $Y$ on $\pi$ can be modeled by the Binomial model with parameters $n$ and $\pi$: 
+
+## 
+
+conditional pmf: 
+
+$$f(y | \pi) = {n \choose y} \pi^y (1-\pi)^{n-y} \text{ for } y \in \{0, 1, 2, ..., n\}$$
+
+if $\pi = .2$ and $y = 3$: 
+
+## 
+
+(or we can use R)
+
+```{r}
+dbinom(3, size = 5, prob = .2)
+```
+
+## 
+
+Rather than doing this one by one, we can let R consider all different possible values of $y$: 
+
+```{r}
+dbinom(0:5, size = 5, prob = .2)
+```
+
+| $y$          |  0   | 1    |  2    |    3  |  4    |    5  |
+|--------------|-----|-----|------|------|------|------|
+| $f(y | \pi = .2)$ |     |     |      |      |      |      |
+
+## Bayes Rule: from events to random variables
+
+##
+
+## Normalizing constant
+
+Therefore $f(y=3)=$
+
+```{r}
+dbinom(3, size = 5, prob = .2) * .7 + 
+  dbinom(3, size = 5, prob = .4) * .2 + 
+  dbinom(3, size = 5, prob = .8) * .1 
+```
+

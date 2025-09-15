@@ -31,11 +31,11 @@
     margin: (left: 1in, right: 1in, top: 1in, bottom: 1in),
     numbering: "1",
     number-align: right,
-    background: place(right + top, rect(
-      fill: rgb("#e2583eff"),
-      height: 100%,
-      width: 1cm,
-    ))
+    //background: place(right + top, rect(
+    //  fill: rgb("#e2583eff"),
+    //  height: 100%,
+    //  width: 1cm,
+    // ))
   )
   
   // Configure table style
@@ -68,7 +68,7 @@
   // Tigerlily border column
   grid(
     columns: (1fr, 0.75cm),
-    column-gutter: 1cm,
+  //  column-gutter: 1cm,
 
     // HEADER
     stack(

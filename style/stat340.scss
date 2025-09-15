@@ -2,6 +2,13 @@
 
 @import 'https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible&display=swap';
 
+/* SCSS HEX */
+$tigerlily: #e2583eff;
+$robin-egg-blue: #00ccccff;
+$icterine: #fcfc62ff;
+$fern-green: #618b4aff;
+$dark-moss-green: #40531bff;
+
 $font-family: "Atkinson Hyperlegible", sans-serif;
 
 $code-bg: #F5F5F5; // A light gray color
@@ -16,3 +23,6 @@ $code-bg: #F5F5F5; // A light gray color
                              Use 'block' if you want it to take up the full available width. */
   border-radius: 5px;     /* Optional: Adds rounded corners to the box */
 }
+
+$callout-color-note: $robin-egg-blue;
+$callout-margin-bottom: 20rem;
