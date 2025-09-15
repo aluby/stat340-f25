@@ -27,9 +27,8 @@ library(tidyverse)
 ## Plan for today
 
 1.  Intros
-2.  Context for the class
+2.  Intro to Bayesian Thinking
 3.  Syllabus
-4.  Setting course expectations
 
 ## About me
 
@@ -191,6 +190,8 @@ $P(A|B) = \frac{P(B|A) P(A)}{ P(B)}$
 :::
 :::::
 
+# Example: coin flip
+
 ## Frequentist vs Bayesian
 
 :::::: columns
@@ -199,6 +200,7 @@ $P(A|B) = \frac{P(B|A) P(A)}{ P(B)}$
 
 - "Classical" statistics
 - Probability is a long-run frequency
+- Make decisions based on a p-value
 - Type I and Type II errors
 - Confidence intervals
 :::
@@ -208,9 +210,75 @@ $P(A|B) = \frac{P(B|A) P(A)}{ P(B)}$
 
 - Probability is a subjective belief
 - Update "prior" probabilities with data to obtain "posterior" probabilities
+- Make decisions according to posterior probabilities
 - "Credible" intervals
 :::
 :::::
+
+# Bayesian Personality Quiz
+
+## Q1
+
+When flipping a fair coin, we say that “the probability of flipping Heads is 0.5.” How do you interpret this probability?
+
+::: {.nonincremental}
+(a) If I flip this coin over and over, roughly 50% will be Heads.
+(a) Heads and Tails are equally plausible.
+(a) Both a and b make sense.
+:::
+
+## Q2
+
+An election is coming up and a pollster claims that candidate A has a 0.9 probability of winning. How do you interpret this probability?
+
+::: {.nonincremental}
+(a) If we observe the election over and over, candidate A will win roughly 90% of the time.
+(a) Candidate A is much more likely to win than to lose.
+(a) The pollster’s calculation is wrong. Candidate A will either win or lose, thus their probability of winning can only be 0 or 1.
+:::
+
+## Q3
+
+Consider two claims. 
+
+::: {.nonincremental}
+(1) Zuofu claims that he can predict the outcome of a coin flip. To test his claim, you flip a fair coin 10 times and he correctly predicts all 10. 
+(2) Kavya claims that she can distinguish natural and artificial sweeteners. To test her claim, you give her 10 sweetener samples and she correctly identifies each. 
+:::
+
+In light of these experiments, what do you conclude?
+
+::: {.nonincremental}
+(a) You’re more confident in Kavya’s claim than Zuofu’s claim.
+(b) The evidence supporting Zuofu’s claim is just as strong as the evidence supporting Kavya’s claim.
+:::
+
+## Q4
+
+Suppose that during a recent doctor’s visit, you tested positive for a very rare disease. If you only get to ask the doctor one question, which would it be?
+
+::: {.nonincremental}
+(a) What’s the chance that I actually have the disease?
+(b) If in fact I don’t have the disease, what’s the chance that I would’ve gotten this positive test result?
+:::
+
+## Results
+
+Give yourself: 
+
+::: {.nonincremental}
+- +1 for each **A**
+- +3 for each **B**
+- +2 for **C** on Q1
+- -2 for **C** on Q2
+:::
+
+Results: 
+
+- Score <5: your thinking is pretty frequentist
+- Score >9: your thinking is pretty Bayesian
+- 6-8: your leaning changes depending on the scenario
+
 
 ## Tentative schedule
 
