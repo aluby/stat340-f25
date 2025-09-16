@@ -45,7 +45,9 @@ website:
           - href: computing/computing-cheatsheets.qmd
             text: Cheatsheets
       - section: "Assignments"
-        contents:
+        contents: 
+          - auto: homework/
+          - auto: groupwork/
       - section: "Projects"
         contents: 
           
