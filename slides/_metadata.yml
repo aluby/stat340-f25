@@ -7,7 +7,7 @@ format:
     transition: fade
     slide-number: true
     chalkboard: true
-    highlight-style: a11y-dark
+    highlight-style: a11y
     code-block-border-left: "#00ccccff"
     incremental: true
     code-copy: true

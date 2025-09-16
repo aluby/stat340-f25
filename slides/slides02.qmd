@@ -6,7 +6,7 @@ title-slide-attributes:
   data-slide-number: none
 format: 
   revealjs:
-    incremental: true
+    incremental: false
 auto-stretch: false
 editor_options: 
   chunk_output_type: console
@@ -24,24 +24,39 @@ library(gtrendsR)
 library(countdown)
 library(tidyverse)
 library(lubridate)
+
+theme_set(theme_minimal(base_size = 14, base_family = "Atkinson Hyperlegible"))
 ```
 
-## Warm Up
+## Warm Up I: Bayesian Personality Quiz
 
-add contingency table
+
+## Warm Up II {.smaller}
+
+The following are some survey results from a recent Pew Research
+[report](https://www.pewresearch.org/wp-content/uploads/sites/20/2025/09/SR_25.09_global-internet-usage_topline.pdf)
+to the question "About how often to use the internet"?
+
+|   | Almost constantly | Several Times a day | About once a day | Several times a week | Less often | Do not use |
+|-----------|-----------|-----------|-----------|-----------|-----------|-----------|
+| US | 2059 | 2159 | 301 | 150 | 100 | 201 |
+| Canada | 328 | 553 | 61 | 31 | 10 | 41 |
 
 ::: {.task .nonincremental}
-Calculate the following probabilities and write them using formal
-notation
+Calculate the following probabilities and write them using event
+notation. Let $A$: online almost constantly and $B$: lives in US
 
-1.  P(A)
-2.  P(B and A)
-3.  P(B\|A)
+1.  P(Online Almost Constantly)
+2.  P(Online Almost Constantly and US)
+3.  P(US given online almost constantly)
 :::
 
 ## Marginal Probability
 
-add table
+|   | Almost constantly | Several Times a day | About once a day | Several times a week | Less often | Do not use |
+|-----------|-----------|-----------|-----------|-----------|-----------|-----------|
+| US | 2059 | 2159 | 301 | 150 | 100 | 201 |
+| Canada | 328 | 553 | 61 | 31 | 10 | 41 |
 
 ::: callout-note
 ## Marginal Probability
@@ -51,7 +66,10 @@ add table
 
 ## Joint Probability
 
-add table
+|   | Almost constantly | Several Times a day | About once a day | Several times a week | Less often | Do not use |
+|-----------|-----------|-----------|-----------|-----------|-----------|-----------|
+| US | 2059 | 2159 | 301 | 150 | 100 | 201 |
+| Canada | 328 | 553 | 61 | 31 | 10 | 41 |
 
 ::: callout-note
 ## Joint Probability
@@ -61,15 +79,34 @@ add table
 
 ## Conditional Probability
 
-add table
+|   | Almost constantly | Several Times a day | About once a day | Several times a week | Less often | Do not use |
+|-----------|-----------|-----------|-----------|-----------|-----------|-----------|
+| US | 2059 | 2159 | 301 | 150 | 100 | 201 |
+| Canada | 328 | 553 | 61 | 31 | 10 | 41 |
 
 ::: callout-note
 ## Conditional Probability
 
 <br> <br> <br>
+:::
+
+## More probability notes: 
+
+$P(A|B) \ne P(B|A)$
+
+::: callout-note 
+## Complement rule
+
+$P(A^c) = 1 - P(A)$
 :::
 
 # Example: em dashes {.colorslide}
+
+Bayes Rule for Events
+
+## 
+
+I'm trying to determine whether a student response to a homework question is AI generated. I know that AI use among college students in general is high, but my prior is that Carleton students are pretty honest. I would guess only around 2% of submitted answers are AI generated.
 
 ## 
 
@@ -84,15 +121,70 @@ LLMs are **obsessed** with em dashes:
 
 > --ChatGPT. Prompt: "Can you summarize Bayes Rule without any math?"
 
-But humans *also* use em dashes.
+## 
+
+This suggests a possible rule for determining if an answer is AI generated. I gather some data: 
+
+- Sample 1: 100 AI-generated responses to a homework question
+- Sample 2: 100 student responses to the same question from pre-2021
+
+I notice that 78% of AI generated responses use an em-dash, but only 5% of student responses used an em-dash. 
+
+In probability notation: 
+
+## Bayesian knowledge-building diagram
 
 ## 
+
+Which of the following best describes your posterior "gut check" of whether the answer was AI generated? 
+
+(a) The chance this answer is AI generated drops from 2% to 1%. It's rare that a Carleton student would submit AI-generated answers. 
+(b) The chance this answer is AI generated jumps from 2% to about 25%. Though em dashes are more common in AI answers, let's not forget that AI submitted answers are relatively rare for Carleton students
+(c) The chance this answer is AI generated jumps from 2% to roughly 75%. Given so few student answers use em dashes, this answer is almost certainly AI generated.  
+
+## Prior Model
+
+## Likelihood
+
+Let A: 
+
+Let B:
+
+Looking at the conditional probabilities: 
+
+P(A|B) = 
+
+P(A|B^c) = 
+
+## Likelihood function notation
+
+$$L(\cdot | A) = \begin{cases} L(B|A) = P(A|B) \\ L(B^c|A) = P(A | B^c) \end{cases}$$
+
+When $B$ is known, the **conditional probability function** $P(\cdot | B)$ allows us to compare the probabilities of an unknown event, $A$ or $A^c$, occurring with $B$
+
+When $A$ is known, the **likelihood function** $L(\cdot | A) = P(A | \cdot)$ allows us to evaluate the relative compatibility with data $A$ with events $B$ or $B^c$
+
+## Posterior Model
+
+## Posterior Results
+
+$$P(B|A) = \frac{P(B) L(B|A)}{P(A|B)P(B) + P(A|B^c)P(B^c)}$$
+$$P(B|A) = \frac{.02 \times .78}{.02\times .78 + .98 \times .05}$$
+$$P(B|A) = $$
+
+## The posterior distribution
+
+|              | $B$ | $B^c$ | Total |
+|----------------------|-----|-----|------|
+| Prior      |     |     |      |
+| Likelihood |     |     |      |
+| Posterior |     |     |      |
 
 # Moving to Random Variables {.colorslide}
 
 ## Notation
 
-Idea: what if our data....
+Idea: what if the values we're interested in can't be simplified into binary events 
 
 -   Greek letters ($\pi, \beta, \mu$ etc) denote our primary variables
     of interest (sometimes called **parameters**)
@@ -102,50 +194,70 @@ Idea: what if our data....
 
 ## Example: PhD admissions
 
+Let Y represent a random variable that represents the number of applicants admitted to a PhD program which has received applications from 5 prospective students. That is $\Omega_Y = \{0, 1, 2, 3, 4, 5\}$. We are interested in the parameter $\pi$ which represents the probability of acceptance to this program. For demonstrative purposes, we will only consider three possible values of $\pi$ as 0.2, 0.4, and 0.8. 
+
+
 ## Prior model for $\pi$
 
-| $\pi$    | 0.2 | 0.4 | 0.87 |
+You consult with an expert who knows the specific PhD program well and the following is the prior distribution the expert suggests you use in your analysis. 
+
+
+| $\pi$    | 0.2 | 0.4 | 0.8  |
 |----------|-----|-----|------|
-| $f(\pi)$ |     |     |      |
+| $f(\pi)$ |.7   | .2  |   .1 |
+
+::: {.task}
+
+Explain what this prior distribution means
+:::
 
 ## From prior to posterior
 
-| $\pi$    | 0.2 | 0.4 | 0.87 |
-|----------|-----|-----|------|
-| $f(\pi)$ |     |     |      |
+::: {.task .nonincremental}
+For the two scenarios below, use your intuition to "guesstimate" the
+posterior (fill out each row based on \~vibes\~ )
+
+1.  The program accepted five of five applicants?
+2.  The program accepted none of the five applicants?
+:::
+
+| $\pi$                | 0.2 | 0.4 | 0.8  |
+|----------------------|-----|-----|------|
+| $f(\pi)$             |     |     |      |
 | $f(\pi | y = 5)$ (1) |     |     |      |
 | $f(\pi | y = 0)$ (2) |     |     |      |
 
 
-::: {.task .nonincremental}
-For the two scenarios below, use your intuition to "guesstimate" the posterior (fill out each row based on ~ vibes ~ )
-
-1. The program accepted five of five applicants?
-2. The program accepted none of the five applicants?
-:::
 
 ## Intuition vs Reality
 
-Your intuition may **not** be Bayesian if: 
+Your intuition may **not** be Bayesian if:
 
-::: {.nonincremental}
-1. 
-2. 
+::: nonincremental
+1.  
+
+2.  
 :::
 
-Bayesian statistics is a balancing act! We will take both the prior and the data to get to the posterior. Don't worry if your intuition was wrong. As we practice more, you will learn to think like a Bayesian.
+Bayesian statistics is a balancing act! We will take both the prior and
+the data to get to the posterior. Don't worry if your intuition was
+wrong. As we practice more, you will learn to think like a Bayesian.
 
 ## The Binomial Model
 
-Let random variable $Y$ be the *number of successes* in n *trials*. Assume that the number of trials is *fixed*, the trials are *independent* and the *probability of success* in each trial is $\pi$. Then, the dependence of $Y$ on $\pi$ can be modeled by the Binomial model with parameters $n$ and $\pi$: 
+Let random variable $Y$ be the *number of successes* in n *trials*.
+Assume that the number of trials is *fixed*, the trials are
+*independent* and the *probability of success* in each trial is $\pi$.
+Then, the dependence of $Y$ on $\pi$ can be modeled by the Binomial
+model with parameters $n$ and $\pi$:
 
 ## 
 
-conditional pmf: 
+conditional pmf:
 
 $$f(y | \pi) = {n \choose y} \pi^y (1-\pi)^{n-y} \text{ for } y \in \{0, 1, 2, ..., n\}$$
 
-if $\pi = .2$ and $y = 3$: 
+if $\pi = .2$ and $y = 3$:
 
 ## 
 
@@ -157,19 +269,122 @@ dbinom(3, size = 5, prob = .2)
 
 ## 
 
-Rather than doing this one by one, we can let R consider all different possible values of $y$: 
+Rather than doing this one by one, we can let R consider all different
+possible values of $y$:
 
 ```{r}
 dbinom(0:5, size = 5, prob = .2)
 ```
 
-| $y$          |  0   | 1    |  2    |    3  |  4    |    5  |
-|--------------|-----|-----|------|------|------|------|
-| $f(y | \pi = .2)$ |     |     |      |      |      |      |
+| $y$               | 0   | 1   | 2   | 3   | 4   | 5   |
+|-------------------|-----|-----|-----|-----|-----|-----|
+| $f(y | \pi = .2)$ |     |     |     |     |     |     |
+
+
+## Other possibilities for $\pi$
+
+```{r echo = FALSE, fig.align = 'center'}
+n   <- 5
+pi  <- c(0.2, 0.4, 0.8)
+pis <- data.frame(setting = factor(rep(1:length(pi), each = (n + 1))),
+    x = rep(0:n, length(pi)),
+    pi = rep(pi, each = (n + 1)))
+pis <- pis %>% 
+    mutate(y = dbinom(x, size = n, prob = pi)) %>% 
+    mutate(x_observed = as.factor(x == 3))
+levels(pis$setting) <- paste0("Bin(",n,", ",pi,")")
+
+
+ggplot(pis, aes(x = x, y = y)) + 
+    lims(x = c(0,n), y = c(0, max(pis$y))) + 
+    geom_point(size = 0.75) + 
+    facet_wrap(~ setting) + 
+    geom_segment(data = pis, aes(x = x, y = rep(0,length(y)), xend = x, yend = y)) +
+    labs(x = "y", y = expression(paste("f(y|",pi,")"))) + 
+    scale_color_manual(values = c("black","darkorange")) + 
+    theme(legend.position="none") 
+```
+
+## Data
+
+The admissions committee has anno¨nced they have accepted 3/5 applicants
+
+```{r echo = FALSE, fig.align='center'}
+ggplot(pis, aes(x = x, y = y)) + 
+    lims(x = c(0,n), y = c(0, max(pis$y))) + 
+    geom_point(size = 0.75, aes(color = x_observed)) + 
+    facet_wrap(~ setting) + 
+    geom_segment(data = pis, aes(x = x, y = rep(0,length(y)), xend = x, yend = y, color = x_observed)) +
+    labs(x = "y", y = expression(paste("f(y|",pi,")"))) + 
+    scale_color_manual(values = c("black","darkorange")) + 
+    theme(legend.position="none") 
+```
+
+## Likelihood
+
+```{r echo = FALSE, fig.align='center'}
+just_3 <- pis %>% 
+  filter(x == 3)
+ggplot(just_3, aes(x = pi, y = y)) + 
+  geom_point(size = 0.75, aes(color = "darkorange")) + 
+  geom_segment(data = just_3, aes(x = pi, y = rep(0,length(y)), xend = pi, yend = y, color = "darkorange")) +
+  labs(x = expression(pi), y = expression(paste("L(",pi,"|(x=3))"))) + 
+  theme(legend.position="none") +
+  scale_x_continuous(breaks = c(0.2, 0.4, 0.8))
+```
+
+## Likelihood
+
+```{r}
+dbinom(x = 3, size = 5, prob = 0.2)
+```
+
+```{r}
+dbinom(x = 3, size = 5, prob = 0.4)
+```
+
+```{r}
+dbinom(x = 3, size = 5, prob = 0.8)
+```
+
+<table align = "center">
+<tr>
+  <th> &pi; </th>
+  <th> 0.2</th>
+  <th> 0.4</th>
+  <th> 0.8</th>
+
+</tr>
+
+<tr>
+  <td> L(&pi; | y = 3)</td>
+  <td> 0.0512</td>
+  <td> 0.2304</td>
+  <td> 0.2048</td>
+
+</tr>
+
+
+</table>
+
+The likelihood function $L(\pi|y=3)$ is the same as the conditional probability mass function $f(y|pi)$ at the observed value $y = 3$.
+
+## __pmf vs likelihood__    
+
+When $\pi$ is known, the __conditional pmf__ $f(\cdot | \pi)$ allows us to compare the probabilities of different possible values of data $Y$ (eg: $y_1$ or $y_2$) occurring with $\pi$: 
+
+$$f(y_1|\pi) \; \text{ vs } \; f(y_2|\pi) \; .$$  
+
+When $Y=y$ is known, the __likelihood function__ $L(\cdot | y) = f(y | \cdot)$ allows us to compare the relative likelihoods of different possible values of $\pi$ (eg: $\pi_1$ or $\pi_2$) given that we observed data $y$:
+
+$$L(\pi_1|y) \; \text{ vs } \; L(\pi_2|y) \; .$$
 
 ## Bayes Rule: from events to random variables
 
-##
+$\text{posterior} = \frac{\text{prior} \times \text{likelihood}}{\text{marginal probability of data}}$
+
+
+
 
 ## Normalizing constant
 
@@ -181,3 +396,58 @@ dbinom(3, size = 5, prob = .2) * .7 +
   dbinom(3, size = 5, prob = .8) * .1 
 ```
 
+## Posterior 
+
+<table align = "center">
+<tr>
+  <th> &pi; </th>
+  <th> 0.2</th>
+  <th> 0.4</th>
+  <th> 0.8</th>
+
+</tr>
+
+<tr>
+  <td> f(&pi;)</td>
+  <td> 0.7</td>
+  <td> 0.2</td>
+  <td> 0.1</td>
+
+</tr>
+
+<tr>
+  <td> L(&pi; | y = 3)</td>
+  <td> 0.0512</td>
+  <td> 0.2304</td>
+  <td> 0.2048</td>
+
+</tr>
+
+
+<tr>
+  <td> f(&pi; | y = 3)</td>
+  <td> </td>
+  <td> </td>
+  <td> </td>
+
+</tr>
+
+</table>
+
+## Why is it a "normalizing constant"?
+
+# $$ f(\pi | y) \propto f(\pi) L(\pi|y)$$
+
+(In LaTeX: `\propto`)
+
+## Summary
+
+Three steps to a Bayesian analysis: 
+
+1. Construct a **prior model** for the variable of interest (possible values and the relative plausibility of each)
+2. Upon observing data $Y = y$, define the **likelihoood** $L(\pi |y) = P(y | \pi)$
+3. Build the **posterior model** of the variable of interest using Bayes Rule, which balances the prior and likelihood: 
+$$\text{posterior} = \frac{\text{prior} \cdot \text{likelihood}}{\text{normalizing constant}} \propto \text{prior} \cdot \text{likelihood}$$
+
+
+# Groups and quarto {.colorslide}
