@@ -12,9 +12,12 @@ author: "Your Name Here"
 
 # BR Exercise 2.6
 
-# ~~BR Exercise 2.16~~
+# BR Exercise 2.16
 
-*Moved to hw02*
+::: callout-important
+
+This problem moved to HW2!
+:::
  
 
 

@@ -11,9 +11,13 @@ What is the weirdest/most unique policy or course component that you saw in the 
 
 # BR Exercise 2.5
 
-# ~~BR Exercise 2.13~~
+# BR Exercise 2.13
 
-*Moved to gw02*
+::: callout-important
+
+This problem moved to HW2!
+:::
+ 
  
 
 
