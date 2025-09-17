@@ -211,21 +211,41 @@ Prof Amanda Luby
 </div>
 
 </section>
-<section id="warm-up-i-bayesian-personality-quiz" class="slide level2">
-<h2>Warm Up I: Bayesian Personality Quiz</h2>
+<section id="warm-up-i-bayesian-personality-quiz" class="slide level2 smaller scrollable">
+<h2>Warm up I: Bayesian Personality Quiz</h2>
+<p><strong>Q2:</strong> An election is coming up and a pollster claims that candidate A has a 0.9 probability of winning. How do you interpret this probability?</p>
+<ol type="a">
+<li>If we observe the election over and over, candidate A will win roughly 90% of the time.</li>
+<li>Candidate A is much more likely to win than to lose.</li>
+<li>The pollster’s calculation is wrong. Candidate A will either win or lose, thus their probability of winning can only be 0 or 1.</li>
+</ol>
+</section>
+<section id="warm-up-i-bayesian-personality-quiz-1" class="slide level2 smaller scrollable">
+<h2>Warm up I: Bayesian Personality Quiz</h2>
+<p><strong>Q3:</strong> Consider two claims.</p>
+<ol type="1">
+<li>Zuofu claims that he can predict the outcome of a coin flip. To test his claim, you flip a fair coin 10 times and he correctly predicts all 10.</li>
+<li>Kavya claims that she can distinguish natural and artificial sweeteners. To test her claim, you give her 10 sweetener samples and she correctly identifies each.</li>
+</ol>
+<p>In light of these experiments, what do you conclude?</p>
+<ol type="a">
+<li>You’re more confident in Kavya’s claim than Zuofu’s claim.</li>
+<li>The evidence supporting Zuofu’s claim is just as strong as the evidence supporting Kavya’s claim.</li>
+</ol>
 </section>
 <section id="warm-up-ii" class="slide level2 smaller scrollable">
 <h2>Warm Up II</h2>
 <p>The following are some survey results from a recent Pew Research <a href="https://www.pewresearch.org/wp-content/uploads/sites/20/2025/09/SR_25.09_global-internet-usage_topline.pdf">report</a> to the question “About how often to use the internet”?</p>
-<table class="caption-top" style="width:100%;">
+<table class="caption-top">
 <colgroup>
-<col style="width: 14%">
-<col style="width: 14%">
-<col style="width: 14%">
-<col style="width: 14%">
-<col style="width: 14%">
-<col style="width: 14%">
-<col style="width: 14%">
+<col style="width: 6%">
+<col style="width: 15%">
+<col style="width: 17%">
+<col style="width: 15%">
+<col style="width: 18%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 5%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -236,6 +256,7 @@ Prof Amanda Luby
 <th>Several times a week</th>
 <th>Less often</th>
 <th>Do not use</th>
+<th>TOTAL</th>
 </tr>
 </thead>
 <tbody>
@@ -247,6 +268,7 @@ Prof Amanda Luby
 <td>150</td>
 <td>100</td>
 <td>201</td>
+<td>4970</td>
 </tr>
 <tr class="even">
 <td>Canada</td>
@@ -256,6 +278,17 @@ Prof Amanda Luby
 <td>31</td>
 <td>10</td>
 <td>41</td>
+<td>1024</td>
+</tr>
+<tr class="odd">
+<td>TOTAL</td>
+<td>2387</td>
+<td>2712</td>
+<td>362</td>
+<td>181</td>
+<td>110</td>
+<td>242</td>
+<td>5994</td>
 </tr>
 </tbody>
 </table>
@@ -268,17 +301,18 @@ Prof Amanda Luby
 </ol>
 </div>
 </section>
-<section id="marginal-probability" class="slide level2">
+<section id="marginal-probability" class="slide level2 smaller">
 <h2>Marginal Probability</h2>
-<table class="caption-top" style="width:100%;">
+<table class="caption-top">
 <colgroup>
-<col style="width: 14%">
-<col style="width: 14%">
-<col style="width: 14%">
-<col style="width: 14%">
-<col style="width: 14%">
-<col style="width: 14%">
-<col style="width: 14%">
+<col style="width: 6%">
+<col style="width: 15%">
+<col style="width: 17%">
+<col style="width: 15%">
+<col style="width: 18%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 5%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -289,6 +323,7 @@ Prof Amanda Luby
 <th>Several times a week</th>
 <th>Less often</th>
 <th>Do not use</th>
+<th>TOTAL</th>
 </tr>
 </thead>
 <tbody>
@@ -300,6 +335,7 @@ Prof Amanda Luby
 <td>150</td>
 <td>100</td>
 <td>201</td>
+<td>4970</td>
 </tr>
 <tr class="even">
 <td>Canada</td>
@@ -309,6 +345,17 @@ Prof Amanda Luby
 <td>31</td>
 <td>10</td>
 <td>41</td>
+<td>1024</td>
+</tr>
+<tr class="odd">
+<td>TOTAL</td>
+<td>2387</td>
+<td>2712</td>
+<td>362</td>
+<td>181</td>
+<td>110</td>
+<td>242</td>
+<td>5994</td>
 </tr>
 </tbody>
 </table>
@@ -321,22 +368,23 @@ Prof Amanda Luby
 <p><strong>Marginal Probability</strong></p>
 </div>
 <div class="callout-content">
-<p><br> <br> <br></p>
+<p><br> <br> <br> <br> <br></p>
 </div>
 </div>
 </div>
 </section>
-<section id="joint-probability" class="slide level2">
+<section id="joint-probability" class="slide level2 smaller">
 <h2>Joint Probability</h2>
-<table class="caption-top" style="width:100%;">
+<table class="caption-top">
 <colgroup>
-<col style="width: 14%">
-<col style="width: 14%">
-<col style="width: 14%">
-<col style="width: 14%">
-<col style="width: 14%">
-<col style="width: 14%">
-<col style="width: 14%">
+<col style="width: 6%">
+<col style="width: 15%">
+<col style="width: 17%">
+<col style="width: 15%">
+<col style="width: 18%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 5%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -347,6 +395,7 @@ Prof Amanda Luby
 <th>Several times a week</th>
 <th>Less often</th>
 <th>Do not use</th>
+<th>TOTAL</th>
 </tr>
 </thead>
 <tbody>
@@ -358,6 +407,7 @@ Prof Amanda Luby
 <td>150</td>
 <td>100</td>
 <td>201</td>
+<td>4970</td>
 </tr>
 <tr class="even">
 <td>Canada</td>
@@ -367,6 +417,17 @@ Prof Amanda Luby
 <td>31</td>
 <td>10</td>
 <td>41</td>
+<td>1024</td>
+</tr>
+<tr class="odd">
+<td>TOTAL</td>
+<td>2387</td>
+<td>2712</td>
+<td>362</td>
+<td>181</td>
+<td>110</td>
+<td>242</td>
+<td>5994</td>
 </tr>
 </tbody>
 </table>
@@ -379,22 +440,23 @@ Prof Amanda Luby
 <p><strong>Joint Probability</strong></p>
 </div>
 <div class="callout-content">
-<p><br> <br> <br></p>
+<p><br> <br> <br><br> <br></p>
 </div>
 </div>
 </div>
 </section>
-<section id="conditional-probability" class="slide level2">
+<section id="conditional-probability" class="slide level2 smaller">
 <h2>Conditional Probability</h2>
-<table class="caption-top" style="width:100%;">
+<table class="caption-top">
 <colgroup>
-<col style="width: 14%">
-<col style="width: 14%">
-<col style="width: 14%">
-<col style="width: 14%">
-<col style="width: 14%">
-<col style="width: 14%">
-<col style="width: 14%">
+<col style="width: 6%">
+<col style="width: 15%">
+<col style="width: 17%">
+<col style="width: 15%">
+<col style="width: 18%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 5%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -405,6 +467,7 @@ Prof Amanda Luby
 <th>Several times a week</th>
 <th>Less often</th>
 <th>Do not use</th>
+<th>TOTAL</th>
 </tr>
 </thead>
 <tbody>
@@ -416,6 +479,7 @@ Prof Amanda Luby
 <td>150</td>
 <td>100</td>
 <td>201</td>
+<td>4970</td>
 </tr>
 <tr class="even">
 <td>Canada</td>
@@ -425,6 +489,17 @@ Prof Amanda Luby
 <td>31</td>
 <td>10</td>
 <td>41</td>
+<td>1024</td>
+</tr>
+<tr class="odd">
+<td>TOTAL</td>
+<td>2387</td>
+<td>2712</td>
+<td>362</td>
+<td>181</td>
+<td>110</td>
+<td>242</td>
+<td>5994</td>
 </tr>
 </tbody>
 </table>
@@ -437,14 +512,27 @@ Prof Amanda Luby
 <p><strong>Conditional Probability</strong></p>
 </div>
 <div class="callout-content">
-<p><br> <br> <br></p>
+<p><br> <br> <br><br> <br></p>
 </div>
 </div>
 </div>
 </section>
 <section id="more-probability-notes" class="slide level2">
 <h2>More probability notes:</h2>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Conditional Probability Facts</strong></p>
+</div>
+<div class="callout-content">
 <p><span class="math inline">\(P(A|B) \ne P(B|A)\)</span></p>
+<p><span class="math inline">\(P(A|B) = \frac{P(A \cap B)}{P(B)}\)</span></p>
+</div>
+</div>
+</div>
 <div class="callout callout-note callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
@@ -508,8 +596,8 @@ Prof Amanda Luby
 <p>Let A:</p>
 <p>Let B:</p>
 <p>Looking at the conditional probabilities:</p>
-<p>P(A|B) =</p>
-<p>P(A|B^c) =</p>
+<p><span class="math inline">\(P(A|B) =\)</span></p>
+<p><span class="math inline">\(P(A|B^c) =\)</span></p>
 </section>
 <section id="likelihood-function-notation" class="slide level2">
 <h2>Likelihood function notation</h2>
@@ -626,13 +714,13 @@ Prof Amanda Luby
 <td></td>
 </tr>
 <tr class="even">
-<td><span class="math inline">\(f(\pi | y = 5)\)</span> (1)</td>
+<td>(1): <span class="math inline">\(f(\pi | y = 5)\)</span></td>
 <td></td>
 <td></td>
 <td></td>
 </tr>
 <tr class="odd">
-<td><span class="math inline">\(f(\pi | y = 0)\)</span> (2)</td>
+<td>(2): <span class="math inline">\(f(\pi | y = 0)\)</span></td>
 <td></td>
 <td></td>
 <td></td>
@@ -703,13 +791,13 @@ Prof Amanda Luby
 </tbody>
 </table>
 </section>
-<section id="other-possibilities-for-pi" class="slide level2">
-<h2>Other possibilities for <span class="math inline">\(\pi\)</span></h2>
+<section id="all-possibilities-for-pi" class="slide level2">
+<h2>All possibilities for <span class="math inline">\(\pi\)</span></h2>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="slides02_files/figure-html/unnamed-chunk-4-1.png" class="quarto-figure quarto-figure-center" width="672"></p>
+<p><img data-src="slides02_files/figure-revealjs/unnamed-chunk-4-1.png" class="quarto-figure quarto-figure-center" width="960"></p>
 </figure>
 </div>
 </div>
@@ -717,12 +805,12 @@ Prof Amanda Luby
 </section>
 <section id="data" class="slide level2">
 <h2>Data</h2>
-<p>The admissions committee has anno¨nced they have accepted 3/5 applicants</p>
+<p>The admissions committee has announced they have accepted 3/5 applicants</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="slides02_files/figure-html/unnamed-chunk-5-1.png" class="quarto-figure quarto-figure-center" width="672"></p>
+<p><img data-src="slides02_files/figure-revealjs/unnamed-chunk-5-1.png" class="quarto-figure quarto-figure-center" width="960"></p>
 </figure>
 </div>
 </div>
@@ -734,7 +822,7 @@ Prof Amanda Luby
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="slides02_files/figure-html/unnamed-chunk-6-1.png" class="quarto-figure quarto-figure-center" width="672"></p>
+<p><img data-src="slides02_files/figure-revealjs/unnamed-chunk-6-1.png" class="quarto-figure quarto-figure-center" width="960"></p>
 </figure>
 </div>
 </div>
@@ -790,7 +878,7 @@ L(π | y = 3)
 </td>
 </tr>
 </tbody></table>
-<p>The likelihood function <span class="math inline">\(L(\pi|y=3)\)</span> is the same as the conditional probability mass function <span class="math inline">\(f(y|pi)\)</span> at the observed value <span class="math inline">\(y = 3\)</span>.</p>
+<p>The likelihood function <span class="math inline">\(L(\pi|y=3)\)</span> is the same as the conditional probability mass function <span class="math inline">\(f(y|\pi)\)</span> at the observed value <span class="math inline">\(y = 3\)</span>.</p>
 </section>
 <section id="pmf-vs-likelihood" class="slide level2">
 <h2><strong>pmf vs likelihood</strong></h2>
@@ -1112,6 +1200,44 @@ f(π | y = 3)
         ]
       });
     </script>
+    
+    <script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        // dispatch for htmlwidgets
+        function fireSlideEnter() {
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
+        }
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+          fireSlideEnter();
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
+            }
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
+            }
+          }
+        }
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+          });
+        }
+
+      })();
+    </script>
+
     <script id="quarto-html-after-body" type="application/javascript">
       window.document.addEventListener("DOMContentLoaded", function (event) {
         const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")

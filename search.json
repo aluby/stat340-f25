@@ -639,43 +639,50 @@
     "objectID": "slides/slides02.html#warm-up-i-bayesian-personality-quiz",
     "href": "slides/slides02.html#warm-up-i-bayesian-personality-quiz",
     "title": "Bayes Rule",
-    "section": "Warm Up I: Bayesian Personality Quiz",
-    "text": "Warm Up I: Bayesian Personality Quiz"
+    "section": "Warm up I: Bayesian Personality Quiz",
+    "text": "Warm up I: Bayesian Personality Quiz\nQ2: An election is coming up and a pollster claims that candidate A has a 0.9 probability of winning. How do you interpret this probability?\n\nIf we observe the election over and over, candidate A will win roughly 90% of the time.\nCandidate A is much more likely to win than to lose.\nThe pollster’s calculation is wrong. Candidate A will either win or lose, thus their probability of winning can only be 0 or 1."
+  },
+  {
+    "objectID": "slides/slides02.html#warm-up-i-bayesian-personality-quiz-1",
+    "href": "slides/slides02.html#warm-up-i-bayesian-personality-quiz-1",
+    "title": "Bayes Rule",
+    "section": "Warm up I: Bayesian Personality Quiz",
+    "text": "Warm up I: Bayesian Personality Quiz\nQ3: Consider two claims.\n\nZuofu claims that he can predict the outcome of a coin flip. To test his claim, you flip a fair coin 10 times and he correctly predicts all 10.\nKavya claims that she can distinguish natural and artificial sweeteners. To test her claim, you give her 10 sweetener samples and she correctly identifies each.\n\nIn light of these experiments, what do you conclude?\n\nYou’re more confident in Kavya’s claim than Zuofu’s claim.\nThe evidence supporting Zuofu’s claim is just as strong as the evidence supporting Kavya’s claim."
   },
   {
     "objectID": "slides/slides02.html#warm-up-ii",
     "href": "slides/slides02.html#warm-up-ii",
     "title": "Bayes Rule",
     "section": "Warm Up II",
-    "text": "Warm Up II\nThe following are some survey results from a recent Pew Research report to the question “About how often to use the internet”?\n\n\n\n\n\n\n\n\n\n\n\n\n\nAlmost constantly\nSeveral Times a day\nAbout once a day\nSeveral times a week\nLess often\nDo not use\n\n\n\n\nUS\n2059\n2159\n301\n150\n100\n201\n\n\nCanada\n328\n553\n61\n31\n10\n41\n\n\n\n\nCalculate the following probabilities and write them using event notation. Let \\(A\\): online almost constantly and \\(B\\): lives in US\n\nP(Online Almost Constantly)\nP(Online Almost Constantly and US)\nP(US given online almost constantly)"
+    "text": "Warm Up II\nThe following are some survey results from a recent Pew Research report to the question “About how often to use the internet”?\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nAlmost constantly\nSeveral Times a day\nAbout once a day\nSeveral times a week\nLess often\nDo not use\nTOTAL\n\n\n\n\nUS\n2059\n2159\n301\n150\n100\n201\n4970\n\n\nCanada\n328\n553\n61\n31\n10\n41\n1024\n\n\nTOTAL\n2387\n2712\n362\n181\n110\n242\n5994\n\n\n\n\nCalculate the following probabilities and write them using event notation. Let \\(A\\): online almost constantly and \\(B\\): lives in US\n\nP(Online Almost Constantly)\nP(Online Almost Constantly and US)\nP(US given online almost constantly)"
   },
   {
     "objectID": "slides/slides02.html#marginal-probability",
     "href": "slides/slides02.html#marginal-probability",
     "title": "Bayes Rule",
     "section": "Marginal Probability",
-    "text": "Marginal Probability\n\n\n\n\n\n\n\n\n\n\n\n\n\nAlmost constantly\nSeveral Times a day\nAbout once a day\nSeveral times a week\nLess often\nDo not use\n\n\n\n\nUS\n2059\n2159\n301\n150\n100\n201\n\n\nCanada\n328\n553\n61\n31\n10\n41\n\n\n\n\n\n\n\n\n\nMarginal Probability"
+    "text": "Marginal Probability\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nAlmost constantly\nSeveral Times a day\nAbout once a day\nSeveral times a week\nLess often\nDo not use\nTOTAL\n\n\n\n\nUS\n2059\n2159\n301\n150\n100\n201\n4970\n\n\nCanada\n328\n553\n61\n31\n10\n41\n1024\n\n\nTOTAL\n2387\n2712\n362\n181\n110\n242\n5994\n\n\n\n\n\n\n\n\n\nMarginal Probability"
   },
   {
     "objectID": "slides/slides02.html#joint-probability",
     "href": "slides/slides02.html#joint-probability",
     "title": "Bayes Rule",
     "section": "Joint Probability",
-    "text": "Joint Probability\n\n\n\n\n\n\n\n\n\n\n\n\n\nAlmost constantly\nSeveral Times a day\nAbout once a day\nSeveral times a week\nLess often\nDo not use\n\n\n\n\nUS\n2059\n2159\n301\n150\n100\n201\n\n\nCanada\n328\n553\n61\n31\n10\n41\n\n\n\n\n\n\n\n\n\nJoint Probability"
+    "text": "Joint Probability\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nAlmost constantly\nSeveral Times a day\nAbout once a day\nSeveral times a week\nLess often\nDo not use\nTOTAL\n\n\n\n\nUS\n2059\n2159\n301\n150\n100\n201\n4970\n\n\nCanada\n328\n553\n61\n31\n10\n41\n1024\n\n\nTOTAL\n2387\n2712\n362\n181\n110\n242\n5994\n\n\n\n\n\n\n\n\n\nJoint Probability"
   },
   {
     "objectID": "slides/slides02.html#conditional-probability",
     "href": "slides/slides02.html#conditional-probability",
     "title": "Bayes Rule",
     "section": "Conditional Probability",
-    "text": "Conditional Probability\n\n\n\n\n\n\n\n\n\n\n\n\n\nAlmost constantly\nSeveral Times a day\nAbout once a day\nSeveral times a week\nLess often\nDo not use\n\n\n\n\nUS\n2059\n2159\n301\n150\n100\n201\n\n\nCanada\n328\n553\n61\n31\n10\n41\n\n\n\n\n\n\n\n\n\nConditional Probability"
+    "text": "Conditional Probability\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nAlmost constantly\nSeveral Times a day\nAbout once a day\nSeveral times a week\nLess often\nDo not use\nTOTAL\n\n\n\n\nUS\n2059\n2159\n301\n150\n100\n201\n4970\n\n\nCanada\n328\n553\n61\n31\n10\n41\n1024\n\n\nTOTAL\n2387\n2712\n362\n181\n110\n242\n5994\n\n\n\n\n\n\n\n\n\nConditional Probability"
   },
   {
     "objectID": "slides/slides02.html#more-probability-notes",
     "href": "slides/slides02.html#more-probability-notes",
     "title": "Bayes Rule",
     "section": "More probability notes:",
-    "text": "More probability notes:\n\\(P(A|B) \\ne P(B|A)\\)\n\n\n\n\n\n\nComplement rule\n\n\n\\(P(A^c) = 1 - P(A)\\)"
+    "text": "More probability notes:\n\n\n\n\n\n\nConditional Probability Facts\n\n\n\\(P(A|B) \\ne P(B|A)\\)\n\\(P(A|B) = \\frac{P(A \\cap B)}{P(B)}\\)\n\n\n\n\n\n\n\n\n\nComplement rule\n\n\n\\(P(A^c) = 1 - P(A)\\)"
   },
   {
     "objectID": "slides/slides02.html#section",
@@ -724,7 +731,7 @@
     "href": "slides/slides02.html#likelihood",
     "title": "Bayes Rule",
     "section": "Likelihood",
-    "text": "Likelihood\nLet A:\nLet B:\nLooking at the conditional probabilities:\nP(A|B) =\nP(A|B^c) ="
+    "text": "Likelihood\nLet A:\nLet B:\nLooking at the conditional probabilities:\n\\(P(A|B) =\\)\n\\(P(A|B^c) =\\)"
   },
   {
     "objectID": "slides/slides02.html#likelihood-function-notation",
@@ -780,7 +787,7 @@
     "href": "slides/slides02.html#from-prior-to-posterior",
     "title": "Bayes Rule",
     "section": "From prior to posterior",
-    "text": "From prior to posterior\n\nFor the two scenarios below, use your intuition to “guesstimate” the posterior (fill out each row based on ~vibes~ )\n\nThe program accepted five of five applicants?\nThe program accepted none of the five applicants?\n\n\n\n\n\n\\(\\pi\\)\n0.2\n0.4\n0.8\n\n\n\n\n\\(f(\\pi)\\)\n\n\n\n\n\n\\(f(\\pi | y = 5)\\) (1)\n\n\n\n\n\n\\(f(\\pi | y = 0)\\) (2)"
+    "text": "From prior to posterior\n\nFor the two scenarios below, use your intuition to “guesstimate” the posterior (fill out each row based on ~vibes~ )\n\nThe program accepted five of five applicants?\nThe program accepted none of the five applicants?\n\n\n\n\n\n\\(\\pi\\)\n0.2\n0.4\n0.8\n\n\n\n\n\\(f(\\pi)\\)\n\n\n\n\n\n(1): \\(f(\\pi | y = 5)\\)\n\n\n\n\n\n(2): \\(f(\\pi | y = 0)\\)"
   },
   {
     "objectID": "slides/slides02.html#intuition-vs-reality",
@@ -818,18 +825,18 @@
     "text": "Rather than doing this one by one, we can let R consider all different possible values of \\(y\\):\n\ndbinom(0:5, size = 5, prob = .2)\n\n[1] 0.32768 0.40960 0.20480 0.05120 0.00640 0.00032\n\n\n\n\n\n\\(y\\)\n0\n1\n2\n3\n4\n5\n\n\n\n\n\\(f(y | \\pi = .2)\\)"
   },
   {
-    "objectID": "slides/slides02.html#other-possibilities-for-pi",
-    "href": "slides/slides02.html#other-possibilities-for-pi",
+    "objectID": "slides/slides02.html#all-possibilities-for-pi",
+    "href": "slides/slides02.html#all-possibilities-for-pi",
     "title": "Bayes Rule",
-    "section": "Other possibilities for \\(\\pi\\)",
-    "text": "Other possibilities for \\(\\pi\\)"
+    "section": "All possibilities for \\(\\pi\\)",
+    "text": "All possibilities for \\(\\pi\\)"
   },
   {
     "objectID": "slides/slides02.html#data",
     "href": "slides/slides02.html#data",
     "title": "Bayes Rule",
     "section": "Data",
-    "text": "Data\nThe admissions committee has anno¨nced they have accepted 3/5 applicants"
+    "text": "Data\nThe admissions committee has announced they have accepted 3/5 applicants"
   },
   {
     "objectID": "slides/slides02.html#likelihood-1",
@@ -843,7 +850,7 @@
     "href": "slides/slides02.html#likelihood-2",
     "title": "Bayes Rule",
     "section": "Likelihood",
-    "text": "Likelihood\n\ndbinom(x = 3, size = 5, prob = 0.2)\n\n[1] 0.0512\n\n\n\ndbinom(x = 3, size = 5, prob = 0.4)\n\n[1] 0.2304\n\n\n\ndbinom(x = 3, size = 5, prob = 0.8)\n\n[1] 0.2048\n\n\n\n\n\nπ\n\n\n0.2\n\n\n0.4\n\n\n0.8\n\n\n\n\nL(π | y = 3)\n\n\n0.0512\n\n\n0.2304\n\n\n0.2048\n\n\n\nThe likelihood function \\(L(\\pi|y=3)\\) is the same as the conditional probability mass function \\(f(y|pi)\\) at the observed value \\(y = 3\\)."
+    "text": "Likelihood\n\ndbinom(x = 3, size = 5, prob = 0.2)\n\n[1] 0.0512\n\n\n\ndbinom(x = 3, size = 5, prob = 0.4)\n\n[1] 0.2304\n\n\n\ndbinom(x = 3, size = 5, prob = 0.8)\n\n[1] 0.2048\n\n\n\n\n\nπ\n\n\n0.2\n\n\n0.4\n\n\n0.8\n\n\n\n\nL(π | y = 3)\n\n\n0.0512\n\n\n0.2304\n\n\n0.2048\n\n\n\nThe likelihood function \\(L(\\pi|y=3)\\) is the same as the conditional probability mass function \\(f(y|\\pi)\\) at the observed value \\(y = 3\\)."
   },
   {
     "objectID": "slides/slides02.html#pmf-vs-likelihood",
@@ -913,7 +920,12 @@
     "href": "homework/hw01.html",
     "title": "Individual HW01",
     "section": "",
-    "text": "BR Exercise 1.5\n\n\nBR Exercise 1.6\n\n\nBR Exercise 2.2\n\n\nBR Exercise 2.6\n\n\nBR Exercise 2.16"
+    "text": "BR Exercise 1.5\n\n\nBR Exercise 1.6\n\n\nBR Exercise 2.2\n\n\nBR Exercise 2.6\n\n\nBR Exercise 2.16",
+    "crumbs": [
+      "Assignments",
+      "Homework",
+      "Individual HW01"
+    ]
   },
   {
     "objectID": "computing/rstudio-stat340.html",
@@ -975,6 +987,11 @@
     "href": "groupwork/gw01.html",
     "title": "Group Work 01",
     "section": "",
-    "text": "Syllabus Q\nWhat is the weirdest/most unique policy or course component that you saw in the syllabus?\n\n\nBR Exercise 2.3\n\n\nBR Exercise 2.5\n\n\nBR Exercise 2.13"
+    "text": "Syllabus Q\nWhat is the weirdest/most unique policy or course component that you saw in the syllabus?\n\n\nBR Exercise 2.3\n\n\nBR Exercise 2.5\n\n\nBR Exercise 2.13",
+    "crumbs": [
+      "Assignments",
+      "Groupwork",
+      "Group Work 01"
+    ]
   }
 ]
