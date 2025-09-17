@@ -3,13 +3,15 @@ title: "gw02"
 format: html
 ---
 
-# Discrete vs continuous probability distributions
-
-# Finding expected value and variance of a random variable
+# BR Exercise 2.13
 
 # Simulation 1 
 
 # Simulation 2 
+
+# Discrete vs continuous probability distributions
+
+# Finding expected value and variance of a random variable
 
 # TBA Monday
 
