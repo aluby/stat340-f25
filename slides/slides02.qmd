@@ -28,7 +28,32 @@ library(lubridate)
 theme_set(theme_minimal(base_size = 14, base_family = "Atkinson Hyperlegible"))
 ```
 
-## Warm Up I: Bayesian Personality Quiz
+
+## Warm up I: Bayesian Personality Quiz {.smaller}
+
+**Q2:** An election is coming up and a pollster claims that candidate A has a 0.9 probability of winning. How do you interpret this probability?
+
+::: {.nonincremental}
+(a) If we observe the election over and over, candidate A will win roughly 90% of the time.
+(a) Candidate A is much more likely to win than to lose.
+(a) The pollster’s calculation is wrong. Candidate A will either win or lose, thus their probability of winning can only be 0 or 1.
+:::
+
+## Warm up I: Bayesian Personality Quiz {.smaller}
+
+**Q3:** Consider two claims. 
+
+::: {.nonincremental}
+(1) Zuofu claims that he can predict the outcome of a coin flip. To test his claim, you flip a fair coin 10 times and he correctly predicts all 10. 
+(2) Kavya claims that she can distinguish natural and artificial sweeteners. To test her claim, you give her 10 sweetener samples and she correctly identifies each. 
+:::
+
+In light of these experiments, what do you conclude?
+
+::: {.nonincremental}
+(a) You’re more confident in Kavya’s claim than Zuofu’s claim.
+(b) The evidence supporting Zuofu’s claim is just as strong as the evidence supporting Kavya’s claim.
+:::
 
 
 ## Warm Up II {.smaller}
@@ -37,10 +62,11 @@ The following are some survey results from a recent Pew Research
 [report](https://www.pewresearch.org/wp-content/uploads/sites/20/2025/09/SR_25.09_global-internet-usage_topline.pdf)
 to the question "About how often to use the internet"?
 
-|   | Almost constantly | Several Times a day | About once a day | Several times a week | Less often | Do not use |
-|-----------|-----------|-----------|-----------|-----------|-----------|-----------|
-| US | 2059 | 2159 | 301 | 150 | 100 | 201 |
-| Canada | 328 | 553 | 61 | 31 | 10 | 41 |
+|        | Almost constantly | Several Times a day | About once a day | Several times a week | Less often | Do not use | TOTAL |
+|--------|-------------------|---------------------|------------------|----------------------|------------|------------|-------|
+| US     | 2059              | 2159                | 301              | 150                  | 100        | 201        | 4970  |
+| Canada | 328               | 553                 | 61               | 31                   | 10         | 41         | 1024  |
+| TOTAL  | 2387              | 2712                | 362              | 181                  | 110        | 242        | 5994  |
 
 ::: {.task .nonincremental}
 Calculate the following probabilities and write them using event
@@ -51,48 +77,56 @@ notation. Let $A$: online almost constantly and $B$: lives in US
 3.  P(US given online almost constantly)
 :::
 
+## Marginal Probability {.smaller}
+
+|        | Almost constantly | Several Times a day | About once a day | Several times a week | Less often | Do not use | TOTAL |
+|--------|-------------------|---------------------|------------------|----------------------|------------|------------|-------|
+| US     | 2059              | 2159                | 301              | 150                  | 100        | 201        | 4970  |
+| Canada | 328               | 553                 | 61               | 31                   | 10         | 41         | 1024  |
+| TOTAL  | 2387              | 2712                | 362              | 181                  | 110        | 242        | 5994  |
+
+::: callout-note
 ## Marginal Probability
 
-|   | Almost constantly | Several Times a day | About once a day | Several times a week | Less often | Do not use |
-|-----------|-----------|-----------|-----------|-----------|-----------|-----------|
-| US | 2059 | 2159 | 301 | 150 | 100 | 201 |
-| Canada | 328 | 553 | 61 | 31 | 10 | 41 |
-
-::: callout-note
-## Marginal Probability
-
-<br> <br> <br>
+<br> <br> <br> <br> <br>
 :::
 
-## Joint Probability
+## Joint Probability {.smaller}
 
-|   | Almost constantly | Several Times a day | About once a day | Several times a week | Less often | Do not use |
-|-----------|-----------|-----------|-----------|-----------|-----------|-----------|
-| US | 2059 | 2159 | 301 | 150 | 100 | 201 |
-| Canada | 328 | 553 | 61 | 31 | 10 | 41 |
+|        | Almost constantly | Several Times a day | About once a day | Several times a week | Less often | Do not use | TOTAL |
+|--------|-------------------|---------------------|------------------|----------------------|------------|------------|-------|
+| US     | 2059              | 2159                | 301              | 150                  | 100        | 201        | 4970  |
+| Canada | 328               | 553                 | 61               | 31                   | 10         | 41         | 1024  |
+| TOTAL  | 2387              | 2712                | 362              | 181                  | 110        | 242        | 5994  |
 
 ::: callout-note
 ## Joint Probability
 
-<br> <br> <br>
+<br> <br> <br><br> <br>
 :::
 
-## Conditional Probability
+## Conditional Probability {.smaller}
 
-|   | Almost constantly | Several Times a day | About once a day | Several times a week | Less often | Do not use |
-|-----------|-----------|-----------|-----------|-----------|-----------|-----------|
-| US | 2059 | 2159 | 301 | 150 | 100 | 201 |
-| Canada | 328 | 553 | 61 | 31 | 10 | 41 |
-
+|        | Almost constantly | Several Times a day | About once a day | Several times a week | Less often | Do not use | TOTAL |
+|--------|-------------------|---------------------|------------------|----------------------|------------|------------|-------|
+| US     | 2059              | 2159                | 301              | 150                  | 100        | 201        | 4970  |
+| Canada | 328               | 553                 | 61               | 31                   | 10         | 41         | 1024  |
+| TOTAL  | 2387              | 2712                | 362              | 181                  | 110        | 242        | 5994  |
 ::: callout-note
 ## Conditional Probability
 
-<br> <br> <br>
+<br> <br> <br><br> <br>
 :::
 
 ## More probability notes: 
 
+::: callout-note
+## Conditional Probability Facts
+
 $P(A|B) \ne P(B|A)$
+
+$P(A|B) = \frac{P(A \cap B)}{P(B)}$
+:::
 
 ::: callout-note 
 ## Complement rule
@@ -152,9 +186,9 @@ Let B:
 
 Looking at the conditional probabilities: 
 
-P(A|B) = 
+$P(A|B) =$
 
-P(A|B^c) = 
+$P(A|B^c) =$
 
 ## Likelihood function notation
 
@@ -224,8 +258,8 @@ posterior (fill out each row based on \~vibes\~ )
 | $\pi$                | 0.2 | 0.4 | 0.8  |
 |----------------------|-----|-----|------|
 | $f(\pi)$             |     |     |      |
-| $f(\pi | y = 5)$ (1) |     |     |      |
-| $f(\pi | y = 0)$ (2) |     |     |      |
+| (1): $f(\pi | y = 5)$ |     |     |      |
+| (2): $f(\pi | y = 0)$ |     |     |      |
 
 
 
@@ -281,7 +315,7 @@ dbinom(0:5, size = 5, prob = .2)
 | $f(y | \pi = .2)$ |     |     |     |     |     |     |
 
 
-## Other possibilities for $\pi$
+## All possibilities for $\pi$
 
 ```{r echo = FALSE, fig.align = 'center'}
 n   <- 5
@@ -307,7 +341,7 @@ ggplot(pis, aes(x = x, y = y)) +
 
 ## Data
 
-The admissions committee has anno¨nced they have accepted 3/5 applicants
+The admissions committee has announced they have accepted 3/5 applicants
 
 ```{r echo = FALSE, fig.align='center'}
 ggplot(pis, aes(x = x, y = y)) + 
@@ -367,7 +401,7 @@ dbinom(x = 3, size = 5, prob = 0.8)
 
 </table>
 
-The likelihood function $L(\pi|y=3)$ is the same as the conditional probability mass function $f(y|pi)$ at the observed value $y = 3$.
+The likelihood function $L(\pi|y=3)$ is the same as the conditional probability mass function $f(y|\pi)$ at the observed value $y = 3$.
 
 ## __pmf vs likelihood__    
 
