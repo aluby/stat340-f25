@@ -1,0 +1,100 @@
+---
+title: Posterior Simulation + Likelihood practice
+subtitle: Day 03
+title-slide-attributes:
+  data-background-color: "#e2583eff"
+  data-slide-number: none
+format: 
+  revealjs:
+    incremental: false
+auto-stretch: false
+editor_options: 
+  chunk_output_type: console
+editor: 
+  markdown: 
+    wrap: 72
+---
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+
+library(gtrendsR)
+library(countdown)
+library(tidyverse)
+library(lubridate)
+library(janitor)
+
+theme_set(theme_minimal(base_size = 14, base_family = "Atkinson Hyperlegible"))
+```
+
+# Likelihood review {.colorslide}
+
+## Is this the same likelihood as the Stat250 likelihood? 
+
+## Example from last time: PhD admissions
+
+| π             | 0.2    | 0.4    | 0.8    |
+|---------------|--------|--------|--------|
+| f(π)          | 0.7    | 0.2    | 0.1    |
+| L(π \| y = 3) | 0.0512 | 0.2304 | 0.2048 |
+| f(π \| y = 3) | 0.35   | 0.45   | 0.20   |
+
+## First, define and simulate from prior
+
+```{r}
+admissions <- tibble(
+  pi = c(.2, .4, .8)
+)
+
+prior <- c(0.7, 0.2, 0.1)
+
+set.seed(091925)
+admissions_sim <- sample_n(admissions, 
+                           size = 10000, 
+                           weight = prior, 
+                           replace = TRUE)
+```
+
+##
+
+```{r}
+admissions_sim
+```
+
+## Simulated `pi` closely approximate prior $f(\pi)$
+
+```{r}
+admissions_sim |>
+  tabyl(pi)
+```
+
+## Simulate outcomes
+
+```{r}
+admissions_sim <- admissions_sim |>
+  mutate(
+    y = rbinom(10000, size = 5, prob = pi)
+  )
+
+admissions_sim |> head(5)
+```
+
+## Simulated `y` outcomes approximate $f(y|\pi)$
+
+```{r}
+ggplot(admissions_sim, aes(x = y)) +
+  geom_bar(aes(y = after_stat(prop))) + 
+  facet_wrap(vars(pi))
+```
+
+## To approximate posterior, condition on observed data and look at relative frequency
+
+```{r}
+observed <- admissions_sim |>
+  filter(y == 3)
+
+observed |>
+  tabyl(pi)
+```
