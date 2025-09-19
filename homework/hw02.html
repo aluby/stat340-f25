@@ -1,10 +1,14 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.8.24">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>Using R/RStudio for Homework in Stat340 – Stat 340</title>
+
+<meta name="author" content="Your Name Here">
+
+<title>Individual HW02 – Stat 340</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -54,14 +58,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }
 </style>
 
+
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../computing/r-basics-refresher.html" rel="next">
-<link href="../computing/computing-setup.html" rel="prev">
+<link href="../groupwork/gw01.html" rel="next">
+<link href="../homework/hw01.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -76,7 +81,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap-710808da41c8bbec41991e78ce036138.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
 <link href="../site_libs/bootstrap/bootstrap-dark-b4f90e6ff0dce88202405a8c5f41b0fc.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-710808da41c8bbec41991e78ce036138.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+<link href="../site_libs/bootstrap/bootstrap-710808da41c8bbec41991e78ce036138.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -103,7 +109,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+
+
 </head>
+
 <body class="nav-sidebar docked quarto-light"><script id="quarto-html-before-body" type="application/javascript">
     const toggleBodyColorMode = (bsSheetEl) => {
       const mode = bsSheetEl.getAttribute("data-mode");
@@ -269,22 +278,30 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </script>
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../computing/computing-setup.html">Computing</a></li><li class="breadcrumb-item"><a href="../computing/rstudio-stat340.html">Rstudio in Stat 340</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Assignments</li><li class="breadcrumb-item"><a href="../homework/hw01.html">Homework</a></li><li class="breadcrumb-item"><a href="../homework/hw02.html">Individual HW02</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
-  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto"><div class="pt-lg-2 mt-2 text-center sidebar-header">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-center sidebar-header">
       <a href="../index.html" class="sidebar-logo-link">
-      <img src="../images/bayes-logo.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none"><img src="../images/bayes-logo.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none"></a>
+      <img src="../images/bayes-logo.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
+      <img src="../images/bayes-logo.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
+      </a>
       <div class="sidebar-tools-main tools-wide">
     <a href="https://maize.mathcs.carleton.edu/" title="RStudio Server" class="quarto-navigation-tool px-1" aria-label="RStudio Server"><i class="bi bi-code-square"></i></a>
     <a href="https://moodle.carleton.edu/course/view.php?id=47069" title="Moodle" class="quarto-navigation-tool px-1" aria-label="Moodle"><i class="bi bi-person-fill"></i></a>
@@ -298,7 +315,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
-<li class="sidebar-item">
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../course-syllabus.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Syllabus</span></a>
@@ -312,14 +329,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
  <span class="menu-text">Computing</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">
-<li class="sidebar-item">
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../computing/computing-setup.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Setup</span></a>
@@ -327,7 +344,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../computing/rstudio-stat340.html" class="sidebar-item-text sidebar-link active">
+  <a href="../computing/rstudio-stat340.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Rstudio in Stat 340</span></a>
   </div>
 </li>
@@ -350,26 +367,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
 </li>
       </ul>
-</li>
+  </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
  <span class="menu-text">Assignments</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">
-<li class="sidebar-item sidebar-item-section">
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
  <span class="menu-text">Homework</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 ">
-<li class="sidebar-item">
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../homework/hw01.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Individual HW01</span></a>
@@ -377,12 +394,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../homework/hw02.html" class="sidebar-item-text sidebar-link">
+  <a href="../homework/hw02.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Individual HW02</span></a>
   </div>
 </li>
       </ul>
-</li>
+  </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
@@ -391,8 +408,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 ">
-<li class="sidebar-item">
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../groupwork/gw01.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Group Work 01</span></a>
@@ -405,46 +422,54 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
 </li>
       </ul>
-</li>
+  </li>
       </ul>
-</li>
+  </li>
         <li class="sidebar-item sidebar-item-section">
       <span class="sidebar-item-text sidebar-link text-start">
  <span class="menu-text">Projects</span></span>
   </li>
     </ul>
-</div>
-</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
    
   <ul>
-<li>
-<a href="#overview-of-rstudio-view" id="toc-overview-of-rstudio-view" class="nav-link active" data-scroll-target="#overview-of-rstudio-view">Overview of Rstudio View</a>
-  <ul class="collapse">
-<li><a href="#uploading-files-to-maize" id="toc-uploading-files-to-maize" class="nav-link" data-scroll-target="#uploading-files-to-maize">Uploading files to maize</a></li>
-  <li><a href="#accessing-maize-from-off-campus" id="toc-accessing-maize-from-off-campus" class="nav-link" data-scroll-target="#accessing-maize-from-off-campus">Accessing maize from off campus</a></li>
+  <li><a href="#br-exercise-2.16" id="toc-br-exercise-2.16" class="nav-link active" data-scroll-target="#br-exercise-2.16">BR Exercise 2.16</a></li>
+  <li><a href="#br-exercise-2.21" id="toc-br-exercise-2.21" class="nav-link" data-scroll-target="#br-exercise-2.21">BR Exercise 2.21</a></li>
+  <li><a href="#tba-after-friday" id="toc-tba-after-friday" class="nav-link" data-scroll-target="#tba-after-friday">TBA after Friday</a></li>
+  <li><a href="#tba-after-monday" id="toc-tba-after-monday" class="nav-link" data-scroll-target="#tba-after-monday">TBA after Monday</a></li>
+  <li><a href="#tba-after-monday-1" id="toc-tba-after-monday-1" class="nav-link" data-scroll-target="#tba-after-monday-1">TBA after Monday</a></li>
+  <li><a href="#tba-after-monday-2" id="toc-tba-after-monday-2" class="nav-link" data-scroll-target="#tba-after-monday-2">TBA after Monday</a></li>
+  <li><a href="#tba-after-wed" id="toc-tba-after-wed" class="nav-link" data-scroll-target="#tba-after-wed">TBA after Wed</a></li>
+  <li><a href="#tba-after-wed-1" id="toc-tba-after-wed-1" class="nav-link" data-scroll-target="#tba-after-wed-1">TBA after Wed</a></li>
+  <li><a href="#tba-after-wed-2" id="toc-tba-after-wed-2" class="nav-link" data-scroll-target="#tba-after-wed-2">TBA after Wed</a></li>
   </ul>
-</li>
-  <li><a href="#rendering-your-document" id="toc-rendering-your-document" class="nav-link" data-scroll-target="#rendering-your-document">Rendering your document</a></li>
-  <li>
-<a href="#latex" id="toc-latex" class="nav-link" data-scroll-target="#latex">LaTeX</a>
-  <ul class="collapse">
-<li><a href="#installing-latex-not-needed-if-you-are-using-the-maize-server" id="toc-installing-latex-not-needed-if-you-are-using-the-maize-server" class="nav-link" data-scroll-target="#installing-latex-not-needed-if-you-are-using-the-maize-server">Installing LaTeX (not needed if you are using the maize server)</a></li>
-  </ul>
-</li>
-  </ul></nav>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="hw02.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../computing/computing-setup.html">Computing</a></li><li class="breadcrumb-item"><a href="../computing/rstudio-stat340.html">Rstudio in Stat 340</a></li></ol></nav><div class="quarto-title">
-<h1 class="title">Using R/RStudio for Homework in Stat340</h1>
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Assignments</li><li class="breadcrumb-item"><a href="../homework/hw01.html">Homework</a></li><li class="breadcrumb-item"><a href="../homework/hw02.html">Individual HW02</a></li></ol></nav>
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title">Individual HW02</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Your Name Here </p>
+          </div>
+  </div>
     
   
     
@@ -452,80 +477,56 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   
 
 
-</header><p>In Stat340, I will distribute homework assignment templates in.qmd format.</p>
-<section id="overview-of-rstudio-view" class="level1"><h1>Overview of Rstudio View</h1>
-<p>When you open up RStudio or maize, you should see something like the following. I’ve annotated the image below to show you the main features:</p>
-<ul>
-<li>The “editor” shows you the file you are currently working on. This is where you should edit your homework assignments and save as you go</li>
-<li>The “console” is where R code is run. You can use it like a calculator for short computations (like using <code>pnorm</code> to find a probability), but I recommend using the editor with a file for any data analysis or simulations.</li>
-<li>The “environment” shows any datasets you’ve loaded or objects you’ve created</li>
-<li>The “files” pane shows the file folder you are currently in, and any files that are available. On maize, you can click “upload” to add files from your local computer. You can also click “blank file” to create a blank .rmd or .qmd to paste provided code into. Either is fine!</li>
-</ul>
-<p><img src="images/rstudio-overview.png" class="img-fluid"></p>
-<section id="uploading-files-to-maize" class="level2"><h2 class="anchored" data-anchor-id="uploading-files-to-maize">Uploading files to maize</h2>
-<ul>
-<li>Click the “upload” button in the files pane</li>
-<li>Select the file from your local computer (likely in your Downloads folder if you downloaded from moodle)</li>
-<li>Choose the “Target Directory” – this is the folder on your maize account where the file will be saved. I recommend creating a separate folder for this class.</li>
-</ul></section><section id="accessing-maize-from-off-campus" class="level2"><h2 class="anchored" data-anchor-id="accessing-maize-from-off-campus">Accessing maize from off campus</h2>
-<p>If you are using the maize server, you should be able to access it on campus with only your Carleton ID and password. If you plan to use the maize server and you plan to do any work off campus this term (e.g., while on a field trip, travel for athletics, or just sitting in Little Joy) you need to install Carleton’s VPN to have access.</p>
-<p>To install the GlobalProtect VPN follow <a href="https://wiki.carleton.edu/display/itskb/GlobalProtect+VPN">directions provided by ITS</a>.</p>
-</section></section><section id="rendering-your-document" class="level1"><h1>Rendering your document</h1>
-<p>To submit your homework, you will need to “render” (if .qmd) your final document to PDF.</p>
-<ul>
-<li>Click “render” and choose “PDF” if given the option</li>
-</ul>
-<p><img src="images/knit-to-pdf.png" class="img-fluid"></p>
-<ul>
-<li>A “Popup blocked” message will appear. Hit “try again”</li>
-<li>A PDF should appear. Look it over and make sure it looks OK. If you want to submit it as is, click the “download” button in the upper right corner - this will download the PDF to your local computer, which you can then submit to gradescope.</li>
-</ul>
-<p><img src="images/download-pdf.png" class="img-fluid"> - If you’d like to make changes, just close the PDF and return to your .rmd or .qmd and repeat these steps</p>
-<div class="callout callout-style-default callout-tip callout-titled">
+</header>
+
+
+<section id="br-exercise-2.16" class="level1">
+<h1>BR Exercise 2.16</h1>
+<div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Tip
+Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>R and LaTeX are very picky when it comes to rendering PDF documents. If you copy and paste formatted text into your .rmd file, for example, it won’t render and you’ll get a bunch of error messages. Please don’t copy and paste anything directly into your .rmd files!</p>
+<p>If the link from the textbook doesn’t work, try this link from the <a href="https://web.archive.org/web/20250117223825/https://www.thedailybeast.com/are-over-half-the-works-on-the-art-market-really-fakes/">internet archive</a></p>
 </div>
 </div>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Tip
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>If you do get errors, you can try knitting or rendering to a word document (.docx) and then saving that to PDF. Remember that any time you knit, you will re-write the file, so any changes you make in your .docx file will <em>not</em> be saved!</p>
-</div>
-</div>
-</section><section id="latex" class="level1"><h1>LaTeX</h1>
-<p>You need a LaTeX compiler to create a pdf document from a R Markdown file. If you use the maize server, you don’t need to install anything (the server already has a LaTeX compiler). If you are using a local RStudio, you should install a Latex compiler.</p>
-<section id="installing-latex-not-needed-if-you-are-using-the-maize-server" class="level2"><h2 class="anchored" data-anchor-id="installing-latex-not-needed-if-you-are-using-the-maize-server">Installing LaTeX (not needed if you are using the maize server)</h2>
-<p>If you don’t already have a tex package installed on your computer, the easiest option to create pdf’s is to use the tinytex R package. This can be installed with the following R commands:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"tinytex"</span><span class="op">)</span></span>
-<span><span class="fu">tinytex</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/tinytex/man/install_tinytex.html">install_tinytex</a></span><span class="op">(</span><span class="op">)</span>  <span class="co"># install TinyTeX</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<p>If you’d like a standalone LaTeX package that will work with programs <em>other</em> than RStudio, you could install the basic installations of either:</p>
-<p>If you’d like a stand alone LaTeX package, you could install the basic installations of either:</p>
-<ul>
-<li>
-<a href="https://www.tug.org/mactex/">MacTeX</a> for Mac (3.2GB!)</li>
-<li>
-<a href="https://miktex.org/download">MiKTeX</a> for Windows (190MB)</li>
-</ul>
+</section>
+<section id="br-exercise-2.21" class="level1">
+<h1>BR Exercise 2.21</h1>
+</section>
+<section id="tba-after-friday" class="level1">
+<h1>TBA after Friday</h1>
+</section>
+<section id="tba-after-monday" class="level1">
+<h1>TBA after Monday</h1>
+</section>
+<section id="tba-after-monday-1" class="level1">
+<h1>TBA after Monday</h1>
+</section>
+<section id="tba-after-monday-2" class="level1">
+<h1>TBA after Monday</h1>
+</section>
+<section id="tba-after-wed" class="level1">
+<h1>TBA after Wed</h1>
+</section>
+<section id="tba-after-wed-1" class="level1">
+<h1>TBA after Wed</h1>
+</section>
+<section id="tba-after-wed-2" class="level1">
+<h1>TBA after Wed</h1>
 
 
-</section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+<!-- -->
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     // Ensure there is a toggle, if there isn't float one in the top right
     if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
@@ -608,6 +609,57 @@ Tip
         container: window.document.getElementById('quarto-embedded-source-code-modal')
       });
       clipboardModal.on('success', onCopySuccess);
+    }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+        for (let i=0; i<detailsSrc.length; i++) {
+          const details = detailsSrc[i].parentElement;
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
@@ -937,19 +989,52 @@ Tip
       }
     }
   });
-  </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
-      <a href="../computing/computing-setup.html" class="pagination-link" aria-label="Setup">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Setup</span>
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../homework/hw01.html" class="pagination-link" aria-label="Individual HW01">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Individual HW01</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../computing/r-basics-refresher.html" class="pagination-link" aria-label="R Refresher">
-        <span class="nav-page-text">R Refresher</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../groupwork/gw01.html" class="pagination-link" aria-label="Group Work 01">
+        <span class="nav-page-text">Group Work 01</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
-</nav>
+</nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Individual HW02"</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> "Your Name Here"</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu"># BR Exercise 2.16</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>::: callout-note</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>If the link from the textbook doesn't work, try this link from the <span class="co">[</span><span class="ot">internet archive</span><span class="co">](https://web.archive.org/web/20250117223825/https://www.thedailybeast.com/are-over-half-the-works-on-the-art-market-really-fakes/)</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="fu"># BR Exercise 2.21</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="fu"># TBA after Friday</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="fu"># TBA after Monday</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="fu"># TBA after Monday</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="fu"># TBA after Monday</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="fu"># TBA after Wed</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="fu"># TBA after Wed</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="fu"># TBA after Wed</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+</div></div></div></div></div>
 </div> <!-- /content -->
-<footer class="footer"><div class="nav-footer">
+<footer class="footer">
+  <div class="nav-footer">
     <div class="nav-footer-left">
 <p>Material 2025, Amanda Luby <br> Design by Mine Çetinkaya-Rundel</p>
 </div>   
@@ -961,6 +1046,8 @@ Tip
 </div>
   </div>
 </footer>
+
+
 
 
 </body></html>

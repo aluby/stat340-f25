@@ -172,13 +172,13 @@
   {
     "objectID": "groupwork/gw02.html",
     "href": "groupwork/gw02.html",
-    "title": "gw02",
+    "title": "Group Work 02",
     "section": "",
-    "text": "Discrete vs continuous probability distributions\n\n\nFinding expected value and variance of a random variable\n\n\nSimulation 1\n\n\nSimulation 2\n\n\nTBA Monday\n\n\nTBA Monday\n\n\nTBA Wed\n\n\nTBA Wed",
+    "text": "library(bayesrules) # R package for our textbook\nlibrary(tidyverse) # Collection of packages for tidying and plotting data\nlibrary(janitor) # Helper functions like tidy and tabyl\n\nBR Exercise 2.13\nBR Exercise 2.18\nBR Exercise 2.17\nMLE\nIf \\(Y \\sim \\text{Binom}(n, \\pi)\\), show that \\(\\hat{\\pi}_{MLE} = \\frac{Y}{n}\\)\nTBA Monday\nTBA Monday\nTBA Wed\nTBA Wed",
     "crumbs": [
       "Assignments",
       "Groupwork",
-      "gw02"
+      "Group Work 02"
     ]
   },
   {
@@ -249,25 +249,256 @@
     ]
   },
   {
-    "objectID": "slides/test.html#quarto",
-    "href": "slides/test.html#quarto",
-    "title": "Untitled",
-    "section": "Quarto",
-    "text": "Quarto\nQuarto enables you to weave together content and executable code into a finished presentation. To learn more about Quarto presentations see https://quarto.org/docs/presentations/."
+    "objectID": "course-faq.html",
+    "href": "course-faq.html",
+    "title": "FAQ",
+    "section": "",
+    "text": "The best place to come for help is Amanda’s office hours! I can help with anything related to the course. You can also check my calendar for one-on-one appointment slots.\n\n\n\nStudents needing help with their Statistics coursework and R/Rstudio questions can get help from Stats Lab Assistants in the Stats Lab in CMC 304. Stats Lab Assistants are primiarily for Stat 120 (Intro Stats), but they may also be able to assist with general R/Rstudio questions."
   },
   {
-    "objectID": "slides/test.html#bullets",
-    "href": "slides/test.html#bullets",
-    "title": "Untitled",
-    "section": "Bullets",
-    "text": "Bullets\nWhen you click the Render button a document will be generated that includes:\n\nContent authored with markdown\nOutput from executable code"
+    "objectID": "course-faq.html#where-can-i-get-help",
+    "href": "course-faq.html#where-can-i-get-help",
+    "title": "FAQ",
+    "section": "",
+    "text": "The best place to come for help is Amanda’s office hours! I can help with anything related to the course. You can also check my calendar for one-on-one appointment slots.\n\n\n\nStudents needing help with their Statistics coursework and R/Rstudio questions can get help from Stats Lab Assistants in the Stats Lab in CMC 304. Stats Lab Assistants are primiarily for Stat 120 (Intro Stats), but they may also be able to assist with general R/Rstudio questions."
   },
   {
-    "objectID": "slides/test.html#code",
-    "href": "slides/test.html#code",
-    "title": "Untitled",
-    "section": "Code",
-    "text": "Code\nWhen you click the Render button a presentation will be generated that includes both content and the output of embedded code. You can embed code like this:\n\n1 + 1\n\n[1] 2"
+    "objectID": "slides/slides01.html#plan-for-today",
+    "href": "slides/slides01.html#plan-for-today",
+    "title": "Welcome to Bayes!",
+    "section": "Plan for today",
+    "text": "Plan for today\n\nIntros\nIntro to Bayesian Thinking\nSyllabus"
+  },
+  {
+    "objectID": "slides/slides01.html#about-me",
+    "href": "slides/slides01.html#about-me",
+    "title": "Welcome to Bayes!",
+    "section": "About me",
+    "text": "About me\n\n\n\nEllis (almost 1.5!)\nSecond year at Carleton\nTaught at Swarthmore for 5 years before moving to MN\nPhD in Statistics & Data Science from Carnegie Mellon University\nGrew up in Minnesota, went to St Ben’s as an undergrad"
+  },
+  {
+    "objectID": "slides/slides01.html#my-crochet-journey-this-summer",
+    "href": "slides/slides01.html#my-crochet-journey-this-summer",
+    "title": "Welcome to Bayes!",
+    "section": "My crochet journey this summer",
+    "text": "My crochet journey this summer\n\n\n\n\n\nDecided I wanted to make a basket\nSkipped “practice these stitches” and just went for it\nDidn’t understand the pattern, watched a couple of youtube videos from random creators and went for it\nKept going even when I was very clearly doing something wrong"
+  },
+  {
+    "objectID": "slides/slides01.html#my-crochet-journey-this-summer-1",
+    "href": "slides/slides01.html#my-crochet-journey-this-summer-1",
+    "title": "Welcome to Bayes!",
+    "section": "My crochet journey this summer",
+    "text": "My crochet journey this summer\n\n\n\n\n\nAsked an expert (my sister) for advice\nDid “practice problems” using easier material (yarn) and bigger hook\nFound a reliable internet source for videos and tutorials\nStarted being way more careful about checking my work and redoing things if I wasn’t sure"
+  },
+  {
+    "objectID": "slides/slides01.html#intros",
+    "href": "slides/slides01.html#intros",
+    "title": "Welcome to Bayes!",
+    "section": "Intros",
+    "text": "Intros\n\nName\nSomething you did over the summer\nWhat makes you nervous about this class or term?\nSomething about yourself you are proud of\n\n\n\n\n−+\n05:00"
+  },
+  {
+    "objectID": "slides/slides01.html#warm-up",
+    "href": "slides/slides01.html#warm-up",
+    "title": "Welcome to Bayes!",
+    "section": "Warm Up",
+    "text": "Warm Up\n\nWhat are the key takeaways from:\n\nStat250: Stat Inference\nStat230: Regression\n\nWhat do you already know about Bayesian statistics?\n\n\n\n\n−+\n05:00"
+  },
+  {
+    "objectID": "slides/slides01.html#statistical-models",
+    "href": "slides/slides01.html#statistical-models",
+    "title": "Welcome to Bayes!",
+    "section": "Statistical models",
+    "text": "Statistical models\nA statistical model consists of\n\na collection of random variables to describe observable data,\nthe possible joint distribution(s) of the random variables,\nand the parameters, \\(\\boldsymbol \\theta\\), that define those distributions\n\n\n\nMorris and DeGroot, 377"
+  },
+  {
+    "objectID": "slides/slides01.html#r.a.-fisher",
+    "href": "slides/slides01.html#r.a.-fisher",
+    "title": "Welcome to Bayes!",
+    "section": "R.A. Fisher",
+    "text": "R.A. Fisher\n1890-1962\n\n\n\n\n\nVariance\nANOVA\nNull hypothesis\nMaximum likelihood estimation\np-value\nLots of contributions in genetics\nAlso a eugenecist"
+  },
+  {
+    "objectID": "slides/slides01.html#neyman-pearson",
+    "href": "slides/slides01.html#neyman-pearson",
+    "title": "Welcome to Bayes!",
+    "section": "Neyman & Pearson",
+    "text": "Neyman & Pearson\n\n\n\n\n\nConfidence interval\nCorrelation\nRegression\nStandard deviation\nEffect size\n“Optimal” tests\n\\(\\alpha\\) and \\(\\beta\\)\nType I and II error"
+  },
+  {
+    "objectID": "slides/slides01.html#frequentist-vs-bayesian",
+    "href": "slides/slides01.html#frequentist-vs-bayesian",
+    "title": "Welcome to Bayes!",
+    "section": "Frequentist vs Bayesian",
+    "text": "Frequentist vs Bayesian"
+  },
+  {
+    "objectID": "slides/slides01.html#bayes",
+    "href": "slides/slides01.html#bayes",
+    "title": "Welcome to Bayes!",
+    "section": "Bayes",
+    "text": "Bayes\n\n\n\n\nAll this guy did was Bayes’ rule:\n\\(P(A|B) = \\frac{P(B|A) P(A)}{ P(B)}\\)"
+  },
+  {
+    "objectID": "slides/slides01.html#frequentist-vs-bayesian-1",
+    "href": "slides/slides01.html#frequentist-vs-bayesian-1",
+    "title": "Welcome to Bayes!",
+    "section": "Frequentist vs Bayesian",
+    "text": "Frequentist vs Bayesian\n\n\nFrequentist\n\n“Classical” statistics\nProbability is a long-run frequency\nMake decisions based on a p-value\nType I and Type II errors\nConfidence intervals\n\n\nBayesian\n\nProbability is a subjective belief\nUpdate “prior” probabilities with data to obtain “posterior” probabilities\nMake decisions according to posterior probabilities\n“Credible” intervals"
+  },
+  {
+    "objectID": "slides/slides01.html#q1",
+    "href": "slides/slides01.html#q1",
+    "title": "Welcome to Bayes!",
+    "section": "Q1",
+    "text": "Q1\nWhen flipping a fair coin, we say that “the probability of flipping Heads is 0.5.” How do you interpret this probability?\n\nIf I flip this coin over and over, roughly 50% will be Heads.\nHeads and Tails are equally plausible.\nBoth a and b make sense."
+  },
+  {
+    "objectID": "slides/slides01.html#q2",
+    "href": "slides/slides01.html#q2",
+    "title": "Welcome to Bayes!",
+    "section": "Q2",
+    "text": "Q2\nAn election is coming up and a pollster claims that candidate A has a 0.9 probability of winning. How do you interpret this probability?\n\nIf we observe the election over and over, candidate A will win roughly 90% of the time.\nCandidate A is much more likely to win than to lose.\nThe pollster’s calculation is wrong. Candidate A will either win or lose, thus their probability of winning can only be 0 or 1."
+  },
+  {
+    "objectID": "slides/slides01.html#q3",
+    "href": "slides/slides01.html#q3",
+    "title": "Welcome to Bayes!",
+    "section": "Q3",
+    "text": "Q3\nConsider two claims.\n\nZuofu claims that he can predict the outcome of a coin flip. To test his claim, you flip a fair coin 10 times and he correctly predicts all 10.\nKavya claims that she can distinguish natural and artificial sweeteners. To test her claim, you give her 10 sweetener samples and she correctly identifies each.\n\nIn light of these experiments, what do you conclude?\n\nYou’re more confident in Kavya’s claim than Zuofu’s claim.\nThe evidence supporting Zuofu’s claim is just as strong as the evidence supporting Kavya’s claim."
+  },
+  {
+    "objectID": "slides/slides01.html#q4",
+    "href": "slides/slides01.html#q4",
+    "title": "Welcome to Bayes!",
+    "section": "Q4",
+    "text": "Q4\nSuppose that during a recent doctor’s visit, you tested positive for a very rare disease. If you only get to ask the doctor one question, which would it be?\n\nWhat’s the chance that I actually have the disease?\nIf in fact I don’t have the disease, what’s the chance that I would’ve gotten this positive test result?"
+  },
+  {
+    "objectID": "slides/slides01.html#results",
+    "href": "slides/slides01.html#results",
+    "title": "Welcome to Bayes!",
+    "section": "Results",
+    "text": "Results\nGive yourself:\n\n+1 for each A\n+3 for each B\n+2 for C on Q1\n-2 for C on Q2\n\nResults:\n\nScore &lt;5: your thinking is pretty frequentist\nScore &gt;9: your thinking is pretty Bayesian\n6-8: your leaning changes depending on the scenario"
+  },
+  {
+    "objectID": "slides/slides01.html#tentative-schedule",
+    "href": "slides/slides01.html#tentative-schedule",
+    "title": "Welcome to Bayes!",
+    "section": "Tentative schedule",
+    "text": "Tentative schedule\n\n\n\n\nTopic\nChapters\nApprox. Duration\n\n\n\n\nIntro\n1-2\n1 week\n\n\nConjugate Analysis\n3-5\n2 weeks\n\n\nMCMC\n7\n1 weeks\n\n\nBayesian Regression\n9-14\n4 weeks\n\n\nHierarchical Models\n15\n2 weeks"
+  },
+  {
+    "objectID": "slides/slides01.html#course-description",
+    "href": "slides/slides01.html#course-description",
+    "title": "Welcome to Bayes!",
+    "section": "Course description",
+    "text": "Course description\nThe Bayesian approach to statistics provides a powerful framework for incorporating prior knowledge into statistical analyses, updating this knowledge with data, and quantifying uncertainty in results. This course serves as a comprehensive introduction to Bayesian statistical inference and modeling, an alternative to the frequentist approach to statistics covered in previous classes. Topics include: Bayes’ Theorem; prior and posterior distributions; Bayesian regression; hierarchical models; and model adequacy and posterior predictive checks. Computational techniques will also be covered, including Markov Chain Monte Carlo methods, and modern Bayesian modeling packages in R."
+  },
+  {
+    "objectID": "slides/slides01.html#course-objectives",
+    "href": "slides/slides01.html#course-objectives",
+    "title": "Welcome to Bayes!",
+    "section": "Course Objectives",
+    "text": "Course Objectives\nAfter completing this course, you should be be able to demonstrate your competency with:\n\nExplaining the differences between frequentist and Bayesian approaches to statistics and data analysis\nSelecting appropriate prior distributions and likelihood models for Bayesian analysis\nUsing modern software to fit Bayesian models and assess their performance\nInterpreting results from Bayesian analyses"
+  },
+  {
+    "objectID": "slides/slides01.html#textbook",
+    "href": "slides/slides01.html#textbook",
+    "title": "Welcome to Bayes!",
+    "section": "Textbook:",
+    "text": "Textbook:\nBayes Rules! An Introduction to Applied Bayesian Modeling by Johnson, Ott, and Dogucu\nThe book is freely available at &lt;bayesrulesbook.com&gt;"
+  },
+  {
+    "objectID": "slides/slides01.html#computing",
+    "href": "slides/slides01.html#computing",
+    "title": "Welcome to Bayes!",
+    "section": "Computing:",
+    "text": "Computing:\nWe’ll be using R and RStudio throughout the course. If you’ve downloaded R to your own computer from a different class, great! If not, there are instructions available on the course website"
+  },
+  {
+    "objectID": "slides/slides01.html#what-will-you-do-in-this-course",
+    "href": "slides/slides01.html#what-will-you-do-in-this-course",
+    "title": "Welcome to Bayes!",
+    "section": "What will you do in this course?",
+    "text": "What will you do in this course?\nEach of the following components are important for your learning and therefore part of your final grade calculation:\n\n30% Homework due once per week\n\n10% Individual (graded on completion)\n10% Group (correctness and completion)\n10% Homework quizzes (correctness)\n\n10% Midterm project + presentation\n20% Final project + presentation\n20% Exam I\n20% Exam II"
+  },
+  {
+    "objectID": "slides/slides01.html#what-will-a-typical-dayweek-look-like",
+    "href": "slides/slides01.html#what-will-a-typical-dayweek-look-like",
+    "title": "Welcome to Bayes!",
+    "section": "What will a typical day/week look like?",
+    "text": "What will a typical day/week look like?\n\n\nBefore class:\n\nRead a chapter\nCome with questions\nBe prepared to try what was covered\n\n\nIn class:\n\nLecture/demo\n\nSometimes review of chapter\nSometimes new\n\nHands-on work or coding in R\nTime for group assignments\n\n\nAfter class:\n\nFinish group assignments\nWork on individual assignments"
+  },
+  {
+    "objectID": "slides/slides01.html#office-hours-tentative",
+    "href": "slides/slides01.html#office-hours-tentative",
+    "title": "Welcome to Bayes!",
+    "section": "Office hours (tentative)",
+    "text": "Office hours (tentative)\n\n\n\nDay\nTime\nType\nLocation\n\n\n\n\nMonday\n12:30-1:30\nDrop-in\nCMC 307\n\n\nTuesday\n2-3\nDrop-in\nCMC 307\n\n\nWednesday\n3-41\nDrop-in\nCMC 307\n\n\nFriday\n10-112\nDrop-in\nCMC 307\n\n\n\nI will also have at least 1 hour of individual appointments available on my calendar per week\nStat120 PriorityStat340 Priority"
+  },
+  {
+    "objectID": "slides/slides01.html#communication",
+    "href": "slides/slides01.html#communication",
+    "title": "Welcome to Bayes!",
+    "section": "Communication",
+    "text": "Communication\n\n\nMoodle: assignments, slides, and grades\nSlack: homework questions, announcements, discussion\nEmail: personal matters, time-sensitive announcements\n\n\n\nSlack is the fastest way to reach me. I typically will respond to messages 3x per weekday. I try to respond to emails within 48 hours. I’m online sporadically on evenings and weekends to devote time to family and rest – I hope you also use this time to reset and recharge!"
+  },
+  {
+    "objectID": "slides/slides01.html#advice-from-past-students",
+    "href": "slides/slides01.html#advice-from-past-students",
+    "title": "Welcome to Bayes!",
+    "section": "Advice from past students:",
+    "text": "Advice from past students:\n\nSTART HOMEWORKS EARLY\nDo the reading! The textbook is really great and can help give you a motivation for everything that’s happening in class.\nStart the problem sets early and go to office hours!\nask questions! you will inevitably not understand everything in the course at first pass.\nGo to her office hours!!!!!\nRead the book, and ask questions!\nTry to start the homework problems on the day that they are assigned.\nThis course is very fast-paced and intensive, so it may not be the right fit for everyone. Students who are not prepared for a compact schedule, or who are looking for an easier workload, may find it challenging. A solid foundation in statistics and a strong level of commitment are essential to keep up with the material and succeed in the class.\nAsk questions in class, Amanda has no problem reviewing a previously discussed concept.\nWork with other people in the class, collaboration is key\nStart the homework early! Give yourself time to get things done, to understand, and to pause. Don’t feel afraid to ask questions; she’s so accessible.\nSpend some time reviewing handouts before doing homework."
+  },
+  {
+    "objectID": "slides/slides01.html#the-genius-myth",
+    "href": "slides/slides01.html#the-genius-myth",
+    "title": "Welcome to Bayes!",
+    "section": "The “Genius Myth”",
+    "text": "The “Genius Myth”\nIt’s sometimes easy to buy into the “genius myth” when it comes to math/stat courses: that you need to be a “math person” and have some innate mathematical ability in order to do well or become a statistics major. This could not be further from the truth! The best statisticians don’t necessarily have the “best” math or programming background, but are people that are able to formulate interesting questions and use math and programming to rigorously answer those questions. Many of the best statisticians I know became statisticians because they were initially interested in something else (biology, public health, psychology, neuroscience, physics, etc.) and realized that being able to answer important questions with data was not only valuable but fun and interesting. Being able to perform interesting statistical analyses is a skill that is learned, not an innate ability, and working hard at developing that skill is the point of this course."
+  },
+  {
+    "objectID": "slides/slides01.html#academic-integrity",
+    "href": "slides/slides01.html#academic-integrity",
+    "title": "Welcome to Bayes!",
+    "section": "Academic Integrity",
+    "text": "Academic Integrity\nYou are expected to follow Carleton’s policies regarding academic integrity. I encourage you to discuss the homework problems with others and use the resources available to you to try to figure out tough problems. You should code and write up your solutions on your own. Exams must be done by yourself without communicating with others; all work must be your own. The use of textbook solution manuals (physical or online), course materials from other students, or materials from previous versions of this course are not allowed. Copying, paraphrasing, summarizing, or submitting work generated by anyone but yourself without proper attribution is considered academic dishonesty (this includes output from LLMs).\nPlease ask if you are unsure of whether or not your actions are complying with the assignment/exam/project instructions. Always default to acknowledging any help received. Cases of suspected academic dishonesty are handled by the Provost’s Office and I am obligated to report any suspected violations of this policy."
+  },
+  {
+    "objectID": "slides/slides01.html#more-on-ai",
+    "href": "slides/slides01.html#more-on-ai",
+    "title": "Welcome to Bayes!",
+    "section": "More on “AI”",
+    "text": "More on “AI”\nLarge-language models (e.g. ChatGPT, Gemini, etc.) should only be used for help interpreting R’s error messages or suggestions for your own code once you have already attempted the problem. You should not copy and paste course material into or out of an AI text generator.\nI also have a few rules in place to protect my intellectual property. You may not record my lectures using tools such as Otter.ai or upload any video or audio recordings to generate transcripts or study notes. You may not upload my course materials (slides, assignment prompts, note sets, etc.) into AI tools or homework help sites (such as chegg).\n“AI” tools are new for all of us and it’s OK to have questions about what is and isn’t appropriate!"
+  },
+  {
+    "objectID": "slides/slides01.html#diversity-inclusion",
+    "href": "slides/slides01.html#diversity-inclusion",
+    "title": "Welcome to Bayes!",
+    "section": "Diversity & Inclusion",
+    "text": "Diversity & Inclusion\nWe all come to class with different backgrounds and experiences, and this diversity makes our class environment richer. We value diversity and inclusion, and are committed to a climate of mutual respect and full participation in and out of the classroom. This class strives to be a learning environment that is usable, equitable, inclusive and welcoming, regardless of race, ethnicity, religion, gender and gender identities, sexual orientation, ability, socioeconomic background, and nationality. If you anticipate or experience any barriers to learning, please discuss your concerns with me."
+  },
+  {
+    "objectID": "slides/slides01.html#accomodations",
+    "href": "slides/slides01.html#accomodations",
+    "title": "Welcome to Bayes!",
+    "section": "Accomodations",
+    "text": "Accomodations\nCarleton College is committed to providing equitable access to learning opportunities for all students. The Office of Accessibility Resources (Henry House, 107 Union Street) is the campus office that collaborates with students who have disabilities to provide and/or arrange reasonable accommodations. If you have, or think you may have, a disability, please contact OAR@carleton.edu to arrange a confidential discussion regarding equitable access and reasonable accommodations. You are also welcome to contact me privately to discuss your academic needs. However, all disability-related accommodations must be arranged, in advance, through OAR."
+  },
+  {
+    "objectID": "slides/slides01.html#title-ix",
+    "href": "slides/slides01.html#title-ix",
+    "title": "Welcome to Bayes!",
+    "section": "Title IX",
+    "text": "Title IX\nPlease be aware that all faculty are “responsible employees”, which means that if you tell me about a situation involving sexual harassment, sexual assault, dating violence, domestic violence, or stalking, I must share that information with the Title IX Coordinator. Although I have to make this notification, you will control how your case will be handled, including whether or not you wish to meet with the Title IX coordinator or pursue a formal complaint."
+  },
+  {
+    "objectID": "slides/slides01.html#take-care-of-yourself",
+    "href": "slides/slides01.html#take-care-of-yourself",
+    "title": "Welcome to Bayes!",
+    "section": "Take care of yourself",
+    "text": "Take care of yourself\nDo your best to maintain a healthy lifestyle this semester by wearing a mask if you don’t feel well, eating a vegetable every day, exercising, avoiding excessive drug and alcohol use, getting enough sleep, and taking some time to relax. Your mental health is more important than your grade in this course. There are many helpful resources available on campus and an important part of the college experience is learning how to ask for help. If you are experiencing mental health symptoms as a result of coursework, please speak with me so we can address the problem together."
   },
   {
     "objectID": "slides/slides02.html#warm-up-i-bayesian-personality-quiz",
@@ -533,7 +764,7 @@
     "href": "index.html",
     "title": "Stat 340: Bayesian Statistics",
     "section": "",
-    "text": "This page contains an outline of the topics, content, and assignments for the term. Note that this schedule will be updated as the term progresses and the timeline of topics and assignments might be updated. Any major changes to due dates will be announced in class and indicated in bold here.\n\n\n\n\n\n\nWEEK\nDOW\nDATE\nPREPARE\nTOPIC\nMATERIALS\nDUE\n\n\n\n1\nM\nMon, Sep 15\n📝complete welcome survey  📚 Bayes Rules Ch1  💻 Join Slack workspace\n\nIntro to Bayesian Thinking\nSlides01\n\n\n\n1\nW\nWed, Sep 17\n📚 Bayes Rules Ch2  💻 Complete computing setup\n\nBayes Rule, R Setup\nSlides02\n\n\n\n1\nF\nFri, Sep 19\n\nProbability and Likelihood Review; Posterior Simulation\ntbd\n\nHW 1 and GW 1\n\n\n\n2\nM\nMon, Sep 22\n📚 Bayes Rules Ch3 \n\nBeta-Binomial Model\ntbd\n\n\n\n2\nW\nWed, Sep 24\n📚 Bayes Rules Ch4 \n\nBalance and Sequentiality\ntbd\n\n\n\n2\nF\nFri, Sep 26\n📚 Bayes Rules Ch5.1-2 \n\nGamma-Gamma\ntbd\nHW 2\n\n\n3\nM\nMon, Sep 29\n📚 Bayes Rules Ch5.3-5.6 \n\nNormal-Normal\ntbd\n\n\n\n3\nW\nWed, Oct 1\n📚 Bayes Rules Ch6.1-2 \n\nGrid approximation and Markov Chains\ntbd\n\n\n\n3\nF\nFri, Oct 3\n📚 Bayes Rules Ch6.3 \n\nDiagnostics\ntbd\nHW3\n\n\n4\nM\nMon, Oct 6\n📚 Bayes Rules Ch7.1-7.3 \n\nMCMC I\ntbd\nHand out computing project\n\n\n4\nW\nWed, Oct 8\n📚 Bayes Rules Ch7.4-7 \n\nMCMC II\ntbd\n\n\n\n4\nF\nFri, Oct 10\n\nExam I\ntbd\nHW4\n\n\n5\nM\nMon, Oct 13\n\nPosterior Inference\ntbd\n\n\n\n5\nW\nWed, Oct 15\n\nPosterior Prediction\ntbd\n\n\n\n5\nF\nFri, Oct 17\n\nRegression\ntbd\nHW5\n\n\n6\nM\nMon, Oct 20\n\n❌ Midterm Break; no class\ntbd\n\n\n\n6\nW\nWed, Oct 22\n\nEvaluating I\ntbd\nComputing Project Due\n\n\n6\nF\nFri, Oct 24\n\nEvaluating II\ntbd\nHW6\n\n\n7\nM\nMon, Oct 27\n\nExtending Regression Model\ntbd\n\n\n\n7\nW\nWed, Oct 29\n\nPoisson Regression\ntbd\n\n\n\n7\nF\nFri, Oct 31\n\nNegative Binomial Regression\ntbd\nHW7\n\n\n8\nM\nMon, Nov 3\n\nLogistic Regression\ntbd\n\n\n\n8\nW\nWed, Nov 5\n\nNaive Bayes Classification\ntbd\n\n\n\n8\nF\nFri, Nov 7\n\nExam II\ntbd\nHW8\n\n\n9\nM\nMon, Nov 10\n\nHierarchical Models I\ntbd\n\n\n\n9\nW\nWed, Nov 12\n\nHierarchical Models II\ntbd\n\n\n\n9\nF\nFri, Nov 14\n\nHierarchical Models III\ntbd\n\n\n\n10\nM\nMon, Nov 17\n\nProject work day\ntbd\nHW 9\n\n\n10\nW\nWed, Nov 19\n\nLightning talks\ntbd\n\n\n\n\nM\nFri, Nov 21\n\nFinal Project Due @ noon\ntbd",
+    "text": "This page contains an outline of the topics, content, and assignments for the term. Note that this schedule will be updated as the term progresses and the timeline of topics and assignments might be updated. Any major changes to due dates will be announced in class and indicated in bold here.\n\n\n\n\n\n\nWEEK\nDOW\nDATE\nPREPARE\nTOPIC\nMATERIALS\nDUE\n\n\n\n1\nM\nMon, Sep 15\n📝complete welcome survey  📚 Bayes Rules Ch1  💻 Join Slack workspace\n\nIntro to Bayesian Thinking\nSlides01\n\n\n\n1\nW\nWed, Sep 17\n📚 Bayes Rules Ch2  💻 Complete computing setup\n\nBayes Rule, R Setup\nSlides02\n\n\n\n1\nF\nFri, Sep 19\n\nProbability and Likelihood Review; Posterior Simulation\nSlides03\n\nHW 1 and GW 1\n\n\n\n2\nM\nMon, Sep 22\n📚 Bayes Rules Ch3 \n\nBeta-Binomial Model\ntbd\n\n\n\n2\nW\nWed, Sep 24\n📚 Bayes Rules Ch4 \n\nBalance and Sequentiality\ntbd\n\n\n\n2\nF\nFri, Sep 26\n📚 Bayes Rules Ch5.1-2 \n\nGamma-Gamma\ntbd\n\nHW 2 and GW 2\n\n\n\n3\nM\nMon, Sep 29\n📚 Bayes Rules Ch5.3-5.6 \n\nNormal-Normal\ntbd\n\n\n\n3\nW\nWed, Oct 1\n📚 Bayes Rules Ch6.1-2 \n\nGrid approximation and Markov Chains\ntbd\n\n\n\n3\nF\nFri, Oct 3\n📚 Bayes Rules Ch6.3 \n\nDiagnostics\ntbd\nHW3\n\n\n4\nM\nMon, Oct 6\n📚 Bayes Rules Ch7.1-7.3 \n\nMCMC I\ntbd\nHand out computing project\n\n\n4\nW\nWed, Oct 8\n📚 Bayes Rules Ch7.4-7 \n\nMCMC II\ntbd\n\n\n\n4\nF\nFri, Oct 10\n\nExam I\ntbd\nHW4\n\n\n5\nM\nMon, Oct 13\n\nPosterior Inference\ntbd\n\n\n\n5\nW\nWed, Oct 15\n\nPosterior Prediction\ntbd\n\n\n\n5\nF\nFri, Oct 17\n\nRegression\ntbd\nHW5\n\n\n6\nM\nMon, Oct 20\n\n❌ Midterm Break; no class\ntbd\n\n\n\n6\nW\nWed, Oct 22\n\nEvaluating I\ntbd\nComputing Project Due\n\n\n6\nF\nFri, Oct 24\n\nEvaluating II\ntbd\nHW6\n\n\n7\nM\nMon, Oct 27\n\nExtending Regression Model\ntbd\n\n\n\n7\nW\nWed, Oct 29\n\nPoisson Regression\ntbd\n\n\n\n7\nF\nFri, Oct 31\n\nNegative Binomial Regression\ntbd\nHW7\n\n\n8\nM\nMon, Nov 3\n\nLogistic Regression\ntbd\n\n\n\n8\nW\nWed, Nov 5\n\nNaive Bayes Classification\ntbd\n\n\n\n8\nF\nFri, Nov 7\n\nExam II\ntbd\nHW8\n\n\n9\nM\nMon, Nov 10\n\nHierarchical Models I\ntbd\n\n\n\n9\nW\nWed, Nov 12\n\nHierarchical Models II\ntbd\n\n\n\n9\nF\nFri, Nov 14\n\nHierarchical Models III\ntbd\n\n\n\n10\nM\nMon, Nov 17\n\nProject work day\ntbd\nHW 9\n\n\n10\nW\nWed, Nov 19\n\nLightning talks\ntbd\n\n\n\n\nM\nFri, Nov 21\n\nFinal Project Due @ noon\ntbd",
     "crumbs": [
       "Schedule"
     ]
@@ -609,256 +840,100 @@
     "text": "handwriting font\n\nin case you don’t yet have a GitHub account…"
   },
   {
-    "objectID": "slides/slides01.html#plan-for-today",
-    "href": "slides/slides01.html#plan-for-today",
-    "title": "Welcome to Bayes!",
-    "section": "Plan for today",
-    "text": "Plan for today\n\nIntros\nIntro to Bayesian Thinking\nSyllabus"
+    "objectID": "slides/slides03.html#is-this-the-same-likelihood-as-the-stat250-likelihood",
+    "href": "slides/slides03.html#is-this-the-same-likelihood-as-the-stat250-likelihood",
+    "title": "Likelihood review + Posterior Simulation",
+    "section": "Is this the same likelihood as the Stat250 likelihood?",
+    "text": "Is this the same likelihood as the Stat250 likelihood?"
   },
   {
-    "objectID": "slides/slides01.html#about-me",
-    "href": "slides/slides01.html#about-me",
-    "title": "Welcome to Bayes!",
-    "section": "About me",
-    "text": "About me\n\n\n\nEllis (almost 1.5!)\nSecond year at Carleton\nTaught at Swarthmore for 5 years before moving to MN\nPhD in Statistics & Data Science from Carnegie Mellon University\nGrew up in Minnesota, went to St Ben’s as an undergrad"
+    "objectID": "slides/slides03.html#does-it-matter-if-y-is-a-discrete-or-continuous-rv",
+    "href": "slides/slides03.html#does-it-matter-if-y-is-a-discrete-or-continuous-rv",
+    "title": "Likelihood review + Posterior Simulation",
+    "section": "Does it matter if \\(Y\\) is a discrete or continuous RV?",
+    "text": "Does it matter if \\(Y\\) is a discrete or continuous RV?"
   },
   {
-    "objectID": "slides/slides01.html#my-crochet-journey-this-summer",
-    "href": "slides/slides01.html#my-crochet-journey-this-summer",
-    "title": "Welcome to Bayes!",
-    "section": "My crochet journey this summer",
-    "text": "My crochet journey this summer\n\n\n\n\n\nDecided I wanted to make a basket\nSkipped “practice these stitches” and just went for it\nDidn’t understand the pattern, watched a couple of youtube videos from random creators and went for it\nKept going even when I was very clearly doing something wrong"
+    "objectID": "slides/slides03.html#example-from-last-time-phd-admissions",
+    "href": "slides/slides03.html#example-from-last-time-phd-admissions",
+    "title": "Likelihood review + Posterior Simulation",
+    "section": "Example from last time: PhD admissions",
+    "text": "Example from last time: PhD admissions\n\n\n\nπ\n0.2\n0.4\n0.8\n\n\n\n\nf(π)\n0.7\n0.2\n0.1\n\n\nL(π | y = 3)\n0.0512\n0.2304\n0.2048\n\n\nf(π | y = 3)\n0.35\n0.45\n0.20"
   },
   {
-    "objectID": "slides/slides01.html#my-crochet-journey-this-summer-1",
-    "href": "slides/slides01.html#my-crochet-journey-this-summer-1",
-    "title": "Welcome to Bayes!",
-    "section": "My crochet journey this summer",
-    "text": "My crochet journey this summer\n\n\n\n\n\nAsked an expert (my sister) for advice\nDid “practice problems” using easier material (yarn) and bigger hook\nFound a reliable internet source for videos and tutorials\nStarted being way more careful about checking my work and redoing things if I wasn’t sure"
+    "objectID": "slides/slides03.html#first-define-and-simulate-from-prior",
+    "href": "slides/slides03.html#first-define-and-simulate-from-prior",
+    "title": "Likelihood review + Posterior Simulation",
+    "section": "First, define and simulate from prior",
+    "text": "First, define and simulate from prior\n\nadmissions &lt;- tibble(\n  pi = c(.2, .4, .8)\n)\n\nprior &lt;- c(0.7, 0.2, 0.1)\n\nset.seed(091925)\nadmissions_sim &lt;- sample_n(admissions, \n                           size = 10000, \n                           weight = prior, \n                           replace = TRUE)"
   },
   {
-    "objectID": "slides/slides01.html#intros",
-    "href": "slides/slides01.html#intros",
-    "title": "Welcome to Bayes!",
-    "section": "Intros",
-    "text": "Intros\n\nName\nSomething you did over the summer\nWhat makes you nervous about this class or term?\nSomething about yourself you are proud of\n\n\n\n\n−+\n05:00"
-  },
-  {
-    "objectID": "slides/slides01.html#warm-up",
-    "href": "slides/slides01.html#warm-up",
-    "title": "Welcome to Bayes!",
-    "section": "Warm Up",
-    "text": "Warm Up\n\nWhat are the key takeaways from:\n\nStat250: Stat Inference\nStat230: Regression\n\nWhat do you already know about Bayesian statistics?\n\n\n\n\n−+\n05:00"
-  },
-  {
-    "objectID": "slides/slides01.html#statistical-models",
-    "href": "slides/slides01.html#statistical-models",
-    "title": "Welcome to Bayes!",
-    "section": "Statistical models",
-    "text": "Statistical models\nA statistical model consists of\n\na collection of random variables to describe observable data,\nthe possible joint distribution(s) of the random variables,\nand the parameters, \\(\\boldsymbol \\theta\\), that define those distributions\n\n\n\nMorris and DeGroot, 377"
-  },
-  {
-    "objectID": "slides/slides01.html#r.a.-fisher",
-    "href": "slides/slides01.html#r.a.-fisher",
-    "title": "Welcome to Bayes!",
-    "section": "R.A. Fisher",
-    "text": "R.A. Fisher\n1890-1962\n\n\n\n\n\nVariance\nANOVA\nNull hypothesis\nMaximum likelihood estimation\np-value\nLots of contributions in genetics\nAlso a eugenecist"
-  },
-  {
-    "objectID": "slides/slides01.html#neyman-pearson",
-    "href": "slides/slides01.html#neyman-pearson",
-    "title": "Welcome to Bayes!",
-    "section": "Neyman & Pearson",
-    "text": "Neyman & Pearson\n\n\n\n\n\nConfidence interval\nCorrelation\nRegression\nStandard deviation\nEffect size\n“Optimal” tests\n\\(\\alpha\\) and \\(\\beta\\)\nType I and II error"
-  },
-  {
-    "objectID": "slides/slides01.html#frequentist-vs-bayesian",
-    "href": "slides/slides01.html#frequentist-vs-bayesian",
-    "title": "Welcome to Bayes!",
-    "section": "Frequentist vs Bayesian",
-    "text": "Frequentist vs Bayesian"
-  },
-  {
-    "objectID": "slides/slides01.html#bayes",
-    "href": "slides/slides01.html#bayes",
-    "title": "Welcome to Bayes!",
-    "section": "Bayes",
-    "text": "Bayes\n\n\n\n\nAll this guy did was Bayes’ rule:\n\\(P(A|B) = \\frac{P(B|A) P(A)}{ P(B)}\\)"
-  },
-  {
-    "objectID": "slides/slides01.html#frequentist-vs-bayesian-1",
-    "href": "slides/slides01.html#frequentist-vs-bayesian-1",
-    "title": "Welcome to Bayes!",
-    "section": "Frequentist vs Bayesian",
-    "text": "Frequentist vs Bayesian\n\n\nFrequentist\n\n“Classical” statistics\nProbability is a long-run frequency\nMake decisions based on a p-value\nType I and Type II errors\nConfidence intervals\n\n\nBayesian\n\nProbability is a subjective belief\nUpdate “prior” probabilities with data to obtain “posterior” probabilities\nMake decisions according to posterior probabilities\n“Credible” intervals"
-  },
-  {
-    "objectID": "slides/slides01.html#q1",
-    "href": "slides/slides01.html#q1",
-    "title": "Welcome to Bayes!",
-    "section": "Q1",
-    "text": "Q1\nWhen flipping a fair coin, we say that “the probability of flipping Heads is 0.5.” How do you interpret this probability?\n\nIf I flip this coin over and over, roughly 50% will be Heads.\nHeads and Tails are equally plausible.\nBoth a and b make sense."
-  },
-  {
-    "objectID": "slides/slides01.html#q2",
-    "href": "slides/slides01.html#q2",
-    "title": "Welcome to Bayes!",
-    "section": "Q2",
-    "text": "Q2\nAn election is coming up and a pollster claims that candidate A has a 0.9 probability of winning. How do you interpret this probability?\n\nIf we observe the election over and over, candidate A will win roughly 90% of the time.\nCandidate A is much more likely to win than to lose.\nThe pollster’s calculation is wrong. Candidate A will either win or lose, thus their probability of winning can only be 0 or 1."
-  },
-  {
-    "objectID": "slides/slides01.html#q3",
-    "href": "slides/slides01.html#q3",
-    "title": "Welcome to Bayes!",
-    "section": "Q3",
-    "text": "Q3\nConsider two claims.\n\nZuofu claims that he can predict the outcome of a coin flip. To test his claim, you flip a fair coin 10 times and he correctly predicts all 10.\nKavya claims that she can distinguish natural and artificial sweeteners. To test her claim, you give her 10 sweetener samples and she correctly identifies each.\n\nIn light of these experiments, what do you conclude?\n\nYou’re more confident in Kavya’s claim than Zuofu’s claim.\nThe evidence supporting Zuofu’s claim is just as strong as the evidence supporting Kavya’s claim."
-  },
-  {
-    "objectID": "slides/slides01.html#q4",
-    "href": "slides/slides01.html#q4",
-    "title": "Welcome to Bayes!",
-    "section": "Q4",
-    "text": "Q4\nSuppose that during a recent doctor’s visit, you tested positive for a very rare disease. If you only get to ask the doctor one question, which would it be?\n\nWhat’s the chance that I actually have the disease?\nIf in fact I don’t have the disease, what’s the chance that I would’ve gotten this positive test result?"
-  },
-  {
-    "objectID": "slides/slides01.html#results",
-    "href": "slides/slides01.html#results",
-    "title": "Welcome to Bayes!",
-    "section": "Results",
-    "text": "Results\nGive yourself:\n\n+1 for each A\n+3 for each B\n+2 for C on Q1\n-2 for C on Q2\n\nResults:\n\nScore &lt;5: your thinking is pretty frequentist\nScore &gt;9: your thinking is pretty Bayesian\n6-8: your leaning changes depending on the scenario"
-  },
-  {
-    "objectID": "slides/slides01.html#tentative-schedule",
-    "href": "slides/slides01.html#tentative-schedule",
-    "title": "Welcome to Bayes!",
-    "section": "Tentative schedule",
-    "text": "Tentative schedule\n\n\n\n\nTopic\nChapters\nApprox. Duration\n\n\n\n\nIntro\n1-2\n1 week\n\n\nConjugate Analysis\n3-5\n2 weeks\n\n\nMCMC\n7\n1 weeks\n\n\nBayesian Regression\n9-14\n4 weeks\n\n\nHierarchical Models\n15\n2 weeks"
-  },
-  {
-    "objectID": "slides/slides01.html#course-description",
-    "href": "slides/slides01.html#course-description",
-    "title": "Welcome to Bayes!",
-    "section": "Course description",
-    "text": "Course description\nThe Bayesian approach to statistics provides a powerful framework for incorporating prior knowledge into statistical analyses, updating this knowledge with data, and quantifying uncertainty in results. This course serves as a comprehensive introduction to Bayesian statistical inference and modeling, an alternative to the frequentist approach to statistics covered in previous classes. Topics include: Bayes’ Theorem; prior and posterior distributions; Bayesian regression; hierarchical models; and model adequacy and posterior predictive checks. Computational techniques will also be covered, including Markov Chain Monte Carlo methods, and modern Bayesian modeling packages in R."
-  },
-  {
-    "objectID": "slides/slides01.html#course-objectives",
-    "href": "slides/slides01.html#course-objectives",
-    "title": "Welcome to Bayes!",
-    "section": "Course Objectives",
-    "text": "Course Objectives\nAfter completing this course, you should be be able to demonstrate your competency with:\n\nExplaining the differences between frequentist and Bayesian approaches to statistics and data analysis\nSelecting appropriate prior distributions and likelihood models for Bayesian analysis\nUsing modern software to fit Bayesian models and assess their performance\nInterpreting results from Bayesian analyses"
-  },
-  {
-    "objectID": "slides/slides01.html#textbook",
-    "href": "slides/slides01.html#textbook",
-    "title": "Welcome to Bayes!",
-    "section": "Textbook:",
-    "text": "Textbook:\nBayes Rules! An Introduction to Applied Bayesian Modeling by Johnson, Ott, and Dogucu\nThe book is freely available at &lt;bayesrulesbook.com&gt;"
-  },
-  {
-    "objectID": "slides/slides01.html#computing",
-    "href": "slides/slides01.html#computing",
-    "title": "Welcome to Bayes!",
-    "section": "Computing:",
-    "text": "Computing:\nWe’ll be using R and RStudio throughout the course. If you’ve downloaded R to your own computer from a different class, great! If not, there are instructions available on the course website"
-  },
-  {
-    "objectID": "slides/slides01.html#what-will-you-do-in-this-course",
-    "href": "slides/slides01.html#what-will-you-do-in-this-course",
-    "title": "Welcome to Bayes!",
-    "section": "What will you do in this course?",
-    "text": "What will you do in this course?\nEach of the following components are important for your learning and therefore part of your final grade calculation:\n\n30% Homework due once per week\n\n10% Individual (graded on completion)\n10% Group (correctness and completion)\n10% Homework quizzes (correctness)\n\n10% Midterm project + presentation\n20% Final project + presentation\n20% Exam I\n20% Exam II"
-  },
-  {
-    "objectID": "slides/slides01.html#what-will-a-typical-dayweek-look-like",
-    "href": "slides/slides01.html#what-will-a-typical-dayweek-look-like",
-    "title": "Welcome to Bayes!",
-    "section": "What will a typical day/week look like?",
-    "text": "What will a typical day/week look like?\n\n\nBefore class:\n\nRead a chapter\nCome with questions\nBe prepared to try what was covered\n\n\nIn class:\n\nLecture/demo\n\nSometimes review of chapter\nSometimes new\n\nHands-on work or coding in R\nTime for group assignments\n\n\nAfter class:\n\nFinish group assignments\nWork on individual assignments"
-  },
-  {
-    "objectID": "slides/slides01.html#office-hours-tentative",
-    "href": "slides/slides01.html#office-hours-tentative",
-    "title": "Welcome to Bayes!",
-    "section": "Office hours (tentative)",
-    "text": "Office hours (tentative)\n\n\n\nDay\nTime\nType\nLocation\n\n\n\n\nMonday\n12:30-1:30\nDrop-in\nCMC 307\n\n\nTuesday\n2-3\nDrop-in\nCMC 307\n\n\nWednesday\n3-41\nDrop-in\nCMC 307\n\n\nFriday\n10-112\nDrop-in\nCMC 307\n\n\n\nI will also have at least 1 hour of individual appointments available on my calendar per week\nStat120 PriorityStat340 Priority"
-  },
-  {
-    "objectID": "slides/slides01.html#communication",
-    "href": "slides/slides01.html#communication",
-    "title": "Welcome to Bayes!",
-    "section": "Communication",
-    "text": "Communication\n\n\nMoodle: assignments, slides, and grades\nSlack: homework questions, announcements, discussion\nEmail: personal matters, time-sensitive announcements\n\n\n\nSlack is the fastest way to reach me. I typically will respond to messages 3x per weekday. I try to respond to emails within 48 hours. I’m online sporadically on evenings and weekends to devote time to family and rest – I hope you also use this time to reset and recharge!"
-  },
-  {
-    "objectID": "slides/slides01.html#advice-from-past-students",
-    "href": "slides/slides01.html#advice-from-past-students",
-    "title": "Welcome to Bayes!",
-    "section": "Advice from past students:",
-    "text": "Advice from past students:\n\nSTART HOMEWORKS EARLY\nDo the reading! The textbook is really great and can help give you a motivation for everything that’s happening in class.\nStart the problem sets early and go to office hours!\nask questions! you will inevitably not understand everything in the course at first pass.\nGo to her office hours!!!!!\nRead the book, and ask questions!\nTry to start the homework problems on the day that they are assigned.\nThis course is very fast-paced and intensive, so it may not be the right fit for everyone. Students who are not prepared for a compact schedule, or who are looking for an easier workload, may find it challenging. A solid foundation in statistics and a strong level of commitment are essential to keep up with the material and succeed in the class.\nAsk questions in class, Amanda has no problem reviewing a previously discussed concept.\nWork with other people in the class, collaboration is key\nStart the homework early! Give yourself time to get things done, to understand, and to pause. Don’t feel afraid to ask questions; she’s so accessible.\nSpend some time reviewing handouts before doing homework."
-  },
-  {
-    "objectID": "slides/slides01.html#the-genius-myth",
-    "href": "slides/slides01.html#the-genius-myth",
-    "title": "Welcome to Bayes!",
-    "section": "The “Genius Myth”",
-    "text": "The “Genius Myth”\nIt’s sometimes easy to buy into the “genius myth” when it comes to math/stat courses: that you need to be a “math person” and have some innate mathematical ability in order to do well or become a statistics major. This could not be further from the truth! The best statisticians don’t necessarily have the “best” math or programming background, but are people that are able to formulate interesting questions and use math and programming to rigorously answer those questions. Many of the best statisticians I know became statisticians because they were initially interested in something else (biology, public health, psychology, neuroscience, physics, etc.) and realized that being able to answer important questions with data was not only valuable but fun and interesting. Being able to perform interesting statistical analyses is a skill that is learned, not an innate ability, and working hard at developing that skill is the point of this course."
-  },
-  {
-    "objectID": "slides/slides01.html#academic-integrity",
-    "href": "slides/slides01.html#academic-integrity",
-    "title": "Welcome to Bayes!",
-    "section": "Academic Integrity",
-    "text": "Academic Integrity\nYou are expected to follow Carleton’s policies regarding academic integrity. I encourage you to discuss the homework problems with others and use the resources available to you to try to figure out tough problems. You should code and write up your solutions on your own. Exams must be done by yourself without communicating with others; all work must be your own. The use of textbook solution manuals (physical or online), course materials from other students, or materials from previous versions of this course are not allowed. Copying, paraphrasing, summarizing, or submitting work generated by anyone but yourself without proper attribution is considered academic dishonesty (this includes output from LLMs).\nPlease ask if you are unsure of whether or not your actions are complying with the assignment/exam/project instructions. Always default to acknowledging any help received. Cases of suspected academic dishonesty are handled by the Provost’s Office and I am obligated to report any suspected violations of this policy."
-  },
-  {
-    "objectID": "slides/slides01.html#more-on-ai",
-    "href": "slides/slides01.html#more-on-ai",
-    "title": "Welcome to Bayes!",
-    "section": "More on “AI”",
-    "text": "More on “AI”\nLarge-language models (e.g. ChatGPT, Gemini, etc.) should only be used for help interpreting R’s error messages or suggestions for your own code once you have already attempted the problem. You should not copy and paste course material into or out of an AI text generator.\nI also have a few rules in place to protect my intellectual property. You may not record my lectures using tools such as Otter.ai or upload any video or audio recordings to generate transcripts or study notes. You may not upload my course materials (slides, assignment prompts, note sets, etc.) into AI tools or homework help sites (such as chegg).\n“AI” tools are new for all of us and it’s OK to have questions about what is and isn’t appropriate!"
-  },
-  {
-    "objectID": "slides/slides01.html#diversity-inclusion",
-    "href": "slides/slides01.html#diversity-inclusion",
-    "title": "Welcome to Bayes!",
-    "section": "Diversity & Inclusion",
-    "text": "Diversity & Inclusion\nWe all come to class with different backgrounds and experiences, and this diversity makes our class environment richer. We value diversity and inclusion, and are committed to a climate of mutual respect and full participation in and out of the classroom. This class strives to be a learning environment that is usable, equitable, inclusive and welcoming, regardless of race, ethnicity, religion, gender and gender identities, sexual orientation, ability, socioeconomic background, and nationality. If you anticipate or experience any barriers to learning, please discuss your concerns with me."
-  },
-  {
-    "objectID": "slides/slides01.html#accomodations",
-    "href": "slides/slides01.html#accomodations",
-    "title": "Welcome to Bayes!",
-    "section": "Accomodations",
-    "text": "Accomodations\nCarleton College is committed to providing equitable access to learning opportunities for all students. The Office of Accessibility Resources (Henry House, 107 Union Street) is the campus office that collaborates with students who have disabilities to provide and/or arrange reasonable accommodations. If you have, or think you may have, a disability, please contact OAR@carleton.edu to arrange a confidential discussion regarding equitable access and reasonable accommodations. You are also welcome to contact me privately to discuss your academic needs. However, all disability-related accommodations must be arranged, in advance, through OAR."
-  },
-  {
-    "objectID": "slides/slides01.html#title-ix",
-    "href": "slides/slides01.html#title-ix",
-    "title": "Welcome to Bayes!",
-    "section": "Title IX",
-    "text": "Title IX\nPlease be aware that all faculty are “responsible employees”, which means that if you tell me about a situation involving sexual harassment, sexual assault, dating violence, domestic violence, or stalking, I must share that information with the Title IX Coordinator. Although I have to make this notification, you will control how your case will be handled, including whether or not you wish to meet with the Title IX coordinator or pursue a formal complaint."
-  },
-  {
-    "objectID": "slides/slides01.html#take-care-of-yourself",
-    "href": "slides/slides01.html#take-care-of-yourself",
-    "title": "Welcome to Bayes!",
-    "section": "Take care of yourself",
-    "text": "Take care of yourself\nDo your best to maintain a healthy lifestyle this semester by wearing a mask if you don’t feel well, eating a vegetable every day, exercising, avoiding excessive drug and alcohol use, getting enough sleep, and taking some time to relax. Your mental health is more important than your grade in this course. There are many helpful resources available on campus and an important part of the college experience is learning how to ask for help. If you are experiencing mental health symptoms as a result of coursework, please speak with me so we can address the problem together."
-  },
-  {
-    "objectID": "course-faq.html",
-    "href": "course-faq.html",
-    "title": "FAQ",
+    "objectID": "slides/slides03.html#section",
+    "href": "slides/slides03.html#section",
+    "title": "Likelihood review + Posterior Simulation",
     "section": "",
-    "text": "The best place to come for help is Amanda’s office hours! I can help with anything related to the course. You can also check my calendar for one-on-one appointment slots.\n\n\n\nStudents needing help with their Statistics coursework and R/Rstudio questions can get help from Stats Lab Assistants in the Stats Lab in CMC 304. Stats Lab Assistants are primiarily for Stat 120 (Intro Stats), but they may also be able to assist with general R/Rstudio questions."
+    "text": "admissions_sim\n\n# A tibble: 10,000 × 1\n      pi\n   &lt;dbl&gt;\n 1   0.2\n 2   0.2\n 3   0.2\n 4   0.4\n 5   0.2\n 6   0.4\n 7   0.2\n 8   0.4\n 9   0.2\n10   0.8\n# ℹ 9,990 more rows"
   },
   {
-    "objectID": "course-faq.html#where-can-i-get-help",
-    "href": "course-faq.html#where-can-i-get-help",
-    "title": "FAQ",
+    "objectID": "slides/slides03.html#simulated-pi-closely-approximates-prior-fpi",
+    "href": "slides/slides03.html#simulated-pi-closely-approximates-prior-fpi",
+    "title": "Likelihood review + Posterior Simulation",
+    "section": "Simulated pi closely approximates prior \\(f(\\pi)\\)",
+    "text": "Simulated pi closely approximates prior \\(f(\\pi)\\)\n\nadmissions_sim |&gt;\n  tabyl(pi)\n\n  pi    n percent\n 0.2 7030  0.7030\n 0.4 2002  0.2002\n 0.8  968  0.0968"
+  },
+  {
+    "objectID": "slides/slides03.html#simulate-outcomes",
+    "href": "slides/slides03.html#simulate-outcomes",
+    "title": "Likelihood review + Posterior Simulation",
+    "section": "Simulate outcomes",
+    "text": "Simulate outcomes\n\nadmissions_sim &lt;- admissions_sim |&gt;\n  mutate(\n    y = rbinom(10000, size = 5, prob = pi)\n  )\n\nadmissions_sim |&gt; head(5)\n\n# A tibble: 5 × 2\n     pi     y\n  &lt;dbl&gt; &lt;int&gt;\n1   0.2     1\n2   0.2     2\n3   0.2     0\n4   0.4     0\n5   0.2     0"
+  },
+  {
+    "objectID": "slides/slides03.html#simulated-y-outcomes-approximate-fypi",
+    "href": "slides/slides03.html#simulated-y-outcomes-approximate-fypi",
+    "title": "Likelihood review + Posterior Simulation",
+    "section": "Simulated y outcomes approximate \\(f(y|\\pi)\\)",
+    "text": "Simulated y outcomes approximate \\(f(y|\\pi)\\)\n\nggplot(admissions_sim, aes(x = y)) +\n  geom_bar(aes(y = after_stat(prop))) + \n  facet_wrap(vars(pi))"
+  },
+  {
+    "objectID": "slides/slides03.html#to-approximate-posterior-condition-on-observed-data-and-look-at-relative-frequency",
+    "href": "slides/slides03.html#to-approximate-posterior-condition-on-observed-data-and-look-at-relative-frequency",
+    "title": "Likelihood review + Posterior Simulation",
+    "section": "To approximate posterior, condition on observed data and look at relative frequency",
+    "text": "To approximate posterior, condition on observed data and look at relative frequency\n\nobserved &lt;- admissions_sim |&gt;\n  filter(y == 3)\n\nobserved |&gt;\n  tabyl(pi)\n\n  pi   n   percent\n 0.2 365 0.3628231\n 0.4 445 0.4423459\n 0.8 196 0.1948310"
+  },
+  {
+    "objectID": "slides/test.html#quarto",
+    "href": "slides/test.html#quarto",
+    "title": "Untitled",
+    "section": "Quarto",
+    "text": "Quarto\nQuarto enables you to weave together content and executable code into a finished presentation. To learn more about Quarto presentations see https://quarto.org/docs/presentations/."
+  },
+  {
+    "objectID": "slides/test.html#bullets",
+    "href": "slides/test.html#bullets",
+    "title": "Untitled",
+    "section": "Bullets",
+    "text": "Bullets\nWhen you click the Render button a document will be generated that includes:\n\nContent authored with markdown\nOutput from executable code"
+  },
+  {
+    "objectID": "slides/test.html#code",
+    "href": "slides/test.html#code",
+    "title": "Untitled",
+    "section": "Code",
+    "text": "Code\nWhen you click the Render button a presentation will be generated that includes both content and the output of embedded code. You can embed code like this:\n\n1 + 1\n\n[1] 2"
+  },
+  {
+    "objectID": "homework/hw02.html",
+    "href": "homework/hw02.html",
+    "title": "Individual HW02",
     "section": "",
-    "text": "The best place to come for help is Amanda’s office hours! I can help with anything related to the course. You can also check my calendar for one-on-one appointment slots.\n\n\n\nStudents needing help with their Statistics coursework and R/Rstudio questions can get help from Stats Lab Assistants in the Stats Lab in CMC 304. Stats Lab Assistants are primiarily for Stat 120 (Intro Stats), but they may also be able to assist with general R/Rstudio questions."
+    "text": "BR Exercise 2.16\n\n\n\n\n\n\nNote\n\n\n\nIf the link from the textbook doesn’t work, try this link from the internet archive\n\n\n\n\nBR Exercise 2.21\n\n\nTBA after Friday\n\n\nTBA after Monday\n\n\nTBA after Monday\n\n\nTBA after Monday\n\n\nTBA after Wed\n\n\nTBA after Wed\n\n\nTBA after Wed",
+    "crumbs": [
+      "Assignments",
+      "Homework",
+      "Individual HW02"
+    ]
   },
   {
     "objectID": "computing/computing-setup.html",
