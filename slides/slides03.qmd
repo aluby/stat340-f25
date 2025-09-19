@@ -1,5 +1,5 @@
 ---
-title: Posterior Simulation + Likelihood practice
+title: Likelihood review + Posterior Simulation
 subtitle: Day 03
 title-slide-attributes:
   data-background-color: "#e2583eff"
@@ -29,9 +29,13 @@ library(janitor)
 theme_set(theme_minimal(base_size = 14, base_family = "Atkinson Hyperlegible"))
 ```
 
-# Likelihood review {.colorslide}
+# Likelihood review 
 
 ## Is this the same likelihood as the Stat250 likelihood? 
+
+## Does it matter if $Y$ is a discrete or continuous RV?
+
+# Posterior Simulation 
 
 ## Example from last time: PhD admissions
 
@@ -63,7 +67,7 @@ admissions_sim <- sample_n(admissions,
 admissions_sim
 ```
 
-## Simulated `pi` closely approximate prior $f(\pi)$
+## Simulated `pi` closely approximates prior $f(\pi)$
 
 ```{r}
 admissions_sim |>

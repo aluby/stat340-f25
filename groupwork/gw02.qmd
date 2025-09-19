@@ -1,6 +1,12 @@
 ---
-title: "gw02"
+title: "Group Work 02"
 ---
+
+```{r}
+library(bayesrules) # R package for our textbook
+library(tidyverse) # Collection of packages for tidying and plotting data
+library(janitor) # Helper functions like tidy and tabyl
+```
 
 # BR Exercise 2.13
 
