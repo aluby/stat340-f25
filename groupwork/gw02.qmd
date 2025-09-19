@@ -1,6 +1,5 @@
 ---
 title: "gw02"
-format: html
 ---
 
 # BR Exercise 2.13
