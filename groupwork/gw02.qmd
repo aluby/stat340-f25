@@ -5,13 +5,13 @@ format: html
 
 # BR Exercise 2.13
 
-# Simulation 1 
+# BR Exercise 2.18
 
-# Simulation 2 
+# BR Exercise 2.17
 
-# Discrete vs continuous probability distributions
+# MLE
 
-# Finding expected value and variance of a random variable
+If $Y \sim \text{Binom}(n, \pi)$, show that $\hat{\pi}_{MLE} = \frac{Y}{n}$
 
 # TBA Monday
 
