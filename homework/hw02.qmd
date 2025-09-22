@@ -14,11 +14,20 @@ If the link from the textbook doesn't work, try this link from the [internet arc
 
 # BR Exercise 3.8
 
-# TBA after Monday
+# `summarize_beta_binomial`
 
-# TBA after Monday
+Write your own R function that does the same thing as `summarize_beta_binomial`. It's OK if your output is formatted differently and you do not need to write formal checks. 
 
-# TBA after Monday
+::: callout-note
+If you need a refresher on writing functions in R, I recommend:
+
++ [R4DS Ch25](https://r4ds.hadley.nz/functions.html) for an overview of functions in R with practice problems
++ [My Stat220 slides](https://stat220-s25.github.io/slides/16/slides16.html#/title-slide) for a quick refresher
+:::
+
+# BR Exercise 3.9
+
+# BR Exercise 3.10
 
 # TBA after Wed
 

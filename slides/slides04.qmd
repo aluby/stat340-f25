@@ -51,7 +51,6 @@ Then $f(\pi)$ has the following properties:
 
 Interpreting $f(\pi)$:
 
-$f(\pi)$ can be used to _compare_ the plausibility of two different values of $\pi$.
 
 ## 
 
@@ -108,7 +107,7 @@ For each of the student's prior ideas for $\pi$ sketch the pdf of the prior. You
 
 ::::: columns
 ::: {.column width="50%"}
-Xuan thinks that it is easy to get into this program.
+Xuan thinks that it is either really easy or really hard to get into the program
 
 ```{r}
 #| echo: false
@@ -294,7 +293,7 @@ ggplot(betas, aes(x = x, y = y)) +
 
 ```{r}
 #| fig-align: center
-plot_beta(alpha = 5, beta = 7) 
+plot_beta(alpha = 3, beta = 8) 
 ```
 
 ## Beta summaries
@@ -365,29 +364,26 @@ summarize_beta(6,9)
 plot_beta(6, 9, mean = TRUE, mode = TRUE) 
 ```
 
-## Balancing act
+## Balancing act {.fit}
 
 ```{r}
-plot_beta_binomial(alpha = 3, beta = 7,
-                   y = 3, n = 5)
+plot_beta_binomial(alpha = 3, beta = 7,  y = 3, n = 5)
 ```
 
-## More data, more certainty
+## More data, more certainty {.smaller}
 
 What if 30/50 applicants get in?
 
 ```{r}
-plot_beta_binomial(alpha = 3, beta = 7,
-                   y = 30, n = 50)
+plot_beta_binomial(alpha = 3, beta = 7, y = 30, n = 50)
 ```
 
-## More more data, more more certainty
+## More more data, more more certainty {.smaller}
 
 What if 300/500 applicants get in?
 
 ```{r}
-plot_beta_binomial(alpha = 3, beta = 7,
-                   y = 300, n = 500)
+plot_beta_binomial(alpha = 3, beta = 7, y = 300, n = 500)
 ```
 
 # Simulating the Beta-Binomial model
@@ -418,6 +414,8 @@ summarize_beta_binomial(3, 7, y = 30, n = 50)
 ```{r}
 plot_beta_binomial(3, 7, y = 30, n = 50)
 ```
+
+Can we simulate the posterior without knowing it exactly?
 
 ##
 
@@ -482,8 +480,7 @@ ggplot(admission_posterior, aes(x = pi)) +
 
 ```{r}
 ggplot(admission_posterior, aes(x = pi)) + 
-  geom_density() +
-  xlim(0,1)
+  geom_density() + xlim(0,1)
 ```
 
 ##
