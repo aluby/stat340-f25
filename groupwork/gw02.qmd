@@ -18,9 +18,11 @@ library(janitor) # Helper functions like tidy and tabyl
 
 If $Y \sim \text{Binom}(n, \pi)$, show that $\hat{\pi}_{MLE} = \frac{Y}{n}$
 
-# TBA Monday
+# BR Exercise 3.1
 
-# TBA Monday
+For each part, use `plot_beta` and/or `summarize_beta` to justify your answer
+
+# BR Exercise 3.12 
 
 # TBA Wed
 
