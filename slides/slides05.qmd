@@ -1,0 +1,42 @@
+---
+title: Balance and Sequentiality
+subtitle: Day 05
+title-slide-attributes:
+  data-background-color: "#e2583eff"
+  data-slide-number: none
+format: 
+  revealjs:
+    incremental: false
+auto-stretch: false
+editor_options: 
+  chunk_output_type: console
+editor: 
+  markdown: 
+    wrap: 72
+execute: 
+  warning: false
+  message: false
+---
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+
+library(countdown)
+library(tidyverse)
+library(bayesrules)
+library(janitor)
+library(patchwork)
+
+theme_set(theme_minimal(base_size = 14, base_family = "Atkinson Hyperlegible"))
+```
+
+## Key ideas
+
+1. Different priors, different posteriors
+2. Different data, different posteriors
+3. Sequential analyses
+4. Data order is *invariant*
+5. Don't be stubborn
+
