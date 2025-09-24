@@ -29,11 +29,11 @@ If you need a refresher on writing functions in R, I recommend:
 
 # BR Exercise 3.10
 
-# TBA after Wed
+# BR Exercise 4.10
 
-# TBA after Wed
+# BR Exercise 4.14
 
-# TBA after Wed
+# BR Exercise 4.18
  
 
 

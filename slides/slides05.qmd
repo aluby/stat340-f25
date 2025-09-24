@@ -7,7 +7,8 @@ title-slide-attributes:
 format: 
   revealjs:
     incremental: false
-auto-stretch: false
+    scrollable: false
+auto-stretch: true
 editor_options: 
   chunk_output_type: console
 editor: 
@@ -40,3 +41,200 @@ theme_set(theme_minimal(base_size = 14, base_family = "Atkinson Hyperlegible"))
 4. Data order is *invariant*
 5. Don't be stubborn
 
+## Bechdel test
+
+Alison Bechdel’s 1985 comic Dykes to Watch Out For has a strip called [The Rule](https://www.npr.org/templates/story/story.php?storyId=94202522?storyId=94202522) where a person states that they only go to a movie if it satisfies the
+following three rules:
+
+- the movie has to have at least two women in it;
+- these two women talk to each other; and
+- they talk about something besides a man.
+
+This test is used for assessing movies in terms of representation of women. Even though there are three criteria, a movie either fails or passes the Bechdel test.
+
+## Priors
+
+```{r}
+#| echo: false
+
+
+optimist <- plot_beta(14, 1) +
+  labs(title = "Optimist")
+
+clueless <- plot_beta(1, 1) +
+  labs(title = "Clueless")
+
+feminist <- plot_beta(5, 11) +
+  labs(title = "Feminist")
+
+optimist + clueless + feminist
+```
+
+## Terminology
+
+::: callout-note
+## Informative Prior
+
+An informative prior reflects specific information about the unknown
+variable with high certainty (ie. low variability).
+:::
+
+
+::: callout-note
+## Diffuse prior
+
+A vague or diffuse prior reflects little specific information about the unknown variable. A flat prior, which assigns equal prior plausibility to all possible values of the variable, is a special case.
+:::
+
+
+::: callout-note
+## Reference prior
+
+A formal type of diffuse prior
+
+[catalog of reference priors](http://www.stats.org.uk/priors/noninformative/YangBerger1998.pdf)
+:::
+
+## 
+
+> "There is no objective, unique prior that represents ignorance. Instead, reference priors are chosen by public agreement, much like units of length and weight. In this interpretation, reference priors are akin to a default option in a computer package. We fall back to the default when there is insufficient information to otherwise define the prior." [Kass & Wasserman](https://www.tandfonline.com/doi/abs/10.1080/01621459.1996.10477003)
+
+## 
+
+![](img/uninformative-prior-statlect.png)
+
+## Flat prior 
+
+$$\pi \sim \text{Unif}(0,1)$$
+
+```{r}
+#| echo: false
+
+
+plot_beta(1,1)
+```
+
+::: callout-danger
+
+Under re-parameterization ($\theta = g(\pi)$) $\theta$ might have a non-uniform distribution
+:::
+
+## Jeffrey's prior
+
+$\pi \propto \sqrt{I(\pi)}$
+
+where $I(\pi)$ is the **Fisher Information**. For binomial data, Jeffrey's prior gives $\pi \sim$
+
+```{r}
+#| echo: false
+
+
+plot_beta(1/2, 1/2)
+```
+
+
+## Bernardo's reference prior
+
+- Prior should influence posterior as little as possible
+- Posterior should be (on average) very different from the posterior
+- We can measure "difference" between distributions $P$ and $Q$ with the Kullback-Leibler divergence
+  - $KL(P,Q) = \int_{-\infty}^\infty p(x) \log \frac{p(x)}{q(x)} dx$
+- So, choose reference prior by maximizing KL divergence between prior and posterior
+- Lucky for us, if we have univariate model, this is equivalent to Jeffrey's prior
+
+## Priors
+
+```{r}
+#| echo: false
+
+reference <- plot_beta(1/2, 1/2) +
+  labs(title = "Reference")
+
+
+optimist + clueless + feminist + reference
+```
+
+## Data
+
+- `library(bayesrules)` has `bechdel` data frame. Randomly select 20 movies from this dataset (seed = 84735)
+
+- Based on observed data, update the posterior 
+
+- Plot the prior, likelihood, and the posterior 
+
+```{r message = FALSE}
+set.seed(84735)
+bechdel_sample <- sample_n(bechdel, 20)
+```
+
+## Data
+
+```{r}
+#| echo: false
+#| layout-ncol: 2
+bechdel_sample |> 
+  gt::gt()
+
+bechdel_sample |>
+  tabyl(binary) |>
+  gt::gt()
+```
+
+## Posteriors
+
+```{r}
+#| echo: false
+
+
+optimist_post <- plot_beta_binomial(14, 1, 9, 20) +
+  labs(title = "Optimist")
+
+clueless_post <- plot_beta_binomial(1, 1, 9, 20) +
+  labs(title = "Clueless")
+
+feminist_post <- plot_beta_binomial(5, 11, 9, 20) +
+  labs(title = "Feminist")
+
+reference_post <- plot_beta_binomial(1/2, 1/2, 9, 20) +
+  labs(title = "Reference")
+
+optimist_post + clueless_post + feminist_post + reference_post & theme(legend.position = "none")
+```
+
+## Different data, different posteriors {.smaller}
+
+Let's compare results for 3 analyses: 1 using 1991 movies, 1 using 2000 movies, and 1 using 2013 movies
+
+```{r}
+bechdel |>
+  filter(year == 1991) |>
+  tabyl(binary)
+
+bechdel |>
+  filter(year == 2000) |>
+  tabyl(binary)
+
+bechdel |>
+  filter(year == 2013) |>
+  tabyl(binary)
+```
+
+## Different data, different posteriors
+
+```{r}
+#| echo: false 
+
+
+p1991 <- plot_beta_binomial(.5, .5, y = 6, n = 13) +
+  labs(title = "1991")
+
+p2000 <- plot_beta_binomial(.5, .5, y = 29, n = 63) +
+  labs(title = "2000")
+
+p2013 <- plot_beta_binomial(.5, .5, y = 46, n = 99) +
+  labs(title = "2013")
+
+p1991 + p2000 + p2013 & theme(legend.position = "none")
+```
+
+## 

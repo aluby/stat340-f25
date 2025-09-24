@@ -24,6 +24,15 @@ For each part, use `plot_beta` and/or `summarize_beta` to justify your answer
 
 # BR Exercise 3.12 
 
-# TBA Wed
+# Choice of prior
 
-# TBA Wed
+(a) Choose an informative prior that you think is reasonable for this belief
+(a) Unif(0,1) prior
+(a) Beta(2,2) prior
+(a) "Reference" prior
+
+Compare the posteriors for each of the priors above. 
+
+# BR 4.13
+
+
