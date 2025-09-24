@@ -40,4 +40,7 @@ Compare the posteriors for each of the priors above. Do results change if we ins
 
 # BR 4.13
 
+::: callout-note
+For part (a), you do not need to include your sketch in your submission!
+:::
 
