@@ -167,17 +167,19 @@ set.seed(84735)
 bechdel_sample <- sample_n(bechdel, 20)
 ```
 
-## Data
+## Data {.smaller}
 
 ```{r}
 #| echo: false
 #| layout-ncol: 2
-bechdel_sample |> 
+#| layout-align: center
+
+
+bechdel_sample |>
   gt::gt()
 
 bechdel_sample |>
-  tabyl(binary) |>
-  gt::gt()
+  tabyl(binary) 
 ```
 
 ## Posteriors
@@ -237,4 +239,81 @@ p2013 <- plot_beta_binomial(.5, .5, y = 46, n = 99) +
 p1991 + p2000 + p2013 & theme(legend.position = "none")
 ```
 
+## Prior updating/sequential data
+
 ## 
+
+```{r}
+#| echo: false
+bechdel <- bechdel |> filter(year >= 1991) |> filter(year <= 2010)
+plot_bechdel_posterior <- function(year_i){
+  if(year_i == 1991){
+    alpha <- 1
+    beta <- 1
+  }
+  if(year_i > 1991){
+  alpha <- bechdel |> filter(year < year_i) |> summarize(n = sum(binary == "PASS")) |> pull() + 1
+  beta <- bechdel |> filter(year < year_i) |> summarize(n = n()) |> pull() + 2 - alpha
+  }
+  y <- bechdel |> filter(year == year_i) |> summarize(n = sum(binary == "PASS")) |> pull()
+  n <- bechdel |> filter(year == year_i) |> summarize(n = n()) |> pull()
+  plot_beta_binomial(alpha, beta, y, n) + labs(title = paste("Year =", year_i)) + theme(legend.position = "none")
+  #summarize_beta_binomial(alpha, beta, y, n)
+}
+
+plot_list = list()
+years <- 1991:2010
+for(i in 1:length(years)){
+  plot_list[[i]] <- plot_bechdel_posterior(years[i])
+}
+
+gridExtra::marrangeGrob(plot_list, nrow = 4, ncol = 5)
+
+```
+
+## Data order invariance
+
+Updating the prior 20 times: 
+
+```
+      model alpha beta      mean      mode          var         sd
+1     prior   551  613 0.4733677 0.4733219 0.0002139835 0.01462817
+2 posterior   612  681 0.4733179 0.4732765 0.0001926492 0.01387981
+```
+
+"Data dump": treat years 1-20 as the data
+
+```{r}
+summarize_beta_binomial(1, 1, 611, 1291)
+```
+
+Further reading: [How to think like an epidemiologist](https://www.nytimes.com/2020/08/04/science/coronavirus-bayes-statistics-math.html?action=click&module=Editors%20Picks&pgtype=Homepage)
+
+## Data order invariance (math)
+
+
+
+## Don't be stubborn
+
+::: callout-warning
+
+The posterior is defined on the same values as the prior. Do not assign $f(\pi) = 0$ on any reasonable value! 
+:::
+
+::::: columns
+::: {.column width="50%"}
+![](img/stubborn-posterior-bayesrules.png)
+
+:::
+
+::: {.column width="50%"}
+```{r}
+#| echo: false
+
+
+plot_beta_binomial(alpha = 1, beta = 20, y=8, n = 10) + theme_gray() + theme(legend.position = "none", text = element_text(size = 28)) 
+```
+:::
+:::::
+
+

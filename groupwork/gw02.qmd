@@ -26,12 +26,17 @@ For each part, use `plot_beta` and/or `summarize_beta` to justify your answer
 
 # Choice of prior
 
+I am interviewing Carleton students about whether or not they have used (knowingly) used ChatGPT on coursework in a non-approved way. I think the proportion has a 90% chance of being less than .25. 
+
 (a) Choose an informative prior that you think is reasonable for this belief
+
+I then ask 20 students this question and 15 respond "yes". Find the posterior using the prior from above, then using the 3 non/weakly informative priors below:
+
 (a) Unif(0,1) prior
 (a) Beta(2,2) prior
-(a) "Reference" prior
+(a) "Reference" prior Beta(.5, .5)
 
-Compare the posteriors for each of the priors above. 
+Compare the posteriors for each of the priors above. Do results change if we instead observe 150/200 students responding "yes"?
 
 # BR 4.13
 
