@@ -170,82 +170,161 @@
     ]
   },
   {
-    "objectID": "groupwork/gw02.html",
-    "href": "groupwork/gw02.html",
-    "title": "Group Work 02",
+    "objectID": "groupwork/gw03.html",
+    "href": "groupwork/gw03.html",
+    "title": "Group Work 03",
     "section": "",
-    "text": "library(bayesrules) # R package for our textbook\nlibrary(tidyverse) # Collection of packages for tidying and plotting data\nlibrary(janitor) # Helper functions like tidy and tabyl\n\nBR Exercise 2.13\nBR Exercise 2.18\nBR Exercise 2.17\nMLE\nIf \\(Y \\sim \\text{Binom}(n, \\pi)\\), show that \\(\\hat{\\pi}_{MLE} = \\frac{Y}{n}\\)\nBR Exercise 3.1\nFor each part, use plot_beta and/or summarize_beta to justify your answer\nBR Exercise 3.12\nChoice of prior\nI am interviewing Carleton students about whether or not they have used (knowingly) used ChatGPT on coursework in a non-approved way. I think the proportion has a 90% chance of being less than .25.\n\nChoose an informative prior that you think is reasonable for this belief\n\nI then ask 20 students this question and 15 respond “yes”. Find the posterior using the prior from above, then using the 3 non/weakly informative priors below:\n\nUnif(0,1) prior\nBeta(2,2) prior\n“Reference” prior Beta(.5, .5)\n\nCompare the posteriors for each of the priors above. Do results change if we instead observe 150/200 students responding “yes”?\nBR 4.13\n\n\n\n\n\n\nNote\n\n\n\nFor part (a), you do not need to include your sketch in your submission!",
+    "text": "library(bayesrules) # R package for our textbook\nlibrary(tidyverse) # Collection of packages for tidying and plotting data\nlibrary(janitor) # Helper functions like tidy and tabyl\n\n\n\n\n\n\n\nNote\n\n\n\nNew this week! Trying no group problems on Friday\n\n\nTBA Mon\nTBA Mon\nTBA Mon\nTBA Wed\nTBA Wed",
     "crumbs": [
       "Assignments",
       "Groupwork",
-      "Group Work 02"
+      "Group Work 03"
     ]
   },
   {
-    "objectID": "computing/computing-cheatsheets.html",
-    "href": "computing/computing-cheatsheets.html",
-    "title": "R cheatsheets",
+    "objectID": "computing/r-basics-refresher.html",
+    "href": "computing/r-basics-refresher.html",
+    "title": "R Basics",
     "section": "",
-    "text": "The following cheatsheets come from https://posit.co/resources/cheatsheets. We haven’t covered every function and functionality listed on them, but you might still find them useful as references.",
+    "text": "In your previous statistics course at Carleton, you likely loaded at least one add-on R package. In this course, we’ll use a lot of tools found in the tidyverse of R packages. To load many of these packages at once, you can use the library(&lt;package_name&gt;) command. So to load the tidyverse we run:\n\nlibrary(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.4     ✔ readr     2.1.5\n✔ forcats   1.0.0     ✔ stringr   1.5.1\n✔ ggplot2   3.5.2     ✔ tibble    3.2.1\n✔ lubridate 1.9.3     ✔ tidyr     1.3.1\n✔ purrr     1.0.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\n\n\n\n\n\n\n\nNote\n\n\n\nAbove we see a lot of extra info printed when we load the tidyverse. These messages are just telling you what packages are now available to you and warning you that a few functions (e.g., filter) has been replaced by the tidyverse version. We’ll see how to suppress these messages later.",
     "crumbs": [
       "Computing",
-      "Cheatsheets"
+      "R Refresher"
     ]
   },
   {
-    "objectID": "computing/rstudio-stat340.html",
-    "href": "computing/rstudio-stat340.html",
-    "title": "Using R/RStudio for Homework in Stat340",
+    "objectID": "computing/r-basics-refresher.html#loading-r-packages",
+    "href": "computing/r-basics-refresher.html#loading-r-packages",
+    "title": "R Basics",
     "section": "",
-    "text": "In Stat340, I will distribute homework assignment templates in.qmd format.",
+    "text": "In your previous statistics course at Carleton, you likely loaded at least one add-on R package. In this course, we’ll use a lot of tools found in the tidyverse of R packages. To load many of these packages at once, you can use the library(&lt;package_name&gt;) command. So to load the tidyverse we run:\n\nlibrary(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.4     ✔ readr     2.1.5\n✔ forcats   1.0.0     ✔ stringr   1.5.1\n✔ ggplot2   3.5.2     ✔ tibble    3.2.1\n✔ lubridate 1.9.3     ✔ tidyr     1.3.1\n✔ purrr     1.0.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\n\n\n\n\n\n\n\nNote\n\n\n\nAbove we see a lot of extra info printed when we load the tidyverse. These messages are just telling you what packages are now available to you and warning you that a few functions (e.g., filter) has been replaced by the tidyverse version. We’ll see how to suppress these messages later.",
     "crumbs": [
       "Computing",
-      "Rstudio in Stat 340"
+      "R Refresher"
     ]
   },
   {
-    "objectID": "computing/rstudio-stat340.html#uploading-files-to-maize",
-    "href": "computing/rstudio-stat340.html#uploading-files-to-maize",
-    "title": "Using R/RStudio for Homework in Stat340",
-    "section": "Uploading files to maize",
-    "text": "Uploading files to maize\n\nClick the “upload” button in the files pane\nSelect the file from your local computer (likely in your Downloads folder if you downloaded from moodle)\nChoose the “Target Directory” – this is the folder on your maize account where the file will be saved. I recommend creating a separate folder for this class.",
+    "objectID": "computing/r-basics-refresher.html#creating-and-naming-objects",
+    "href": "computing/r-basics-refresher.html#creating-and-naming-objects",
+    "title": "R Basics",
+    "section": "Creating and naming objects",
+    "text": "Creating and naming objects\nAll R statements where you create objects have the form:\n\nobject_name &lt;- value\n\nAt first, we’ll be creating a lot of data objects. For example, we an load a data set containing the ratings for each episode of The Office using the code\n\noffice_ratings &lt;- readr::read_csv(\"https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-03-17/office_ratings.csv\")\n\nIn this class you will be creating a lot of objects, so you’ll need to come up with names for those objects. Trying to think of informative/meaningful names for objects is hard, but necessary work! Below are the fundamental rules for naming objects in R:\n\nnames can’t start with a number\nnames are case-sensitive\nsome common letters are used internally by R and should be avoided as variable names (c, q, t, C, D, F, T, I)\nThere are reserved words that R won’t let you use for variable names (for, in, while, if, else, repeat, break, next)\nR will let you use the name of a predefined function—but don’t do it!\n\nYou can always check to see if you the name you want to use is already taken via exists():\nFor example lm exists\n\nexists(\"lm\")\n\n[1] TRUE\n\n\nbut carleton_college doesn’t.\n\nexists(\"carleton_college\")\n\n[1] FALSE\n\n\nThere are also a lot of naming styles out there, and if you have coded in another language, you may have already developed a preference. Below is an illustration by Allison Horst\n\n\n\n\n\n\n\n\nI generally following the tidyverse style guide, so you’ll see that I use only lowercase letters, numbers, and _ (snake case).",
     "crumbs": [
       "Computing",
-      "Rstudio in Stat 340"
+      "R Refresher"
     ]
   },
   {
-    "objectID": "computing/rstudio-stat340.html#accessing-maize-from-off-campus",
-    "href": "computing/rstudio-stat340.html#accessing-maize-from-off-campus",
-    "title": "Using R/RStudio for Homework in Stat340",
-    "section": "Accessing maize from off campus",
-    "text": "Accessing maize from off campus\nIf you are using the maize server, you should be able to access it on campus with only your Carleton ID and password. If you plan to use the maize server and you plan to do any work off campus this term (e.g., while on a field trip, travel for athletics, or just sitting in Little Joy) you need to install Carleton’s VPN to have access.\nTo install the GlobalProtect VPN follow directions provided by ITS.",
+    "objectID": "computing/r-basics-refresher.html#overviews-of-data-frames",
+    "href": "computing/r-basics-refresher.html#overviews-of-data-frames",
+    "title": "R Basics",
+    "section": "Overviews of data frames",
+    "text": "Overviews of data frames\nAbove, you loaded in a data set called office_ratings. Data sets are stored as a special data structure called a data frame. Data frames are the most-commonly used data structure for data analysis in R. For now, think of them like spreadsheets.\nOnce you have your data frame, you can get a quick overview of it using a few commands (below I use data_set as a generic placeholder for the data frame’s name):\n\n\n\n\n\n\nCommand\nDescription\n\n\n\nhead(data_set)\nprint the first 6 rows\n\n\ntail(data_set)\nprint the last 6 rows\n\n\nglimpse(data_set)\na quick overview where columns run down the screen and the data values run across. This allows you to see every column in the data frame.\n\n\nstr(data_set)\na quick overview like glimpse(), but without some of the formatting\n\n\nsummary(data_set)\nquick summary statistics for each column\n\n\ndim(data_set)\nthe number of rows and columns\n\n\nnrow(data_set)\nthe number of rows\n\n\nncol(data_set)\nthe number of columns",
     "crumbs": [
       "Computing",
-      "Rstudio in Stat 340"
+      "R Refresher"
     ]
   },
   {
-    "objectID": "computing/rstudio-stat340.html#installing-latex-not-needed-if-you-are-using-the-maize-server",
-    "href": "computing/rstudio-stat340.html#installing-latex-not-needed-if-you-are-using-the-maize-server",
-    "title": "Using R/RStudio for Homework in Stat340",
-    "section": "Installing LaTeX (not needed if you are using the maize server)",
-    "text": "Installing LaTeX (not needed if you are using the maize server)\nIf you don’t already have a tex package installed on your computer, the easiest option to create pdf’s is to use the tinytex R package. This can be installed with the following R commands:\n\ninstall.packages(\"tinytex\")\ntinytex::install_tinytex()  # install TinyTeX\n\nIf you’d like a standalone LaTeX package that will work with programs other than RStudio, you could install the basic installations of either:\nIf you’d like a stand alone LaTeX package, you could install the basic installations of either:\n\n\nMacTeX for Mac (3.2GB!)\n\nMiKTeX for Windows (190MB)",
+    "objectID": "computing/r-basics-refresher.html#tibbles",
+    "href": "computing/r-basics-refresher.html#tibbles",
+    "title": "R Basics",
+    "section": "Tibbles",
+    "text": "Tibbles\nA tibble, or a tbl_df is another version of a data frame which is used by default in a lot of the tidyverse packages that we’ll use.\n\nTibbles are data.frames that are lazy and surly: they do less (i.e. they don’t change variable names or types, and don’t do partial matching) and complain more (e.g. when a variable does not exist). This forces you to confront problems earlier, typically leading to cleaner, more expressive code. Tibbles also have an enhanced print() method which makes them easier to use with large datasets containing complex objects.\n\n\n\n\n\n\n\nNone Check point\n\n\n\nRun the above commands on the office_ratings data set. Compare and contrast the information returned by each command.\n\n\n\n\n\n\n\n\nTipGetting a spreadsheet\n\n\n\nIn RStudio, you can run the command View(data_set) to pull up a spreadsheet representation of a data frame. You can also click on the name of the data frame in the Environment pane. This can be a great way help you think about the data, and even has some interactive functions (e.g., filtering and searching); however, never include View(data_set) in an .Rmd file!!\n\n\n\n\n\n\n\n\nNoteReview from intro stats\n\n\n\nIn intro stats we used the terms cases (or observations) and variables to describe the rows and columns of a data frame, respectively.",
     "crumbs": [
       "Computing",
-      "Rstudio in Stat 340"
+      "R Refresher"
     ]
   },
   {
-    "objectID": "homework/hw01.html",
-    "href": "homework/hw01.html",
-    "title": "Individual HW01",
+    "objectID": "computing/r-basics-refresher.html#extracting-pieces-of-data-frames",
+    "href": "computing/r-basics-refresher.html#extracting-pieces-of-data-frames",
+    "title": "R Basics",
+    "section": "Extracting pieces of data frames",
+    "text": "Extracting pieces of data frames\nSince data frames are the fundamental data structure for most analyses in R, it’s important to know how to work with them. You already know how to get an overview of a data frame, but that isn’t always very informative. Often, you want to extract pieces of a data frame, such as a specific column or row.\nExtracting rows\nData frames can be indexed by their row/column numbers. To extract elements of a data frame, the basic syntax is data_set[row.index, column.index]. So, to extract the 10th row of office_ratings we run\n\noffice_ratings[10, ]\n\n# A tibble: 1 × 6\n  season episode title    imdb_rating total_votes air_date  \n   &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;          &lt;dbl&gt;       &lt;dbl&gt; &lt;date&gt;    \n1      2       4 The Fire         8.4        2713 2005-10-11\n\n\nNotice that to extract an entire row, we leave the column index position blank.\nWe can also extract multiple rows by creating a vector of row indices. For example, we can extract the first 5 rows via\n\noffice_ratings[1:5, ]\n\n# A tibble: 5 × 6\n  season episode title         imdb_rating total_votes air_date  \n   &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;               &lt;dbl&gt;       &lt;dbl&gt; &lt;date&gt;    \n1      1       1 Pilot                 7.6        3706 2005-03-24\n2      1       2 Diversity Day         8.3        3566 2005-03-29\n3      1       3 Health Care           7.9        2983 2005-04-05\n4      1       4 The Alliance          8.1        2886 2005-04-12\n5      1       5 Basketball            8.4        3179 2005-04-19\n\n\nHere, 1:5 create a sequence of integers from 1 to 5.\nWe could also specify arbitrary row index values by combing the values into a vector. For example, we could extract the 1st, 13th, 64th, and 128th rows via\n\noffice_ratings[c(1, 13, 64, 128), ]\n\n# A tibble: 4 × 6\n  season episode title            imdb_rating total_votes air_date  \n   &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;                  &lt;dbl&gt;       &lt;dbl&gt; &lt;date&gt;    \n1      1       1 Pilot                    7.6        3706 2005-03-24\n2      2       7 The Client               8.6        2631 2005-11-08\n3      4      13 Job Fair                 7.9        1977 2008-05-08\n4      7      11 Classy Christmas         8.9        2138 2010-12-09\n\n\nExtracting columns\nSimilar to extracting rows, we can use a numeric index to extract the columns of a data frame. For example, to extract the 3rd column, we can run\n\noffice_ratings[,3]\n\n# A tibble: 188 × 1\n   title            \n   &lt;chr&gt;            \n 1 Pilot            \n 2 Diversity Day    \n 3 Health Care      \n 4 The Alliance     \n 5 Basketball       \n 6 Hot Girl         \n 7 The Dundies      \n 8 Sexual Harassment\n 9 Office Olympics  \n10 The Fire         \n# ℹ 178 more rows\n\n\nAlternatively, we can pass in the column name in quotes instead of the column number\n\noffice_ratings[,\"title\"]\n\n# A tibble: 188 × 1\n   title            \n   &lt;chr&gt;            \n 1 Pilot            \n 2 Diversity Day    \n 3 Health Care      \n 4 The Alliance     \n 5 Basketball       \n 6 Hot Girl         \n 7 The Dundies      \n 8 Sexual Harassment\n 9 Office Olympics  \n10 The Fire         \n# ℹ 178 more rows\n\n\nNotice that the extracted column is still formatted as a data frame (or tibble). If you want to extract the contents of the column and just have a vector of titles, you have a few options.\n\nYou could use double brackets with the column number:\n\n\noffice_ratings[[3]]\n\n\nYou could use double brackets with the column name in quotes:\n\n\noffice_ratings[[\"title\"]]\n\n\nYou could use the $ extractor with the column name (not in quotes):\n\n\noffice_ratings$title\n\n\n\n\n\n\n\nNone Check point\n\n\n\n\nExtract the 35th row of office_ratings.\nExtract rows 35, 36, 37, and 38 of office_ratings.\nExtract the imdb_rating column from office ratings using the column index number.\nExtract the imdb_rating column from office ratings using the column name.",
+    "crumbs": [
+      "Computing",
+      "R Refresher"
+    ]
+  },
+  {
+    "objectID": "computing/r-basics-refresher.html#lists",
+    "href": "computing/r-basics-refresher.html#lists",
+    "title": "R Basics",
+    "section": "Lists",
+    "text": "Lists\nIt turns out that data frames are special cases of lists, a more general data structure. In a data frame, each column is an element of the data list and each column must be of the same length. In general, lists can be comprised of elements of vastly different lengths and data types.\nAs an example, let’s construct a list of the faculty in the MAST department and what is being taught this winter.\n\nstat_faculty &lt;- c(\"Kelling\", \"Loy\", \"Luby\", \"Poppick\", \"St. Clair\", \"Wadsworth\")\nstat_courses &lt;- c(120, 220, 230, 250, 285, 330)\nmath_faculty &lt;- c(\"Brooke\", \"Davis\", \"Egge\", \"Gomez-Gonzales\", \"Haunsperger\", \"Johnson\", \n                  \"Meyer\", \"Montee\", \"Shrestha\",\"Terry\", \"Thompson\", \"Turnage-Butterbaugh\")\nmath_courses &lt;- c(101, 106, 111, 120, 210, 211, 232, 236, 240, 241, 251, 321, 333, 395)\n\nmast &lt;- list(stat_faculty = stat_faculty, stat_courses = stat_courses, \n             math_faculty = math_faculty, math_courses = math_courses)\n\nOverview of a list\nYou can get an overview of a list a few ways:\n\n\nglimpse(list_name) and str(list_name) list the elements of the list and the first few entries of each element.\n\n\nglimpse(mast)\n\nList of 4\n $ stat_faculty: chr [1:6] \"Kelling\" \"Loy\" \"Luby\" \"Poppick\" ...\n $ stat_courses: num [1:6] 120 220 230 250 285 330\n $ math_faculty: chr [1:12] \"Brooke\" \"Davis\" \"Egge\" \"Gomez-Gonzales\" ...\n $ math_courses: num [1:14] 101 106 111 120 210 211 232 236 240 241 ...\n\n\n\n\nlength(list_name) will tell you how many elements are in the list\n\n\nlength(mast)\n\n[1] 4\n\n\nExtracting elements of a list\nSince data frames are lists, you’ve already seen how to extract elements of a list. For example, to extract the stat_faculty you could run\n\nmast[[1]]\n\n[1] \"Kelling\"   \"Loy\"       \"Luby\"      \"Poppick\"   \"St. Clair\" \"Wadsworth\"\n\n\nor\n\nmast[[\"stat_faculty\"]]\n\n[1] \"Kelling\"   \"Loy\"       \"Luby\"      \"Poppick\"   \"St. Clair\" \"Wadsworth\"\n\n\n\n\n\n\n\n\nNote\n\n\n\nIf you had only used a single bracket above, the returned object would still be a list, which is typically not what we would want.\n\nmast[1]\n\n$stat_faculty\n[1] \"Kelling\"   \"Loy\"       \"Luby\"      \"Poppick\"   \"St. Clair\" \"Wadsworth\"\n\n\n\n\n\n\n\n\n\n\nNone Check point\n\n\n\nExtract the statistics courses offered this term.",
+    "crumbs": [
+      "Computing",
+      "R Refresher"
+    ]
+  },
+  {
+    "objectID": "computing/r-basics-refresher.html#vectors",
+    "href": "computing/r-basics-refresher.html#vectors",
+    "title": "R Basics",
+    "section": "Vectors",
+    "text": "Vectors\nThe columns of the office_ratings data frame and the elements of the mast list were comprised of (atomic) vectors. Unlike lists, all elements within a vector share the same type. For example, all names in the stat_faculty vector were character strings and all ratings in the imdb_rating column were numeric. We’ll deal with a variety of types of vectors in this course, including:\n\nnumeric\ncharacter (text)\nlogical (TRUE/FALSE)\n\nExtracting elements of a vector\nJust like with lists (and therefore data frames), we use brackets to extract elements from a vector. As an example, let’s work with the title column from office_ratings.\n\ntitle &lt;- office_ratings$title # vector of titles\n\nTo extract the 111th title, we run\n\ntitle[111]\n\n[1] \"New Leads\"\n\n\nor two extract the 100th through 111th titles, we run\n\ntitle[100:111]\n\n [1] \"Double Date\"          \"Murder\"               \"Shareholder Meeting\" \n [4] \"Scott's Tots\"         \"Secret Santa\"         \"The Banker\"          \n [7] \"Sabre\"                \"Manager and Salesman\" \"The Delivery: Part 1\"\n[10] \"The Delivery: Part 2\" \"St. Patrick's Day\"    \"New Leads\"           \n\n\nNegative indices\nSometimes, we want to “kick out” elements of our vector. To do this, we can use a negative index value. For example,\n\ntitle[-1]\n\nreturns all but the first title—that is, it kicks out the first title. To kick out multiple elements, we need to negate a vector of indices. For example, below we kick out the first 10 titles\n\ntitle[-c(1:10)]\n\nAnd now we kick out the 5th, 50th, and 150th titles\n\ntitle[-c(5, 50, 150)]\n\nThis idea can be adapted to lists and data frames. For example, to kick out the first row of office_ratings, we run\n\noffice_ratings[-1,]\n\n# A tibble: 187 × 6\n   season episode title             imdb_rating total_votes air_date  \n    &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;                   &lt;dbl&gt;       &lt;dbl&gt; &lt;date&gt;    \n 1      1       2 Diversity Day             8.3        3566 2005-03-29\n 2      1       3 Health Care               7.9        2983 2005-04-05\n 3      1       4 The Alliance              8.1        2886 2005-04-12\n 4      1       5 Basketball                8.4        3179 2005-04-19\n 5      1       6 Hot Girl                  7.8        2852 2005-04-26\n 6      2       1 The Dundies               8.7        3213 2005-09-20\n 7      2       2 Sexual Harassment         8.2        2736 2005-09-27\n 8      2       3 Office Olympics           8.4        2742 2005-10-04\n 9      2       4 The Fire                  8.4        2713 2005-10-11\n10      2       5 Halloween                 8.2        2561 2005-10-18\n# ℹ 177 more rows\n\n\nor to kick out the math courses from the mast list we run\n\nmast[-4]\n\n$stat_faculty\n[1] \"Kelling\"   \"Loy\"       \"Luby\"      \"Poppick\"   \"St. Clair\" \"Wadsworth\"\n\n$stat_courses\n[1] 120 220 230 250 285 330\n\n$math_faculty\n [1] \"Brooke\"              \"Davis\"               \"Egge\"               \n [4] \"Gomez-Gonzales\"      \"Haunsperger\"         \"Johnson\"            \n [7] \"Meyer\"               \"Montee\"              \"Shrestha\"           \n[10] \"Terry\"               \"Thompson\"            \"Turnage-Butterbaugh\"\n\n\nLogical indices\nIt’s great to be able to extract (or omit) elements using indices, but sometimes we don’t know what index value we should use. For example, if you wanted to extract all of the 300-level statistics courses from the stat_courses vector, you would need to manually determine that positions 2:5 meet that requirement. That’s a lot of work! A better alternative is to allow R to find the elements meeting that requirement using logical operators. Below is a table summarizing common logical operators in R.\n\n\nComparison\nMeaning\n\n\n\n&lt;\nless than\n\n\n&gt;\ngreater than\n\n\n&lt;=\nless than or equal to\n\n\n&gt;=\ngreater than or equal to\n\n\n==\nis equal to\n\n\n!=\nnot equal to\n\n\n\nIn order to extract the 300-level statistics courses, we’ll take two steps:\n\nWe’ll determine whether each course is numbered at least 300,\nthen we’ll use that sequence of TRUEs/FALSEs to extract the course.\n\nSo, first we use the logical operator &gt;= to compare stat_courses and 300. This returns TRUE if the element meets the specification and FALSE otherwise.\n\nstat_courses &gt;= 300\n\n[1] FALSE FALSE FALSE FALSE FALSE  TRUE\n\n\nNow, we can use this vector as our index. Only the TRUE elements will be extracted:\n\nstat_courses[stat_courses &gt;= 300]\n\n[1] 330\n\n\nThe same idea can be used with data frames and lists, just remember how to format the brackets and indices!\n\n\n\n\n\n\nNone Check point\n\n\n\n\nExtract all statistics courses below 250 from stat_courses.\nExtract all math courses except for 240 (probability) from math_courses.\nExtract all rows from season 3 of The Office.",
+    "crumbs": [
+      "Computing",
+      "R Refresher"
+    ]
+  },
+  {
+    "objectID": "computing/computing-access.html",
+    "href": "computing/computing-access.html",
+    "title": "Computing Access",
     "section": "",
-    "text": "BR Exercise 1.5\n\n\nBR Exercise 1.6\n\n\nBR Exercise 2.2\n\n\nBR Exercise 2.6\n\n\nBR Exercise 2.16\n\n\n\n\n\n\nImportant\n\n\n\nThis problem moved to HW2!",
+    "text": "I expect you to use RStudio to run R in this course. You have two options for using RStudio:\n\nWe have a Carleton server hosting Rstudio at https://maize.mathcs.carleton.edu/. Your files on this account will be accessible as long as you are a student at Carleton. Use your Carleton credentials to access your account and you need to be running the Carleton VPN (below) to access this server. Use this option if\n\nyour personal computer is old and/or slow\nyou prefer to use school computers (lab or library computers)\n\nYou can also run R/RStudio from your personal computer. If you use a local version of R/RStudio this term, make sure that you have recently updated both R and RStudio.\nTo check your version of R, run the command getRversion() and compare your version to the newest version posted on https://cran.r-project.org/. If you need an update, then install the newer version using the installation directions above.\nIn RStudio, check for updates with the menu option Help &gt; Check for updates. Follow directions if an update is needed.\nFor a fresh download:\n\nDownload the latest version of R for your operating system from https://cran.r-project.org/\nDownload the free RStudio desktop version from https://posit.co/download/rstudio-desktop/\n\nUse the default download and install options for each. For R, download the “precompiled binary” distribution rather than the source code."
+  },
+  {
+    "objectID": "computing/computing-access.html#rrstudio",
+    "href": "computing/computing-access.html#rrstudio",
+    "title": "Computing Access",
+    "section": "",
+    "text": "I expect you to use RStudio to run R in this course. You have two options for using RStudio:\n\nWe have a Carleton server hosting Rstudio at https://maize.mathcs.carleton.edu/. Your files on this account will be accessible as long as you are a student at Carleton. Use your Carleton credentials to access your account and you need to be running the Carleton VPN (below) to access this server. Use this option if\n\nyour personal computer is old and/or slow\nyou prefer to use school computers (lab or library computers)\n\nYou can also run R/RStudio from your personal computer. If you use a local version of R/RStudio this term, make sure that you have recently updated both R and RStudio.\nTo check your version of R, run the command getRversion() and compare your version to the newest version posted on https://cran.r-project.org/. If you need an update, then install the newer version using the installation directions above.\nIn RStudio, check for updates with the menu option Help &gt; Check for updates. Follow directions if an update is needed.\nFor a fresh download:\n\nDownload the latest version of R for your operating system from https://cran.r-project.org/\nDownload the free RStudio desktop version from https://posit.co/download/rstudio-desktop/\n\nUse the default download and install options for each. For R, download the “precompiled binary” distribution rather than the source code."
+  },
+  {
+    "objectID": "computing/computing-access.html#vpn",
+    "href": "computing/computing-access.html#vpn",
+    "title": "Computing Access",
+    "section": "VPN",
+    "text": "VPN\nIf you plan to use the maize server and you plan to do any work off campus this term (e.g., while on a field trip, travel for athletics, or just sitting in Little Joy) you need to install Carleton’s VPN to have access.\nTo install the GlobalProtect VPN follow directions provided by ITS."
+  },
+  {
+    "objectID": "computing/computing-access.html#git-and-github",
+    "href": "computing/computing-access.html#git-and-github",
+    "title": "Computing Access",
+    "section": "Git and GitHub",
+    "text": "Git and GitHub\nGit is version control software that you install locally on your computer. Git is already installed on the maize RStudio server.\nGithub is a cloud-based service for hosting git projects. It allows multiple users to share and contribute to projects and it is how you will be submitting homework assignments and projects for this class. More information about Github for this class is found on Moodle.\nIf you are using a local install of R/RStudio, then you will need to install Git.\nInstalling Git\nDirections for both Windows & Mac here at http://happygitwithr.com/install-git.html.\n\nIf you are using maize, then there is nothing you need to install.\nWindows users should follow Option 1 in 6.2.\nMac users can follow Option 1 in 6.3 if comfortable, otherwise follow Option 2\nLinux users can follow 6.4."
+  },
+  {
+    "objectID": "computing/computing-access.html#latex",
+    "href": "computing/computing-access.html#latex",
+    "title": "Computing Access",
+    "section": "LaTeX",
+    "text": "LaTeX\nYou need a LaTeX compiler to create a pdf document from a R Markdown file. If you use the maize server, you don’t need to install anything (the server already has a LaTeX compiler). If you are using a local RStudio, you should install a Latex compiler.\nInstalling LaTeX (not needed if you are using the maize server)\nIf you don’t already have a tex package installed on your computer, the easiest option to create pdf’s is to use the tinytex R package. This can be installed with the following R commands:\n\ninstall.packages(\"tinytex\")\ntinytex::install_tinytex()  # install TinyTeX\n\nIf you’d like a stand alone LaTeX package, you could install the basic installations of either:\n\nMacTeX for Mac (3.2GB!)\nMiKTeX for Windows (190MB)\n\n\nAcknowledgements\nThis installation guide was written by Adam Loy and is based on the guide from stat545.com and is licensed under the CC BY-NC 3.0 Creative Commons License."
+  },
+  {
+    "objectID": "computing/computing-setup.html",
+    "href": "computing/computing-setup.html",
+    "title": "Computing Setup for Stat340",
+    "section": "",
+    "text": "For Stat340, I highly recommend using R on your local computer, instead of the maize server. Why?\n\nIt’s likely the 4th time (or more!) that you’ve seen R in a classroom setting\nYou’re graduating soon and won’t be able to access maize\nBayesian statistics is much more computationally expensive than traditional statistics, and your model fitting will run faster on a local installation\n\nFirst, download the most recent versions of R and RStudio for your operating system:\n\nR (https://www.r-project.org/)\nRStudio (https://rstudio.com/products/rstudio/download/)\nQuarto (https://quarto.org/docs/get-started/)\n\nNext, we need to install a version of LaTeX in order to render quarto files to PDF. I recommend using the tinytex installation that is included with quarto. To install it, click on “Terminal” within RStudio and type the following:\nquarto install tinytex\nAfter doing all of the following, you can check that it is working correctly by:\n\nOpen rstudio\nClick “File –&gt; New File –&gt; Quarto document” and choose the “PDF” output option\nMake a small change to the file within the editor and click “render”. If all goes well, you should end up with a PDF document!\n\nFor Stat340 coursework, it will be helpful to have some additional R packages installed. You can install these all at once with:\n\ninstall.packages(c(\"bayesrules\", \"tidyverse\", \"janitor\", \"rstanarm\",\n                   \"bayesplot\", \"tidybayes\", \"broom.mixed\", \"modelr\",\n                   \"e1071\", \"forcats\"), \n                 dependencies = TRUE)",
+    "crumbs": [
+      "Computing",
+      "Setup"
+    ]
+  },
+  {
+    "objectID": "homework/hw02.html",
+    "href": "homework/hw02.html",
+    "title": "Individual HW02",
+    "section": "",
+    "text": "BR Exercise 2.16\n\n\n\n\n\n\nNote\n\n\n\nIf the link from the textbook doesn’t work, try this link from the internet archive\n\n\n\n\nBR Exercise 2.21\n\n\nBR Exercise 3.8\n\n\nsummarize_beta_binomial\nWrite your own R function that does the same thing as summarize_beta_binomial. It’s OK if your output is formatted differently and you do not need to write formal checks.\n\n\n\n\n\n\nNote\n\n\n\nIf you need a refresher on writing functions in R, I recommend:\n\nR4DS Ch25 for an overview of functions in R with practice problems\nMy Stat220 slides for a quick refresher\n\n\n\n\n\nBR Exercise 3.9\n\n\nBR Exercise 3.10\n\n\nBR Exercise 4.10\n\n\nBR Exercise 4.14\n\n\nBR Exercise 4.18",
     "crumbs": [
       "Assignments",
       "Homework",
-      "Individual HW01"
+      "Individual HW02"
     ]
   },
   {
@@ -263,368 +342,525 @@
     "text": "The best place to come for help is Amanda’s office hours! I can help with anything related to the course. You can also check my calendar for one-on-one appointment slots.\n\n\n\nStudents needing help with their Statistics coursework and R/Rstudio questions can get help from Stats Lab Assistants in the Stats Lab in CMC 304. Stats Lab Assistants are primiarily for Stat 120 (Intro Stats), but they may also be able to assist with general R/Rstudio questions."
   },
   {
-    "objectID": "slides/slides05.html#key-ideas",
-    "href": "slides/slides05.html#key-ideas",
-    "title": "Balance and Sequentiality",
-    "section": "Key ideas",
-    "text": "Key ideas\n\nDifferent priors, different posteriors\nDifferent data, different posteriors\nSequential analyses\nData order is invariant\nDon’t be stubborn"
+    "objectID": "slides/slides06.html#beta-binomial-review",
+    "href": "slides/slides06.html#beta-binomial-review",
+    "title": "Gamma-Poisson model",
+    "section": "Beta-Binomial review",
+    "text": "Beta-Binomial review\n\nPrior: \\(f(\\pi) \\sim \\text{Beta}(\\alpha, \\beta)\\)\nLikelihood: \\(L(\\pi | Y) \\sim \\text{Binomial}(n, \\pi)\\)\nPosterior: \\(f(\\pi |Y) \\sim \\text{Beta}(\\alpha + y, \\beta + n - y)\\)\n\n \n\n\n\n\n\n\nConjugate Prior\n\n\nThe Beta distribution is a conjugate prior for the Binomial likelihood, since the posterior is also Beta"
   },
   {
-    "objectID": "slides/slides05.html#bechdel-test",
-    "href": "slides/slides05.html#bechdel-test",
-    "title": "Balance and Sequentiality",
-    "section": "Bechdel test",
-    "text": "Bechdel test\nAlison Bechdel’s 1985 comic Dykes to Watch Out For has a strip called The Rule where a person states that they only go to a movie if it satisfies the following three rules:\n\nthe movie has to have at least two women in it;\nthese two women talk to each other; and\nthey talk about something besides a man.\n\nThis test is used for assessing movies in terms of representation of women. Even though there are three criteria, a movie either fails or passes the Bechdel test."
+    "objectID": "slides/slides06.html#non-conjugate-prior-for-binomial-likelihood",
+    "href": "slides/slides06.html#non-conjugate-prior-for-binomial-likelihood",
+    "title": "Gamma-Poisson model",
+    "section": "Non-conjugate prior for Binomial likelihood",
+    "text": "Non-conjugate prior for Binomial likelihood\n\\[f(\\pi) = e - e^\\pi\\]"
   },
   {
-    "objectID": "slides/slides05.html#priors",
-    "href": "slides/slides05.html#priors",
-    "title": "Balance and Sequentiality",
-    "section": "Priors",
-    "text": "Priors"
+    "objectID": "slides/slides06.html#finding-the-posterior",
+    "href": "slides/slides06.html#finding-the-posterior",
+    "title": "Gamma-Poisson model",
+    "section": "Finding the posterior",
+    "text": "Finding the posterior\nAssume \\(Y=10\\) and \\(n=50\\)"
   },
   {
-    "objectID": "slides/slides05.html#terminology",
-    "href": "slides/slides05.html#terminology",
-    "title": "Balance and Sequentiality",
-    "section": "Terminology",
-    "text": "Terminology\n\n\n\n\n\n\nInformative Prior\n\n\nAn informative prior reflects specific information about the unknown variable with high certainty (ie. low variability).\n\n\n\n\n\n\n\n\n\nDiffuse prior\n\n\nA vague or diffuse prior reflects little specific information about the unknown variable. A flat prior, which assigns equal prior plausibility to all possible values of the variable, is a special case.\n\n\n\n\n\n\n\n\n\nReference prior\n\n\nA formal type of diffuse prior\ncatalog of reference priors"
+    "objectID": "slides/slides06.html#can-we-use-beta-binomial-model",
+    "href": "slides/slides06.html#can-we-use-beta-binomial-model",
+    "title": "Gamma-Poisson model",
+    "section": "Can we use Beta-Binomial Model?",
+    "text": "Can we use Beta-Binomial Model?\nAt a certain hospital, an average of 6 babies are born each hour. Let \\(Y\\) be the number of babies born between 9 a.m. and 10 a.m. tomorrow."
   },
   {
-    "objectID": "slides/slides05.html#section",
-    "href": "slides/slides05.html#section",
-    "title": "Balance and Sequentiality",
+    "objectID": "slides/slides06.html#poisson-data-model",
+    "href": "slides/slides06.html#poisson-data-model",
+    "title": "Gamma-Poisson model",
+    "section": "Poisson Data model",
+    "text": "Poisson Data model\nLet \\(Y\\) be the number of independent events that occur in a fixed amount of time or space, where \\(\\lambda &gt; 0\\) is the rate at which these events occur. Then the dependence of \\(Y\\) on parameter \\(\\lambda\\) can be modeled by the Poisson. In mathematical notation:\n\\[Y | \\lambda \\sim \\text{Pois}(\\lambda) \\]\nand\n\\[ f(y|\\lambda) =  \\frac{\\lambda^y e^{-\\lambda}}{y!}\\;\\; \\text{ for } y \\in \\{0,1,2,\\ldots\\}\\]\n\\[E(Y | \\lambda) = V(Y | \\lambda) = \\lambda\\]"
+  },
+  {
+    "objectID": "slides/slides06.html#poisson-pmfs",
+    "href": "slides/slides06.html#poisson-pmfs",
+    "title": "Gamma-Poisson model",
+    "section": "Poisson PMFs",
+    "text": "Poisson PMFs"
+  },
+  {
+    "objectID": "slides/slides06.html#joint-likelihood-function",
+    "href": "slides/slides06.html#joint-likelihood-function",
+    "title": "Gamma-Poisson model",
+    "section": "Joint Likelihood Function",
+    "text": "Joint Likelihood Function"
+  },
+  {
+    "objectID": "slides/slides06.html#poisson-likelihood",
+    "href": "slides/slides06.html#poisson-likelihood",
+    "title": "Gamma-Poisson model",
+    "section": "Poisson Likelihood",
+    "text": "Poisson Likelihood\nIf we collect 4 hours of data and observe \\(y_i = 0, 2, 3, 2\\) babies born:"
+  },
+  {
+    "objectID": "slides/slides06.html#section-1",
+    "href": "slides/slides06.html#section-1",
+    "title": "Gamma-Poisson model",
     "section": "",
-    "text": "“There is no objective, unique prior that represents ignorance. Instead, reference priors are chosen by public agreement, much like units of length and weight. In this interpretation, reference priors are akin to a default option in a computer package. We fall back to the default when there is insufficient information to otherwise define the prior.” Kass & Wasserman"
+    "text": "plot_poisson_likelihood(y = c(0, 2, 3, 2), lambda_upper_bound = 8)"
   },
   {
-    "objectID": "slides/slides05.html#flat-prior",
-    "href": "slides/slides05.html#flat-prior",
-    "title": "Balance and Sequentiality",
-    "section": "Flat prior",
-    "text": "Flat prior\n\\[\\pi \\sim \\text{Unif}(0,1)\\]\n\n\nUnder re-parameterization (\\(\\theta = g(\\pi)\\)) \\(\\theta\\) might have a non-uniform distribution"
+    "objectID": "slides/slides06.html#choosing-a-prior",
+    "href": "slides/slides06.html#choosing-a-prior",
+    "title": "Gamma-Poisson model",
+    "section": "Choosing a prior",
+    "text": "Choosing a prior\n\n\\(\\lambda\\) discrete or continuous?\nWhat is the support of \\(\\lambda\\)?\nBe strategic about creating a kernel"
   },
   {
-    "objectID": "slides/slides05.html#jeffreys-prior",
-    "href": "slides/slides05.html#jeffreys-prior",
-    "title": "Balance and Sequentiality",
-    "section": "Jeffrey’s prior",
-    "text": "Jeffrey’s prior\n\\(\\pi \\propto \\sqrt{I(\\pi)}\\)\nwhere \\(I(\\pi)\\) is the Fisher Information. For binomial data, Jeffrey’s prior gives \\(\\pi \\sim\\)"
+    "objectID": "slides/slides06.html#gamma-model",
+    "href": "slides/slides06.html#gamma-model",
+    "title": "Gamma-Poisson model",
+    "section": "Gamma Model",
+    "text": "Gamma Model\nLet \\(\\lambda\\) be a random variable which can take any value between 0 and \\(\\infty\\), ie. \\(\\lambda \\in [0,\\infty)\\). The Gamma model with shape parameter \\(s &gt; 0\\) and rate parameter \\(r &gt; 0\\) is:\n\\[\\lambda \\sim \\text{Gamma}(s, r)\\]\n\\[f(\\lambda) = \\frac{r^s}{\\Gamma(s)} \\lambda^{s-1} e^{-r\\lambda} \\;\\; \\text{ for } \\lambda &gt; 0 \\]\nwhere constant \\(\\Gamma(s) = \\int_0^\\infty z^{s - 1} e^{-z}dz\\). When \\(s\\) is a positive integer, \\(s \\in \\{1,2,3,\\ldots\\}\\), this constant simplifies to \\(\\Gamma(s) = (s - 1)!\\)."
   },
   {
-    "objectID": "slides/slides05.html#bernardos-reference-prior",
-    "href": "slides/slides05.html#bernardos-reference-prior",
-    "title": "Balance and Sequentiality",
-    "section": "Bernardo’s reference prior",
-    "text": "Bernardo’s reference prior\n\nPrior should influence posterior as little as possible\nPosterior should be (on average) very different from the posterior\nWe can measure “difference” between distributions \\(P\\) and \\(Q\\) with the Kullback-Leibler divergence\n\n\\(KL(P,Q) = \\int_{-\\infty}^\\infty p(x) \\log \\frac{p(x)}{q(x)} dx\\)\n\nSo, choose reference prior by maximizing KL divergence between prior and posterior\nLucky for us, if we have univariate model, this is equivalent to Jeffrey’s prior"
+    "objectID": "slides/slides06.html#section-2",
+    "href": "slides/slides06.html#section-2",
+    "title": "Gamma-Poisson model",
+    "section": "",
+    "text": "Warning\n\n\nThe Gamma is sometimes parameterized by shape \\(s\\) and scale \\(\\theta = \\frac{1}{r}\\)\n\n\n\n\nIn econometrics, the (α, θ) parameterization is common for modeling waiting times … Bayesian statisticians prefer the (α,λ) parameterization, utilizing the gamma distribution as a conjugate prior for several inverse scale parameters, facilitating analytical tractability in posterior distribution computations.\n\n\n\nSource: Wikipedia"
   },
   {
-    "objectID": "slides/slides05.html#priors-1",
-    "href": "slides/slides05.html#priors-1",
-    "title": "Balance and Sequentiality",
-    "section": "Priors",
-    "text": "Priors"
+    "objectID": "slides/slides06.html#section-3",
+    "href": "slides/slides06.html#section-3",
+    "title": "Gamma-Poisson model",
+    "section": "",
+    "text": "Exponential Model\n\\[\\lambda \\sim \\text{Exp}(r)\\]\nis a special case of the Gamma with shape parameter \\(s = 1\\), \\(\\text{Gamma}(1,r)\\)\n\\(\\chi^2\\) Model\n\\[\\lambda \\sim \\chi^2(k)\\]\nis a special case of the Gamma with shape \\(s = k/2\\) and rate \\(r=1/2\\)"
   },
   {
-    "objectID": "slides/slides05.html#data",
-    "href": "slides/slides05.html#data",
-    "title": "Balance and Sequentiality",
-    "section": "Data",
-    "text": "Data\n\nlibrary(bayesrules) has bechdel data frame. Randomly select 20 movies from this dataset (seed = 84735)\nBased on observed data, update the posterior\nPlot the prior, likelihood, and the posterior\n\n\nset.seed(84735)\nbechdel_sample &lt;- sample_n(bechdel, 20)"
+    "objectID": "slides/slides06.html#section-4",
+    "href": "slides/slides06.html#section-4",
+    "title": "Gamma-Poisson model",
+    "section": "",
+    "text": "\\(E(\\lambda) = \\frac{s}{r}, \\text{Mode}(\\lambda) = \\frac{s-1}{r} \\text{ for s } \\ge 1, \\text{Var}(\\lambda) = \\frac{s}{r^2}\\)"
   },
   {
-    "objectID": "slides/slides05.html#data-1",
-    "href": "slides/slides05.html#data-1",
-    "title": "Balance and Sequentiality",
-    "section": "Data",
-    "text": "Data\n\n\n\n\n\n\n\n\nyear\ntitle\nbinary\n\n\n\n\n2005\nKing Kong\nFAIL\n\n\n1983\nFlashdance\nPASS\n\n\n2013\nThe Purge\nFAIL\n\n\n2001\nAmerican Outlaws\nFAIL\n\n\n2010\nSex and the city 2\nPASS\n\n\n1997\nAir Bud\nFAIL\n\n\n2010\nRobin Hood\nFAIL\n\n\n2009\nCase 39\nPASS\n\n\n1998\nHope Floats\nPASS\n\n\n2007\nThe Golden Compass\nPASS\n\n\n2013\nParker\nPASS\n\n\n1971\nShaft\nFAIL\n\n\n2011\nFast Five\nPASS\n\n\n2013\nThe Croods\nFAIL\n\n\n2010\nEdge of Darkness\nFAIL\n\n\n1998\nMulan\nFAIL\n\n\n2010\nEasy A\nPASS\n\n\n2000\nMemento\nFAIL\n\n\n2002\nThe Tuxedo\nFAIL\n\n\n1982\nThe Best Little Whorehouse in Texas\nPASS\n\n\n\n\n\n\n binary  n percent\n   FAIL 11    0.55\n   PASS  9    0.45"
+    "objectID": "slides/slides06.html#posterior-model",
+    "href": "slides/slides06.html#posterior-model",
+    "title": "Gamma-Poisson model",
+    "section": "Posterior Model",
+    "text": "Posterior Model"
   },
   {
-    "objectID": "slides/slides05.html#posteriors",
-    "href": "slides/slides05.html#posteriors",
-    "title": "Balance and Sequentiality",
-    "section": "Posteriors",
-    "text": "Posteriors"
+    "objectID": "slides/slides06.html#gamma-poisson-bayesian-model",
+    "href": "slides/slides06.html#gamma-poisson-bayesian-model",
+    "title": "Gamma-Poisson model",
+    "section": "Gamma-Poisson Bayesian Model",
+    "text": "Gamma-Poisson Bayesian Model\n\\[\\lambda \\sim \\text{Gamma}(s, r)\\] \\[ Y_i | \\lambda \\sim \\text{Poisson}(\\lambda)\\]\n\\[\\lambda | Y_1, Y_2, ..., Y_n \\sim \\text{Gamma}(s + \\sum Y_i, r + n)\\]"
   },
   {
-    "objectID": "slides/slides05.html#different-data-different-posteriors",
-    "href": "slides/slides05.html#different-data-different-posteriors",
-    "title": "Balance and Sequentiality",
-    "section": "Different data, different posteriors",
-    "text": "Different data, different posteriors\nLet’s compare results for 3 analyses: 1 using 1991 movies, 1 using 2000 movies, and 1 using 2013 movies\n\nbechdel |&gt;\n  filter(year == 1991) |&gt;\n  tabyl(binary)\n\n binary n   percent\n   FAIL 7 0.5384615\n   PASS 6 0.4615385\n\nbechdel |&gt;\n  filter(year == 2000) |&gt;\n  tabyl(binary)\n\n binary  n   percent\n   FAIL 34 0.5396825\n   PASS 29 0.4603175\n\nbechdel |&gt;\n  filter(year == 2013) |&gt;\n  tabyl(binary)\n\n binary  n   percent\n   FAIL 53 0.5353535\n   PASS 46 0.4646465"
+    "objectID": "slides/slides06.html#gamma-poisson-model",
+    "href": "slides/slides06.html#gamma-poisson-model",
+    "title": "Gamma-Poisson model",
+    "section": "Gamma-Poisson Model",
+    "text": "Gamma-Poisson Model\n\nplot_gamma_poisson(shape = 10, rate = 2, sum_y = 7, n = 4)"
   },
   {
-    "objectID": "slides/slides05.html#different-data-different-posteriors-1",
-    "href": "slides/slides05.html#different-data-different-posteriors-1",
-    "title": "Balance and Sequentiality",
-    "section": "Different data, different posteriors",
-    "text": "Different data, different posteriors"
+    "objectID": "slides/slides06.html#gamma-poisson-model-1",
+    "href": "slides/slides06.html#gamma-poisson-model-1",
+    "title": "Gamma-Poisson model",
+    "section": "Gamma-Poisson Model",
+    "text": "Gamma-Poisson Model\n\nsummarize_gamma_poisson(shape = 10, rate = 2, sum_y = 7, n = 4)\n\n      model shape rate     mean     mode       var        sd\n1     prior    10    2 5.000000 4.500000 2.5000000 1.5811388\n2 posterior    17    6 2.833333 2.666667 0.4722222 0.6871843\n\n\nInterpretation:"
   },
   {
-    "objectID": "slides/slides05.html#prior-updatingsequential-data",
-    "href": "slides/slides05.html#prior-updatingsequential-data",
-    "title": "Balance and Sequentiality",
-    "section": "Prior updating/sequential data",
-    "text": "Prior updating/sequential data"
+    "objectID": "slides/slides06.html#example-tuning-a-gamma-prior",
+    "href": "slides/slides06.html#example-tuning-a-gamma-prior",
+    "title": "Gamma-Poisson model",
+    "section": "Example: tuning a Gamma prior",
+    "text": "Example: tuning a Gamma prior\nThe most likely value of \\(\\lambda\\) is 3.5 and the variance is 2"
   },
   {
-    "objectID": "slides/slides05.html#data-order-invariance",
-    "href": "slides/slides05.html#data-order-invariance",
-    "title": "Balance and Sequentiality",
-    "section": "Data order invariance",
-    "text": "Data order invariance\nUpdating the prior 20 times:\n      model alpha beta      mean      mode          var         sd\n1     prior   551  613 0.4733677 0.4733219 0.0002139835 0.01462817\n2 posterior   612  681 0.4733179 0.4732765 0.0001926492 0.01387981\n“Data dump”: treat years 1-20 as the data\n\nsummarize_beta_binomial(1, 1, 611, 1291)\n\n      model alpha beta      mean      mode          var         sd\n1     prior     1    1 0.5000000       NaN 0.0833333333 0.28867513\n2 posterior   612  681 0.4733179 0.4732765 0.0001926492 0.01387981\n\n\nFurther reading: How to think like an epidemiologist"
+    "objectID": "slides/slides06.html#example-gamma-poisson-model",
+    "href": "slides/slides06.html#example-gamma-poisson-model",
+    "title": "Gamma-Poisson model",
+    "section": "Example: Gamma-Poisson model",
+    "text": "Example: Gamma-Poisson model\nAssume a prior of \\(\\lambda \\sim \\text{Gamma}(24, 2)\\) and \\(Y | \\lambda \\sim \\text{Poisson}(\\lambda)\\). If you observe a sample of \\((12, 12, 12, 0)\\), what is the likelihood and posterior?"
   },
   {
-    "objectID": "slides/slides05.html#data-order-invariance-math",
-    "href": "slides/slides05.html#data-order-invariance-math",
-    "title": "Balance and Sequentiality",
-    "section": "Data order invariance (math)",
-    "text": "Data order invariance (math)"
+    "objectID": "slides/slides06.html#section-5",
+    "href": "slides/slides06.html#section-5",
+    "title": "Gamma-Poisson model",
+    "section": "",
+    "text": "plot_gamma_poisson(shape = 24, rate = 2, sum_y = 36, n = 4)"
   },
   {
-    "objectID": "slides/slides05.html#dont-be-stubborn",
-    "href": "slides/slides05.html#dont-be-stubborn",
-    "title": "Balance and Sequentiality",
-    "section": "Don’t be stubborn",
-    "text": "Don’t be stubborn\n\n\n\n\n\n\nWarning\n\n\nThe posterior is defined on the same values as the prior. Do not assign \\(f(\\pi) = 0\\) on any reasonable value!"
+    "objectID": "slides/slides06.html#section-6",
+    "href": "slides/slides06.html#section-6",
+    "title": "Gamma-Poisson model",
+    "section": "",
+    "text": "summarize_gamma_poisson(shape = 24, rate = 2, sum_y = 36, n = 4)\n\n      model shape rate mean      mode      var       sd\n1     prior    24    2   12 11.500000 6.000000 2.449490\n2 posterior    60    6   10  9.833333 1.666667 1.290994\n\n\nInterpretation:"
   },
   {
-    "objectID": "slides/slides01.html#plan-for-today",
-    "href": "slides/slides01.html#plan-for-today",
-    "title": "Welcome to Bayes!",
-    "section": "Plan for today",
-    "text": "Plan for today\n\nIntros\nIntro to Bayesian Thinking\nSyllabus"
+    "objectID": "slides/slides04.html#back-to-graduate-school-applications",
+    "href": "slides/slides04.html#back-to-graduate-school-applications",
+    "title": "Beta-Binomial Model",
+    "section": "Back to Graduate School Applications",
+    "text": "Back to Graduate School Applications\nLast week we were trying to understand \\(\\pi\\) the acceptance rate of a graduate program in a specific department. We assumed a somewhat silly prior, and restricted \\(\\pi\\) to be 0.2, 0.4, or 0.8.\nThis time we will let \\(\\pi \\in [0,1]\\)."
   },
   {
-    "objectID": "slides/slides01.html#about-me",
-    "href": "slides/slides01.html#about-me",
-    "title": "Welcome to Bayes!",
-    "section": "About me",
-    "text": "About me\n\n\n\nEllis (almost 1.5!)\nSecond year at Carleton\nTaught at Swarthmore for 5 years before moving to MN\nPhD in Statistics & Data Science from Carnegie Mellon University\nGrew up in Minnesota, went to St Ben’s as an undergrad"
+    "objectID": "slides/slides04.html#section",
+    "href": "slides/slides04.html#section",
+    "title": "Beta-Binomial Model",
+    "section": "",
+    "text": "Continuous probability models\nLet \\(\\pi\\) be a continuous random variable with pdf \\(f(\\pi)\\). Then \\(f(\\pi)\\) has the following properties:\n\n\\(\\int_\\pi f(\\pi)d\\pi = 1\\), ie. the area under \\(f(\\pi)\\) is 1\n\\(f(\\pi) \\ge 0\\)\n\\(P(a &lt; \\pi &lt; b) = \\int_a^b f(\\pi) d\\pi\\) when \\(a \\le b\\)\n\nInterpreting \\(f(\\pi)\\):"
   },
   {
-    "objectID": "slides/slides01.html#my-crochet-journey-this-summer",
-    "href": "slides/slides01.html#my-crochet-journey-this-summer",
-    "title": "Welcome to Bayes!",
-    "section": "My crochet journey this summer",
-    "text": "My crochet journey this summer\n\n\n\n\n\nDecided I wanted to make a basket\nSkipped “practice these stitches” and just went for it\nDidn’t understand the pattern, watched a couple of youtube videos from random creators and went for it\nKept going even when I was very clearly doing something wrong"
+    "objectID": "slides/slides04.html#section-1",
+    "href": "slides/slides04.html#section-1",
+    "title": "Beta-Binomial Model",
+    "section": "",
+    "text": "For each of the student’s prior ideas for \\(\\pi\\) sketch the pdf of the prior. Your plot will not be exact since no exact values are given.\n\n\n\nMorteza thinks that it is extremely difficult to get into this program.\n\n\n\n\n\n\n\n\n\n\nErin does not have any strong opinions whether it is difficult or easy to get into this program."
   },
   {
-    "objectID": "slides/slides01.html#my-crochet-journey-this-summer-1",
-    "href": "slides/slides01.html#my-crochet-journey-this-summer-1",
-    "title": "Welcome to Bayes!",
-    "section": "My crochet journey this summer",
-    "text": "My crochet journey this summer\n\n\n\n\n\nAsked an expert (my sister) for advice\nDid “practice problems” using easier material (yarn) and bigger hook\nFound a reliable internet source for videos and tutorials\nStarted being way more careful about checking my work and redoing things if I wasn’t sure"
+    "objectID": "slides/slides04.html#section-2",
+    "href": "slides/slides04.html#section-2",
+    "title": "Beta-Binomial Model",
+    "section": "",
+    "text": "For each of the student’s prior ideas for \\(\\pi\\) sketch the pdf of the prior. Your plot will not be exact since no exact values are given.\n\n\n\nXuan thinks that it is either really easy or really hard to get into the program\n\n\n\n\n\n\n\n\n\n\nBeyoncé thinks that it is extremely easy to get into this program."
   },
   {
-    "objectID": "slides/slides01.html#intros",
-    "href": "slides/slides01.html#intros",
-    "title": "Welcome to Bayes!",
-    "section": "Intros",
-    "text": "Intros\n\nName\nSomething you did over the summer\nWhat makes you nervous about this class or term?\nSomething about yourself you are proud of\n\n\n\n\n−+\n05:00"
+    "objectID": "slides/slides04.html#beta-prior-model",
+    "href": "slides/slides04.html#beta-prior-model",
+    "title": "Beta-Binomial Model",
+    "section": "Beta Prior model",
+    "text": "Beta Prior model\nLet \\(\\pi\\) be a random variable which can take any value between 0 and 1, ie. \\(\\pi \\in [0,1]\\). Then the variability in \\(\\pi\\) might be well modeled by a Beta model with shape parameters \\(\\alpha &gt; 0\\) and \\(\\beta &gt; 0\\):\n\\[\\pi \\sim \\text{Beta}(\\alpha, \\beta)\\]"
   },
   {
-    "objectID": "slides/slides01.html#warm-up",
-    "href": "slides/slides01.html#warm-up",
-    "title": "Welcome to Bayes!",
-    "section": "Warm Up",
-    "text": "Warm Up\n\nWhat are the key takeaways from:\n\nStat250: Stat Inference\nStat230: Regression\n\nWhat do you already know about Bayesian statistics?\n\n\n\n\n−+\n05:00"
+    "objectID": "slides/slides04.html#section-3",
+    "href": "slides/slides04.html#section-3",
+    "title": "Beta-Binomial Model",
+    "section": "",
+    "text": "The Beta model is specified by continuous pdf \\[\\begin{equation}\nf(\\pi) = \\frac{\\Gamma(\\alpha + \\beta)}{\\Gamma(\\alpha)\\Gamma(\\beta)} \\pi^{\\alpha-1} (1-\\pi)^{\\beta-1} \\;\\; \\text{ for } \\pi \\in [0,1]\n\\end{equation}\\]\nwhere \\(\\Gamma(z) = \\int_0^\\infty y^{z-1}e^{-y}dy\\) and \\(\\Gamma(z + 1) = z \\Gamma(z)\\).\nFun fact: when \\(z\\) is a positive integer, then \\(\\Gamma(z)\\) simplifies to \\(\\Gamma(z) = (z-1)!\\)."
   },
   {
-    "objectID": "slides/slides01.html#statistical-models",
-    "href": "slides/slides01.html#statistical-models",
-    "title": "Welcome to Bayes!",
-    "section": "Statistical models",
-    "text": "Statistical models\nA statistical model consists of\n\na collection of random variables to describe observable data,\nthe possible joint distribution(s) of the random variables,\nand the parameters, \\(\\boldsymbol \\theta\\), that define those distributions\n\n\n\nMorris and DeGroot, 377"
+    "objectID": "slides/slides04.html#beta-prior-model-1",
+    "href": "slides/slides04.html#beta-prior-model-1",
+    "title": "Beta-Binomial Model",
+    "section": "Beta Prior model",
+    "text": "Beta Prior model\n\n\n\n\n\n\n\n\n\n\n\n\n\\(\\pi \\sim \\text{Beta}(3, 8)\\)\n\\(f(\\pi) = \\frac{\\Gamma(\\alpha + \\beta)}{\\Gamma(\\alpha)\\Gamma(\\beta)} \\pi^{\\alpha-1} (1-\\pi)^{\\beta-1}\\)\n\\(f(0.5) =\\)"
   },
   {
-    "objectID": "slides/slides01.html#r.a.-fisher",
-    "href": "slides/slides01.html#r.a.-fisher",
-    "title": "Welcome to Bayes!",
-    "section": "R.A. Fisher",
-    "text": "R.A. Fisher\n1890-1962\n\n\n\n\n\nVariance\nANOVA\nNull hypothesis\nMaximum likelihood estimation\np-value\nLots of contributions in genetics\nAlso a eugenecist"
+    "objectID": "slides/slides04.html#beta-prior-model-2",
+    "href": "slides/slides04.html#beta-prior-model-2",
+    "title": "Beta-Binomial Model",
+    "section": "Beta Prior model",
+    "text": "Beta Prior model\n\\(\\pi \\sim \\text{Beta}(3, 8)\\)\n\n\n\n\n\n\n\n\n\n\n\n\n\ndbeta(x = 0.5, \n      shape1 = 3, \n      shape2 = 8)\n\n[1] 0.703125"
   },
   {
-    "objectID": "slides/slides01.html#neyman-pearson",
-    "href": "slides/slides01.html#neyman-pearson",
-    "title": "Welcome to Bayes!",
-    "section": "Neyman & Pearson",
-    "text": "Neyman & Pearson\n\n\n\n\n\nConfidence interval\nCorrelation\nRegression\nStandard deviation\nEffect size\n“Optimal” tests\n\\(\\alpha\\) and \\(\\beta\\)\nType I and II error"
+    "objectID": "slides/slides04.html#plotting-beta-prior",
+    "href": "slides/slides04.html#plotting-beta-prior",
+    "title": "Beta-Binomial Model",
+    "section": "Plotting Beta prior",
+    "text": "Plotting Beta prior"
   },
   {
-    "objectID": "slides/slides01.html#frequentist-vs-bayesian",
-    "href": "slides/slides01.html#frequentist-vs-bayesian",
-    "title": "Welcome to Bayes!",
-    "section": "Frequentist vs Bayesian",
-    "text": "Frequentist vs Bayesian"
+    "objectID": "slides/slides04.html#plotting-beta-prior-with-bayesrules-package",
+    "href": "slides/slides04.html#plotting-beta-prior-with-bayesrules-package",
+    "title": "Beta-Binomial Model",
+    "section": "Plotting Beta Prior with bayesrules package",
+    "text": "Plotting Beta Prior with bayesrules package\n\nplot_beta(alpha = 3, beta = 8)"
   },
   {
-    "objectID": "slides/slides01.html#bayes",
-    "href": "slides/slides01.html#bayes",
-    "title": "Welcome to Bayes!",
-    "section": "Bayes",
-    "text": "Bayes\n\n\n\n\nAll this guy did was Bayes’ rule:\n\\(P(A|B) = \\frac{P(B|A) P(A)}{ P(B)}\\)"
+    "objectID": "slides/slides04.html#beta-summaries",
+    "href": "slides/slides04.html#beta-summaries",
+    "title": "Beta-Binomial Model",
+    "section": "Beta summaries",
+    "text": "Beta summaries\n\\[E(\\pi) = \\frac{\\alpha}{\\alpha + \\beta}\\]\n\\[\\text{Mode}(\\pi) = \\frac{\\alpha - 1}{\\alpha + \\beta - 2}\\]\n\\[\\text{Var}(\\pi) = \\frac{\\alpha \\beta}{(\\alpha + \\beta)^2(\\alpha + \\beta + 1)}\\]"
   },
   {
-    "objectID": "slides/slides01.html#frequentist-vs-bayesian-1",
-    "href": "slides/slides01.html#frequentist-vs-bayesian-1",
-    "title": "Welcome to Bayes!",
-    "section": "Frequentist vs Bayesian",
-    "text": "Frequentist vs Bayesian\n\n\nFrequentist\n\n“Classical” statistics\nProbability is a long-run frequency\nMake decisions based on a p-value\nType I and Type II errors\nConfidence intervals\n\n\nBayesian\n\nProbability is a subjective belief\nUpdate “prior” probabilities with data to obtain “posterior” probabilities\nMake decisions according to posterior probabilities\n“Credible” intervals"
+    "objectID": "slides/slides04.html#beta-summaries-with-bayesrules-package",
+    "href": "slides/slides04.html#beta-summaries-with-bayesrules-package",
+    "title": "Beta-Binomial Model",
+    "section": "Beta summaries with bayesrules package",
+    "text": "Beta summaries with bayesrules package\nUse the summarize_beta() function in the bayesrules package to find the mean, mode, and variance of various Beta distributions. Example:\n\nsummarize_beta(alpha = 5, beta = 7)\n\n       mean mode        var        sd\n1 0.4166667  0.4 0.01869658 0.1367354"
   },
   {
-    "objectID": "slides/slides01.html#q1",
-    "href": "slides/slides01.html#q1",
-    "title": "Welcome to Bayes!",
-    "section": "Q1",
-    "text": "Q1\nWhen flipping a fair coin, we say that “the probability of flipping Heads is 0.5.” How do you interpret this probability?\n\nIf I flip this coin over and over, roughly 50% will be Heads.\nHeads and Tails are equally plausible.\nBoth a and b make sense."
+    "objectID": "slides/slides04.html#posterior-for-the-beta-binomial-model",
+    "href": "slides/slides04.html#posterior-for-the-beta-binomial-model",
+    "title": "Beta-Binomial Model",
+    "section": "Posterior for the Beta-Binomial model",
+    "text": "Posterior for the Beta-Binomial model"
   },
   {
-    "objectID": "slides/slides01.html#q2",
-    "href": "slides/slides01.html#q2",
-    "title": "Welcome to Bayes!",
-    "section": "Q2",
-    "text": "Q2\nAn election is coming up and a pollster claims that candidate A has a 0.9 probability of winning. How do you interpret this probability?\n\nIf we observe the election over and over, candidate A will win roughly 90% of the time.\nCandidate A is much more likely to win than to lose.\nThe pollster’s calculation is wrong. Candidate A will either win or lose, thus their probability of winning can only be 0 or 1."
+    "objectID": "slides/slides04.html#posterior-for-the-beta-binomial-model-1",
+    "href": "slides/slides04.html#posterior-for-the-beta-binomial-model-1",
+    "title": "Beta-Binomial Model",
+    "section": "Posterior for the Beta-Binomial model",
+    "text": "Posterior for the Beta-Binomial model"
   },
   {
-    "objectID": "slides/slides01.html#q3",
-    "href": "slides/slides01.html#q3",
-    "title": "Welcome to Bayes!",
-    "section": "Q3",
-    "text": "Q3\nConsider two claims.\n\nZuofu claims that he can predict the outcome of a coin flip. To test his claim, you flip a fair coin 10 times and he correctly predicts all 10.\nKavya claims that she can distinguish natural and artificial sweeteners. To test her claim, you give her 10 sweetener samples and she correctly identifies each.\n\nIn light of these experiments, what do you conclude?\n\nYou’re more confident in Kavya’s claim than Zuofu’s claim.\nThe evidence supporting Zuofu’s claim is just as strong as the evidence supporting Kavya’s claim."
+    "objectID": "slides/slides04.html#conjugate-prior",
+    "href": "slides/slides04.html#conjugate-prior",
+    "title": "Beta-Binomial Model",
+    "section": "Conjugate prior",
+    "text": "Conjugate prior\nWe say that \\(f(\\pi)\\) is a conjugate prior for \\(L(\\pi|y)\\) if the posterior, \\(f(\\pi|y) \\propto f(\\pi)L(\\pi|y)\\), is from the same model family as the prior.\nThus, the Beta distribution is a conjugate prior for the Binomial likelihood model since the posterior also follows a Beta distribution."
   },
   {
-    "objectID": "slides/slides01.html#q4",
-    "href": "slides/slides01.html#q4",
-    "title": "Welcome to Bayes!",
-    "section": "Q4",
-    "text": "Q4\nSuppose that during a recent doctor’s visit, you tested positive for a very rare disease. If you only get to ask the doctor one question, which would it be?\n\nWhat’s the chance that I actually have the disease?\nIf in fact I don’t have the disease, what’s the chance that I would’ve gotten this positive test result?"
+    "objectID": "slides/slides04.html#admission-example",
+    "href": "slides/slides04.html#admission-example",
+    "title": "Beta-Binomial Model",
+    "section": "Admission Example",
+    "text": "Admission Example\n\nOriginal discrete prior:\n\n\n\n\\(\\pi\\)\n0.2\n0.4\n0.8\n\n\n\n\n\\(f(\\pi)\\)\n.7\n.2\n.1\n\n\n\n\nBeta approximation:\n\nplot_beta(3, 7, mean = TRUE, mode = TRUE)"
   },
   {
-    "objectID": "slides/slides01.html#results",
-    "href": "slides/slides01.html#results",
-    "title": "Welcome to Bayes!",
-    "section": "Results",
-    "text": "Results\nGive yourself:\n\n+1 for each A\n+3 for each B\n+2 for C on Q1\n-2 for C on Q2\n\nResults:\n\nScore &lt;5: your thinking is pretty frequentist\nScore &gt;9: your thinking is pretty Bayesian\n6-8: your leaning changes depending on the scenario"
+    "objectID": "slides/slides04.html#data-posterior",
+    "href": "slides/slides04.html#data-posterior",
+    "title": "Beta-Binomial Model",
+    "section": "Data + Posterior",
+    "text": "Data + Posterior\n3/5 students were admitted\n\\[ \\pi \\sim \\text{Beta}(3, 7)\\] \\[ \\pi | Y \\sim \\text{Beta}(3 + y, 7 + n -y)\\] \\[ \\pi | Y \\sim \\text{Beta}(6, 9)\\]"
   },
   {
-    "objectID": "slides/slides01.html#tentative-schedule",
-    "href": "slides/slides01.html#tentative-schedule",
-    "title": "Welcome to Bayes!",
-    "section": "Tentative schedule",
-    "text": "Tentative schedule\n\n\n\n\nTopic\nChapters\nApprox. Duration\n\n\n\n\nIntro\n1-2\n1 week\n\n\nConjugate Analysis\n3-5\n2 weeks\n\n\nMCMC\n7\n1 weeks\n\n\nBayesian Regression\n9-14\n4 weeks\n\n\nHierarchical Models\n15\n2 weeks"
+    "objectID": "slides/slides04.html#posterior-summary",
+    "href": "slides/slides04.html#posterior-summary",
+    "title": "Beta-Binomial Model",
+    "section": "Posterior summary",
+    "text": "Posterior summary\n\nsummarize_beta(6,9)\n\n  mean      mode   var        sd\n1  0.4 0.3846154 0.015 0.1224745\n\nplot_beta(6, 9, mean = TRUE, mode = TRUE)"
   },
   {
-    "objectID": "slides/slides01.html#course-description",
-    "href": "slides/slides01.html#course-description",
-    "title": "Welcome to Bayes!",
-    "section": "Course description",
-    "text": "Course description\nThe Bayesian approach to statistics provides a powerful framework for incorporating prior knowledge into statistical analyses, updating this knowledge with data, and quantifying uncertainty in results. This course serves as a comprehensive introduction to Bayesian statistical inference and modeling, an alternative to the frequentist approach to statistics covered in previous classes. Topics include: Bayes’ Theorem; prior and posterior distributions; Bayesian regression; hierarchical models; and model adequacy and posterior predictive checks. Computational techniques will also be covered, including Markov Chain Monte Carlo methods, and modern Bayesian modeling packages in R."
+    "objectID": "slides/slides04.html#balancing-act",
+    "href": "slides/slides04.html#balancing-act",
+    "title": "Beta-Binomial Model",
+    "section": "Balancing act",
+    "text": "Balancing act\n\nplot_beta_binomial(alpha = 3, beta = 7,  y = 3, n = 5)"
   },
   {
-    "objectID": "slides/slides01.html#course-objectives",
-    "href": "slides/slides01.html#course-objectives",
-    "title": "Welcome to Bayes!",
-    "section": "Course Objectives",
-    "text": "Course Objectives\nAfter completing this course, you should be be able to demonstrate your competency with:\n\nExplaining the differences between frequentist and Bayesian approaches to statistics and data analysis\nSelecting appropriate prior distributions and likelihood models for Bayesian analysis\nUsing modern software to fit Bayesian models and assess their performance\nInterpreting results from Bayesian analyses"
+    "objectID": "slides/slides04.html#more-data-more-certainty",
+    "href": "slides/slides04.html#more-data-more-certainty",
+    "title": "Beta-Binomial Model",
+    "section": "More data, more certainty",
+    "text": "More data, more certainty\nWhat if 30/50 applicants get in?\n\nplot_beta_binomial(alpha = 3, beta = 7, y = 30, n = 50)"
   },
   {
-    "objectID": "slides/slides01.html#textbook",
-    "href": "slides/slides01.html#textbook",
-    "title": "Welcome to Bayes!",
-    "section": "Textbook:",
-    "text": "Textbook:\nBayes Rules! An Introduction to Applied Bayesian Modeling by Johnson, Ott, and Dogucu\nThe book is freely available at &lt;bayesrulesbook.com&gt;"
+    "objectID": "slides/slides04.html#more-more-data-more-more-certainty",
+    "href": "slides/slides04.html#more-more-data-more-more-certainty",
+    "title": "Beta-Binomial Model",
+    "section": "More more data, more more certainty",
+    "text": "More more data, more more certainty\nWhat if 300/500 applicants get in?\n\nplot_beta_binomial(alpha = 3, beta = 7, y = 300, n = 500)"
   },
   {
-    "objectID": "slides/slides01.html#computing",
-    "href": "slides/slides01.html#computing",
-    "title": "Welcome to Bayes!",
-    "section": "Computing:",
-    "text": "Computing:\nWe’ll be using R and RStudio throughout the course. If you’ve downloaded R to your own computer from a different class, great! If not, there are instructions available on the course website"
+    "objectID": "slides/slides04.html#data-context",
+    "href": "slides/slides04.html#data-context",
+    "title": "Beta-Binomial Model",
+    "section": "Data Context",
+    "text": "Data Context\nLet \\(\\pi\\) represent the proportion of students who are admitted to the program.\n\\(Y | \\pi \\sim \\text{Binom}(n, \\pi)\\)"
   },
   {
-    "objectID": "slides/slides01.html#what-will-you-do-in-this-course",
-    "href": "slides/slides01.html#what-will-you-do-in-this-course",
-    "title": "Welcome to Bayes!",
-    "section": "What will you do in this course?",
-    "text": "What will you do in this course?\nEach of the following components are important for your learning and therefore part of your final grade calculation:\n\n30% Homework due once per week\n\n10% Individual (graded on completion)\n10% Group (correctness and completion)\n10% Homework quizzes (correctness)\n\n10% Midterm project + presentation\n20% Final project + presentation\n20% Exam I\n20% Exam II"
+    "objectID": "slides/slides04.html#prior",
+    "href": "slides/slides04.html#prior",
+    "title": "Beta-Binomial Model",
+    "section": "Prior",
+    "text": "Prior\n\nplot_beta(3, 7)"
   },
   {
-    "objectID": "slides/slides01.html#what-will-a-typical-dayweek-look-like",
-    "href": "slides/slides01.html#what-will-a-typical-dayweek-look-like",
-    "title": "Welcome to Bayes!",
-    "section": "What will a typical day/week look like?",
-    "text": "What will a typical day/week look like?\n\n\nBefore class:\n\nRead a chapter\nCome with questions\nBe prepared to try what was covered\n\n\nIn class:\n\nLecture/demo\n\nSometimes review of chapter\nSometimes new\n\nHands-on work or coding in R\nTime for group assignments\n\n\nAfter class:\n\nFinish group assignments\nWork on individual assignments"
+    "objectID": "slides/slides04.html#data-and-the-posterior",
+    "href": "slides/slides04.html#data-and-the-posterior",
+    "title": "Beta-Binomial Model",
+    "section": "Data and the Posterior",
+    "text": "Data and the Posterior\n30/50 students are admitted\n\nsummarize_beta_binomial(3, 7, y = 30, n = 50)\n\n      model alpha beta mean      mode         var         sd\n1     prior     3    7 0.30 0.2500000 0.019090909 0.13816986\n2 posterior    33   27 0.55 0.5517241 0.004057377 0.06369754"
   },
   {
-    "objectID": "slides/slides01.html#office-hours-tentative",
-    "href": "slides/slides01.html#office-hours-tentative",
-    "title": "Welcome to Bayes!",
-    "section": "Office hours (tentative)",
-    "text": "Office hours (tentative)\n\n\n\nDay\nTime\nType\nLocation\n\n\n\n\nMonday\n12:30-1:30\nDrop-in\nCMC 307\n\n\nTuesday\n2-3\nDrop-in\nCMC 307\n\n\nWednesday\n3-41\nDrop-in\nCMC 307\n\n\nFriday\n10-112\nDrop-in\nCMC 307\n\n\n\nI will also have at least 1 hour of individual appointments available on my calendar per week\nStat120 PriorityStat340 Priority"
+    "objectID": "slides/slides04.html#section-4",
+    "href": "slides/slides04.html#section-4",
+    "title": "Beta-Binomial Model",
+    "section": "",
+    "text": "plot_beta_binomial(3, 7, y = 30, n = 50)\n\n\n\n\n\n\n\n\nCan we simulate the posterior without knowing it exactly?"
   },
   {
-    "objectID": "slides/slides01.html#communication",
-    "href": "slides/slides01.html#communication",
-    "title": "Welcome to Bayes!",
-    "section": "Communication",
-    "text": "Communication\n\n\nMoodle: assignments, slides, and grades\nSlack: homework questions, announcements, discussion\nEmail: personal matters, time-sensitive announcements\n\n\n\nSlack is the fastest way to reach me. I typically will respond to messages 3x per weekday. I try to respond to emails within 48 hours. I’m online sporadically on evenings and weekends to devote time to family and rest – I hope you also use this time to reset and recharge!"
+    "objectID": "slides/slides04.html#section-5",
+    "href": "slides/slides04.html#section-5",
+    "title": "Beta-Binomial Model",
+    "section": "",
+    "text": "set.seed(84735)\nadmission_sim &lt;- data.frame(pi = rbeta(10000, 3, 7)) \nhead(admission_sim)\n\n         pi\n1 0.4245463\n2 0.2796543\n3 0.4484403\n4 0.3412382\n5 0.4517916\n6 0.6361449\n\nadmission_sim &lt;- admission_sim |&gt;\n  mutate(y = rbinom(10000, size = 50, prob = pi))"
   },
   {
-    "objectID": "slides/slides01.html#advice-from-past-students",
-    "href": "slides/slides01.html#advice-from-past-students",
-    "title": "Welcome to Bayes!",
-    "section": "Advice from past students:",
-    "text": "Advice from past students:\n\nSTART HOMEWORKS EARLY\nDo the reading! The textbook is really great and can help give you a motivation for everything that’s happening in class.\nStart the problem sets early and go to office hours!\nask questions! you will inevitably not understand everything in the course at first pass.\nGo to her office hours!!!!!\nRead the book, and ask questions!\nTry to start the homework problems on the day that they are assigned.\nThis course is very fast-paced and intensive, so it may not be the right fit for everyone. Students who are not prepared for a compact schedule, or who are looking for an easier workload, may find it challenging. A solid foundation in statistics and a strong level of commitment are essential to keep up with the material and succeed in the class.\nAsk questions in class, Amanda has no problem reviewing a previously discussed concept.\nWork with other people in the class, collaboration is key\nStart the homework early! Give yourself time to get things done, to understand, and to pause. Don’t feel afraid to ask questions; she’s so accessible.\nSpend some time reviewing handouts before doing homework."
+    "objectID": "slides/slides04.html#section-6",
+    "href": "slides/slides04.html#section-6",
+    "title": "Beta-Binomial Model",
+    "section": "",
+    "text": "pi\ny\n\n\n\n\n0.4245463\n24\n\n\n0.2796543\n12\n\n\n0.4484403\n24\n\n\n0.3412382\n19\n\n\n0.4517916\n29\n\n\n0.6361449\n29\n\n\n0.3087587\n19\n\n\n0.7005417\n33\n\n\n0.3560422\n20\n\n\n0.3904306\n22"
   },
   {
-    "objectID": "slides/slides01.html#the-genius-myth",
-    "href": "slides/slides01.html#the-genius-myth",
-    "title": "Welcome to Bayes!",
-    "section": "The “Genius Myth”",
-    "text": "The “Genius Myth”\nIt’s sometimes easy to buy into the “genius myth” when it comes to math/stat courses: that you need to be a “math person” and have some innate mathematical ability in order to do well or become a statistics major. This could not be further from the truth! The best statisticians don’t necessarily have the “best” math or programming background, but are people that are able to formulate interesting questions and use math and programming to rigorously answer those questions. Many of the best statisticians I know became statisticians because they were initially interested in something else (biology, public health, psychology, neuroscience, physics, etc.) and realized that being able to answer important questions with data was not only valuable but fun and interesting. Being able to perform interesting statistical analyses is a skill that is learned, not an innate ability, and working hard at developing that skill is the point of this course."
+    "objectID": "slides/slides04.html#simulation-outcomes",
+    "href": "slides/slides04.html#simulation-outcomes",
+    "title": "Beta-Binomial Model",
+    "section": "Simulation outcomes",
+    "text": "Simulation outcomes"
   },
   {
-    "objectID": "slides/slides01.html#academic-integrity",
-    "href": "slides/slides01.html#academic-integrity",
-    "title": "Welcome to Bayes!",
-    "section": "Academic Integrity",
-    "text": "Academic Integrity\nYou are expected to follow Carleton’s policies regarding academic integrity. I encourage you to discuss the homework problems with others and use the resources available to you to try to figure out tough problems. You should code and write up your solutions on your own. Exams must be done by yourself without communicating with others; all work must be your own. The use of textbook solution manuals (physical or online), course materials from other students, or materials from previous versions of this course are not allowed. Copying, paraphrasing, summarizing, or submitting work generated by anyone but yourself without proper attribution is considered academic dishonesty (this includes output from LLMs).\nPlease ask if you are unsure of whether or not your actions are complying with the assignment/exam/project instructions. Always default to acknowledging any help received. Cases of suspected academic dishonesty are handled by the Provost’s Office and I am obligated to report any suspected violations of this policy."
+    "objectID": "slides/slides04.html#simulation-outcomes-that-match-the-data",
+    "href": "slides/slides04.html#simulation-outcomes-that-match-the-data",
+    "title": "Beta-Binomial Model",
+    "section": "Simulation outcomes that match the data",
+    "text": "Simulation outcomes that match the data"
   },
   {
-    "objectID": "slides/slides01.html#more-on-ai",
-    "href": "slides/slides01.html#more-on-ai",
-    "title": "Welcome to Bayes!",
-    "section": "More on “AI”",
-    "text": "More on “AI”\nLarge-language models (e.g. ChatGPT, Gemini, etc.) should only be used for help interpreting R’s error messages or suggestions for your own code once you have already attempted the problem. You should not copy and paste course material into or out of an AI text generator.\nI also have a few rules in place to protect my intellectual property. You may not record my lectures using tools such as Otter.ai or upload any video or audio recordings to generate transcripts or study notes. You may not upload my course materials (slides, assignment prompts, note sets, etc.) into AI tools or homework help sites (such as chegg).\n“AI” tools are new for all of us and it’s OK to have questions about what is and isn’t appropriate!"
+    "objectID": "slides/slides04.html#simulation-outcomes-that-match-the-data-1",
+    "href": "slides/slides04.html#simulation-outcomes-that-match-the-data-1",
+    "title": "Beta-Binomial Model",
+    "section": "Simulation outcomes that match the data",
+    "text": "Simulation outcomes that match the data\n\nadmission_posterior &lt;- admission_sim |&gt; \n  filter(y == 30)\n\n\nnrow(admission_posterior)\n\n[1] 100\n\n\n\\(f(\\pi|y =30)\\)"
   },
   {
-    "objectID": "slides/slides01.html#diversity-inclusion",
-    "href": "slides/slides01.html#diversity-inclusion",
-    "title": "Welcome to Bayes!",
-    "section": "Diversity & Inclusion",
-    "text": "Diversity & Inclusion\nWe all come to class with different backgrounds and experiences, and this diversity makes our class environment richer. We value diversity and inclusion, and are committed to a climate of mutual respect and full participation in and out of the classroom. This class strives to be a learning environment that is usable, equitable, inclusive and welcoming, regardless of race, ethnicity, religion, gender and gender identities, sexual orientation, ability, socioeconomic background, and nationality. If you anticipate or experience any barriers to learning, please discuss your concerns with me."
+    "objectID": "slides/slides04.html#simulated-posterior",
+    "href": "slides/slides04.html#simulated-posterior",
+    "title": "Beta-Binomial Model",
+    "section": "Simulated Posterior",
+    "text": "Simulated Posterior\n\nggplot(admission_posterior, aes(x = pi)) + \n  geom_histogram(color = \"white\", binwidth = 0.025)"
   },
   {
-    "objectID": "slides/slides01.html#accomodations",
-    "href": "slides/slides01.html#accomodations",
-    "title": "Welcome to Bayes!",
-    "section": "Accomodations",
-    "text": "Accomodations\nCarleton College is committed to providing equitable access to learning opportunities for all students. The Office of Accessibility Resources (Henry House, 107 Union Street) is the campus office that collaborates with students who have disabilities to provide and/or arrange reasonable accommodations. If you have, or think you may have, a disability, please contact OAR@carleton.edu to arrange a confidential discussion regarding equitable access and reasonable accommodations. You are also welcome to contact me privately to discuss your academic needs. However, all disability-related accommodations must be arranged, in advance, through OAR."
+    "objectID": "slides/slides04.html#simulated-posterior-density-estimate",
+    "href": "slides/slides04.html#simulated-posterior-density-estimate",
+    "title": "Beta-Binomial Model",
+    "section": "Simulated posterior density estimate",
+    "text": "Simulated posterior density estimate\n\nggplot(admission_posterior, aes(x = pi)) + \n  geom_density() + xlim(0,1)"
   },
   {
-    "objectID": "slides/slides01.html#title-ix",
-    "href": "slides/slides01.html#title-ix",
-    "title": "Welcome to Bayes!",
-    "section": "Title IX",
-    "text": "Title IX\nPlease be aware that all faculty are “responsible employees”, which means that if you tell me about a situation involving sexual harassment, sexual assault, dating violence, domestic violence, or stalking, I must share that information with the Title IX Coordinator. Although I have to make this notification, you will control how your case will be handled, including whether or not you wish to meet with the Title IX coordinator or pursue a formal complaint."
+    "objectID": "slides/slides03.html#is-this-the-same-likelihood-as-the-stat250-likelihood",
+    "href": "slides/slides03.html#is-this-the-same-likelihood-as-the-stat250-likelihood",
+    "title": "Likelihood review + Posterior Simulation",
+    "section": "Is this the same likelihood as the Stat250 likelihood?",
+    "text": "Is this the same likelihood as the Stat250 likelihood?"
   },
   {
-    "objectID": "slides/slides01.html#take-care-of-yourself",
-    "href": "slides/slides01.html#take-care-of-yourself",
-    "title": "Welcome to Bayes!",
-    "section": "Take care of yourself",
-    "text": "Take care of yourself\nDo your best to maintain a healthy lifestyle this semester by wearing a mask if you don’t feel well, eating a vegetable every day, exercising, avoiding excessive drug and alcohol use, getting enough sleep, and taking some time to relax. Your mental health is more important than your grade in this course. There are many helpful resources available on campus and an important part of the college experience is learning how to ask for help. If you are experiencing mental health symptoms as a result of coursework, please speak with me so we can address the problem together."
+    "objectID": "slides/slides03.html#does-it-matter-if-y-is-a-discrete-or-continuous-rv",
+    "href": "slides/slides03.html#does-it-matter-if-y-is-a-discrete-or-continuous-rv",
+    "title": "Likelihood review + Posterior Simulation",
+    "section": "Does it matter if \\(Y\\) is a discrete or continuous RV?",
+    "text": "Does it matter if \\(Y\\) is a discrete or continuous RV?"
+  },
+  {
+    "objectID": "slides/slides03.html#example-from-last-time-phd-admissions",
+    "href": "slides/slides03.html#example-from-last-time-phd-admissions",
+    "title": "Likelihood review + Posterior Simulation",
+    "section": "Example from last time: PhD admissions",
+    "text": "Example from last time: PhD admissions\n\n\n\nπ\n0.2\n0.4\n0.8\n\n\n\n\nf(π)\n0.7\n0.2\n0.1\n\n\nL(π | y = 3)\n0.0512\n0.2304\n0.2048\n\n\nf(π | y = 3)\n0.35\n0.45\n0.20"
+  },
+  {
+    "objectID": "slides/slides03.html#first-define-and-simulate-from-prior",
+    "href": "slides/slides03.html#first-define-and-simulate-from-prior",
+    "title": "Likelihood review + Posterior Simulation",
+    "section": "First, define and simulate from prior",
+    "text": "First, define and simulate from prior\n\nadmissions &lt;- tibble(\n  pi = c(.2, .4, .8)\n)\n\nprior &lt;- c(0.7, 0.2, 0.1)\n\nset.seed(091925)\nadmissions_sim &lt;- sample_n(admissions, \n                           size = 10000, \n                           weight = prior, \n                           replace = TRUE)"
+  },
+  {
+    "objectID": "slides/slides03.html#section",
+    "href": "slides/slides03.html#section",
+    "title": "Likelihood review + Posterior Simulation",
+    "section": "",
+    "text": "admissions_sim\n\n# A tibble: 10,000 × 1\n      pi\n   &lt;dbl&gt;\n 1   0.2\n 2   0.2\n 3   0.2\n 4   0.4\n 5   0.2\n 6   0.4\n 7   0.2\n 8   0.4\n 9   0.2\n10   0.8\n# ℹ 9,990 more rows"
+  },
+  {
+    "objectID": "slides/slides03.html#simulated-pi-closely-approximates-prior-fpi",
+    "href": "slides/slides03.html#simulated-pi-closely-approximates-prior-fpi",
+    "title": "Likelihood review + Posterior Simulation",
+    "section": "Simulated pi closely approximates prior \\(f(\\pi)\\)",
+    "text": "Simulated pi closely approximates prior \\(f(\\pi)\\)\n\nadmissions_sim |&gt;\n  tabyl(pi)\n\n  pi    n percent\n 0.2 7030  0.7030\n 0.4 2002  0.2002\n 0.8  968  0.0968"
+  },
+  {
+    "objectID": "slides/slides03.html#simulate-outcomes",
+    "href": "slides/slides03.html#simulate-outcomes",
+    "title": "Likelihood review + Posterior Simulation",
+    "section": "Simulate outcomes",
+    "text": "Simulate outcomes\n\nadmissions_sim &lt;- admissions_sim |&gt;\n  mutate(\n    y = rbinom(10000, size = 5, prob = pi)\n  )\n\nadmissions_sim |&gt; head(5)\n\n# A tibble: 5 × 2\n     pi     y\n  &lt;dbl&gt; &lt;int&gt;\n1   0.2     1\n2   0.2     2\n3   0.2     0\n4   0.4     0\n5   0.2     0"
+  },
+  {
+    "objectID": "slides/slides03.html#simulated-y-outcomes-approximate-fypi",
+    "href": "slides/slides03.html#simulated-y-outcomes-approximate-fypi",
+    "title": "Likelihood review + Posterior Simulation",
+    "section": "Simulated y outcomes approximate \\(f(y|\\pi)\\)",
+    "text": "Simulated y outcomes approximate \\(f(y|\\pi)\\)\n\nggplot(admissions_sim, aes(x = y)) +\n  geom_bar(aes(y = after_stat(prop))) + \n  facet_wrap(vars(pi))"
+  },
+  {
+    "objectID": "slides/slides03.html#to-approximate-posterior-condition-on-observed-data-and-look-at-relative-frequency",
+    "href": "slides/slides03.html#to-approximate-posterior-condition-on-observed-data-and-look-at-relative-frequency",
+    "title": "Likelihood review + Posterior Simulation",
+    "section": "To approximate posterior, condition on observed data and look at relative frequency",
+    "text": "To approximate posterior, condition on observed data and look at relative frequency\n\nobserved &lt;- admissions_sim |&gt;\n  filter(y == 3)\n\nobserved |&gt;\n  tabyl(pi)\n\n  pi   n   percent\n 0.2 365 0.3628231\n 0.4 445 0.4423459\n 0.8 196 0.1948310"
+  },
+  {
+    "objectID": "slides/slides-cheat-sheet.html#columns",
+    "href": "slides/slides-cheat-sheet.html#columns",
+    "title": "Slides Cheat Sheet",
+    "section": "Columns",
+    "text": "Columns\n\n\n\nFirst year at Carleton!\nTaught at Swarthmore for 5 years before moving here this fall\nPhD in Statistics & Data Science from Carnegie Mellon University\nGrew up in Minnesota, went to St Ben’s as an undergrad"
+  },
+  {
+    "objectID": "slides/slides-cheat-sheet.html#only-graph-from-code",
+    "href": "slides/slides-cheat-sheet.html#only-graph-from-code",
+    "title": "Slides Cheat Sheet",
+    "section": "Only graph from code",
+    "text": "Only graph from code"
+  },
+  {
+    "objectID": "slides/slides-cheat-sheet.html#background-image-half",
+    "href": "slides/slides-cheat-sheet.html#background-image-half",
+    "title": "Slides Cheat Sheet",
+    "section": "Background Image (half)",
+    "text": "Background Image (half)\n\n\nWhat skills do you need?\n\nprogramming with data\nstatistical modeling\ndomain knowledge\ncommunication"
+  },
+  {
+    "objectID": "slides/slides-cheat-sheet.html#full-size-image",
+    "href": "slides/slides-cheat-sheet.html#full-size-image",
+    "title": "Slides Cheat Sheet",
+    "section": "Full size image",
+    "text": "Full size image\n\n\n\nImage by Adam Loy  adapted from work of Joe Blitzstein, Hanspeter Pfister, and Hadley Wickham"
+  },
+  {
+    "objectID": "slides/slides-cheat-sheet.html#background-image-full-size",
+    "href": "slides/slides-cheat-sheet.html#background-image-full-size",
+    "title": "Slides Cheat Sheet",
+    "section": "Background image (full size)",
+    "text": "Background image (full size)"
+  },
+  {
+    "objectID": "slides/slides-cheat-sheet.html#countdown",
+    "href": "slides/slides-cheat-sheet.html#countdown",
+    "title": "Slides Cheat Sheet",
+    "section": "Countdown",
+    "text": "Countdown\n\nWith your neighbor(s):\nChoose two countries to compare to the U.S. voting record in the U.N. over the years.\nWhat did you learn?\n\n\n\n\n−+\n04:00"
+  },
+  {
+    "objectID": "slides/slides-cheat-sheet.html#table-column-widths",
+    "href": "slides/slides-cheat-sheet.html#table-column-widths",
+    "title": "Slides Cheat Sheet",
+    "section": "table column widths",
+    "text": "table column widths\n\n\n\n\n\n\n\n\nCollaboration Allowed\n\n\n\n\nHomework Problems\nYou are allowed and encouraged to collaborate on homework. You may also use outside resources, but your submitted work must be your own and reflect your own understanding .\n\n\nLab Quiz Problems\nNo collaboration is allowed at all . You may use your own notes for resubmissions, but should not use outside resources.\n\n\nPortfolio Projects\nYou are expected to collaborate with your group, but cannot rely on external sources other than to help motivate the questions or provide other background information. Getting answers on significant parts of solutions from outside resources is not allowed.\n\n\nFinal Project\nYou are expected to collaborate with your group, but cannot rely on external sources other than to help motivate the questions or provide other background information. Any outside resources should be properly cited."
+  },
+  {
+    "objectID": "slides/slides-cheat-sheet.html#use-of-generative-artificial-intelligence-ai",
+    "href": "slides/slides-cheat-sheet.html#use-of-generative-artificial-intelligence-ai",
+    "title": "Slides Cheat Sheet",
+    "section": "Use of generative artificial intelligence (AI)",
+    "text": "Use of generative artificial intelligence (AI)\n\nTreat generative AI, such as ChatGPT or Gemini, the same as other online resources.\nGuiding principles:\n\n(1) Cognitive dimension: Working with AI should not reduce your ability to think clearly. AI should facilitate—rather than hinder—learning.\n(2) Ethical dimension: Students using AI should be transparent about their use and make sure it aligns with academic integrity.\n\n❌ AI tools for writing code: You may not use generative AI to take a “first pass” at a coding task. Do not type coursework prompts directly into AI tools.\n✅ AI tools for debugging code: You may make use of the technology to get help with error messages or trying to fix issues\n❌ AI tools for narrative: Unless instructed otherwise, you may not use generative AI to write narrative on assignments. In general, you may use generative AI as a resource as you complete assignments but not to answer the exercises for you.\n\n\n\nAdapted from Mine Çetinkaya-Rundel"
+  },
+  {
+    "objectID": "slides/slides-cheat-sheet.html#linktask",
+    "href": "slides/slides-cheat-sheet.html#linktask",
+    "title": "Slides Cheat Sheet",
+    "section": "Link/task",
+    "text": "Link/task\n\nhttps://github.com/stat220-w25\n\n\nFill out the Welcome Survey for collection of your account names, later this week you will be invited to the course organization."
+  },
+  {
+    "objectID": "slides/slides-cheat-sheet.html#handwriting-font",
+    "href": "slides/slides-cheat-sheet.html#handwriting-font",
+    "title": "Slides Cheat Sheet",
+    "section": "handwriting font",
+    "text": "handwriting font\n\nin case you don’t yet have a GitHub account…"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Stat 340: Bayesian Statistics",
+    "section": "",
+    "text": "This page contains an outline of the topics, content, and assignments for the term. Note that this schedule will be updated as the term progresses and the timeline of topics and assignments might be updated. Any major changes to due dates will be announced in class and indicated in bold here.\n\n\n\n\n\n\nWEEK\nDOW\nDATE\nPREPARE\nTOPIC\nMATERIALS\nDUE\n\n\n\n1\nM\nMon, Sep 15\n📝complete welcome survey  📚 Bayes Rules Ch1  💻 Join Slack workspace\n\nIntro to Bayesian Thinking\nSlides01\n\n\n\n1\nW\nWed, Sep 17\n📚 Bayes Rules Ch2  💻 Complete computing setup\n\nBayes Rule, R Setup\nSlides02\n\n\n\n1\nF\nFri, Sep 19\n\nProbability and Likelihood Review; Posterior Simulation\nSlides03\n\nHW 1 and GW 1\n\n\n\n2\nM\nMon, Sep 22\n📚 Bayes Rules Ch3 \n\nBeta-Binomial Model\nSlides04\n\n\n\n2\nW\nWed, Sep 24\n📚 Bayes Rules Ch4 \n\nBalance and Sequentiality\nSlides05\n\n\n\n2\nF\nFri, Sep 26\n📚 Bayes Rules Ch5.1-2 \n\nGamma-Gamma\nSlides06\n\nHW 2 and GW 2\n\n\n\n3\nM\nMon, Sep 29\n📚 Bayes Rules Ch5.3-5.6 \n\nNormal-Normal\ntbd\n\n\n\n3\nW\nWed, Oct 1\n📚 Bayes Rules Ch6.1-2 \n\nGrid approximation and Markov Chains\ntbd\n\n\n\n3\nF\nFri, Oct 3\n📚 Bayes Rules Ch6.3 \n\nDiagnostics\ntbd\nHW3\n\n\n4\nM\nMon, Oct 6\n📚 Bayes Rules Ch7.1-7.3 \n\nMCMC I\ntbd\nHand out computing project\n\n\n4\nW\nWed, Oct 8\n📚 Bayes Rules Ch7.4-7 \n\nMCMC II\ntbd\n\n\n\n4\nF\nFri, Oct 10\n\nExam I\ntbd\nHW4\n\n\n5\nM\nMon, Oct 13\n\nPosterior Inference\ntbd\n\n\n\n5\nW\nWed, Oct 15\n\nPosterior Prediction\ntbd\n\n\n\n5\nF\nFri, Oct 17\n\nRegression\ntbd\nHW5\n\n\n6\nM\nMon, Oct 20\n\n❌ Midterm Break; no class\ntbd\n\n\n\n6\nW\nWed, Oct 22\n\nEvaluating I\ntbd\nComputing Project Due\n\n\n6\nF\nFri, Oct 24\n\nEvaluating II\ntbd\nHW6\n\n\n7\nM\nMon, Oct 27\n\nExtending Regression Model\ntbd\n\n\n\n7\nW\nWed, Oct 29\n\nPoisson Regression\ntbd\n\n\n\n7\nF\nFri, Oct 31\n\nNegative Binomial Regression\ntbd\nHW7\n\n\n8\nM\nMon, Nov 3\n\nLogistic Regression\ntbd\n\n\n\n8\nW\nWed, Nov 5\n\nNaive Bayes Classification\ntbd\n\n\n\n8\nF\nFri, Nov 7\n\nExam II\ntbd\nHW8\n\n\n9\nM\nMon, Nov 10\n\nHierarchical Models I\ntbd\n\n\n\n9\nW\nWed, Nov 12\n\nHierarchical Models II\ntbd\n\n\n\n9\nF\nFri, Nov 14\n\nHierarchical Models III\ntbd\n\n\n\n10\nM\nMon, Nov 17\n\nProject work day\ntbd\nHW 9\n\n\n10\nW\nWed, Nov 19\n\nLightning talks\ntbd\n\n\n\n\nM\nFri, Nov 21\n\nFinal Project Due @ noon\ntbd",
+    "crumbs": [
+      "Schedule"
+    ]
   },
   {
     "objectID": "slides/slides02.html#warm-up-i-bayesian-personality-quiz",
@@ -886,371 +1122,368 @@
     "text": "Summary\nThree steps to a Bayesian analysis:\n\nConstruct a prior model for the variable of interest (possible values and the relative plausibility of each)\nUpon observing data \\(Y = y\\), define the likelihoood \\(L(\\pi |y) = P(y | \\pi)\\)\nBuild the posterior model of the variable of interest using Bayes Rule, which balances the prior and likelihood: \\[\\text{posterior} = \\frac{\\text{prior} \\cdot \\text{likelihood}}{\\text{normalizing constant}} \\propto \\text{prior} \\cdot \\text{likelihood}\\]"
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Stat 340: Bayesian Statistics",
+    "objectID": "slides/slides01.html#plan-for-today",
+    "href": "slides/slides01.html#plan-for-today",
+    "title": "Welcome to Bayes!",
+    "section": "Plan for today",
+    "text": "Plan for today\n\nIntros\nIntro to Bayesian Thinking\nSyllabus"
+  },
+  {
+    "objectID": "slides/slides01.html#about-me",
+    "href": "slides/slides01.html#about-me",
+    "title": "Welcome to Bayes!",
+    "section": "About me",
+    "text": "About me\n\n\n\nEllis (almost 1.5!)\nSecond year at Carleton\nTaught at Swarthmore for 5 years before moving to MN\nPhD in Statistics & Data Science from Carnegie Mellon University\nGrew up in Minnesota, went to St Ben’s as an undergrad"
+  },
+  {
+    "objectID": "slides/slides01.html#my-crochet-journey-this-summer",
+    "href": "slides/slides01.html#my-crochet-journey-this-summer",
+    "title": "Welcome to Bayes!",
+    "section": "My crochet journey this summer",
+    "text": "My crochet journey this summer\n\n\n\n\n\nDecided I wanted to make a basket\nSkipped “practice these stitches” and just went for it\nDidn’t understand the pattern, watched a couple of youtube videos from random creators and went for it\nKept going even when I was very clearly doing something wrong"
+  },
+  {
+    "objectID": "slides/slides01.html#my-crochet-journey-this-summer-1",
+    "href": "slides/slides01.html#my-crochet-journey-this-summer-1",
+    "title": "Welcome to Bayes!",
+    "section": "My crochet journey this summer",
+    "text": "My crochet journey this summer\n\n\n\n\n\nAsked an expert (my sister) for advice\nDid “practice problems” using easier material (yarn) and bigger hook\nFound a reliable internet source for videos and tutorials\nStarted being way more careful about checking my work and redoing things if I wasn’t sure"
+  },
+  {
+    "objectID": "slides/slides01.html#intros",
+    "href": "slides/slides01.html#intros",
+    "title": "Welcome to Bayes!",
+    "section": "Intros",
+    "text": "Intros\n\nName\nSomething you did over the summer\nWhat makes you nervous about this class or term?\nSomething about yourself you are proud of\n\n\n\n\n−+\n05:00"
+  },
+  {
+    "objectID": "slides/slides01.html#warm-up",
+    "href": "slides/slides01.html#warm-up",
+    "title": "Welcome to Bayes!",
+    "section": "Warm Up",
+    "text": "Warm Up\n\nWhat are the key takeaways from:\n\nStat250: Stat Inference\nStat230: Regression\n\nWhat do you already know about Bayesian statistics?\n\n\n\n\n−+\n05:00"
+  },
+  {
+    "objectID": "slides/slides01.html#statistical-models",
+    "href": "slides/slides01.html#statistical-models",
+    "title": "Welcome to Bayes!",
+    "section": "Statistical models",
+    "text": "Statistical models\nA statistical model consists of\n\na collection of random variables to describe observable data,\nthe possible joint distribution(s) of the random variables,\nand the parameters, \\(\\boldsymbol \\theta\\), that define those distributions\n\n\n\nMorris and DeGroot, 377"
+  },
+  {
+    "objectID": "slides/slides01.html#r.a.-fisher",
+    "href": "slides/slides01.html#r.a.-fisher",
+    "title": "Welcome to Bayes!",
+    "section": "R.A. Fisher",
+    "text": "R.A. Fisher\n1890-1962\n\n\n\n\n\nVariance\nANOVA\nNull hypothesis\nMaximum likelihood estimation\np-value\nLots of contributions in genetics\nAlso a eugenecist"
+  },
+  {
+    "objectID": "slides/slides01.html#neyman-pearson",
+    "href": "slides/slides01.html#neyman-pearson",
+    "title": "Welcome to Bayes!",
+    "section": "Neyman & Pearson",
+    "text": "Neyman & Pearson\n\n\n\n\n\nConfidence interval\nCorrelation\nRegression\nStandard deviation\nEffect size\n“Optimal” tests\n\\(\\alpha\\) and \\(\\beta\\)\nType I and II error"
+  },
+  {
+    "objectID": "slides/slides01.html#frequentist-vs-bayesian",
+    "href": "slides/slides01.html#frequentist-vs-bayesian",
+    "title": "Welcome to Bayes!",
+    "section": "Frequentist vs Bayesian",
+    "text": "Frequentist vs Bayesian"
+  },
+  {
+    "objectID": "slides/slides01.html#bayes",
+    "href": "slides/slides01.html#bayes",
+    "title": "Welcome to Bayes!",
+    "section": "Bayes",
+    "text": "Bayes\n\n\n\n\nAll this guy did was Bayes’ rule:\n\\(P(A|B) = \\frac{P(B|A) P(A)}{ P(B)}\\)"
+  },
+  {
+    "objectID": "slides/slides01.html#frequentist-vs-bayesian-1",
+    "href": "slides/slides01.html#frequentist-vs-bayesian-1",
+    "title": "Welcome to Bayes!",
+    "section": "Frequentist vs Bayesian",
+    "text": "Frequentist vs Bayesian\n\n\nFrequentist\n\n“Classical” statistics\nProbability is a long-run frequency\nMake decisions based on a p-value\nType I and Type II errors\nConfidence intervals\n\n\nBayesian\n\nProbability is a subjective belief\nUpdate “prior” probabilities with data to obtain “posterior” probabilities\nMake decisions according to posterior probabilities\n“Credible” intervals"
+  },
+  {
+    "objectID": "slides/slides01.html#q1",
+    "href": "slides/slides01.html#q1",
+    "title": "Welcome to Bayes!",
+    "section": "Q1",
+    "text": "Q1\nWhen flipping a fair coin, we say that “the probability of flipping Heads is 0.5.” How do you interpret this probability?\n\nIf I flip this coin over and over, roughly 50% will be Heads.\nHeads and Tails are equally plausible.\nBoth a and b make sense."
+  },
+  {
+    "objectID": "slides/slides01.html#q2",
+    "href": "slides/slides01.html#q2",
+    "title": "Welcome to Bayes!",
+    "section": "Q2",
+    "text": "Q2\nAn election is coming up and a pollster claims that candidate A has a 0.9 probability of winning. How do you interpret this probability?\n\nIf we observe the election over and over, candidate A will win roughly 90% of the time.\nCandidate A is much more likely to win than to lose.\nThe pollster’s calculation is wrong. Candidate A will either win or lose, thus their probability of winning can only be 0 or 1."
+  },
+  {
+    "objectID": "slides/slides01.html#q3",
+    "href": "slides/slides01.html#q3",
+    "title": "Welcome to Bayes!",
+    "section": "Q3",
+    "text": "Q3\nConsider two claims.\n\nZuofu claims that he can predict the outcome of a coin flip. To test his claim, you flip a fair coin 10 times and he correctly predicts all 10.\nKavya claims that she can distinguish natural and artificial sweeteners. To test her claim, you give her 10 sweetener samples and she correctly identifies each.\n\nIn light of these experiments, what do you conclude?\n\nYou’re more confident in Kavya’s claim than Zuofu’s claim.\nThe evidence supporting Zuofu’s claim is just as strong as the evidence supporting Kavya’s claim."
+  },
+  {
+    "objectID": "slides/slides01.html#q4",
+    "href": "slides/slides01.html#q4",
+    "title": "Welcome to Bayes!",
+    "section": "Q4",
+    "text": "Q4\nSuppose that during a recent doctor’s visit, you tested positive for a very rare disease. If you only get to ask the doctor one question, which would it be?\n\nWhat’s the chance that I actually have the disease?\nIf in fact I don’t have the disease, what’s the chance that I would’ve gotten this positive test result?"
+  },
+  {
+    "objectID": "slides/slides01.html#results",
+    "href": "slides/slides01.html#results",
+    "title": "Welcome to Bayes!",
+    "section": "Results",
+    "text": "Results\nGive yourself:\n\n+1 for each A\n+3 for each B\n+2 for C on Q1\n-2 for C on Q2\n\nResults:\n\nScore &lt;5: your thinking is pretty frequentist\nScore &gt;9: your thinking is pretty Bayesian\n6-8: your leaning changes depending on the scenario"
+  },
+  {
+    "objectID": "slides/slides01.html#tentative-schedule",
+    "href": "slides/slides01.html#tentative-schedule",
+    "title": "Welcome to Bayes!",
+    "section": "Tentative schedule",
+    "text": "Tentative schedule\n\n\n\n\nTopic\nChapters\nApprox. Duration\n\n\n\n\nIntro\n1-2\n1 week\n\n\nConjugate Analysis\n3-5\n2 weeks\n\n\nMCMC\n7\n1 weeks\n\n\nBayesian Regression\n9-14\n4 weeks\n\n\nHierarchical Models\n15\n2 weeks"
+  },
+  {
+    "objectID": "slides/slides01.html#course-description",
+    "href": "slides/slides01.html#course-description",
+    "title": "Welcome to Bayes!",
+    "section": "Course description",
+    "text": "Course description\nThe Bayesian approach to statistics provides a powerful framework for incorporating prior knowledge into statistical analyses, updating this knowledge with data, and quantifying uncertainty in results. This course serves as a comprehensive introduction to Bayesian statistical inference and modeling, an alternative to the frequentist approach to statistics covered in previous classes. Topics include: Bayes’ Theorem; prior and posterior distributions; Bayesian regression; hierarchical models; and model adequacy and posterior predictive checks. Computational techniques will also be covered, including Markov Chain Monte Carlo methods, and modern Bayesian modeling packages in R."
+  },
+  {
+    "objectID": "slides/slides01.html#course-objectives",
+    "href": "slides/slides01.html#course-objectives",
+    "title": "Welcome to Bayes!",
+    "section": "Course Objectives",
+    "text": "Course Objectives\nAfter completing this course, you should be be able to demonstrate your competency with:\n\nExplaining the differences between frequentist and Bayesian approaches to statistics and data analysis\nSelecting appropriate prior distributions and likelihood models for Bayesian analysis\nUsing modern software to fit Bayesian models and assess their performance\nInterpreting results from Bayesian analyses"
+  },
+  {
+    "objectID": "slides/slides01.html#textbook",
+    "href": "slides/slides01.html#textbook",
+    "title": "Welcome to Bayes!",
+    "section": "Textbook:",
+    "text": "Textbook:\nBayes Rules! An Introduction to Applied Bayesian Modeling by Johnson, Ott, and Dogucu\nThe book is freely available at &lt;bayesrulesbook.com&gt;"
+  },
+  {
+    "objectID": "slides/slides01.html#computing",
+    "href": "slides/slides01.html#computing",
+    "title": "Welcome to Bayes!",
+    "section": "Computing:",
+    "text": "Computing:\nWe’ll be using R and RStudio throughout the course. If you’ve downloaded R to your own computer from a different class, great! If not, there are instructions available on the course website"
+  },
+  {
+    "objectID": "slides/slides01.html#what-will-you-do-in-this-course",
+    "href": "slides/slides01.html#what-will-you-do-in-this-course",
+    "title": "Welcome to Bayes!",
+    "section": "What will you do in this course?",
+    "text": "What will you do in this course?\nEach of the following components are important for your learning and therefore part of your final grade calculation:\n\n30% Homework due once per week\n\n10% Individual (graded on completion)\n10% Group (correctness and completion)\n10% Homework quizzes (correctness)\n\n10% Midterm project + presentation\n20% Final project + presentation\n20% Exam I\n20% Exam II"
+  },
+  {
+    "objectID": "slides/slides01.html#what-will-a-typical-dayweek-look-like",
+    "href": "slides/slides01.html#what-will-a-typical-dayweek-look-like",
+    "title": "Welcome to Bayes!",
+    "section": "What will a typical day/week look like?",
+    "text": "What will a typical day/week look like?\n\n\nBefore class:\n\nRead a chapter\nCome with questions\nBe prepared to try what was covered\n\n\nIn class:\n\nLecture/demo\n\nSometimes review of chapter\nSometimes new\n\nHands-on work or coding in R\nTime for group assignments\n\n\nAfter class:\n\nFinish group assignments\nWork on individual assignments"
+  },
+  {
+    "objectID": "slides/slides01.html#office-hours-tentative",
+    "href": "slides/slides01.html#office-hours-tentative",
+    "title": "Welcome to Bayes!",
+    "section": "Office hours (tentative)",
+    "text": "Office hours (tentative)\n\n\n\nDay\nTime\nType\nLocation\n\n\n\n\nMonday\n12:30-1:30\nDrop-in\nCMC 307\n\n\nTuesday\n2-3\nDrop-in\nCMC 307\n\n\nWednesday\n3-41\nDrop-in\nCMC 307\n\n\nFriday\n10-112\nDrop-in\nCMC 307\n\n\n\nI will also have at least 1 hour of individual appointments available on my calendar per week\nStat120 PriorityStat340 Priority"
+  },
+  {
+    "objectID": "slides/slides01.html#communication",
+    "href": "slides/slides01.html#communication",
+    "title": "Welcome to Bayes!",
+    "section": "Communication",
+    "text": "Communication\n\n\nMoodle: assignments, slides, and grades\nSlack: homework questions, announcements, discussion\nEmail: personal matters, time-sensitive announcements\n\n\n\nSlack is the fastest way to reach me. I typically will respond to messages 3x per weekday. I try to respond to emails within 48 hours. I’m online sporadically on evenings and weekends to devote time to family and rest – I hope you also use this time to reset and recharge!"
+  },
+  {
+    "objectID": "slides/slides01.html#advice-from-past-students",
+    "href": "slides/slides01.html#advice-from-past-students",
+    "title": "Welcome to Bayes!",
+    "section": "Advice from past students:",
+    "text": "Advice from past students:\n\nSTART HOMEWORKS EARLY\nDo the reading! The textbook is really great and can help give you a motivation for everything that’s happening in class.\nStart the problem sets early and go to office hours!\nask questions! you will inevitably not understand everything in the course at first pass.\nGo to her office hours!!!!!\nRead the book, and ask questions!\nTry to start the homework problems on the day that they are assigned.\nThis course is very fast-paced and intensive, so it may not be the right fit for everyone. Students who are not prepared for a compact schedule, or who are looking for an easier workload, may find it challenging. A solid foundation in statistics and a strong level of commitment are essential to keep up with the material and succeed in the class.\nAsk questions in class, Amanda has no problem reviewing a previously discussed concept.\nWork with other people in the class, collaboration is key\nStart the homework early! Give yourself time to get things done, to understand, and to pause. Don’t feel afraid to ask questions; she’s so accessible.\nSpend some time reviewing handouts before doing homework."
+  },
+  {
+    "objectID": "slides/slides01.html#the-genius-myth",
+    "href": "slides/slides01.html#the-genius-myth",
+    "title": "Welcome to Bayes!",
+    "section": "The “Genius Myth”",
+    "text": "The “Genius Myth”\nIt’s sometimes easy to buy into the “genius myth” when it comes to math/stat courses: that you need to be a “math person” and have some innate mathematical ability in order to do well or become a statistics major. This could not be further from the truth! The best statisticians don’t necessarily have the “best” math or programming background, but are people that are able to formulate interesting questions and use math and programming to rigorously answer those questions. Many of the best statisticians I know became statisticians because they were initially interested in something else (biology, public health, psychology, neuroscience, physics, etc.) and realized that being able to answer important questions with data was not only valuable but fun and interesting. Being able to perform interesting statistical analyses is a skill that is learned, not an innate ability, and working hard at developing that skill is the point of this course."
+  },
+  {
+    "objectID": "slides/slides01.html#academic-integrity",
+    "href": "slides/slides01.html#academic-integrity",
+    "title": "Welcome to Bayes!",
+    "section": "Academic Integrity",
+    "text": "Academic Integrity\nYou are expected to follow Carleton’s policies regarding academic integrity. I encourage you to discuss the homework problems with others and use the resources available to you to try to figure out tough problems. You should code and write up your solutions on your own. Exams must be done by yourself without communicating with others; all work must be your own. The use of textbook solution manuals (physical or online), course materials from other students, or materials from previous versions of this course are not allowed. Copying, paraphrasing, summarizing, or submitting work generated by anyone but yourself without proper attribution is considered academic dishonesty (this includes output from LLMs).\nPlease ask if you are unsure of whether or not your actions are complying with the assignment/exam/project instructions. Always default to acknowledging any help received. Cases of suspected academic dishonesty are handled by the Provost’s Office and I am obligated to report any suspected violations of this policy."
+  },
+  {
+    "objectID": "slides/slides01.html#more-on-ai",
+    "href": "slides/slides01.html#more-on-ai",
+    "title": "Welcome to Bayes!",
+    "section": "More on “AI”",
+    "text": "More on “AI”\nLarge-language models (e.g. ChatGPT, Gemini, etc.) should only be used for help interpreting R’s error messages or suggestions for your own code once you have already attempted the problem. You should not copy and paste course material into or out of an AI text generator.\nI also have a few rules in place to protect my intellectual property. You may not record my lectures using tools such as Otter.ai or upload any video or audio recordings to generate transcripts or study notes. You may not upload my course materials (slides, assignment prompts, note sets, etc.) into AI tools or homework help sites (such as chegg).\n“AI” tools are new for all of us and it’s OK to have questions about what is and isn’t appropriate!"
+  },
+  {
+    "objectID": "slides/slides01.html#diversity-inclusion",
+    "href": "slides/slides01.html#diversity-inclusion",
+    "title": "Welcome to Bayes!",
+    "section": "Diversity & Inclusion",
+    "text": "Diversity & Inclusion\nWe all come to class with different backgrounds and experiences, and this diversity makes our class environment richer. We value diversity and inclusion, and are committed to a climate of mutual respect and full participation in and out of the classroom. This class strives to be a learning environment that is usable, equitable, inclusive and welcoming, regardless of race, ethnicity, religion, gender and gender identities, sexual orientation, ability, socioeconomic background, and nationality. If you anticipate or experience any barriers to learning, please discuss your concerns with me."
+  },
+  {
+    "objectID": "slides/slides01.html#accomodations",
+    "href": "slides/slides01.html#accomodations",
+    "title": "Welcome to Bayes!",
+    "section": "Accomodations",
+    "text": "Accomodations\nCarleton College is committed to providing equitable access to learning opportunities for all students. The Office of Accessibility Resources (Henry House, 107 Union Street) is the campus office that collaborates with students who have disabilities to provide and/or arrange reasonable accommodations. If you have, or think you may have, a disability, please contact OAR@carleton.edu to arrange a confidential discussion regarding equitable access and reasonable accommodations. You are also welcome to contact me privately to discuss your academic needs. However, all disability-related accommodations must be arranged, in advance, through OAR."
+  },
+  {
+    "objectID": "slides/slides01.html#title-ix",
+    "href": "slides/slides01.html#title-ix",
+    "title": "Welcome to Bayes!",
+    "section": "Title IX",
+    "text": "Title IX\nPlease be aware that all faculty are “responsible employees”, which means that if you tell me about a situation involving sexual harassment, sexual assault, dating violence, domestic violence, or stalking, I must share that information with the Title IX Coordinator. Although I have to make this notification, you will control how your case will be handled, including whether or not you wish to meet with the Title IX coordinator or pursue a formal complaint."
+  },
+  {
+    "objectID": "slides/slides01.html#take-care-of-yourself",
+    "href": "slides/slides01.html#take-care-of-yourself",
+    "title": "Welcome to Bayes!",
+    "section": "Take care of yourself",
+    "text": "Take care of yourself\nDo your best to maintain a healthy lifestyle this semester by wearing a mask if you don’t feel well, eating a vegetable every day, exercising, avoiding excessive drug and alcohol use, getting enough sleep, and taking some time to relax. Your mental health is more important than your grade in this course. There are many helpful resources available on campus and an important part of the college experience is learning how to ask for help. If you are experiencing mental health symptoms as a result of coursework, please speak with me so we can address the problem together."
+  },
+  {
+    "objectID": "slides/slides05.html#key-ideas",
+    "href": "slides/slides05.html#key-ideas",
+    "title": "Balance and Sequentiality",
+    "section": "Key ideas",
+    "text": "Key ideas\n\nDifferent priors, different posteriors\nDifferent data, different posteriors\nSequential analyses\nData order is invariant\nDon’t be stubborn"
+  },
+  {
+    "objectID": "slides/slides05.html#bechdel-test",
+    "href": "slides/slides05.html#bechdel-test",
+    "title": "Balance and Sequentiality",
+    "section": "Bechdel test",
+    "text": "Bechdel test\nAlison Bechdel’s 1985 comic Dykes to Watch Out For has a strip called The Rule where a person states that they only go to a movie if it satisfies the following three rules:\n\nthe movie has to have at least two women in it;\nthese two women talk to each other; and\nthey talk about something besides a man.\n\nThis test is used for assessing movies in terms of representation of women. Even though there are three criteria, a movie either fails or passes the Bechdel test."
+  },
+  {
+    "objectID": "slides/slides05.html#priors",
+    "href": "slides/slides05.html#priors",
+    "title": "Balance and Sequentiality",
+    "section": "Priors",
+    "text": "Priors"
+  },
+  {
+    "objectID": "slides/slides05.html#terminology",
+    "href": "slides/slides05.html#terminology",
+    "title": "Balance and Sequentiality",
+    "section": "Terminology",
+    "text": "Terminology\n\n\n\n\n\n\nInformative Prior\n\n\nAn informative prior reflects specific information about the unknown variable with high certainty (ie. low variability).\n\n\n\n\n\n\n\n\n\nDiffuse prior\n\n\nA vague or diffuse prior reflects little specific information about the unknown variable. A flat prior, which assigns equal prior plausibility to all possible values of the variable, is a special case.\n\n\n\n\n\n\n\n\n\nReference prior\n\n\nA formal type of diffuse prior\ncatalog of reference priors"
+  },
+  {
+    "objectID": "slides/slides05.html#section",
+    "href": "slides/slides05.html#section",
+    "title": "Balance and Sequentiality",
     "section": "",
-    "text": "This page contains an outline of the topics, content, and assignments for the term. Note that this schedule will be updated as the term progresses and the timeline of topics and assignments might be updated. Any major changes to due dates will be announced in class and indicated in bold here.\n\n\n\n\n\n\nWEEK\nDOW\nDATE\nPREPARE\nTOPIC\nMATERIALS\nDUE\n\n\n\n1\nM\nMon, Sep 15\n📝complete welcome survey  📚 Bayes Rules Ch1  💻 Join Slack workspace\n\nIntro to Bayesian Thinking\nSlides01\n\n\n\n1\nW\nWed, Sep 17\n📚 Bayes Rules Ch2  💻 Complete computing setup\n\nBayes Rule, R Setup\nSlides02\n\n\n\n1\nF\nFri, Sep 19\n\nProbability and Likelihood Review; Posterior Simulation\nSlides03\n\nHW 1 and GW 1\n\n\n\n2\nM\nMon, Sep 22\n📚 Bayes Rules Ch3 \n\nBeta-Binomial Model\nSlides04\n\n\n\n2\nW\nWed, Sep 24\n📚 Bayes Rules Ch4 \n\nBalance and Sequentiality\nSlides05\n\n\n\n2\nF\nFri, Sep 26\n📚 Bayes Rules Ch5.1-2 \n\nGamma-Gamma\ntbd\n\nHW 2 and GW 2\n\n\n\n3\nM\nMon, Sep 29\n📚 Bayes Rules Ch5.3-5.6 \n\nNormal-Normal\ntbd\n\n\n\n3\nW\nWed, Oct 1\n📚 Bayes Rules Ch6.1-2 \n\nGrid approximation and Markov Chains\ntbd\n\n\n\n3\nF\nFri, Oct 3\n📚 Bayes Rules Ch6.3 \n\nDiagnostics\ntbd\nHW3\n\n\n4\nM\nMon, Oct 6\n📚 Bayes Rules Ch7.1-7.3 \n\nMCMC I\ntbd\nHand out computing project\n\n\n4\nW\nWed, Oct 8\n📚 Bayes Rules Ch7.4-7 \n\nMCMC II\ntbd\n\n\n\n4\nF\nFri, Oct 10\n\nExam I\ntbd\nHW4\n\n\n5\nM\nMon, Oct 13\n\nPosterior Inference\ntbd\n\n\n\n5\nW\nWed, Oct 15\n\nPosterior Prediction\ntbd\n\n\n\n5\nF\nFri, Oct 17\n\nRegression\ntbd\nHW5\n\n\n6\nM\nMon, Oct 20\n\n❌ Midterm Break; no class\ntbd\n\n\n\n6\nW\nWed, Oct 22\n\nEvaluating I\ntbd\nComputing Project Due\n\n\n6\nF\nFri, Oct 24\n\nEvaluating II\ntbd\nHW6\n\n\n7\nM\nMon, Oct 27\n\nExtending Regression Model\ntbd\n\n\n\n7\nW\nWed, Oct 29\n\nPoisson Regression\ntbd\n\n\n\n7\nF\nFri, Oct 31\n\nNegative Binomial Regression\ntbd\nHW7\n\n\n8\nM\nMon, Nov 3\n\nLogistic Regression\ntbd\n\n\n\n8\nW\nWed, Nov 5\n\nNaive Bayes Classification\ntbd\n\n\n\n8\nF\nFri, Nov 7\n\nExam II\ntbd\nHW8\n\n\n9\nM\nMon, Nov 10\n\nHierarchical Models I\ntbd\n\n\n\n9\nW\nWed, Nov 12\n\nHierarchical Models II\ntbd\n\n\n\n9\nF\nFri, Nov 14\n\nHierarchical Models III\ntbd\n\n\n\n10\nM\nMon, Nov 17\n\nProject work day\ntbd\nHW 9\n\n\n10\nW\nWed, Nov 19\n\nLightning talks\ntbd\n\n\n\n\nM\nFri, Nov 21\n\nFinal Project Due @ noon\ntbd",
-    "crumbs": [
-      "Schedule"
-    ]
+    "text": "“There is no objective, unique prior that represents ignorance. Instead, reference priors are chosen by public agreement, much like units of length and weight. In this interpretation, reference priors are akin to a default option in a computer package. We fall back to the default when there is insufficient information to otherwise define the prior.” Kass & Wasserman"
   },
   {
-    "objectID": "slides/slides-cheat-sheet.html#columns",
-    "href": "slides/slides-cheat-sheet.html#columns",
-    "title": "Slides Cheat Sheet",
-    "section": "Columns",
-    "text": "Columns\n\n\n\nFirst year at Carleton!\nTaught at Swarthmore for 5 years before moving here this fall\nPhD in Statistics & Data Science from Carnegie Mellon University\nGrew up in Minnesota, went to St Ben’s as an undergrad"
+    "objectID": "slides/slides05.html#flat-prior",
+    "href": "slides/slides05.html#flat-prior",
+    "title": "Balance and Sequentiality",
+    "section": "Flat prior",
+    "text": "Flat prior\n\\[\\pi \\sim \\text{Unif}(0,1)\\]\n\n\nUnder re-parameterization (\\(\\theta = g(\\pi)\\)) \\(\\theta\\) might have a non-uniform distribution"
   },
   {
-    "objectID": "slides/slides-cheat-sheet.html#only-graph-from-code",
-    "href": "slides/slides-cheat-sheet.html#only-graph-from-code",
-    "title": "Slides Cheat Sheet",
-    "section": "Only graph from code",
-    "text": "Only graph from code"
+    "objectID": "slides/slides05.html#jeffreys-prior",
+    "href": "slides/slides05.html#jeffreys-prior",
+    "title": "Balance and Sequentiality",
+    "section": "Jeffrey’s prior",
+    "text": "Jeffrey’s prior\n\\(\\pi \\propto \\sqrt{I(\\pi)}\\)\nwhere \\(I(\\pi)\\) is the Fisher Information. For binomial data, Jeffrey’s prior gives \\(\\pi \\sim\\)"
   },
   {
-    "objectID": "slides/slides-cheat-sheet.html#background-image-half",
-    "href": "slides/slides-cheat-sheet.html#background-image-half",
-    "title": "Slides Cheat Sheet",
-    "section": "Background Image (half)",
-    "text": "Background Image (half)\n\n\nWhat skills do you need?\n\nprogramming with data\nstatistical modeling\ndomain knowledge\ncommunication"
+    "objectID": "slides/slides05.html#bernardos-reference-prior",
+    "href": "slides/slides05.html#bernardos-reference-prior",
+    "title": "Balance and Sequentiality",
+    "section": "Bernardo’s reference prior",
+    "text": "Bernardo’s reference prior\n\nPrior should influence posterior as little as possible\nPosterior should be (on average) very different from the posterior\nWe can measure “difference” between distributions \\(P\\) and \\(Q\\) with the Kullback-Leibler divergence\n\n\\(KL(P,Q) = \\int_{-\\infty}^\\infty p(x) \\log \\frac{p(x)}{q(x)} dx\\)\n\nSo, choose reference prior by maximizing KL divergence between prior and posterior\nLucky for us, if we have univariate model, this is equivalent to Jeffrey’s prior"
   },
   {
-    "objectID": "slides/slides-cheat-sheet.html#full-size-image",
-    "href": "slides/slides-cheat-sheet.html#full-size-image",
-    "title": "Slides Cheat Sheet",
-    "section": "Full size image",
-    "text": "Full size image\n\n\n\nImage by Adam Loy  adapted from work of Joe Blitzstein, Hanspeter Pfister, and Hadley Wickham"
+    "objectID": "slides/slides05.html#priors-1",
+    "href": "slides/slides05.html#priors-1",
+    "title": "Balance and Sequentiality",
+    "section": "Priors",
+    "text": "Priors"
   },
   {
-    "objectID": "slides/slides-cheat-sheet.html#background-image-full-size",
-    "href": "slides/slides-cheat-sheet.html#background-image-full-size",
-    "title": "Slides Cheat Sheet",
-    "section": "Background image (full size)",
-    "text": "Background image (full size)"
+    "objectID": "slides/slides05.html#data",
+    "href": "slides/slides05.html#data",
+    "title": "Balance and Sequentiality",
+    "section": "Data",
+    "text": "Data\n\nlibrary(bayesrules) has bechdel data frame. Randomly select 20 movies from this dataset (seed = 84735)\nBased on observed data, update the posterior\nPlot the prior, likelihood, and the posterior\n\n\nset.seed(84735)\nbechdel_sample &lt;- sample_n(bechdel, 20)"
   },
   {
-    "objectID": "slides/slides-cheat-sheet.html#countdown",
-    "href": "slides/slides-cheat-sheet.html#countdown",
-    "title": "Slides Cheat Sheet",
-    "section": "Countdown",
-    "text": "Countdown\n\nWith your neighbor(s):\nChoose two countries to compare to the U.S. voting record in the U.N. over the years.\nWhat did you learn?\n\n\n\n\n−+\n04:00"
+    "objectID": "slides/slides05.html#data-1",
+    "href": "slides/slides05.html#data-1",
+    "title": "Balance and Sequentiality",
+    "section": "Data",
+    "text": "Data\n\n\n\n\n\n\n\n\nyear\ntitle\nbinary\n\n\n\n\n2005\nKing Kong\nFAIL\n\n\n1983\nFlashdance\nPASS\n\n\n2013\nThe Purge\nFAIL\n\n\n2001\nAmerican Outlaws\nFAIL\n\n\n2010\nSex and the city 2\nPASS\n\n\n1997\nAir Bud\nFAIL\n\n\n2010\nRobin Hood\nFAIL\n\n\n2009\nCase 39\nPASS\n\n\n1998\nHope Floats\nPASS\n\n\n2007\nThe Golden Compass\nPASS\n\n\n2013\nParker\nPASS\n\n\n1971\nShaft\nFAIL\n\n\n2011\nFast Five\nPASS\n\n\n2013\nThe Croods\nFAIL\n\n\n2010\nEdge of Darkness\nFAIL\n\n\n1998\nMulan\nFAIL\n\n\n2010\nEasy A\nPASS\n\n\n2000\nMemento\nFAIL\n\n\n2002\nThe Tuxedo\nFAIL\n\n\n1982\nThe Best Little Whorehouse in Texas\nPASS\n\n\n\n\n\n\n binary  n percent\n   FAIL 11    0.55\n   PASS  9    0.45"
   },
   {
-    "objectID": "slides/slides-cheat-sheet.html#table-column-widths",
-    "href": "slides/slides-cheat-sheet.html#table-column-widths",
-    "title": "Slides Cheat Sheet",
-    "section": "table column widths",
-    "text": "table column widths\n\n\n\n\n\n\n\n\nCollaboration Allowed\n\n\n\n\nHomework Problems\nYou are allowed and encouraged to collaborate on homework. You may also use outside resources, but your submitted work must be your own and reflect your own understanding .\n\n\nLab Quiz Problems\nNo collaboration is allowed at all . You may use your own notes for resubmissions, but should not use outside resources.\n\n\nPortfolio Projects\nYou are expected to collaborate with your group, but cannot rely on external sources other than to help motivate the questions or provide other background information. Getting answers on significant parts of solutions from outside resources is not allowed.\n\n\nFinal Project\nYou are expected to collaborate with your group, but cannot rely on external sources other than to help motivate the questions or provide other background information. Any outside resources should be properly cited."
+    "objectID": "slides/slides05.html#posteriors",
+    "href": "slides/slides05.html#posteriors",
+    "title": "Balance and Sequentiality",
+    "section": "Posteriors",
+    "text": "Posteriors"
   },
   {
-    "objectID": "slides/slides-cheat-sheet.html#use-of-generative-artificial-intelligence-ai",
-    "href": "slides/slides-cheat-sheet.html#use-of-generative-artificial-intelligence-ai",
-    "title": "Slides Cheat Sheet",
-    "section": "Use of generative artificial intelligence (AI)",
-    "text": "Use of generative artificial intelligence (AI)\n\nTreat generative AI, such as ChatGPT or Gemini, the same as other online resources.\nGuiding principles:\n\n(1) Cognitive dimension: Working with AI should not reduce your ability to think clearly. AI should facilitate—rather than hinder—learning.\n(2) Ethical dimension: Students using AI should be transparent about their use and make sure it aligns with academic integrity.\n\n❌ AI tools for writing code: You may not use generative AI to take a “first pass” at a coding task. Do not type coursework prompts directly into AI tools.\n✅ AI tools for debugging code: You may make use of the technology to get help with error messages or trying to fix issues\n❌ AI tools for narrative: Unless instructed otherwise, you may not use generative AI to write narrative on assignments. In general, you may use generative AI as a resource as you complete assignments but not to answer the exercises for you.\n\n\n\nAdapted from Mine Çetinkaya-Rundel"
+    "objectID": "slides/slides05.html#different-data-different-posteriors",
+    "href": "slides/slides05.html#different-data-different-posteriors",
+    "title": "Balance and Sequentiality",
+    "section": "Different data, different posteriors",
+    "text": "Different data, different posteriors\nLet’s compare results for 3 analyses: 1 using 1991 movies, 1 using 2000 movies, and 1 using 2013 movies\n\nbechdel |&gt;\n  filter(year == 1991) |&gt;\n  tabyl(binary)\n\n binary n   percent\n   FAIL 7 0.5384615\n   PASS 6 0.4615385\n\nbechdel |&gt;\n  filter(year == 2000) |&gt;\n  tabyl(binary)\n\n binary  n   percent\n   FAIL 34 0.5396825\n   PASS 29 0.4603175\n\nbechdel |&gt;\n  filter(year == 2013) |&gt;\n  tabyl(binary)\n\n binary  n   percent\n   FAIL 53 0.5353535\n   PASS 46 0.4646465"
   },
   {
-    "objectID": "slides/slides-cheat-sheet.html#linktask",
-    "href": "slides/slides-cheat-sheet.html#linktask",
-    "title": "Slides Cheat Sheet",
-    "section": "Link/task",
-    "text": "Link/task\n\nhttps://github.com/stat220-w25\n\n\nFill out the Welcome Survey for collection of your account names, later this week you will be invited to the course organization."
+    "objectID": "slides/slides05.html#different-data-different-posteriors-1",
+    "href": "slides/slides05.html#different-data-different-posteriors-1",
+    "title": "Balance and Sequentiality",
+    "section": "Different data, different posteriors",
+    "text": "Different data, different posteriors"
   },
   {
-    "objectID": "slides/slides-cheat-sheet.html#handwriting-font",
-    "href": "slides/slides-cheat-sheet.html#handwriting-font",
-    "title": "Slides Cheat Sheet",
-    "section": "handwriting font",
-    "text": "handwriting font\n\nin case you don’t yet have a GitHub account…"
+    "objectID": "slides/slides05.html#prior-updatingsequential-data",
+    "href": "slides/slides05.html#prior-updatingsequential-data",
+    "title": "Balance and Sequentiality",
+    "section": "Prior updating/sequential data",
+    "text": "Prior updating/sequential data"
   },
   {
-    "objectID": "slides/slides03.html#is-this-the-same-likelihood-as-the-stat250-likelihood",
-    "href": "slides/slides03.html#is-this-the-same-likelihood-as-the-stat250-likelihood",
-    "title": "Likelihood review + Posterior Simulation",
-    "section": "Is this the same likelihood as the Stat250 likelihood?",
-    "text": "Is this the same likelihood as the Stat250 likelihood?"
+    "objectID": "slides/slides05.html#data-order-invariance",
+    "href": "slides/slides05.html#data-order-invariance",
+    "title": "Balance and Sequentiality",
+    "section": "Data order invariance",
+    "text": "Data order invariance\nUpdating the prior 20 times:\n      model alpha beta      mean      mode          var         sd\n1     prior   551  613 0.4733677 0.4733219 0.0002139835 0.01462817\n2 posterior   612  681 0.4733179 0.4732765 0.0001926492 0.01387981\n“Data dump”: treat years 1-20 as the data\n\nsummarize_beta_binomial(1, 1, 611, 1291)\n\n      model alpha beta      mean      mode          var         sd\n1     prior     1    1 0.5000000       NaN 0.0833333333 0.28867513\n2 posterior   612  681 0.4733179 0.4732765 0.0001926492 0.01387981\n\n\nFurther reading: How to think like an epidemiologist"
   },
   {
-    "objectID": "slides/slides03.html#does-it-matter-if-y-is-a-discrete-or-continuous-rv",
-    "href": "slides/slides03.html#does-it-matter-if-y-is-a-discrete-or-continuous-rv",
-    "title": "Likelihood review + Posterior Simulation",
-    "section": "Does it matter if \\(Y\\) is a discrete or continuous RV?",
-    "text": "Does it matter if \\(Y\\) is a discrete or continuous RV?"
+    "objectID": "slides/slides05.html#data-order-invariance-math",
+    "href": "slides/slides05.html#data-order-invariance-math",
+    "title": "Balance and Sequentiality",
+    "section": "Data order invariance (math)",
+    "text": "Data order invariance (math)"
   },
   {
-    "objectID": "slides/slides03.html#example-from-last-time-phd-admissions",
-    "href": "slides/slides03.html#example-from-last-time-phd-admissions",
-    "title": "Likelihood review + Posterior Simulation",
-    "section": "Example from last time: PhD admissions",
-    "text": "Example from last time: PhD admissions\n\n\n\nπ\n0.2\n0.4\n0.8\n\n\n\n\nf(π)\n0.7\n0.2\n0.1\n\n\nL(π | y = 3)\n0.0512\n0.2304\n0.2048\n\n\nf(π | y = 3)\n0.35\n0.45\n0.20"
-  },
-  {
-    "objectID": "slides/slides03.html#first-define-and-simulate-from-prior",
-    "href": "slides/slides03.html#first-define-and-simulate-from-prior",
-    "title": "Likelihood review + Posterior Simulation",
-    "section": "First, define and simulate from prior",
-    "text": "First, define and simulate from prior\n\nadmissions &lt;- tibble(\n  pi = c(.2, .4, .8)\n)\n\nprior &lt;- c(0.7, 0.2, 0.1)\n\nset.seed(091925)\nadmissions_sim &lt;- sample_n(admissions, \n                           size = 10000, \n                           weight = prior, \n                           replace = TRUE)"
-  },
-  {
-    "objectID": "slides/slides03.html#section",
-    "href": "slides/slides03.html#section",
-    "title": "Likelihood review + Posterior Simulation",
-    "section": "",
-    "text": "admissions_sim\n\n# A tibble: 10,000 × 1\n      pi\n   &lt;dbl&gt;\n 1   0.2\n 2   0.2\n 3   0.2\n 4   0.4\n 5   0.2\n 6   0.4\n 7   0.2\n 8   0.4\n 9   0.2\n10   0.8\n# ℹ 9,990 more rows"
-  },
-  {
-    "objectID": "slides/slides03.html#simulated-pi-closely-approximates-prior-fpi",
-    "href": "slides/slides03.html#simulated-pi-closely-approximates-prior-fpi",
-    "title": "Likelihood review + Posterior Simulation",
-    "section": "Simulated pi closely approximates prior \\(f(\\pi)\\)",
-    "text": "Simulated pi closely approximates prior \\(f(\\pi)\\)\n\nadmissions_sim |&gt;\n  tabyl(pi)\n\n  pi    n percent\n 0.2 7030  0.7030\n 0.4 2002  0.2002\n 0.8  968  0.0968"
-  },
-  {
-    "objectID": "slides/slides03.html#simulate-outcomes",
-    "href": "slides/slides03.html#simulate-outcomes",
-    "title": "Likelihood review + Posterior Simulation",
-    "section": "Simulate outcomes",
-    "text": "Simulate outcomes\n\nadmissions_sim &lt;- admissions_sim |&gt;\n  mutate(\n    y = rbinom(10000, size = 5, prob = pi)\n  )\n\nadmissions_sim |&gt; head(5)\n\n# A tibble: 5 × 2\n     pi     y\n  &lt;dbl&gt; &lt;int&gt;\n1   0.2     1\n2   0.2     2\n3   0.2     0\n4   0.4     0\n5   0.2     0"
-  },
-  {
-    "objectID": "slides/slides03.html#simulated-y-outcomes-approximate-fypi",
-    "href": "slides/slides03.html#simulated-y-outcomes-approximate-fypi",
-    "title": "Likelihood review + Posterior Simulation",
-    "section": "Simulated y outcomes approximate \\(f(y|\\pi)\\)",
-    "text": "Simulated y outcomes approximate \\(f(y|\\pi)\\)\n\nggplot(admissions_sim, aes(x = y)) +\n  geom_bar(aes(y = after_stat(prop))) + \n  facet_wrap(vars(pi))"
-  },
-  {
-    "objectID": "slides/slides03.html#to-approximate-posterior-condition-on-observed-data-and-look-at-relative-frequency",
-    "href": "slides/slides03.html#to-approximate-posterior-condition-on-observed-data-and-look-at-relative-frequency",
-    "title": "Likelihood review + Posterior Simulation",
-    "section": "To approximate posterior, condition on observed data and look at relative frequency",
-    "text": "To approximate posterior, condition on observed data and look at relative frequency\n\nobserved &lt;- admissions_sim |&gt;\n  filter(y == 3)\n\nobserved |&gt;\n  tabyl(pi)\n\n  pi   n   percent\n 0.2 365 0.3628231\n 0.4 445 0.4423459\n 0.8 196 0.1948310"
-  },
-  {
-    "objectID": "slides/slides04.html#back-to-graduate-school-applications",
-    "href": "slides/slides04.html#back-to-graduate-school-applications",
-    "title": "Beta-Binomial Model",
-    "section": "Back to Graduate School Applications",
-    "text": "Back to Graduate School Applications\nLast week we were trying to understand \\(\\pi\\) the acceptance rate of a graduate program in a specific department. We assumed a somewhat silly prior, and restricted \\(\\pi\\) to be 0.2, 0.4, or 0.8.\nThis time we will let \\(\\pi \\in [0,1]\\)."
-  },
-  {
-    "objectID": "slides/slides04.html#section",
-    "href": "slides/slides04.html#section",
-    "title": "Beta-Binomial Model",
-    "section": "",
-    "text": "Continuous probability models\nLet \\(\\pi\\) be a continuous random variable with pdf \\(f(\\pi)\\). Then \\(f(\\pi)\\) has the following properties:\n\n\\(\\int_\\pi f(\\pi)d\\pi = 1\\), ie. the area under \\(f(\\pi)\\) is 1\n\\(f(\\pi) \\ge 0\\)\n\\(P(a &lt; \\pi &lt; b) = \\int_a^b f(\\pi) d\\pi\\) when \\(a \\le b\\)\n\nInterpreting \\(f(\\pi)\\):"
-  },
-  {
-    "objectID": "slides/slides04.html#section-1",
-    "href": "slides/slides04.html#section-1",
-    "title": "Beta-Binomial Model",
-    "section": "",
-    "text": "For each of the student’s prior ideas for \\(\\pi\\) sketch the pdf of the prior. Your plot will not be exact since no exact values are given.\n\n\n\nMorteza thinks that it is extremely difficult to get into this program.\n\n\n\n\n\n\n\n\n\n\nErin does not have any strong opinions whether it is difficult or easy to get into this program."
-  },
-  {
-    "objectID": "slides/slides04.html#section-2",
-    "href": "slides/slides04.html#section-2",
-    "title": "Beta-Binomial Model",
-    "section": "",
-    "text": "For each of the student’s prior ideas for \\(\\pi\\) sketch the pdf of the prior. Your plot will not be exact since no exact values are given.\n\n\n\nXuan thinks that it is either really easy or really hard to get into the program\n\n\n\n\n\n\n\n\n\n\nBeyoncé thinks that it is extremely easy to get into this program."
-  },
-  {
-    "objectID": "slides/slides04.html#beta-prior-model",
-    "href": "slides/slides04.html#beta-prior-model",
-    "title": "Beta-Binomial Model",
-    "section": "Beta Prior model",
-    "text": "Beta Prior model\nLet \\(\\pi\\) be a random variable which can take any value between 0 and 1, ie. \\(\\pi \\in [0,1]\\). Then the variability in \\(\\pi\\) might be well modeled by a Beta model with shape parameters \\(\\alpha &gt; 0\\) and \\(\\beta &gt; 0\\):\n\\[\\pi \\sim \\text{Beta}(\\alpha, \\beta)\\]"
-  },
-  {
-    "objectID": "slides/slides04.html#section-3",
-    "href": "slides/slides04.html#section-3",
-    "title": "Beta-Binomial Model",
-    "section": "",
-    "text": "The Beta model is specified by continuous pdf \\[\\begin{equation}\nf(\\pi) = \\frac{\\Gamma(\\alpha + \\beta)}{\\Gamma(\\alpha)\\Gamma(\\beta)} \\pi^{\\alpha-1} (1-\\pi)^{\\beta-1} \\;\\; \\text{ for } \\pi \\in [0,1]\n\\end{equation}\\]\nwhere \\(\\Gamma(z) = \\int_0^\\infty y^{z-1}e^{-y}dy\\) and \\(\\Gamma(z + 1) = z \\Gamma(z)\\).\nFun fact: when \\(z\\) is a positive integer, then \\(\\Gamma(z)\\) simplifies to \\(\\Gamma(z) = (z-1)!\\)."
-  },
-  {
-    "objectID": "slides/slides04.html#beta-prior-model-1",
-    "href": "slides/slides04.html#beta-prior-model-1",
-    "title": "Beta-Binomial Model",
-    "section": "Beta Prior model",
-    "text": "Beta Prior model\n\n\n\n\n\n\n\n\n\n\n\n\n\\(\\pi \\sim \\text{Beta}(3, 8)\\)\n\\(f(\\pi) = \\frac{\\Gamma(\\alpha + \\beta)}{\\Gamma(\\alpha)\\Gamma(\\beta)} \\pi^{\\alpha-1} (1-\\pi)^{\\beta-1}\\)\n\\(f(0.5) =\\)"
-  },
-  {
-    "objectID": "slides/slides04.html#beta-prior-model-2",
-    "href": "slides/slides04.html#beta-prior-model-2",
-    "title": "Beta-Binomial Model",
-    "section": "Beta Prior model",
-    "text": "Beta Prior model\n\\(\\pi \\sim \\text{Beta}(3, 8)\\)\n\n\n\n\n\n\n\n\n\n\n\n\n\ndbeta(x = 0.5, \n      shape1 = 3, \n      shape2 = 8)\n\n[1] 0.703125"
-  },
-  {
-    "objectID": "slides/slides04.html#plotting-beta-prior",
-    "href": "slides/slides04.html#plotting-beta-prior",
-    "title": "Beta-Binomial Model",
-    "section": "Plotting Beta prior",
-    "text": "Plotting Beta prior"
-  },
-  {
-    "objectID": "slides/slides04.html#plotting-beta-prior-with-bayesrules-package",
-    "href": "slides/slides04.html#plotting-beta-prior-with-bayesrules-package",
-    "title": "Beta-Binomial Model",
-    "section": "Plotting Beta Prior with bayesrules package",
-    "text": "Plotting Beta Prior with bayesrules package\n\nplot_beta(alpha = 3, beta = 8)"
-  },
-  {
-    "objectID": "slides/slides04.html#beta-summaries",
-    "href": "slides/slides04.html#beta-summaries",
-    "title": "Beta-Binomial Model",
-    "section": "Beta summaries",
-    "text": "Beta summaries\n\\[E(\\pi) = \\frac{\\alpha}{\\alpha + \\beta}\\]\n\\[\\text{Mode}(\\pi) = \\frac{\\alpha - 1}{\\alpha + \\beta - 2}\\]\n\\[\\text{Var}(\\pi) = \\frac{\\alpha \\beta}{(\\alpha + \\beta)^2(\\alpha + \\beta + 1)}\\]"
-  },
-  {
-    "objectID": "slides/slides04.html#beta-summaries-with-bayesrules-package",
-    "href": "slides/slides04.html#beta-summaries-with-bayesrules-package",
-    "title": "Beta-Binomial Model",
-    "section": "Beta summaries with bayesrules package",
-    "text": "Beta summaries with bayesrules package\nUse the summarize_beta() function in the bayesrules package to find the mean, mode, and variance of various Beta distributions. Example:\n\nsummarize_beta(alpha = 5, beta = 7)\n\n       mean mode        var        sd\n1 0.4166667  0.4 0.01869658 0.1367354"
-  },
-  {
-    "objectID": "slides/slides04.html#posterior-for-the-beta-binomial-model",
-    "href": "slides/slides04.html#posterior-for-the-beta-binomial-model",
-    "title": "Beta-Binomial Model",
-    "section": "Posterior for the Beta-Binomial model",
-    "text": "Posterior for the Beta-Binomial model"
-  },
-  {
-    "objectID": "slides/slides04.html#posterior-for-the-beta-binomial-model-1",
-    "href": "slides/slides04.html#posterior-for-the-beta-binomial-model-1",
-    "title": "Beta-Binomial Model",
-    "section": "Posterior for the Beta-Binomial model",
-    "text": "Posterior for the Beta-Binomial model"
-  },
-  {
-    "objectID": "slides/slides04.html#conjugate-prior",
-    "href": "slides/slides04.html#conjugate-prior",
-    "title": "Beta-Binomial Model",
-    "section": "Conjugate prior",
-    "text": "Conjugate prior\nWe say that \\(f(\\pi)\\) is a conjugate prior for \\(L(\\pi|y)\\) if the posterior, \\(f(\\pi|y) \\propto f(\\pi)L(\\pi|y)\\), is from the same model family as the prior.\nThus, the Beta distribution is a conjugate prior for the Binomial likelihood model since the posterior also follows a Beta distribution."
-  },
-  {
-    "objectID": "slides/slides04.html#admission-example",
-    "href": "slides/slides04.html#admission-example",
-    "title": "Beta-Binomial Model",
-    "section": "Admission Example",
-    "text": "Admission Example\n\nOriginal discrete prior:\n\n\n\n\\(\\pi\\)\n0.2\n0.4\n0.8\n\n\n\n\n\\(f(\\pi)\\)\n.7\n.2\n.1\n\n\n\n\nBeta approximation:\n\nplot_beta(3, 7, mean = TRUE, mode = TRUE)"
-  },
-  {
-    "objectID": "slides/slides04.html#data-posterior",
-    "href": "slides/slides04.html#data-posterior",
-    "title": "Beta-Binomial Model",
-    "section": "Data + Posterior",
-    "text": "Data + Posterior\n3/5 students were admitted\n\\[ \\pi \\sim \\text{Beta}(3, 7)\\] \\[ \\pi | Y \\sim \\text{Beta}(3 + y, 7 + n -y)\\] \\[ \\pi | Y \\sim \\text{Beta}(6, 9)\\]"
-  },
-  {
-    "objectID": "slides/slides04.html#posterior-summary",
-    "href": "slides/slides04.html#posterior-summary",
-    "title": "Beta-Binomial Model",
-    "section": "Posterior summary",
-    "text": "Posterior summary\n\nsummarize_beta(6,9)\n\n  mean      mode   var        sd\n1  0.4 0.3846154 0.015 0.1224745\n\nplot_beta(6, 9, mean = TRUE, mode = TRUE)"
-  },
-  {
-    "objectID": "slides/slides04.html#balancing-act",
-    "href": "slides/slides04.html#balancing-act",
-    "title": "Beta-Binomial Model",
-    "section": "Balancing act",
-    "text": "Balancing act\n\nplot_beta_binomial(alpha = 3, beta = 7,  y = 3, n = 5)"
-  },
-  {
-    "objectID": "slides/slides04.html#more-data-more-certainty",
-    "href": "slides/slides04.html#more-data-more-certainty",
-    "title": "Beta-Binomial Model",
-    "section": "More data, more certainty",
-    "text": "More data, more certainty\nWhat if 30/50 applicants get in?\n\nplot_beta_binomial(alpha = 3, beta = 7, y = 30, n = 50)"
-  },
-  {
-    "objectID": "slides/slides04.html#more-more-data-more-more-certainty",
-    "href": "slides/slides04.html#more-more-data-more-more-certainty",
-    "title": "Beta-Binomial Model",
-    "section": "More more data, more more certainty",
-    "text": "More more data, more more certainty\nWhat if 300/500 applicants get in?\n\nplot_beta_binomial(alpha = 3, beta = 7, y = 300, n = 500)"
-  },
-  {
-    "objectID": "slides/slides04.html#data-context",
-    "href": "slides/slides04.html#data-context",
-    "title": "Beta-Binomial Model",
-    "section": "Data Context",
-    "text": "Data Context\nLet \\(\\pi\\) represent the proportion of students who are admitted to the program.\n\\(Y | \\pi \\sim \\text{Binom}(n, \\pi)\\)"
-  },
-  {
-    "objectID": "slides/slides04.html#prior",
-    "href": "slides/slides04.html#prior",
-    "title": "Beta-Binomial Model",
-    "section": "Prior",
-    "text": "Prior\n\nplot_beta(3, 7)"
-  },
-  {
-    "objectID": "slides/slides04.html#data-and-the-posterior",
-    "href": "slides/slides04.html#data-and-the-posterior",
-    "title": "Beta-Binomial Model",
-    "section": "Data and the Posterior",
-    "text": "Data and the Posterior\n30/50 students are admitted\n\nsummarize_beta_binomial(3, 7, y = 30, n = 50)\n\n      model alpha beta mean      mode         var         sd\n1     prior     3    7 0.30 0.2500000 0.019090909 0.13816986\n2 posterior    33   27 0.55 0.5517241 0.004057377 0.06369754"
-  },
-  {
-    "objectID": "slides/slides04.html#section-4",
-    "href": "slides/slides04.html#section-4",
-    "title": "Beta-Binomial Model",
-    "section": "",
-    "text": "plot_beta_binomial(3, 7, y = 30, n = 50)\n\n\n\n\n\n\n\n\nCan we simulate the posterior without knowing it exactly?"
-  },
-  {
-    "objectID": "slides/slides04.html#section-5",
-    "href": "slides/slides04.html#section-5",
-    "title": "Beta-Binomial Model",
-    "section": "",
-    "text": "set.seed(84735)\nadmission_sim &lt;- data.frame(pi = rbeta(10000, 3, 7)) \nhead(admission_sim)\n\n         pi\n1 0.4245463\n2 0.2796543\n3 0.4484403\n4 0.3412382\n5 0.4517916\n6 0.6361449\n\nadmission_sim &lt;- admission_sim |&gt;\n  mutate(y = rbinom(10000, size = 50, prob = pi))"
-  },
-  {
-    "objectID": "slides/slides04.html#section-6",
-    "href": "slides/slides04.html#section-6",
-    "title": "Beta-Binomial Model",
-    "section": "",
-    "text": "pi\ny\n\n\n\n\n0.4245463\n24\n\n\n0.2796543\n12\n\n\n0.4484403\n24\n\n\n0.3412382\n19\n\n\n0.4517916\n29\n\n\n0.6361449\n29\n\n\n0.3087587\n19\n\n\n0.7005417\n33\n\n\n0.3560422\n20\n\n\n0.3904306\n22"
-  },
-  {
-    "objectID": "slides/slides04.html#simulation-outcomes",
-    "href": "slides/slides04.html#simulation-outcomes",
-    "title": "Beta-Binomial Model",
-    "section": "Simulation outcomes",
-    "text": "Simulation outcomes"
-  },
-  {
-    "objectID": "slides/slides04.html#simulation-outcomes-that-match-the-data",
-    "href": "slides/slides04.html#simulation-outcomes-that-match-the-data",
-    "title": "Beta-Binomial Model",
-    "section": "Simulation outcomes that match the data",
-    "text": "Simulation outcomes that match the data"
-  },
-  {
-    "objectID": "slides/slides04.html#simulation-outcomes-that-match-the-data-1",
-    "href": "slides/slides04.html#simulation-outcomes-that-match-the-data-1",
-    "title": "Beta-Binomial Model",
-    "section": "Simulation outcomes that match the data",
-    "text": "Simulation outcomes that match the data\n\nadmission_posterior &lt;- admission_sim |&gt; \n  filter(y == 30)\n\n\nnrow(admission_posterior)\n\n[1] 100\n\n\n\\(f(\\pi|y =30)\\)"
-  },
-  {
-    "objectID": "slides/slides04.html#simulated-posterior",
-    "href": "slides/slides04.html#simulated-posterior",
-    "title": "Beta-Binomial Model",
-    "section": "Simulated Posterior",
-    "text": "Simulated Posterior\n\nggplot(admission_posterior, aes(x = pi)) + \n  geom_histogram(color = \"white\", binwidth = 0.025)"
-  },
-  {
-    "objectID": "slides/slides04.html#simulated-posterior-density-estimate",
-    "href": "slides/slides04.html#simulated-posterior-density-estimate",
-    "title": "Beta-Binomial Model",
-    "section": "Simulated posterior density estimate",
-    "text": "Simulated posterior density estimate\n\nggplot(admission_posterior, aes(x = pi)) + \n  geom_density() + xlim(0,1)"
+    "objectID": "slides/slides05.html#dont-be-stubborn",
+    "href": "slides/slides05.html#dont-be-stubborn",
+    "title": "Balance and Sequentiality",
+    "section": "Don’t be stubborn",
+    "text": "Don’t be stubborn\n\n\n\n\n\n\nWarning\n\n\nThe posterior is defined on the same values as the prior. Do not assign \\(f(\\pi) = 0\\) on any reasonable value!"
   },
   {
     "objectID": "slides/test.html#quarto",
@@ -1274,149 +1507,94 @@
     "text": "Code\nWhen you click the Render button a presentation will be generated that includes both content and the output of embedded code. You can embed code like this:\n\n1 + 1\n\n[1] 2"
   },
   {
-    "objectID": "homework/hw02.html",
-    "href": "homework/hw02.html",
-    "title": "Individual HW02",
+    "objectID": "homework/hw03.html",
+    "href": "homework/hw03.html",
+    "title": "Individual HW03",
     "section": "",
-    "text": "BR Exercise 2.16\n\n\n\n\n\n\nNote\n\n\n\nIf the link from the textbook doesn’t work, try this link from the internet archive\n\n\n\n\nBR Exercise 2.21\n\n\nBR Exercise 3.8\n\n\nsummarize_beta_binomial\nWrite your own R function that does the same thing as summarize_beta_binomial. It’s OK if your output is formatted differently and you do not need to write formal checks.\n\n\n\n\n\n\nNote\n\n\n\nIf you need a refresher on writing functions in R, I recommend:\n\nR4DS Ch25 for an overview of functions in R with practice problems\nMy Stat220 slides for a quick refresher\n\n\n\n\n\nBR Exercise 3.9\n\n\nBR Exercise 3.10\n\n\nBR Exercise 4.10\n\n\nBR Exercise 4.14\n\n\nBR Exercise 4.18",
+    "text": "library(bayesrules) # R package for our textbook\nlibrary(tidyverse) # Collection of packages for tidying and plotting data\nlibrary(janitor) # Helper functions like tidy and tabyl\n\nBR Exercise 5.1 a, d, f\nFor each situation below, tune an appropriate Gamma(s, r) prior model for \\(\\lambda\\)\n\nThe most common value of \\(\\lambda\\) is 4, and the mean is 7.\nThe most common value of \\(\\lambda\\) is 14, and the variance is 6.\nThe mean of \\(\\lambda\\) is 22, and the variance is 3.\nBR Exercise 5.7\nLet \\(\\lambda\\) be the average number of goals scored in a Women’s World Cup game. We’ll analyze \\(\\lambda\\) by the following Gamma-Poisson model: \\[Y_i | \\lambda \\sim \\text{Poisson}(\\lambda)\\] \\[\\lambda \\sim \\text{Gamma}(1, 0.25)\\]\n\nPlot and summarize our prior understanding of \\(\\lambda\\)\n\nWhy is the Poisson model a reasonable choice for \\(Y_i\\)?\nThe wwc_2019_matches data in the {fivethirtyeight} package includes the number of goals scored by the two teams in each 2019 Women’s World Cup match. Define, plot, and discuss the total number of goals scored per game\n\n\nlibrary(fivethirtyeight)\ndata(\"wwc_2019_matches\")\nwwc_2019_matches &lt;- wwc_2019_matches %&gt;% \n  mutate(total_goals = score1 + score2)\n\n\nidentify the posterior model of \\(\\lambda\\) and verify your answer using summarize_gamma_poisson()\n\nPlot the prior, likelihood, and posterior of \\(\\lambda\\). Describe the evolution in your understanding of \\(\\lambda\\) from the prior to posterior.\nBR Exercise 5.15\nBelow are kernels for Normal, Poisson, Gamma, Beta, and Binomial models. Identify the appropriate model with specific parameter values.\n\n\n\\(f(\\theta) \\propto 0.3^\\theta 0.7^{16 - \\theta}\\) for \\(\\theta \\in \\{0, 1, 2 ..., 16\\}\\)\n\n\n\\(f(\\theta) \\propto 1/\\theta!\\) for \\(\\theta \\in \\{0, 1, ..., \\infty\\}\\)\n\n\n\\(f(\\theta) \\propto \\theta^4(1-\\theta)^7\\) for \\(\\theta \\in [0,1]\\)\n\n\\(f(\\theta) \\propto e^{-\\theta^2}\\)\nTBA Mon\nTBA Mon\nTBA Mon\nTBA Wed\nTBA Wed",
     "crumbs": [
       "Assignments",
       "Homework",
-      "Individual HW02"
+      "Individual HW03"
     ]
   },
   {
-    "objectID": "computing/computing-setup.html",
-    "href": "computing/computing-setup.html",
-    "title": "Computing Setup for Stat340",
+    "objectID": "homework/hw01.html",
+    "href": "homework/hw01.html",
+    "title": "Individual HW01",
     "section": "",
-    "text": "For Stat340, I highly recommend using R on your local computer, instead of the maize server. Why?\n\nIt’s likely the 4th time (or more!) that you’ve seen R in a classroom setting\nYou’re graduating soon and won’t be able to access maize\nBayesian statistics is much more computationally expensive than traditional statistics, and your model fitting will run faster on a local installation\n\nFirst, download the most recent versions of R and RStudio for your operating system:\n\nR (https://www.r-project.org/)\nRStudio (https://rstudio.com/products/rstudio/download/)\nQuarto (https://quarto.org/docs/get-started/)\n\nNext, we need to install a version of LaTeX in order to render quarto files to PDF. I recommend using the tinytex installation that is included with quarto. To install it, click on “Terminal” within RStudio and type the following:\nquarto install tinytex\nAfter doing all of the following, you can check that it is working correctly by:\n\nOpen rstudio\nClick “File –&gt; New File –&gt; Quarto document” and choose the “PDF” output option\nMake a small change to the file within the editor and click “render”. If all goes well, you should end up with a PDF document!\n\nFor Stat340 coursework, it will be helpful to have some additional R packages installed. You can install these all at once with:\n\ninstall.packages(c(\"bayesrules\", \"tidyverse\", \"janitor\", \"rstanarm\",\n                   \"bayesplot\", \"tidybayes\", \"broom.mixed\", \"modelr\",\n                   \"e1071\", \"forcats\"), \n                 dependencies = TRUE)",
+    "text": "BR Exercise 1.5\n\n\nBR Exercise 1.6\n\n\nBR Exercise 2.2\n\n\nBR Exercise 2.6\n\n\nBR Exercise 2.16\n\n\n\n\n\n\nImportant\n\n\n\nThis problem moved to HW2!",
     "crumbs": [
-      "Computing",
-      "Setup"
+      "Assignments",
+      "Homework",
+      "Individual HW01"
     ]
   },
   {
-    "objectID": "computing/computing-access.html",
-    "href": "computing/computing-access.html",
-    "title": "Computing Access",
+    "objectID": "computing/rstudio-stat340.html",
+    "href": "computing/rstudio-stat340.html",
+    "title": "Using R/RStudio for Homework in Stat340",
     "section": "",
-    "text": "I expect you to use RStudio to run R in this course. You have two options for using RStudio:\n\nWe have a Carleton server hosting Rstudio at https://maize.mathcs.carleton.edu/. Your files on this account will be accessible as long as you are a student at Carleton. Use your Carleton credentials to access your account and you need to be running the Carleton VPN (below) to access this server. Use this option if\n\nyour personal computer is old and/or slow\nyou prefer to use school computers (lab or library computers)\n\nYou can also run R/RStudio from your personal computer. If you use a local version of R/RStudio this term, make sure that you have recently updated both R and RStudio.\nTo check your version of R, run the command getRversion() and compare your version to the newest version posted on https://cran.r-project.org/. If you need an update, then install the newer version using the installation directions above.\nIn RStudio, check for updates with the menu option Help &gt; Check for updates. Follow directions if an update is needed.\nFor a fresh download:\n\nDownload the latest version of R for your operating system from https://cran.r-project.org/\nDownload the free RStudio desktop version from https://posit.co/download/rstudio-desktop/\n\nUse the default download and install options for each. For R, download the “precompiled binary” distribution rather than the source code."
+    "text": "In Stat340, I will distribute homework assignment templates in.qmd format.",
+    "crumbs": [
+      "Computing",
+      "Rstudio in Stat 340"
+    ]
   },
   {
-    "objectID": "computing/computing-access.html#rrstudio",
-    "href": "computing/computing-access.html#rrstudio",
-    "title": "Computing Access",
+    "objectID": "computing/rstudio-stat340.html#uploading-files-to-maize",
+    "href": "computing/rstudio-stat340.html#uploading-files-to-maize",
+    "title": "Using R/RStudio for Homework in Stat340",
+    "section": "Uploading files to maize",
+    "text": "Uploading files to maize\n\nClick the “upload” button in the files pane\nSelect the file from your local computer (likely in your Downloads folder if you downloaded from moodle)\nChoose the “Target Directory” – this is the folder on your maize account where the file will be saved. I recommend creating a separate folder for this class.",
+    "crumbs": [
+      "Computing",
+      "Rstudio in Stat 340"
+    ]
+  },
+  {
+    "objectID": "computing/rstudio-stat340.html#accessing-maize-from-off-campus",
+    "href": "computing/rstudio-stat340.html#accessing-maize-from-off-campus",
+    "title": "Using R/RStudio for Homework in Stat340",
+    "section": "Accessing maize from off campus",
+    "text": "Accessing maize from off campus\nIf you are using the maize server, you should be able to access it on campus with only your Carleton ID and password. If you plan to use the maize server and you plan to do any work off campus this term (e.g., while on a field trip, travel for athletics, or just sitting in Little Joy) you need to install Carleton’s VPN to have access.\nTo install the GlobalProtect VPN follow directions provided by ITS.",
+    "crumbs": [
+      "Computing",
+      "Rstudio in Stat 340"
+    ]
+  },
+  {
+    "objectID": "computing/rstudio-stat340.html#installing-latex-not-needed-if-you-are-using-the-maize-server",
+    "href": "computing/rstudio-stat340.html#installing-latex-not-needed-if-you-are-using-the-maize-server",
+    "title": "Using R/RStudio for Homework in Stat340",
+    "section": "Installing LaTeX (not needed if you are using the maize server)",
+    "text": "Installing LaTeX (not needed if you are using the maize server)\nIf you don’t already have a tex package installed on your computer, the easiest option to create pdf’s is to use the tinytex R package. This can be installed with the following R commands:\n\ninstall.packages(\"tinytex\")\ntinytex::install_tinytex()  # install TinyTeX\n\nIf you’d like a standalone LaTeX package that will work with programs other than RStudio, you could install the basic installations of either:\nIf you’d like a stand alone LaTeX package, you could install the basic installations of either:\n\n\nMacTeX for Mac (3.2GB!)\n\nMiKTeX for Windows (190MB)",
+    "crumbs": [
+      "Computing",
+      "Rstudio in Stat 340"
+    ]
+  },
+  {
+    "objectID": "computing/computing-cheatsheets.html",
+    "href": "computing/computing-cheatsheets.html",
+    "title": "R cheatsheets",
     "section": "",
-    "text": "I expect you to use RStudio to run R in this course. You have two options for using RStudio:\n\nWe have a Carleton server hosting Rstudio at https://maize.mathcs.carleton.edu/. Your files on this account will be accessible as long as you are a student at Carleton. Use your Carleton credentials to access your account and you need to be running the Carleton VPN (below) to access this server. Use this option if\n\nyour personal computer is old and/or slow\nyou prefer to use school computers (lab or library computers)\n\nYou can also run R/RStudio from your personal computer. If you use a local version of R/RStudio this term, make sure that you have recently updated both R and RStudio.\nTo check your version of R, run the command getRversion() and compare your version to the newest version posted on https://cran.r-project.org/. If you need an update, then install the newer version using the installation directions above.\nIn RStudio, check for updates with the menu option Help &gt; Check for updates. Follow directions if an update is needed.\nFor a fresh download:\n\nDownload the latest version of R for your operating system from https://cran.r-project.org/\nDownload the free RStudio desktop version from https://posit.co/download/rstudio-desktop/\n\nUse the default download and install options for each. For R, download the “precompiled binary” distribution rather than the source code."
+    "text": "The following cheatsheets come from https://posit.co/resources/cheatsheets. We haven’t covered every function and functionality listed on them, but you might still find them useful as references.",
+    "crumbs": [
+      "Computing",
+      "Cheatsheets"
+    ]
   },
   {
-    "objectID": "computing/computing-access.html#vpn",
-    "href": "computing/computing-access.html#vpn",
-    "title": "Computing Access",
-    "section": "VPN",
-    "text": "VPN\nIf you plan to use the maize server and you plan to do any work off campus this term (e.g., while on a field trip, travel for athletics, or just sitting in Little Joy) you need to install Carleton’s VPN to have access.\nTo install the GlobalProtect VPN follow directions provided by ITS."
-  },
-  {
-    "objectID": "computing/computing-access.html#git-and-github",
-    "href": "computing/computing-access.html#git-and-github",
-    "title": "Computing Access",
-    "section": "Git and GitHub",
-    "text": "Git and GitHub\nGit is version control software that you install locally on your computer. Git is already installed on the maize RStudio server.\nGithub is a cloud-based service for hosting git projects. It allows multiple users to share and contribute to projects and it is how you will be submitting homework assignments and projects for this class. More information about Github for this class is found on Moodle.\nIf you are using a local install of R/RStudio, then you will need to install Git.\nInstalling Git\nDirections for both Windows & Mac here at http://happygitwithr.com/install-git.html.\n\nIf you are using maize, then there is nothing you need to install.\nWindows users should follow Option 1 in 6.2.\nMac users can follow Option 1 in 6.3 if comfortable, otherwise follow Option 2\nLinux users can follow 6.4."
-  },
-  {
-    "objectID": "computing/computing-access.html#latex",
-    "href": "computing/computing-access.html#latex",
-    "title": "Computing Access",
-    "section": "LaTeX",
-    "text": "LaTeX\nYou need a LaTeX compiler to create a pdf document from a R Markdown file. If you use the maize server, you don’t need to install anything (the server already has a LaTeX compiler). If you are using a local RStudio, you should install a Latex compiler.\nInstalling LaTeX (not needed if you are using the maize server)\nIf you don’t already have a tex package installed on your computer, the easiest option to create pdf’s is to use the tinytex R package. This can be installed with the following R commands:\n\ninstall.packages(\"tinytex\")\ntinytex::install_tinytex()  # install TinyTeX\n\nIf you’d like a stand alone LaTeX package, you could install the basic installations of either:\n\nMacTeX for Mac (3.2GB!)\nMiKTeX for Windows (190MB)\n\n\nAcknowledgements\nThis installation guide was written by Adam Loy and is based on the guide from stat545.com and is licensed under the CC BY-NC 3.0 Creative Commons License."
-  },
-  {
-    "objectID": "computing/r-basics-refresher.html",
-    "href": "computing/r-basics-refresher.html",
-    "title": "R Basics",
+    "objectID": "groupwork/gw02.html",
+    "href": "groupwork/gw02.html",
+    "title": "Group Work 02",
     "section": "",
-    "text": "In your previous statistics course at Carleton, you likely loaded at least one add-on R package. In this course, we’ll use a lot of tools found in the tidyverse of R packages. To load many of these packages at once, you can use the library(&lt;package_name&gt;) command. So to load the tidyverse we run:\n\nlibrary(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.4     ✔ readr     2.1.5\n✔ forcats   1.0.0     ✔ stringr   1.5.1\n✔ ggplot2   3.5.2     ✔ tibble    3.2.1\n✔ lubridate 1.9.3     ✔ tidyr     1.3.1\n✔ purrr     1.0.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\n\n\n\n\n\n\n\nNote\n\n\n\nAbove we see a lot of extra info printed when we load the tidyverse. These messages are just telling you what packages are now available to you and warning you that a few functions (e.g., filter) has been replaced by the tidyverse version. We’ll see how to suppress these messages later.",
+    "text": "library(bayesrules) # R package for our textbook\nlibrary(tidyverse) # Collection of packages for tidying and plotting data\nlibrary(janitor) # Helper functions like tidy and tabyl\n\nBR Exercise 2.13\nBR Exercise 2.18\nBR Exercise 2.17\nMLE\nIf \\(Y \\sim \\text{Binom}(n, \\pi)\\), show that \\(\\hat{\\pi}_{MLE} = \\frac{Y}{n}\\)\nBR Exercise 3.1\nFor each part, use plot_beta and/or summarize_beta to justify your answer\nBR Exercise 3.12\nChoice of prior\nI am interviewing Carleton students about whether or not they have used (knowingly) used ChatGPT on coursework in a non-approved way. I think the proportion has a 90% chance of being less than .25.\n\nChoose an informative prior that you think is reasonable for this belief\n\nI then ask 20 students this question and 15 respond “yes”. Find the posterior using the prior from above, then using the 3 non/weakly informative priors below:\n\nUnif(0,1) prior\nBeta(2,2) prior\n“Reference” prior Beta(.5, .5)\n\nCompare the posteriors for each of the priors above. Do results change if we instead observe 150/200 students responding “yes”?\nBR 4.13\n\n\n\n\n\n\nNote\n\n\n\nFor part (a), you do not need to include your sketch in your submission!",
     "crumbs": [
-      "Computing",
-      "R Refresher"
-    ]
-  },
-  {
-    "objectID": "computing/r-basics-refresher.html#loading-r-packages",
-    "href": "computing/r-basics-refresher.html#loading-r-packages",
-    "title": "R Basics",
-    "section": "",
-    "text": "In your previous statistics course at Carleton, you likely loaded at least one add-on R package. In this course, we’ll use a lot of tools found in the tidyverse of R packages. To load many of these packages at once, you can use the library(&lt;package_name&gt;) command. So to load the tidyverse we run:\n\nlibrary(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.4     ✔ readr     2.1.5\n✔ forcats   1.0.0     ✔ stringr   1.5.1\n✔ ggplot2   3.5.2     ✔ tibble    3.2.1\n✔ lubridate 1.9.3     ✔ tidyr     1.3.1\n✔ purrr     1.0.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\n\n\n\n\n\n\n\nNote\n\n\n\nAbove we see a lot of extra info printed when we load the tidyverse. These messages are just telling you what packages are now available to you and warning you that a few functions (e.g., filter) has been replaced by the tidyverse version. We’ll see how to suppress these messages later.",
-    "crumbs": [
-      "Computing",
-      "R Refresher"
-    ]
-  },
-  {
-    "objectID": "computing/r-basics-refresher.html#creating-and-naming-objects",
-    "href": "computing/r-basics-refresher.html#creating-and-naming-objects",
-    "title": "R Basics",
-    "section": "Creating and naming objects",
-    "text": "Creating and naming objects\nAll R statements where you create objects have the form:\n\nobject_name &lt;- value\n\nAt first, we’ll be creating a lot of data objects. For example, we an load a data set containing the ratings for each episode of The Office using the code\n\noffice_ratings &lt;- readr::read_csv(\"https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-03-17/office_ratings.csv\")\n\nIn this class you will be creating a lot of objects, so you’ll need to come up with names for those objects. Trying to think of informative/meaningful names for objects is hard, but necessary work! Below are the fundamental rules for naming objects in R:\n\nnames can’t start with a number\nnames are case-sensitive\nsome common letters are used internally by R and should be avoided as variable names (c, q, t, C, D, F, T, I)\nThere are reserved words that R won’t let you use for variable names (for, in, while, if, else, repeat, break, next)\nR will let you use the name of a predefined function—but don’t do it!\n\nYou can always check to see if you the name you want to use is already taken via exists():\nFor example lm exists\n\nexists(\"lm\")\n\n[1] TRUE\n\n\nbut carleton_college doesn’t.\n\nexists(\"carleton_college\")\n\n[1] FALSE\n\n\nThere are also a lot of naming styles out there, and if you have coded in another language, you may have already developed a preference. Below is an illustration by Allison Horst\n\n\n\n\n\n\n\n\nI generally following the tidyverse style guide, so you’ll see that I use only lowercase letters, numbers, and _ (snake case).",
-    "crumbs": [
-      "Computing",
-      "R Refresher"
-    ]
-  },
-  {
-    "objectID": "computing/r-basics-refresher.html#overviews-of-data-frames",
-    "href": "computing/r-basics-refresher.html#overviews-of-data-frames",
-    "title": "R Basics",
-    "section": "Overviews of data frames",
-    "text": "Overviews of data frames\nAbove, you loaded in a data set called office_ratings. Data sets are stored as a special data structure called a data frame. Data frames are the most-commonly used data structure for data analysis in R. For now, think of them like spreadsheets.\nOnce you have your data frame, you can get a quick overview of it using a few commands (below I use data_set as a generic placeholder for the data frame’s name):\n\n\n\n\n\n\nCommand\nDescription\n\n\n\nhead(data_set)\nprint the first 6 rows\n\n\ntail(data_set)\nprint the last 6 rows\n\n\nglimpse(data_set)\na quick overview where columns run down the screen and the data values run across. This allows you to see every column in the data frame.\n\n\nstr(data_set)\na quick overview like glimpse(), but without some of the formatting\n\n\nsummary(data_set)\nquick summary statistics for each column\n\n\ndim(data_set)\nthe number of rows and columns\n\n\nnrow(data_set)\nthe number of rows\n\n\nncol(data_set)\nthe number of columns",
-    "crumbs": [
-      "Computing",
-      "R Refresher"
-    ]
-  },
-  {
-    "objectID": "computing/r-basics-refresher.html#tibbles",
-    "href": "computing/r-basics-refresher.html#tibbles",
-    "title": "R Basics",
-    "section": "Tibbles",
-    "text": "Tibbles\nA tibble, or a tbl_df is another version of a data frame which is used by default in a lot of the tidyverse packages that we’ll use.\n\nTibbles are data.frames that are lazy and surly: they do less (i.e. they don’t change variable names or types, and don’t do partial matching) and complain more (e.g. when a variable does not exist). This forces you to confront problems earlier, typically leading to cleaner, more expressive code. Tibbles also have an enhanced print() method which makes them easier to use with large datasets containing complex objects.\n\n\n\n\n\n\n\nNone Check point\n\n\n\nRun the above commands on the office_ratings data set. Compare and contrast the information returned by each command.\n\n\n\n\n\n\n\n\nTipGetting a spreadsheet\n\n\n\nIn RStudio, you can run the command View(data_set) to pull up a spreadsheet representation of a data frame. You can also click on the name of the data frame in the Environment pane. This can be a great way help you think about the data, and even has some interactive functions (e.g., filtering and searching); however, never include View(data_set) in an .Rmd file!!\n\n\n\n\n\n\n\n\nNoteReview from intro stats\n\n\n\nIn intro stats we used the terms cases (or observations) and variables to describe the rows and columns of a data frame, respectively.",
-    "crumbs": [
-      "Computing",
-      "R Refresher"
-    ]
-  },
-  {
-    "objectID": "computing/r-basics-refresher.html#extracting-pieces-of-data-frames",
-    "href": "computing/r-basics-refresher.html#extracting-pieces-of-data-frames",
-    "title": "R Basics",
-    "section": "Extracting pieces of data frames",
-    "text": "Extracting pieces of data frames\nSince data frames are the fundamental data structure for most analyses in R, it’s important to know how to work with them. You already know how to get an overview of a data frame, but that isn’t always very informative. Often, you want to extract pieces of a data frame, such as a specific column or row.\nExtracting rows\nData frames can be indexed by their row/column numbers. To extract elements of a data frame, the basic syntax is data_set[row.index, column.index]. So, to extract the 10th row of office_ratings we run\n\noffice_ratings[10, ]\n\n# A tibble: 1 × 6\n  season episode title    imdb_rating total_votes air_date  \n   &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;          &lt;dbl&gt;       &lt;dbl&gt; &lt;date&gt;    \n1      2       4 The Fire         8.4        2713 2005-10-11\n\n\nNotice that to extract an entire row, we leave the column index position blank.\nWe can also extract multiple rows by creating a vector of row indices. For example, we can extract the first 5 rows via\n\noffice_ratings[1:5, ]\n\n# A tibble: 5 × 6\n  season episode title         imdb_rating total_votes air_date  \n   &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;               &lt;dbl&gt;       &lt;dbl&gt; &lt;date&gt;    \n1      1       1 Pilot                 7.6        3706 2005-03-24\n2      1       2 Diversity Day         8.3        3566 2005-03-29\n3      1       3 Health Care           7.9        2983 2005-04-05\n4      1       4 The Alliance          8.1        2886 2005-04-12\n5      1       5 Basketball            8.4        3179 2005-04-19\n\n\nHere, 1:5 create a sequence of integers from 1 to 5.\nWe could also specify arbitrary row index values by combing the values into a vector. For example, we could extract the 1st, 13th, 64th, and 128th rows via\n\noffice_ratings[c(1, 13, 64, 128), ]\n\n# A tibble: 4 × 6\n  season episode title            imdb_rating total_votes air_date  \n   &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;                  &lt;dbl&gt;       &lt;dbl&gt; &lt;date&gt;    \n1      1       1 Pilot                    7.6        3706 2005-03-24\n2      2       7 The Client               8.6        2631 2005-11-08\n3      4      13 Job Fair                 7.9        1977 2008-05-08\n4      7      11 Classy Christmas         8.9        2138 2010-12-09\n\n\nExtracting columns\nSimilar to extracting rows, we can use a numeric index to extract the columns of a data frame. For example, to extract the 3rd column, we can run\n\noffice_ratings[,3]\n\n# A tibble: 188 × 1\n   title            \n   &lt;chr&gt;            \n 1 Pilot            \n 2 Diversity Day    \n 3 Health Care      \n 4 The Alliance     \n 5 Basketball       \n 6 Hot Girl         \n 7 The Dundies      \n 8 Sexual Harassment\n 9 Office Olympics  \n10 The Fire         \n# ℹ 178 more rows\n\n\nAlternatively, we can pass in the column name in quotes instead of the column number\n\noffice_ratings[,\"title\"]\n\n# A tibble: 188 × 1\n   title            \n   &lt;chr&gt;            \n 1 Pilot            \n 2 Diversity Day    \n 3 Health Care      \n 4 The Alliance     \n 5 Basketball       \n 6 Hot Girl         \n 7 The Dundies      \n 8 Sexual Harassment\n 9 Office Olympics  \n10 The Fire         \n# ℹ 178 more rows\n\n\nNotice that the extracted column is still formatted as a data frame (or tibble). If you want to extract the contents of the column and just have a vector of titles, you have a few options.\n\nYou could use double brackets with the column number:\n\n\noffice_ratings[[3]]\n\n\nYou could use double brackets with the column name in quotes:\n\n\noffice_ratings[[\"title\"]]\n\n\nYou could use the $ extractor with the column name (not in quotes):\n\n\noffice_ratings$title\n\n\n\n\n\n\n\nNone Check point\n\n\n\n\nExtract the 35th row of office_ratings.\nExtract rows 35, 36, 37, and 38 of office_ratings.\nExtract the imdb_rating column from office ratings using the column index number.\nExtract the imdb_rating column from office ratings using the column name.",
-    "crumbs": [
-      "Computing",
-      "R Refresher"
-    ]
-  },
-  {
-    "objectID": "computing/r-basics-refresher.html#lists",
-    "href": "computing/r-basics-refresher.html#lists",
-    "title": "R Basics",
-    "section": "Lists",
-    "text": "Lists\nIt turns out that data frames are special cases of lists, a more general data structure. In a data frame, each column is an element of the data list and each column must be of the same length. In general, lists can be comprised of elements of vastly different lengths and data types.\nAs an example, let’s construct a list of the faculty in the MAST department and what is being taught this winter.\n\nstat_faculty &lt;- c(\"Kelling\", \"Loy\", \"Luby\", \"Poppick\", \"St. Clair\", \"Wadsworth\")\nstat_courses &lt;- c(120, 220, 230, 250, 285, 330)\nmath_faculty &lt;- c(\"Brooke\", \"Davis\", \"Egge\", \"Gomez-Gonzales\", \"Haunsperger\", \"Johnson\", \n                  \"Meyer\", \"Montee\", \"Shrestha\",\"Terry\", \"Thompson\", \"Turnage-Butterbaugh\")\nmath_courses &lt;- c(101, 106, 111, 120, 210, 211, 232, 236, 240, 241, 251, 321, 333, 395)\n\nmast &lt;- list(stat_faculty = stat_faculty, stat_courses = stat_courses, \n             math_faculty = math_faculty, math_courses = math_courses)\n\nOverview of a list\nYou can get an overview of a list a few ways:\n\n\nglimpse(list_name) and str(list_name) list the elements of the list and the first few entries of each element.\n\n\nglimpse(mast)\n\nList of 4\n $ stat_faculty: chr [1:6] \"Kelling\" \"Loy\" \"Luby\" \"Poppick\" ...\n $ stat_courses: num [1:6] 120 220 230 250 285 330\n $ math_faculty: chr [1:12] \"Brooke\" \"Davis\" \"Egge\" \"Gomez-Gonzales\" ...\n $ math_courses: num [1:14] 101 106 111 120 210 211 232 236 240 241 ...\n\n\n\n\nlength(list_name) will tell you how many elements are in the list\n\n\nlength(mast)\n\n[1] 4\n\n\nExtracting elements of a list\nSince data frames are lists, you’ve already seen how to extract elements of a list. For example, to extract the stat_faculty you could run\n\nmast[[1]]\n\n[1] \"Kelling\"   \"Loy\"       \"Luby\"      \"Poppick\"   \"St. Clair\" \"Wadsworth\"\n\n\nor\n\nmast[[\"stat_faculty\"]]\n\n[1] \"Kelling\"   \"Loy\"       \"Luby\"      \"Poppick\"   \"St. Clair\" \"Wadsworth\"\n\n\n\n\n\n\n\n\nNote\n\n\n\nIf you had only used a single bracket above, the returned object would still be a list, which is typically not what we would want.\n\nmast[1]\n\n$stat_faculty\n[1] \"Kelling\"   \"Loy\"       \"Luby\"      \"Poppick\"   \"St. Clair\" \"Wadsworth\"\n\n\n\n\n\n\n\n\n\n\nNone Check point\n\n\n\nExtract the statistics courses offered this term.",
-    "crumbs": [
-      "Computing",
-      "R Refresher"
-    ]
-  },
-  {
-    "objectID": "computing/r-basics-refresher.html#vectors",
-    "href": "computing/r-basics-refresher.html#vectors",
-    "title": "R Basics",
-    "section": "Vectors",
-    "text": "Vectors\nThe columns of the office_ratings data frame and the elements of the mast list were comprised of (atomic) vectors. Unlike lists, all elements within a vector share the same type. For example, all names in the stat_faculty vector were character strings and all ratings in the imdb_rating column were numeric. We’ll deal with a variety of types of vectors in this course, including:\n\nnumeric\ncharacter (text)\nlogical (TRUE/FALSE)\n\nExtracting elements of a vector\nJust like with lists (and therefore data frames), we use brackets to extract elements from a vector. As an example, let’s work with the title column from office_ratings.\n\ntitle &lt;- office_ratings$title # vector of titles\n\nTo extract the 111th title, we run\n\ntitle[111]\n\n[1] \"New Leads\"\n\n\nor two extract the 100th through 111th titles, we run\n\ntitle[100:111]\n\n [1] \"Double Date\"          \"Murder\"               \"Shareholder Meeting\" \n [4] \"Scott's Tots\"         \"Secret Santa\"         \"The Banker\"          \n [7] \"Sabre\"                \"Manager and Salesman\" \"The Delivery: Part 1\"\n[10] \"The Delivery: Part 2\" \"St. Patrick's Day\"    \"New Leads\"           \n\n\nNegative indices\nSometimes, we want to “kick out” elements of our vector. To do this, we can use a negative index value. For example,\n\ntitle[-1]\n\nreturns all but the first title—that is, it kicks out the first title. To kick out multiple elements, we need to negate a vector of indices. For example, below we kick out the first 10 titles\n\ntitle[-c(1:10)]\n\nAnd now we kick out the 5th, 50th, and 150th titles\n\ntitle[-c(5, 50, 150)]\n\nThis idea can be adapted to lists and data frames. For example, to kick out the first row of office_ratings, we run\n\noffice_ratings[-1,]\n\n# A tibble: 187 × 6\n   season episode title             imdb_rating total_votes air_date  \n    &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;                   &lt;dbl&gt;       &lt;dbl&gt; &lt;date&gt;    \n 1      1       2 Diversity Day             8.3        3566 2005-03-29\n 2      1       3 Health Care               7.9        2983 2005-04-05\n 3      1       4 The Alliance              8.1        2886 2005-04-12\n 4      1       5 Basketball                8.4        3179 2005-04-19\n 5      1       6 Hot Girl                  7.8        2852 2005-04-26\n 6      2       1 The Dundies               8.7        3213 2005-09-20\n 7      2       2 Sexual Harassment         8.2        2736 2005-09-27\n 8      2       3 Office Olympics           8.4        2742 2005-10-04\n 9      2       4 The Fire                  8.4        2713 2005-10-11\n10      2       5 Halloween                 8.2        2561 2005-10-18\n# ℹ 177 more rows\n\n\nor to kick out the math courses from the mast list we run\n\nmast[-4]\n\n$stat_faculty\n[1] \"Kelling\"   \"Loy\"       \"Luby\"      \"Poppick\"   \"St. Clair\" \"Wadsworth\"\n\n$stat_courses\n[1] 120 220 230 250 285 330\n\n$math_faculty\n [1] \"Brooke\"              \"Davis\"               \"Egge\"               \n [4] \"Gomez-Gonzales\"      \"Haunsperger\"         \"Johnson\"            \n [7] \"Meyer\"               \"Montee\"              \"Shrestha\"           \n[10] \"Terry\"               \"Thompson\"            \"Turnage-Butterbaugh\"\n\n\nLogical indices\nIt’s great to be able to extract (or omit) elements using indices, but sometimes we don’t know what index value we should use. For example, if you wanted to extract all of the 300-level statistics courses from the stat_courses vector, you would need to manually determine that positions 2:5 meet that requirement. That’s a lot of work! A better alternative is to allow R to find the elements meeting that requirement using logical operators. Below is a table summarizing common logical operators in R.\n\n\nComparison\nMeaning\n\n\n\n&lt;\nless than\n\n\n&gt;\ngreater than\n\n\n&lt;=\nless than or equal to\n\n\n&gt;=\ngreater than or equal to\n\n\n==\nis equal to\n\n\n!=\nnot equal to\n\n\n\nIn order to extract the 300-level statistics courses, we’ll take two steps:\n\nWe’ll determine whether each course is numbered at least 300,\nthen we’ll use that sequence of TRUEs/FALSEs to extract the course.\n\nSo, first we use the logical operator &gt;= to compare stat_courses and 300. This returns TRUE if the element meets the specification and FALSE otherwise.\n\nstat_courses &gt;= 300\n\n[1] FALSE FALSE FALSE FALSE FALSE  TRUE\n\n\nNow, we can use this vector as our index. Only the TRUE elements will be extracted:\n\nstat_courses[stat_courses &gt;= 300]\n\n[1] 330\n\n\nThe same idea can be used with data frames and lists, just remember how to format the brackets and indices!\n\n\n\n\n\n\nNone Check point\n\n\n\n\nExtract all statistics courses below 250 from stat_courses.\nExtract all math courses except for 240 (probability) from math_courses.\nExtract all rows from season 3 of The Office.",
-    "crumbs": [
-      "Computing",
-      "R Refresher"
+      "Assignments",
+      "Groupwork",
+      "Group Work 02"
     ]
   },
   {
