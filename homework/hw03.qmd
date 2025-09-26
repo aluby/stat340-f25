@@ -1,0 +1,55 @@
+---
+title: "Individual HW03"
+author: "Your Name Here"
+---
+
+# BR Exercise 5.1 a, d, f
+
+For each situation below, tune an appropriate Gamma(s, r) prior model for $\lambda$
+
+(a) The most common value of $\lambda$ is 4, and the mean is 7.
+(d) The most common value of $\lambda$ is 14, and the variance is 6.
+(f) The mean of $\lambda$ is 22, and the variance is 3.
+
+# BR Exercise 5.7 
+
+Let $\lambda$ be the average number of goals scored in a Women's World Cup game. We'll analyze $\lambda$ by the following Gamma-Poisson model: 
+$$Y_i | \lambda \sim \text{Poisson}(\lambda)$$
+$$\lambda \sim \text{Gamma}(1, 0.25)$$
+
+(a) Plot and summarize our prior understanding of $\lambda$
+(b) Why is the Poisson model a reasonable choice for $Y_i$?
+(c) The `wwc_2019_matches` data in the {fivethirtyeight} package includes the number of goals scored by the two teams in each 2019 Women's World Cup match. Define, plot, and discuss the total number of goals scored per game
+
+```{r}
+library(fivethirtyeight)
+data("wwc_2019_matches")
+wwc_2019_matches <- wwc_2019_matches %>% 
+  mutate(total_goals = score1 + score2)
+```
+
+(d) identify the posterior model of $\lambda$ and verify your answer using `summarize_gamma_poisson()`
+(e) Plot the prior, likelihood, and posterior of $\lambda$. Describe the evolution in your understanding of $\lambda$ from the prior to posterior. 
+
+# BR Exercise 5.15
+
+Below are kernels for Normal, Poisson, Gamma, Beta, and Binomial models. Identify the appropriate model with specific parameter values.
+
+(a) $f(\theta) \propto 0.3^\theta 0.7^{16 - \theta}$ for $\theta \in \{0, 1, 2 ..., 16\}$
+(b) $f(\theta) \propto 1/\theta!$ for $\theta \in \{0, 1, ..., \infty\}$
+(c) $f(\theta) \propto \theta^4(1-\theta)^7$ for $\theta \in [0,1]$
+(d) $f(\theta) \propto e^{-\theta^2}$
+
+# TBA Mon
+
+# TBA Mon
+
+# TBA Mon
+
+# TBA Wed
+
+# TBA Wed
+
+
+
+

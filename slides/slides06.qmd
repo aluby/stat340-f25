@@ -1,0 +1,236 @@
+---
+title: Gamma-Poisson model
+subtitle: Day 06
+title-slide-attributes:
+  data-background-color: "#e2583eff"
+  data-slide-number: none
+format: 
+  revealjs:
+    incremental: false
+    scrollable: false
+auto-stretch: true
+editor_options: 
+  chunk_output_type: console
+editor: 
+  markdown: 
+    wrap: 72
+execute: 
+  warning: false
+  message: false
+---
+
+
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+
+library(countdown)
+library(tidyverse)
+library(bayesrules)
+library(janitor)
+library(patchwork)
+
+theme_set(theme_minimal(base_size = 16, base_family = "Atkinson Hyperlegible"))
+```
+
+## Beta-Binomial review
+
+::: center-align
+Prior: $f(\pi) \sim \text{Beta}(\alpha, \beta)$
+
+Likelihood: $L(\pi | Y) \sim \text{Binomial}(n, \pi)$
+
+Posterior: $f(\pi |Y) \sim \text{Beta}(\alpha + y, \beta + n - y)$
+:::
+
+<br> 
+<br>
+
+::: callout-note
+## Conjugate Prior
+
+The Beta distribution is a **conjugate prior** for the Binomial likelihood, since the posterior is also Beta
+:::
+
+## Non-conjugate prior for Binomial likelihood
+
+$$f(\pi) = e - e^\pi$$
+```{r}
+#| echo: false
+#| fig-align: left
+#| fig-width: 4
+#| fig-height: 3
+
+tibble(
+  pi = seq(0, 1, by = .01),
+  f_pi = exp(1) - exp(pi)
+) |>
+  ggplot(aes(x = pi, y = f_pi)) + 
+  geom_line() +
+  labs(
+    x = expression(pi),
+    y = expression(f(pi))
+  )
+```
+
+## Finding the posterior
+
+Assume $Y=10$ and $n=50$
+
+
+## Can we use Beta-Binomial Model?
+
+At a certain hospital, an average of 6 babies are born each hour. Let $Y$ be the number of babies born between 9 a.m. and 10 a.m. tomorrow. 
+
+## Poisson Data model 
+
+Let $Y$ be the _number of independent events_ that occur in a fixed amount of time or space, where $\lambda > 0$ is the rate at which these events occur.  Then the _dependence_ of $Y$ on __parameter__ $\lambda$ can be modeled by the Poisson.  In mathematical notation:
+
+$$Y | \lambda \sim \text{Pois}(\lambda) $$
+
+and 
+
+$$ f(y|\lambda) =  \frac{\lambda^y e^{-\lambda}}{y!}\;\; \text{ for } y \in \{0,1,2,\ldots\}$$
+
+$$E(Y | \lambda) = V(Y | \lambda) = \lambda$$
+
+## Poisson PMFs
+
+```{r}
+#| echo: false
+
+
+
+lambdas <- c(1, 2, 5) 
+y_values <- 0:12
+
+poisson_data <- expand.grid(y = y_values, lambda = lambdas) %>%
+  mutate(
+    prob = dpois(x = y, lambda = lambda),
+    facet_label = paste0("Pois(", lambda, ")")
+  )
+
+poisson_data$facet_label <- factor(poisson_data$facet_label, 
+                                   levels = c("Pois(1)", "Pois(2)", "Pois(5)"))
+
+ggplot(data = poisson_data, aes(x = y, y = prob)) +
+  geom_segment(aes(xend = y, yend = 0)) +
+  geom_point(size = 1.5) +
+  facet_wrap(~ facet_label) +
+  labs(x = "y", y = "f(y)") 
+```
+
+## Joint Likelihood Function
+
+## Poisson Likelihood
+
+If we collect 4 hours of data and observe $y_i = 0, 2, 3, 2$ babies born:
+
+## 
+
+```{r}
+plot_poisson_likelihood(y = c(0, 2, 3, 2), lambda_upper_bound = 8)
+```
+
+## Choosing a prior
+
+- $\lambda$ discrete or continuous?
+- What is the support of $\lambda$?
+- Be strategic about creating a kernel
+
+## Gamma Model
+
+Let $\lambda$ be a random variable which can take any value between 0 and $\infty$, ie. $\lambda \in [0,\infty)$.  The Gamma model with __shape parameter__ $s > 0$ and __rate parameter__ $r > 0$ is: 
+
+$$\lambda \sim \text{Gamma}(s, r)$$
+
+
+$$f(\lambda) = \frac{r^s}{\Gamma(s)} \lambda^{s-1} e^{-r\lambda} \;\; \text{ for } \lambda > 0 $$
+
+where constant $\Gamma(s) = \int_0^\infty z^{s - 1} e^{-z}dz$. When $s$ is a positive integer, $s \in \{1,2,3,\ldots\}$, this constant simplifies to $\Gamma(s) = (s - 1)!$. 
+
+## Exponential Model
+
+$$\lambda \sim \text{Exp}(r)$$
+
+is a special case of the Gamma with shape parameter $s = 1$, $\text{Gamma}(1,r)$
+
+## 
+
+$E(\lambda) = \frac{s}{r}, \text{Mode}(\lambda) = \frac{s-1}{r} \text{ for s } \ge 1, \text{Var}(\lambda) = \frac{s}{r^2}$
+
+```{r echo=FALSE}
+
+# Set up gamma data
+alpha <- rep(c(1,2,4), 2)
+beta  <- rep(c(1,2), each = 3)
+gammas <- data.frame(setting = factor(rep(1:6, each = 500)), 
+  x = rep(seq(0, 7.5, length = 500), 6),
+  alpha = rep(alpha, each = 500), 
+  beta = rep(beta, each = 500))
+gammas <- gammas %>% 
+    mutate(y = dgamma(x, shape = alpha, rate = beta))
+levels(gammas$setting) <- paste0("Gamma(",alpha,",",beta,")")
+trend_data <- data.frame(alpha, beta, 
+  means = (alpha / (beta)), modes = ((alpha - 1) / (beta))) %>% 
+  mutate(Parameter = paste0("Gamma(",alpha,",",beta,")")) %>% 
+  mutate(setting = Parameter) %>% 
+  mutate(means_d = dgamma(means, alpha, beta), modes_d = dgamma(modes, alpha, beta))
+trend_data$setting <- factor(trend_data$setting, levels = c("Gamma(1,1)","Gamma(2,1)","Gamma(4,1)","Gamma(1,2)","Gamma(2,2)","Gamma(4,2)"))
+  
+g <- ggplot(gammas, aes(x = x, y = y)) + 
+  lims(y = c(0,2)) + 
+  geom_line() + 
+  facet_wrap(~ setting) + 
+  labs(x = expression(lambda), y = expression(paste("f(",lambda,")"))) 
+g + 
+  geom_segment(data = trend_data, aes(x = means, xend = means, y = 0, yend = means_d), color = "blue") + 
+  geom_segment(data = trend_data, aes(x = modes, xend = modes, y = 0, yend = modes_d), linetype = "dashed", color = "blue")
+``` 
+
+## Posterior Model 
+
+## Gamma-Poisson Bayesian Model
+
+$$\lambda \sim \text{Gamma}(s, r)$$
+$$ Y_i | \lambda \sim \text{Poisson}(\lambda)$$
+
+$$\lambda | Y_1, Y_2, ..., Y_n \sim \text{Gamma}(s + \sum Y_i, r + n)$$
+
+## Gamma-Poisson Model
+
+```{r}
+plot_gamma_poisson(shape = 10, rate = 2, sum_y = 7, n = 4)
+```
+
+## Gamma-Poisson Model
+
+```{r}
+summarize_gamma_poisson(shape = 10, rate = 2, sum_y = 7, n = 4)
+```
+
+Interpretation: 
+
+## Example: tuning a Gamma prior
+
+The most likely value of $\lambda$ is 3.5 and the variance is 2
+
+## Example: Gamma-Poisson model
+
+Assume a prior of $\lambda \sim \text{Gamma}(24, 2)$ and $Y | \lambda \sim \text{Poisson}(\lambda)$. If you observe a sample of $(12, 12, 12, 0)$, what is the likelihood and posterior? 
+
+## 
+
+```{r}
+plot_gamma_poisson(shape = 24, rate = 2, sum_y = 36, n = 4)
+```
+
+## 
+
+```{r}
+summarize_gamma_poisson(shape = 24, rate = 2, sum_y = 36, n = 4)
+```
+
+Interpretation:
