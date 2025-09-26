@@ -79,6 +79,37 @@ tibble(
 
 Assume $Y=10$ and $n=50$
 
+## 
+
+```{r}
+#| echo: false
+
+p1 <- tibble(
+  pi = seq(0, 1, by = .01),
+  f_pi = exp(1) - exp(pi)
+) |>
+  ggplot(aes(x = pi, y = f_pi)) + 
+  geom_line() +
+  labs(
+    x = expression(pi),
+    y = expression(f(pi)),
+    title = "Custom Prior"
+  )
+
+p2 <- tibble(
+  pi = seq(0, 1, by = .01),
+  f_pi = dbeta(pi, 1, 2)
+) |>
+  ggplot(aes(x = pi, y = f_pi)) + 
+  geom_line() +
+  labs(
+    x = expression(pi),
+    y = expression(f(pi)),
+    title = "Beta(1,2) Prior"
+  )
+
+p1 + p2
+```
 
 ## Can we use Beta-Binomial Model?
 
@@ -151,11 +182,32 @@ $$f(\lambda) = \frac{r^s}{\Gamma(s)} \lambda^{s-1} e^{-r\lambda} \;\; \text{ for
 
 where constant $\Gamma(s) = \int_0^\infty z^{s - 1} e^{-z}dz$. When $s$ is a positive integer, $s \in \{1,2,3,\ldots\}$, this constant simplifies to $\Gamma(s) = (s - 1)!$. 
 
-## Exponential Model
+## 
+
+::: callout-warning
+
+The Gamma is sometimes parameterized by shape $s$ and **scale** $\theta = \frac{1}{r}$
+:::
+
+>  In econometrics, the (α, θ) parameterization is common for modeling waiting times ... Bayesian statisticians prefer the (α,λ) parameterization, utilizing the gamma distribution as a conjugate prior for several inverse scale parameters, facilitating analytical tractability in posterior distribution computations. 
+
+::: aside
+Source: [Wikipedia](https://en.wikipedia.org/wiki/Gamma_distribution)
+:::
+
+## 
+
+### Exponential Model
 
 $$\lambda \sim \text{Exp}(r)$$
 
 is a special case of the Gamma with shape parameter $s = 1$, $\text{Gamma}(1,r)$
+
+### $\chi^2$ Model
+
+$$\lambda \sim \chi^2(k)$$
+
+is a special case of the Gamma with shape $s = k/2$ and rate $r=1/2$
 
 ## 
 

@@ -14,3 +14,7 @@ _site/*
 _freeze/
 
 *_files/
+
+*-sols.R
+*-sols.qmd
+
