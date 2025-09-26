@@ -3,6 +3,12 @@ title: "Individual HW03"
 author: "Your Name Here"
 ---
 
+```{r}
+library(bayesrules) # R package for our textbook
+library(tidyverse) # Collection of packages for tidying and plotting data
+library(janitor) # Helper functions like tidy and tabyl
+```
+
 # BR Exercise 5.1 a, d, f
 
 For each situation below, tune an appropriate Gamma(s, r) prior model for $\lambda$
