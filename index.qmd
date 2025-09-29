@@ -10,6 +10,7 @@ This page contains an outline of the topics, content, and assignments for the te
 #| echo: false
 #| message: false
 #| warning: false
+
 library(googlesheets4)
 library(gt)
 library(tidyverse)

@@ -35,6 +35,12 @@ library(patchwork)
 theme_set(theme_minimal(base_size = 16, base_family = "Atkinson Hyperlegible"))
 ```
 
+```{r}
+#| echo: false
+Howell1 <- readr::read_delim("https://raw.githubusercontent.com/rmcelreath/rethinking/master/data/Howell1.csv", delim = ";")
+adults <- filter(Howell1, age >= 18)
+```
+
 ## Recap
 
 - Start with a reasonable **likelihood** for the data
@@ -59,7 +65,12 @@ $$\lambda | Y_1, Y_2, ..., Y_n \sim \text{Gamma}(s + \sum Y_i, r + n)$$
 
 ## Data
 
+Data on heights (in cm) of 352 adults
 
+```{r echo=FALSE, message=FALSE, fig.height = 3.5, fig.width = 5, fig.align='center'}
+ggplot(adults) +
+  geom_histogram(aes(x = height), bins = 20, color="white") 
+```
 
 ## Normal Model
 
@@ -100,12 +111,19 @@ g <- ggplot(normals, aes(x = x, y = y)) +
 g 
 ``` 
 
+## Terminology 
+
+- Normal: "usual" or "customary" 
+  - Statisticians historically called it "normal" because it was the "usual" distribution for, e.g., the CLT
+- Gaussian: name the distribution for the person who developed it
+  - Also not quite right, since DeMoivre first proved the CLT 
+- Both terms describe the same mathematical function
+
 ## Normal Likelihood
 
 ## Normal-Normal Bayesian Model 
 
-Let $\mu \in (-\infty,\infty)$ be an unknown _mean_ parameter and $(Y_1,Y_2,\ldots,Y_n)$ be an independent $N(\mu,\sigma^2)$ sample where $\sigma$ is assumed to be _known_.
-The Normal-Normal Bayesian model complements the Normal structure of the data with a Normal prior on $\mu$:
+Let $\mu $ be an unknown _mean_ parameter and $(Y_1,Y_2,\ldots,Y_n)$ be an independent $N(\mu,\sigma^2)$ sample where $\sigma$ is assumed to be _known_.
 
 $$\mu \sim N(\theta, \tau^2)$$ 
 $$Y_i | \mu  \stackrel{iid}{\sim} N(\mu, \sigma^2)$$
@@ -118,9 +136,96 @@ You'll show this on homework this week!
 
 ## Posterior Mean as weighted average 
 
+## Example
+
+::::: columns
+::: {.column width="70%"}
+
+- Partial census data for the Dobe area !Kung San, a foraging population
+
+- Compiled from Nancy Howell's interviews
+
+```{r}
+#| echo: false
+adults
+```
+
+:::
+
+::: {.column width="30%"}
+![](img/howell-cover.jpg)
+:::
+:::::
 
 ## Example
 
+Let's say we're interested in analyzing the average height of an adult
+
+```{r echo=FALSE, message=FALSE, fig.height = 3.5, fig.width = 5, fig.align='center'}
+ggplot(adults) +
+  geom_histogram(aes(x = height), bins = 20, color="white") 
+```
+
+::: aside
+Anthropologists would be interested in more complex relationships, but we have to start somewhere.
+:::
+
+## Example
+
+```{r}
+plot_normal(170, 20)
+```
+
+## Example
+
+```{r}
+adults |>
+  summarize(
+    mean = mean(height),
+    sd = sd(height),
+    n = n()
+  )
+```
+
+## Example
+
+```{r message=FALSE, fig.align='center'}
+plot_normal_normal(mean = 170, 
+                        sd = 20, 
+                        sigma = sd(adults$height), 
+                        y_bar = mean(adults$height),
+                        n = length(adults$height))
+```
+
+## Example
+
+```{r}
+summarize_normal_normal(mean = 170, 
+                        sd = 20, 
+                        sigma = sd(adults$height), 
+                        y_bar = mean(adults$height),
+                        n = length(adults$height))
+```
+
+## What if we only had a sample of 35?
+
+```{r echo=FALSE, message=FALSE, fig.align='center'}
+plot_normal_normal(mean = 170, 
+                        sd = 20, 
+                        sigma = sd(adults$height), 
+                        y_bar = mean(adults$height),
+                        n = 35)
+```
+
+## What if we only had a sample of 3?
+
+```{r echo=FALSE, message=FALSE, fig.align='center'}
+plot_normal_normal(mean = 170, 
+                        sd = 20, 
+                        sigma = sd(adults$height), 
+                        y_bar = mean(adults$height),
+                        n = 3)
+```
 
 ## Multiparameter model
 
