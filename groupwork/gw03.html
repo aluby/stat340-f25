@@ -515,8 +515,12 @@ Note
 </ol></section><section id="br-exercise-5.13-australia" class="level1"><h1>BR Exercise 5.13: Australia</h1>
 <p>Let <span class="math inline">\(\mu\)</span> be the average 3 p.m. temperature in Perth, Australia. Not knowing much about Australian weather, your friend’s prior understanding is that the average temperature is likely around 30 degrees Celsius, though might be anywhere between 10 and 50 degrees Celsius. To learn about <span class="math inline">\(\mu\)</span>, they plan to analyze 1000 days of temperature data. Letting <span class="math inline">\(Y_i\)</span> denote the 3 p.m. temperature on day <span class="math inline">\(i\)</span>, they’ll assume that daily temperatures vary Normally around <span class="math inline">\(\mu\)</span> with a standard deviation of 5 degrees:</p>
 <p><span class="math display">\[Y_i | \mu \sim N(mu, 5^2)\]</span></p>
-<p>. (a) Tune and plot a Normal prior for <span class="math inline">\(\mu\)</span> that reflects your friend’s understanding. (b) The <code>weather_perth</code> data in the {bayesrules} package includes 1000 daily observations of 3 p.m. temperatures in Perth (<code>temp3pm</code>). Plot this data and discuss whether it’s reasonable to assume a Normal model for the temperature data. (c) Identify the posterior model of <span class="math inline">\(\mu\)</span> and verify your answer using <code><a href="https://bayes-rules.github.io/bayesrules/docs/reference/summarize_normal_normal.html">summarize_normal_normal()</a></code>. (d) Plot the prior pdf, likelihood function, and posterior pdf of <span class="math inline">\(\mu\)</span>. Describe the evolution in your understanding of <span class="math inline">\(\mu\)</span> from the prior to the posterior.</p>
-</section><section id="br-exercise-5.19" class="level1"><h1>BR Exercise 5.19</h1>
+<ol type="a">
+<li>Tune and plot a Normal prior for <span class="math inline">\(\mu\)</span> that reflects your friend’s understanding.</li>
+<li>The <code>weather_perth</code> data in the {bayesrules} package includes 1000 daily observations of 3 p.m. temperatures in Perth (<code>temp3pm</code>). Plot this data and discuss whether it’s reasonable to assume a Normal model for the temperature data.</li>
+<li>Identify the posterior model of <span class="math inline">\(\mu\)</span> and verify your answer using <code><a href="https://bayes-rules.github.io/bayesrules/docs/reference/summarize_normal_normal.html">summarize_normal_normal()</a></code>.</li>
+<li>Plot the prior pdf, likelihood function, and posterior pdf of <span class="math inline">\(\mu\)</span>. Describe the evolution in your understanding of <span class="math inline">\(\mu\)</span> from the prior to the posterior.</li>
+</ol></section><section id="br-exercise-5.19" class="level1"><h1>BR Exercise 5.19</h1>
 <p>Consider the Bayesian model:</p>
 <p><span class="math display">\[Y|\theta \sim \text{Geometric}(\theta)\]</span> <span class="math display">\[\theta \sim \text{Beta}(\alpha, \beta)\]</span></p>
 <ol type="a">
@@ -1026,7 +1030,7 @@ Note
 <span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>$$Y_i | \mu \sim N(mu, 5^2)$$</span>
 <span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a> .</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>(a) Tune and plot a Normal prior for $\mu$ that reflects your friend’s understanding.</span>
 <span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>(b) The <span class="in">`weather_perth`</span> data in the {bayesrules} package includes 1000 daily observations of 3 p.m. temperatures in Perth (<span class="in">`temp3pm`</span>). Plot this data and discuss whether it’s reasonable to assume a Normal model for the temperature data.</span>
 <span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>(c) Identify the posterior model of $\mu$ and verify your answer using <span class="in">`summarize_normal_normal()`</span>.</span>
