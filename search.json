@@ -174,7 +174,7 @@
     "href": "groupwork/gw03.html",
     "title": "Group Work 03",
     "section": "",
-    "text": "library(bayesrules) # R package for our textbook\nlibrary(tidyverse) # Collection of packages for tidying and plotting data\nlibrary(janitor) # Helper functions like tidy and tabyl\n\n\n\n\n\n\n\nNote\n\n\n\nNew this week! Trying no group problems on Friday\n\n\nTBA Mon\nTBA Mon\nTBA Mon\nTBA Wed\nTBA Wed",
+    "text": "library(bayesrules) # R package for our textbook\nlibrary(tidyverse) # Collection of packages for tidying and plotting data\nlibrary(janitor) # Helper functions like tidy and tabyl\n\n\n\n\n\n\n\nNote\n\n\n\nNew this week! Trying no group problems on Friday\n\n\nBR Exercise 5.8 (a) and (d): Normal Likelihood Functions\nIn each situation below, we observe the outcomes for a Normal random sample, \\(Y_i | \\mu \\sim N(\\mu, \\sigma^2)\\) with known \\(\\sigma\\). Specify and plot the corresponding likelihood function of \\(\\mu\\).\n\n\n\\((y_1, y_2, y_3) = (-4.3, 0.7, -19.4)\\) and \\(\\sigma = 10\\)\n\n\n\\((y_1, y_2, y_3, y_4, y_5) = (1.6, 0.09, 1.7, 1.1, 1.1)\\) and \\(\\sigma = 0.6\\)\n\nBR Exercise 5.13: Australia\nLet \\(\\mu\\) be the average 3 p.m. temperature in Perth, Australia. Not knowing much about Australian weather, your friend’s prior understanding is that the average temperature is likely around 30 degrees Celsius, though might be anywhere between 10 and 50 degrees Celsius. To learn about \\(\\mu\\), they plan to analyze 1000 days of temperature data. Letting \\(Y_i\\) denote the 3 p.m. temperature on day \\(i\\), they’ll assume that daily temperatures vary Normally around \\(\\mu\\) with a standard deviation of 5 degrees:\n\\[Y_i | \\mu \\sim N(mu, 5^2)\\]\n. (a) Tune and plot a Normal prior for \\(\\mu\\) that reflects your friend’s understanding. (b) The weather_perth data in the {bayesrules} package includes 1000 daily observations of 3 p.m. temperatures in Perth (temp3pm). Plot this data and discuss whether it’s reasonable to assume a Normal model for the temperature data. (c) Identify the posterior model of \\(\\mu\\) and verify your answer using summarize_normal_normal(). (d) Plot the prior pdf, likelihood function, and posterior pdf of \\(\\mu\\). Describe the evolution in your understanding of \\(\\mu\\) from the prior to the posterior.\nBR Exercise 5.19\nConsider the Bayesian model:\n\\[Y|\\theta \\sim \\text{Geometric}(\\theta)\\] \\[\\theta \\sim \\text{Beta}(\\alpha, \\beta)\\]\n\nDerive the posterior model for \\(\\theta\\) given observed data \\(Y = y\\). If possible, identify the name of the posterior distribution and its parameters\nIs the Beta model a conjugate prior for the Geometric data model?\nTBA Wed\nTBA Wed",
     "crumbs": [
       "Assignments",
       "Groupwork",
@@ -328,172 +328,163 @@
     ]
   },
   {
-    "objectID": "course-faq.html",
-    "href": "course-faq.html",
-    "title": "FAQ",
+    "objectID": "homework/gw02-sols.html",
+    "href": "homework/gw02-sols.html",
+    "title": "gw02-sols",
     "section": "",
-    "text": "The best place to come for help is Amanda’s office hours! I can help with anything related to the course. You can also check my calendar for one-on-one appointment slots.\n\n\n\nStudents needing help with their Statistics coursework and R/Rstudio questions can get help from Stats Lab Assistants in the Stats Lab in CMC 304. Stats Lab Assistants are primiarily for Stat 120 (Intro Stats), but they may also be able to assist with general R/Rstudio questions."
+    "text": "library(bayesrules) # R package for our textbook\nlibrary(tidyverse) # Collection of packages for tidying and plotting data\nlibrary(janitor) # Helper functions like tidy and tabyl\n\nBR Exercise 2.13\nSee handwritten\nBR Exercise 2.18\nThe smallest Y where \\(P(\\pi = .6 |Y) &gt; .4\\) is 6\n\ntibble(\n  y = 0:10, # possible values of Y\n  p_y = dbinom(y, size = 10, prob = .6)) |&gt; # f(Y|pi = .6)\n  rowwise() |&gt;\n  mutate(\n    norm_constant = (.25*dbinom(y, 10, .2) + .5*dbinom(y, 10, .4) + .25*dbinom(y, 10, .6)), # Normalizing constant for each possible value of Y\n    posterior = (.25*p_y)/norm_constant # posterior: f(pi = .6 | Y)\n  )\n\n# A tibble: 11 × 4\n# Rowwise: \n       y      p_y norm_constant posterior\n   &lt;int&gt;    &lt;dbl&gt;         &lt;dbl&gt;     &lt;dbl&gt;\n 1     0 0.000105       0.0299   0.000877\n 2     1 0.00157        0.0877   0.00449 \n 3     2 0.0106         0.139    0.0191  \n 4     3 0.0425         0.168    0.0630  \n 5     4 0.111          0.175    0.159   \n 6     5 0.201          0.157    0.319   \n 7     6 0.251          0.120    0.523   \n 8     7 0.215          0.0752   0.715   \n 9     8 0.121          0.0356   0.850   \n10     9 0.0403         0.0109   0.928   \n11    10 0.00605        0.00156  0.966   \n\n\nBR Exercise 2.17\n\n# Define possible trees\ntrees &lt;- data.frame(type = c(\"mold\", \"not mold\"))\n\n# Define the prior model\nprior &lt;- c(0.18, .82)\n\n# Simulate 10000 trees \nset.seed(84735)\ntrees_sim &lt;- sample_n(trees, size = 10000, \n                        weight = prior, replace = TRUE)\n\ntrees_sim &lt;- trees_sim %&gt;% \n  mutate(data_model = case_when(type == \"mold\" ~ 0.8,\n                                type == \"not mold\" ~ 0.1))\n\n# Define  tree species\ndata &lt;- c(\"maple\", \"not maple\")\n\n# Simulate species\n\ntrees_sim &lt;- trees_sim %&gt;%\n  group_by(1:n()) %&gt;% \n  mutate(species = sample(data, size = 1, \n                        prob = c(data_model, 1-data_model)))\n\ntrees_sim %&gt;% \n  filter(species == \"maple\") %&gt;% \n  tabyl(type) %&gt;% \n  adorn_totals(\"row\")\n\n     type    n   percent\n     mold 1482 0.6327925\n not mold  860 0.3672075\n    Total 2342 1.0000000\n\n\nMLE\nIf \\(Y \\sim \\text{Binom}(n, \\pi)\\), show that \\(\\hat{\\pi}_{MLE} = \\frac{Y}{n}\\)\n(see handwritten)\nBR Exercise 3.1\nFor each part, use plot_beta and/or summarize_beta to justify your answer\nBR Exercise 3.12\nChoice of prior\nI am interviewing Carleton students about whether or not they have used (knowingly) used ChatGPT on coursework in a non-approved way. I think the proportion has a 90% chance of being less than .25.\n\nChoose an informative prior that you think is reasonable for this belief\n\nI then ask 20 students this question and 15 respond “yes”. Find the posterior using the prior from above, then using the 3 non/weakly informative priors below:\n\nUnif(0,1) prior\nBeta(2,2) prior\n“Reference” prior Beta(.5, .5)\n\nCompare the posteriors for each of the priors above. Do results change if we instead observe 150/200 students responding “yes”?\nBR 4.13\n(see handwritten)",
+    "crumbs": [
+      "Assignments",
+      "Homework",
+      "gw02-sols"
+    ]
   },
   {
-    "objectID": "course-faq.html#where-can-i-get-help",
-    "href": "course-faq.html#where-can-i-get-help",
-    "title": "FAQ",
+    "objectID": "slides/test.html#quarto",
+    "href": "slides/test.html#quarto",
+    "title": "Untitled",
+    "section": "Quarto",
+    "text": "Quarto\nQuarto enables you to weave together content and executable code into a finished presentation. To learn more about Quarto presentations see https://quarto.org/docs/presentations/."
+  },
+  {
+    "objectID": "slides/test.html#bullets",
+    "href": "slides/test.html#bullets",
+    "title": "Untitled",
+    "section": "Bullets",
+    "text": "Bullets\nWhen you click the Render button a document will be generated that includes:\n\nContent authored with markdown\nOutput from executable code"
+  },
+  {
+    "objectID": "slides/test.html#code",
+    "href": "slides/test.html#code",
+    "title": "Untitled",
+    "section": "Code",
+    "text": "Code\nWhen you click the Render button a presentation will be generated that includes both content and the output of embedded code. You can embed code like this:\n\n1 + 1\n\n[1] 2"
+  },
+  {
+    "objectID": "slides/slides07.html#recap",
+    "href": "slides/slides07.html#recap",
+    "title": "Normal-Normal model",
+    "section": "Recap",
+    "text": "Recap\n\nStart with a reasonable likelihood for the data\nA conjugate prior for a given likelihood is a prior model that results in a posterior with the same shape, but different parameters\nThe beta distribution is a conjugate prior for the binomial likelihood\nThe gamma distribution is a conjugate prior for the poisson likelihood"
+  },
+  {
+    "objectID": "slides/slides07.html#section",
+    "href": "slides/slides07.html#section",
+    "title": "Normal-Normal model",
     "section": "",
-    "text": "The best place to come for help is Amanda’s office hours! I can help with anything related to the course. You can also check my calendar for one-on-one appointment slots.\n\n\n\nStudents needing help with their Statistics coursework and R/Rstudio questions can get help from Stats Lab Assistants in the Stats Lab in CMC 304. Stats Lab Assistants are primiarily for Stat 120 (Intro Stats), but they may also be able to assist with general R/Rstudio questions."
+    "text": "Beta-Binomial Bayesian Model\n\\[\\pi \\sim \\text{Beta}(\\alpha, \\beta)\\] \\[ Y | \\pi  \\sim \\text{Binomial}(n, \\pi)\\] \\[ \\pi |Y \\sim \\text{Beta}(\\alpha + y, \\beta + n - y)\\]\nGamma-Poisson Bayesian Model\n\\[\\lambda \\sim \\text{Gamma}(s, r)\\] \\[ Y_i | \\lambda \\sim \\text{Poisson}(\\lambda)\\]\n\\[\\lambda | Y_1, Y_2, ..., Y_n \\sim \\text{Gamma}(s + \\sum Y_i, r + n)\\]"
   },
   {
-    "objectID": "slides/slides06.html#beta-binomial-review",
-    "href": "slides/slides06.html#beta-binomial-review",
-    "title": "Gamma-Poisson model",
-    "section": "Beta-Binomial review",
-    "text": "Beta-Binomial review\n\nPrior: \\(f(\\pi) \\sim \\text{Beta}(\\alpha, \\beta)\\)\nLikelihood: \\(L(\\pi | Y) \\sim \\text{Binomial}(n, \\pi)\\)\nPosterior: \\(f(\\pi |Y) \\sim \\text{Beta}(\\alpha + y, \\beta + n - y)\\)\n\n \n\n\n\n\n\n\nConjugate Prior\n\n\nThe Beta distribution is a conjugate prior for the Binomial likelihood, since the posterior is also Beta"
+    "objectID": "slides/slides07.html#data",
+    "href": "slides/slides07.html#data",
+    "title": "Normal-Normal model",
+    "section": "Data",
+    "text": "Data\nData on heights (in cm) of 352 adults"
   },
   {
-    "objectID": "slides/slides06.html#non-conjugate-prior-for-binomial-likelihood",
-    "href": "slides/slides06.html#non-conjugate-prior-for-binomial-likelihood",
-    "title": "Gamma-Poisson model",
-    "section": "Non-conjugate prior for Binomial likelihood",
-    "text": "Non-conjugate prior for Binomial likelihood\n\\[f(\\pi) = e - e^\\pi\\]"
+    "objectID": "slides/slides07.html#normal-model",
+    "href": "slides/slides07.html#normal-model",
+    "title": "Normal-Normal model",
+    "section": "Normal Model",
+    "text": "Normal Model\nLet \\(Y\\) be a random variable which can take any value \\(Y \\in (-\\infty,\\infty)\\) and is unimodal and symmetric. Then \\(Y\\) might be well represented by a Normal model with mean parameter \\(\\mu \\in (-\\infty, \\infty)\\) and standard deviation parameter \\(\\sigma &gt; 0\\):\n\\[Y \\sim N(\\mu, \\sigma^2)\\]\nThe Normal model is specified by continuous pdf\n\\[\\begin{equation}\nf(y) = \\frac{1}{\\sqrt{2\\pi\\sigma^2}} \\exp\\bigg[{-\\frac{(y-\\mu)^2}{2\\sigma^2}}\\bigg] \\;\\; \\text{ for } y \\in (-\\infty,\\infty)\n\\end{equation}\\]"
   },
   {
-    "objectID": "slides/slides06.html#finding-the-posterior",
-    "href": "slides/slides06.html#finding-the-posterior",
-    "title": "Gamma-Poisson model",
-    "section": "Finding the posterior",
-    "text": "Finding the posterior\nAssume \\(Y=10\\) and \\(n=50\\)"
-  },
-  {
-    "objectID": "slides/slides06.html#can-we-use-beta-binomial-model",
-    "href": "slides/slides06.html#can-we-use-beta-binomial-model",
-    "title": "Gamma-Poisson model",
-    "section": "Can we use Beta-Binomial Model?",
-    "text": "Can we use Beta-Binomial Model?\nAt a certain hospital, an average of 6 babies are born each hour. Let \\(Y\\) be the number of babies born between 9 a.m. and 10 a.m. tomorrow."
-  },
-  {
-    "objectID": "slides/slides06.html#poisson-data-model",
-    "href": "slides/slides06.html#poisson-data-model",
-    "title": "Gamma-Poisson model",
-    "section": "Poisson Data model",
-    "text": "Poisson Data model\nLet \\(Y\\) be the number of independent events that occur in a fixed amount of time or space, where \\(\\lambda &gt; 0\\) is the rate at which these events occur. Then the dependence of \\(Y\\) on parameter \\(\\lambda\\) can be modeled by the Poisson. In mathematical notation:\n\\[Y | \\lambda \\sim \\text{Pois}(\\lambda) \\]\nand\n\\[ f(y|\\lambda) =  \\frac{\\lambda^y e^{-\\lambda}}{y!}\\;\\; \\text{ for } y \\in \\{0,1,2,\\ldots\\}\\]\n\\[E(Y | \\lambda) = V(Y | \\lambda) = \\lambda\\]"
-  },
-  {
-    "objectID": "slides/slides06.html#poisson-pmfs",
-    "href": "slides/slides06.html#poisson-pmfs",
-    "title": "Gamma-Poisson model",
-    "section": "Poisson PMFs",
-    "text": "Poisson PMFs"
-  },
-  {
-    "objectID": "slides/slides06.html#joint-likelihood-function",
-    "href": "slides/slides06.html#joint-likelihood-function",
-    "title": "Gamma-Poisson model",
-    "section": "Joint Likelihood Function",
-    "text": "Joint Likelihood Function"
-  },
-  {
-    "objectID": "slides/slides06.html#poisson-likelihood",
-    "href": "slides/slides06.html#poisson-likelihood",
-    "title": "Gamma-Poisson model",
-    "section": "Poisson Likelihood",
-    "text": "Poisson Likelihood\nIf we collect 4 hours of data and observe \\(y_i = 0, 2, 3, 2\\) babies born:"
-  },
-  {
-    "objectID": "slides/slides06.html#section-1",
-    "href": "slides/slides06.html#section-1",
-    "title": "Gamma-Poisson model",
+    "objectID": "slides/slides07.html#section-1",
+    "href": "slides/slides07.html#section-1",
+    "title": "Normal-Normal model",
     "section": "",
-    "text": "plot_poisson_likelihood(y = c(0, 2, 3, 2), lambda_upper_bound = 8)"
+    "text": "\\(E(Y) = \\mu, \\text{Mode}(Y) = \\mu, \\text{Var}(Y) = \\sigma^2\\)"
   },
   {
-    "objectID": "slides/slides06.html#choosing-a-prior",
-    "href": "slides/slides06.html#choosing-a-prior",
-    "title": "Gamma-Poisson model",
-    "section": "Choosing a prior",
-    "text": "Choosing a prior\n\n\\(\\lambda\\) discrete or continuous?\nWhat is the support of \\(\\lambda\\)?\nBe strategic about creating a kernel"
+    "objectID": "slides/slides07.html#terminology",
+    "href": "slides/slides07.html#terminology",
+    "title": "Normal-Normal model",
+    "section": "Terminology",
+    "text": "Terminology\n\nNormal: “usual” or “customary”\n\nStatisticians historically called it “normal” because it was the “usual” distribution for, e.g., the CLT\n\nGaussian: name the distribution for the person who developed it\n\nAlso not quite right, since DeMoivre first proved the CLT\n\nBoth terms describe the same mathematical function"
   },
   {
-    "objectID": "slides/slides06.html#gamma-model",
-    "href": "slides/slides06.html#gamma-model",
-    "title": "Gamma-Poisson model",
-    "section": "Gamma Model",
-    "text": "Gamma Model\nLet \\(\\lambda\\) be a random variable which can take any value between 0 and \\(\\infty\\), ie. \\(\\lambda \\in [0,\\infty)\\). The Gamma model with shape parameter \\(s &gt; 0\\) and rate parameter \\(r &gt; 0\\) is:\n\\[\\lambda \\sim \\text{Gamma}(s, r)\\]\n\\[f(\\lambda) = \\frac{r^s}{\\Gamma(s)} \\lambda^{s-1} e^{-r\\lambda} \\;\\; \\text{ for } \\lambda &gt; 0 \\]\nwhere constant \\(\\Gamma(s) = \\int_0^\\infty z^{s - 1} e^{-z}dz\\). When \\(s\\) is a positive integer, \\(s \\in \\{1,2,3,\\ldots\\}\\), this constant simplifies to \\(\\Gamma(s) = (s - 1)!\\)."
+    "objectID": "slides/slides07.html#normal-likelihood",
+    "href": "slides/slides07.html#normal-likelihood",
+    "title": "Normal-Normal model",
+    "section": "Normal Likelihood",
+    "text": "Normal Likelihood"
   },
   {
-    "objectID": "slides/slides06.html#section-2",
-    "href": "slides/slides06.html#section-2",
-    "title": "Gamma-Poisson model",
-    "section": "",
-    "text": "Warning\n\n\nThe Gamma is sometimes parameterized by shape \\(s\\) and scale \\(\\theta = \\frac{1}{r}\\)\n\n\n\n\nIn econometrics, the (α, θ) parameterization is common for modeling waiting times … Bayesian statisticians prefer the (α,λ) parameterization, utilizing the gamma distribution as a conjugate prior for several inverse scale parameters, facilitating analytical tractability in posterior distribution computations.\n\n\n\nSource: Wikipedia"
+    "objectID": "slides/slides07.html#normal-normal-bayesian-model",
+    "href": "slides/slides07.html#normal-normal-bayesian-model",
+    "title": "Normal-Normal model",
+    "section": "Normal-Normal Bayesian Model",
+    "text": "Normal-Normal Bayesian Model\nLet $$ be an unknown mean parameter and \\((Y_1,Y_2,\\ldots,Y_n)\\) be an independent \\(N(\\mu,\\sigma^2)\\) sample where \\(\\sigma\\) is assumed to be known.\n\\[\\mu \\sim N(\\theta, \\tau^2)\\] \\[Y_i | \\mu  \\stackrel{iid}{\\sim} N(\\mu, \\sigma^2)\\] \\[\\mu|\\vec{y} \\; \\sim \\;  N\\bigg(\\frac{\\theta\\sigma^2/n + \\bar{y}\\tau^2}{\\tau^2+\\sigma^2/n}, \\; \\frac{\\tau^2\\sigma^2/n}{\\tau^2+\\sigma^2/n}\\bigg)\\]\n\n\nYou’ll show this on homework this week!"
   },
   {
-    "objectID": "slides/slides06.html#section-3",
-    "href": "slides/slides06.html#section-3",
-    "title": "Gamma-Poisson model",
-    "section": "",
-    "text": "Exponential Model\n\\[\\lambda \\sim \\text{Exp}(r)\\]\nis a special case of the Gamma with shape parameter \\(s = 1\\), \\(\\text{Gamma}(1,r)\\)\n\\(\\chi^2\\) Model\n\\[\\lambda \\sim \\chi^2(k)\\]\nis a special case of the Gamma with shape \\(s = k/2\\) and rate \\(r=1/2\\)"
+    "objectID": "slides/slides07.html#posterior-mean-as-weighted-average",
+    "href": "slides/slides07.html#posterior-mean-as-weighted-average",
+    "title": "Normal-Normal model",
+    "section": "Posterior Mean as weighted average",
+    "text": "Posterior Mean as weighted average"
   },
   {
-    "objectID": "slides/slides06.html#section-4",
-    "href": "slides/slides06.html#section-4",
-    "title": "Gamma-Poisson model",
-    "section": "",
-    "text": "\\(E(\\lambda) = \\frac{s}{r}, \\text{Mode}(\\lambda) = \\frac{s-1}{r} \\text{ for s } \\ge 1, \\text{Var}(\\lambda) = \\frac{s}{r^2}\\)"
+    "objectID": "slides/slides07.html#example",
+    "href": "slides/slides07.html#example",
+    "title": "Normal-Normal model",
+    "section": "Example",
+    "text": "Example\n\n\n\nPartial census data for the Dobe area !Kung San, a foraging population\nCompiled from Nancy Howell’s interviews\n\n\n\n# A tibble: 352 × 4\n   height weight   age  male\n    &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n 1   152.   47.8    63     1\n 2   140.   36.5    63     0\n 3   137.   31.9    65     0\n 4   157.   53.0    41     1\n 5   145.   41.3    51     0\n 6   164.   63.0    35     1\n 7   149.   38.2    32     0\n 8   169.   55.5    27     1\n 9   148.   34.9    19     0\n10   165.   54.5    54     1\n# ℹ 342 more rows"
   },
   {
-    "objectID": "slides/slides06.html#posterior-model",
-    "href": "slides/slides06.html#posterior-model",
-    "title": "Gamma-Poisson model",
-    "section": "Posterior Model",
-    "text": "Posterior Model"
+    "objectID": "slides/slides07.html#example-1",
+    "href": "slides/slides07.html#example-1",
+    "title": "Normal-Normal model",
+    "section": "Example",
+    "text": "Example\nLet’s say we’re interested in analyzing the average height of an adult\n\n\n\n\n\n\n\n\n\n\n\nAnthropologists would be interested in more complex relationships, but we have to start somewhere."
   },
   {
-    "objectID": "slides/slides06.html#gamma-poisson-bayesian-model",
-    "href": "slides/slides06.html#gamma-poisson-bayesian-model",
-    "title": "Gamma-Poisson model",
-    "section": "Gamma-Poisson Bayesian Model",
-    "text": "Gamma-Poisson Bayesian Model\n\\[\\lambda \\sim \\text{Gamma}(s, r)\\] \\[ Y_i | \\lambda \\sim \\text{Poisson}(\\lambda)\\]\n\\[\\lambda | Y_1, Y_2, ..., Y_n \\sim \\text{Gamma}(s + \\sum Y_i, r + n)\\]"
+    "objectID": "slides/slides07.html#example-2",
+    "href": "slides/slides07.html#example-2",
+    "title": "Normal-Normal model",
+    "section": "Example",
+    "text": "Example\n\nplot_normal(170, 20)"
   },
   {
-    "objectID": "slides/slides06.html#gamma-poisson-model",
-    "href": "slides/slides06.html#gamma-poisson-model",
-    "title": "Gamma-Poisson model",
-    "section": "Gamma-Poisson Model",
-    "text": "Gamma-Poisson Model\n\nplot_gamma_poisson(shape = 10, rate = 2, sum_y = 7, n = 4)"
+    "objectID": "slides/slides07.html#example-3",
+    "href": "slides/slides07.html#example-3",
+    "title": "Normal-Normal model",
+    "section": "Example",
+    "text": "Example\n\nadults |&gt;\n  summarize(\n    mean = mean(height),\n    sd = sd(height),\n    n = n()\n  )\n\n# A tibble: 1 × 3\n   mean    sd     n\n  &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt;\n1  155.  7.74   352"
   },
   {
-    "objectID": "slides/slides06.html#gamma-poisson-model-1",
-    "href": "slides/slides06.html#gamma-poisson-model-1",
-    "title": "Gamma-Poisson model",
-    "section": "Gamma-Poisson Model",
-    "text": "Gamma-Poisson Model\n\nsummarize_gamma_poisson(shape = 10, rate = 2, sum_y = 7, n = 4)\n\n      model shape rate     mean     mode       var        sd\n1     prior    10    2 5.000000 4.500000 2.5000000 1.5811388\n2 posterior    17    6 2.833333 2.666667 0.4722222 0.6871843\n\n\nInterpretation:"
+    "objectID": "slides/slides07.html#example-4",
+    "href": "slides/slides07.html#example-4",
+    "title": "Normal-Normal model",
+    "section": "Example",
+    "text": "Example\n\nplot_normal_normal(mean = 170, \n                        sd = 20, \n                        sigma = sd(adults$height), \n                        y_bar = mean(adults$height),\n                        n = length(adults$height))"
   },
   {
-    "objectID": "slides/slides06.html#example-tuning-a-gamma-prior",
-    "href": "slides/slides06.html#example-tuning-a-gamma-prior",
-    "title": "Gamma-Poisson model",
-    "section": "Example: tuning a Gamma prior",
-    "text": "Example: tuning a Gamma prior\nThe most likely value of \\(\\lambda\\) is 3.5 and the variance is 2"
+    "objectID": "slides/slides07.html#example-5",
+    "href": "slides/slides07.html#example-5",
+    "title": "Normal-Normal model",
+    "section": "Example",
+    "text": "Example\n\nsummarize_normal_normal(mean = 170, \n                        sd = 20, \n                        sigma = sd(adults$height), \n                        y_bar = mean(adults$height),\n                        n = length(adults$height))\n\n      model     mean     mode         var         sd\n1     prior 170.0000 170.0000 400.0000000 20.0000000\n2 posterior 154.6036 154.6036   0.1702222  0.4125799"
   },
   {
-    "objectID": "slides/slides06.html#example-gamma-poisson-model",
-    "href": "slides/slides06.html#example-gamma-poisson-model",
-    "title": "Gamma-Poisson model",
-    "section": "Example: Gamma-Poisson model",
-    "text": "Example: Gamma-Poisson model\nAssume a prior of \\(\\lambda \\sim \\text{Gamma}(24, 2)\\) and \\(Y | \\lambda \\sim \\text{Poisson}(\\lambda)\\). If you observe a sample of \\((12, 12, 12, 0)\\), what is the likelihood and posterior?"
+    "objectID": "slides/slides07.html#what-if-we-only-had-a-sample-of-35",
+    "href": "slides/slides07.html#what-if-we-only-had-a-sample-of-35",
+    "title": "Normal-Normal model",
+    "section": "What if we only had a sample of 35?",
+    "text": "What if we only had a sample of 35?"
   },
   {
-    "objectID": "slides/slides06.html#section-5",
-    "href": "slides/slides06.html#section-5",
-    "title": "Gamma-Poisson model",
-    "section": "",
-    "text": "plot_gamma_poisson(shape = 24, rate = 2, sum_y = 36, n = 4)"
+    "objectID": "slides/slides07.html#what-if-we-only-had-a-sample-of-3",
+    "href": "slides/slides07.html#what-if-we-only-had-a-sample-of-3",
+    "title": "Normal-Normal model",
+    "section": "What if we only had a sample of 3?",
+    "text": "What if we only had a sample of 3?"
   },
   {
-    "objectID": "slides/slides06.html#section-6",
-    "href": "slides/slides06.html#section-6",
-    "title": "Gamma-Poisson model",
-    "section": "",
-    "text": "summarize_gamma_poisson(shape = 24, rate = 2, sum_y = 36, n = 4)\n\n      model shape rate mean      mode      var       sd\n1     prior    24    2   12 11.500000 6.000000 2.449490\n2 posterior    60    6   10  9.833333 1.666667 1.290994\n\n\nInterpretation:"
+    "objectID": "slides/slides07.html#multiparameter-model",
+    "href": "slides/slides07.html#multiparameter-model",
+    "title": "Normal-Normal model",
+    "section": "Multiparameter model",
+    "text": "Multiparameter model"
   },
   {
     "objectID": "slides/slides04.html#back-to-graduate-school-applications",
@@ -857,7 +848,7 @@
     "href": "index.html",
     "title": "Stat 340: Bayesian Statistics",
     "section": "",
-    "text": "This page contains an outline of the topics, content, and assignments for the term. Note that this schedule will be updated as the term progresses and the timeline of topics and assignments might be updated. Any major changes to due dates will be announced in class and indicated in bold here.\n\n\n\n\n\n\nWEEK\nDOW\nDATE\nPREPARE\nTOPIC\nMATERIALS\nDUE\n\n\n\n1\nM\nMon, Sep 15\n📝complete welcome survey  📚 Bayes Rules Ch1  💻 Join Slack workspace\n\nIntro to Bayesian Thinking\nSlides01\n\n\n\n1\nW\nWed, Sep 17\n📚 Bayes Rules Ch2  💻 Complete computing setup\n\nBayes Rule, R Setup\nSlides02\n\n\n\n1\nF\nFri, Sep 19\n\nProbability and Likelihood Review; Posterior Simulation\nSlides03\n\nHW 1 and GW 1\n\n\n\n2\nM\nMon, Sep 22\n📚 Bayes Rules Ch3 \n\nBeta-Binomial Model\nSlides04\n\n\n\n2\nW\nWed, Sep 24\n📚 Bayes Rules Ch4 \n\nBalance and Sequentiality\nSlides05\n\n\n\n2\nF\nFri, Sep 26\n📚 Bayes Rules Ch5.1-2 \n\nGamma-Gamma\nSlides06\n\nHW 2 and GW 2\n\n\n\n3\nM\nMon, Sep 29\n📚 Bayes Rules Ch5.3-5.6  📝 complete group eval \n\nNormal-Normal\ntbd\n\n\n\n3\nW\nWed, Oct 1\n📚 Bayes Rules Ch6.1-2 \n\nGrid approximation and Markov Chains\ntbd\n\n\n\n3\nF\nFri, Oct 3\n📚 Bayes Rules Ch6.3 \n\nDiagnostics\ntbd\n\nHW 3 and GW 3\n\n\n\n4\nM\nMon, Oct 6\n📚 Bayes Rules Ch7.1-7.3 \n\nMCMC I\ntbd\nHand out computing project\n\n\n4\nW\nWed, Oct 8\n📚 Bayes Rules Ch7.4-7 \n\nMCMC II\ntbd\n\n\n\n4\nF\nFri, Oct 10\n\nExam I\ntbd\nHW4\n\n\n5\nM\nMon, Oct 13\n\nPosterior Inference\ntbd\n\n\n\n5\nW\nWed, Oct 15\n\nPosterior Prediction\ntbd\n\n\n\n5\nF\nFri, Oct 17\n\nRegression\ntbd\nHW5\n\n\n6\nM\nMon, Oct 20\n\n❌ Midterm Break; no class\ntbd\n\n\n\n6\nW\nWed, Oct 22\n\nEvaluating I\ntbd\nComputing Project Due\n\n\n6\nF\nFri, Oct 24\n\nEvaluating II\ntbd\nHW6\n\n\n7\nM\nMon, Oct 27\n\nExtending Regression Model\ntbd\n\n\n\n7\nW\nWed, Oct 29\n\nPoisson Regression\ntbd\n\n\n\n7\nF\nFri, Oct 31\n\nNegative Binomial Regression\ntbd\nHW7\n\n\n8\nM\nMon, Nov 3\n\nLogistic Regression\ntbd\n\n\n\n8\nW\nWed, Nov 5\n\nNaive Bayes Classification\ntbd\n\n\n\n8\nF\nFri, Nov 7\n\nExam II\ntbd\nHW8\n\n\n9\nM\nMon, Nov 10\n\nHierarchical Models I\ntbd\n\n\n\n9\nW\nWed, Nov 12\n\nHierarchical Models II\ntbd\n\n\n\n9\nF\nFri, Nov 14\n\nHierarchical Models III\ntbd\n\n\n\n10\nM\nMon, Nov 17\n\nProject work day\ntbd\nHW 9\n\n\n10\nW\nWed, Nov 19\n\nLightning talks\ntbd\n\n\n\n\nM\nFri, Nov 21\n\nFinal Project Due @ noon\ntbd",
+    "text": "This page contains an outline of the topics, content, and assignments for the term. Note that this schedule will be updated as the term progresses and the timeline of topics and assignments might be updated. Any major changes to due dates will be announced in class and indicated in bold here.\n\n\n\n\n\n\nWEEK\nDOW\nDATE\nPREPARE\nTOPIC\nMATERIALS\nDUE\n\n\n\n1\nM\nMon, Sep 15\n📝complete welcome survey  📚 Bayes Rules Ch1  💻 Join Slack workspace\n\nIntro to Bayesian Thinking\nSlides01\n\n\n\n1\nW\nWed, Sep 17\n📚 Bayes Rules Ch2  💻 Complete computing setup\n\nBayes Rule, R Setup\nSlides02\n\n\n\n1\nF\nFri, Sep 19\n\nProbability and Likelihood Review; Posterior Simulation\nSlides03\n\nHW 1 and GW 1\n\n\n\n2\nM\nMon, Sep 22\n📚 Bayes Rules Ch3 \n\nBeta-Binomial Model\nSlides04\n\n\n\n2\nW\nWed, Sep 24\n📚 Bayes Rules Ch4 \n\nBalance and Sequentiality\nSlides05\n\n\n\n2\nF\nFri, Sep 26\n📚 Bayes Rules Ch5.1-2 \n\nGamma-Gamma\nSlides06\n\nHW 2 and GW 2\n\n\n\n3\nM\nMon, Sep 29\n📚 Bayes Rules Ch5.3-5.6  📝 complete group eval \n\nNormal-Normal\nSlides07\n\n\n\n3\nW\nWed, Oct 1\n📚 Bayes Rules Ch6.1-2 \n\nGrid approximation and Markov Chains\ntbd\n\n\n\n3\nF\nFri, Oct 3\n📚 Bayes Rules Ch6.3 \n\nDiagnostics\ntbd\n\nHW 3 and GW 3\n\n\n\n4\nM\nMon, Oct 6\n📚 Bayes Rules Ch7.1-7.3 \n\nMCMC I\ntbd\nHand out computing project\n\n\n4\nW\nWed, Oct 8\n📚 Bayes Rules Ch7.4-7 \n\nMCMC II\ntbd\n\n\n\n4\nF\nFri, Oct 10\n\nExam I\ntbd\nHW4\n\n\n5\nM\nMon, Oct 13\n\nPosterior Inference\ntbd\n\n\n\n5\nW\nWed, Oct 15\n\nPosterior Prediction\ntbd\n\n\n\n5\nF\nFri, Oct 17\n\nRegression\ntbd\nHW5\n\n\n6\nM\nMon, Oct 20\n\n❌ Midterm Break; no class\ntbd\n\n\n\n6\nW\nWed, Oct 22\n\nEvaluating I\ntbd\nComputing Project Due\n\n\n6\nF\nFri, Oct 24\n\nEvaluating II\ntbd\nHW6\n\n\n7\nM\nMon, Oct 27\n\nExtending Regression Model\ntbd\n\n\n\n7\nW\nWed, Oct 29\n\nPoisson Regression\ntbd\n\n\n\n7\nF\nFri, Oct 31\n\nNegative Binomial Regression\ntbd\nHW7\n\n\n8\nM\nMon, Nov 3\n\nLogistic Regression\ntbd\n\n\n\n8\nW\nWed, Nov 5\n\nNaive Bayes Classification\ntbd\n\n\n\n8\nF\nFri, Nov 7\n\nExam II\ntbd\nHW8\n\n\n9\nM\nMon, Nov 10\n\nHierarchical Models I\ntbd\n\n\n\n9\nW\nWed, Nov 12\n\nHierarchical Models II\ntbd\n\n\n\n9\nF\nFri, Nov 14\n\nHierarchical Models III\ntbd\n\n\n\n10\nM\nMon, Nov 17\n\nProject work day\ntbd\nHW 9\n\n\n10\nW\nWed, Nov 19\n\nLightning talks\ntbd\n\n\n\n\nM\nFri, Nov 21\n\nFinal Project Due @ noon\ntbd",
     "crumbs": [
       "Schedule"
     ]
@@ -1486,32 +1477,179 @@
     "text": "Don’t be stubborn\n\n\n\n\n\n\nWarning\n\n\nThe posterior is defined on the same values as the prior. Do not assign \\(f(\\pi) = 0\\) on any reasonable value!"
   },
   {
-    "objectID": "slides/test.html#quarto",
-    "href": "slides/test.html#quarto",
-    "title": "Untitled",
-    "section": "Quarto",
-    "text": "Quarto\nQuarto enables you to weave together content and executable code into a finished presentation. To learn more about Quarto presentations see https://quarto.org/docs/presentations/."
+    "objectID": "slides/slides06.html#beta-binomial-review",
+    "href": "slides/slides06.html#beta-binomial-review",
+    "title": "Gamma-Poisson model",
+    "section": "Beta-Binomial review",
+    "text": "Beta-Binomial review\n\nPrior: \\(f(\\pi) \\sim \\text{Beta}(\\alpha, \\beta)\\)\nLikelihood: \\(L(\\pi | Y) \\sim \\text{Binomial}(n, \\pi)\\)\nPosterior: \\(f(\\pi |Y) \\sim \\text{Beta}(\\alpha + y, \\beta + n - y)\\)\n\n \n\n\n\n\n\n\nConjugate Prior\n\n\nThe Beta distribution is a conjugate prior for the Binomial likelihood, since the posterior is also Beta"
   },
   {
-    "objectID": "slides/test.html#bullets",
-    "href": "slides/test.html#bullets",
-    "title": "Untitled",
-    "section": "Bullets",
-    "text": "Bullets\nWhen you click the Render button a document will be generated that includes:\n\nContent authored with markdown\nOutput from executable code"
+    "objectID": "slides/slides06.html#non-conjugate-prior-for-binomial-likelihood",
+    "href": "slides/slides06.html#non-conjugate-prior-for-binomial-likelihood",
+    "title": "Gamma-Poisson model",
+    "section": "Non-conjugate prior for Binomial likelihood",
+    "text": "Non-conjugate prior for Binomial likelihood\n\\[f(\\pi) = e - e^\\pi\\]"
   },
   {
-    "objectID": "slides/test.html#code",
-    "href": "slides/test.html#code",
-    "title": "Untitled",
-    "section": "Code",
-    "text": "Code\nWhen you click the Render button a presentation will be generated that includes both content and the output of embedded code. You can embed code like this:\n\n1 + 1\n\n[1] 2"
+    "objectID": "slides/slides06.html#finding-the-posterior",
+    "href": "slides/slides06.html#finding-the-posterior",
+    "title": "Gamma-Poisson model",
+    "section": "Finding the posterior",
+    "text": "Finding the posterior\nAssume \\(Y=10\\) and \\(n=50\\)"
+  },
+  {
+    "objectID": "slides/slides06.html#can-we-use-beta-binomial-model",
+    "href": "slides/slides06.html#can-we-use-beta-binomial-model",
+    "title": "Gamma-Poisson model",
+    "section": "Can we use Beta-Binomial Model?",
+    "text": "Can we use Beta-Binomial Model?\nAt a certain hospital, an average of 6 babies are born each hour. Let \\(Y\\) be the number of babies born between 9 a.m. and 10 a.m. tomorrow."
+  },
+  {
+    "objectID": "slides/slides06.html#poisson-data-model",
+    "href": "slides/slides06.html#poisson-data-model",
+    "title": "Gamma-Poisson model",
+    "section": "Poisson Data model",
+    "text": "Poisson Data model\nLet \\(Y\\) be the number of independent events that occur in a fixed amount of time or space, where \\(\\lambda &gt; 0\\) is the rate at which these events occur. Then the dependence of \\(Y\\) on parameter \\(\\lambda\\) can be modeled by the Poisson. In mathematical notation:\n\\[Y | \\lambda \\sim \\text{Pois}(\\lambda) \\]\nand\n\\[ f(y|\\lambda) =  \\frac{\\lambda^y e^{-\\lambda}}{y!}\\;\\; \\text{ for } y \\in \\{0,1,2,\\ldots\\}\\]\n\\[E(Y | \\lambda) = V(Y | \\lambda) = \\lambda\\]"
+  },
+  {
+    "objectID": "slides/slides06.html#poisson-pmfs",
+    "href": "slides/slides06.html#poisson-pmfs",
+    "title": "Gamma-Poisson model",
+    "section": "Poisson PMFs",
+    "text": "Poisson PMFs"
+  },
+  {
+    "objectID": "slides/slides06.html#joint-likelihood-function",
+    "href": "slides/slides06.html#joint-likelihood-function",
+    "title": "Gamma-Poisson model",
+    "section": "Joint Likelihood Function",
+    "text": "Joint Likelihood Function"
+  },
+  {
+    "objectID": "slides/slides06.html#poisson-likelihood",
+    "href": "slides/slides06.html#poisson-likelihood",
+    "title": "Gamma-Poisson model",
+    "section": "Poisson Likelihood",
+    "text": "Poisson Likelihood\nIf we collect 4 hours of data and observe \\(y_i = 0, 2, 3, 2\\) babies born:"
+  },
+  {
+    "objectID": "slides/slides06.html#section-1",
+    "href": "slides/slides06.html#section-1",
+    "title": "Gamma-Poisson model",
+    "section": "",
+    "text": "plot_poisson_likelihood(y = c(0, 2, 3, 2), lambda_upper_bound = 8)"
+  },
+  {
+    "objectID": "slides/slides06.html#choosing-a-prior",
+    "href": "slides/slides06.html#choosing-a-prior",
+    "title": "Gamma-Poisson model",
+    "section": "Choosing a prior",
+    "text": "Choosing a prior\n\n\\(\\lambda\\) discrete or continuous?\nWhat is the support of \\(\\lambda\\)?\nBe strategic about creating a kernel"
+  },
+  {
+    "objectID": "slides/slides06.html#gamma-model",
+    "href": "slides/slides06.html#gamma-model",
+    "title": "Gamma-Poisson model",
+    "section": "Gamma Model",
+    "text": "Gamma Model\nLet \\(\\lambda\\) be a random variable which can take any value between 0 and \\(\\infty\\), ie. \\(\\lambda \\in [0,\\infty)\\). The Gamma model with shape parameter \\(s &gt; 0\\) and rate parameter \\(r &gt; 0\\) is:\n\\[\\lambda \\sim \\text{Gamma}(s, r)\\]\n\\[f(\\lambda) = \\frac{r^s}{\\Gamma(s)} \\lambda^{s-1} e^{-r\\lambda} \\;\\; \\text{ for } \\lambda &gt; 0 \\]\nwhere constant \\(\\Gamma(s) = \\int_0^\\infty z^{s - 1} e^{-z}dz\\). When \\(s\\) is a positive integer, \\(s \\in \\{1,2,3,\\ldots\\}\\), this constant simplifies to \\(\\Gamma(s) = (s - 1)!\\)."
+  },
+  {
+    "objectID": "slides/slides06.html#section-2",
+    "href": "slides/slides06.html#section-2",
+    "title": "Gamma-Poisson model",
+    "section": "",
+    "text": "Warning\n\n\nThe Gamma is sometimes parameterized by shape \\(s\\) and scale \\(\\theta = \\frac{1}{r}\\)\n\n\n\n\nIn econometrics, the (α, θ) parameterization is common for modeling waiting times … Bayesian statisticians prefer the (α,λ) parameterization, utilizing the gamma distribution as a conjugate prior for several inverse scale parameters, facilitating analytical tractability in posterior distribution computations.\n\n\n\nSource: Wikipedia"
+  },
+  {
+    "objectID": "slides/slides06.html#section-3",
+    "href": "slides/slides06.html#section-3",
+    "title": "Gamma-Poisson model",
+    "section": "",
+    "text": "Exponential Model\n\\[\\lambda \\sim \\text{Exp}(r)\\]\nis a special case of the Gamma with shape parameter \\(s = 1\\), \\(\\text{Gamma}(1,r)\\)\n\\(\\chi^2\\) Model\n\\[\\lambda \\sim \\chi^2(k)\\]\nis a special case of the Gamma with shape \\(s = k/2\\) and rate \\(r=1/2\\)"
+  },
+  {
+    "objectID": "slides/slides06.html#section-4",
+    "href": "slides/slides06.html#section-4",
+    "title": "Gamma-Poisson model",
+    "section": "",
+    "text": "\\(E(\\lambda) = \\frac{s}{r}, \\text{Mode}(\\lambda) = \\frac{s-1}{r} \\text{ for s } \\ge 1, \\text{Var}(\\lambda) = \\frac{s}{r^2}\\)"
+  },
+  {
+    "objectID": "slides/slides06.html#posterior-model",
+    "href": "slides/slides06.html#posterior-model",
+    "title": "Gamma-Poisson model",
+    "section": "Posterior Model",
+    "text": "Posterior Model"
+  },
+  {
+    "objectID": "slides/slides06.html#gamma-poisson-bayesian-model",
+    "href": "slides/slides06.html#gamma-poisson-bayesian-model",
+    "title": "Gamma-Poisson model",
+    "section": "Gamma-Poisson Bayesian Model",
+    "text": "Gamma-Poisson Bayesian Model\n\\[\\lambda \\sim \\text{Gamma}(s, r)\\] \\[ Y_i | \\lambda \\sim \\text{Poisson}(\\lambda)\\]\n\\[\\lambda | Y_1, Y_2, ..., Y_n \\sim \\text{Gamma}(s + \\sum Y_i, r + n)\\]"
+  },
+  {
+    "objectID": "slides/slides06.html#gamma-poisson-model",
+    "href": "slides/slides06.html#gamma-poisson-model",
+    "title": "Gamma-Poisson model",
+    "section": "Gamma-Poisson Model",
+    "text": "Gamma-Poisson Model\n\nplot_gamma_poisson(shape = 10, rate = 2, sum_y = 7, n = 4)"
+  },
+  {
+    "objectID": "slides/slides06.html#gamma-poisson-model-1",
+    "href": "slides/slides06.html#gamma-poisson-model-1",
+    "title": "Gamma-Poisson model",
+    "section": "Gamma-Poisson Model",
+    "text": "Gamma-Poisson Model\n\nsummarize_gamma_poisson(shape = 10, rate = 2, sum_y = 7, n = 4)\n\n      model shape rate     mean     mode       var        sd\n1     prior    10    2 5.000000 4.500000 2.5000000 1.5811388\n2 posterior    17    6 2.833333 2.666667 0.4722222 0.6871843\n\n\nInterpretation:"
+  },
+  {
+    "objectID": "slides/slides06.html#example-tuning-a-gamma-prior",
+    "href": "slides/slides06.html#example-tuning-a-gamma-prior",
+    "title": "Gamma-Poisson model",
+    "section": "Example: tuning a Gamma prior",
+    "text": "Example: tuning a Gamma prior\nThe most likely value of \\(\\lambda\\) is 3.5 and the variance is 2"
+  },
+  {
+    "objectID": "slides/slides06.html#example-gamma-poisson-model",
+    "href": "slides/slides06.html#example-gamma-poisson-model",
+    "title": "Gamma-Poisson model",
+    "section": "Example: Gamma-Poisson model",
+    "text": "Example: Gamma-Poisson model\nAssume a prior of \\(\\lambda \\sim \\text{Gamma}(24, 2)\\) and \\(Y | \\lambda \\sim \\text{Poisson}(\\lambda)\\). If you observe a sample of \\((12, 12, 12, 0)\\), what is the likelihood and posterior?"
+  },
+  {
+    "objectID": "slides/slides06.html#section-5",
+    "href": "slides/slides06.html#section-5",
+    "title": "Gamma-Poisson model",
+    "section": "",
+    "text": "plot_gamma_poisson(shape = 24, rate = 2, sum_y = 36, n = 4)"
+  },
+  {
+    "objectID": "slides/slides06.html#section-6",
+    "href": "slides/slides06.html#section-6",
+    "title": "Gamma-Poisson model",
+    "section": "",
+    "text": "summarize_gamma_poisson(shape = 24, rate = 2, sum_y = 36, n = 4)\n\n      model shape rate mean      mode      var       sd\n1     prior    24    2   12 11.500000 6.000000 2.449490\n2 posterior    60    6   10  9.833333 1.666667 1.290994\n\n\nInterpretation:"
+  },
+  {
+    "objectID": "course-faq.html",
+    "href": "course-faq.html",
+    "title": "FAQ",
+    "section": "",
+    "text": "The best place to come for help is Amanda’s office hours! I can help with anything related to the course. You can also check my calendar for one-on-one appointment slots.\n\n\n\nStudents needing help with their Statistics coursework and R/Rstudio questions can get help from Stats Lab Assistants in the Stats Lab in CMC 304. Stats Lab Assistants are primiarily for Stat 120 (Intro Stats), but they may also be able to assist with general R/Rstudio questions."
+  },
+  {
+    "objectID": "course-faq.html#where-can-i-get-help",
+    "href": "course-faq.html#where-can-i-get-help",
+    "title": "FAQ",
+    "section": "",
+    "text": "The best place to come for help is Amanda’s office hours! I can help with anything related to the course. You can also check my calendar for one-on-one appointment slots.\n\n\n\nStudents needing help with their Statistics coursework and R/Rstudio questions can get help from Stats Lab Assistants in the Stats Lab in CMC 304. Stats Lab Assistants are primiarily for Stat 120 (Intro Stats), but they may also be able to assist with general R/Rstudio questions."
   },
   {
     "objectID": "homework/hw03.html",
     "href": "homework/hw03.html",
     "title": "Individual HW03",
     "section": "",
-    "text": "library(bayesrules) # R package for our textbook\nlibrary(tidyverse) # Collection of packages for tidying and plotting data\nlibrary(janitor) # Helper functions like tidy and tabyl\n\nBR Exercise 5.1 a, d, f\nFor each situation below, tune an appropriate Gamma(s, r) prior model for \\(\\lambda\\)\n\nThe most common value of \\(\\lambda\\) is 4, and the mean is 7.\nThe most common value of \\(\\lambda\\) is 14, and the variance is 6.\nThe mean of \\(\\lambda\\) is 22, and the variance is 3.\nBR Exercise 5.7\nLet \\(\\lambda\\) be the average number of goals scored in a Women’s World Cup game. We’ll analyze \\(\\lambda\\) by the following Gamma-Poisson model: \\[Y_i | \\lambda \\sim \\text{Poisson}(\\lambda)\\] \\[\\lambda \\sim \\text{Gamma}(1, 0.25)\\]\n\nPlot and summarize our prior understanding of \\(\\lambda\\)\n\nWhy is the Poisson model a reasonable choice for \\(Y_i\\)?\nThe wwc_2019_matches data in the {fivethirtyeight} package includes the number of goals scored by the two teams in each 2019 Women’s World Cup match. Define, plot, and discuss the total number of goals scored per game\n\n\nlibrary(fivethirtyeight)\ndata(\"wwc_2019_matches\")\nwwc_2019_matches &lt;- wwc_2019_matches %&gt;% \n  mutate(total_goals = score1 + score2)\n\n\nidentify the posterior model of \\(\\lambda\\) and verify your answer using summarize_gamma_poisson()\n\nPlot the prior, likelihood, and posterior of \\(\\lambda\\). Describe the evolution in your understanding of \\(\\lambda\\) from the prior to posterior.\nBR Exercise 5.15\nBelow are kernels for Normal, Poisson, Gamma, Beta, and Binomial models. Identify the appropriate model with specific parameter values.\n\n\n\\(f(\\theta) \\propto 0.3^\\theta 0.7^{16 - \\theta}\\) for \\(\\theta \\in \\{0, 1, 2 ..., 16\\}\\)\n\n\n\\(f(\\theta) \\propto 1/\\theta!\\) for \\(\\theta \\in \\{0, 1, ..., \\infty\\}\\)\n\n\n\\(f(\\theta) \\propto \\theta^4(1-\\theta)^7\\) for \\(\\theta \\in [0,1]\\)\n\n\\(f(\\theta) \\propto e^{-\\theta^2}\\)\nTBA Mon\nTBA Mon\nTBA Mon\nTBA Wed\nTBA Wed",
+    "text": "library(bayesrules) # R package for our textbook\nlibrary(tidyverse) # Collection of packages for tidying and plotting data\nlibrary(janitor) # Helper functions like tidy and tabyl\n\nBR Exercise 5.1 a, d, f\nFor each situation below, tune an appropriate Gamma(s, r) prior model for \\(\\lambda\\)\n\nThe most common value of \\(\\lambda\\) is 4, and the mean is 7.\nThe most common value of \\(\\lambda\\) is 14, and the variance is 6.\nThe mean of \\(\\lambda\\) is 22, and the variance is 3.\nBR Exercise 5.7\nLet \\(\\lambda\\) be the average number of goals scored in a Women’s World Cup game. We’ll analyze \\(\\lambda\\) by the following Gamma-Poisson model: \\[Y_i | \\lambda \\sim \\text{Poisson}(\\lambda)\\] \\[\\lambda \\sim \\text{Gamma}(1, 0.25)\\]\n\nPlot and summarize our prior understanding of \\(\\lambda\\)\n\nWhy is the Poisson model a reasonable choice for \\(Y_i\\)?\nThe wwc_2019_matches data in the {fivethirtyeight} package includes the number of goals scored by the two teams in each 2019 Women’s World Cup match. Define, plot, and discuss the total number of goals scored per game\n\n\nlibrary(fivethirtyeight)\ndata(\"wwc_2019_matches\")\nwwc_2019_matches &lt;- wwc_2019_matches %&gt;% \n  mutate(total_goals = score1 + score2)\n\n\nidentify the posterior model of \\(\\lambda\\) and verify your answer using summarize_gamma_poisson()\n\nPlot the prior, likelihood, and posterior of \\(\\lambda\\). Describe the evolution in your understanding of \\(\\lambda\\) from the prior to posterior.\nBR Exercise 5.15\nBelow are kernels for Normal, Poisson, Gamma, Beta, and Binomial models. Identify the appropriate model with specific parameter values.\n\n\n\\(f(\\theta) \\propto 0.3^\\theta 0.7^{16 - \\theta}\\) for \\(\\theta \\in \\{0, 1, 2 ..., 16\\}\\)\n\n\n\\(f(\\theta) \\propto 1/\\theta!\\) for \\(\\theta \\in \\{0, 1, ..., \\infty\\}\\)\n\n\n\\(f(\\theta) \\propto \\theta^4(1-\\theta)^7\\) for \\(\\theta \\in [0,1]\\)\n\n\\(f(\\theta) \\propto e^{-\\theta^2}\\)\nNormal-normal conjugacy\nVerify that the normal distribution is a conjugate prior for a normal data model.\nNote: the sketch of this proof is given in 5.3.4 and you are welcome to use it. If you use other sources (e.g. for help remembering how to complete the square), please cite them.\nBR Exercise 5.11 (Normal-normal calculation)\nProf. Abebe and Prof. Morales both recently finished their PhDs and are teaching their first statistics classes at Bayesian University. Their colleagues told them that the average final exam score across all students, \\(\\mu\\), varies Normally from year to year with a mean of 80 points and a standard deviation of 4. Further, individual students’ scores \\(Y\\) vary Normally around \\(\\mu\\) with a known standard deviation of 3 points. (a) Prof. Abebe conducts the final exam and observes that his 32 students scored an average of 86 points. Calculate the posterior mean and variance of \\(\\mu\\) using the data from Prof. Abebe’s class. (b) Prof. Morales conducts the final exam and observes that her 32 students scored an average of 82 points. Calculate the posterior mean and variance of \\(\\mu\\) using the data from Prof. Morales’ class. (c) Next, use Prof. Abebe and Prof. Morales’ combined exams to calculate the posterior mean and variance of \\(\\mu\\)\nBR Exercise 5.14: Normal-normal simulation\n\nYour friend Alex has read Chapter 4 of this book, but not Chapter 5. Explain to Alex why it’s difficult to simulate a Normal-Normal posterior using the simulation methods we have learned thus far.\nTo prove your point, try (and fail) to simulate the posterior of \\(\\mu\\) for the following model upon observing a single data point \\(Y_1 = 1.1\\):\n\n\\[Y | \\mu \\sim N(\\mu, 1^2)\\] \\[\\mu \\sim N(0,1)\\]\nTBA Wed\nTBA Wed",
     "crumbs": [
       "Assignments",
       "Homework",

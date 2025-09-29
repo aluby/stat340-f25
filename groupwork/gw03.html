@@ -101,7 +101,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script>
+}</script><script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 </head>
 <body class="nav-sidebar docked quarto-light"><script id="quarto-html-before-body" type="application/javascript">
     const toggleBodyColorMode = (bsSheetEl) => {
@@ -370,6 +395,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 ">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../homework/gw02-sols.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">gw02-sols</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../homework/hw01.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Individual HW01</span></a>
   </div>
@@ -431,9 +462,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
    
   <ul>
-<li><a href="#tba-mon" id="toc-tba-mon" class="nav-link active" data-scroll-target="#tba-mon">TBA Mon</a></li>
-  <li><a href="#tba-mon-1" id="toc-tba-mon-1" class="nav-link" data-scroll-target="#tba-mon-1">TBA Mon</a></li>
-  <li><a href="#tba-mon-2" id="toc-tba-mon-2" class="nav-link" data-scroll-target="#tba-mon-2">TBA Mon</a></li>
+<li><a href="#br-exercise-5.8-a-and-d-normal-likelihood-functions" id="toc-br-exercise-5.8-a-and-d-normal-likelihood-functions" class="nav-link active" data-scroll-target="#br-exercise-5.8-a-and-d-normal-likelihood-functions">BR Exercise 5.8 (a) and (d): Normal Likelihood Functions</a></li>
+  <li><a href="#br-exercise-5.13-australia" id="toc-br-exercise-5.13-australia" class="nav-link" data-scroll-target="#br-exercise-5.13-australia">BR Exercise 5.13: Australia</a></li>
+  <li><a href="#br-exercise-5.19" id="toc-br-exercise-5.19" class="nav-link" data-scroll-target="#br-exercise-5.19">BR Exercise 5.19</a></li>
   <li><a href="#tba-wed" id="toc-tba-wed" class="nav-link" data-scroll-target="#tba-wed">TBA Wed</a></li>
   <li><a href="#tba-wed-1" id="toc-tba-wed-1" class="nav-link" data-scroll-target="#tba-wed-1">TBA Wed</a></li>
   </ul><div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="gw03.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
@@ -472,10 +503,26 @@ Note
 <p>New this week! Trying no group problems on Friday</p>
 </div>
 </div>
-<section id="tba-mon" class="level1"><h1>TBA Mon</h1>
-</section><section id="tba-mon-1" class="level1"><h1>TBA Mon</h1>
-</section><section id="tba-mon-2" class="level1"><h1>TBA Mon</h1>
-</section><section id="tba-wed" class="level1"><h1>TBA Wed</h1>
+<section id="br-exercise-5.8-a-and-d-normal-likelihood-functions" class="level1"><h1>BR Exercise 5.8 (a) and (d): Normal Likelihood Functions</h1>
+<p>In each situation below, we observe the outcomes for a Normal random sample, <span class="math inline">\(Y_i | \mu \sim N(\mu, \sigma^2)\)</span> with known <span class="math inline">\(\sigma\)</span>. Specify and plot the corresponding likelihood function of <span class="math inline">\(\mu\)</span>.</p>
+<ol type="a">
+<li>
+<span class="math inline">\((y_1, y_2, y_3) = (-4.3, 0.7, -19.4)\)</span> and <span class="math inline">\(\sigma = 10\)</span>
+</li>
+<li>
+<span class="math inline">\((y_1, y_2, y_3, y_4, y_5) = (1.6, 0.09, 1.7, 1.1, 1.1)\)</span> and <span class="math inline">\(\sigma = 0.6\)</span>
+</li>
+</ol></section><section id="br-exercise-5.13-australia" class="level1"><h1>BR Exercise 5.13: Australia</h1>
+<p>Let <span class="math inline">\(\mu\)</span> be the average 3 p.m. temperature in Perth, Australia. Not knowing much about Australian weather, your friend’s prior understanding is that the average temperature is likely around 30 degrees Celsius, though might be anywhere between 10 and 50 degrees Celsius. To learn about <span class="math inline">\(\mu\)</span>, they plan to analyze 1000 days of temperature data. Letting <span class="math inline">\(Y_i\)</span> denote the 3 p.m. temperature on day <span class="math inline">\(i\)</span>, they’ll assume that daily temperatures vary Normally around <span class="math inline">\(\mu\)</span> with a standard deviation of 5 degrees:</p>
+<p><span class="math display">\[Y_i | \mu \sim N(mu, 5^2)\]</span></p>
+<p>. (a) Tune and plot a Normal prior for <span class="math inline">\(\mu\)</span> that reflects your friend’s understanding. (b) The <code>weather_perth</code> data in the {bayesrules} package includes 1000 daily observations of 3 p.m. temperatures in Perth (<code>temp3pm</code>). Plot this data and discuss whether it’s reasonable to assume a Normal model for the temperature data. (c) Identify the posterior model of <span class="math inline">\(\mu\)</span> and verify your answer using <code><a href="https://bayes-rules.github.io/bayesrules/docs/reference/summarize_normal_normal.html">summarize_normal_normal()</a></code>. (d) Plot the prior pdf, likelihood function, and posterior pdf of <span class="math inline">\(\mu\)</span>. Describe the evolution in your understanding of <span class="math inline">\(\mu\)</span> from the prior to the posterior.</p>
+</section><section id="br-exercise-5.19" class="level1"><h1>BR Exercise 5.19</h1>
+<p>Consider the Bayesian model:</p>
+<p><span class="math display">\[Y|\theta \sim \text{Geometric}(\theta)\]</span> <span class="math display">\[\theta \sim \text{Beta}(\alpha, \beta)\]</span></p>
+<ol type="a">
+<li>Derive the posterior model for <span class="math inline">\(\theta\)</span> given observed data <span class="math inline">\(Y = y\)</span>. If possible, identify the name of the posterior distribution and its parameters</li>
+<li>Is the Beta model a conjugate prior for the Geometric data model?</li>
+</ol></section><section id="tba-wed" class="level1"><h1>TBA Wed</h1>
 </section><section id="tba-wed-1" class="level1"><h1>TBA Wed</h1>
 
 
@@ -966,15 +1013,38 @@ Note
 <span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>New this week! Trying no group problems on Friday</span>
 <span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="fu"># TBA Mon</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="fu"># BR Exercise 5.8 (a) and (d): Normal Likelihood Functions</span></span>
 <span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="fu"># TBA Mon</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>In each situation below, we observe the outcomes for a Normal random sample, $Y_i | \mu \sim N(\mu, \sigma^2)$ with known $\sigma$. Specify and plot the corresponding likelihood function of $\mu$.  </span>
 <span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="fu"># TBA Mon</span></span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a><span class="fu"># TBA Wed</span></span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a><span class="fu"># TBA Wed</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>(a) $(y_1, y_2, y_3) = (-4.3, 0.7, -19.4)$ and $\sigma = 10$</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>(d) $(y_1, y_2, y_3, y_4, y_5) = (1.6, 0.09, 1.7, 1.1, 1.1)$ and $\sigma = 0.6$</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a><span class="fu"># BR Exercise 5.13: Australia</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>Let $\mu$ be the average 3 p.m. temperature in Perth, Australia. Not knowing much about Australian weather, your friend’s prior understanding is that the average temperature is likely around 30 degrees Celsius, though might be anywhere between 10 and 50 degrees Celsius. To learn about $\mu$, they plan to analyze 1000 days of temperature data. Letting $Y_i$ denote the 3 p.m. temperature on day $i$, they’ll assume that daily temperatures vary Normally around $\mu$ with a standard deviation of 5 degrees:  </span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>$$Y_i | \mu \sim N(mu, 5^2)$$</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a> .</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>(a) Tune and plot a Normal prior for $\mu$ that reflects your friend’s understanding.</span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>(b) The <span class="in">`weather_perth`</span> data in the {bayesrules} package includes 1000 daily observations of 3 p.m. temperatures in Perth (<span class="in">`temp3pm`</span>). Plot this data and discuss whether it’s reasonable to assume a Normal model for the temperature data.</span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>(c) Identify the posterior model of $\mu$ and verify your answer using <span class="in">`summarize_normal_normal()`</span>.</span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>(d) Plot the prior pdf, likelihood function, and posterior pdf of $\mu$. Describe the evolution in your understanding of $\mu$ from the prior to the posterior.</span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a><span class="fu"># BR Exercise 5.19</span></span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>Consider the Bayesian model: </span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>$$Y|\theta \sim \text{Geometric}(\theta)$$</span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>$$\theta \sim \text{Beta}(\alpha, \beta)$$</span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>(a) Derive the posterior model for $\theta$ given observed data $Y = y$. If possible, identify the name of the posterior distribution and its parameters</span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>(b) Is the Beta model a conjugate prior for the Geometric data model?</span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a><span class="fu"># TBA Wed</span></span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a><span class="fu"># TBA Wed</span></span>
 </code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
