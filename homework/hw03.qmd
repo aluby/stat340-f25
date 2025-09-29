@@ -55,6 +55,7 @@ Verify that the normal distribution is a conjugate prior for a normal data model
 # BR Exercise 5.11 (Normal-normal calculation) 
 
 Prof. Abebe and Prof. Morales both recently finished their PhDs and are teaching their first statistics classes at Bayesian University. Their colleagues told them that the average final exam score across all students, $\mu$, varies Normally from year to year with a mean of 80 points and a standard deviation of 4. Further, individual students’ scores $Y$ vary Normally around $\mu$ with a known standard deviation of 3 points.
+
 (a) Prof. Abebe conducts the final exam and observes that his 32 students scored an average of 86 points. Calculate the posterior mean and variance of $\mu$ using the data from Prof. Abebe’s class.
 (b) Prof. Morales conducts the final exam and observes that her 32 students scored an average of 82 points. Calculate the posterior mean and variance of $\mu$ using the data from Prof. Morales’ class.
 (c) Next, use Prof. Abebe and Prof. Morales’ _combined_ exams to calculate the posterior mean and variance of $\mu$
