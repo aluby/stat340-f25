@@ -12,11 +12,34 @@ library(janitor) # Helper functions like tidy and tabyl
 New this week! Trying no group problems on Friday
 :::
 
-# TBA Mon
+# BR Exercise 5.8 (a) and (d): Normal Likelihood Functions
 
-# TBA Mon
+In each situation below, we observe the outcomes for a Normal random sample, $Y_i | \mu \sim N(\mu, \sigma^2)$ with known $\sigma$. Specify and plot the corresponding likelihood function of $\mu$.  
 
-# TBA Mon
+(a) $(y_1, y_2, y_3) = (-4.3, 0.7, -19.4)$ and $\sigma = 10$
+(d) $(y_1, y_2, y_3, y_4, y_5) = (1.6, 0.09, 1.7, 1.1, 1.1)$ and $\sigma = 0.6$
+
+# BR Exercise 5.13: Australia
+
+Let $\mu$ be the average 3 p.m. temperature in Perth, Australia. Not knowing much about Australian weather, your friend’s prior understanding is that the average temperature is likely around 30 degrees Celsius, though might be anywhere between 10 and 50 degrees Celsius. To learn about $\mu$, they plan to analyze 1000 days of temperature data. Letting $Y_i$ denote the 3 p.m. temperature on day $i$, they’ll assume that daily temperatures vary Normally around $\mu$ with a standard deviation of 5 degrees:  
+
+$$Y_i | \mu \sim N(mu, 5^2)$$
+
+ .
+(a) Tune and plot a Normal prior for $\mu$ that reflects your friend’s understanding.
+(b) The `weather_perth` data in the {bayesrules} package includes 1000 daily observations of 3 p.m. temperatures in Perth (`temp3pm`). Plot this data and discuss whether it’s reasonable to assume a Normal model for the temperature data.
+(c) Identify the posterior model of $\mu$ and verify your answer using `summarize_normal_normal()`.
+(d) Plot the prior pdf, likelihood function, and posterior pdf of $\mu$. Describe the evolution in your understanding of $\mu$ from the prior to the posterior.
+
+# BR Exercise 5.19
+
+Consider the Bayesian model: 
+
+$$Y|\theta \sim \text{Geometric}(\theta)$$
+$$\theta \sim \text{Beta}(\alpha, \beta)$$
+
+(a) Derive the posterior model for $\theta$ given observed data $Y = y$. If possible, identify the name of the posterior distribution and its parameters
+(b) Is the Beta model a conjugate prior for the Geometric data model?
 
 # TBA Wed
 

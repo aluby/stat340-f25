@@ -46,11 +46,26 @@ Below are kernels for Normal, Poisson, Gamma, Beta, and Binomial models. Identif
 (c) $f(\theta) \propto \theta^4(1-\theta)^7$ for $\theta \in [0,1]$
 (d) $f(\theta) \propto e^{-\theta^2}$
 
-# TBA Mon
+# Normal-normal conjugacy
 
-# TBA Mon
+Verify that the normal distribution is a conjugate prior for a normal data model. 
 
-# TBA Mon
+*Note:* the sketch of this proof is given in 5.3.4 and you are welcome to use it. If you use other sources (e.g. for help remembering how to complete the square), please cite them. 
+
+# BR Exercise 5.11 (Normal-normal calculation) 
+
+Prof. Abebe and Prof. Morales both recently finished their PhDs and are teaching their first statistics classes at Bayesian University. Their colleagues told them that the average final exam score across all students, $\mu$, varies Normally from year to year with a mean of 80 points and a standard deviation of 4. Further, individual students’ scores $Y$ vary Normally around $\mu$ with a known standard deviation of 3 points.
+(a) Prof. Abebe conducts the final exam and observes that his 32 students scored an average of 86 points. Calculate the posterior mean and variance of $\mu$ using the data from Prof. Abebe’s class.
+(b) Prof. Morales conducts the final exam and observes that her 32 students scored an average of 82 points. Calculate the posterior mean and variance of $\mu$ using the data from Prof. Morales’ class.
+(c) Next, use Prof. Abebe and Prof. Morales’ _combined_ exams to calculate the posterior mean and variance of $\mu$
+
+# BR Exercise 5.14: Normal-normal simulation
+
+(a) Your friend Alex has read Chapter 4 of this book, but not Chapter 5. Explain to Alex why it’s difficult to simulate a Normal-Normal posterior using the simulation methods we have learned thus far.
+(b) To prove your point, try (and fail) to simulate the posterior of $\mu$ for the following model upon observing a single data point  $Y_1 = 1.1$: 
+
+$$Y | \mu \sim N(\mu, 1^2)$$ 
+$$\mu \sim N(0,1)$$
 
 # TBA Wed
 
