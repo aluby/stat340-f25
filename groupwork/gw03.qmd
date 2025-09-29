@@ -25,7 +25,7 @@ Let $\mu$ be the average 3 p.m. temperature in Perth, Australia. Not knowing muc
 
 $$Y_i | \mu \sim N(mu, 5^2)$$
 
- .
+
 (a) Tune and plot a Normal prior for $\mu$ that reflects your friend’s understanding.
 (b) The `weather_perth` data in the {bayesrules} package includes 1000 daily observations of 3 p.m. temperatures in Perth (`temp3pm`). Plot this data and discuss whether it’s reasonable to assume a Normal model for the temperature data.
 (c) Identify the posterior model of $\mu$ and verify your answer using `summarize_normal_normal()`.
