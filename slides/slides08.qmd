@@ -1,0 +1,389 @@
+---
+title: Intro to Posterior Approximation
+subtitle: Day 08
+title-slide-attributes:
+  data-background-color: "#e2583eff"
+  data-slide-number: none
+format: 
+  revealjs:
+    incremental: false
+    scrollable: false
+auto-stretch: true
+editor_options: 
+  chunk_output_type: console
+editor: 
+  markdown: 
+    wrap: 72
+execute: 
+  warning: false
+  message: false
+---
+
+
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+
+library(countdown)
+library(tidyverse)
+library(bayesrules)
+library(janitor)
+library(patchwork)
+
+theme_set(theme_minimal(base_size = 16, base_family = "Atkinson Hyperlegible"))
+```
+
+```{r}
+#| echo: false
+Howell1 <- readr::read_delim("https://raw.githubusercontent.com/rmcelreath/rethinking/master/data/Howell1.csv", delim = ";")
+adults <- filter(Howell1, age >= 18)
+```
+
+## Recap: Conjugate models
+
+## Motivation
+
+## {.center}
+
+![](https://www.bayesrulesbook.com/bookdown_files/figure-html/unnamed-chunk-177-1.png)
+
+## 
+
+::: callout-tip
+## Grid Approximation
+
+Grid approximation produces a sample of $N$ __independent__ $\theta$ values, $\left\lbrace \theta^{(1)}, \theta^{(2)}, \ldots, \theta^{(N)} \right\rbrace$, from a __discretized approximation__ of posterior pdf $f(\theta|y)$.  This algorithm evolves in four steps:
+
+1. Define a discrete grid of possible $\theta$ values.
+2. Evaluate the prior pdf $f(\theta)$ and likelihood function $L(\theta|y)$ at each $\theta$ grid value.
+3. Obtain a discrete approximation of posterior pdf $f(\theta |y)$ by: 
+  (a) calculating the product $f(\theta)L(\theta|y)$ at each $\theta$ grid value
+  (b) *normalizing* the products so that they sum to 1 across all $\theta$.
+4. Randomly sample $N$ $\theta$ grid values with respect to their corresponding normalized posterior probabilities.
+
+:::
+
+## Example: Beta-Binomial
+
+*Discretize* $\pi$: 
+
+$$\pi \in \{0, .2, .4, .6, .8, 1.0\}$$
+
+## 1. Define a grid of possible $\theta$ values
+
+$$\pi \in \{0, .2, .4, .6, .8, 1.0\}$$
+
+```{r}
+# Step 1: Define a grid of 6 pi values
+grid_data <- tibble(pi_grid = seq(from = 0, to = 1, length = 6))
+
+grid_data
+```
+
+## 2. Evaluate the prior pdf $f(\theta)$ and likelihood function $L(\theta|y)$ at each $\theta$ grid value.
+
+```{r}
+# Step 2: Evaluate the prior & likelihood at each pi
+grid_data <- grid_data %>% 
+  mutate(prior = dbeta(pi_grid, 2, 2),
+         likelihood = dbinom(9, 10, pi_grid))
+```
+
+```{r}
+#| echo: false
+
+grid_data
+```
+
+## 3a. Calculate the product $f(\theta)L(\theta|y)$ at each $\theta$ grid value
+
+```{r}
+# Step 3: Approximate the posterior
+grid_data <- grid_data %>% 
+  mutate(
+    unnorm_post = likelihood * prior
+  )
+```
+
+```{r}
+#| echo: false
+grid_data
+```
+
+## 3b. Normalize this product
+
+```{r}
+# Step 3: Approximate the posterior
+grid_data <- grid_data %>% 
+  mutate(
+    posterior = unnorm_post / sum(unnorm_post)
+  )
+```
+
+```{r}
+#| echo: false
+grid_data
+```
+
+## Pause to check: does it sum to 1?
+
+```{r}
+# Confirm that the posterior approximation sums to 1
+grid_data %>% 
+  summarize(sum(unnorm_post), sum(posterior))
+```
+
+## 4. Randomly sample $N$ $\theta$ grid values with respect to their corresponding normalized posterior probabilities.
+
+```{r}
+# Set the seed
+set.seed(84735)
+
+# Step 4: sample from the discretized posterior
+post_sample <- sample_n(grid_data, size = 10000, 
+                        weight = posterior, replace = TRUE)
+```
+
+```{r}
+#| echo: false
+
+post_sample
+```
+
+## 
+
+```{r}
+# Histogram of the grid simulation with posterior pdf
+ggplot(post_sample, aes(x = pi_grid)) + 
+  geom_histogram(aes(y = after_stat(density)), color = "white") + 
+  stat_function(fun = dbeta, args = list(11, 3)) + 
+  lims(x = c(0, 1))
+```
+
+## {.center}
+
+![](https://www.bayesrulesbook.com/bookdown_files/figure-html/unnamed-chunk-177-1.png)
+
+## {.smaller}
+
+```{r}
+# Step 1: Define a grid of 101 pi values
+grid_data  <- data.frame(pi_grid = seq(from = 0, to = 1, length = 101))
+
+# Step 2: Evaluate the prior & likelihood at each pi
+grid_data <- grid_data %>% 
+  mutate(prior = dbeta(pi_grid, 2, 2),
+         likelihood = dbinom(9, 10, pi_grid))
+
+# Step 3: Approximate the posterior
+grid_data <- grid_data %>% 
+  mutate(unnormalized = likelihood * prior,
+         posterior = unnormalized / sum(unnormalized))
+
+# Set the seed
+set.seed(84735)
+
+# Step 4: sample from the discretized posterior
+post_sample <- sample_n(grid_data, size = 10000, 
+                        weight = posterior, replace = TRUE)
+```
+
+## 
+
+```{r}
+#| echo: false
+
+
+ggplot(post_sample, aes(x = pi_grid)) + 
+  geom_histogram(aes(y = ..density..), color = "white", binwidth = 0.05) + 
+  stat_function(fun = dbeta, args = list(11, 3)) + 
+  lims(x = c(0, 1))
+```
+
+## What does grid approximation give us that conjugacy doesn't?
+
+Remember our non-conjugate prior: $f(\pi) = e - e^\pi$?
+
+## 
+
+```{r}
+grid_data  <- data.frame(pi_grid = seq(from = 0, to = 1, length = 101))
+
+grid_data <- grid_data %>% 
+  mutate(prior = exp(1) - exp(pi_grid),
+         likelihood = dbinom(9, 10, pi_grid))
+
+grid_data <- grid_data %>% 
+  mutate(unnormalized = likelihood * prior,
+         posterior = unnormalized / sum(unnormalized))
+
+set.seed(84735)
+
+post_sample <- sample_n(grid_data, size = 10000, 
+                        weight = posterior, replace = TRUE)
+```
+
+## 
+
+```{r}
+#| echo: false
+
+ggplot(post_sample, aes(x = pi_grid)) + 
+  geom_histogram(aes(y = after_stat(density)), color = "white", binwidth = 0.05) + 
+  lims(x = c(0, 1))
+```
+
+## Where does grid approximation start to fail?
+
+![](https://www.bayesrulesbook.com/bookdown_files/figure-html/unnamed-chunk-187-1.png)
+
+# Markov Chain Monte Carlo {.colorslide}
+
+## Plan
+
+1. Today: how to find them with {rstan}
+2. Friday: how to evaluate them
+3. Next week: how they work
+
+## 
+
+::: callout-tip
+## Markov Chain Monte Carlo (MCMC)
+
+MCMC is a class of **algorithms** used to approximate a probability distribution. 
+
+Let $\{\theta^{(1)}, \theta^{(2)}, ..., \theta^{(n)} \}$ be an N-length MCMC sample. Then, $\theta^{(i+1)}$ is drawn from a model with conditional pdf
+
+$$f(\theta^{(i+1)}|\theta^{(i)}, y)$$
+:::
+
+Note that: 
+
+- **Markov property**
+- Not equivalent to posterior pdf
+- If done well, *approximates* posterior pdf
+
+## {rstan}
+
+```{r}
+library(rstan)
+```
+
+*Stan* is a probabilistic programming language written in C++ (<https://mc-stan.org/>)
+
+{rstan} is the R interface to Stan
+
+There are also interfaces for python, Julia, Mathematica, MATLAB, etc.
+
+::: callout-note
+Since {rstan} uses C++ under the hood, you might need to follow some additional steps to install the package. Follow the directions at <https://github.com/stan-dev/rstan/wiki/RStan-Getting-Started> carefully!
+:::
+
+## Steps
+
+1. Write out the model in {rstan syntax}
+    - `data`
+    - `parameters`
+    - `model`
+2. Sample from the approximate posterior
+
+## Beta-Binomial Example
+
+Define the model:
+
+```{r}
+# STEP 1: DEFINE the model
+bb_model <- "
+  data {
+    int<lower = 0, upper = 10> Y;
+  }
+  parameters {
+    real<lower = 0, upper = 1> pi;
+  }
+  model {
+    Y ~ binomial(10, pi);
+    pi ~ beta(2, 2);
+  }
+"
+```
+
+## Beta-Binomial Example
+
+Sample from the posterior:
+
+```{r}
+#| eval: false
+# STEP 2: SIMULATE the posterior
+bb_sim <- stan(model_code = bb_model, data = list(Y = 9), 
+               chains = 4, iter = 5000*2, seed = 84735)
+```
+
+```
+Chain 4: Iteration: 6000 / 10000 [ 60%]  (Sampling)
+Chain 4: Iteration: 7000 / 10000 [ 70%]  (Sampling)
+Chain 4: Iteration: 8000 / 10000 [ 80%]  (Sampling)
+Chain 4: Iteration: 9000 / 10000 [ 90%]  (Sampling)
+Chain 4: Iteration: 10000 / 10000 [100%]  (Sampling)
+Chain 4: 
+Chain 4:  Elapsed Time: 0.026 seconds (Warm-up)
+Chain 4:                0.081 seconds (Sampling)
+Chain 4:                0.107 seconds (Total)
+Chain 4: 
+```
+
+```{r}
+#| echo: false
+
+load("07-bb_sim.rda")
+```
+
+## 
+
+```{r}
+bb_sim
+```
+
+## 
+
+::: callout-note
+## Burn-in
+
+If you’ve ever made a batch of pancakes or crêpes, you know that the first pancake is always the worst – the pan isn’t yet at the perfect temperature, you haven’t yet figured out how much batter to use, and you need more time to practice your flipping technique. MCMC chains are similar. Without direct knowledge of the posterior it’s trying to simulate, the Markov chain might start out sampling unreasonable values of our parameter of interest. Eventually though, it learns and starts producing values that mimic a random sample from the posterior. And just as we might need to toss out the first pancake, we might want to toss the Markov chain values produced during this learning period – keeping them in our sample might lead to a poor posterior approximation. As such, “burn-in” is the practice of discarding the first portion of Markov chain values.
+:::
+
+##
+
+```{r}
+as.array(bb_sim, pars = "pi") |>
+  head(5)
+```
+
+## Plotting with the {bayesplot} package
+
+```{r}
+#| output-location: column
+
+
+library(bayesplot)
+
+# Histogram of the Markov chain values
+mcmc_hist(bb_sim, 
+          pars = "pi") + 
+  yaxis_text(TRUE) + 
+  ylab("count")
+
+```
+
+## Plotting with the {bayesplot} package
+
+
+```{r}
+# Density plot of the Markov chain values
+mcmc_dens(bb_sim, 
+                pars = "pi") + 
+  yaxis_text(TRUE) + 
+  ylab("density")
+
+```

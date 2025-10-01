@@ -41,6 +41,29 @@ $$\theta \sim \text{Beta}(\alpha, \beta)$$
 (a) Derive the posterior model for $\theta$ given observed data $Y = y$. If possible, identify the name of the posterior distribution and its parameters
 (b) Is the Beta model a conjugate prior for the Geometric data model?
 
-# TBA Wed
+# BR Exercise 6.7
 
-# TBA Wed
+Consider the Normal-Normal model for $\mu$ with $Y|\mu \sim N(\mu, 1.3^2)$ and $\mu \sim N(10, 1.2^2)$. Suppose that you observe data $(Y_1, Y_2, Y_3, Y_4) = (7.1, 8.9, 8.4, 8.6)$
+
+(a) Utilize grid approximation with grid values $\mu \in \{5, 6, 7, ..., 15\}$ to approximate the posterior of $\mu$ 
+(b) Repeat part (a) using a grid of 201 equally spaced values between 5 and 15
+
+::: callout-warning
+
+Remember that the likelihood has to take all 4 data points into account! 
+:::
+
+# BR 6.17 a, c, d
+
+```{r}
+library(rstan)
+library(bayesplot)
+```
+
+Using the same normal-normal model: 
+
+(a) Simulate the posterior of $\mu$ with {rstan} using 4 chains and 10,000 iterations per chain
+(b) Skip b for now
+(c) Produce a density plot for all four chains
+(d) What is the actual posterior distribution of $\mu |Y$? How does the MCMC approximation compare? How does the grid approximation compare? (Try adding an overlaying line to your density plot from (c))
+
