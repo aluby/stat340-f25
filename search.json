@@ -174,7 +174,7 @@
     "href": "groupwork/gw03.html",
     "title": "Group Work 03",
     "section": "",
-    "text": "library(bayesrules) # R package for our textbook\nlibrary(tidyverse) # Collection of packages for tidying and plotting data\nlibrary(janitor) # Helper functions like tidy and tabyl\n\n\n\n\n\n\n\nNote\n\n\n\nNew this week! Trying no group problems on Friday\n\n\nBR Exercise 5.8 (a) and (d): Normal Likelihood Functions\nIn each situation below, we observe the outcomes for a Normal random sample, \\(Y_i | \\mu \\sim N(\\mu, \\sigma^2)\\) with known \\(\\sigma\\). Specify and plot the corresponding likelihood function of \\(\\mu\\).\n\n\n\\((y_1, y_2, y_3) = (-4.3, 0.7, -19.4)\\) and \\(\\sigma = 10\\)\n\n\n\\((y_1, y_2, y_3, y_4, y_5) = (1.6, 0.09, 1.7, 1.1, 1.1)\\) and \\(\\sigma = 0.6\\)\n\nBR Exercise 5.13: Australia\nLet \\(\\mu\\) be the average 3 p.m. temperature in Perth, Australia. Not knowing much about Australian weather, your friend’s prior understanding is that the average temperature is likely around 30 degrees Celsius, though might be anywhere between 10 and 50 degrees Celsius. To learn about \\(\\mu\\), they plan to analyze 1000 days of temperature data. Letting \\(Y_i\\) denote the 3 p.m. temperature on day \\(i\\), they’ll assume that daily temperatures vary Normally around \\(\\mu\\) with a standard deviation of 5 degrees:\n\\[Y_i | \\mu \\sim N(mu, 5^2)\\]\n\nTune and plot a Normal prior for \\(\\mu\\) that reflects your friend’s understanding.\nThe weather_perth data in the {bayesrules} package includes 1000 daily observations of 3 p.m. temperatures in Perth (temp3pm). Plot this data and discuss whether it’s reasonable to assume a Normal model for the temperature data.\nIdentify the posterior model of \\(\\mu\\) and verify your answer using summarize_normal_normal().\nPlot the prior pdf, likelihood function, and posterior pdf of \\(\\mu\\). Describe the evolution in your understanding of \\(\\mu\\) from the prior to the posterior.\nBR Exercise 5.19\nConsider the Bayesian model:\n\\[Y|\\theta \\sim \\text{Geometric}(\\theta)\\] \\[\\theta \\sim \\text{Beta}(\\alpha, \\beta)\\]\n\nDerive the posterior model for \\(\\theta\\) given observed data \\(Y = y\\). If possible, identify the name of the posterior distribution and its parameters\nIs the Beta model a conjugate prior for the Geometric data model?\nTBA Wed\nTBA Wed",
+    "text": "library(bayesrules) # R package for our textbook\nlibrary(tidyverse) # Collection of packages for tidying and plotting data\nlibrary(janitor) # Helper functions like tidy and tabyl\n\n\n\n\n\n\n\nNote\n\n\n\nNew this week! Trying no group problems on Friday\n\n\nBR Exercise 5.8 (a) and (d): Normal Likelihood Functions\nIn each situation below, we observe the outcomes for a Normal random sample, \\(Y_i | \\mu \\sim N(\\mu, \\sigma^2)\\) with known \\(\\sigma\\). Specify and plot the corresponding likelihood function of \\(\\mu\\).\n\n\n\\((y_1, y_2, y_3) = (-4.3, 0.7, -19.4)\\) and \\(\\sigma = 10\\)\n\n\n\\((y_1, y_2, y_3, y_4, y_5) = (1.6, 0.09, 1.7, 1.1, 1.1)\\) and \\(\\sigma = 0.6\\)\n\nBR Exercise 5.13: Australia\nLet \\(\\mu\\) be the average 3 p.m. temperature in Perth, Australia. Not knowing much about Australian weather, your friend’s prior understanding is that the average temperature is likely around 30 degrees Celsius, though might be anywhere between 10 and 50 degrees Celsius. To learn about \\(\\mu\\), they plan to analyze 1000 days of temperature data. Letting \\(Y_i\\) denote the 3 p.m. temperature on day \\(i\\), they’ll assume that daily temperatures vary Normally around \\(\\mu\\) with a standard deviation of 5 degrees:\n\\[Y_i | \\mu \\sim N(mu, 5^2)\\]\n\nTune and plot a Normal prior for \\(\\mu\\) that reflects your friend’s understanding.\nThe weather_perth data in the {bayesrules} package includes 1000 daily observations of 3 p.m. temperatures in Perth (temp3pm). Plot this data and discuss whether it’s reasonable to assume a Normal model for the temperature data.\nIdentify the posterior model of \\(\\mu\\) and verify your answer using summarize_normal_normal().\nPlot the prior pdf, likelihood function, and posterior pdf of \\(\\mu\\). Describe the evolution in your understanding of \\(\\mu\\) from the prior to the posterior.\nBR Exercise 5.19\nConsider the Bayesian model:\n\\[Y|\\theta \\sim \\text{Geometric}(\\theta)\\] \\[\\theta \\sim \\text{Beta}(\\alpha, \\beta)\\]\n\nDerive the posterior model for \\(\\theta\\) given observed data \\(Y = y\\). If possible, identify the name of the posterior distribution and its parameters\nIs the Beta model a conjugate prior for the Geometric data model?\nBR Exercise 6.7\nConsider the Normal-Normal model for \\(\\mu\\) with \\(Y|\\mu \\sim N(\\mu, 1.3^2)\\) and \\(\\mu \\sim N(10, 1.2^2)\\). Suppose that you observe data \\((Y_1, Y_2, Y_3, Y_4) = (7.1, 8.9, 8.4, 8.6)\\)\n\nUtilize grid approximation with grid values \\(\\mu \\in \\{5, 6, 7, ..., 15\\}\\) to approximate the posterior of \\(\\mu\\)\n\nRepeat part (a) using a grid of 201 equally spaced values between 5 and 15\n\n\n\n\n\n\n\nWarning\n\n\n\nRemember that the likelihood has to take all 4 data points into account!\n\n\nBR 6.17 a, c, d\n\nlibrary(rstan)\nlibrary(bayesplot)\n\nUsing the same normal-normal model:\n\nSimulate the posterior of \\(\\mu\\) with {rstan} using 4 chains and 10,000 iterations per chain\nSkip b for now\nProduce a density plot for all four chains\nWhat is the actual posterior distribution of \\(\\mu |Y\\)? How does the MCMC approximation compare? How does the grid approximation compare? (Try adding an overlaying line to your density plot from (c))",
     "crumbs": [
       "Assignments",
       "Groupwork",
@@ -848,10 +848,192 @@
     "href": "index.html",
     "title": "Stat 340: Bayesian Statistics",
     "section": "",
-    "text": "This page contains an outline of the topics, content, and assignments for the term. Note that this schedule will be updated as the term progresses and the timeline of topics and assignments might be updated. Any major changes to due dates will be announced in class and indicated in bold here.\n\n\n\n\n\n\nWEEK\nDOW\nDATE\nPREPARE\nTOPIC\nMATERIALS\nDUE\n\n\n\n1\nM\nMon, Sep 15\n📝complete welcome survey  📚 Bayes Rules Ch1  💻 Join Slack workspace\n\nIntro to Bayesian Thinking\nSlides01\n\n\n\n1\nW\nWed, Sep 17\n📚 Bayes Rules Ch2  💻 Complete computing setup\n\nBayes Rule, R Setup\nSlides02\n\n\n\n1\nF\nFri, Sep 19\n\nProbability and Likelihood Review; Posterior Simulation\nSlides03\n\nHW 1 and GW 1\n\n\n\n2\nM\nMon, Sep 22\n📚 Bayes Rules Ch3 \n\nBeta-Binomial Model\nSlides04\n\n\n\n2\nW\nWed, Sep 24\n📚 Bayes Rules Ch4 \n\nBalance and Sequentiality\nSlides05\n\n\n\n2\nF\nFri, Sep 26\n📚 Bayes Rules Ch5.1-2 \n\nGamma-Gamma\nSlides06\n\nHW 2 and GW 2\n\n\n\n3\nM\nMon, Sep 29\n📚 Bayes Rules Ch5.3-5.6  📝 complete group eval \n\nNormal-Normal\nSlides07\n\n\n\n3\nW\nWed, Oct 1\n📚 Bayes Rules Ch6.1-2 \n\nGrid approximation and Markov Chains\ntbd\n\n\n\n3\nF\nFri, Oct 3\n📚 Bayes Rules Ch6.3 \n\nDiagnostics\ntbd\n\nHW 3 and GW 3\n\n\n\n4\nM\nMon, Oct 6\n📚 Bayes Rules Ch7.1-7.3 \n\nMCMC I\ntbd\nHand out computing project\n\n\n4\nW\nWed, Oct 8\n📚 Bayes Rules Ch7.4-7 \n\nMCMC II\ntbd\n\n\n\n4\nF\nFri, Oct 10\n\nExam I\ntbd\nHW4\n\n\n5\nM\nMon, Oct 13\n\nPosterior Inference\ntbd\n\n\n\n5\nW\nWed, Oct 15\n\nPosterior Prediction\ntbd\n\n\n\n5\nF\nFri, Oct 17\n\nRegression\ntbd\nHW5\n\n\n6\nM\nMon, Oct 20\n\n❌ Midterm Break; no class\ntbd\n\n\n\n6\nW\nWed, Oct 22\n\nEvaluating I\ntbd\nComputing Project Due\n\n\n6\nF\nFri, Oct 24\n\nEvaluating II\ntbd\nHW6\n\n\n7\nM\nMon, Oct 27\n\nExtending Regression Model\ntbd\n\n\n\n7\nW\nWed, Oct 29\n\nPoisson Regression\ntbd\n\n\n\n7\nF\nFri, Oct 31\n\nNegative Binomial Regression\ntbd\nHW7\n\n\n8\nM\nMon, Nov 3\n\nLogistic Regression\ntbd\n\n\n\n8\nW\nWed, Nov 5\n\nNaive Bayes Classification\ntbd\n\n\n\n8\nF\nFri, Nov 7\n\nExam II\ntbd\nHW8\n\n\n9\nM\nMon, Nov 10\n\nHierarchical Models I\ntbd\n\n\n\n9\nW\nWed, Nov 12\n\nHierarchical Models II\ntbd\n\n\n\n9\nF\nFri, Nov 14\n\nHierarchical Models III\ntbd\n\n\n\n10\nM\nMon, Nov 17\n\nProject work day\ntbd\nHW 9\n\n\n10\nW\nWed, Nov 19\n\nLightning talks\ntbd\n\n\n\n\nM\nFri, Nov 21\n\nFinal Project Due @ noon\ntbd",
+    "text": "This page contains an outline of the topics, content, and assignments for the term. Note that this schedule will be updated as the term progresses and the timeline of topics and assignments might be updated. Any major changes to due dates will be announced in class and indicated in bold here.\n\n\n\n\n\n\nWEEK\nDOW\nDATE\nPREPARE\nTOPIC\nMATERIALS\nDUE\n\n\n\n1\nM\nMon, Sep 15\n📝complete welcome survey  📚 Bayes Rules Ch1  💻 Join Slack workspace\n\nIntro to Bayesian Thinking\nSlides01\n\n\n\n1\nW\nWed, Sep 17\n📚 Bayes Rules Ch2  💻 Complete computing setup\n\nBayes Rule, R Setup\nSlides02\n\n\n\n1\nF\nFri, Sep 19\n\nProbability and Likelihood Review; Posterior Simulation\nSlides03\n\nHW 1 and GW 1\n\n\n\n2\nM\nMon, Sep 22\n📚 Bayes Rules Ch3 \n\nBeta-Binomial Model\nSlides04\n\n\n\n2\nW\nWed, Sep 24\n📚 Bayes Rules Ch4 \n\nBalance and Sequentiality\nSlides05\n\n\n\n2\nF\nFri, Sep 26\n📚 Bayes Rules Ch5.1-2 \n\nGamma-Gamma\nSlides06\n\nHW 2 and GW 2\n\n\n\n3\nM\nMon, Sep 29\n📚 Bayes Rules Ch5.3-5.6  📝 complete group eval \n\nNormal-Normal\nSlides07\n\n\n\n3\nW\nWed, Oct 1\n📚 Bayes Rules Ch6.1-2 \n\nGrid approximation and Markov Chains\nSlides08\n\n\n\n3\nF\nFri, Oct 3\n📚 Bayes Rules Ch6.3 \n\nDiagnostics\ntbd\n\nHW 3 and GW 3\n\n\n\n4\nM\nMon, Oct 6\n📚 Bayes Rules Ch7.1-7.3 \n\nMCMC I\ntbd\nHand out computing project\n\n\n4\nW\nWed, Oct 8\n📚 Bayes Rules Ch7.4-7 \n\nMCMC II\ntbd\n\n\n\n4\nF\nFri, Oct 10\n\nExam I\ntbd\nHW4\n\n\n5\nM\nMon, Oct 13\n\nPosterior Inference\ntbd\n\n\n\n5\nW\nWed, Oct 15\n\nPosterior Prediction\ntbd\n\n\n\n5\nF\nFri, Oct 17\n\nRegression\ntbd\nHW5\n\n\n6\nM\nMon, Oct 20\n\n❌ Midterm Break; no class\ntbd\n\n\n\n6\nW\nWed, Oct 22\n\nEvaluating I\ntbd\nComputing Project Due\n\n\n6\nF\nFri, Oct 24\n\nEvaluating II\ntbd\nHW6\n\n\n7\nM\nMon, Oct 27\n\nExtending Regression Model\ntbd\n\n\n\n7\nW\nWed, Oct 29\n\nPoisson Regression\ntbd\n\n\n\n7\nF\nFri, Oct 31\n\nNegative Binomial Regression\ntbd\nHW7\n\n\n8\nM\nMon, Nov 3\n\nLogistic Regression\ntbd\n\n\n\n8\nW\nWed, Nov 5\n\nNaive Bayes Classification\ntbd\n\n\n\n8\nF\nFri, Nov 7\n\nExam II\ntbd\nHW8\n\n\n9\nM\nMon, Nov 10\n\nHierarchical Models I\ntbd\n\n\n\n9\nW\nWed, Nov 12\n\nHierarchical Models II\ntbd\n\n\n\n9\nF\nFri, Nov 14\n\nHierarchical Models III\ntbd\n\n\n\n10\nM\nMon, Nov 17\n\nProject work day\ntbd\nHW 9\n\n\n10\nW\nWed, Nov 19\n\nLightning talks\ntbd\n\n\n\n\nM\nFri, Nov 21\n\nFinal Project Due @ noon\ntbd",
     "crumbs": [
       "Schedule"
     ]
+  },
+  {
+    "objectID": "slides/slides08.html#recap-conjugate-models",
+    "href": "slides/slides08.html#recap-conjugate-models",
+    "title": "Intro to Posterior Approximation",
+    "section": "Recap: Conjugate models",
+    "text": "Recap: Conjugate models"
+  },
+  {
+    "objectID": "slides/slides08.html#motivation",
+    "href": "slides/slides08.html#motivation",
+    "title": "Intro to Posterior Approximation",
+    "section": "Motivation",
+    "text": "Motivation"
+  },
+  {
+    "objectID": "slides/slides08.html#section-1",
+    "href": "slides/slides08.html#section-1",
+    "title": "Intro to Posterior Approximation",
+    "section": "",
+    "text": "Grid Approximation\n\n\nGrid approximation produces a sample of \\(N\\) independent \\(\\theta\\) values, \\(\\left\\lbrace \\theta^{(1)}, \\theta^{(2)}, \\ldots, \\theta^{(N)} \\right\\rbrace\\), from a discretized approximation of posterior pdf \\(f(\\theta|y)\\). This algorithm evolves in four steps:\n\nDefine a discrete grid of possible \\(\\theta\\) values.\nEvaluate the prior pdf \\(f(\\theta)\\) and likelihood function \\(L(\\theta|y)\\) at each \\(\\theta\\) grid value.\nObtain a discrete approximation of posterior pdf \\(f(\\theta |y)\\) by:\n\n\ncalculating the product \\(f(\\theta)L(\\theta|y)\\) at each \\(\\theta\\) grid value\nnormalizing the products so that they sum to 1 across all \\(\\theta\\).\n\n\nRandomly sample \\(N\\) \\(\\theta\\) grid values with respect to their corresponding normalized posterior probabilities."
+  },
+  {
+    "objectID": "slides/slides08.html#example-beta-binomial",
+    "href": "slides/slides08.html#example-beta-binomial",
+    "title": "Intro to Posterior Approximation",
+    "section": "Example: Beta-Binomial",
+    "text": "Example: Beta-Binomial\nDiscretize \\(\\pi\\):\n\\[\\pi \\in \\{0, .2, .4, .6, .8, 1.0\\}\\]"
+  },
+  {
+    "objectID": "slides/slides08.html#define-a-grid-of-possible-theta-values",
+    "href": "slides/slides08.html#define-a-grid-of-possible-theta-values",
+    "title": "Intro to Posterior Approximation",
+    "section": "1. Define a grid of possible \\(\\theta\\) values",
+    "text": "1. Define a grid of possible \\(\\theta\\) values\n\\[\\pi \\in \\{0, .2, .4, .6, .8, 1.0\\}\\]\n\n# Step 1: Define a grid of 6 pi values\ngrid_data &lt;- tibble(pi_grid = seq(from = 0, to = 1, length = 6))\n\ngrid_data\n\n# A tibble: 6 × 1\n  pi_grid\n    &lt;dbl&gt;\n1     0  \n2     0.2\n3     0.4\n4     0.6\n5     0.8\n6     1"
+  },
+  {
+    "objectID": "slides/slides08.html#evaluate-the-prior-pdf-ftheta-and-likelihood-function-lthetay-at-each-theta-grid-value.",
+    "href": "slides/slides08.html#evaluate-the-prior-pdf-ftheta-and-likelihood-function-lthetay-at-each-theta-grid-value.",
+    "title": "Intro to Posterior Approximation",
+    "section": "2. Evaluate the prior pdf \\(f(\\theta)\\) and likelihood function \\(L(\\theta|y)\\) at each \\(\\theta\\) grid value.",
+    "text": "2. Evaluate the prior pdf \\(f(\\theta)\\) and likelihood function \\(L(\\theta|y)\\) at each \\(\\theta\\) grid value.\n\n# Step 2: Evaluate the prior & likelihood at each pi\ngrid_data &lt;- grid_data %&gt;% \n  mutate(prior = dbeta(pi_grid, 2, 2),\n         likelihood = dbinom(9, 10, pi_grid))\n\n\n\n# A tibble: 6 × 3\n  pi_grid prior likelihood\n    &lt;dbl&gt; &lt;dbl&gt;      &lt;dbl&gt;\n1     0    0    0         \n2     0.2  0.96 0.00000410\n3     0.4  1.44 0.00157   \n4     0.6  1.44 0.0403    \n5     0.8  0.96 0.268     \n6     1    0    0"
+  },
+  {
+    "objectID": "slides/slides08.html#a.-calculate-the-product-fthetalthetay-at-each-theta-grid-value",
+    "href": "slides/slides08.html#a.-calculate-the-product-fthetalthetay-at-each-theta-grid-value",
+    "title": "Intro to Posterior Approximation",
+    "section": "3a. Calculate the product \\(f(\\theta)L(\\theta|y)\\) at each \\(\\theta\\) grid value",
+    "text": "3a. Calculate the product \\(f(\\theta)L(\\theta|y)\\) at each \\(\\theta\\) grid value\n\n# Step 3: Approximate the posterior\ngrid_data &lt;- grid_data %&gt;% \n  mutate(\n    unnorm_post = likelihood * prior\n  )\n\n\n\n# A tibble: 6 × 4\n  pi_grid prior likelihood unnorm_post\n    &lt;dbl&gt; &lt;dbl&gt;      &lt;dbl&gt;       &lt;dbl&gt;\n1     0    0    0           0         \n2     0.2  0.96 0.00000410  0.00000393\n3     0.4  1.44 0.00157     0.00226   \n4     0.6  1.44 0.0403      0.0580    \n5     0.8  0.96 0.268       0.258     \n6     1    0    0           0"
+  },
+  {
+    "objectID": "slides/slides08.html#b.-normalize-this-product",
+    "href": "slides/slides08.html#b.-normalize-this-product",
+    "title": "Intro to Posterior Approximation",
+    "section": "3b. Normalize this product",
+    "text": "3b. Normalize this product\n\n# Step 3: Approximate the posterior\ngrid_data &lt;- grid_data %&gt;% \n  mutate(\n    posterior = unnorm_post / sum(unnorm_post)\n  )\n\n\n\n# A tibble: 6 × 5\n  pi_grid prior likelihood unnorm_post posterior\n    &lt;dbl&gt; &lt;dbl&gt;      &lt;dbl&gt;       &lt;dbl&gt;     &lt;dbl&gt;\n1     0    0    0           0          0        \n2     0.2  0.96 0.00000410  0.00000393 0.0000124\n3     0.4  1.44 0.00157     0.00226    0.00712  \n4     0.6  1.44 0.0403      0.0580     0.183    \n5     0.8  0.96 0.268       0.258      0.810    \n6     1    0    0           0          0"
+  },
+  {
+    "objectID": "slides/slides08.html#pause-to-check-does-it-sum-to-1",
+    "href": "slides/slides08.html#pause-to-check-does-it-sum-to-1",
+    "title": "Intro to Posterior Approximation",
+    "section": "Pause to check: does it sum to 1?",
+    "text": "Pause to check: does it sum to 1?\n\n# Confirm that the posterior approximation sums to 1\ngrid_data %&gt;% \n  summarize(sum(unnorm_post), sum(posterior))\n\n# A tibble: 1 × 2\n  `sum(unnorm_post)` `sum(posterior)`\n               &lt;dbl&gt;            &lt;dbl&gt;\n1              0.318                1"
+  },
+  {
+    "objectID": "slides/slides08.html#randomly-sample-n-theta-grid-values-with-respect-to-their-corresponding-normalized-posterior-probabilities.",
+    "href": "slides/slides08.html#randomly-sample-n-theta-grid-values-with-respect-to-their-corresponding-normalized-posterior-probabilities.",
+    "title": "Intro to Posterior Approximation",
+    "section": "4. Randomly sample \\(N\\) \\(\\theta\\) grid values with respect to their corresponding normalized posterior probabilities.",
+    "text": "4. Randomly sample \\(N\\) \\(\\theta\\) grid values with respect to their corresponding normalized posterior probabilities.\n\n# Set the seed\nset.seed(84735)\n\n# Step 4: sample from the discretized posterior\npost_sample &lt;- sample_n(grid_data, size = 10000, \n                        weight = posterior, replace = TRUE)\n\n\n\n# A tibble: 10,000 × 5\n   pi_grid prior likelihood unnorm_post posterior\n     &lt;dbl&gt; &lt;dbl&gt;      &lt;dbl&gt;       &lt;dbl&gt;     &lt;dbl&gt;\n 1     0.8  0.96     0.268       0.258      0.810\n 2     0.8  0.96     0.268       0.258      0.810\n 3     0.8  0.96     0.268       0.258      0.810\n 4     0.6  1.44     0.0403      0.0580     0.183\n 5     0.8  0.96     0.268       0.258      0.810\n 6     0.8  0.96     0.268       0.258      0.810\n 7     0.8  0.96     0.268       0.258      0.810\n 8     0.8  0.96     0.268       0.258      0.810\n 9     0.8  0.96     0.268       0.258      0.810\n10     0.8  0.96     0.268       0.258      0.810\n# ℹ 9,990 more rows"
+  },
+  {
+    "objectID": "slides/slides08.html#section-2",
+    "href": "slides/slides08.html#section-2",
+    "title": "Intro to Posterior Approximation",
+    "section": "",
+    "text": "# Histogram of the grid simulation with posterior pdf\nggplot(post_sample, aes(x = pi_grid)) + \n  geom_histogram(aes(y = after_stat(density)), color = \"white\") + \n  stat_function(fun = dbeta, args = list(11, 3)) + \n  lims(x = c(0, 1))"
+  },
+  {
+    "objectID": "slides/slides08.html#section-4",
+    "href": "slides/slides08.html#section-4",
+    "title": "Intro to Posterior Approximation",
+    "section": "",
+    "text": "# Step 1: Define a grid of 101 pi values\ngrid_data  &lt;- data.frame(pi_grid = seq(from = 0, to = 1, length = 101))\n\n# Step 2: Evaluate the prior & likelihood at each pi\ngrid_data &lt;- grid_data %&gt;% \n  mutate(prior = dbeta(pi_grid, 2, 2),\n         likelihood = dbinom(9, 10, pi_grid))\n\n# Step 3: Approximate the posterior\ngrid_data &lt;- grid_data %&gt;% \n  mutate(unnormalized = likelihood * prior,\n         posterior = unnormalized / sum(unnormalized))\n\n# Set the seed\nset.seed(84735)\n\n# Step 4: sample from the discretized posterior\npost_sample &lt;- sample_n(grid_data, size = 10000, \n                        weight = posterior, replace = TRUE)"
+  },
+  {
+    "objectID": "slides/slides08.html#what-does-grid-approximation-give-us-that-conjugacy-doesnt",
+    "href": "slides/slides08.html#what-does-grid-approximation-give-us-that-conjugacy-doesnt",
+    "title": "Intro to Posterior Approximation",
+    "section": "What does grid approximation give us that conjugacy doesn’t?",
+    "text": "What does grid approximation give us that conjugacy doesn’t?\nRemember our non-conjugate prior: \\(f(\\pi) = e - e^\\pi\\)?"
+  },
+  {
+    "objectID": "slides/slides08.html#section-6",
+    "href": "slides/slides08.html#section-6",
+    "title": "Intro to Posterior Approximation",
+    "section": "",
+    "text": "grid_data  &lt;- data.frame(pi_grid = seq(from = 0, to = 1, length = 101))\n\ngrid_data &lt;- grid_data %&gt;% \n  mutate(prior = exp(1) - exp(pi_grid),\n         likelihood = dbinom(9, 10, pi_grid))\n\ngrid_data &lt;- grid_data %&gt;% \n  mutate(unnormalized = likelihood * prior,\n         posterior = unnormalized / sum(unnormalized))\n\nset.seed(84735)\n\npost_sample &lt;- sample_n(grid_data, size = 10000, \n                        weight = posterior, replace = TRUE)"
+  },
+  {
+    "objectID": "slides/slides08.html#where-does-grid-approximation-start-to-fail",
+    "href": "slides/slides08.html#where-does-grid-approximation-start-to-fail",
+    "title": "Intro to Posterior Approximation",
+    "section": "Where does grid approximation start to fail?",
+    "text": "Where does grid approximation start to fail?"
+  },
+  {
+    "objectID": "slides/slides08.html#plan",
+    "href": "slides/slides08.html#plan",
+    "title": "Intro to Posterior Approximation",
+    "section": "Plan",
+    "text": "Plan\n\nToday: how to find them with {rstan}\nFriday: how to evaluate them\nNext week: how they work"
+  },
+  {
+    "objectID": "slides/slides08.html#section-8",
+    "href": "slides/slides08.html#section-8",
+    "title": "Intro to Posterior Approximation",
+    "section": "",
+    "text": "Markov Chain Monte Carlo (MCMC)\n\n\nMCMC is a class of algorithms used to approximate a probability distribution.\nLet \\(\\{\\theta^{(1)}, \\theta^{(2)}, ..., \\theta^{(n)} \\}\\) be an N-length MCMC sample. Then, \\(\\theta^{(i+1)}\\) is drawn from a model with conditional pdf\n\\[f(\\theta^{(i+1)}|\\theta^{(i)}, y)\\]\n\n\n\nNote that:\n\nMarkov property\nNot equivalent to posterior pdf\nIf done well, approximates posterior pdf"
+  },
+  {
+    "objectID": "slides/slides08.html#rstan",
+    "href": "slides/slides08.html#rstan",
+    "title": "Intro to Posterior Approximation",
+    "section": "{rstan}",
+    "text": "{rstan}\n\nlibrary(rstan)\n\nStan is a probabilistic programming language written in C++ (https://mc-stan.org/)\n{rstan} is the R interface to Stan\nThere are also interfaces for python, Julia, Mathematica, MATLAB, etc.\n\n\n\n\n\n\nNote\n\n\nSince {rstan} uses C++ under the hood, you might need to follow some additional steps to install the package. Follow the directions at https://github.com/stan-dev/rstan/wiki/RStan-Getting-Started carefully!"
+  },
+  {
+    "objectID": "slides/slides08.html#steps",
+    "href": "slides/slides08.html#steps",
+    "title": "Intro to Posterior Approximation",
+    "section": "Steps",
+    "text": "Steps\n\nWrite out the model in {rstan syntax}\n\ndata\nparameters\nmodel\n\nSample from the approximate posterior"
+  },
+  {
+    "objectID": "slides/slides08.html#beta-binomial-example",
+    "href": "slides/slides08.html#beta-binomial-example",
+    "title": "Intro to Posterior Approximation",
+    "section": "Beta-Binomial Example",
+    "text": "Beta-Binomial Example\nDefine the model:\n\n# STEP 1: DEFINE the model\nbb_model &lt;- \"\n  data {\n    int&lt;lower = 0, upper = 10&gt; Y;\n  }\n  parameters {\n    real&lt;lower = 0, upper = 1&gt; pi;\n  }\n  model {\n    Y ~ binomial(10, pi);\n    pi ~ beta(2, 2);\n  }\n\""
+  },
+  {
+    "objectID": "slides/slides08.html#beta-binomial-example-1",
+    "href": "slides/slides08.html#beta-binomial-example-1",
+    "title": "Intro to Posterior Approximation",
+    "section": "Beta-Binomial Example",
+    "text": "Beta-Binomial Example\nSample from the posterior:\n\n# STEP 2: SIMULATE the posterior\nbb_sim &lt;- stan(model_code = bb_model, data = list(Y = 9), \n               chains = 4, iter = 5000*2, seed = 84735)\n\nChain 4: Iteration: 6000 / 10000 [ 60%]  (Sampling)\nChain 4: Iteration: 7000 / 10000 [ 70%]  (Sampling)\nChain 4: Iteration: 8000 / 10000 [ 80%]  (Sampling)\nChain 4: Iteration: 9000 / 10000 [ 90%]  (Sampling)\nChain 4: Iteration: 10000 / 10000 [100%]  (Sampling)\nChain 4: \nChain 4:  Elapsed Time: 0.026 seconds (Warm-up)\nChain 4:                0.081 seconds (Sampling)\nChain 4:                0.107 seconds (Total)\nChain 4:"
+  },
+  {
+    "objectID": "slides/slides08.html#section-9",
+    "href": "slides/slides08.html#section-9",
+    "title": "Intro to Posterior Approximation",
+    "section": "",
+    "text": "bb_sim\n\nInference for Stan model: anon_model.\n4 chains, each with iter=10000; warmup=5000; thin=1; \npost-warmup draws per chain=5000, total post-warmup draws=20000.\n\n      mean se_mean   sd  2.5%   25%   50%   75% 97.5% n_eff Rhat\npi    0.78    0.00 0.11  0.55  0.72  0.80  0.86  0.95  6587    1\nlp__ -7.80    0.01 0.73 -9.87 -7.98 -7.52 -7.33 -7.27  6462    1\n\nSamples were drawn using NUTS(diag_e) at Wed Oct  1 08:13:19 2025.\nFor each parameter, n_eff is a crude measure of effective sample size,\nand Rhat is the potential scale reduction factor on split chains (at \nconvergence, Rhat=1)."
+  },
+  {
+    "objectID": "slides/slides08.html#section-10",
+    "href": "slides/slides08.html#section-10",
+    "title": "Intro to Posterior Approximation",
+    "section": "",
+    "text": "Burn-in\n\n\nIf you’ve ever made a batch of pancakes or crêpes, you know that the first pancake is always the worst – the pan isn’t yet at the perfect temperature, you haven’t yet figured out how much batter to use, and you need more time to practice your flipping technique. MCMC chains are similar. Without direct knowledge of the posterior it’s trying to simulate, the Markov chain might start out sampling unreasonable values of our parameter of interest. Eventually though, it learns and starts producing values that mimic a random sample from the posterior. And just as we might need to toss out the first pancake, we might want to toss the Markov chain values produced during this learning period – keeping them in our sample might lead to a poor posterior approximation. As such, “burn-in” is the practice of discarding the first portion of Markov chain values."
+  },
+  {
+    "objectID": "slides/slides08.html#section-11",
+    "href": "slides/slides08.html#section-11",
+    "title": "Intro to Posterior Approximation",
+    "section": "",
+    "text": "as.array(bb_sim, pars = \"pi\") |&gt;\n  head(5)\n\n, , parameters = pi\n\n          chains\niterations   chain:1   chain:2   chain:3   chain:4\n      [1,] 0.9288874 0.8637566 0.6410152 0.8054958\n      [2,] 0.8710291 0.6737700 0.6861136 0.8727761\n      [3,] 0.8105749 0.7752253 0.6994077 0.8625163\n      [4,] 0.7567798 0.5318069 0.8200739 0.8065095\n      [5,] 0.7410937 0.7004429 0.8200739 0.8065095"
+  },
+  {
+    "objectID": "slides/slides08.html#plotting-with-the-bayesplot-package",
+    "href": "slides/slides08.html#plotting-with-the-bayesplot-package",
+    "title": "Intro to Posterior Approximation",
+    "section": "Plotting with the {bayesplot} package",
+    "text": "Plotting with the {bayesplot} package\n\n\nlibrary(bayesplot)\n\n# Histogram of the Markov chain values\nmcmc_hist(bb_sim, \n          pars = \"pi\") + \n  yaxis_text(TRUE) + \n  ylab(\"count\")"
+  },
+  {
+    "objectID": "slides/slides08.html#plotting-with-the-bayesplot-package-1",
+    "href": "slides/slides08.html#plotting-with-the-bayesplot-package-1",
+    "title": "Intro to Posterior Approximation",
+    "section": "Plotting with the {bayesplot} package",
+    "text": "Plotting with the {bayesplot} package\n\n# Density plot of the Markov chain values\nmcmc_dens(bb_sim, \n                pars = \"pi\") + \n  yaxis_text(TRUE) + \n  ylab(\"density\")"
   },
   {
     "objectID": "slides/slides02.html#warm-up-i-bayesian-personality-quiz",
