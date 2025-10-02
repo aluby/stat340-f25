@@ -68,10 +68,26 @@ Prof. Abebe and Prof. Morales both recently finished their PhDs and are teaching
 $$Y | \mu \sim N(\mu, 1^2)$$ 
 $$\mu \sim N(0,1)$$
 
-# TBA Wed
+# BR Exercise 6.6: Gamma-Poisson grid approximation
 
-# TBA Wed
+Consider the Gamma-Poisson model for $\lambda$ with $\lambda \sim \text{Gamma}(20, 5)$ and $Y_i | \lambda \sim \text{Pois}(\lambda)$. Suppose you observe $n=3$ data points $(Y_1, Y_2, Y_3) = (0, 1, 0)$
+
+(a) Utilize grid approximation with grid values $\lambda = \{0, 1, 2, ..., 8\}$ to approximate the posterior of $\lambda$
+(b) Repeat part a using a grid of 201 equally spaced values between 0 and 8.
 
 
+# BR Exercise 6.15: Gamma-Poisson MCMC (skip traceplots for now)
+
+(a) Simulate the posterior model of $\lambda$ with RStan using 4 chains and 10000 iterations per chain.
+(b) Produce ~~trace and~~ density plots for all four chains.
+(c) From the density plots, what seems to be the most posterior plausible value of $\lambda$?
+(d) Hearkening back to Chapter 5, specify the theoretical posterior model of $\lambda$. How does your MCMC approximation compare? (Try adding an overlaying line to your density plot from (c))
+
+# BR Exercise 6.9: Comparing MCMC to grid approximation
+
+(a) What drawback(s) do MCMC and grid approximation share?
+(b) What advantage(s) do MCMC and grid approximation share?
+(c) What is an advantage of grid approximation over MCMC?
+(d) What is an advantage of MCMC over grid approximation?
 
 
