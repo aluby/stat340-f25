@@ -79,9 +79,10 @@ Consider the Gamma-Poisson model for $\lambda$ with $\lambda \sim \text{Gamma}(2
 # BR Exercise 6.15: Gamma-Poisson MCMC (skip traceplots for now)
 
 (a) Simulate the posterior model of $\lambda$ with RStan using 4 chains and 10000 iterations per chain.
-(b) Produce ~~trace and~~ density plots for all four chains.
+(b) Produce density plots for all four chains.
 (c) From the density plots, what seems to be the most posterior plausible value of $\lambda$?
 (d) Hearkening back to Chapter 5, specify the theoretical posterior model of $\lambda$. How does your MCMC approximation compare? (Try adding an overlaying line to your density plot from (c))
+
 
 # BR Exercise 6.9: Comparing MCMC to grid approximation
 
