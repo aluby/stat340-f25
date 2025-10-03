@@ -221,7 +221,7 @@ rhat(bb_sim)
 ```
 
 
-# Case Study
+# Example
 
 ## 
 
