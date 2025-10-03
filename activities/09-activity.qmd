@@ -2,9 +2,20 @@
 title: "Class Examples - Day 9"
 ---
 
+```{r}
+library(tidyverse)
+library(patchwork)
+library(bayesrules)
+library(rstan)
+library(bayesplot)
+```
+
 # Example 1
 
 ```{r}
+#| eval: false
+
+
 fn_model <- "
   data {
     int<lower=0> N;
@@ -30,6 +41,9 @@ fn_sim <- stan(model_code = fn_model,
 
 
 ```{r}
+#| eval: false
+
+
 ui_model <- "
   data {
     int<lower=0> N;

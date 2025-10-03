@@ -29,7 +29,7 @@ The code chunk below loads two pre-fit stan models.
 (b) Which sample is "healthy"? Which is "unhealthy"? Explain how you can tell from the new plots
 (c) Which type of plot do **you** find more useful? 
 
-# Revisiting BR Exercise 5.11 
+# Q3: Revisiting BR Exercise 5.11 
 
 Prof. Abebe and Prof. Morales both recently finished their PhDs and are teaching their first statistics classes at Bayesian University. Their colleagues told them that the average final exam score across all students, $\mu$, varies Normally from year to year with a mean of 80 points and a standard deviation of 4. Further, individual students’ scores $Y$ vary Normally around $\mu$ with an *unknown* standard deviation $\sigma$.
 
@@ -71,4 +71,14 @@ scores<- c(90.3, 81.3,  85.2, 85.6, 86.4, 83.8, 86.7, 90.1, 82.3, 88.4, 89.2, 90
 
 (e) What do you conclude about the posterior mean $\mu | \vec{y}$? How does your answer differ from HW3's conjugate analysis? 
 
-(f) Rewrite the stan model code to take a flexible normal prior for $\mu$. That is, we should be able to specify the prior mean $\theta$ and prior sd $\tau$, instead of hard-coding them as 80 and 4. 
+(f) Rewrite the stan model code to take a flexible normal prior for $\mu$. That is, we should be able to specify the prior mean $\theta$ and prior sd $\tau$ (or prior variance $\tau^2$, whichever you prefer), instead of hard-coding them as 80 and 4. 
+
+# Q4: TBA Mon
+
+# Q5: TBA Mon
+
+# Q6: TBA Mon
+
+# Q7: TBA Wed
+
+# Q8: TBA Wed

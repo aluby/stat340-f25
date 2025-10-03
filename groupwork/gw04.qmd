@@ -1,0 +1,14 @@
+---
+title: "Group Work 03"
+---
+
+```{r}
+library(bayesrules) # R package for our textbook
+library(tidyverse) # Collection of packages for tidying and plotting data
+library(janitor) # Helper functions like tidy and tabyl
+```
+
+::: callout-note
+No group problems from Friday
+:::
+
