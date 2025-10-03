@@ -454,6 +454,12 @@ window.Quarto = {
  <span class="menu-text">Group Work 03</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../groupwork/gw04.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Group Work 03</span></a>
+  </div>
+</li>
       </ul>
 </li>
       </ul>
@@ -472,7 +478,12 @@ window.Quarto = {
   <ul>
 <li><a href="#q1" id="toc-q1" class="nav-link active" data-scroll-target="#q1">Q1</a></li>
   <li><a href="#q2-mcmc_rank_hist-and-mcmc_rank_overlay" id="toc-q2-mcmc_rank_hist-and-mcmc_rank_overlay" class="nav-link" data-scroll-target="#q2-mcmc_rank_hist-and-mcmc_rank_overlay">Q2: <code>mcmc_rank_hist</code> and <code>mcmc_rank_overlay</code></a></li>
-  <li><a href="#revisiting-br-exercise-5.11" id="toc-revisiting-br-exercise-5.11" class="nav-link" data-scroll-target="#revisiting-br-exercise-5.11">Revisiting BR Exercise 5.11</a></li>
+  <li><a href="#q3-revisiting-br-exercise-5.11" id="toc-q3-revisiting-br-exercise-5.11" class="nav-link" data-scroll-target="#q3-revisiting-br-exercise-5.11">Q3: Revisiting BR Exercise 5.11</a></li>
+  <li><a href="#q4-tba-mon" id="toc-q4-tba-mon" class="nav-link" data-scroll-target="#q4-tba-mon">Q4: TBA Mon</a></li>
+  <li><a href="#q5-tba-mon" id="toc-q5-tba-mon" class="nav-link" data-scroll-target="#q5-tba-mon">Q5: TBA Mon</a></li>
+  <li><a href="#q6-tba-mon" id="toc-q6-tba-mon" class="nav-link" data-scroll-target="#q6-tba-mon">Q6: TBA Mon</a></li>
+  <li><a href="#q7-tba-wed" id="toc-q7-tba-wed" class="nav-link" data-scroll-target="#q7-tba-wed">Q7: TBA Wed</a></li>
+  <li><a href="#q8-tba-wed" id="toc-q8-tba-wed" class="nav-link" data-scroll-target="#q8-tba-wed">Q8: TBA Wed</a></li>
   </ul><div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="hw04.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
     </div>
 <!-- main -->
@@ -511,13 +522,13 @@ window.Quarto = {
 <p>Trace plots are a natural way to view a chain, but they become hard to read when we have many samples and/or many chains. An alternative way to view the chains is called a <strong>rank histogram</strong> or <strong>trace rank plot</strong>. What this means is to (a) take all of the samples for a parameter and rank them, (b) draw a histogram of the ranks for each individual chain</p>
 <p>The code chunk below loads two pre-fit stan models.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># TBD ONCE WEBSITE UPDATED</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/load.html">load</a></span><span class="op">(</span><span class="st">"../data/hw04-q2.rda"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <ol type="a">
 <li>Create traceplots, rank histograms (<code>mcmc_rank_hist</code>), and trace rank plots (<code>mcmc_rank_overlay</code>) for both MCMC samples.</li>
 <li>Which sample is “healthy”? Which is “unhealthy”? Explain how you can tell from the new plots</li>
 <li>Which type of plot do <strong>you</strong> find more useful?</li>
-</ol></section><section id="revisiting-br-exercise-5.11" class="level1"><h1>Revisiting BR Exercise 5.11</h1>
+</ol></section><section id="q3-revisiting-br-exercise-5.11" class="level1"><h1>Q3: Revisiting BR Exercise 5.11</h1>
 <p>Prof.&nbsp;Abebe and Prof.&nbsp;Morales both recently finished their PhDs and are teaching their first statistics classes at Bayesian University. Their colleagues told them that the average final exam score across all students, <span class="math inline">\(\mu\)</span>, varies Normally from year to year with a mean of 80 points and a standard deviation of 4. Further, individual students’ scores <span class="math inline">\(Y\)</span> vary Normally around <span class="math inline">\(\mu\)</span> with an <em>unknown</em> standard deviation <span class="math inline">\(\sigma\)</span>.</p>
 <ol type="a">
 <li><p>Suggest three possible prior distributions for <span class="math inline">\(\sigma\)</span> (at least two should be different named distributions). Include density plots for each prior. (You can find available probability distributions in the Stan documentation: <a href="https://mc-stan.org/docs/functions-reference/positive_continuous_distributions.html" class="uri">https://mc-stan.org/docs/functions-reference/positive_continuous_distributions.html</a>)</p></li>
@@ -551,8 +562,12 @@ window.Quarto = {
 <ol start="4" type="a">
 <li><p>Run thorough diagnostics on your MCMC sample. This should include: traceplots of all relevant parameters, density plots for each chain for all relevant parameters, R-hat values, and N-eff. What do you conclude about the validity of your sample?</p></li>
 <li><p>What do you conclude about the posterior mean <span class="math inline">\(\mu | \vec{y}\)</span>? How does your answer differ from HW3’s conjugate analysis?</p></li>
-<li><p>Rewrite the stan model code to take a flexible normal prior for <span class="math inline">\(\mu\)</span>. That is, we should be able to specify the prior mean <span class="math inline">\(\theta\)</span> and prior sd <span class="math inline">\(\tau\)</span>, instead of hard-coding them as 80 and 4.</p></li>
-</ol>
+<li><p>Rewrite the stan model code to take a flexible normal prior for <span class="math inline">\(\mu\)</span>. That is, we should be able to specify the prior mean <span class="math inline">\(\theta\)</span> and prior sd <span class="math inline">\(\tau\)</span> (or prior variance <span class="math inline">\(\tau^2\)</span>, whichever you prefer), instead of hard-coding them as 80 and 4.</p></li>
+</ol></section><section id="q4-tba-mon" class="level1"><h1>Q4: TBA Mon</h1>
+</section><section id="q5-tba-mon" class="level1"><h1>Q5: TBA Mon</h1>
+</section><section id="q6-tba-mon" class="level1"><h1>Q6: TBA Mon</h1>
+</section><section id="q7-tba-wed" class="level1"><h1>Q7: TBA Wed</h1>
+</section><section id="q8-tba-wed" class="level1"><h1>Q8: TBA Wed</h1>
 
 
 <!-- -->
@@ -1055,14 +1070,14 @@ window.Quarto = {
 <span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>The code chunk below loads two pre-fit stan models. </span>
 <span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TBD</span><span class="co"> ONCE WEBSITE UPDATED</span></span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">"../data/hw04-q2.rda"</span>)</span>
 <span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>(a) Create traceplots, rank histograms (<span class="in">`mcmc_rank_hist`</span>), and trace rank plots (<span class="in">`mcmc_rank_overlay`</span>) for both MCMC samples. </span>
 <span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>(b) Which sample is "healthy"? Which is "unhealthy"? Explain how you can tell from the new plots</span>
 <span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a>(c) Which type of plot do **you** find more useful? </span>
 <span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a><span class="fu"># Revisiting BR Exercise 5.11 </span></span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a><span class="fu"># Q3: Revisiting BR Exercise 5.11 </span></span>
 <span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a>Prof. Abebe and Prof. Morales both recently finished their PhDs and are teaching their first statistics classes at Bayesian University. Their colleagues told them that the average final exam score across all students, $\mu$, varies Normally from year to year with a mean of 80 points and a standard deviation of 4. Further, individual students’ scores $Y$ vary Normally around $\mu$ with an *unknown* standard deviation $\sigma$.</span>
 <span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a></span>
@@ -1104,7 +1119,17 @@ window.Quarto = {
 <span id="cb5-79"><a href="#cb5-79" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-80"><a href="#cb5-80" aria-hidden="true" tabindex="-1"></a>(e) What do you conclude about the posterior mean $\mu | \vec{y}$? How does your answer differ from HW3's conjugate analysis? </span>
 <span id="cb5-81"><a href="#cb5-81" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-82"><a href="#cb5-82" aria-hidden="true" tabindex="-1"></a>(f) Rewrite the stan model code to take a flexible normal prior for $\mu$. That is, we should be able to specify the prior mean $\theta$ and prior sd $\tau$, instead of hard-coding them as 80 and 4. </span>
+<span id="cb5-82"><a href="#cb5-82" aria-hidden="true" tabindex="-1"></a>(f) Rewrite the stan model code to take a flexible normal prior for $\mu$. That is, we should be able to specify the prior mean $\theta$ and prior sd $\tau$ (or prior variance $\tau^2$, whichever you prefer), instead of hard-coding them as 80 and 4. </span>
+<span id="cb5-83"><a href="#cb5-83" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-84"><a href="#cb5-84" aria-hidden="true" tabindex="-1"></a><span class="fu"># Q4: TBA Mon</span></span>
+<span id="cb5-85"><a href="#cb5-85" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-86"><a href="#cb5-86" aria-hidden="true" tabindex="-1"></a><span class="fu"># Q5: TBA Mon</span></span>
+<span id="cb5-87"><a href="#cb5-87" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-88"><a href="#cb5-88" aria-hidden="true" tabindex="-1"></a><span class="fu"># Q6: TBA Mon</span></span>
+<span id="cb5-89"><a href="#cb5-89" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-90"><a href="#cb5-90" aria-hidden="true" tabindex="-1"></a><span class="fu"># Q7: TBA Wed</span></span>
+<span id="cb5-91"><a href="#cb5-91" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-92"><a href="#cb5-92" aria-hidden="true" tabindex="-1"></a><span class="fu"># Q8: TBA Wed</span></span>
 </code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
