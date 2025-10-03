@@ -22,7 +22,7 @@ Trace plots are a natural way to view a chain, but they become hard to read when
 The code chunk below loads two pre-fit stan models. 
 
 ```{r}
-load("../data/hw04-q2.rda")
+load(url("https://aluby.github.io/stat340-f25/data/hw04-q2.rda"))
 ```
 
 (a) Create traceplots, rank histograms (`mcmc_rank_hist`), and trace rank plots (`mcmc_rank_overlay`) for both MCMC samples. 
