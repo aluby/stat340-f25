@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.8.24">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>Computing Access – Stat 340</title>
+<title>Class Examples - Day 9 – Stat 340</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -271,7 +271,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Computing Access</li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Class Examples - Day 9</li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -442,31 +442,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
    
   <ul>
-<li>
-<a href="#rrstudio" id="toc-rrstudio" class="nav-link active" data-scroll-target="#rrstudio">R/RStudio</a>
-  <ul class="collapse">
-<li><a href="#server-version" id="toc-server-version" class="nav-link" data-scroll-target="#server-version">Server version</a></li>
-  <li><a href="#a-local-version-of-rstudio-installed-on-your-machine" id="toc-a-local-version-of-rstudio-installed-on-your-machine" class="nav-link" data-scroll-target="#a-local-version-of-rstudio-installed-on-your-machine">A local version of RStudio installed on your machine</a></li>
-  </ul>
-</li>
-  <li><a href="#vpn" id="toc-vpn" class="nav-link" data-scroll-target="#vpn">VPN</a></li>
-  <li>
-<a href="#git-and-github" id="toc-git-and-github" class="nav-link" data-scroll-target="#git-and-github">Git and GitHub</a>
-  <ul class="collapse">
-<li><a href="#installing-git" id="toc-installing-git" class="nav-link" data-scroll-target="#installing-git">Installing Git</a></li>
-  </ul>
-</li>
-  <li>
-<a href="#latex" id="toc-latex" class="nav-link" data-scroll-target="#latex">LaTeX</a>
-  <ul class="collapse">
-<li><a href="#installing-latex-not-needed-if-you-are-using-the-maize-server" id="toc-installing-latex-not-needed-if-you-are-using-the-maize-server" class="nav-link" data-scroll-target="#installing-latex-not-needed-if-you-are-using-the-maize-server">Installing LaTeX (not needed if you are using the maize server)</a></li>
-  </ul>
-</li>
+<li><a href="#example-1" id="toc-example-1" class="nav-link active" data-scroll-target="#example-1">Example 1</a></li>
   </ul></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
-<h1 class="title">Computing Access</h1>
+<h1 class="title">Class Examples - Day 9</h1>
 </div>
 
 
@@ -480,57 +461,104 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   
 
 
-</header><section id="rrstudio" class="level2"><h2 class="anchored" data-anchor-id="rrstudio">R/RStudio</h2>
-<p>I expect you to use RStudio to run R in this course. You have two options for using RStudio:</p>
-<section id="server-version" class="level3"><h3 class="anchored" data-anchor-id="server-version">Server version</h3>
-<p>We have a Carleton server hosting Rstudio at <a href="https://maize.mathcs.carleton.edu/" class="uri">https://maize.mathcs.carleton.edu/</a>. Your files on this account will be accessible as long as you are a student at Carleton. Use your Carleton credentials to access your account and you need to be running the Carleton VPN (below) to access this server. Use this option if</p>
-<ul>
-<li>your personal computer is old and/or slow</li>
-<li>you prefer to use school computers (lab or library computers)</li>
-</ul></section><section id="a-local-version-of-rstudio-installed-on-your-machine" class="level3"><h3 class="anchored" data-anchor-id="a-local-version-of-rstudio-installed-on-your-machine">A local version of RStudio installed on your machine</h3>
-<p>You can also run R/RStudio from your personal computer. If you use a local version of R/RStudio this term, make sure that you have recently updated both R and RStudio.</p>
-<p>To check your version of R, run the command <code><a href="https://rdrr.io/r/base/numeric_version.html">getRversion()</a></code> and compare your version to the newest version posted on <a href="https://cran.r-project.org/" class="uri">https://cran.r-project.org/</a>. If you need an update, then install the newer version using the installation directions above.</p>
-<p>In RStudio, check for updates with the menu option <code>Help &gt; Check for updates</code>. Follow directions if an update is needed.</p>
-<p>For a fresh download:</p>
-<ul>
-<li><p>Download the latest version of R for your operating system from <a href="https://cran.r-project.org/" class="uri">https://cran.r-project.org/</a></p></li>
-<li><p>Download the free RStudio desktop version from <a href="https://posit.co/download/rstudio-desktop/" class="uri">https://posit.co/download/rstudio-desktop/</a></p></li>
-</ul>
-<p>Use the default download and install options for each. For R, download the “precompiled binary” distribution rather than the source code.</p>
-<hr></section></section><section id="vpn" class="level2"><h2 class="anchored" data-anchor-id="vpn">VPN</h2>
-<p>If you plan to use the maize server and you plan to do any work off campus this term (e.g., while on a field trip, travel for athletics, or just sitting in Little Joy) you need to install Carleton’s VPN to have access.</p>
-<p>To install the GlobalProtect VPN follow <a href="https://wiki.carleton.edu/display/itskb/GlobalProtect+VPN">directions provided by ITS</a>.</p>
-<hr></section><section id="git-and-github" class="level2"><h2 class="anchored" data-anchor-id="git-and-github">Git and GitHub</h2>
-<p><a href="https://happygitwithr.com/big-picture.html#why-git">Git</a> is version control software that you install locally on your computer. Git is already installed on the maize RStudio server.</p>
-<p><a href="https://happygitwithr.com/big-picture.html#why-github">Github</a> is a cloud-based service for hosting git projects. It allows multiple users to share and contribute to projects and it is how you will be submitting homework assignments and projects for this class. More information about Github for this class is found on Moodle.</p>
-<p>If you are using a local install of R/RStudio, then you will need to install Git.</p>
-<section id="installing-git" class="level3"><h3 class="anchored" data-anchor-id="installing-git">Installing Git</h3>
-<p>Directions for both Windows &amp; Mac here at <a href="http://happygitwithr.com/install-git.html" class="uri">http://happygitwithr.com/install-git.html</a>.</p>
-<ul>
-<li><p>If you are using <strong>maize</strong>, then there is nothing you need to install.</p></li>
-<li><p>Windows users should follow Option 1 in 6.2.</p></li>
-<li><p>Mac users can follow Option 1 in 6.3 if comfortable, otherwise follow Option 2</p></li>
-<li><p>Linux users can follow 6.4.</p></li>
-</ul>
-<hr></section></section><section id="latex" class="level2"><h2 class="anchored" data-anchor-id="latex">LaTeX</h2>
-<p>You need a LaTeX compiler to create a pdf document from a R Markdown file. If you use the maize server, you don’t need to install anything (the server already has a LaTeX compiler). If you are using a local RStudio, you should install a Latex compiler.</p>
-<section id="installing-latex-not-needed-if-you-are-using-the-maize-server" class="level3"><h3 class="anchored" data-anchor-id="installing-latex-not-needed-if-you-are-using-the-maize-server">Installing LaTeX (not needed if you are using the maize server)</h3>
-<p>If you don’t already have a tex package installed on your computer, the easiest option to create pdf’s is to use the tinytex R package. This can be installed with the following R commands:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"tinytex"</span><span class="op">)</span></span>
-<span><span class="fu">tinytex</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/tinytex/man/install_tinytex.html">install_tinytex</a></span><span class="op">(</span><span class="op">)</span>  <span class="co"># install TinyTeX</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</header><div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.4     ✔ readr     2.1.5
+✔ forcats   1.0.0     ✔ stringr   1.5.1
+✔ ggplot2   3.5.2     ✔ tibble    3.2.1
+✔ lubridate 1.9.3     ✔ tidyr     1.3.1
+✔ purrr     1.0.2     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
 </div>
-<p>If you’d like a stand alone LaTeX package, you could install the basic installations of either:</p>
-<ul>
-<li><p><a href="https://www.tug.org/mactex/">MacTeX</a> for Mac (3.2GB!)</p></li>
-<li><p><a href="https://miktex.org/download">MiKTeX</a> for Windows (190MB)</p></li>
-</ul>
-<hr>
-<section id="acknowledgements" class="level4"><h4 class="anchored" data-anchor-id="acknowledgements">Acknowledgements</h4>
-<p>This installation guide was written by Adam Loy and is based on the guide from stat545.com and is licensed under the CC BY-NC 3.0 Creative Commons License.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://patchwork.data-imaginist.com">patchwork</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://bayes-rules.github.io/bayesrules/docs/">bayesrules</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://mc-stan.org/rstan/">rstan</a></span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Loading required package: StanHeaders
+
+rstan version 2.32.6 (Stan version 2.32.2)
+
+For execution on a local, multicore CPU with excess RAM we recommend calling
+options(mc.cores = parallel::detectCores()).
+To avoid recompilation of unchanged Stan programs, we recommend calling
+rstan_options(auto_write = TRUE)
+For within-chain threading using `reduce_sum()` or `map_rect()` Stan functions,
+change `threads_per_chain` option:
+rstan_options(threads_per_chain = 1)
 
 
-</section></section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+Attaching package: 'rstan'
+
+The following object is masked from 'package:tidyr':
+
+    extract</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://mc-stan.org/bayesplot/">bayesplot</a></span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>This is bayesplot version 1.11.1
+- Online documentation and vignettes at mc-stan.org/bayesplot
+- bayesplot theme set to bayesplot::theme_default()
+   * Does _not_ affect other ggplot2 plots
+   * See ?bayesplot_theme_set for details on theme setting</code></pre>
+</div>
+</div>
+<section id="example-1" class="level1"><h1>Example 1</h1>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fn_model</span> <span class="op">&lt;-</span> <span class="st">"</span></span>
+<span><span class="st">  data {</span></span>
+<span><span class="st">    int&lt;lower=0&gt; N;</span></span>
+<span><span class="st">    vector[N] y;</span></span>
+<span><span class="st">  }</span></span>
+<span><span class="st"></span></span>
+<span><span class="st">  parameters {</span></span>
+<span><span class="st">    real mu;</span></span>
+<span><span class="st">    real&lt;lower=0&gt; sigma;</span></span>
+<span><span class="st">  }</span></span>
+<span><span class="st"></span></span>
+<span><span class="st">  model {</span></span>
+<span><span class="st">    y ~ normal(mu, sigma);</span></span>
+<span><span class="st">    mu ~ normal(0, 1000);</span></span>
+<span><span class="st">    sigma ~ exponential(.0001);</span></span>
+<span><span class="st">  }</span></span>
+<span><span class="st">"</span></span>
+<span></span>
+<span><span class="va">fn_sim</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://mc-stan.org/rstan/reference/stan.html">stan</a></span><span class="op">(</span>model_code <span class="op">=</span> <span class="va">fn_model</span>, </span>
+<span>               data <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>N<span class="op">=</span><span class="fl">2</span>, y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">1</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span>, </span>
+<span>               chains <span class="op">=</span> <span class="fl">4</span>, iter <span class="op">=</span> <span class="fl">1000</span><span class="op">*</span><span class="fl">2</span>, seed <span class="op">=</span> <span class="fl">84735</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ui_model</span> <span class="op">&lt;-</span> <span class="st">"</span></span>
+<span><span class="st">  data {</span></span>
+<span><span class="st">    int&lt;lower=0&gt; N;</span></span>
+<span><span class="st">    vector[N] y;</span></span>
+<span><span class="st">  }</span></span>
+<span><span class="st"></span></span>
+<span><span class="st">  parameters {</span></span>
+<span><span class="st">    real alpha;</span></span>
+<span><span class="st">    real beta;</span></span>
+<span><span class="st">    real&lt;lower=0&gt; sigma;</span></span>
+<span><span class="st">  }</span></span>
+<span><span class="st"></span></span>
+<span><span class="st">  model {</span></span>
+<span><span class="st">    y ~ normal(alpha + beta, sigma);</span></span>
+<span><span class="st">    alpha ~ normal(0, 1000);</span></span>
+<span><span class="st">    beta ~ normal(0, 1000);</span></span>
+<span><span class="st">    sigma ~ exponential(1);</span></span>
+<span><span class="st">  }</span></span>
+<span><span class="st">"</span></span>
+<span></span>
+<span><span class="va">ui_sim</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://mc-stan.org/rstan/reference/stan.html">stan</a></span><span class="op">(</span>model_code <span class="op">=</span> <span class="va">ui_model</span>, </span>
+<span>               data <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>N<span class="op">=</span><span class="fl">100</span>, y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">100</span><span class="op">)</span><span class="op">)</span>, </span>
+<span>               chains <span class="op">=</span> <span class="fl">4</span>, iter <span class="op">=</span> <span class="fl">1000</span><span class="op">*</span><span class="fl">2</span>, seed <span class="op">=</span> <span class="fl">84735</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+
+
+</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     // Ensure there is a toggle, if there isn't float one in the top right
     if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
