@@ -147,7 +147,7 @@ extract(bb_sim, pars = "pi", permuted = FALSE, inc_warmup = TRUE)[1:200,,1] |> m
 
 ![](img/bad-traceplot-chain_A.png)
 
-## "Mixing slowly"
+## "Getting Stuck"
 
 ![](img/bad_traceplot_chainB.png)
 
