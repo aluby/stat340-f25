@@ -1,0 +1,56 @@
+---
+title: "Class Examples - Day 9"
+---
+
+# Example 1
+
+```{r}
+fn_model <- "
+  data {
+    int<lower=0> N;
+    vector[N] y;
+  }
+
+  parameters {
+    real mu;
+    real<lower=0> sigma;
+  }
+
+  model {
+    y ~ normal(mu, sigma);
+    mu ~ normal(0, 1000);
+    sigma ~ exponential(.0001);
+  }
+"
+
+fn_sim <- stan(model_code = fn_model, 
+               data = list(N=2, y = c(-1,1)), 
+               chains = 4, iter = 1000*2, seed = 84735)
+```
+
+
+```{r}
+ui_model <- "
+  data {
+    int<lower=0> N;
+    vector[N] y;
+  }
+
+  parameters {
+    real alpha;
+    real beta;
+    real<lower=0> sigma;
+  }
+
+  model {
+    y ~ normal(alpha + beta, sigma);
+    alpha ~ normal(0, 1000);
+    beta ~ normal(0, 1000);
+    sigma ~ exponential(1);
+  }
+"
+
+ui_sim <- stan(model_code = ui_model, 
+               data = list(N=100, y = rnorm(100)), 
+               chains = 4, iter = 1000*2, seed = 84735)
+```

@@ -1,0 +1,74 @@
+---
+title: "Individual HW04"
+author: "Your Name Here"
+---
+
+```{r}
+library(bayesrules) # R package for our textbook
+library(tidyverse) # Collection of packages for tidying and plotting data
+library(janitor) # Helper functions like tidy and tabyl
+library(rstan) # for MCMC
+library(bayesplot) # for plotting
+```
+
+# Q1
+
+Explain the difference between $N_{eff}$ and the actual number of MCMC samples
+
+# Q2: `mcmc_rank_hist` and `mcmc_rank_overlay`
+
+Trace plots are a natural way to view a chain, but they become hard to read when we have many samples and/or many chains. An alternative way to view the chains is called a **rank histogram** or **trace rank plot**. What this means is to (a) take all of the samples for a parameter and rank them, (b) draw a histogram of the ranks for each individual chain
+
+The code chunk below loads two pre-fit stan models. 
+
+```{r}
+# TBD ONCE WEBSITE UPDATED
+```
+
+(a) Create traceplots, rank histograms (`mcmc_rank_hist`), and trace rank plots (`mcmc_rank_overlay`) for both MCMC samples. 
+(b) Which sample is "healthy"? Which is "unhealthy"? Explain how you can tell from the new plots
+(c) Which type of plot do **you** find more useful? 
+
+# Revisiting BR Exercise 5.11 
+
+Prof. Abebe and Prof. Morales both recently finished their PhDs and are teaching their first statistics classes at Bayesian University. Their colleagues told them that the average final exam score across all students, $\mu$, varies Normally from year to year with a mean of 80 points and a standard deviation of 4. Further, individual students’ scores $Y$ vary Normally around $\mu$ with an *unknown* standard deviation $\sigma$.
+
+
+(a) Suggest three possible prior distributions for $\sigma$ (at least two should be different named distributions). Include density plots for each prior. (You can find available probability distributions in the Stan documentation: <https://mc-stan.org/docs/functions-reference/positive_continuous_distributions.html>)
+
+(b) Below is starter code for running a Stan model in this scenario. Delete the `#| eval: false` line and fill in the blanks
+
+```{r}
+#| eval: false
+
+fn_model2 <- "
+  data {
+    int<lower=0> N;
+    vector[N] y;
+  }
+
+  parameters {
+    real mu;
+    real<lower=0> sigma;
+  }
+
+  model {
+    y ~ normal(_____, ____);
+    mu ~ normal(_____, _____);
+    sigma ~ __________;
+  }
+"
+```
+
+
+(c) Run your model on the data below from Prof. Abebe and Prof. Morales' combined scores. 
+
+```{r}
+scores<- c(90.3, 81.3,  85.2, 85.6, 86.4, 83.8, 86.7, 90.1, 82.3, 88.4, 89.2, 90.6,81.2, 85.9, 88.8, 82.9,84.4, 86, 78.2, 87.3, 90.8, 87, 85, 86.8, 89.8, 91.2, 84.8, 83.8, 83.3, 86.1,  92.8, 85.9,  79,74.7, 78, 79.2,  83.9, 79.8, 81.1,  87.5, 81.8,  85.6,  77,  85.2, 85.9,  83.1,92.1,  72.6, 88.3,  78, 76.5,  79.4, 82.8,  82.5, 81.4, 78.9, 75.9, 73.2,84.2, 87.6,  77.6, 84.2,  78.7,  72)
+```
+
+(d) Run thorough diagnostics on your MCMC sample. This should include: traceplots of all relevant parameters, density plots for each chain for all relevant parameters, R-hat values, and N-eff. What do you conclude about the validity of your sample?
+
+(e) What do you conclude about the posterior mean $\mu | \vec{y}$? How does your answer differ from HW3's conjugate analysis? 
+
+(f) Rewrite the stan model code to take a flexible normal prior for $\mu$. That is, we should be able to specify the prior mean $\theta$ and prior sd $\tau$, instead of hard-coding them as 80 and 4. 
