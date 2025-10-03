@@ -1,0 +1,363 @@
+---
+title: Care and feeding of your MCMCs
+subtitle: Day 09
+title-slide-attributes:
+  data-background-color: "#e2583eff"
+  data-slide-number: none
+format: 
+  revealjs:
+    incremental: false
+    scrollable: false
+auto-stretch: true
+editor_options: 
+  chunk_output_type: console
+editor: 
+  markdown: 
+    wrap: 72
+execute: 
+  warning: false
+  message: false
+---
+
+
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+
+library(countdown)
+library(tidyverse)
+library(bayesrules)
+library(janitor)
+library(patchwork)
+library(rstan)
+library(bayesplot)
+
+theme_set(theme_minimal(base_size = 16, base_family = "Atkinson Hyperlegible"))
+```
+
+## Markov Chain Monte Carlo 
+
+A MCMC sample $\{ \theta^{(1)}, \theta^{(1)}, ..., \theta^{(N)}\}$ is a sequence of values drawn from conditional pdf: 
+
+$$f(\theta^{(i+1)}|\theta^{(i)}, y)$$
+when done well, it **converges** approximately to the posterior $f(\theta |y)$
+
+## MCMC plan
+
+1. Yesterday: how to find them with {rstan}
+2. Today: how to evaluate them
+3. Next week: how they work
+
+## Beta-Binomial Example in {rstan} {.smaller}
+
+```{r}
+#| eval: false
+
+# STEP 1: DEFINE the model
+bb_model <- "
+  data {
+    real<lower=0> alpha;
+    real<lower=0> beta;
+    int<lower=1> n;
+    int<lower=0, upper=n> Y;
+  }
+
+  parameters {
+    real<lower=0, upper=1> pi;
+  }
+
+  model {
+    Y ~ binomial(n, pi);
+    pi ~ beta(alpha, beta);
+  }
+"
+
+
+# STEP 2: SIMULATE the posterior
+bb_sim <- stan(model_code = bb_model, 
+               data = list(alpha = 2, beta = 2, Y = 9, n = 10), 
+               chains = 4, iter = 1000*2, seed = 84735)
+```
+
+```{r}
+#| echo: false
+
+load("09-bb_sim.rda")
+```
+
+## 
+
+```{r}
+bb_sim
+```
+
+##
+
+```{r}
+mcmc_dens(bb_sim, pars = "pi") +
+  stat_function(fun = dbeta, args = list(11, 3), col = "darkorange", linewidth = 2)
+```
+
+## In practice, we don't know the true posterior
+
+- What does a *good* markov chain look like? 
+- How can we tell if we are getting a reasonable approximation of the posterior? 
+- How big should our Markov chain size be? 
+
+::: aside
+Some examples from today are from _Statistical Rethinking_ 
+:::
+
+## Traceplots
+
+::::: columns
+::: {.column width="60%"}
+```{r}
+mcmc_trace(bb_sim, pars = "pi")
+```
+:::
+
+::: {.column width="40%"}
+- Ideally, $\theta^{(i+1)}$ does not depend on $\theta^{(i)}$ too much
+- Should look like a "fat hairy caterpillar"
+:::
+:::::
+
+## First 20 draws (burn-in / warmup)
+
+```{r}
+#| echo: false
+
+
+extract(bb_sim, pars = "pi", permuted = FALSE, inc_warmup = TRUE)[1:30,,1] |> mcmc_trace()
+```
+
+## First 200 draws (burn-in / warmup)
+
+```{r}
+#| echo: false
+
+
+extract(bb_sim, pars = "pi", permuted = FALSE, inc_warmup = TRUE)[1:200,,1] |> mcmc_trace()
+```
+
+## "Mixing slowly"
+
+![](img/bad-traceplot-chain_A.png)
+
+## "Mixing slowly"
+
+![](img/bad_traceplot_chainB.png)
+
+
+## Each chain should converge on roughly the same distribution
+
+```{r}
+mcmc_dens_overlay(bb_sim, pars = "pi") 
+```
+
+
+## How many chains do you need? 
+
+- When testing and debugging your model, use 1
+- When deciding whether your chains are valid, need >1
+- When you do your final run that you will make inferences from, one long chain or multiple  chains is fine
+
+::: callout-tip
+## Rule of thumb:
+
+One (short) chain to debug, four chains for verification and inference
+:::
+
+## Autocorrelation
+
+```{r}
+mcmc_acf(bb_sim, pars = "pi")
+```
+## Slow mixing chains often have high autocorrelation
+
+![](img/traceplot-acf.png)
+
+## Effective Sample Size 
+
+::: callout-note
+## $N_{eff}$
+
+Effective Sample Size ($N_{eff}$) quantifies the number of independent samples it would take to produce an equivalently accurate posterior approximation
+:::
+
+
+::: callout-note
+## $N_{eff}/N$
+
+Effective sample size ratio
+:::
+
+```{r}
+neff_ratio(bb_sim, pars = c("pi"))
+```
+
+## R-hat
+
+**Idea:** In a "good" Markov chain, the variability *across* all chains is similar to the variability *within* a given chain. In a "bad" Markov chain, the variability *across* all chains is bigger than the variability *within* a given chain
+
+![](img/rhat-ch6-1.png)
+
+
+## R-hat
+
+::: callout-note
+## Gelman-Rubin convergence diagnostic
+
+R-hat $\approx \sqrt{\frac{\text{Var}_{\text{combined}}}{\text{Var}_{\text{within}}}}$
+
+R-hat $\approx$ 1 is good; R-hat $>1$ indicates the chains have not converged
+:::
+
+```{r}
+rhat(bb_sim)
+```
+
+
+# Case Study
+
+## 
+
+```{r}
+#| eval: false
+fn_model <- "
+  data {
+    int<lower=0> N;
+    vector[N] y;
+  }
+
+  parameters {
+    real mu;
+    real<lower=0> sigma;
+  }
+
+  model {
+    y ~ normal(mu, sigma);
+    mu ~ normal(0, 1000);
+    sigma ~ exponential(.0001);
+  }
+"
+```
+
+## {.smaller}
+
+```{r}
+#| eval: false
+
+# STEP 2: SIMULATE the posterior
+fn_sim <- stan(model_code = fn_model, 
+               data = list(N=2, y = c(-1,1)), 
+               chains = 4, iter = 1000*2, seed = 84735)
+```
+
+```
+Warning :There were 521 divergent transitions after warmup. See
+https://mc-stan.org/misc/warnings.html#divergent-transitions-after-warmup
+to find out why this is a problem and how to eliminate them.
+Warning :Examine the pairs() plot to diagnose sampling problems
+
+Warning :Bulk Effective Samples Size (ESS) is too low, indicating posterior means and medians may be unreliable.
+Running the chains for more iterations may help. See
+https://mc-stan.org/misc/warnings.html#bulk-ess
+Warning :Tail Effective Samples Size (ESS) is too low, indicating posterior variances and tail quantiles may be unreliable.
+Running the chains for more iterations may help. See
+https://mc-stan.org/misc/warnings.html#tail-ess
+```
+
+```{r}
+#| echo: false
+
+load("09_fn_sim.rda")
+```
+
+## $\mu$
+
+```{r}
+#| layout-ncol: 2
+
+mcmc_trace(fn_sim, pars = "mu")
+mcmc_dens_overlay(fn_sim, pars = "mu")
+```
+
+## $\sigma$
+
+```{r}
+#| layout-ncol: 2
+
+mcmc_trace(fn_sim, pars = "sigma")
+mcmc_dens_overlay(fn_sim, pars = "sigma")
+```
+
+##
+
+```{r}
+#| eval: false
+fn_model2 <- "
+  data {
+    int<lower=0> N;
+    vector[N] y;
+  }
+
+  parameters {
+    real mu;
+    real<lower=0> sigma;
+  }
+
+  model {
+    y ~ normal(mu, sigma);
+    mu ~ normal(0, 10);
+    sigma ~ exponential(1);
+  }
+"
+```
+
+## 
+
+```{r}
+#| eval: false
+
+# STEP 2: SIMULATE the posterior
+fn_sim2 <- stan(model_code = fn_model2, 
+               data = list(N=2, y = c(-1,1)), 
+               chains = 4, iter = 1000*2, seed = 84735)
+```
+
+```
+Warning :There were 3 divergent transitions after warmup. See
+https://mc-stan.org/misc/warnings.html#divergent-transitions-after-warmup
+to find out why this is a problem and how to eliminate them.
+Warning :Examine the pairs() plot to diagnose sampling problems
+```
+
+```{r}
+#| echo: false
+
+
+load("09_fn_sim2.rda")
+```
+
+## $\mu$
+
+```{r}
+#| layout-ncol: 2
+
+mcmc_trace(fn_sim2, pars = "mu")
+mcmc_dens_overlay(fn_sim2, pars = "mu")
+```
+
+## $\sigma$
+
+```{r}
+#| layout-ncol: 2
+
+mcmc_trace(fn_sim2, pars = "sigma")
+mcmc_dens_overlay(fn_sim2, pars = "sigma")
+```
+
