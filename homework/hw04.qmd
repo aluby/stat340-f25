@@ -73,11 +73,43 @@ scores<- c(90.3, 81.3,  85.2, 85.6, 86.4, 83.8, 86.7, 90.1, 82.3, 88.4, 89.2, 90
 
 (f) Rewrite the stan model code to take a flexible normal prior for $\mu$. That is, we should be able to specify the prior mean $\theta$ and prior sd $\tau$ (or prior variance $\tau^2$, whichever you prefer), instead of hard-coding them as 80 and 4. 
 
-# Q4: TBA Mon
+# BR 7.4: Tuning the Metropolis-Hastings
 
-# Q5: TBA Mon
+In this exercise you will consider how to tune a Uniform proposal model with half-width  $w$ for a Metropolis-Hastings algorithm.
 
-# Q6: TBA Mon
+(a) Draw a trace plot for a tour where the Uniform proposal model uses a very small $w$. 
+(b) Why is it problematic if $w$ is too small, and hence defines the neighborhood around the current chain value too narrowly?
+(c) Draw a trace plot for a tour where the Uniform proposal model uses a very large $w$
+(d) Why is it problematic if $w$ is too large, and hence defines the neighborhood too widely?
+(e) Draw a trace plot for a tour where the Uniform proposal model uses a $w$ that is neither too small or too large.
+(e) Describe how you would go about finding an appropriate half-width $w$ for a Uniform proposal model.
+
+# BR 7.5: One iteration with uniform proposal model
+
+The function `one_mh_iteration()` from the text utilizes a Uniform proposal model, $\mu' | \mu \sim \text{Unif}(\mu - w, \mu + w)$, with half-width $w=1$. Starting from a current value of $\mu = 3$ and using `set.seed(1)`, run the code below and comment on the returned `proposal`, `alpha`, and `next_stop` values.
+
+::: callout-note
+You can use `one_mh_iteration` directly from the text
+:::
+
+
+(a) `one_mh_iteration(w = 0.01, current = 3)`
+(b) `one_mh_iteration(w = 0.5, current = 3)`
+(c) `one_mh_iteration(w = 1, current = 3)`
+(d) `one_mh_iteration(w = 3, current = 3)`
+
+# BR 7.11: Changing the proposal model
+
+For this exercise, modify `one_mh_iteration()` to create a new function, `one_mh_iteration_normal()`, which utilizes a symmetric Normal proposal model, centered at the current chain value  $\mu$ with standard deviation $s$: 
+
+$$\mu ' | \mu \sim N(\mu, s^2)$$
+
+Subsequently, starting from a current value of $\mu = 3$ and `set.seed(1)`, run this function under each setting below. Comment on the returned `proposal`, `alpha`, and `next_stop` values.
+
+(a) `one_mh_iteration_normal(s = 0.01, current = 3)`
+(b) `one_mh_iteration_normal(s = 0.5, current = 3)`
+(c) `one_mh_iteration_normal(s = 1, current = 3)`
+(d) `one_mh_iteration_normal(s = 3, current = 3)`
 
 # Q7: TBA Wed
 
