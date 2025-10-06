@@ -12,9 +12,14 @@ library(janitor) # Helper functions like tidy and tabyl
 No group problems from Friday
 :::
 
-# TBA Mon
+# BR Exercise 7.76
 
-# TBA Mon
+# BR Exercise 7.7: Calculate the acceptance probability
+
+Suppose that a Markov chain is currently at $\lambda^{(i)}=2$ and the proposal for $\lambda^{(i+1)}$ is $\lambda' = 2.1$. For each pair of unnnormalized pdf $f(\lambda) L(\lambda | y)$ and proposal $q(\lambda' | \lambda)$, calculate the acceptance probability $\alpha$ used in Step 2 of the Metropolis-Hastings algorithm. 
+
+(a) 
+(e) For which of these scenarios is there a 100% acceptance probability? Explain why we’d certainly want to accept $\lambda$ in these scenarios
 
 # TBA Mon
 

@@ -1,0 +1,108 @@
+---
+title: "Project 1"
+execute: 
+  echo: true
+  warning: false
+  message: false
+---
+
+```{r}
+library(bayesrules) # R package for our textbook
+library(tidyverse) # Collection of packages for tidying and plotting data
+library(janitor) # Helper functions like tidy and tabyl
+library(rstan) # for MCMC
+library(bayesplot) # for plotting
+```
+
+The data in `fish_poisson.csv` are records of visits to a National Park and comes from the {rethinking} R package. The variable `fish_caught` gives the number of fish that was caught by a park visitor, and the `hours` variables gives the total number of hours that they spent in the park. Your task is to estimate the hourly average of fish caught for an individual while they are fishing. You can assume that the hourly number of fish caught is a Poisson distribution. 
+
+However, the problem is that not every party tried to fish. So there are two ways that a zero can arise in the data: (1) the individual tried to fish but did not catch any, or (2) the individual did not try to fish at all. If we do not account for this, we'll end up with an underestimate for fish extraction from the park. 
+
+Let $\theta$ be the probability that a visitor does **not** fish. Let $\lambda$ be the mean number of fish caught, when a visitor is fishing. Then $Y|\lambda \sim \text{Pois}(\lambda)$. 
+
+Then, the probability of observing zero fish caught is: 
+
+$$\theta + (1-\theta) P(Y = 0 | \lambda)$$
+
+and the probability of observing a nonzero number of fish caught is: 
+
+$$(1-\theta) P(Y=y | \lambda)$$
+
+This is an example of a **zero-inflated poisson** distribution, and you will implement it for this case study project. 
+
+(*Note:* Your model should also account for the differing amount of time individuals spend in the park.) 
+
+```{r}
+fish_poisson <- read_csv("../data/fish_poisson.csv")
+```
+
+
+
+# Finding the posterior
+
+**Option 1:** Find the posterior distribution of $\lambda$ analytically
+
+**Option 2:** Implement your own MCMC sampler or grid approximation to estimate the posterior distribution of $\lambda$ 
+
+**Option 3:** Use the stan starter code below. If you choose this option, you should also answer Question (1) below. 
+
+```
+data {
+  int<lower=1> N;
+  array[N] int<lower=0> y;
+}
+parameters {
+  real<lower=0, upper=1> theta; // Pr(y = 0)
+  real<lower=0> lambda; // Poisson rate parameter (if y > 0)
+}
+model {
+  lambda ~ _____________ ;
+  theta ~ ______________ ;
+
+  for (n in 1 : N) {
+    if (y[n] == 0) {
+      target += log_sum_exp(bernoulli_lpmf(1 | theta),
+                            bernoulli_lpmf(0 | theta)
+                              + poisson_lpmf(y[n] | lambda)); // log(Pr(y = 0))
+    } else {
+      target += bernoulli_lpmf(0 | theta)
+                  + poisson_lpmf(y[n] | lambda); // log(Pr(y > 0))
+      y[n] ~ __________ ; // truncated poisson
+    }
+  }
+}
+```
+
+# Questions to Consider
+
+(1) The `target +=` lines in the stan code update the log posterior density for each run through the for loop. We need to include them when we do not use an explicit modeling statement (eg `y ~ normal(0,1)`). Explain or justify these lines of code. (You may have to dig into the [stan reference manual](https://mc-stan.org/docs/reference-manual/statements.html#increment-log-prob.section)) 
+
+(2) Perform an appropriate EDA to justify the use of a zero-inflated poisson analysis
+
+(3) How did you choose your prior distributions? Confirm they are reasonable through simulation.
+
+(4) (If estimated with MCMC): Are you confident that your MCMC has converged? Provide justification
+
+(5) What do you learn from $\lambda$? What do you learn from $\theta$? (these should be in context of the data)
+
+(6) How is your answer different than a "regular" Bayesian posterior analysis of $\lambda$? (ie non zero-inflated)
+
+(7) What would your model predict for a new visitor at the park? 
+
+(8) What are the benefits and drawbacks of using a fully specified Bayesian model in this scenario? What do we gain instead of, e.g., splitting up the data into zero fish caught and nonzero fish caught? 
+
+# Report
+
+Your submission should be a <4 page report written in quarto/rmarkdown. Everything should be typed/proofread/labeled/captioned etc. 
+
+# Evaluation
+
+There are two elements that make this a "project" rather than a "homework problem": 
+
+(1) It is more open-ended. 
+    - If you think an alternative approach is more appropriate for this data, go for it!  There is no "right answer" that I am looking for. However, there are lots of ways to be wrong. You should think through your choices and provide justification for them. 
+    - On homework, you often have an example from class or the textbook to use as a "model". On this project, I'm asking you to do something new! 
+
+(2) Part of your grade will be based on the presentation of your work. All portions of the report should be polished and proofread carefully. 
+
+
