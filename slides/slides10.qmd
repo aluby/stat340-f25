@@ -37,4 +37,128 @@ library(bayesplot)
 theme_set(theme_minimal(base_size = 16, base_family = "Atkinson Hyperlegible"))
 ```
 
-https://chi-feng.github.io/mcmc-demo/app.html?algorithm=RandomWalkMH&target=banana
+## Recap (Bayesian Analysis)
+
+## Computing the posterior {.center}
+
+### 1. Analytical Approach
+
+### 2. Grid Approximation
+
+### 3. Markov Chain Monte Carlo
+
+## MCMC
+
+1. How to fit them in {rstan}
+2. How to diagnose convergence and fit 
+3. How they work
+    - today: conceptual
+    - Wed: implementation in R
+
+## {background-image="img/king-markov.png"}
+
+
+::: aside
+Source: Richard McElreath's Statistical Rethinking course, Lecture 08
+:::
+
+## {background-image="img/king-markov-islands.png" background-position="bottom" background-size="contain"}
+
+### King Markov must visit each island in proportion to its population size
+
+## {background-image="img/king-markov-islands.png" background-position="bottom" background-size="contain"}
+
+(1) Flip a coin to choose island on left or right (proposal)
+
+## {background-image="img/king-markov-islands.png" background-position="bottom" background-size="contain"}
+
+(1) Flip a coin to choose island on left or right (proposal)
+(2) Find population of proposal island
+
+## {background-image="img/king-markov-islands.png" background-position="bottom" background-size="contain"}
+
+(1) Flip a coin to choose island on left or right (proposal)
+(2) Find population of proposal island
+(3) Find population of current island
+
+## {background-image="img/king-markov-islands.png" background-position="bottom" background-size="contain"}
+
+(1) Flip a coin to choose island on left or right (proposal)
+(2) Find population of proposal island
+(3) Find population of current island
+(4) Move to proposal with probability $p_{new}/p_{current}$
+
+## {background-image="img/king-markov-islands.png" background-position="bottom" background-size="contain"}
+
+(1) Flip a coin to choose island on left or right (proposal)
+(2) Find population of proposal island
+(3) Find population of current island
+(4) Move to proposal with probability $p_{new}/p_{current}$
+(5) Repeat
+
+## This procedure ensures visiting each island in proportion to its population *in the long run*
+
+::: callout-note
+
+## Metropolis Algorithm
+
+(1) Flip a coin to choose island on left or right (proposal)
+(2) Find population of proposal island
+(3) Find population of current island
+(4) Move to proposal with probability $p_{new}/p_{current}$
+(5) Repeat
+:::
+
+## Animation
+
+<iframe width="900" height="450" src="https://www.youtube-nocookie.com/embed/rZk2FqX2XnY?si=uOOz7lwZLDSF6gzZ&amp;start=1046" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+## Markov Chain Monte Carlo
+
+- "Islands": parameter values
+- "Population size": posterior probability
+- Visit each parameter value in proportion to its posterior probability
+- Any number of parameters
+- Lots of "flavors" of algorithms
+    - How do you propose a next step? 
+    - How do you calculate acceptance probability? 
+
+## 
+
+![](img/metropolis-paper.png)
+
+## Some variations
+
+<https://chi-feng.github.io/mcmc-demo/app.html?algorithm=RandomWalkMH> 
+
+
+## 
+
+::: callout-note
+
+## Metropolis-Hastings Algorithm
+
+Let parameter $\mu$ have posterior $f(\mu|y) \propto f(\mu) L(\mu | y)$. A Metropolis-Hastings Markov Chain $\{\mu^{(1)}, \mu^{(2)}, ..., \mu^{(n)}\}$ evolves as follows. Let $\mu^{(i)} = \mu$ be the chains location at $i \in \{1, 2, ...., N-1\}$ and identify $\mu^{(i+1)}$ through a two step process: 
+
+(1) Propose a new location. Conditioned on the current location $\mu$, draw a location $\mu'$ from a proposal model with pdf $q(\mu'|\mu)$
+
+(2) Decide whether to go there. Calculate the acceptance probability 
+$$\alpha = \min\{1, \frac{f(\mu') L(\mu'|y) q(\mu|\mu')}{f(\mu) L(\mu|y) q(\mu'|\mu)} \}$$
+Then, 
+
+$$\mu^{(i+1)} = \begin{cases} \mu' & \text{with probability } \alpha \\ \mu & \text{with probability } 1-\alpha \end{cases}$$
+
+:::
+
+## 
+
+::: callout-note
+## Metropolis Algorithm
+
+If the proposal model is *symmetric*, then $q(\mu | \mu') = q(\mu' | \mu)$ and the acceptance probability simplifies to: 
+
+$$\alpha = \min\{1, \frac{f(\mu') L(\mu'|y)}{f(\mu) L(\mu|y)} \}$$
+
+:::
+
+

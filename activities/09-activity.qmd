@@ -68,3 +68,32 @@ ui_sim <- stan(model_code = ui_model,
                data = list(N=100, y = rnorm(100)), 
                chains = 4, iter = 1000*2, seed = 84735)
 ```
+
+```{r}
+#| eval: false
+
+
+i_model <- "
+  data {
+    int<lower=0> N;
+    vector[N] y;
+  }
+
+  parameters {
+    real alpha;
+    real beta;
+    real<lower=0> sigma;
+  }
+
+  model {
+    y ~ normal(alpha + beta, sigma);
+    alpha ~ normal(0, 1);
+    beta ~ normal(0, 1);
+    sigma ~ exponential(1);
+  }
+"
+
+i_sim <- stan(model_code = i_model, 
+               data = list(N=100, y = rnorm(100)), 
+               chains = 4, iter = 1000*2, seed = 84735)
+```

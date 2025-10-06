@@ -12,16 +12,27 @@ library(janitor) # Helper functions like tidy and tabyl
 No group problems from Friday
 :::
 
-# BR Exercise 7.76
+# BR Exercise 7.6: Proposing a new location
+
+In each situation below, complete Step 1 of the Metropolis-Hastings algorithm. That is, starting from teh given current chain value $\lambda^{(i)} = \lambda$ and with `set.seed(84735)`, use the given proposal model to draw a $\lambda'$ proposal value for the next value in the chain $\lambda^{(i+1)}$
+
+(a) $\lambda = 4.6, \lambda' | \lambda \sim N(\lambda, 2^2)$
+(a) $\lambda = 2.1, \lambda' | \lambda \sim N(\lambda, 7^2)$
+(a) $\lambda = 8.9, \lambda' | \lambda \sim Unif(\lambda - 2, \lambda +2)$
+(a) $\lambda = 1.2, \lambda' | \lambda \sim Unif(\lambda - 0.5, \lambda + 0.5)$
+(a) $\lambda = 7.7, \lambda' | \lambda \sim Unif(\lambda - 3, \lambda +3)$
+(a) Discuss why these proposal models "make sense"
 
 # BR Exercise 7.7: Calculate the acceptance probability
 
 Suppose that a Markov chain is currently at $\lambda^{(i)}=2$ and the proposal for $\lambda^{(i+1)}$ is $\lambda' = 2.1$. For each pair of unnnormalized pdf $f(\lambda) L(\lambda | y)$ and proposal $q(\lambda' | \lambda)$, calculate the acceptance probability $\alpha$ used in Step 2 of the Metropolis-Hastings algorithm. 
 
-(a) 
+(a) $f(\lambda) L(\lambda | y) = \lambda^{-1}, \lambda' | \lambda \sim N(\lambda, 2^2)$ with pdf $q(\lambda'|\lambda)$
+(a) $f(\lambda) L(\lambda | y) = e^{3\lambda}, \lambda' | \lambda \sim N(\lambda, .5^2)$ with pdf $q(\lambda'|\lambda)$
+(a) $f(\lambda) L(\lambda | y) = e^{-1.9\lambda}, \lambda' | \lambda \sim Unif(\lambda - .3, \lambda + .3)$ with pdf $q(\lambda'|\lambda)$
+(a) $f(\lambda) L(\lambda | y) =e^{-\lambda^4}, \lambda' | \lambda \sim Exp(\lambda)$ with pdf $q(\lambda'|\lambda)$
 (e) For which of these scenarios is there a 100% acceptance probability? Explain why we’d certainly want to accept $\lambda$ in these scenarios
 
-# TBA Mon
 
 # TBA Wed
 
