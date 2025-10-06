@@ -101,7 +101,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script>
+}</script><script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 </head>
 <body class="nav-sidebar docked quarto-light"><script id="quarto-html-before-body" type="application/javascript">
     const toggleBodyColorMode = (bsSheetEl) => {
@@ -446,8 +471,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
-    <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="gw04.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></div>
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
+   
+  <ul>
+<li><a href="#br-exercise-7.6-proposing-a-new-location" id="toc-br-exercise-7.6-proposing-a-new-location" class="nav-link active" data-scroll-target="#br-exercise-7.6-proposing-a-new-location">BR Exercise 7.6: Proposing a new location</a></li>
+  <li><a href="#br-exercise-7.7-calculate-the-acceptance-probability" id="toc-br-exercise-7.7-calculate-the-acceptance-probability" class="nav-link" data-scroll-target="#br-exercise-7.7-calculate-the-acceptance-probability">BR Exercise 7.7: Calculate the acceptance probability</a></li>
+  <li><a href="#tba-wed" id="toc-tba-wed" class="nav-link" data-scroll-target="#tba-wed">TBA Wed</a></li>
+  <li><a href="#tba-wed-1" id="toc-tba-wed-1" class="nav-link" data-scroll-target="#tba-wed-1">TBA Wed</a></li>
+  </ul><div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="gw04.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Assignments</li><li class="breadcrumb-item"><a href="../groupwork/gw01.html">Groupwork</a></li><li class="breadcrumb-item"><a href="../groupwork/gw04.html">Group Work 03</a></li></ol></nav><div class="quarto-title">
 <div class="quarto-title-block"><div><h1 class="title">Group Work 03</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
@@ -482,12 +514,38 @@ Note
 <p>No group problems from Friday</p>
 </div>
 </div>
+<section id="br-exercise-7.6-proposing-a-new-location" class="level1"><h1>BR Exercise 7.6: Proposing a new location</h1>
+<p>In each situation below, complete Step 1 of the Metropolis-Hastings algorithm. That is, starting from teh given current chain value <span class="math inline">\(\lambda^{(i)} = \lambda\)</span> and with <code>set.seed(84735)</code>, use the given proposal model to draw a <span class="math inline">\(\lambda'\)</span> proposal value for the next value in the chain <span class="math inline">\(\lambda^{(i+1)}\)</span></p>
+<ol type="a">
+<li><span class="math inline">\(\lambda = 4.6, \lambda' | \lambda \sim N(\lambda, 2^2)\)</span></li>
+<li><span class="math inline">\(\lambda = 2.1, \lambda' | \lambda \sim N(\lambda, 7^2)\)</span></li>
+<li><span class="math inline">\(\lambda = 8.9, \lambda' | \lambda \sim Unif(\lambda - 2, \lambda +2)\)</span></li>
+<li><span class="math inline">\(\lambda = 1.2, \lambda' | \lambda \sim Unif(\lambda - 0.5, \lambda + 0.5)\)</span></li>
+<li><span class="math inline">\(\lambda = 7.7, \lambda' | \lambda \sim Unif(\lambda - 3, \lambda +3)\)</span></li>
+<li>Discuss why these proposal models “make sense”</li>
+</ol></section><section id="br-exercise-7.7-calculate-the-acceptance-probability" class="level1"><h1>BR Exercise 7.7: Calculate the acceptance probability</h1>
+<p>Suppose that a Markov chain is currently at <span class="math inline">\(\lambda^{(i)}=2\)</span> and the proposal for <span class="math inline">\(\lambda^{(i+1)}\)</span> is <span class="math inline">\(\lambda' = 2.1\)</span>. For each pair of unnnormalized pdf <span class="math inline">\(f(\lambda) L(\lambda | y)\)</span> and proposal <span class="math inline">\(q(\lambda' | \lambda)\)</span>, calculate the acceptance probability <span class="math inline">\(\alpha\)</span> used in Step 2 of the Metropolis-Hastings algorithm.</p>
+<ol type="a">
+<li>
+<span class="math inline">\(f(\lambda) L(\lambda | y) = \lambda^{-1}, \lambda' | \lambda \sim N(\lambda, 2^2)\)</span> with pdf <span class="math inline">\(q(\lambda'|\lambda)\)</span>
+</li>
+<li>
+<span class="math inline">\(f(\lambda) L(\lambda | y) = e^{3\lambda}, \lambda' | \lambda \sim N(\lambda, .5^2)\)</span> with pdf <span class="math inline">\(q(\lambda'|\lambda)\)</span>
+</li>
+<li>
+<span class="math inline">\(f(\lambda) L(\lambda | y) = e^{-1.9\lambda}, \lambda' | \lambda \sim Unif(\lambda - .3, \lambda + .3)\)</span> with pdf <span class="math inline">\(q(\lambda'|\lambda)\)</span>
+</li>
+<li>
+<span class="math inline">\(f(\lambda) L(\lambda | y) =e^{-\lambda^4}, \lambda' | \lambda \sim Exp(\lambda)\)</span> with pdf <span class="math inline">\(q(\lambda'|\lambda)\)</span>
+</li>
+<li>For which of these scenarios is there a 100% acceptance probability? Explain why we’d certainly want to accept <span class="math inline">\(\lambda\)</span> in these scenarios</li>
+</ol></section><section id="tba-wed" class="level1"><h1>TBA Wed</h1>
+</section><section id="tba-wed-1" class="level1"><h1>TBA Wed</h1>
 
 
 <!-- -->
 
-
-</main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     // Ensure there is a toggle, if there isn't float one in the top right
     if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
@@ -971,6 +1029,32 @@ Note
 <span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>::: callout-note</span>
 <span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>No group problems from Friday</span>
 <span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="fu"># BR Exercise 7.6: Proposing a new location</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>In each situation below, complete Step 1 of the Metropolis-Hastings algorithm. That is, starting from teh given current chain value $\lambda^{(i)} = \lambda$ and with <span class="in">`set.seed(84735)`</span>, use the given proposal model to draw a $\lambda'$ proposal value for the next value in the chain $\lambda^{(i+1)}$</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>(a) $\lambda = 4.6, \lambda' | \lambda \sim N(\lambda, 2^2)$</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>(a) $\lambda = 2.1, \lambda' | \lambda \sim N(\lambda, 7^2)$</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>(a) $\lambda = 8.9, \lambda' | \lambda \sim Unif(\lambda - 2, \lambda +2)$</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>(a) $\lambda = 1.2, \lambda' | \lambda \sim Unif(\lambda - 0.5, \lambda + 0.5)$</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>(a) $\lambda = 7.7, \lambda' | \lambda \sim Unif(\lambda - 3, \lambda +3)$</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>(a) Discuss why these proposal models "make sense"</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a><span class="fu"># BR Exercise 7.7: Calculate the acceptance probability</span></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>Suppose that a Markov chain is currently at $\lambda^{(i)}=2$ and the proposal for $\lambda^{(i+1)}$ is $\lambda' = 2.1$. For each pair of unnnormalized pdf $f(\lambda) L(\lambda | y)$ and proposal $q(\lambda' | \lambda)$, calculate the acceptance probability $\alpha$ used in Step 2 of the Metropolis-Hastings algorithm. </span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>(a) $f(\lambda) L(\lambda | y) = \lambda^{-1}, \lambda' | \lambda \sim N(\lambda, 2^2)$ with pdf $q(\lambda'|\lambda)$</span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>(a) $f(\lambda) L(\lambda | y) = e^{3\lambda}, \lambda' | \lambda \sim N(\lambda, .5^2)$ with pdf $q(\lambda'|\lambda)$</span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>(a) $f(\lambda) L(\lambda | y) = e^{-1.9\lambda}, \lambda' | \lambda \sim Unif(\lambda - .3, \lambda + .3)$ with pdf $q(\lambda'|\lambda)$</span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>(a) $f(\lambda) L(\lambda | y) =e^{-\lambda^4}, \lambda' | \lambda \sim Exp(\lambda)$ with pdf $q(\lambda'|\lambda)$</span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>(e) For which of these scenarios is there a 100% acceptance probability? Explain why we’d certainly want to accept $\lambda$ in these scenarios</span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a><span class="fu"># TBA Wed</span></span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a><span class="fu"># TBA Wed</span></span>
 </code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->

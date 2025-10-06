@@ -562,6 +562,31 @@ The following object is masked from 'package:tidyr':
 <span>               data <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>N<span class="op">=</span><span class="fl">100</span>, y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">100</span><span class="op">)</span><span class="op">)</span>, </span>
 <span>               chains <span class="op">=</span> <span class="fl">4</span>, iter <span class="op">=</span> <span class="fl">1000</span><span class="op">*</span><span class="fl">2</span>, seed <span class="op">=</span> <span class="fl">84735</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">i_model</span> <span class="op">&lt;-</span> <span class="st">"</span></span>
+<span><span class="st">  data {</span></span>
+<span><span class="st">    int&lt;lower=0&gt; N;</span></span>
+<span><span class="st">    vector[N] y;</span></span>
+<span><span class="st">  }</span></span>
+<span><span class="st"></span></span>
+<span><span class="st">  parameters {</span></span>
+<span><span class="st">    real alpha;</span></span>
+<span><span class="st">    real beta;</span></span>
+<span><span class="st">    real&lt;lower=0&gt; sigma;</span></span>
+<span><span class="st">  }</span></span>
+<span><span class="st"></span></span>
+<span><span class="st">  model {</span></span>
+<span><span class="st">    y ~ normal(alpha + beta, sigma);</span></span>
+<span><span class="st">    alpha ~ normal(0, 1);</span></span>
+<span><span class="st">    beta ~ normal(0, 1);</span></span>
+<span><span class="st">    sigma ~ exponential(1);</span></span>
+<span><span class="st">  }</span></span>
+<span><span class="st">"</span></span>
+<span></span>
+<span><span class="va">i_sim</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://mc-stan.org/rstan/reference/stan.html">stan</a></span><span class="op">(</span>model_code <span class="op">=</span> <span class="va">i_model</span>, </span>
+<span>               data <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>N<span class="op">=</span><span class="fl">100</span>, y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">100</span><span class="op">)</span><span class="op">)</span>, </span>
+<span>               chains <span class="op">=</span> <span class="fl">4</span>, iter <span class="op">=</span> <span class="fl">1000</span><span class="op">*</span><span class="fl">2</span>, seed <span class="op">=</span> <span class="fl">84735</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
 
 
 </section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">

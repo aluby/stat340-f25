@@ -253,7 +253,7 @@
     "href": "activities/09-activity.html",
     "title": "Class Examples - Day 9",
     "section": "",
-    "text": "library(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.4     ✔ readr     2.1.5\n✔ forcats   1.0.0     ✔ stringr   1.5.1\n✔ ggplot2   3.5.2     ✔ tibble    3.2.1\n✔ lubridate 1.9.3     ✔ tidyr     1.3.1\n✔ purrr     1.0.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\nlibrary(patchwork)\nlibrary(bayesrules)\nlibrary(rstan)\n\nLoading required package: StanHeaders\n\nrstan version 2.32.6 (Stan version 2.32.2)\n\nFor execution on a local, multicore CPU with excess RAM we recommend calling\noptions(mc.cores = parallel::detectCores()).\nTo avoid recompilation of unchanged Stan programs, we recommend calling\nrstan_options(auto_write = TRUE)\nFor within-chain threading using `reduce_sum()` or `map_rect()` Stan functions,\nchange `threads_per_chain` option:\nrstan_options(threads_per_chain = 1)\n\n\nAttaching package: 'rstan'\n\nThe following object is masked from 'package:tidyr':\n\n    extract\n\nlibrary(bayesplot)\n\nThis is bayesplot version 1.11.1\n- Online documentation and vignettes at mc-stan.org/bayesplot\n- bayesplot theme set to bayesplot::theme_default()\n   * Does _not_ affect other ggplot2 plots\n   * See ?bayesplot_theme_set for details on theme setting\n\n\nExample 1\n\nfn_model &lt;- \"\n  data {\n    int&lt;lower=0&gt; N;\n    vector[N] y;\n  }\n\n  parameters {\n    real mu;\n    real&lt;lower=0&gt; sigma;\n  }\n\n  model {\n    y ~ normal(mu, sigma);\n    mu ~ normal(0, 1000);\n    sigma ~ exponential(.0001);\n  }\n\"\n\nfn_sim &lt;- stan(model_code = fn_model, \n               data = list(N=2, y = c(-1,1)), \n               chains = 4, iter = 1000*2, seed = 84735)\n\n\nui_model &lt;- \"\n  data {\n    int&lt;lower=0&gt; N;\n    vector[N] y;\n  }\n\n  parameters {\n    real alpha;\n    real beta;\n    real&lt;lower=0&gt; sigma;\n  }\n\n  model {\n    y ~ normal(alpha + beta, sigma);\n    alpha ~ normal(0, 1000);\n    beta ~ normal(0, 1000);\n    sigma ~ exponential(1);\n  }\n\"\n\nui_sim &lt;- stan(model_code = ui_model, \n               data = list(N=100, y = rnorm(100)), \n               chains = 4, iter = 1000*2, seed = 84735)"
+    "text": "library(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.4     ✔ readr     2.1.5\n✔ forcats   1.0.0     ✔ stringr   1.5.1\n✔ ggplot2   3.5.2     ✔ tibble    3.2.1\n✔ lubridate 1.9.3     ✔ tidyr     1.3.1\n✔ purrr     1.0.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\nlibrary(patchwork)\nlibrary(bayesrules)\nlibrary(rstan)\n\nLoading required package: StanHeaders\n\nrstan version 2.32.6 (Stan version 2.32.2)\n\nFor execution on a local, multicore CPU with excess RAM we recommend calling\noptions(mc.cores = parallel::detectCores()).\nTo avoid recompilation of unchanged Stan programs, we recommend calling\nrstan_options(auto_write = TRUE)\nFor within-chain threading using `reduce_sum()` or `map_rect()` Stan functions,\nchange `threads_per_chain` option:\nrstan_options(threads_per_chain = 1)\n\n\nAttaching package: 'rstan'\n\nThe following object is masked from 'package:tidyr':\n\n    extract\n\nlibrary(bayesplot)\n\nThis is bayesplot version 1.11.1\n- Online documentation and vignettes at mc-stan.org/bayesplot\n- bayesplot theme set to bayesplot::theme_default()\n   * Does _not_ affect other ggplot2 plots\n   * See ?bayesplot_theme_set for details on theme setting\n\n\nExample 1\n\nfn_model &lt;- \"\n  data {\n    int&lt;lower=0&gt; N;\n    vector[N] y;\n  }\n\n  parameters {\n    real mu;\n    real&lt;lower=0&gt; sigma;\n  }\n\n  model {\n    y ~ normal(mu, sigma);\n    mu ~ normal(0, 1000);\n    sigma ~ exponential(.0001);\n  }\n\"\n\nfn_sim &lt;- stan(model_code = fn_model, \n               data = list(N=2, y = c(-1,1)), \n               chains = 4, iter = 1000*2, seed = 84735)\n\n\nui_model &lt;- \"\n  data {\n    int&lt;lower=0&gt; N;\n    vector[N] y;\n  }\n\n  parameters {\n    real alpha;\n    real beta;\n    real&lt;lower=0&gt; sigma;\n  }\n\n  model {\n    y ~ normal(alpha + beta, sigma);\n    alpha ~ normal(0, 1000);\n    beta ~ normal(0, 1000);\n    sigma ~ exponential(1);\n  }\n\"\n\nui_sim &lt;- stan(model_code = ui_model, \n               data = list(N=100, y = rnorm(100)), \n               chains = 4, iter = 1000*2, seed = 84735)\n\n\ni_model &lt;- \"\n  data {\n    int&lt;lower=0&gt; N;\n    vector[N] y;\n  }\n\n  parameters {\n    real alpha;\n    real beta;\n    real&lt;lower=0&gt; sigma;\n  }\n\n  model {\n    y ~ normal(alpha + beta, sigma);\n    alpha ~ normal(0, 1);\n    beta ~ normal(0, 1);\n    sigma ~ exponential(1);\n  }\n\"\n\ni_sim &lt;- stan(model_code = i_model, \n               data = list(N=100, y = rnorm(100)), \n               chains = 4, iter = 1000*2, seed = 84735)"
   },
   {
     "objectID": "homework/hw02.html",
@@ -574,242 +574,630 @@
     "text": "Don’t be stubborn\n\n\n\n\n\n\nWarning\n\n\nThe posterior is defined on the same values as the prior. Do not assign \\(f(\\pi) = 0\\) on any reasonable value!"
   },
   {
-    "objectID": "slides/slides01.html#plan-for-today",
-    "href": "slides/slides01.html#plan-for-today",
-    "title": "Welcome to Bayes!",
-    "section": "Plan for today",
-    "text": "Plan for today\n\nIntros\nIntro to Bayesian Thinking\nSyllabus"
+    "objectID": "slides/slides10.html#recap-bayesian-analysis",
+    "href": "slides/slides10.html#recap-bayesian-analysis",
+    "title": "Under the MCMC hood",
+    "section": "Recap (Bayesian Analysis)",
+    "text": "Recap (Bayesian Analysis)"
   },
   {
-    "objectID": "slides/slides01.html#about-me",
-    "href": "slides/slides01.html#about-me",
-    "title": "Welcome to Bayes!",
-    "section": "About me",
-    "text": "About me\n\n\n\nEllis (almost 1.5!)\nSecond year at Carleton\nTaught at Swarthmore for 5 years before moving to MN\nPhD in Statistics & Data Science from Carnegie Mellon University\nGrew up in Minnesota, went to St Ben’s as an undergrad"
+    "objectID": "slides/slides10.html#computing-the-posterior",
+    "href": "slides/slides10.html#computing-the-posterior",
+    "title": "Under the MCMC hood",
+    "section": "Computing the posterior",
+    "text": "Computing the posterior\n1. Analytical Approach\n2. Grid Approximation\n3. Markov Chain Monte Carlo"
   },
   {
-    "objectID": "slides/slides01.html#my-crochet-journey-this-summer",
-    "href": "slides/slides01.html#my-crochet-journey-this-summer",
-    "title": "Welcome to Bayes!",
-    "section": "My crochet journey this summer",
-    "text": "My crochet journey this summer\n\n\n\n\n\nDecided I wanted to make a basket\nSkipped “practice these stitches” and just went for it\nDidn’t understand the pattern, watched a couple of youtube videos from random creators and went for it\nKept going even when I was very clearly doing something wrong"
+    "objectID": "slides/slides10.html#mcmc",
+    "href": "slides/slides10.html#mcmc",
+    "title": "Under the MCMC hood",
+    "section": "MCMC",
+    "text": "MCMC\n\nHow to fit them in {rstan}\nHow to diagnose convergence and fit\nHow they work\n\ntoday: conceptual\nWed: implementation in R"
   },
   {
-    "objectID": "slides/slides01.html#my-crochet-journey-this-summer-1",
-    "href": "slides/slides01.html#my-crochet-journey-this-summer-1",
-    "title": "Welcome to Bayes!",
-    "section": "My crochet journey this summer",
-    "text": "My crochet journey this summer\n\n\n\n\n\nAsked an expert (my sister) for advice\nDid “practice problems” using easier material (yarn) and bigger hook\nFound a reliable internet source for videos and tutorials\nStarted being way more careful about checking my work and redoing things if I wasn’t sure"
+    "objectID": "slides/slides10.html#section",
+    "href": "slides/slides10.html#section",
+    "title": "Under the MCMC hood",
+    "section": "",
+    "text": "Source: Richard McElreath’s Statistical Rethinking course, Lecture 08"
   },
   {
-    "objectID": "slides/slides01.html#intros",
-    "href": "slides/slides01.html#intros",
-    "title": "Welcome to Bayes!",
-    "section": "Intros",
-    "text": "Intros\n\nName\nSomething you did over the summer\nWhat makes you nervous about this class or term?\nSomething about yourself you are proud of\n\n\n\n\n−+\n05:00"
+    "objectID": "slides/slides10.html#section-1",
+    "href": "slides/slides10.html#section-1",
+    "title": "Under the MCMC hood",
+    "section": "",
+    "text": "King Markov must visit each island in proportion to its population size"
   },
   {
-    "objectID": "slides/slides01.html#warm-up",
-    "href": "slides/slides01.html#warm-up",
-    "title": "Welcome to Bayes!",
-    "section": "Warm Up",
-    "text": "Warm Up\n\nWhat are the key takeaways from:\n\nStat250: Stat Inference\nStat230: Regression\n\nWhat do you already know about Bayesian statistics?\n\n\n\n\n−+\n05:00"
+    "objectID": "slides/slides10.html#section-2",
+    "href": "slides/slides10.html#section-2",
+    "title": "Under the MCMC hood",
+    "section": "",
+    "text": "Flip a coin to choose island on left or right (proposal)"
   },
   {
-    "objectID": "slides/slides01.html#statistical-models",
-    "href": "slides/slides01.html#statistical-models",
-    "title": "Welcome to Bayes!",
-    "section": "Statistical models",
-    "text": "Statistical models\nA statistical model consists of\n\na collection of random variables to describe observable data,\nthe possible joint distribution(s) of the random variables,\nand the parameters, \\(\\boldsymbol \\theta\\), that define those distributions\n\n\n\nMorris and DeGroot, 377"
+    "objectID": "slides/slides10.html#section-3",
+    "href": "slides/slides10.html#section-3",
+    "title": "Under the MCMC hood",
+    "section": "",
+    "text": "Flip a coin to choose island on left or right (proposal)\nFind population of proposal island"
   },
   {
-    "objectID": "slides/slides01.html#r.a.-fisher",
-    "href": "slides/slides01.html#r.a.-fisher",
-    "title": "Welcome to Bayes!",
-    "section": "R.A. Fisher",
-    "text": "R.A. Fisher\n1890-1962\n\n\n\n\n\nVariance\nANOVA\nNull hypothesis\nMaximum likelihood estimation\np-value\nLots of contributions in genetics\nAlso a eugenecist"
+    "objectID": "slides/slides10.html#section-4",
+    "href": "slides/slides10.html#section-4",
+    "title": "Under the MCMC hood",
+    "section": "",
+    "text": "Flip a coin to choose island on left or right (proposal)\nFind population of proposal island\nFind population of current island"
   },
   {
-    "objectID": "slides/slides01.html#neyman-pearson",
-    "href": "slides/slides01.html#neyman-pearson",
-    "title": "Welcome to Bayes!",
-    "section": "Neyman & Pearson",
-    "text": "Neyman & Pearson\n\n\n\n\n\nConfidence interval\nCorrelation\nRegression\nStandard deviation\nEffect size\n“Optimal” tests\n\\(\\alpha\\) and \\(\\beta\\)\nType I and II error"
+    "objectID": "slides/slides10.html#section-5",
+    "href": "slides/slides10.html#section-5",
+    "title": "Under the MCMC hood",
+    "section": "",
+    "text": "Flip a coin to choose island on left or right (proposal)\nFind population of proposal island\nFind population of current island\nMove to proposal with probability \\(p_{new}/p_{current}\\)"
   },
   {
-    "objectID": "slides/slides01.html#frequentist-vs-bayesian",
-    "href": "slides/slides01.html#frequentist-vs-bayesian",
-    "title": "Welcome to Bayes!",
-    "section": "Frequentist vs Bayesian",
-    "text": "Frequentist vs Bayesian"
+    "objectID": "slides/slides10.html#section-6",
+    "href": "slides/slides10.html#section-6",
+    "title": "Under the MCMC hood",
+    "section": "",
+    "text": "Flip a coin to choose island on left or right (proposal)\nFind population of proposal island\nFind population of current island\nMove to proposal with probability \\(p_{new}/p_{current}\\)\nRepeat"
   },
   {
-    "objectID": "slides/slides01.html#bayes",
-    "href": "slides/slides01.html#bayes",
-    "title": "Welcome to Bayes!",
-    "section": "Bayes",
-    "text": "Bayes\n\n\n\n\nAll this guy did was Bayes’ rule:\n\\(P(A|B) = \\frac{P(B|A) P(A)}{ P(B)}\\)"
+    "objectID": "slides/slides10.html#this-procedure-ensures-visiting-each-island-in-proportion-to-its-population-in-the-long-run",
+    "href": "slides/slides10.html#this-procedure-ensures-visiting-each-island-in-proportion-to-its-population-in-the-long-run",
+    "title": "Under the MCMC hood",
+    "section": "This procedure ensures visiting each island in proportion to its population in the long run",
+    "text": "This procedure ensures visiting each island in proportion to its population in the long run\n\n\n\n\n\n\nMetropolis Algorithm\n\n\n\nFlip a coin to choose island on left or right (proposal)\nFind population of proposal island\nFind population of current island\nMove to proposal with probability \\(p_{new}/p_{current}\\)\nRepeat"
   },
   {
-    "objectID": "slides/slides01.html#frequentist-vs-bayesian-1",
-    "href": "slides/slides01.html#frequentist-vs-bayesian-1",
-    "title": "Welcome to Bayes!",
-    "section": "Frequentist vs Bayesian",
-    "text": "Frequentist vs Bayesian\n\n\nFrequentist\n\n“Classical” statistics\nProbability is a long-run frequency\nMake decisions based on a p-value\nType I and Type II errors\nConfidence intervals\n\n\nBayesian\n\nProbability is a subjective belief\nUpdate “prior” probabilities with data to obtain “posterior” probabilities\nMake decisions according to posterior probabilities\n“Credible” intervals"
+    "objectID": "slides/slides10.html#animation",
+    "href": "slides/slides10.html#animation",
+    "title": "Under the MCMC hood",
+    "section": "Animation",
+    "text": "Animation"
   },
   {
-    "objectID": "slides/slides01.html#q1",
-    "href": "slides/slides01.html#q1",
-    "title": "Welcome to Bayes!",
-    "section": "Q1",
-    "text": "Q1\nWhen flipping a fair coin, we say that “the probability of flipping Heads is 0.5.” How do you interpret this probability?\n\nIf I flip this coin over and over, roughly 50% will be Heads.\nHeads and Tails are equally plausible.\nBoth a and b make sense."
+    "objectID": "slides/slides10.html#markov-chain-monte-carlo-1",
+    "href": "slides/slides10.html#markov-chain-monte-carlo-1",
+    "title": "Under the MCMC hood",
+    "section": "Markov Chain Monte Carlo",
+    "text": "Markov Chain Monte Carlo\n\n“Islands”: parameter values\n“Population size”: posterior probability\nVisit each parameter value in proportion to its posterior probability\nAny number of parameters\nLots of “flavors” of algorithms\n\nHow do you propose a next step?\nHow do you calculate acceptance probability?"
   },
   {
-    "objectID": "slides/slides01.html#q2",
-    "href": "slides/slides01.html#q2",
-    "title": "Welcome to Bayes!",
-    "section": "Q2",
-    "text": "Q2\nAn election is coming up and a pollster claims that candidate A has a 0.9 probability of winning. How do you interpret this probability?\n\nIf we observe the election over and over, candidate A will win roughly 90% of the time.\nCandidate A is much more likely to win than to lose.\nThe pollster’s calculation is wrong. Candidate A will either win or lose, thus their probability of winning can only be 0 or 1."
+    "objectID": "slides/slides10.html#some-variations",
+    "href": "slides/slides10.html#some-variations",
+    "title": "Under the MCMC hood",
+    "section": "Some variations",
+    "text": "Some variations\nhttps://chi-feng.github.io/mcmc-demo/app.html?algorithm=RandomWalkMH"
   },
   {
-    "objectID": "slides/slides01.html#q3",
-    "href": "slides/slides01.html#q3",
-    "title": "Welcome to Bayes!",
-    "section": "Q3",
-    "text": "Q3\nConsider two claims.\n\nZuofu claims that he can predict the outcome of a coin flip. To test his claim, you flip a fair coin 10 times and he correctly predicts all 10.\nKavya claims that she can distinguish natural and artificial sweeteners. To test her claim, you give her 10 sweetener samples and she correctly identifies each.\n\nIn light of these experiments, what do you conclude?\n\nYou’re more confident in Kavya’s claim than Zuofu’s claim.\nThe evidence supporting Zuofu’s claim is just as strong as the evidence supporting Kavya’s claim."
+    "objectID": "slides/slides10.html#section-8",
+    "href": "slides/slides10.html#section-8",
+    "title": "Under the MCMC hood",
+    "section": "",
+    "text": "Metropolis-Hastings Algorithm\n\n\nLet parameter \\(\\mu\\) have posterior \\(f(\\mu|y) \\propto f(\\mu) L(\\mu | y)\\). A Metropolis-Hastings Markov Chain \\(\\{\\mu^{(1)}, \\mu^{(2)}, ..., \\mu^{(n)}\\}\\) evolves as follows. Let \\(\\mu^{(i)} = \\mu\\) be the chains location at \\(i \\in \\{1, 2, ...., N-1\\}\\) and identify \\(\\mu^{(i+1)}\\) through a two step process:\n\nPropose a new location. Conditioned on the current location \\(\\mu\\), draw a location \\(\\mu'\\) from a proposal model with pdf \\(q(\\mu'|\\mu)\\)\nDecide whether to go there. Calculate the acceptance probability \\[\\alpha = \\min\\{1, \\frac{f(\\mu') L(\\mu'|y) q(\\mu|\\mu')}{f(\\mu) L(\\mu|y) q(\\mu'|\\mu)} \\}\\] Then,\n\n\\[\\mu^{(i+1)} = \\begin{cases} \\mu' & \\text{with probability } \\alpha \\\\ \\mu & \\text{with probability } 1-\\alpha \\end{cases}\\]"
   },
   {
-    "objectID": "slides/slides01.html#q4",
-    "href": "slides/slides01.html#q4",
-    "title": "Welcome to Bayes!",
-    "section": "Q4",
-    "text": "Q4\nSuppose that during a recent doctor’s visit, you tested positive for a very rare disease. If you only get to ask the doctor one question, which would it be?\n\nWhat’s the chance that I actually have the disease?\nIf in fact I don’t have the disease, what’s the chance that I would’ve gotten this positive test result?"
+    "objectID": "slides/slides10.html#section-9",
+    "href": "slides/slides10.html#section-9",
+    "title": "Under the MCMC hood",
+    "section": "",
+    "text": "Metropolis Algorithm\n\n\nIf the proposal model is symmetric, then \\(q(\\mu | \\mu') = q(\\mu' | \\mu)\\) and the acceptance probability simplifies to:\n\\[\\alpha = \\min\\{1, \\frac{f(\\mu') L(\\mu'|y)}{f(\\mu) L(\\mu|y)} \\}\\]"
   },
   {
-    "objectID": "slides/slides01.html#results",
-    "href": "slides/slides01.html#results",
-    "title": "Welcome to Bayes!",
-    "section": "Results",
-    "text": "Results\nGive yourself:\n\n+1 for each A\n+3 for each B\n+2 for C on Q1\n-2 for C on Q2\n\nResults:\n\nScore &lt;5: your thinking is pretty frequentist\nScore &gt;9: your thinking is pretty Bayesian\n6-8: your leaning changes depending on the scenario"
+    "objectID": "slides/slides03.html#is-this-the-same-likelihood-as-the-stat250-likelihood",
+    "href": "slides/slides03.html#is-this-the-same-likelihood-as-the-stat250-likelihood",
+    "title": "Likelihood review + Posterior Simulation",
+    "section": "Is this the same likelihood as the Stat250 likelihood?",
+    "text": "Is this the same likelihood as the Stat250 likelihood?"
   },
   {
-    "objectID": "slides/slides01.html#tentative-schedule",
-    "href": "slides/slides01.html#tentative-schedule",
-    "title": "Welcome to Bayes!",
-    "section": "Tentative schedule",
-    "text": "Tentative schedule\n\n\n\n\nTopic\nChapters\nApprox. Duration\n\n\n\n\nIntro\n1-2\n1 week\n\n\nConjugate Analysis\n3-5\n2 weeks\n\n\nMCMC\n7\n1 weeks\n\n\nBayesian Regression\n9-14\n4 weeks\n\n\nHierarchical Models\n15\n2 weeks"
+    "objectID": "slides/slides03.html#does-it-matter-if-y-is-a-discrete-or-continuous-rv",
+    "href": "slides/slides03.html#does-it-matter-if-y-is-a-discrete-or-continuous-rv",
+    "title": "Likelihood review + Posterior Simulation",
+    "section": "Does it matter if \\(Y\\) is a discrete or continuous RV?",
+    "text": "Does it matter if \\(Y\\) is a discrete or continuous RV?"
   },
   {
-    "objectID": "slides/slides01.html#course-description",
-    "href": "slides/slides01.html#course-description",
-    "title": "Welcome to Bayes!",
-    "section": "Course description",
-    "text": "Course description\nThe Bayesian approach to statistics provides a powerful framework for incorporating prior knowledge into statistical analyses, updating this knowledge with data, and quantifying uncertainty in results. This course serves as a comprehensive introduction to Bayesian statistical inference and modeling, an alternative to the frequentist approach to statistics covered in previous classes. Topics include: Bayes’ Theorem; prior and posterior distributions; Bayesian regression; hierarchical models; and model adequacy and posterior predictive checks. Computational techniques will also be covered, including Markov Chain Monte Carlo methods, and modern Bayesian modeling packages in R."
+    "objectID": "slides/slides03.html#example-from-last-time-phd-admissions",
+    "href": "slides/slides03.html#example-from-last-time-phd-admissions",
+    "title": "Likelihood review + Posterior Simulation",
+    "section": "Example from last time: PhD admissions",
+    "text": "Example from last time: PhD admissions\n\n\n\nπ\n0.2\n0.4\n0.8\n\n\n\n\nf(π)\n0.7\n0.2\n0.1\n\n\nL(π | y = 3)\n0.0512\n0.2304\n0.2048\n\n\nf(π | y = 3)\n0.35\n0.45\n0.20"
   },
   {
-    "objectID": "slides/slides01.html#course-objectives",
-    "href": "slides/slides01.html#course-objectives",
-    "title": "Welcome to Bayes!",
-    "section": "Course Objectives",
-    "text": "Course Objectives\nAfter completing this course, you should be be able to demonstrate your competency with:\n\nExplaining the differences between frequentist and Bayesian approaches to statistics and data analysis\nSelecting appropriate prior distributions and likelihood models for Bayesian analysis\nUsing modern software to fit Bayesian models and assess their performance\nInterpreting results from Bayesian analyses"
+    "objectID": "slides/slides03.html#first-define-and-simulate-from-prior",
+    "href": "slides/slides03.html#first-define-and-simulate-from-prior",
+    "title": "Likelihood review + Posterior Simulation",
+    "section": "First, define and simulate from prior",
+    "text": "First, define and simulate from prior\n\nadmissions &lt;- tibble(\n  pi = c(.2, .4, .8)\n)\n\nprior &lt;- c(0.7, 0.2, 0.1)\n\nset.seed(091925)\nadmissions_sim &lt;- sample_n(admissions, \n                           size = 10000, \n                           weight = prior, \n                           replace = TRUE)"
   },
   {
-    "objectID": "slides/slides01.html#textbook",
-    "href": "slides/slides01.html#textbook",
-    "title": "Welcome to Bayes!",
-    "section": "Textbook:",
-    "text": "Textbook:\nBayes Rules! An Introduction to Applied Bayesian Modeling by Johnson, Ott, and Dogucu\nThe book is freely available at &lt;bayesrulesbook.com&gt;"
+    "objectID": "slides/slides03.html#section",
+    "href": "slides/slides03.html#section",
+    "title": "Likelihood review + Posterior Simulation",
+    "section": "",
+    "text": "admissions_sim\n\n# A tibble: 10,000 × 1\n      pi\n   &lt;dbl&gt;\n 1   0.2\n 2   0.2\n 3   0.2\n 4   0.4\n 5   0.2\n 6   0.4\n 7   0.2\n 8   0.4\n 9   0.2\n10   0.8\n# ℹ 9,990 more rows"
   },
   {
-    "objectID": "slides/slides01.html#computing",
-    "href": "slides/slides01.html#computing",
-    "title": "Welcome to Bayes!",
-    "section": "Computing:",
-    "text": "Computing:\nWe’ll be using R and RStudio throughout the course. If you’ve downloaded R to your own computer from a different class, great! If not, there are instructions available on the course website"
+    "objectID": "slides/slides03.html#simulated-pi-closely-approximates-prior-fpi",
+    "href": "slides/slides03.html#simulated-pi-closely-approximates-prior-fpi",
+    "title": "Likelihood review + Posterior Simulation",
+    "section": "Simulated pi closely approximates prior \\(f(\\pi)\\)",
+    "text": "Simulated pi closely approximates prior \\(f(\\pi)\\)\n\nadmissions_sim |&gt;\n  tabyl(pi)\n\n  pi    n percent\n 0.2 7030  0.7030\n 0.4 2002  0.2002\n 0.8  968  0.0968"
   },
   {
-    "objectID": "slides/slides01.html#what-will-you-do-in-this-course",
-    "href": "slides/slides01.html#what-will-you-do-in-this-course",
-    "title": "Welcome to Bayes!",
-    "section": "What will you do in this course?",
-    "text": "What will you do in this course?\nEach of the following components are important for your learning and therefore part of your final grade calculation:\n\n30% Homework due once per week\n\n10% Individual (graded on completion)\n10% Group (correctness and completion)\n10% Homework quizzes (correctness)\n\n10% Midterm project + presentation\n20% Final project + presentation\n20% Exam I\n20% Exam II"
+    "objectID": "slides/slides03.html#simulate-outcomes",
+    "href": "slides/slides03.html#simulate-outcomes",
+    "title": "Likelihood review + Posterior Simulation",
+    "section": "Simulate outcomes",
+    "text": "Simulate outcomes\n\nadmissions_sim &lt;- admissions_sim |&gt;\n  mutate(\n    y = rbinom(10000, size = 5, prob = pi)\n  )\n\nadmissions_sim |&gt; head(5)\n\n# A tibble: 5 × 2\n     pi     y\n  &lt;dbl&gt; &lt;int&gt;\n1   0.2     1\n2   0.2     2\n3   0.2     0\n4   0.4     0\n5   0.2     0"
   },
   {
-    "objectID": "slides/slides01.html#what-will-a-typical-dayweek-look-like",
-    "href": "slides/slides01.html#what-will-a-typical-dayweek-look-like",
-    "title": "Welcome to Bayes!",
-    "section": "What will a typical day/week look like?",
-    "text": "What will a typical day/week look like?\n\n\nBefore class:\n\nRead a chapter\nCome with questions\nBe prepared to try what was covered\n\n\nIn class:\n\nLecture/demo\n\nSometimes review of chapter\nSometimes new\n\nHands-on work or coding in R\nTime for group assignments\n\n\nAfter class:\n\nFinish group assignments\nWork on individual assignments"
+    "objectID": "slides/slides03.html#simulated-y-outcomes-approximate-fypi",
+    "href": "slides/slides03.html#simulated-y-outcomes-approximate-fypi",
+    "title": "Likelihood review + Posterior Simulation",
+    "section": "Simulated y outcomes approximate \\(f(y|\\pi)\\)",
+    "text": "Simulated y outcomes approximate \\(f(y|\\pi)\\)\n\nggplot(admissions_sim, aes(x = y)) +\n  geom_bar(aes(y = after_stat(prop))) + \n  facet_wrap(vars(pi))"
   },
   {
-    "objectID": "slides/slides01.html#office-hours-tentative",
-    "href": "slides/slides01.html#office-hours-tentative",
-    "title": "Welcome to Bayes!",
-    "section": "Office hours (tentative)",
-    "text": "Office hours (tentative)\n\n\n\nDay\nTime\nType\nLocation\n\n\n\n\nMonday\n12:30-1:30\nDrop-in\nCMC 307\n\n\nTuesday\n2-3\nDrop-in\nCMC 307\n\n\nWednesday\n3-41\nDrop-in\nCMC 307\n\n\nFriday\n10-112\nDrop-in\nCMC 307\n\n\n\nI will also have at least 1 hour of individual appointments available on my calendar per week\nStat120 PriorityStat340 Priority"
+    "objectID": "slides/slides03.html#to-approximate-posterior-condition-on-observed-data-and-look-at-relative-frequency",
+    "href": "slides/slides03.html#to-approximate-posterior-condition-on-observed-data-and-look-at-relative-frequency",
+    "title": "Likelihood review + Posterior Simulation",
+    "section": "To approximate posterior, condition on observed data and look at relative frequency",
+    "text": "To approximate posterior, condition on observed data and look at relative frequency\n\nobserved &lt;- admissions_sim |&gt;\n  filter(y == 3)\n\nobserved |&gt;\n  tabyl(pi)\n\n  pi   n   percent\n 0.2 365 0.3628231\n 0.4 445 0.4423459\n 0.8 196 0.1948310"
   },
   {
-    "objectID": "slides/slides01.html#communication",
-    "href": "slides/slides01.html#communication",
-    "title": "Welcome to Bayes!",
-    "section": "Communication",
-    "text": "Communication\n\n\nMoodle: assignments, slides, and grades\nSlack: homework questions, announcements, discussion\nEmail: personal matters, time-sensitive announcements\n\n\n\nSlack is the fastest way to reach me. I typically will respond to messages 3x per weekday. I try to respond to emails within 48 hours. I’m online sporadically on evenings and weekends to devote time to family and rest – I hope you also use this time to reset and recharge!"
+    "objectID": "slides/slides-cheat-sheet.html#columns",
+    "href": "slides/slides-cheat-sheet.html#columns",
+    "title": "Slides Cheat Sheet",
+    "section": "Columns",
+    "text": "Columns\n\n\n\nFirst year at Carleton!\nTaught at Swarthmore for 5 years before moving here this fall\nPhD in Statistics & Data Science from Carnegie Mellon University\nGrew up in Minnesota, went to St Ben’s as an undergrad"
   },
   {
-    "objectID": "slides/slides01.html#advice-from-past-students",
-    "href": "slides/slides01.html#advice-from-past-students",
-    "title": "Welcome to Bayes!",
-    "section": "Advice from past students:",
-    "text": "Advice from past students:\n\nSTART HOMEWORKS EARLY\nDo the reading! The textbook is really great and can help give you a motivation for everything that’s happening in class.\nStart the problem sets early and go to office hours!\nask questions! you will inevitably not understand everything in the course at first pass.\nGo to her office hours!!!!!\nRead the book, and ask questions!\nTry to start the homework problems on the day that they are assigned.\nThis course is very fast-paced and intensive, so it may not be the right fit for everyone. Students who are not prepared for a compact schedule, or who are looking for an easier workload, may find it challenging. A solid foundation in statistics and a strong level of commitment are essential to keep up with the material and succeed in the class.\nAsk questions in class, Amanda has no problem reviewing a previously discussed concept.\nWork with other people in the class, collaboration is key\nStart the homework early! Give yourself time to get things done, to understand, and to pause. Don’t feel afraid to ask questions; she’s so accessible.\nSpend some time reviewing handouts before doing homework."
+    "objectID": "slides/slides-cheat-sheet.html#only-graph-from-code",
+    "href": "slides/slides-cheat-sheet.html#only-graph-from-code",
+    "title": "Slides Cheat Sheet",
+    "section": "Only graph from code",
+    "text": "Only graph from code"
   },
   {
-    "objectID": "slides/slides01.html#the-genius-myth",
-    "href": "slides/slides01.html#the-genius-myth",
-    "title": "Welcome to Bayes!",
-    "section": "The “Genius Myth”",
-    "text": "The “Genius Myth”\nIt’s sometimes easy to buy into the “genius myth” when it comes to math/stat courses: that you need to be a “math person” and have some innate mathematical ability in order to do well or become a statistics major. This could not be further from the truth! The best statisticians don’t necessarily have the “best” math or programming background, but are people that are able to formulate interesting questions and use math and programming to rigorously answer those questions. Many of the best statisticians I know became statisticians because they were initially interested in something else (biology, public health, psychology, neuroscience, physics, etc.) and realized that being able to answer important questions with data was not only valuable but fun and interesting. Being able to perform interesting statistical analyses is a skill that is learned, not an innate ability, and working hard at developing that skill is the point of this course."
+    "objectID": "slides/slides-cheat-sheet.html#background-image-half",
+    "href": "slides/slides-cheat-sheet.html#background-image-half",
+    "title": "Slides Cheat Sheet",
+    "section": "Background Image (half)",
+    "text": "Background Image (half)\n\n\nWhat skills do you need?\n\nprogramming with data\nstatistical modeling\ndomain knowledge\ncommunication"
   },
   {
-    "objectID": "slides/slides01.html#academic-integrity",
-    "href": "slides/slides01.html#academic-integrity",
-    "title": "Welcome to Bayes!",
-    "section": "Academic Integrity",
-    "text": "Academic Integrity\nYou are expected to follow Carleton’s policies regarding academic integrity. I encourage you to discuss the homework problems with others and use the resources available to you to try to figure out tough problems. You should code and write up your solutions on your own. Exams must be done by yourself without communicating with others; all work must be your own. The use of textbook solution manuals (physical or online), course materials from other students, or materials from previous versions of this course are not allowed. Copying, paraphrasing, summarizing, or submitting work generated by anyone but yourself without proper attribution is considered academic dishonesty (this includes output from LLMs).\nPlease ask if you are unsure of whether or not your actions are complying with the assignment/exam/project instructions. Always default to acknowledging any help received. Cases of suspected academic dishonesty are handled by the Provost’s Office and I am obligated to report any suspected violations of this policy."
+    "objectID": "slides/slides-cheat-sheet.html#full-size-image",
+    "href": "slides/slides-cheat-sheet.html#full-size-image",
+    "title": "Slides Cheat Sheet",
+    "section": "Full size image",
+    "text": "Full size image\n\n\n\nImage by Adam Loy  adapted from work of Joe Blitzstein, Hanspeter Pfister, and Hadley Wickham"
   },
   {
-    "objectID": "slides/slides01.html#more-on-ai",
-    "href": "slides/slides01.html#more-on-ai",
-    "title": "Welcome to Bayes!",
-    "section": "More on “AI”",
-    "text": "More on “AI”\nLarge-language models (e.g. ChatGPT, Gemini, etc.) should only be used for help interpreting R’s error messages or suggestions for your own code once you have already attempted the problem. You should not copy and paste course material into or out of an AI text generator.\nI also have a few rules in place to protect my intellectual property. You may not record my lectures using tools such as Otter.ai or upload any video or audio recordings to generate transcripts or study notes. You may not upload my course materials (slides, assignment prompts, note sets, etc.) into AI tools or homework help sites (such as chegg).\n“AI” tools are new for all of us and it’s OK to have questions about what is and isn’t appropriate!"
+    "objectID": "slides/slides-cheat-sheet.html#background-image-full-size",
+    "href": "slides/slides-cheat-sheet.html#background-image-full-size",
+    "title": "Slides Cheat Sheet",
+    "section": "Background image (full size)",
+    "text": "Background image (full size)"
   },
   {
-    "objectID": "slides/slides01.html#diversity-inclusion",
-    "href": "slides/slides01.html#diversity-inclusion",
-    "title": "Welcome to Bayes!",
-    "section": "Diversity & Inclusion",
-    "text": "Diversity & Inclusion\nWe all come to class with different backgrounds and experiences, and this diversity makes our class environment richer. We value diversity and inclusion, and are committed to a climate of mutual respect and full participation in and out of the classroom. This class strives to be a learning environment that is usable, equitable, inclusive and welcoming, regardless of race, ethnicity, religion, gender and gender identities, sexual orientation, ability, socioeconomic background, and nationality. If you anticipate or experience any barriers to learning, please discuss your concerns with me."
+    "objectID": "slides/slides-cheat-sheet.html#countdown",
+    "href": "slides/slides-cheat-sheet.html#countdown",
+    "title": "Slides Cheat Sheet",
+    "section": "Countdown",
+    "text": "Countdown\n\nWith your neighbor(s):\nChoose two countries to compare to the U.S. voting record in the U.N. over the years.\nWhat did you learn?\n\n\n\n\n−+\n04:00"
   },
   {
-    "objectID": "slides/slides01.html#accomodations",
-    "href": "slides/slides01.html#accomodations",
-    "title": "Welcome to Bayes!",
-    "section": "Accomodations",
-    "text": "Accomodations\nCarleton College is committed to providing equitable access to learning opportunities for all students. The Office of Accessibility Resources (Henry House, 107 Union Street) is the campus office that collaborates with students who have disabilities to provide and/or arrange reasonable accommodations. If you have, or think you may have, a disability, please contact OAR@carleton.edu to arrange a confidential discussion regarding equitable access and reasonable accommodations. You are also welcome to contact me privately to discuss your academic needs. However, all disability-related accommodations must be arranged, in advance, through OAR."
+    "objectID": "slides/slides-cheat-sheet.html#table-column-widths",
+    "href": "slides/slides-cheat-sheet.html#table-column-widths",
+    "title": "Slides Cheat Sheet",
+    "section": "table column widths",
+    "text": "table column widths\n\n\n\n\n\n\n\n\nCollaboration Allowed\n\n\n\n\nHomework Problems\nYou are allowed and encouraged to collaborate on homework. You may also use outside resources, but your submitted work must be your own and reflect your own understanding .\n\n\nLab Quiz Problems\nNo collaboration is allowed at all . You may use your own notes for resubmissions, but should not use outside resources.\n\n\nPortfolio Projects\nYou are expected to collaborate with your group, but cannot rely on external sources other than to help motivate the questions or provide other background information. Getting answers on significant parts of solutions from outside resources is not allowed.\n\n\nFinal Project\nYou are expected to collaborate with your group, but cannot rely on external sources other than to help motivate the questions or provide other background information. Any outside resources should be properly cited."
   },
   {
-    "objectID": "slides/slides01.html#title-ix",
-    "href": "slides/slides01.html#title-ix",
-    "title": "Welcome to Bayes!",
-    "section": "Title IX",
-    "text": "Title IX\nPlease be aware that all faculty are “responsible employees”, which means that if you tell me about a situation involving sexual harassment, sexual assault, dating violence, domestic violence, or stalking, I must share that information with the Title IX Coordinator. Although I have to make this notification, you will control how your case will be handled, including whether or not you wish to meet with the Title IX coordinator or pursue a formal complaint."
+    "objectID": "slides/slides-cheat-sheet.html#use-of-generative-artificial-intelligence-ai",
+    "href": "slides/slides-cheat-sheet.html#use-of-generative-artificial-intelligence-ai",
+    "title": "Slides Cheat Sheet",
+    "section": "Use of generative artificial intelligence (AI)",
+    "text": "Use of generative artificial intelligence (AI)\n\nTreat generative AI, such as ChatGPT or Gemini, the same as other online resources.\nGuiding principles:\n\n(1) Cognitive dimension: Working with AI should not reduce your ability to think clearly. AI should facilitate—rather than hinder—learning.\n(2) Ethical dimension: Students using AI should be transparent about their use and make sure it aligns with academic integrity.\n\n❌ AI tools for writing code: You may not use generative AI to take a “first pass” at a coding task. Do not type coursework prompts directly into AI tools.\n✅ AI tools for debugging code: You may make use of the technology to get help with error messages or trying to fix issues\n❌ AI tools for narrative: Unless instructed otherwise, you may not use generative AI to write narrative on assignments. In general, you may use generative AI as a resource as you complete assignments but not to answer the exercises for you.\n\n\n\nAdapted from Mine Çetinkaya-Rundel"
   },
   {
-    "objectID": "slides/slides01.html#take-care-of-yourself",
-    "href": "slides/slides01.html#take-care-of-yourself",
-    "title": "Welcome to Bayes!",
-    "section": "Take care of yourself",
-    "text": "Take care of yourself\nDo your best to maintain a healthy lifestyle this semester by wearing a mask if you don’t feel well, eating a vegetable every day, exercising, avoiding excessive drug and alcohol use, getting enough sleep, and taking some time to relax. Your mental health is more important than your grade in this course. There are many helpful resources available on campus and an important part of the college experience is learning how to ask for help. If you are experiencing mental health symptoms as a result of coursework, please speak with me so we can address the problem together."
+    "objectID": "slides/slides-cheat-sheet.html#linktask",
+    "href": "slides/slides-cheat-sheet.html#linktask",
+    "title": "Slides Cheat Sheet",
+    "section": "Link/task",
+    "text": "Link/task\n\nhttps://github.com/stat220-w25\n\n\nFill out the Welcome Survey for collection of your account names, later this week you will be invited to the course organization."
+  },
+  {
+    "objectID": "slides/slides-cheat-sheet.html#handwriting-font",
+    "href": "slides/slides-cheat-sheet.html#handwriting-font",
+    "title": "Slides Cheat Sheet",
+    "section": "handwriting font",
+    "text": "handwriting font\n\nin case you don’t yet have a GitHub account…"
+  },
+  {
+    "objectID": "slides/slides08.html#recap-conjugate-models",
+    "href": "slides/slides08.html#recap-conjugate-models",
+    "title": "Intro to Posterior Approximation",
+    "section": "Recap: Conjugate models",
+    "text": "Recap: Conjugate models"
+  },
+  {
+    "objectID": "slides/slides08.html#motivation",
+    "href": "slides/slides08.html#motivation",
+    "title": "Intro to Posterior Approximation",
+    "section": "Motivation",
+    "text": "Motivation"
+  },
+  {
+    "objectID": "slides/slides08.html#section-1",
+    "href": "slides/slides08.html#section-1",
+    "title": "Intro to Posterior Approximation",
+    "section": "",
+    "text": "Grid Approximation\n\n\nGrid approximation produces a sample of \\(N\\) independent \\(\\theta\\) values, \\(\\left\\lbrace \\theta^{(1)}, \\theta^{(2)}, \\ldots, \\theta^{(N)} \\right\\rbrace\\), from a discretized approximation of posterior pdf \\(f(\\theta|y)\\). This algorithm evolves in four steps:\n\nDefine a discrete grid of possible \\(\\theta\\) values.\nEvaluate the prior pdf \\(f(\\theta)\\) and likelihood function \\(L(\\theta|y)\\) at each \\(\\theta\\) grid value.\nObtain a discrete approximation of posterior pdf \\(f(\\theta |y)\\) by:\n\n\ncalculating the product \\(f(\\theta)L(\\theta|y)\\) at each \\(\\theta\\) grid value\nnormalizing the products so that they sum to 1 across all \\(\\theta\\).\n\n\nRandomly sample \\(N\\) \\(\\theta\\) grid values with respect to their corresponding normalized posterior probabilities."
+  },
+  {
+    "objectID": "slides/slides08.html#example-beta-binomial",
+    "href": "slides/slides08.html#example-beta-binomial",
+    "title": "Intro to Posterior Approximation",
+    "section": "Example: Beta-Binomial",
+    "text": "Example: Beta-Binomial\nDiscretize \\(\\pi\\):\n\\[\\pi \\in \\{0, .2, .4, .6, .8, 1.0\\}\\]"
+  },
+  {
+    "objectID": "slides/slides08.html#define-a-grid-of-possible-theta-values",
+    "href": "slides/slides08.html#define-a-grid-of-possible-theta-values",
+    "title": "Intro to Posterior Approximation",
+    "section": "1. Define a grid of possible \\(\\theta\\) values",
+    "text": "1. Define a grid of possible \\(\\theta\\) values\n\\[\\pi \\in \\{0, .2, .4, .6, .8, 1.0\\}\\]\n\n# Step 1: Define a grid of 6 pi values\ngrid_data &lt;- tibble(pi_grid = seq(from = 0, to = 1, length = 6))\n\ngrid_data\n\n# A tibble: 6 × 1\n  pi_grid\n    &lt;dbl&gt;\n1     0  \n2     0.2\n3     0.4\n4     0.6\n5     0.8\n6     1"
+  },
+  {
+    "objectID": "slides/slides08.html#evaluate-the-prior-pdf-ftheta-and-likelihood-function-lthetay-at-each-theta-grid-value.",
+    "href": "slides/slides08.html#evaluate-the-prior-pdf-ftheta-and-likelihood-function-lthetay-at-each-theta-grid-value.",
+    "title": "Intro to Posterior Approximation",
+    "section": "2. Evaluate the prior pdf \\(f(\\theta)\\) and likelihood function \\(L(\\theta|y)\\) at each \\(\\theta\\) grid value.",
+    "text": "2. Evaluate the prior pdf \\(f(\\theta)\\) and likelihood function \\(L(\\theta|y)\\) at each \\(\\theta\\) grid value.\n\n# Step 2: Evaluate the prior & likelihood at each pi\ngrid_data &lt;- grid_data %&gt;% \n  mutate(prior = dbeta(pi_grid, 2, 2),\n         likelihood = dbinom(9, 10, pi_grid))\n\n\n\n# A tibble: 6 × 3\n  pi_grid prior likelihood\n    &lt;dbl&gt; &lt;dbl&gt;      &lt;dbl&gt;\n1     0    0    0         \n2     0.2  0.96 0.00000410\n3     0.4  1.44 0.00157   \n4     0.6  1.44 0.0403    \n5     0.8  0.96 0.268     \n6     1    0    0"
+  },
+  {
+    "objectID": "slides/slides08.html#a.-calculate-the-product-fthetalthetay-at-each-theta-grid-value",
+    "href": "slides/slides08.html#a.-calculate-the-product-fthetalthetay-at-each-theta-grid-value",
+    "title": "Intro to Posterior Approximation",
+    "section": "3a. Calculate the product \\(f(\\theta)L(\\theta|y)\\) at each \\(\\theta\\) grid value",
+    "text": "3a. Calculate the product \\(f(\\theta)L(\\theta|y)\\) at each \\(\\theta\\) grid value\n\n# Step 3: Approximate the posterior\ngrid_data &lt;- grid_data %&gt;% \n  mutate(\n    unnorm_post = likelihood * prior\n  )\n\n\n\n# A tibble: 6 × 4\n  pi_grid prior likelihood unnorm_post\n    &lt;dbl&gt; &lt;dbl&gt;      &lt;dbl&gt;       &lt;dbl&gt;\n1     0    0    0           0         \n2     0.2  0.96 0.00000410  0.00000393\n3     0.4  1.44 0.00157     0.00226   \n4     0.6  1.44 0.0403      0.0580    \n5     0.8  0.96 0.268       0.258     \n6     1    0    0           0"
+  },
+  {
+    "objectID": "slides/slides08.html#b.-normalize-this-product",
+    "href": "slides/slides08.html#b.-normalize-this-product",
+    "title": "Intro to Posterior Approximation",
+    "section": "3b. Normalize this product",
+    "text": "3b. Normalize this product\n\n# Step 3: Approximate the posterior\ngrid_data &lt;- grid_data %&gt;% \n  mutate(\n    posterior = unnorm_post / sum(unnorm_post)\n  )\n\n\n\n# A tibble: 6 × 5\n  pi_grid prior likelihood unnorm_post posterior\n    &lt;dbl&gt; &lt;dbl&gt;      &lt;dbl&gt;       &lt;dbl&gt;     &lt;dbl&gt;\n1     0    0    0           0          0        \n2     0.2  0.96 0.00000410  0.00000393 0.0000124\n3     0.4  1.44 0.00157     0.00226    0.00712  \n4     0.6  1.44 0.0403      0.0580     0.183    \n5     0.8  0.96 0.268       0.258      0.810    \n6     1    0    0           0          0"
+  },
+  {
+    "objectID": "slides/slides08.html#pause-to-check-does-it-sum-to-1",
+    "href": "slides/slides08.html#pause-to-check-does-it-sum-to-1",
+    "title": "Intro to Posterior Approximation",
+    "section": "Pause to check: does it sum to 1?",
+    "text": "Pause to check: does it sum to 1?\n\n# Confirm that the posterior approximation sums to 1\ngrid_data %&gt;% \n  summarize(sum(unnorm_post), sum(posterior))\n\n# A tibble: 1 × 2\n  `sum(unnorm_post)` `sum(posterior)`\n               &lt;dbl&gt;            &lt;dbl&gt;\n1              0.318                1"
+  },
+  {
+    "objectID": "slides/slides08.html#randomly-sample-n-theta-grid-values-with-respect-to-their-corresponding-normalized-posterior-probabilities.",
+    "href": "slides/slides08.html#randomly-sample-n-theta-grid-values-with-respect-to-their-corresponding-normalized-posterior-probabilities.",
+    "title": "Intro to Posterior Approximation",
+    "section": "4. Randomly sample \\(N\\) \\(\\theta\\) grid values with respect to their corresponding normalized posterior probabilities.",
+    "text": "4. Randomly sample \\(N\\) \\(\\theta\\) grid values with respect to their corresponding normalized posterior probabilities.\n\n# Set the seed\nset.seed(84735)\n\n# Step 4: sample from the discretized posterior\npost_sample &lt;- sample_n(grid_data, size = 10000, \n                        weight = posterior, replace = TRUE)\n\n\n\n# A tibble: 10,000 × 5\n   pi_grid prior likelihood unnorm_post posterior\n     &lt;dbl&gt; &lt;dbl&gt;      &lt;dbl&gt;       &lt;dbl&gt;     &lt;dbl&gt;\n 1     0.8  0.96     0.268       0.258      0.810\n 2     0.8  0.96     0.268       0.258      0.810\n 3     0.8  0.96     0.268       0.258      0.810\n 4     0.6  1.44     0.0403      0.0580     0.183\n 5     0.8  0.96     0.268       0.258      0.810\n 6     0.8  0.96     0.268       0.258      0.810\n 7     0.8  0.96     0.268       0.258      0.810\n 8     0.8  0.96     0.268       0.258      0.810\n 9     0.8  0.96     0.268       0.258      0.810\n10     0.8  0.96     0.268       0.258      0.810\n# ℹ 9,990 more rows"
+  },
+  {
+    "objectID": "slides/slides08.html#section-2",
+    "href": "slides/slides08.html#section-2",
+    "title": "Intro to Posterior Approximation",
+    "section": "",
+    "text": "# Histogram of the grid simulation with posterior pdf\nggplot(post_sample, aes(x = pi_grid)) + \n  geom_histogram(aes(y = after_stat(density)), color = \"white\") + \n  stat_function(fun = dbeta, args = list(11, 3)) + \n  lims(x = c(0, 1))"
+  },
+  {
+    "objectID": "slides/slides08.html#section-4",
+    "href": "slides/slides08.html#section-4",
+    "title": "Intro to Posterior Approximation",
+    "section": "",
+    "text": "# Step 1: Define a grid of 101 pi values\ngrid_data  &lt;- data.frame(pi_grid = seq(from = 0, to = 1, length = 101))\n\n# Step 2: Evaluate the prior & likelihood at each pi\ngrid_data &lt;- grid_data %&gt;% \n  mutate(prior = dbeta(pi_grid, 2, 2),\n         likelihood = dbinom(9, 10, pi_grid))\n\n# Step 3: Approximate the posterior\ngrid_data &lt;- grid_data %&gt;% \n  mutate(unnormalized = likelihood * prior,\n         posterior = unnormalized / sum(unnormalized))\n\n# Set the seed\nset.seed(84735)\n\n# Step 4: sample from the discretized posterior\npost_sample &lt;- sample_n(grid_data, size = 10000, \n                        weight = posterior, replace = TRUE)"
+  },
+  {
+    "objectID": "slides/slides08.html#what-does-grid-approximation-give-us-that-conjugacy-doesnt",
+    "href": "slides/slides08.html#what-does-grid-approximation-give-us-that-conjugacy-doesnt",
+    "title": "Intro to Posterior Approximation",
+    "section": "What does grid approximation give us that conjugacy doesn’t?",
+    "text": "What does grid approximation give us that conjugacy doesn’t?\nRemember our non-conjugate prior: \\(f(\\pi) = e - e^\\pi\\)?"
+  },
+  {
+    "objectID": "slides/slides08.html#section-6",
+    "href": "slides/slides08.html#section-6",
+    "title": "Intro to Posterior Approximation",
+    "section": "",
+    "text": "grid_data  &lt;- data.frame(pi_grid = seq(from = 0, to = 1, length = 101))\n\ngrid_data &lt;- grid_data %&gt;% \n  mutate(prior = exp(1) - exp(pi_grid),\n         likelihood = dbinom(9, 10, pi_grid))\n\ngrid_data &lt;- grid_data %&gt;% \n  mutate(unnormalized = likelihood * prior,\n         posterior = unnormalized / sum(unnormalized))\n\nset.seed(84735)\n\npost_sample &lt;- sample_n(grid_data, size = 10000, \n                        weight = posterior, replace = TRUE)"
+  },
+  {
+    "objectID": "slides/slides08.html#where-does-grid-approximation-start-to-fail",
+    "href": "slides/slides08.html#where-does-grid-approximation-start-to-fail",
+    "title": "Intro to Posterior Approximation",
+    "section": "Where does grid approximation start to fail?",
+    "text": "Where does grid approximation start to fail?"
+  },
+  {
+    "objectID": "slides/slides08.html#plan",
+    "href": "slides/slides08.html#plan",
+    "title": "Intro to Posterior Approximation",
+    "section": "Plan",
+    "text": "Plan\n\nToday: how to find them with {rstan}\nFriday: how to evaluate them\nNext week: how they work"
+  },
+  {
+    "objectID": "slides/slides08.html#section-8",
+    "href": "slides/slides08.html#section-8",
+    "title": "Intro to Posterior Approximation",
+    "section": "",
+    "text": "Markov Chain Monte Carlo (MCMC)\n\n\nMCMC is a class of algorithms used to approximate a probability distribution.\nLet \\(\\{\\theta^{(1)}, \\theta^{(2)}, ..., \\theta^{(n)} \\}\\) be an N-length MCMC sample. Then, \\(\\theta^{(i+1)}\\) is drawn from a model with conditional pdf\n\\[f(\\theta^{(i+1)}|\\theta^{(i)}, y)\\]\n\n\n\nNote that:\n\nMarkov property\nNot equivalent to posterior pdf\nIf done well, approximates posterior pdf"
+  },
+  {
+    "objectID": "slides/slides08.html#rstan",
+    "href": "slides/slides08.html#rstan",
+    "title": "Intro to Posterior Approximation",
+    "section": "{rstan}",
+    "text": "{rstan}\n\nlibrary(rstan)\n\nStan is a probabilistic programming language written in C++ (https://mc-stan.org/)\n{rstan} is the R interface to Stan\nThere are also interfaces for python, Julia, Mathematica, MATLAB, etc.\n\n\n\n\n\n\nNote\n\n\nSince {rstan} uses C++ under the hood, you might need to follow some additional steps to install the package. Follow the directions at https://github.com/stan-dev/rstan/wiki/RStan-Getting-Started carefully!"
+  },
+  {
+    "objectID": "slides/slides08.html#steps",
+    "href": "slides/slides08.html#steps",
+    "title": "Intro to Posterior Approximation",
+    "section": "Steps",
+    "text": "Steps\n\nWrite out the model in {rstan syntax}\n\ndata\nparameters\nmodel\n\nSample from the approximate posterior"
+  },
+  {
+    "objectID": "slides/slides08.html#beta-binomial-example",
+    "href": "slides/slides08.html#beta-binomial-example",
+    "title": "Intro to Posterior Approximation",
+    "section": "Beta-Binomial Example",
+    "text": "Beta-Binomial Example\nDefine the model:\n\n# STEP 1: DEFINE the model\nbb_model &lt;- \"\n  data {\n    int&lt;lower = 0, upper = 10&gt; Y;\n  }\n  parameters {\n    real&lt;lower = 0, upper = 1&gt; pi;\n  }\n  model {\n    Y ~ binomial(10, pi);\n    pi ~ beta(2, 2);\n  }\n\""
+  },
+  {
+    "objectID": "slides/slides08.html#beta-binomial-example-1",
+    "href": "slides/slides08.html#beta-binomial-example-1",
+    "title": "Intro to Posterior Approximation",
+    "section": "Beta-Binomial Example",
+    "text": "Beta-Binomial Example\nSample from the posterior:\n\n# STEP 2: SIMULATE the posterior\nbb_sim &lt;- stan(model_code = bb_model, data = list(Y = 9), \n               chains = 4, iter = 5000*2, seed = 84735)\n\nChain 4: Iteration: 6000 / 10000 [ 60%]  (Sampling)\nChain 4: Iteration: 7000 / 10000 [ 70%]  (Sampling)\nChain 4: Iteration: 8000 / 10000 [ 80%]  (Sampling)\nChain 4: Iteration: 9000 / 10000 [ 90%]  (Sampling)\nChain 4: Iteration: 10000 / 10000 [100%]  (Sampling)\nChain 4: \nChain 4:  Elapsed Time: 0.026 seconds (Warm-up)\nChain 4:                0.081 seconds (Sampling)\nChain 4:                0.107 seconds (Total)\nChain 4:"
+  },
+  {
+    "objectID": "slides/slides08.html#section-9",
+    "href": "slides/slides08.html#section-9",
+    "title": "Intro to Posterior Approximation",
+    "section": "",
+    "text": "bb_sim\n\nInference for Stan model: anon_model.\n4 chains, each with iter=10000; warmup=5000; thin=1; \npost-warmup draws per chain=5000, total post-warmup draws=20000.\n\n      mean se_mean   sd  2.5%   25%   50%   75% 97.5% n_eff Rhat\npi    0.78    0.00 0.11  0.55  0.72  0.80  0.86  0.95  6587    1\nlp__ -7.80    0.01 0.73 -9.87 -7.98 -7.52 -7.33 -7.27  6462    1\n\nSamples were drawn using NUTS(diag_e) at Wed Oct  1 08:13:19 2025.\nFor each parameter, n_eff is a crude measure of effective sample size,\nand Rhat is the potential scale reduction factor on split chains (at \nconvergence, Rhat=1)."
+  },
+  {
+    "objectID": "slides/slides08.html#section-10",
+    "href": "slides/slides08.html#section-10",
+    "title": "Intro to Posterior Approximation",
+    "section": "",
+    "text": "Burn-in\n\n\nIf you’ve ever made a batch of pancakes or crêpes, you know that the first pancake is always the worst – the pan isn’t yet at the perfect temperature, you haven’t yet figured out how much batter to use, and you need more time to practice your flipping technique. MCMC chains are similar. Without direct knowledge of the posterior it’s trying to simulate, the Markov chain might start out sampling unreasonable values of our parameter of interest. Eventually though, it learns and starts producing values that mimic a random sample from the posterior. And just as we might need to toss out the first pancake, we might want to toss the Markov chain values produced during this learning period – keeping them in our sample might lead to a poor posterior approximation. As such, “burn-in” is the practice of discarding the first portion of Markov chain values."
+  },
+  {
+    "objectID": "slides/slides08.html#section-11",
+    "href": "slides/slides08.html#section-11",
+    "title": "Intro to Posterior Approximation",
+    "section": "",
+    "text": "as.array(bb_sim, pars = \"pi\") |&gt;\n  head(5)\n\n, , parameters = pi\n\n          chains\niterations   chain:1   chain:2   chain:3   chain:4\n      [1,] 0.9288874 0.8637566 0.6410152 0.8054958\n      [2,] 0.8710291 0.6737700 0.6861136 0.8727761\n      [3,] 0.8105749 0.7752253 0.6994077 0.8625163\n      [4,] 0.7567798 0.5318069 0.8200739 0.8065095\n      [5,] 0.7410937 0.7004429 0.8200739 0.8065095"
+  },
+  {
+    "objectID": "slides/slides08.html#plotting-with-the-bayesplot-package",
+    "href": "slides/slides08.html#plotting-with-the-bayesplot-package",
+    "title": "Intro to Posterior Approximation",
+    "section": "Plotting with the {bayesplot} package",
+    "text": "Plotting with the {bayesplot} package\n\n\nlibrary(bayesplot)\n\n# Histogram of the Markov chain values\nmcmc_hist(bb_sim, \n          pars = \"pi\") + \n  yaxis_text(TRUE) + \n  ylab(\"count\")"
+  },
+  {
+    "objectID": "slides/slides08.html#plotting-with-the-bayesplot-package-1",
+    "href": "slides/slides08.html#plotting-with-the-bayesplot-package-1",
+    "title": "Intro to Posterior Approximation",
+    "section": "Plotting with the {bayesplot} package",
+    "text": "Plotting with the {bayesplot} package\n\n# Density plot of the Markov chain values\nmcmc_dens(bb_sim, \n                pars = \"pi\") + \n  yaxis_text(TRUE) + \n  ylab(\"density\")"
+  },
+  {
+    "objectID": "projects/proj1.html",
+    "href": "projects/proj1.html",
+    "title": "Project 1",
+    "section": "",
+    "text": "library(bayesrules) # R package for our textbook\nlibrary(tidyverse) # Collection of packages for tidying and plotting data\nlibrary(janitor) # Helper functions like tidy and tabyl\nlibrary(rstan) # for MCMC\nlibrary(bayesplot) # for plotting\n\nThe data in fish_poisson.csv are records of visits to a National Park and comes from the {rethinking} R package. The variable fish_caught gives the number of fish that was caught by a park visitor, and the hours variables gives the total number of hours that they spent in the park. Your task is to estimate the hourly average of fish caught for an individual while they are fishing. You can assume that the hourly number of fish caught is a Poisson distribution.\nHowever, the problem is that not every party tried to fish. So there are two ways that a zero can arise in the data: (1) the individual tried to fish but did not catch any, or (2) the individual did not try to fish at all. If we do not account for this, we’ll end up with an underestimate for fish extraction from the park.\nLet \\(\\theta\\) be the probability that a visitor does not fish. Let \\(\\lambda\\) be the mean number of fish caught, when a visitor is fishing. Then \\(Y|\\lambda \\sim \\text{Pois}(\\lambda)\\).\nThen, the probability of observing zero fish caught is:\n\\[\\theta + (1-\\theta) P(Y = 0 | \\lambda)\\]\nand the probability of observing a nonzero number of fish caught is:\n\\[(1-\\theta) P(Y=y | \\lambda)\\]\nThis is an example of a zero-inflated poisson distribution, and you will implement it for this case study project.\n(Note: Your model should also account for the differing amount of time individuals spend in the park.)\n\nfish_poisson &lt;- read_csv(\"../data/fish_poisson.csv\")\n\nFinding the posterior\nOption 1: Find the posterior distribution of \\(\\lambda\\) analytically\nOption 2: Implement your own MCMC sampler or grid approximation to estimate the posterior distribution of \\(\\lambda\\)\nOption 3: Use the stan starter code below. If you choose this option, you should also answer Question (1) below.\ndata {\n  int&lt;lower=1&gt; N;\n  array[N] int&lt;lower=0&gt; y;\n}\nparameters {\n  real&lt;lower=0, upper=1&gt; theta; // Pr(y = 0)\n  real&lt;lower=0&gt; lambda; // Poisson rate parameter (if y &gt; 0)\n}\nmodel {\n  lambda ~ _____________ ;\n  theta ~ ______________ ;\n\n  for (n in 1 : N) {\n    if (y[n] == 0) {\n      target += log_sum_exp(bernoulli_lpmf(1 | theta),\n                            bernoulli_lpmf(0 | theta)\n                              + poisson_lpmf(y[n] | lambda)); // log(Pr(y = 0))\n    } else {\n      target += bernoulli_lpmf(0 | theta)\n                  + poisson_lpmf(y[n] | lambda); // log(Pr(y &gt; 0))\n      y[n] ~ __________ ; // truncated poisson\n    }\n  }\n}\nQuestions to Consider\n\nThe target += lines in the stan code update the log posterior density for each run through the for loop. We need to include them when we do not use an explicit modeling statement (eg y ~ normal(0,1)). Explain or justify these lines of code. (You may have to dig into the stan reference manual)\nPerform an appropriate EDA to justify the use of a zero-inflated poisson analysis\nHow did you choose your prior distributions? Confirm they are reasonable through simulation.\n(If estimated with MCMC): Are you confident that your MCMC has converged? Provide justification\nWhat do you learn from \\(\\lambda\\)? What do you learn from \\(\\theta\\)? (these should be in context of the data)\nHow is your answer different than a “regular” Bayesian posterior analysis of \\(\\lambda\\)? (ie non zero-inflated)\nWhat would your model predict for a new visitor at the park?\nWhat are the benefits and drawbacks of using a fully specified Bayesian model in this scenario? What do we gain instead of, e.g., splitting up the data into zero fish caught and nonzero fish caught?\nReport\nYour submission should be a &lt;4 page report written in quarto/rmarkdown. Everything should be typed/proofread/labeled/captioned etc.\nEvaluation\nThere are two elements that make this a “project” rather than a “homework problem”:\n\nIt is more open-ended.\n\nIf you think an alternative approach is more appropriate for this data, go for it! There is no “right answer” that I am looking for. However, there are lots of ways to be wrong. You should think through your choices and provide justification for them.\nOn homework, you often have an example from class or the textbook to use as a “model”. On this project, I’m asking you to do something new!\n\n\nPart of your grade will be based on the presentation of your work. All portions of the report should be polished and proofread carefully."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Stat 340: Bayesian Statistics",
+    "section": "",
+    "text": "This page contains an outline of the topics, content, and assignments for the term. Note that this schedule will be updated as the term progresses and the timeline of topics and assignments might be updated. Any major changes to due dates will be announced in class and indicated in bold here.\n\n\n\n\n\n\nWEEK\nDOW\nDATE\nPREPARE\nTOPIC\nMATERIALS\nDUE\n\n\n\n1\nM\nMon, Sep 15\n📝complete welcome survey  📚 Bayes Rules Ch1  💻 Join Slack workspace\n\nIntro to Bayesian Thinking\nSlides01\n\n\n\n1\nW\nWed, Sep 17\n📚 Bayes Rules Ch2  💻 Complete computing setup\n\nBayes Rule, R Setup\nSlides02\n\n\n\n1\nF\nFri, Sep 19\n\nProbability and Likelihood Review; Posterior Simulation\nSlides03\n\nHW 1 and GW 1\n\n\n\n2\nM\nMon, Sep 22\n📚 Bayes Rules Ch3 \n\nBeta-Binomial Model\nSlides04\n\n\n\n2\nW\nWed, Sep 24\n📚 Bayes Rules Ch4 \n\nBalance and Sequentiality\nSlides05\n\n\n\n2\nF\nFri, Sep 26\n📚 Bayes Rules Ch5.1-2 \n\nGamma-Gamma\nSlides06\n\nHW 2 and GW 2\n\n\n\n3\nM\nMon, Sep 29\n📚 Bayes Rules Ch5.3-5.6  📝 complete group eval \n\nNormal-Normal\nSlides07\n\n\n\n3\nW\nWed, Oct 1\n📚 Bayes Rules Ch6.1-2 \n\nGrid approximation and Markov Chains\nSlides08\n\n\n\n3\nF\nFri, Oct 3\n📚 Bayes Rules Ch6.3 \n\nDiagnostics\nSlides09\n\nHW 3 and GW 3\n\n\n\n4\nM\nMon, Oct 6\n📚 Bayes Rules Ch7.1-7.3  📝 complete group eval \n\nMCMC I\nSlides10\nHand out computing project\n\n\n4\nW\nWed, Oct 8\n📚 Bayes Rules Ch7.4-7 \n\nMCMC II\ntbd\n\n\n\n4\nF\nFri, Oct 10\n\nExam I\ntbd\n\nHW 4 and GW 4\n\n\n\n5\nM\nMon, Oct 13\n\nPosterior Inference\ntbd\n\n\n\n5\nW\nWed, Oct 15\n\nPosterior Prediction\ntbd\n\n\n\n5\nF\nFri, Oct 17\n\nRegression\ntbd\nHW5\n\n\n6\nM\nMon, Oct 20\n\n❌ Midterm Break; no class\ntbd\n\n\n\n6\nW\nWed, Oct 22\n\nEvaluating I\ntbd\nComputing Project Due\n\n\n6\nF\nFri, Oct 24\n\nEvaluating II\ntbd\nHW6\n\n\n7\nM\nMon, Oct 27\n\nExtending Regression Model\ntbd\n\n\n\n7\nW\nWed, Oct 29\n\nPoisson Regression\ntbd\n\n\n\n7\nF\nFri, Oct 31\n\nNegative Binomial Regression\ntbd\nHW7\n\n\n8\nM\nMon, Nov 3\n\nLogistic Regression\ntbd\n\n\n\n8\nW\nWed, Nov 5\n\nNaive Bayes Classification\ntbd\n\n\n\n8\nF\nFri, Nov 7\n\nExam II\ntbd\nHW8\n\n\n9\nM\nMon, Nov 10\n\nHierarchical Models I\ntbd\n\n\n\n9\nW\nWed, Nov 12\n\nHierarchical Models II\ntbd\n\n\n\n9\nF\nFri, Nov 14\n\nHierarchical Models III\ntbd\n\n\n\n10\nM\nMon, Nov 17\n\nProject work day\ntbd\nHW 9\n\n\n10\nW\nWed, Nov 19\n\nLightning talks\ntbd\n\n\n\n\nM\nFri, Nov 21\n\nFinal Project Due @ noon\ntbd",
+    "crumbs": [
+      "Schedule"
+    ]
+  },
+  {
+    "objectID": "slides/slides09.html#markov-chain-monte-carlo",
+    "href": "slides/slides09.html#markov-chain-monte-carlo",
+    "title": "Care and feeding of your MCMCs",
+    "section": "Markov Chain Monte Carlo",
+    "text": "Markov Chain Monte Carlo\nA MCMC sample \\(\\{ \\theta^{(1)}, \\theta^{(1)}, ..., \\theta^{(N)}\\}\\) is a sequence of values drawn from conditional pdf:\n\\[f(\\theta^{(i+1)}|\\theta^{(i)}, y)\\] when done well, it converges approximately to the posterior \\(f(\\theta |y)\\)"
+  },
+  {
+    "objectID": "slides/slides09.html#mcmc-plan",
+    "href": "slides/slides09.html#mcmc-plan",
+    "title": "Care and feeding of your MCMCs",
+    "section": "MCMC plan",
+    "text": "MCMC plan\n\nYesterday: how to find them with {rstan}\nToday: how to evaluate them\nNext week: how they work"
+  },
+  {
+    "objectID": "slides/slides09.html#beta-binomial-example-in-rstan",
+    "href": "slides/slides09.html#beta-binomial-example-in-rstan",
+    "title": "Care and feeding of your MCMCs",
+    "section": "Beta-Binomial Example in {rstan}",
+    "text": "Beta-Binomial Example in {rstan}\n\n# STEP 1: DEFINE the model\nbb_model &lt;- \"\n  data {\n    real&lt;lower=0&gt; alpha;\n    real&lt;lower=0&gt; beta;\n    int&lt;lower=1&gt; n;\n    int&lt;lower=0, upper=n&gt; Y;\n  }\n\n  parameters {\n    real&lt;lower=0, upper=1&gt; pi;\n  }\n\n  model {\n    Y ~ binomial(n, pi);\n    pi ~ beta(alpha, beta);\n  }\n\"\n\n\n# STEP 2: SIMULATE the posterior\nbb_sim &lt;- stan(model_code = bb_model, \n               data = list(alpha = 2, beta = 2, Y = 9, n = 10), \n               chains = 4, iter = 1000*2, seed = 84735)"
+  },
+  {
+    "objectID": "slides/slides09.html#section",
+    "href": "slides/slides09.html#section",
+    "title": "Care and feeding of your MCMCs",
+    "section": "",
+    "text": "bb_sim\n\nInference for Stan model: anon_model.\n4 chains, each with iter=2000; warmup=1000; thin=1; \npost-warmup draws per chain=1000, total post-warmup draws=4000.\n\n      mean se_mean   sd   2.5%   25%   50%   75% 97.5% n_eff Rhat\npi    0.79    0.00 0.11   0.55  0.72  0.80  0.87  0.95  1304    1\nlp__ -7.85    0.02 0.80 -10.13 -8.05 -7.53 -7.33 -7.27  1419    1\n\nSamples were drawn using NUTS(diag_e) at Thu Oct  2 20:42:34 2025.\nFor each parameter, n_eff is a crude measure of effective sample size,\nand Rhat is the potential scale reduction factor on split chains (at \nconvergence, Rhat=1)."
+  },
+  {
+    "objectID": "slides/slides09.html#section-1",
+    "href": "slides/slides09.html#section-1",
+    "title": "Care and feeding of your MCMCs",
+    "section": "",
+    "text": "mcmc_dens(bb_sim, pars = \"pi\") +\n  stat_function(fun = dbeta, args = list(11, 3), col = \"darkorange\", linewidth = 2)"
+  },
+  {
+    "objectID": "slides/slides09.html#in-practice-we-dont-know-the-true-posterior",
+    "href": "slides/slides09.html#in-practice-we-dont-know-the-true-posterior",
+    "title": "Care and feeding of your MCMCs",
+    "section": "In practice, we don’t know the true posterior",
+    "text": "In practice, we don’t know the true posterior\n\nWhat does a good markov chain look like?\nHow can we tell if we are getting a reasonable approximation of the posterior?\nHow big should our Markov chain size be?\n\n\n\nSome examples from today are from Statistical Rethinking"
+  },
+  {
+    "objectID": "slides/slides09.html#traceplots",
+    "href": "slides/slides09.html#traceplots",
+    "title": "Care and feeding of your MCMCs",
+    "section": "Traceplots",
+    "text": "Traceplots\n\n\n\nmcmc_trace(bb_sim, pars = \"pi\")\n\n\n\n\n\n\n\n\n\n\nIdeally, \\(\\theta^{(i+1)}\\) does not depend on \\(\\theta^{(i)}\\) too much\nShould look like a “fat hairy caterpillar”"
+  },
+  {
+    "objectID": "slides/slides09.html#first-20-draws-burn-in-warmup",
+    "href": "slides/slides09.html#first-20-draws-burn-in-warmup",
+    "title": "Care and feeding of your MCMCs",
+    "section": "First 20 draws (burn-in / warmup)",
+    "text": "First 20 draws (burn-in / warmup)"
+  },
+  {
+    "objectID": "slides/slides09.html#first-200-draws-burn-in-warmup",
+    "href": "slides/slides09.html#first-200-draws-burn-in-warmup",
+    "title": "Care and feeding of your MCMCs",
+    "section": "First 200 draws (burn-in / warmup)",
+    "text": "First 200 draws (burn-in / warmup)"
+  },
+  {
+    "objectID": "slides/slides09.html#mixing-slowly",
+    "href": "slides/slides09.html#mixing-slowly",
+    "title": "Care and feeding of your MCMCs",
+    "section": "“Mixing slowly”",
+    "text": "“Mixing slowly”"
+  },
+  {
+    "objectID": "slides/slides09.html#getting-stuck",
+    "href": "slides/slides09.html#getting-stuck",
+    "title": "Care and feeding of your MCMCs",
+    "section": "“Getting Stuck”",
+    "text": "“Getting Stuck”"
+  },
+  {
+    "objectID": "slides/slides09.html#each-chain-should-converge-on-roughly-the-same-distribution",
+    "href": "slides/slides09.html#each-chain-should-converge-on-roughly-the-same-distribution",
+    "title": "Care and feeding of your MCMCs",
+    "section": "Each chain should converge on roughly the same distribution",
+    "text": "Each chain should converge on roughly the same distribution\n\nmcmc_dens_overlay(bb_sim, pars = \"pi\")"
+  },
+  {
+    "objectID": "slides/slides09.html#how-many-chains-do-you-need",
+    "href": "slides/slides09.html#how-many-chains-do-you-need",
+    "title": "Care and feeding of your MCMCs",
+    "section": "How many chains do you need?",
+    "text": "How many chains do you need?\n\nWhen testing and debugging your model, use 1\nWhen deciding whether your chains are valid, need &gt;1\nWhen you do your final run that you will make inferences from, one long chain or multiple chains is fine\n\n\n\n\n\n\n\nRule of thumb:\n\n\nOne (short) chain to debug, four chains for verification and inference"
+  },
+  {
+    "objectID": "slides/slides09.html#autocorrelation",
+    "href": "slides/slides09.html#autocorrelation",
+    "title": "Care and feeding of your MCMCs",
+    "section": "Autocorrelation",
+    "text": "Autocorrelation\n\nmcmc_acf(bb_sim, pars = \"pi\")"
+  },
+  {
+    "objectID": "slides/slides09.html#slow-mixing-chains-often-have-high-autocorrelation",
+    "href": "slides/slides09.html#slow-mixing-chains-often-have-high-autocorrelation",
+    "title": "Care and feeding of your MCMCs",
+    "section": "Slow mixing chains often have high autocorrelation",
+    "text": "Slow mixing chains often have high autocorrelation"
+  },
+  {
+    "objectID": "slides/slides09.html#effective-sample-size",
+    "href": "slides/slides09.html#effective-sample-size",
+    "title": "Care and feeding of your MCMCs",
+    "section": "Effective Sample Size",
+    "text": "Effective Sample Size\n\n\n\n\n\n\n\\(N_{eff}\\)\n\n\nEffective Sample Size (\\(N_{eff}\\)) quantifies the number of independent samples it would take to produce an equivalently accurate posterior approximation\n\n\n\n\n\n\n\n\n\n\\(N_{eff}/N\\)\n\n\nEffective sample size ratio\n\n\n\n\nneff_ratio(bb_sim, pars = c(\"pi\"))\n\n[1] 0.3260274"
+  },
+  {
+    "objectID": "slides/slides09.html#r-hat",
+    "href": "slides/slides09.html#r-hat",
+    "title": "Care and feeding of your MCMCs",
+    "section": "R-hat",
+    "text": "R-hat\nIdea: In a “good” Markov chain, the variability across all chains is similar to the variability within a given chain. In a “bad” Markov chain, the variability across all chains is bigger than the variability within a given chain"
+  },
+  {
+    "objectID": "slides/slides09.html#r-hat-1",
+    "href": "slides/slides09.html#r-hat-1",
+    "title": "Care and feeding of your MCMCs",
+    "section": "R-hat",
+    "text": "R-hat\n\n\n\n\n\n\nGelman-Rubin convergence diagnostic\n\n\nR-hat \\(\\approx \\sqrt{\\frac{\\text{Var}_{\\text{combined}}}{\\text{Var}_{\\text{within}}}}\\)\nR-hat \\(\\approx\\) 1 is good; R-hat \\(&gt;1\\) indicates the chains have not converged\n\n\n\n\nrhat(bb_sim)\n\n       pi      lp__ \n0.9999668 1.0012277"
+  },
+  {
+    "objectID": "slides/slides09.html#section-2",
+    "href": "slides/slides09.html#section-2",
+    "title": "Care and feeding of your MCMCs",
+    "section": "",
+    "text": "fn_model &lt;- \"\n  data {\n    int&lt;lower=0&gt; N;\n    vector[N] y;\n  }\n\n  parameters {\n    real mu;\n    real&lt;lower=0&gt; sigma;\n  }\n\n  model {\n    y ~ normal(mu, sigma);\n    mu ~ normal(0, 1000);\n    sigma ~ exponential(.0001);\n  }\n\""
+  },
+  {
+    "objectID": "slides/slides09.html#section-3",
+    "href": "slides/slides09.html#section-3",
+    "title": "Care and feeding of your MCMCs",
+    "section": "",
+    "text": "# STEP 2: SIMULATE the posterior\nfn_sim &lt;- stan(model_code = fn_model, \n               data = list(N=2, y = c(-1,1)), \n               chains = 4, iter = 1000*2, seed = 84735)\n\nWarning :There were 521 divergent transitions after warmup. See\nhttps://mc-stan.org/misc/warnings.html#divergent-transitions-after-warmup\nto find out why this is a problem and how to eliminate them.\nWarning :Examine the pairs() plot to diagnose sampling problems\n\nWarning :Bulk Effective Samples Size (ESS) is too low, indicating posterior means and medians may be unreliable.\nRunning the chains for more iterations may help. See\nhttps://mc-stan.org/misc/warnings.html#bulk-ess\nWarning :Tail Effective Samples Size (ESS) is too low, indicating posterior variances and tail quantiles may be unreliable.\nRunning the chains for more iterations may help. See\nhttps://mc-stan.org/misc/warnings.html#tail-ess"
+  },
+  {
+    "objectID": "slides/slides09.html#mu",
+    "href": "slides/slides09.html#mu",
+    "title": "Care and feeding of your MCMCs",
+    "section": "\\(\\mu\\)",
+    "text": "\\(\\mu\\)\nmcmc_trace(fn_sim, pars = \"mu\")\nmcmc_dens_overlay(fn_sim, pars = \"mu\")"
+  },
+  {
+    "objectID": "slides/slides09.html#sigma",
+    "href": "slides/slides09.html#sigma",
+    "title": "Care and feeding of your MCMCs",
+    "section": "\\(\\sigma\\)",
+    "text": "\\(\\sigma\\)\nmcmc_trace(fn_sim, pars = \"sigma\")\nmcmc_dens_overlay(fn_sim, pars = \"sigma\")"
+  },
+  {
+    "objectID": "slides/slides09.html#section-4",
+    "href": "slides/slides09.html#section-4",
+    "title": "Care and feeding of your MCMCs",
+    "section": "",
+    "text": "fn_model2 &lt;- \"\n  data {\n    int&lt;lower=0&gt; N;\n    vector[N] y;\n  }\n\n  parameters {\n    real mu;\n    real&lt;lower=0&gt; sigma;\n  }\n\n  model {\n    y ~ normal(mu, sigma);\n    mu ~ normal(0, 10);\n    sigma ~ exponential(1);\n  }\n\""
+  },
+  {
+    "objectID": "slides/slides09.html#section-5",
+    "href": "slides/slides09.html#section-5",
+    "title": "Care and feeding of your MCMCs",
+    "section": "",
+    "text": "# STEP 2: SIMULATE the posterior\nfn_sim2 &lt;- stan(model_code = fn_model2, \n               data = list(N=2, y = c(-1,1)), \n               chains = 4, iter = 1000*2, seed = 84735)\n\nWarning :There were 3 divergent transitions after warmup. See\nhttps://mc-stan.org/misc/warnings.html#divergent-transitions-after-warmup\nto find out why this is a problem and how to eliminate them.\nWarning :Examine the pairs() plot to diagnose sampling problems"
+  },
+  {
+    "objectID": "slides/slides09.html#mu-1",
+    "href": "slides/slides09.html#mu-1",
+    "title": "Care and feeding of your MCMCs",
+    "section": "\\(\\mu\\)",
+    "text": "\\(\\mu\\)\nmcmc_trace(fn_sim2, pars = \"mu\")\nmcmc_dens_overlay(fn_sim2, pars = \"mu\")"
+  },
+  {
+    "objectID": "slides/slides09.html#sigma-1",
+    "href": "slides/slides09.html#sigma-1",
+    "title": "Care and feeding of your MCMCs",
+    "section": "\\(\\sigma\\)",
+    "text": "\\(\\sigma\\)\nmcmc_trace(fn_sim2, pars = \"sigma\")\nmcmc_dens_overlay(fn_sim2, pars = \"sigma\")"
   },
   {
     "objectID": "slides/slides02.html#warm-up-i-bayesian-personality-quiz",
@@ -1071,511 +1459,242 @@
     "text": "Summary\nThree steps to a Bayesian analysis:\n\nConstruct a prior model for the variable of interest (possible values and the relative plausibility of each)\nUpon observing data \\(Y = y\\), define the likelihoood \\(L(\\pi |y) = P(y | \\pi)\\)\nBuild the posterior model of the variable of interest using Bayes Rule, which balances the prior and likelihood: \\[\\text{posterior} = \\frac{\\text{prior} \\cdot \\text{likelihood}}{\\text{normalizing constant}} \\propto \\text{prior} \\cdot \\text{likelihood}\\]"
   },
   {
-    "objectID": "slides/slides09.html#markov-chain-monte-carlo",
-    "href": "slides/slides09.html#markov-chain-monte-carlo",
-    "title": "Care and feeding of your MCMCs",
-    "section": "Markov Chain Monte Carlo",
-    "text": "Markov Chain Monte Carlo\nA MCMC sample \\(\\{ \\theta^{(1)}, \\theta^{(1)}, ..., \\theta^{(N)}\\}\\) is a sequence of values drawn from conditional pdf:\n\\[f(\\theta^{(i+1)}|\\theta^{(i)}, y)\\] when done well, it converges approximately to the posterior \\(f(\\theta |y)\\)"
+    "objectID": "slides/slides01.html#plan-for-today",
+    "href": "slides/slides01.html#plan-for-today",
+    "title": "Welcome to Bayes!",
+    "section": "Plan for today",
+    "text": "Plan for today\n\nIntros\nIntro to Bayesian Thinking\nSyllabus"
   },
   {
-    "objectID": "slides/slides09.html#mcmc-plan",
-    "href": "slides/slides09.html#mcmc-plan",
-    "title": "Care and feeding of your MCMCs",
-    "section": "MCMC plan",
-    "text": "MCMC plan\n\nYesterday: how to find them with {rstan}\nToday: how to evaluate them\nNext week: how they work"
+    "objectID": "slides/slides01.html#about-me",
+    "href": "slides/slides01.html#about-me",
+    "title": "Welcome to Bayes!",
+    "section": "About me",
+    "text": "About me\n\n\n\nEllis (almost 1.5!)\nSecond year at Carleton\nTaught at Swarthmore for 5 years before moving to MN\nPhD in Statistics & Data Science from Carnegie Mellon University\nGrew up in Minnesota, went to St Ben’s as an undergrad"
   },
   {
-    "objectID": "slides/slides09.html#beta-binomial-example-in-rstan",
-    "href": "slides/slides09.html#beta-binomial-example-in-rstan",
-    "title": "Care and feeding of your MCMCs",
-    "section": "Beta-Binomial Example in {rstan}",
-    "text": "Beta-Binomial Example in {rstan}\n\n# STEP 1: DEFINE the model\nbb_model &lt;- \"\n  data {\n    real&lt;lower=0&gt; alpha;\n    real&lt;lower=0&gt; beta;\n    int&lt;lower=1&gt; n;\n    int&lt;lower=0, upper=n&gt; Y;\n  }\n\n  parameters {\n    real&lt;lower=0, upper=1&gt; pi;\n  }\n\n  model {\n    Y ~ binomial(n, pi);\n    pi ~ beta(alpha, beta);\n  }\n\"\n\n\n# STEP 2: SIMULATE the posterior\nbb_sim &lt;- stan(model_code = bb_model, \n               data = list(alpha = 2, beta = 2, Y = 9, n = 10), \n               chains = 4, iter = 1000*2, seed = 84735)"
+    "objectID": "slides/slides01.html#my-crochet-journey-this-summer",
+    "href": "slides/slides01.html#my-crochet-journey-this-summer",
+    "title": "Welcome to Bayes!",
+    "section": "My crochet journey this summer",
+    "text": "My crochet journey this summer\n\n\n\n\n\nDecided I wanted to make a basket\nSkipped “practice these stitches” and just went for it\nDidn’t understand the pattern, watched a couple of youtube videos from random creators and went for it\nKept going even when I was very clearly doing something wrong"
   },
   {
-    "objectID": "slides/slides09.html#section",
-    "href": "slides/slides09.html#section",
-    "title": "Care and feeding of your MCMCs",
-    "section": "",
-    "text": "bb_sim\n\nInference for Stan model: anon_model.\n4 chains, each with iter=2000; warmup=1000; thin=1; \npost-warmup draws per chain=1000, total post-warmup draws=4000.\n\n      mean se_mean   sd   2.5%   25%   50%   75% 97.5% n_eff Rhat\npi    0.79    0.00 0.11   0.55  0.72  0.80  0.87  0.95  1304    1\nlp__ -7.85    0.02 0.80 -10.13 -8.05 -7.53 -7.33 -7.27  1419    1\n\nSamples were drawn using NUTS(diag_e) at Thu Oct  2 20:42:34 2025.\nFor each parameter, n_eff is a crude measure of effective sample size,\nand Rhat is the potential scale reduction factor on split chains (at \nconvergence, Rhat=1)."
+    "objectID": "slides/slides01.html#my-crochet-journey-this-summer-1",
+    "href": "slides/slides01.html#my-crochet-journey-this-summer-1",
+    "title": "Welcome to Bayes!",
+    "section": "My crochet journey this summer",
+    "text": "My crochet journey this summer\n\n\n\n\n\nAsked an expert (my sister) for advice\nDid “practice problems” using easier material (yarn) and bigger hook\nFound a reliable internet source for videos and tutorials\nStarted being way more careful about checking my work and redoing things if I wasn’t sure"
   },
   {
-    "objectID": "slides/slides09.html#section-1",
-    "href": "slides/slides09.html#section-1",
-    "title": "Care and feeding of your MCMCs",
-    "section": "",
-    "text": "mcmc_dens(bb_sim, pars = \"pi\") +\n  stat_function(fun = dbeta, args = list(11, 3), col = \"darkorange\", linewidth = 2)"
+    "objectID": "slides/slides01.html#intros",
+    "href": "slides/slides01.html#intros",
+    "title": "Welcome to Bayes!",
+    "section": "Intros",
+    "text": "Intros\n\nName\nSomething you did over the summer\nWhat makes you nervous about this class or term?\nSomething about yourself you are proud of\n\n\n\n\n−+\n05:00"
   },
   {
-    "objectID": "slides/slides09.html#in-practice-we-dont-know-the-true-posterior",
-    "href": "slides/slides09.html#in-practice-we-dont-know-the-true-posterior",
-    "title": "Care and feeding of your MCMCs",
-    "section": "In practice, we don’t know the true posterior",
-    "text": "In practice, we don’t know the true posterior\n\nWhat does a good markov chain look like?\nHow can we tell if we are getting a reasonable approximation of the posterior?\nHow big should our Markov chain size be?\n\n\n\nSome examples from today are from Statistical Rethinking"
+    "objectID": "slides/slides01.html#warm-up",
+    "href": "slides/slides01.html#warm-up",
+    "title": "Welcome to Bayes!",
+    "section": "Warm Up",
+    "text": "Warm Up\n\nWhat are the key takeaways from:\n\nStat250: Stat Inference\nStat230: Regression\n\nWhat do you already know about Bayesian statistics?\n\n\n\n\n−+\n05:00"
   },
   {
-    "objectID": "slides/slides09.html#traceplots",
-    "href": "slides/slides09.html#traceplots",
-    "title": "Care and feeding of your MCMCs",
-    "section": "Traceplots",
-    "text": "Traceplots\n\n\n\nmcmc_trace(bb_sim, pars = \"pi\")\n\n\n\n\n\n\n\n\n\n\nIdeally, \\(\\theta^{(i+1)}\\) does not depend on \\(\\theta^{(i)}\\) too much\nShould look like a “fat hairy caterpillar”"
+    "objectID": "slides/slides01.html#statistical-models",
+    "href": "slides/slides01.html#statistical-models",
+    "title": "Welcome to Bayes!",
+    "section": "Statistical models",
+    "text": "Statistical models\nA statistical model consists of\n\na collection of random variables to describe observable data,\nthe possible joint distribution(s) of the random variables,\nand the parameters, \\(\\boldsymbol \\theta\\), that define those distributions\n\n\n\nMorris and DeGroot, 377"
   },
   {
-    "objectID": "slides/slides09.html#first-20-draws-burn-in-warmup",
-    "href": "slides/slides09.html#first-20-draws-burn-in-warmup",
-    "title": "Care and feeding of your MCMCs",
-    "section": "First 20 draws (burn-in / warmup)",
-    "text": "First 20 draws (burn-in / warmup)"
+    "objectID": "slides/slides01.html#r.a.-fisher",
+    "href": "slides/slides01.html#r.a.-fisher",
+    "title": "Welcome to Bayes!",
+    "section": "R.A. Fisher",
+    "text": "R.A. Fisher\n1890-1962\n\n\n\n\n\nVariance\nANOVA\nNull hypothesis\nMaximum likelihood estimation\np-value\nLots of contributions in genetics\nAlso a eugenecist"
   },
   {
-    "objectID": "slides/slides09.html#first-200-draws-burn-in-warmup",
-    "href": "slides/slides09.html#first-200-draws-burn-in-warmup",
-    "title": "Care and feeding of your MCMCs",
-    "section": "First 200 draws (burn-in / warmup)",
-    "text": "First 200 draws (burn-in / warmup)"
+    "objectID": "slides/slides01.html#neyman-pearson",
+    "href": "slides/slides01.html#neyman-pearson",
+    "title": "Welcome to Bayes!",
+    "section": "Neyman & Pearson",
+    "text": "Neyman & Pearson\n\n\n\n\n\nConfidence interval\nCorrelation\nRegression\nStandard deviation\nEffect size\n“Optimal” tests\n\\(\\alpha\\) and \\(\\beta\\)\nType I and II error"
   },
   {
-    "objectID": "slides/slides09.html#mixing-slowly",
-    "href": "slides/slides09.html#mixing-slowly",
-    "title": "Care and feeding of your MCMCs",
-    "section": "“Mixing slowly”",
-    "text": "“Mixing slowly”"
+    "objectID": "slides/slides01.html#frequentist-vs-bayesian",
+    "href": "slides/slides01.html#frequentist-vs-bayesian",
+    "title": "Welcome to Bayes!",
+    "section": "Frequentist vs Bayesian",
+    "text": "Frequentist vs Bayesian"
   },
   {
-    "objectID": "slides/slides09.html#getting-stuck",
-    "href": "slides/slides09.html#getting-stuck",
-    "title": "Care and feeding of your MCMCs",
-    "section": "“Getting Stuck”",
-    "text": "“Getting Stuck”"
+    "objectID": "slides/slides01.html#bayes",
+    "href": "slides/slides01.html#bayes",
+    "title": "Welcome to Bayes!",
+    "section": "Bayes",
+    "text": "Bayes\n\n\n\n\nAll this guy did was Bayes’ rule:\n\\(P(A|B) = \\frac{P(B|A) P(A)}{ P(B)}\\)"
   },
   {
-    "objectID": "slides/slides09.html#each-chain-should-converge-on-roughly-the-same-distribution",
-    "href": "slides/slides09.html#each-chain-should-converge-on-roughly-the-same-distribution",
-    "title": "Care and feeding of your MCMCs",
-    "section": "Each chain should converge on roughly the same distribution",
-    "text": "Each chain should converge on roughly the same distribution\n\nmcmc_dens_overlay(bb_sim, pars = \"pi\")"
+    "objectID": "slides/slides01.html#frequentist-vs-bayesian-1",
+    "href": "slides/slides01.html#frequentist-vs-bayesian-1",
+    "title": "Welcome to Bayes!",
+    "section": "Frequentist vs Bayesian",
+    "text": "Frequentist vs Bayesian\n\n\nFrequentist\n\n“Classical” statistics\nProbability is a long-run frequency\nMake decisions based on a p-value\nType I and Type II errors\nConfidence intervals\n\n\nBayesian\n\nProbability is a subjective belief\nUpdate “prior” probabilities with data to obtain “posterior” probabilities\nMake decisions according to posterior probabilities\n“Credible” intervals"
   },
   {
-    "objectID": "slides/slides09.html#how-many-chains-do-you-need",
-    "href": "slides/slides09.html#how-many-chains-do-you-need",
-    "title": "Care and feeding of your MCMCs",
-    "section": "How many chains do you need?",
-    "text": "How many chains do you need?\n\nWhen testing and debugging your model, use 1\nWhen deciding whether your chains are valid, need &gt;1\nWhen you do your final run that you will make inferences from, one long chain or multiple chains is fine\n\n\n\n\n\n\n\nRule of thumb:\n\n\nOne (short) chain to debug, four chains for verification and inference"
+    "objectID": "slides/slides01.html#q1",
+    "href": "slides/slides01.html#q1",
+    "title": "Welcome to Bayes!",
+    "section": "Q1",
+    "text": "Q1\nWhen flipping a fair coin, we say that “the probability of flipping Heads is 0.5.” How do you interpret this probability?\n\nIf I flip this coin over and over, roughly 50% will be Heads.\nHeads and Tails are equally plausible.\nBoth a and b make sense."
   },
   {
-    "objectID": "slides/slides09.html#autocorrelation",
-    "href": "slides/slides09.html#autocorrelation",
-    "title": "Care and feeding of your MCMCs",
-    "section": "Autocorrelation",
-    "text": "Autocorrelation\n\nmcmc_acf(bb_sim, pars = \"pi\")"
+    "objectID": "slides/slides01.html#q2",
+    "href": "slides/slides01.html#q2",
+    "title": "Welcome to Bayes!",
+    "section": "Q2",
+    "text": "Q2\nAn election is coming up and a pollster claims that candidate A has a 0.9 probability of winning. How do you interpret this probability?\n\nIf we observe the election over and over, candidate A will win roughly 90% of the time.\nCandidate A is much more likely to win than to lose.\nThe pollster’s calculation is wrong. Candidate A will either win or lose, thus their probability of winning can only be 0 or 1."
   },
   {
-    "objectID": "slides/slides09.html#slow-mixing-chains-often-have-high-autocorrelation",
-    "href": "slides/slides09.html#slow-mixing-chains-often-have-high-autocorrelation",
-    "title": "Care and feeding of your MCMCs",
-    "section": "Slow mixing chains often have high autocorrelation",
-    "text": "Slow mixing chains often have high autocorrelation"
+    "objectID": "slides/slides01.html#q3",
+    "href": "slides/slides01.html#q3",
+    "title": "Welcome to Bayes!",
+    "section": "Q3",
+    "text": "Q3\nConsider two claims.\n\nZuofu claims that he can predict the outcome of a coin flip. To test his claim, you flip a fair coin 10 times and he correctly predicts all 10.\nKavya claims that she can distinguish natural and artificial sweeteners. To test her claim, you give her 10 sweetener samples and she correctly identifies each.\n\nIn light of these experiments, what do you conclude?\n\nYou’re more confident in Kavya’s claim than Zuofu’s claim.\nThe evidence supporting Zuofu’s claim is just as strong as the evidence supporting Kavya’s claim."
   },
   {
-    "objectID": "slides/slides09.html#effective-sample-size",
-    "href": "slides/slides09.html#effective-sample-size",
-    "title": "Care and feeding of your MCMCs",
-    "section": "Effective Sample Size",
-    "text": "Effective Sample Size\n\n\n\n\n\n\n\\(N_{eff}\\)\n\n\nEffective Sample Size (\\(N_{eff}\\)) quantifies the number of independent samples it would take to produce an equivalently accurate posterior approximation\n\n\n\n\n\n\n\n\n\n\\(N_{eff}/N\\)\n\n\nEffective sample size ratio\n\n\n\n\nneff_ratio(bb_sim, pars = c(\"pi\"))\n\n[1] 0.3260274"
+    "objectID": "slides/slides01.html#q4",
+    "href": "slides/slides01.html#q4",
+    "title": "Welcome to Bayes!",
+    "section": "Q4",
+    "text": "Q4\nSuppose that during a recent doctor’s visit, you tested positive for a very rare disease. If you only get to ask the doctor one question, which would it be?\n\nWhat’s the chance that I actually have the disease?\nIf in fact I don’t have the disease, what’s the chance that I would’ve gotten this positive test result?"
   },
   {
-    "objectID": "slides/slides09.html#r-hat",
-    "href": "slides/slides09.html#r-hat",
-    "title": "Care and feeding of your MCMCs",
-    "section": "R-hat",
-    "text": "R-hat\nIdea: In a “good” Markov chain, the variability across all chains is similar to the variability within a given chain. In a “bad” Markov chain, the variability across all chains is bigger than the variability within a given chain"
+    "objectID": "slides/slides01.html#results",
+    "href": "slides/slides01.html#results",
+    "title": "Welcome to Bayes!",
+    "section": "Results",
+    "text": "Results\nGive yourself:\n\n+1 for each A\n+3 for each B\n+2 for C on Q1\n-2 for C on Q2\n\nResults:\n\nScore &lt;5: your thinking is pretty frequentist\nScore &gt;9: your thinking is pretty Bayesian\n6-8: your leaning changes depending on the scenario"
   },
   {
-    "objectID": "slides/slides09.html#r-hat-1",
-    "href": "slides/slides09.html#r-hat-1",
-    "title": "Care and feeding of your MCMCs",
-    "section": "R-hat",
-    "text": "R-hat\n\n\n\n\n\n\nGelman-Rubin convergence diagnostic\n\n\nR-hat \\(\\approx \\sqrt{\\frac{\\text{Var}_{\\text{combined}}}{\\text{Var}_{\\text{within}}}}\\)\nR-hat \\(\\approx\\) 1 is good; R-hat \\(&gt;1\\) indicates the chains have not converged\n\n\n\n\nrhat(bb_sim)\n\n       pi      lp__ \n0.9999668 1.0012277"
+    "objectID": "slides/slides01.html#tentative-schedule",
+    "href": "slides/slides01.html#tentative-schedule",
+    "title": "Welcome to Bayes!",
+    "section": "Tentative schedule",
+    "text": "Tentative schedule\n\n\n\n\nTopic\nChapters\nApprox. Duration\n\n\n\n\nIntro\n1-2\n1 week\n\n\nConjugate Analysis\n3-5\n2 weeks\n\n\nMCMC\n7\n1 weeks\n\n\nBayesian Regression\n9-14\n4 weeks\n\n\nHierarchical Models\n15\n2 weeks"
   },
   {
-    "objectID": "slides/slides09.html#section-2",
-    "href": "slides/slides09.html#section-2",
-    "title": "Care and feeding of your MCMCs",
-    "section": "",
-    "text": "fn_model &lt;- \"\n  data {\n    int&lt;lower=0&gt; N;\n    vector[N] y;\n  }\n\n  parameters {\n    real mu;\n    real&lt;lower=0&gt; sigma;\n  }\n\n  model {\n    y ~ normal(mu, sigma);\n    mu ~ normal(0, 1000);\n    sigma ~ exponential(.0001);\n  }\n\""
+    "objectID": "slides/slides01.html#course-description",
+    "href": "slides/slides01.html#course-description",
+    "title": "Welcome to Bayes!",
+    "section": "Course description",
+    "text": "Course description\nThe Bayesian approach to statistics provides a powerful framework for incorporating prior knowledge into statistical analyses, updating this knowledge with data, and quantifying uncertainty in results. This course serves as a comprehensive introduction to Bayesian statistical inference and modeling, an alternative to the frequentist approach to statistics covered in previous classes. Topics include: Bayes’ Theorem; prior and posterior distributions; Bayesian regression; hierarchical models; and model adequacy and posterior predictive checks. Computational techniques will also be covered, including Markov Chain Monte Carlo methods, and modern Bayesian modeling packages in R."
   },
   {
-    "objectID": "slides/slides09.html#section-3",
-    "href": "slides/slides09.html#section-3",
-    "title": "Care and feeding of your MCMCs",
-    "section": "",
-    "text": "# STEP 2: SIMULATE the posterior\nfn_sim &lt;- stan(model_code = fn_model, \n               data = list(N=2, y = c(-1,1)), \n               chains = 4, iter = 1000*2, seed = 84735)\n\nWarning :There were 521 divergent transitions after warmup. See\nhttps://mc-stan.org/misc/warnings.html#divergent-transitions-after-warmup\nto find out why this is a problem and how to eliminate them.\nWarning :Examine the pairs() plot to diagnose sampling problems\n\nWarning :Bulk Effective Samples Size (ESS) is too low, indicating posterior means and medians may be unreliable.\nRunning the chains for more iterations may help. See\nhttps://mc-stan.org/misc/warnings.html#bulk-ess\nWarning :Tail Effective Samples Size (ESS) is too low, indicating posterior variances and tail quantiles may be unreliable.\nRunning the chains for more iterations may help. See\nhttps://mc-stan.org/misc/warnings.html#tail-ess"
+    "objectID": "slides/slides01.html#course-objectives",
+    "href": "slides/slides01.html#course-objectives",
+    "title": "Welcome to Bayes!",
+    "section": "Course Objectives",
+    "text": "Course Objectives\nAfter completing this course, you should be be able to demonstrate your competency with:\n\nExplaining the differences between frequentist and Bayesian approaches to statistics and data analysis\nSelecting appropriate prior distributions and likelihood models for Bayesian analysis\nUsing modern software to fit Bayesian models and assess their performance\nInterpreting results from Bayesian analyses"
   },
   {
-    "objectID": "slides/slides09.html#mu",
-    "href": "slides/slides09.html#mu",
-    "title": "Care and feeding of your MCMCs",
-    "section": "\\(\\mu\\)",
-    "text": "\\(\\mu\\)\nmcmc_trace(fn_sim, pars = \"mu\")\nmcmc_dens_overlay(fn_sim, pars = \"mu\")"
+    "objectID": "slides/slides01.html#textbook",
+    "href": "slides/slides01.html#textbook",
+    "title": "Welcome to Bayes!",
+    "section": "Textbook:",
+    "text": "Textbook:\nBayes Rules! An Introduction to Applied Bayesian Modeling by Johnson, Ott, and Dogucu\nThe book is freely available at &lt;bayesrulesbook.com&gt;"
   },
   {
-    "objectID": "slides/slides09.html#sigma",
-    "href": "slides/slides09.html#sigma",
-    "title": "Care and feeding of your MCMCs",
-    "section": "\\(\\sigma\\)",
-    "text": "\\(\\sigma\\)\nmcmc_trace(fn_sim, pars = \"sigma\")\nmcmc_dens_overlay(fn_sim, pars = \"sigma\")"
+    "objectID": "slides/slides01.html#computing",
+    "href": "slides/slides01.html#computing",
+    "title": "Welcome to Bayes!",
+    "section": "Computing:",
+    "text": "Computing:\nWe’ll be using R and RStudio throughout the course. If you’ve downloaded R to your own computer from a different class, great! If not, there are instructions available on the course website"
   },
   {
-    "objectID": "slides/slides09.html#section-4",
-    "href": "slides/slides09.html#section-4",
-    "title": "Care and feeding of your MCMCs",
-    "section": "",
-    "text": "fn_model2 &lt;- \"\n  data {\n    int&lt;lower=0&gt; N;\n    vector[N] y;\n  }\n\n  parameters {\n    real mu;\n    real&lt;lower=0&gt; sigma;\n  }\n\n  model {\n    y ~ normal(mu, sigma);\n    mu ~ normal(0, 10);\n    sigma ~ exponential(1);\n  }\n\""
+    "objectID": "slides/slides01.html#what-will-you-do-in-this-course",
+    "href": "slides/slides01.html#what-will-you-do-in-this-course",
+    "title": "Welcome to Bayes!",
+    "section": "What will you do in this course?",
+    "text": "What will you do in this course?\nEach of the following components are important for your learning and therefore part of your final grade calculation:\n\n30% Homework due once per week\n\n10% Individual (graded on completion)\n10% Group (correctness and completion)\n10% Homework quizzes (correctness)\n\n10% Midterm project + presentation\n20% Final project + presentation\n20% Exam I\n20% Exam II"
   },
   {
-    "objectID": "slides/slides09.html#section-5",
-    "href": "slides/slides09.html#section-5",
-    "title": "Care and feeding of your MCMCs",
-    "section": "",
-    "text": "# STEP 2: SIMULATE the posterior\nfn_sim2 &lt;- stan(model_code = fn_model2, \n               data = list(N=2, y = c(-1,1)), \n               chains = 4, iter = 1000*2, seed = 84735)\n\nWarning :There were 3 divergent transitions after warmup. See\nhttps://mc-stan.org/misc/warnings.html#divergent-transitions-after-warmup\nto find out why this is a problem and how to eliminate them.\nWarning :Examine the pairs() plot to diagnose sampling problems"
+    "objectID": "slides/slides01.html#what-will-a-typical-dayweek-look-like",
+    "href": "slides/slides01.html#what-will-a-typical-dayweek-look-like",
+    "title": "Welcome to Bayes!",
+    "section": "What will a typical day/week look like?",
+    "text": "What will a typical day/week look like?\n\n\nBefore class:\n\nRead a chapter\nCome with questions\nBe prepared to try what was covered\n\n\nIn class:\n\nLecture/demo\n\nSometimes review of chapter\nSometimes new\n\nHands-on work or coding in R\nTime for group assignments\n\n\nAfter class:\n\nFinish group assignments\nWork on individual assignments"
   },
   {
-    "objectID": "slides/slides09.html#mu-1",
-    "href": "slides/slides09.html#mu-1",
-    "title": "Care and feeding of your MCMCs",
-    "section": "\\(\\mu\\)",
-    "text": "\\(\\mu\\)\nmcmc_trace(fn_sim2, pars = \"mu\")\nmcmc_dens_overlay(fn_sim2, pars = \"mu\")"
+    "objectID": "slides/slides01.html#office-hours-tentative",
+    "href": "slides/slides01.html#office-hours-tentative",
+    "title": "Welcome to Bayes!",
+    "section": "Office hours (tentative)",
+    "text": "Office hours (tentative)\n\n\n\nDay\nTime\nType\nLocation\n\n\n\n\nMonday\n12:30-1:30\nDrop-in\nCMC 307\n\n\nTuesday\n2-3\nDrop-in\nCMC 307\n\n\nWednesday\n3-41\nDrop-in\nCMC 307\n\n\nFriday\n10-112\nDrop-in\nCMC 307\n\n\n\nI will also have at least 1 hour of individual appointments available on my calendar per week\nStat120 PriorityStat340 Priority"
   },
   {
-    "objectID": "slides/slides09.html#sigma-1",
-    "href": "slides/slides09.html#sigma-1",
-    "title": "Care and feeding of your MCMCs",
-    "section": "\\(\\sigma\\)",
-    "text": "\\(\\sigma\\)\nmcmc_trace(fn_sim2, pars = \"sigma\")\nmcmc_dens_overlay(fn_sim2, pars = \"sigma\")"
+    "objectID": "slides/slides01.html#communication",
+    "href": "slides/slides01.html#communication",
+    "title": "Welcome to Bayes!",
+    "section": "Communication",
+    "text": "Communication\n\n\nMoodle: assignments, slides, and grades\nSlack: homework questions, announcements, discussion\nEmail: personal matters, time-sensitive announcements\n\n\n\nSlack is the fastest way to reach me. I typically will respond to messages 3x per weekday. I try to respond to emails within 48 hours. I’m online sporadically on evenings and weekends to devote time to family and rest – I hope you also use this time to reset and recharge!"
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Stat 340: Bayesian Statistics",
-    "section": "",
-    "text": "This page contains an outline of the topics, content, and assignments for the term. Note that this schedule will be updated as the term progresses and the timeline of topics and assignments might be updated. Any major changes to due dates will be announced in class and indicated in bold here.\n\n\n\n\n\n\nWEEK\nDOW\nDATE\nPREPARE\nTOPIC\nMATERIALS\nDUE\n\n\n\n1\nM\nMon, Sep 15\n📝complete welcome survey  📚 Bayes Rules Ch1  💻 Join Slack workspace\n\nIntro to Bayesian Thinking\nSlides01\n\n\n\n1\nW\nWed, Sep 17\n📚 Bayes Rules Ch2  💻 Complete computing setup\n\nBayes Rule, R Setup\nSlides02\n\n\n\n1\nF\nFri, Sep 19\n\nProbability and Likelihood Review; Posterior Simulation\nSlides03\n\nHW 1 and GW 1\n\n\n\n2\nM\nMon, Sep 22\n📚 Bayes Rules Ch3 \n\nBeta-Binomial Model\nSlides04\n\n\n\n2\nW\nWed, Sep 24\n📚 Bayes Rules Ch4 \n\nBalance and Sequentiality\nSlides05\n\n\n\n2\nF\nFri, Sep 26\n📚 Bayes Rules Ch5.1-2 \n\nGamma-Gamma\nSlides06\n\nHW 2 and GW 2\n\n\n\n3\nM\nMon, Sep 29\n📚 Bayes Rules Ch5.3-5.6  📝 complete group eval \n\nNormal-Normal\nSlides07\n\n\n\n3\nW\nWed, Oct 1\n📚 Bayes Rules Ch6.1-2 \n\nGrid approximation and Markov Chains\nSlides08\n\n\n\n3\nF\nFri, Oct 3\n📚 Bayes Rules Ch6.3 \n\nDiagnostics\nSlides09\n\nHW 3 and GW 3\n\n\n\n4\nM\nMon, Oct 6\n📚 Bayes Rules Ch7.1-7.3  📝 complete group eval \n\nMCMC I\ntbd\nHand out computing project\n\n\n4\nW\nWed, Oct 8\n📚 Bayes Rules Ch7.4-7 \n\nMCMC II\ntbd\n\n\n\n4\nF\nFri, Oct 10\n\nExam I\ntbd\n\nHW 4 and GW 4\n\n\n\n5\nM\nMon, Oct 13\n\nPosterior Inference\ntbd\n\n\n\n5\nW\nWed, Oct 15\n\nPosterior Prediction\ntbd\n\n\n\n5\nF\nFri, Oct 17\n\nRegression\ntbd\nHW5\n\n\n6\nM\nMon, Oct 20\n\n❌ Midterm Break; no class\ntbd\n\n\n\n6\nW\nWed, Oct 22\n\nEvaluating I\ntbd\nComputing Project Due\n\n\n6\nF\nFri, Oct 24\n\nEvaluating II\ntbd\nHW6\n\n\n7\nM\nMon, Oct 27\n\nExtending Regression Model\ntbd\n\n\n\n7\nW\nWed, Oct 29\n\nPoisson Regression\ntbd\n\n\n\n7\nF\nFri, Oct 31\n\nNegative Binomial Regression\ntbd\nHW7\n\n\n8\nM\nMon, Nov 3\n\nLogistic Regression\ntbd\n\n\n\n8\nW\nWed, Nov 5\n\nNaive Bayes Classification\ntbd\n\n\n\n8\nF\nFri, Nov 7\n\nExam II\ntbd\nHW8\n\n\n9\nM\nMon, Nov 10\n\nHierarchical Models I\ntbd\n\n\n\n9\nW\nWed, Nov 12\n\nHierarchical Models II\ntbd\n\n\n\n9\nF\nFri, Nov 14\n\nHierarchical Models III\ntbd\n\n\n\n10\nM\nMon, Nov 17\n\nProject work day\ntbd\nHW 9\n\n\n10\nW\nWed, Nov 19\n\nLightning talks\ntbd\n\n\n\n\nM\nFri, Nov 21\n\nFinal Project Due @ noon\ntbd",
-    "crumbs": [
-      "Schedule"
-    ]
+    "objectID": "slides/slides01.html#advice-from-past-students",
+    "href": "slides/slides01.html#advice-from-past-students",
+    "title": "Welcome to Bayes!",
+    "section": "Advice from past students:",
+    "text": "Advice from past students:\n\nSTART HOMEWORKS EARLY\nDo the reading! The textbook is really great and can help give you a motivation for everything that’s happening in class.\nStart the problem sets early and go to office hours!\nask questions! you will inevitably not understand everything in the course at first pass.\nGo to her office hours!!!!!\nRead the book, and ask questions!\nTry to start the homework problems on the day that they are assigned.\nThis course is very fast-paced and intensive, so it may not be the right fit for everyone. Students who are not prepared for a compact schedule, or who are looking for an easier workload, may find it challenging. A solid foundation in statistics and a strong level of commitment are essential to keep up with the material and succeed in the class.\nAsk questions in class, Amanda has no problem reviewing a previously discussed concept.\nWork with other people in the class, collaboration is key\nStart the homework early! Give yourself time to get things done, to understand, and to pause. Don’t feel afraid to ask questions; she’s so accessible.\nSpend some time reviewing handouts before doing homework."
   },
   {
-    "objectID": "slides/slides08.html#recap-conjugate-models",
-    "href": "slides/slides08.html#recap-conjugate-models",
-    "title": "Intro to Posterior Approximation",
-    "section": "Recap: Conjugate models",
-    "text": "Recap: Conjugate models"
+    "objectID": "slides/slides01.html#the-genius-myth",
+    "href": "slides/slides01.html#the-genius-myth",
+    "title": "Welcome to Bayes!",
+    "section": "The “Genius Myth”",
+    "text": "The “Genius Myth”\nIt’s sometimes easy to buy into the “genius myth” when it comes to math/stat courses: that you need to be a “math person” and have some innate mathematical ability in order to do well or become a statistics major. This could not be further from the truth! The best statisticians don’t necessarily have the “best” math or programming background, but are people that are able to formulate interesting questions and use math and programming to rigorously answer those questions. Many of the best statisticians I know became statisticians because they were initially interested in something else (biology, public health, psychology, neuroscience, physics, etc.) and realized that being able to answer important questions with data was not only valuable but fun and interesting. Being able to perform interesting statistical analyses is a skill that is learned, not an innate ability, and working hard at developing that skill is the point of this course."
   },
   {
-    "objectID": "slides/slides08.html#motivation",
-    "href": "slides/slides08.html#motivation",
-    "title": "Intro to Posterior Approximation",
-    "section": "Motivation",
-    "text": "Motivation"
+    "objectID": "slides/slides01.html#academic-integrity",
+    "href": "slides/slides01.html#academic-integrity",
+    "title": "Welcome to Bayes!",
+    "section": "Academic Integrity",
+    "text": "Academic Integrity\nYou are expected to follow Carleton’s policies regarding academic integrity. I encourage you to discuss the homework problems with others and use the resources available to you to try to figure out tough problems. You should code and write up your solutions on your own. Exams must be done by yourself without communicating with others; all work must be your own. The use of textbook solution manuals (physical or online), course materials from other students, or materials from previous versions of this course are not allowed. Copying, paraphrasing, summarizing, or submitting work generated by anyone but yourself without proper attribution is considered academic dishonesty (this includes output from LLMs).\nPlease ask if you are unsure of whether or not your actions are complying with the assignment/exam/project instructions. Always default to acknowledging any help received. Cases of suspected academic dishonesty are handled by the Provost’s Office and I am obligated to report any suspected violations of this policy."
   },
   {
-    "objectID": "slides/slides08.html#section-1",
-    "href": "slides/slides08.html#section-1",
-    "title": "Intro to Posterior Approximation",
-    "section": "",
-    "text": "Grid Approximation\n\n\nGrid approximation produces a sample of \\(N\\) independent \\(\\theta\\) values, \\(\\left\\lbrace \\theta^{(1)}, \\theta^{(2)}, \\ldots, \\theta^{(N)} \\right\\rbrace\\), from a discretized approximation of posterior pdf \\(f(\\theta|y)\\). This algorithm evolves in four steps:\n\nDefine a discrete grid of possible \\(\\theta\\) values.\nEvaluate the prior pdf \\(f(\\theta)\\) and likelihood function \\(L(\\theta|y)\\) at each \\(\\theta\\) grid value.\nObtain a discrete approximation of posterior pdf \\(f(\\theta |y)\\) by:\n\n\ncalculating the product \\(f(\\theta)L(\\theta|y)\\) at each \\(\\theta\\) grid value\nnormalizing the products so that they sum to 1 across all \\(\\theta\\).\n\n\nRandomly sample \\(N\\) \\(\\theta\\) grid values with respect to their corresponding normalized posterior probabilities."
+    "objectID": "slides/slides01.html#more-on-ai",
+    "href": "slides/slides01.html#more-on-ai",
+    "title": "Welcome to Bayes!",
+    "section": "More on “AI”",
+    "text": "More on “AI”\nLarge-language models (e.g. ChatGPT, Gemini, etc.) should only be used for help interpreting R’s error messages or suggestions for your own code once you have already attempted the problem. You should not copy and paste course material into or out of an AI text generator.\nI also have a few rules in place to protect my intellectual property. You may not record my lectures using tools such as Otter.ai or upload any video or audio recordings to generate transcripts or study notes. You may not upload my course materials (slides, assignment prompts, note sets, etc.) into AI tools or homework help sites (such as chegg).\n“AI” tools are new for all of us and it’s OK to have questions about what is and isn’t appropriate!"
   },
   {
-    "objectID": "slides/slides08.html#example-beta-binomial",
-    "href": "slides/slides08.html#example-beta-binomial",
-    "title": "Intro to Posterior Approximation",
-    "section": "Example: Beta-Binomial",
-    "text": "Example: Beta-Binomial\nDiscretize \\(\\pi\\):\n\\[\\pi \\in \\{0, .2, .4, .6, .8, 1.0\\}\\]"
+    "objectID": "slides/slides01.html#diversity-inclusion",
+    "href": "slides/slides01.html#diversity-inclusion",
+    "title": "Welcome to Bayes!",
+    "section": "Diversity & Inclusion",
+    "text": "Diversity & Inclusion\nWe all come to class with different backgrounds and experiences, and this diversity makes our class environment richer. We value diversity and inclusion, and are committed to a climate of mutual respect and full participation in and out of the classroom. This class strives to be a learning environment that is usable, equitable, inclusive and welcoming, regardless of race, ethnicity, religion, gender and gender identities, sexual orientation, ability, socioeconomic background, and nationality. If you anticipate or experience any barriers to learning, please discuss your concerns with me."
   },
   {
-    "objectID": "slides/slides08.html#define-a-grid-of-possible-theta-values",
-    "href": "slides/slides08.html#define-a-grid-of-possible-theta-values",
-    "title": "Intro to Posterior Approximation",
-    "section": "1. Define a grid of possible \\(\\theta\\) values",
-    "text": "1. Define a grid of possible \\(\\theta\\) values\n\\[\\pi \\in \\{0, .2, .4, .6, .8, 1.0\\}\\]\n\n# Step 1: Define a grid of 6 pi values\ngrid_data &lt;- tibble(pi_grid = seq(from = 0, to = 1, length = 6))\n\ngrid_data\n\n# A tibble: 6 × 1\n  pi_grid\n    &lt;dbl&gt;\n1     0  \n2     0.2\n3     0.4\n4     0.6\n5     0.8\n6     1"
+    "objectID": "slides/slides01.html#accomodations",
+    "href": "slides/slides01.html#accomodations",
+    "title": "Welcome to Bayes!",
+    "section": "Accomodations",
+    "text": "Accomodations\nCarleton College is committed to providing equitable access to learning opportunities for all students. The Office of Accessibility Resources (Henry House, 107 Union Street) is the campus office that collaborates with students who have disabilities to provide and/or arrange reasonable accommodations. If you have, or think you may have, a disability, please contact OAR@carleton.edu to arrange a confidential discussion regarding equitable access and reasonable accommodations. You are also welcome to contact me privately to discuss your academic needs. However, all disability-related accommodations must be arranged, in advance, through OAR."
   },
   {
-    "objectID": "slides/slides08.html#evaluate-the-prior-pdf-ftheta-and-likelihood-function-lthetay-at-each-theta-grid-value.",
-    "href": "slides/slides08.html#evaluate-the-prior-pdf-ftheta-and-likelihood-function-lthetay-at-each-theta-grid-value.",
-    "title": "Intro to Posterior Approximation",
-    "section": "2. Evaluate the prior pdf \\(f(\\theta)\\) and likelihood function \\(L(\\theta|y)\\) at each \\(\\theta\\) grid value.",
-    "text": "2. Evaluate the prior pdf \\(f(\\theta)\\) and likelihood function \\(L(\\theta|y)\\) at each \\(\\theta\\) grid value.\n\n# Step 2: Evaluate the prior & likelihood at each pi\ngrid_data &lt;- grid_data %&gt;% \n  mutate(prior = dbeta(pi_grid, 2, 2),\n         likelihood = dbinom(9, 10, pi_grid))\n\n\n\n# A tibble: 6 × 3\n  pi_grid prior likelihood\n    &lt;dbl&gt; &lt;dbl&gt;      &lt;dbl&gt;\n1     0    0    0         \n2     0.2  0.96 0.00000410\n3     0.4  1.44 0.00157   \n4     0.6  1.44 0.0403    \n5     0.8  0.96 0.268     \n6     1    0    0"
+    "objectID": "slides/slides01.html#title-ix",
+    "href": "slides/slides01.html#title-ix",
+    "title": "Welcome to Bayes!",
+    "section": "Title IX",
+    "text": "Title IX\nPlease be aware that all faculty are “responsible employees”, which means that if you tell me about a situation involving sexual harassment, sexual assault, dating violence, domestic violence, or stalking, I must share that information with the Title IX Coordinator. Although I have to make this notification, you will control how your case will be handled, including whether or not you wish to meet with the Title IX coordinator or pursue a formal complaint."
   },
   {
-    "objectID": "slides/slides08.html#a.-calculate-the-product-fthetalthetay-at-each-theta-grid-value",
-    "href": "slides/slides08.html#a.-calculate-the-product-fthetalthetay-at-each-theta-grid-value",
-    "title": "Intro to Posterior Approximation",
-    "section": "3a. Calculate the product \\(f(\\theta)L(\\theta|y)\\) at each \\(\\theta\\) grid value",
-    "text": "3a. Calculate the product \\(f(\\theta)L(\\theta|y)\\) at each \\(\\theta\\) grid value\n\n# Step 3: Approximate the posterior\ngrid_data &lt;- grid_data %&gt;% \n  mutate(\n    unnorm_post = likelihood * prior\n  )\n\n\n\n# A tibble: 6 × 4\n  pi_grid prior likelihood unnorm_post\n    &lt;dbl&gt; &lt;dbl&gt;      &lt;dbl&gt;       &lt;dbl&gt;\n1     0    0    0           0         \n2     0.2  0.96 0.00000410  0.00000393\n3     0.4  1.44 0.00157     0.00226   \n4     0.6  1.44 0.0403      0.0580    \n5     0.8  0.96 0.268       0.258     \n6     1    0    0           0"
-  },
-  {
-    "objectID": "slides/slides08.html#b.-normalize-this-product",
-    "href": "slides/slides08.html#b.-normalize-this-product",
-    "title": "Intro to Posterior Approximation",
-    "section": "3b. Normalize this product",
-    "text": "3b. Normalize this product\n\n# Step 3: Approximate the posterior\ngrid_data &lt;- grid_data %&gt;% \n  mutate(\n    posterior = unnorm_post / sum(unnorm_post)\n  )\n\n\n\n# A tibble: 6 × 5\n  pi_grid prior likelihood unnorm_post posterior\n    &lt;dbl&gt; &lt;dbl&gt;      &lt;dbl&gt;       &lt;dbl&gt;     &lt;dbl&gt;\n1     0    0    0           0          0        \n2     0.2  0.96 0.00000410  0.00000393 0.0000124\n3     0.4  1.44 0.00157     0.00226    0.00712  \n4     0.6  1.44 0.0403      0.0580     0.183    \n5     0.8  0.96 0.268       0.258      0.810    \n6     1    0    0           0          0"
-  },
-  {
-    "objectID": "slides/slides08.html#pause-to-check-does-it-sum-to-1",
-    "href": "slides/slides08.html#pause-to-check-does-it-sum-to-1",
-    "title": "Intro to Posterior Approximation",
-    "section": "Pause to check: does it sum to 1?",
-    "text": "Pause to check: does it sum to 1?\n\n# Confirm that the posterior approximation sums to 1\ngrid_data %&gt;% \n  summarize(sum(unnorm_post), sum(posterior))\n\n# A tibble: 1 × 2\n  `sum(unnorm_post)` `sum(posterior)`\n               &lt;dbl&gt;            &lt;dbl&gt;\n1              0.318                1"
-  },
-  {
-    "objectID": "slides/slides08.html#randomly-sample-n-theta-grid-values-with-respect-to-their-corresponding-normalized-posterior-probabilities.",
-    "href": "slides/slides08.html#randomly-sample-n-theta-grid-values-with-respect-to-their-corresponding-normalized-posterior-probabilities.",
-    "title": "Intro to Posterior Approximation",
-    "section": "4. Randomly sample \\(N\\) \\(\\theta\\) grid values with respect to their corresponding normalized posterior probabilities.",
-    "text": "4. Randomly sample \\(N\\) \\(\\theta\\) grid values with respect to their corresponding normalized posterior probabilities.\n\n# Set the seed\nset.seed(84735)\n\n# Step 4: sample from the discretized posterior\npost_sample &lt;- sample_n(grid_data, size = 10000, \n                        weight = posterior, replace = TRUE)\n\n\n\n# A tibble: 10,000 × 5\n   pi_grid prior likelihood unnorm_post posterior\n     &lt;dbl&gt; &lt;dbl&gt;      &lt;dbl&gt;       &lt;dbl&gt;     &lt;dbl&gt;\n 1     0.8  0.96     0.268       0.258      0.810\n 2     0.8  0.96     0.268       0.258      0.810\n 3     0.8  0.96     0.268       0.258      0.810\n 4     0.6  1.44     0.0403      0.0580     0.183\n 5     0.8  0.96     0.268       0.258      0.810\n 6     0.8  0.96     0.268       0.258      0.810\n 7     0.8  0.96     0.268       0.258      0.810\n 8     0.8  0.96     0.268       0.258      0.810\n 9     0.8  0.96     0.268       0.258      0.810\n10     0.8  0.96     0.268       0.258      0.810\n# ℹ 9,990 more rows"
-  },
-  {
-    "objectID": "slides/slides08.html#section-2",
-    "href": "slides/slides08.html#section-2",
-    "title": "Intro to Posterior Approximation",
-    "section": "",
-    "text": "# Histogram of the grid simulation with posterior pdf\nggplot(post_sample, aes(x = pi_grid)) + \n  geom_histogram(aes(y = after_stat(density)), color = \"white\") + \n  stat_function(fun = dbeta, args = list(11, 3)) + \n  lims(x = c(0, 1))"
-  },
-  {
-    "objectID": "slides/slides08.html#section-4",
-    "href": "slides/slides08.html#section-4",
-    "title": "Intro to Posterior Approximation",
-    "section": "",
-    "text": "# Step 1: Define a grid of 101 pi values\ngrid_data  &lt;- data.frame(pi_grid = seq(from = 0, to = 1, length = 101))\n\n# Step 2: Evaluate the prior & likelihood at each pi\ngrid_data &lt;- grid_data %&gt;% \n  mutate(prior = dbeta(pi_grid, 2, 2),\n         likelihood = dbinom(9, 10, pi_grid))\n\n# Step 3: Approximate the posterior\ngrid_data &lt;- grid_data %&gt;% \n  mutate(unnormalized = likelihood * prior,\n         posterior = unnormalized / sum(unnormalized))\n\n# Set the seed\nset.seed(84735)\n\n# Step 4: sample from the discretized posterior\npost_sample &lt;- sample_n(grid_data, size = 10000, \n                        weight = posterior, replace = TRUE)"
-  },
-  {
-    "objectID": "slides/slides08.html#what-does-grid-approximation-give-us-that-conjugacy-doesnt",
-    "href": "slides/slides08.html#what-does-grid-approximation-give-us-that-conjugacy-doesnt",
-    "title": "Intro to Posterior Approximation",
-    "section": "What does grid approximation give us that conjugacy doesn’t?",
-    "text": "What does grid approximation give us that conjugacy doesn’t?\nRemember our non-conjugate prior: \\(f(\\pi) = e - e^\\pi\\)?"
-  },
-  {
-    "objectID": "slides/slides08.html#section-6",
-    "href": "slides/slides08.html#section-6",
-    "title": "Intro to Posterior Approximation",
-    "section": "",
-    "text": "grid_data  &lt;- data.frame(pi_grid = seq(from = 0, to = 1, length = 101))\n\ngrid_data &lt;- grid_data %&gt;% \n  mutate(prior = exp(1) - exp(pi_grid),\n         likelihood = dbinom(9, 10, pi_grid))\n\ngrid_data &lt;- grid_data %&gt;% \n  mutate(unnormalized = likelihood * prior,\n         posterior = unnormalized / sum(unnormalized))\n\nset.seed(84735)\n\npost_sample &lt;- sample_n(grid_data, size = 10000, \n                        weight = posterior, replace = TRUE)"
-  },
-  {
-    "objectID": "slides/slides08.html#where-does-grid-approximation-start-to-fail",
-    "href": "slides/slides08.html#where-does-grid-approximation-start-to-fail",
-    "title": "Intro to Posterior Approximation",
-    "section": "Where does grid approximation start to fail?",
-    "text": "Where does grid approximation start to fail?"
-  },
-  {
-    "objectID": "slides/slides08.html#plan",
-    "href": "slides/slides08.html#plan",
-    "title": "Intro to Posterior Approximation",
-    "section": "Plan",
-    "text": "Plan\n\nToday: how to find them with {rstan}\nFriday: how to evaluate them\nNext week: how they work"
-  },
-  {
-    "objectID": "slides/slides08.html#section-8",
-    "href": "slides/slides08.html#section-8",
-    "title": "Intro to Posterior Approximation",
-    "section": "",
-    "text": "Markov Chain Monte Carlo (MCMC)\n\n\nMCMC is a class of algorithms used to approximate a probability distribution.\nLet \\(\\{\\theta^{(1)}, \\theta^{(2)}, ..., \\theta^{(n)} \\}\\) be an N-length MCMC sample. Then, \\(\\theta^{(i+1)}\\) is drawn from a model with conditional pdf\n\\[f(\\theta^{(i+1)}|\\theta^{(i)}, y)\\]\n\n\n\nNote that:\n\nMarkov property\nNot equivalent to posterior pdf\nIf done well, approximates posterior pdf"
-  },
-  {
-    "objectID": "slides/slides08.html#rstan",
-    "href": "slides/slides08.html#rstan",
-    "title": "Intro to Posterior Approximation",
-    "section": "{rstan}",
-    "text": "{rstan}\n\nlibrary(rstan)\n\nStan is a probabilistic programming language written in C++ (https://mc-stan.org/)\n{rstan} is the R interface to Stan\nThere are also interfaces for python, Julia, Mathematica, MATLAB, etc.\n\n\n\n\n\n\nNote\n\n\nSince {rstan} uses C++ under the hood, you might need to follow some additional steps to install the package. Follow the directions at https://github.com/stan-dev/rstan/wiki/RStan-Getting-Started carefully!"
-  },
-  {
-    "objectID": "slides/slides08.html#steps",
-    "href": "slides/slides08.html#steps",
-    "title": "Intro to Posterior Approximation",
-    "section": "Steps",
-    "text": "Steps\n\nWrite out the model in {rstan syntax}\n\ndata\nparameters\nmodel\n\nSample from the approximate posterior"
-  },
-  {
-    "objectID": "slides/slides08.html#beta-binomial-example",
-    "href": "slides/slides08.html#beta-binomial-example",
-    "title": "Intro to Posterior Approximation",
-    "section": "Beta-Binomial Example",
-    "text": "Beta-Binomial Example\nDefine the model:\n\n# STEP 1: DEFINE the model\nbb_model &lt;- \"\n  data {\n    int&lt;lower = 0, upper = 10&gt; Y;\n  }\n  parameters {\n    real&lt;lower = 0, upper = 1&gt; pi;\n  }\n  model {\n    Y ~ binomial(10, pi);\n    pi ~ beta(2, 2);\n  }\n\""
-  },
-  {
-    "objectID": "slides/slides08.html#beta-binomial-example-1",
-    "href": "slides/slides08.html#beta-binomial-example-1",
-    "title": "Intro to Posterior Approximation",
-    "section": "Beta-Binomial Example",
-    "text": "Beta-Binomial Example\nSample from the posterior:\n\n# STEP 2: SIMULATE the posterior\nbb_sim &lt;- stan(model_code = bb_model, data = list(Y = 9), \n               chains = 4, iter = 5000*2, seed = 84735)\n\nChain 4: Iteration: 6000 / 10000 [ 60%]  (Sampling)\nChain 4: Iteration: 7000 / 10000 [ 70%]  (Sampling)\nChain 4: Iteration: 8000 / 10000 [ 80%]  (Sampling)\nChain 4: Iteration: 9000 / 10000 [ 90%]  (Sampling)\nChain 4: Iteration: 10000 / 10000 [100%]  (Sampling)\nChain 4: \nChain 4:  Elapsed Time: 0.026 seconds (Warm-up)\nChain 4:                0.081 seconds (Sampling)\nChain 4:                0.107 seconds (Total)\nChain 4:"
-  },
-  {
-    "objectID": "slides/slides08.html#section-9",
-    "href": "slides/slides08.html#section-9",
-    "title": "Intro to Posterior Approximation",
-    "section": "",
-    "text": "bb_sim\n\nInference for Stan model: anon_model.\n4 chains, each with iter=10000; warmup=5000; thin=1; \npost-warmup draws per chain=5000, total post-warmup draws=20000.\n\n      mean se_mean   sd  2.5%   25%   50%   75% 97.5% n_eff Rhat\npi    0.78    0.00 0.11  0.55  0.72  0.80  0.86  0.95  6587    1\nlp__ -7.80    0.01 0.73 -9.87 -7.98 -7.52 -7.33 -7.27  6462    1\n\nSamples were drawn using NUTS(diag_e) at Wed Oct  1 08:13:19 2025.\nFor each parameter, n_eff is a crude measure of effective sample size,\nand Rhat is the potential scale reduction factor on split chains (at \nconvergence, Rhat=1)."
-  },
-  {
-    "objectID": "slides/slides08.html#section-10",
-    "href": "slides/slides08.html#section-10",
-    "title": "Intro to Posterior Approximation",
-    "section": "",
-    "text": "Burn-in\n\n\nIf you’ve ever made a batch of pancakes or crêpes, you know that the first pancake is always the worst – the pan isn’t yet at the perfect temperature, you haven’t yet figured out how much batter to use, and you need more time to practice your flipping technique. MCMC chains are similar. Without direct knowledge of the posterior it’s trying to simulate, the Markov chain might start out sampling unreasonable values of our parameter of interest. Eventually though, it learns and starts producing values that mimic a random sample from the posterior. And just as we might need to toss out the first pancake, we might want to toss the Markov chain values produced during this learning period – keeping them in our sample might lead to a poor posterior approximation. As such, “burn-in” is the practice of discarding the first portion of Markov chain values."
-  },
-  {
-    "objectID": "slides/slides08.html#section-11",
-    "href": "slides/slides08.html#section-11",
-    "title": "Intro to Posterior Approximation",
-    "section": "",
-    "text": "as.array(bb_sim, pars = \"pi\") |&gt;\n  head(5)\n\n, , parameters = pi\n\n          chains\niterations   chain:1   chain:2   chain:3   chain:4\n      [1,] 0.9288874 0.8637566 0.6410152 0.8054958\n      [2,] 0.8710291 0.6737700 0.6861136 0.8727761\n      [3,] 0.8105749 0.7752253 0.6994077 0.8625163\n      [4,] 0.7567798 0.5318069 0.8200739 0.8065095\n      [5,] 0.7410937 0.7004429 0.8200739 0.8065095"
-  },
-  {
-    "objectID": "slides/slides08.html#plotting-with-the-bayesplot-package",
-    "href": "slides/slides08.html#plotting-with-the-bayesplot-package",
-    "title": "Intro to Posterior Approximation",
-    "section": "Plotting with the {bayesplot} package",
-    "text": "Plotting with the {bayesplot} package\n\n\nlibrary(bayesplot)\n\n# Histogram of the Markov chain values\nmcmc_hist(bb_sim, \n          pars = \"pi\") + \n  yaxis_text(TRUE) + \n  ylab(\"count\")"
-  },
-  {
-    "objectID": "slides/slides08.html#plotting-with-the-bayesplot-package-1",
-    "href": "slides/slides08.html#plotting-with-the-bayesplot-package-1",
-    "title": "Intro to Posterior Approximation",
-    "section": "Plotting with the {bayesplot} package",
-    "text": "Plotting with the {bayesplot} package\n\n# Density plot of the Markov chain values\nmcmc_dens(bb_sim, \n                pars = \"pi\") + \n  yaxis_text(TRUE) + \n  ylab(\"density\")"
-  },
-  {
-    "objectID": "slides/slides-cheat-sheet.html#columns",
-    "href": "slides/slides-cheat-sheet.html#columns",
-    "title": "Slides Cheat Sheet",
-    "section": "Columns",
-    "text": "Columns\n\n\n\nFirst year at Carleton!\nTaught at Swarthmore for 5 years before moving here this fall\nPhD in Statistics & Data Science from Carnegie Mellon University\nGrew up in Minnesota, went to St Ben’s as an undergrad"
-  },
-  {
-    "objectID": "slides/slides-cheat-sheet.html#only-graph-from-code",
-    "href": "slides/slides-cheat-sheet.html#only-graph-from-code",
-    "title": "Slides Cheat Sheet",
-    "section": "Only graph from code",
-    "text": "Only graph from code"
-  },
-  {
-    "objectID": "slides/slides-cheat-sheet.html#background-image-half",
-    "href": "slides/slides-cheat-sheet.html#background-image-half",
-    "title": "Slides Cheat Sheet",
-    "section": "Background Image (half)",
-    "text": "Background Image (half)\n\n\nWhat skills do you need?\n\nprogramming with data\nstatistical modeling\ndomain knowledge\ncommunication"
-  },
-  {
-    "objectID": "slides/slides-cheat-sheet.html#full-size-image",
-    "href": "slides/slides-cheat-sheet.html#full-size-image",
-    "title": "Slides Cheat Sheet",
-    "section": "Full size image",
-    "text": "Full size image\n\n\n\nImage by Adam Loy  adapted from work of Joe Blitzstein, Hanspeter Pfister, and Hadley Wickham"
-  },
-  {
-    "objectID": "slides/slides-cheat-sheet.html#background-image-full-size",
-    "href": "slides/slides-cheat-sheet.html#background-image-full-size",
-    "title": "Slides Cheat Sheet",
-    "section": "Background image (full size)",
-    "text": "Background image (full size)"
-  },
-  {
-    "objectID": "slides/slides-cheat-sheet.html#countdown",
-    "href": "slides/slides-cheat-sheet.html#countdown",
-    "title": "Slides Cheat Sheet",
-    "section": "Countdown",
-    "text": "Countdown\n\nWith your neighbor(s):\nChoose two countries to compare to the U.S. voting record in the U.N. over the years.\nWhat did you learn?\n\n\n\n\n−+\n04:00"
-  },
-  {
-    "objectID": "slides/slides-cheat-sheet.html#table-column-widths",
-    "href": "slides/slides-cheat-sheet.html#table-column-widths",
-    "title": "Slides Cheat Sheet",
-    "section": "table column widths",
-    "text": "table column widths\n\n\n\n\n\n\n\n\nCollaboration Allowed\n\n\n\n\nHomework Problems\nYou are allowed and encouraged to collaborate on homework. You may also use outside resources, but your submitted work must be your own and reflect your own understanding .\n\n\nLab Quiz Problems\nNo collaboration is allowed at all . You may use your own notes for resubmissions, but should not use outside resources.\n\n\nPortfolio Projects\nYou are expected to collaborate with your group, but cannot rely on external sources other than to help motivate the questions or provide other background information. Getting answers on significant parts of solutions from outside resources is not allowed.\n\n\nFinal Project\nYou are expected to collaborate with your group, but cannot rely on external sources other than to help motivate the questions or provide other background information. Any outside resources should be properly cited."
-  },
-  {
-    "objectID": "slides/slides-cheat-sheet.html#use-of-generative-artificial-intelligence-ai",
-    "href": "slides/slides-cheat-sheet.html#use-of-generative-artificial-intelligence-ai",
-    "title": "Slides Cheat Sheet",
-    "section": "Use of generative artificial intelligence (AI)",
-    "text": "Use of generative artificial intelligence (AI)\n\nTreat generative AI, such as ChatGPT or Gemini, the same as other online resources.\nGuiding principles:\n\n(1) Cognitive dimension: Working with AI should not reduce your ability to think clearly. AI should facilitate—rather than hinder—learning.\n(2) Ethical dimension: Students using AI should be transparent about their use and make sure it aligns with academic integrity.\n\n❌ AI tools for writing code: You may not use generative AI to take a “first pass” at a coding task. Do not type coursework prompts directly into AI tools.\n✅ AI tools for debugging code: You may make use of the technology to get help with error messages or trying to fix issues\n❌ AI tools for narrative: Unless instructed otherwise, you may not use generative AI to write narrative on assignments. In general, you may use generative AI as a resource as you complete assignments but not to answer the exercises for you.\n\n\n\nAdapted from Mine Çetinkaya-Rundel"
-  },
-  {
-    "objectID": "slides/slides-cheat-sheet.html#linktask",
-    "href": "slides/slides-cheat-sheet.html#linktask",
-    "title": "Slides Cheat Sheet",
-    "section": "Link/task",
-    "text": "Link/task\n\nhttps://github.com/stat220-w25\n\n\nFill out the Welcome Survey for collection of your account names, later this week you will be invited to the course organization."
-  },
-  {
-    "objectID": "slides/slides-cheat-sheet.html#handwriting-font",
-    "href": "slides/slides-cheat-sheet.html#handwriting-font",
-    "title": "Slides Cheat Sheet",
-    "section": "handwriting font",
-    "text": "handwriting font\n\nin case you don’t yet have a GitHub account…"
-  },
-  {
-    "objectID": "slides/slides03.html#is-this-the-same-likelihood-as-the-stat250-likelihood",
-    "href": "slides/slides03.html#is-this-the-same-likelihood-as-the-stat250-likelihood",
-    "title": "Likelihood review + Posterior Simulation",
-    "section": "Is this the same likelihood as the Stat250 likelihood?",
-    "text": "Is this the same likelihood as the Stat250 likelihood?"
-  },
-  {
-    "objectID": "slides/slides03.html#does-it-matter-if-y-is-a-discrete-or-continuous-rv",
-    "href": "slides/slides03.html#does-it-matter-if-y-is-a-discrete-or-continuous-rv",
-    "title": "Likelihood review + Posterior Simulation",
-    "section": "Does it matter if \\(Y\\) is a discrete or continuous RV?",
-    "text": "Does it matter if \\(Y\\) is a discrete or continuous RV?"
-  },
-  {
-    "objectID": "slides/slides03.html#example-from-last-time-phd-admissions",
-    "href": "slides/slides03.html#example-from-last-time-phd-admissions",
-    "title": "Likelihood review + Posterior Simulation",
-    "section": "Example from last time: PhD admissions",
-    "text": "Example from last time: PhD admissions\n\n\n\nπ\n0.2\n0.4\n0.8\n\n\n\n\nf(π)\n0.7\n0.2\n0.1\n\n\nL(π | y = 3)\n0.0512\n0.2304\n0.2048\n\n\nf(π | y = 3)\n0.35\n0.45\n0.20"
-  },
-  {
-    "objectID": "slides/slides03.html#first-define-and-simulate-from-prior",
-    "href": "slides/slides03.html#first-define-and-simulate-from-prior",
-    "title": "Likelihood review + Posterior Simulation",
-    "section": "First, define and simulate from prior",
-    "text": "First, define and simulate from prior\n\nadmissions &lt;- tibble(\n  pi = c(.2, .4, .8)\n)\n\nprior &lt;- c(0.7, 0.2, 0.1)\n\nset.seed(091925)\nadmissions_sim &lt;- sample_n(admissions, \n                           size = 10000, \n                           weight = prior, \n                           replace = TRUE)"
-  },
-  {
-    "objectID": "slides/slides03.html#section",
-    "href": "slides/slides03.html#section",
-    "title": "Likelihood review + Posterior Simulation",
-    "section": "",
-    "text": "admissions_sim\n\n# A tibble: 10,000 × 1\n      pi\n   &lt;dbl&gt;\n 1   0.2\n 2   0.2\n 3   0.2\n 4   0.4\n 5   0.2\n 6   0.4\n 7   0.2\n 8   0.4\n 9   0.2\n10   0.8\n# ℹ 9,990 more rows"
-  },
-  {
-    "objectID": "slides/slides03.html#simulated-pi-closely-approximates-prior-fpi",
-    "href": "slides/slides03.html#simulated-pi-closely-approximates-prior-fpi",
-    "title": "Likelihood review + Posterior Simulation",
-    "section": "Simulated pi closely approximates prior \\(f(\\pi)\\)",
-    "text": "Simulated pi closely approximates prior \\(f(\\pi)\\)\n\nadmissions_sim |&gt;\n  tabyl(pi)\n\n  pi    n percent\n 0.2 7030  0.7030\n 0.4 2002  0.2002\n 0.8  968  0.0968"
-  },
-  {
-    "objectID": "slides/slides03.html#simulate-outcomes",
-    "href": "slides/slides03.html#simulate-outcomes",
-    "title": "Likelihood review + Posterior Simulation",
-    "section": "Simulate outcomes",
-    "text": "Simulate outcomes\n\nadmissions_sim &lt;- admissions_sim |&gt;\n  mutate(\n    y = rbinom(10000, size = 5, prob = pi)\n  )\n\nadmissions_sim |&gt; head(5)\n\n# A tibble: 5 × 2\n     pi     y\n  &lt;dbl&gt; &lt;int&gt;\n1   0.2     1\n2   0.2     2\n3   0.2     0\n4   0.4     0\n5   0.2     0"
-  },
-  {
-    "objectID": "slides/slides03.html#simulated-y-outcomes-approximate-fypi",
-    "href": "slides/slides03.html#simulated-y-outcomes-approximate-fypi",
-    "title": "Likelihood review + Posterior Simulation",
-    "section": "Simulated y outcomes approximate \\(f(y|\\pi)\\)",
-    "text": "Simulated y outcomes approximate \\(f(y|\\pi)\\)\n\nggplot(admissions_sim, aes(x = y)) +\n  geom_bar(aes(y = after_stat(prop))) + \n  facet_wrap(vars(pi))"
-  },
-  {
-    "objectID": "slides/slides03.html#to-approximate-posterior-condition-on-observed-data-and-look-at-relative-frequency",
-    "href": "slides/slides03.html#to-approximate-posterior-condition-on-observed-data-and-look-at-relative-frequency",
-    "title": "Likelihood review + Posterior Simulation",
-    "section": "To approximate posterior, condition on observed data and look at relative frequency",
-    "text": "To approximate posterior, condition on observed data and look at relative frequency\n\nobserved &lt;- admissions_sim |&gt;\n  filter(y == 3)\n\nobserved |&gt;\n  tabyl(pi)\n\n  pi   n   percent\n 0.2 365 0.3628231\n 0.4 445 0.4423459\n 0.8 196 0.1948310"
+    "objectID": "slides/slides01.html#take-care-of-yourself",
+    "href": "slides/slides01.html#take-care-of-yourself",
+    "title": "Welcome to Bayes!",
+    "section": "Take care of yourself",
+    "text": "Take care of yourself\nDo your best to maintain a healthy lifestyle this semester by wearing a mask if you don’t feel well, eating a vegetable every day, exercising, avoiding excessive drug and alcohol use, getting enough sleep, and taking some time to relax. Your mental health is more important than your grade in this course. There are many helpful resources available on campus and an important part of the college experience is learning how to ask for help. If you are experiencing mental health symptoms as a result of coursework, please speak with me so we can address the problem together."
   },
   {
     "objectID": "slides/slides04.html#back-to-graduate-school-applications",
@@ -1953,7 +2072,7 @@
     "href": "homework/hw04.html",
     "title": "Individual HW04",
     "section": "",
-    "text": "library(bayesrules) # R package for our textbook\nlibrary(tidyverse) # Collection of packages for tidying and plotting data\nlibrary(janitor) # Helper functions like tidy and tabyl\nlibrary(rstan) # for MCMC\nlibrary(bayesplot) # for plotting\n\nQ1\nExplain the difference between \\(N_{eff}\\) and the actual number of MCMC samples\nQ2: mcmc_rank_hist and mcmc_rank_overlay\n\nTrace plots are a natural way to view a chain, but they become hard to read when we have many samples and/or many chains. An alternative way to view the chains is called a rank histogram or trace rank plot. What this means is to (a) take all of the samples for a parameter and rank them, (b) draw a histogram of the ranks for each individual chain\nThe code chunk below loads two pre-fit stan models.\n\nload(\"../data/hw04-q2.rda\")\n\n\nCreate traceplots, rank histograms (mcmc_rank_hist), and trace rank plots (mcmc_rank_overlay) for both MCMC samples.\nWhich sample is “healthy”? Which is “unhealthy”? Explain how you can tell from the new plots\nWhich type of plot do you find more useful?\nQ3: Revisiting BR Exercise 5.11\nProf. Abebe and Prof. Morales both recently finished their PhDs and are teaching their first statistics classes at Bayesian University. Their colleagues told them that the average final exam score across all students, \\(\\mu\\), varies Normally from year to year with a mean of 80 points and a standard deviation of 4. Further, individual students’ scores \\(Y\\) vary Normally around \\(\\mu\\) with an unknown standard deviation \\(\\sigma\\).\n\nSuggest three possible prior distributions for \\(\\sigma\\) (at least two should be different named distributions). Include density plots for each prior. (You can find available probability distributions in the Stan documentation: https://mc-stan.org/docs/functions-reference/positive_continuous_distributions.html)\nBelow is starter code for running a Stan model in this scenario. Delete the #| eval: false line and fill in the blanks\n\n\nfn_model2 &lt;- \"\n  data {\n    int&lt;lower=0&gt; N;\n    vector[N] y;\n  }\n\n  parameters {\n    real mu;\n    real&lt;lower=0&gt; sigma;\n  }\n\n  model {\n    y ~ normal(_____, ____);\n    mu ~ normal(_____, _____);\n    sigma ~ __________;\n  }\n\"\n\n\nRun your model on the data below from Prof. Abebe and Prof. Morales’ combined scores.\n\n\nscores&lt;- c(90.3, 81.3,  85.2, 85.6, 86.4, 83.8, 86.7, 90.1, 82.3, 88.4, 89.2, 90.6,81.2, 85.9, 88.8, 82.9,84.4, 86, 78.2, 87.3, 90.8, 87, 85, 86.8, 89.8, 91.2, 84.8, 83.8, 83.3, 86.1,  92.8, 85.9,  79,74.7, 78, 79.2,  83.9, 79.8, 81.1,  87.5, 81.8,  85.6,  77,  85.2, 85.9,  83.1,92.1,  72.6, 88.3,  78, 76.5,  79.4, 82.8,  82.5, 81.4, 78.9, 75.9, 73.2,84.2, 87.6,  77.6, 84.2,  78.7,  72)\n\n\nRun thorough diagnostics on your MCMC sample. This should include: traceplots of all relevant parameters, density plots for each chain for all relevant parameters, R-hat values, and N-eff. What do you conclude about the validity of your sample?\nWhat do you conclude about the posterior mean \\(\\mu | \\vec{y}\\)? How does your answer differ from HW3’s conjugate analysis?\nRewrite the stan model code to take a flexible normal prior for \\(\\mu\\). That is, we should be able to specify the prior mean \\(\\theta\\) and prior sd \\(\\tau\\) (or prior variance \\(\\tau^2\\), whichever you prefer), instead of hard-coding them as 80 and 4.\nQ4: TBA Mon\nQ5: TBA Mon\nQ6: TBA Mon\nQ7: TBA Wed\nQ8: TBA Wed",
+    "text": "library(bayesrules) # R package for our textbook\nlibrary(tidyverse) # Collection of packages for tidying and plotting data\nlibrary(janitor) # Helper functions like tidy and tabyl\nlibrary(rstan) # for MCMC\nlibrary(bayesplot) # for plotting\n\nQ1\nExplain the difference between \\(N_{eff}\\) and the actual number of MCMC samples\nQ2: mcmc_rank_hist and mcmc_rank_overlay\n\nTrace plots are a natural way to view a chain, but they become hard to read when we have many samples and/or many chains. An alternative way to view the chains is called a rank histogram or trace rank plot. What this means is to (a) take all of the samples for a parameter and rank them, (b) draw a histogram of the ranks for each individual chain\nThe code chunk below loads two pre-fit stan models.\n\nload(url(\"https://aluby.github.io/stat340-f25/data/hw04-q2.rda\"))\n\n\nCreate traceplots, rank histograms (mcmc_rank_hist), and trace rank plots (mcmc_rank_overlay) for both MCMC samples.\nWhich sample is “healthy”? Which is “unhealthy”? Explain how you can tell from the new plots\nWhich type of plot do you find more useful?\nQ3: Revisiting BR Exercise 5.11\nProf. Abebe and Prof. Morales both recently finished their PhDs and are teaching their first statistics classes at Bayesian University. Their colleagues told them that the average final exam score across all students, \\(\\mu\\), varies Normally from year to year with a mean of 80 points and a standard deviation of 4. Further, individual students’ scores \\(Y\\) vary Normally around \\(\\mu\\) with an unknown standard deviation \\(\\sigma\\).\n\nSuggest three possible prior distributions for \\(\\sigma\\) (at least two should be different named distributions). Include density plots for each prior. (You can find available probability distributions in the Stan documentation: https://mc-stan.org/docs/functions-reference/positive_continuous_distributions.html)\nBelow is starter code for running a Stan model in this scenario. Delete the #| eval: false line and fill in the blanks\n\n\nfn_model2 &lt;- \"\n  data {\n    int&lt;lower=0&gt; N;\n    vector[N] y;\n  }\n\n  parameters {\n    real mu;\n    real&lt;lower=0&gt; sigma;\n  }\n\n  model {\n    y ~ normal(_____, ____);\n    mu ~ normal(_____, _____);\n    sigma ~ __________;\n  }\n\"\n\n\nRun your model on the data below from Prof. Abebe and Prof. Morales’ combined scores.\n\n\nscores&lt;- c(90.3, 81.3,  85.2, 85.6, 86.4, 83.8, 86.7, 90.1, 82.3, 88.4, 89.2, 90.6,81.2, 85.9, 88.8, 82.9,84.4, 86, 78.2, 87.3, 90.8, 87, 85, 86.8, 89.8, 91.2, 84.8, 83.8, 83.3, 86.1,  92.8, 85.9,  79,74.7, 78, 79.2,  83.9, 79.8, 81.1,  87.5, 81.8,  85.6,  77,  85.2, 85.9,  83.1,92.1,  72.6, 88.3,  78, 76.5,  79.4, 82.8,  82.5, 81.4, 78.9, 75.9, 73.2,84.2, 87.6,  77.6, 84.2,  78.7,  72)\n\n\nRun thorough diagnostics on your MCMC sample. This should include: traceplots of all relevant parameters, density plots for each chain for all relevant parameters, R-hat values, and N-eff. What do you conclude about the validity of your sample?\nWhat do you conclude about the posterior mean \\(\\mu | \\vec{y}\\)? How does your answer differ from HW3’s conjugate analysis?\nRewrite the stan model code to take a flexible normal prior for \\(\\mu\\). That is, we should be able to specify the prior mean \\(\\theta\\) and prior sd \\(\\tau\\) (or prior variance \\(\\tau^2\\), whichever you prefer), instead of hard-coding them as 80 and 4.\nQ4: TBA Mon\nQ5: TBA Mon\nQ6: TBA Mon\nQ7: TBA Wed\nQ8: TBA Wed",
     "crumbs": [
       "Assignments",
       "Homework",
@@ -2135,7 +2254,7 @@
     "href": "groupwork/gw04.html",
     "title": "Group Work 03",
     "section": "",
-    "text": "library(bayesrules) # R package for our textbook\nlibrary(tidyverse) # Collection of packages for tidying and plotting data\nlibrary(janitor) # Helper functions like tidy and tabyl\n\n\n\n\n\n\n\nNote\n\n\n\nNo group problems from Friday",
+    "text": "library(bayesrules) # R package for our textbook\nlibrary(tidyverse) # Collection of packages for tidying and plotting data\nlibrary(janitor) # Helper functions like tidy and tabyl\n\n\n\n\n\n\n\nNote\n\n\n\nNo group problems from Friday\n\n\nBR Exercise 7.6: Proposing a new location\nIn each situation below, complete Step 1 of the Metropolis-Hastings algorithm. That is, starting from teh given current chain value \\(\\lambda^{(i)} = \\lambda\\) and with set.seed(84735), use the given proposal model to draw a \\(\\lambda'\\) proposal value for the next value in the chain \\(\\lambda^{(i+1)}\\)\n\n\\(\\lambda = 4.6, \\lambda' | \\lambda \\sim N(\\lambda, 2^2)\\)\n\\(\\lambda = 2.1, \\lambda' | \\lambda \\sim N(\\lambda, 7^2)\\)\n\\(\\lambda = 8.9, \\lambda' | \\lambda \\sim Unif(\\lambda - 2, \\lambda +2)\\)\n\\(\\lambda = 1.2, \\lambda' | \\lambda \\sim Unif(\\lambda - 0.5, \\lambda + 0.5)\\)\n\\(\\lambda = 7.7, \\lambda' | \\lambda \\sim Unif(\\lambda - 3, \\lambda +3)\\)\nDiscuss why these proposal models “make sense”\nBR Exercise 7.7: Calculate the acceptance probability\nSuppose that a Markov chain is currently at \\(\\lambda^{(i)}=2\\) and the proposal for \\(\\lambda^{(i+1)}\\) is \\(\\lambda' = 2.1\\). For each pair of unnnormalized pdf \\(f(\\lambda) L(\\lambda | y)\\) and proposal \\(q(\\lambda' | \\lambda)\\), calculate the acceptance probability \\(\\alpha\\) used in Step 2 of the Metropolis-Hastings algorithm.\n\n\n\\(f(\\lambda) L(\\lambda | y) = \\lambda^{-1}, \\lambda' | \\lambda \\sim N(\\lambda, 2^2)\\) with pdf \\(q(\\lambda'|\\lambda)\\)\n\n\n\\(f(\\lambda) L(\\lambda | y) = e^{3\\lambda}, \\lambda' | \\lambda \\sim N(\\lambda, .5^2)\\) with pdf \\(q(\\lambda'|\\lambda)\\)\n\n\n\\(f(\\lambda) L(\\lambda | y) = e^{-1.9\\lambda}, \\lambda' | \\lambda \\sim Unif(\\lambda - .3, \\lambda + .3)\\) with pdf \\(q(\\lambda'|\\lambda)\\)\n\n\n\\(f(\\lambda) L(\\lambda | y) =e^{-\\lambda^4}, \\lambda' | \\lambda \\sim Exp(\\lambda)\\) with pdf \\(q(\\lambda'|\\lambda)\\)\n\nFor which of these scenarios is there a 100% acceptance probability? Explain why we’d certainly want to accept \\(\\lambda\\) in these scenarios\nTBA Wed\nTBA Wed",
     "crumbs": [
       "Assignments",
       "Groupwork",
