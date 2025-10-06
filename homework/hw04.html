@@ -503,9 +503,9 @@ window.Quarto = {
 <li><a href="#q1" id="toc-q1" class="nav-link active" data-scroll-target="#q1">Q1</a></li>
   <li><a href="#q2-mcmc_rank_hist-and-mcmc_rank_overlay" id="toc-q2-mcmc_rank_hist-and-mcmc_rank_overlay" class="nav-link" data-scroll-target="#q2-mcmc_rank_hist-and-mcmc_rank_overlay">Q2: <code>mcmc_rank_hist</code> and <code>mcmc_rank_overlay</code></a></li>
   <li><a href="#q3-revisiting-br-exercise-5.11" id="toc-q3-revisiting-br-exercise-5.11" class="nav-link" data-scroll-target="#q3-revisiting-br-exercise-5.11">Q3: Revisiting BR Exercise 5.11</a></li>
-  <li><a href="#q4-tba-mon" id="toc-q4-tba-mon" class="nav-link" data-scroll-target="#q4-tba-mon">Q4: TBA Mon</a></li>
-  <li><a href="#q5-tba-mon" id="toc-q5-tba-mon" class="nav-link" data-scroll-target="#q5-tba-mon">Q5: TBA Mon</a></li>
-  <li><a href="#q6-tba-mon" id="toc-q6-tba-mon" class="nav-link" data-scroll-target="#q6-tba-mon">Q6: TBA Mon</a></li>
+  <li><a href="#br-7.4-tuning-the-metropolis-hastings" id="toc-br-7.4-tuning-the-metropolis-hastings" class="nav-link" data-scroll-target="#br-7.4-tuning-the-metropolis-hastings">BR 7.4: Tuning the Metropolis-Hastings</a></li>
+  <li><a href="#br-7.5-one-iteration-with-uniform-proposal-model" id="toc-br-7.5-one-iteration-with-uniform-proposal-model" class="nav-link" data-scroll-target="#br-7.5-one-iteration-with-uniform-proposal-model">BR 7.5: One iteration with uniform proposal model</a></li>
+  <li><a href="#br-7.11-changing-the-proposal-model" id="toc-br-7.11-changing-the-proposal-model" class="nav-link" data-scroll-target="#br-7.11-changing-the-proposal-model">BR 7.11: Changing the proposal model</a></li>
   <li><a href="#q7-tba-wed" id="toc-q7-tba-wed" class="nav-link" data-scroll-target="#q7-tba-wed">Q7: TBA Wed</a></li>
   <li><a href="#q8-tba-wed" id="toc-q8-tba-wed" class="nav-link" data-scroll-target="#q8-tba-wed">Q8: TBA Wed</a></li>
   </ul><div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="hw04.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
@@ -587,10 +587,46 @@ window.Quarto = {
 <li><p>Run thorough diagnostics on your MCMC sample. This should include: traceplots of all relevant parameters, density plots for each chain for all relevant parameters, R-hat values, and N-eff. What do you conclude about the validity of your sample?</p></li>
 <li><p>What do you conclude about the posterior mean <span class="math inline">\(\mu | \vec{y}\)</span>? How does your answer differ from HW3’s conjugate analysis?</p></li>
 <li><p>Rewrite the stan model code to take a flexible normal prior for <span class="math inline">\(\mu\)</span>. That is, we should be able to specify the prior mean <span class="math inline">\(\theta\)</span> and prior sd <span class="math inline">\(\tau\)</span> (or prior variance <span class="math inline">\(\tau^2\)</span>, whichever you prefer), instead of hard-coding them as 80 and 4.</p></li>
-</ol></section><section id="q4-tba-mon" class="level1"><h1>Q4: TBA Mon</h1>
-</section><section id="q5-tba-mon" class="level1"><h1>Q5: TBA Mon</h1>
-</section><section id="q6-tba-mon" class="level1"><h1>Q6: TBA Mon</h1>
-</section><section id="q7-tba-wed" class="level1"><h1>Q7: TBA Wed</h1>
+</ol></section><section id="br-7.4-tuning-the-metropolis-hastings" class="level1"><h1>BR 7.4: Tuning the Metropolis-Hastings</h1>
+<p>In this exercise you will consider how to tune a Uniform proposal model with half-width <span class="math inline">\(w\)</span> for a Metropolis-Hastings algorithm.</p>
+<ol type="a">
+<li>Draw a trace plot for a tour where the Uniform proposal model uses a very small <span class="math inline">\(w\)</span>.</li>
+<li>Why is it problematic if <span class="math inline">\(w\)</span> is too small, and hence defines the neighborhood around the current chain value too narrowly?</li>
+<li>Draw a trace plot for a tour where the Uniform proposal model uses a very large <span class="math inline">\(w\)</span>
+</li>
+<li>Why is it problematic if <span class="math inline">\(w\)</span> is too large, and hence defines the neighborhood too widely?</li>
+<li>Draw a trace plot for a tour where the Uniform proposal model uses a <span class="math inline">\(w\)</span> that is neither too small or too large.</li>
+<li>Describe how you would go about finding an appropriate half-width <span class="math inline">\(w\)</span> for a Uniform proposal model.</li>
+</ol></section><section id="br-7.5-one-iteration-with-uniform-proposal-model" class="level1"><h1>BR 7.5: One iteration with uniform proposal model</h1>
+<p>The function <code>one_mh_iteration()</code> from the text utilizes a Uniform proposal model, <span class="math inline">\(\mu' | \mu \sim \text{Unif}(\mu - w, \mu + w)\)</span>, with half-width <span class="math inline">\(w=1\)</span>. Starting from a current value of <span class="math inline">\(\mu = 3\)</span> and using <code>set.seed(1)</code>, run the code below and comment on the returned <code>proposal</code>, <code>alpha</code>, and <code>next_stop</code> values.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>You can use <code>one_mh_iteration</code> directly from the text</p>
+</div>
+</div>
+<ol type="a">
+<li><code>one_mh_iteration(w = 0.01, current = 3)</code></li>
+<li><code>one_mh_iteration(w = 0.5, current = 3)</code></li>
+<li><code>one_mh_iteration(w = 1, current = 3)</code></li>
+<li><code>one_mh_iteration(w = 3, current = 3)</code></li>
+</ol></section><section id="br-7.11-changing-the-proposal-model" class="level1"><h1>BR 7.11: Changing the proposal model</h1>
+<p>For this exercise, modify <code>one_mh_iteration()</code> to create a new function, <code>one_mh_iteration_normal()</code>, which utilizes a symmetric Normal proposal model, centered at the current chain value <span class="math inline">\(\mu\)</span> with standard deviation <span class="math inline">\(s\)</span>:</p>
+<p><span class="math display">\[\mu ' | \mu \sim N(\mu, s^2)\]</span></p>
+<p>Subsequently, starting from a current value of <span class="math inline">\(\mu = 3\)</span> and <code>set.seed(1)</code>, run this function under each setting below. Comment on the returned <code>proposal</code>, <code>alpha</code>, and <code>next_stop</code> values.</p>
+<ol type="a">
+<li><code>one_mh_iteration_normal(s = 0.01, current = 3)</code></li>
+<li><code>one_mh_iteration_normal(s = 0.5, current = 3)</code></li>
+<li><code>one_mh_iteration_normal(s = 1, current = 3)</code></li>
+<li><code>one_mh_iteration_normal(s = 3, current = 3)</code></li>
+</ol></section><section id="q7-tba-wed" class="level1"><h1>Q7: TBA Wed</h1>
 </section><section id="q8-tba-wed" class="level1"><h1>Q8: TBA Wed</h1>
 
 
@@ -1145,15 +1181,47 @@ window.Quarto = {
 <span id="cb5-81"><a href="#cb5-81" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-82"><a href="#cb5-82" aria-hidden="true" tabindex="-1"></a>(f) Rewrite the stan model code to take a flexible normal prior for $\mu$. That is, we should be able to specify the prior mean $\theta$ and prior sd $\tau$ (or prior variance $\tau^2$, whichever you prefer), instead of hard-coding them as 80 and 4. </span>
 <span id="cb5-83"><a href="#cb5-83" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-84"><a href="#cb5-84" aria-hidden="true" tabindex="-1"></a><span class="fu"># Q4: TBA Mon</span></span>
+<span id="cb5-84"><a href="#cb5-84" aria-hidden="true" tabindex="-1"></a><span class="fu"># BR 7.4: Tuning the Metropolis-Hastings</span></span>
 <span id="cb5-85"><a href="#cb5-85" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-86"><a href="#cb5-86" aria-hidden="true" tabindex="-1"></a><span class="fu"># Q5: TBA Mon</span></span>
+<span id="cb5-86"><a href="#cb5-86" aria-hidden="true" tabindex="-1"></a>In this exercise you will consider how to tune a Uniform proposal model with half-width  $w$ for a Metropolis-Hastings algorithm.</span>
 <span id="cb5-87"><a href="#cb5-87" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-88"><a href="#cb5-88" aria-hidden="true" tabindex="-1"></a><span class="fu"># Q6: TBA Mon</span></span>
-<span id="cb5-89"><a href="#cb5-89" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-90"><a href="#cb5-90" aria-hidden="true" tabindex="-1"></a><span class="fu"># Q7: TBA Wed</span></span>
-<span id="cb5-91"><a href="#cb5-91" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-92"><a href="#cb5-92" aria-hidden="true" tabindex="-1"></a><span class="fu"># Q8: TBA Wed</span></span>
+<span id="cb5-88"><a href="#cb5-88" aria-hidden="true" tabindex="-1"></a>(a) Draw a trace plot for a tour where the Uniform proposal model uses a very small $w$. </span>
+<span id="cb5-89"><a href="#cb5-89" aria-hidden="true" tabindex="-1"></a>(b) Why is it problematic if $w$ is too small, and hence defines the neighborhood around the current chain value too narrowly?</span>
+<span id="cb5-90"><a href="#cb5-90" aria-hidden="true" tabindex="-1"></a>(c) Draw a trace plot for a tour where the Uniform proposal model uses a very large $w$</span>
+<span id="cb5-91"><a href="#cb5-91" aria-hidden="true" tabindex="-1"></a>(d) Why is it problematic if $w$ is too large, and hence defines the neighborhood too widely?</span>
+<span id="cb5-92"><a href="#cb5-92" aria-hidden="true" tabindex="-1"></a>(e) Draw a trace plot for a tour where the Uniform proposal model uses a $w$ that is neither too small or too large.</span>
+<span id="cb5-93"><a href="#cb5-93" aria-hidden="true" tabindex="-1"></a>(e) Describe how you would go about finding an appropriate half-width $w$ for a Uniform proposal model.</span>
+<span id="cb5-94"><a href="#cb5-94" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-95"><a href="#cb5-95" aria-hidden="true" tabindex="-1"></a><span class="fu"># BR 7.5: One iteration with uniform proposal model</span></span>
+<span id="cb5-96"><a href="#cb5-96" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-97"><a href="#cb5-97" aria-hidden="true" tabindex="-1"></a>The function <span class="in">`one_mh_iteration()`</span> from the text utilizes a Uniform proposal model, $\mu' | \mu \sim \text{Unif}(\mu - w, \mu + w)$, with half-width $w=1$. Starting from a current value of $\mu = 3$ and using <span class="in">`set.seed(1)`</span>, run the code below and comment on the returned <span class="in">`proposal`</span>, <span class="in">`alpha`</span>, and <span class="in">`next_stop`</span> values.</span>
+<span id="cb5-98"><a href="#cb5-98" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-99"><a href="#cb5-99" aria-hidden="true" tabindex="-1"></a>::: callout-note</span>
+<span id="cb5-100"><a href="#cb5-100" aria-hidden="true" tabindex="-1"></a>You can use <span class="in">`one_mh_iteration`</span> directly from the text</span>
+<span id="cb5-101"><a href="#cb5-101" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb5-102"><a href="#cb5-102" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-103"><a href="#cb5-103" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-104"><a href="#cb5-104" aria-hidden="true" tabindex="-1"></a>(a) <span class="in">`one_mh_iteration(w = 0.01, current = 3)`</span></span>
+<span id="cb5-105"><a href="#cb5-105" aria-hidden="true" tabindex="-1"></a>(b) <span class="in">`one_mh_iteration(w = 0.5, current = 3)`</span></span>
+<span id="cb5-106"><a href="#cb5-106" aria-hidden="true" tabindex="-1"></a>(c) <span class="in">`one_mh_iteration(w = 1, current = 3)`</span></span>
+<span id="cb5-107"><a href="#cb5-107" aria-hidden="true" tabindex="-1"></a>(d) <span class="in">`one_mh_iteration(w = 3, current = 3)`</span></span>
+<span id="cb5-108"><a href="#cb5-108" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-109"><a href="#cb5-109" aria-hidden="true" tabindex="-1"></a><span class="fu"># BR 7.11: Changing the proposal model</span></span>
+<span id="cb5-110"><a href="#cb5-110" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-111"><a href="#cb5-111" aria-hidden="true" tabindex="-1"></a>For this exercise, modify <span class="in">`one_mh_iteration()`</span> to create a new function, <span class="in">`one_mh_iteration_normal()`</span>, which utilizes a symmetric Normal proposal model, centered at the current chain value  $\mu$ with standard deviation $s$: </span>
+<span id="cb5-112"><a href="#cb5-112" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-113"><a href="#cb5-113" aria-hidden="true" tabindex="-1"></a>$$\mu ' | \mu \sim N(\mu, s^2)$$</span>
+<span id="cb5-114"><a href="#cb5-114" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-115"><a href="#cb5-115" aria-hidden="true" tabindex="-1"></a>Subsequently, starting from a current value of $\mu = 3$ and <span class="in">`set.seed(1)`</span>, run this function under each setting below. Comment on the returned <span class="in">`proposal`</span>, <span class="in">`alpha`</span>, and <span class="in">`next_stop`</span> values.</span>
+<span id="cb5-116"><a href="#cb5-116" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-117"><a href="#cb5-117" aria-hidden="true" tabindex="-1"></a>(a) <span class="in">`one_mh_iteration_normal(s = 0.01, current = 3)`</span></span>
+<span id="cb5-118"><a href="#cb5-118" aria-hidden="true" tabindex="-1"></a>(b) <span class="in">`one_mh_iteration_normal(s = 0.5, current = 3)`</span></span>
+<span id="cb5-119"><a href="#cb5-119" aria-hidden="true" tabindex="-1"></a>(c) <span class="in">`one_mh_iteration_normal(s = 1, current = 3)`</span></span>
+<span id="cb5-120"><a href="#cb5-120" aria-hidden="true" tabindex="-1"></a>(d) <span class="in">`one_mh_iteration_normal(s = 3, current = 3)`</span></span>
+<span id="cb5-121"><a href="#cb5-121" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-122"><a href="#cb5-122" aria-hidden="true" tabindex="-1"></a><span class="fu"># Q7: TBA Wed</span></span>
+<span id="cb5-123"><a href="#cb5-123" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-124"><a href="#cb5-124" aria-hidden="true" tabindex="-1"></a><span class="fu"># Q8: TBA Wed</span></span>
 </code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
