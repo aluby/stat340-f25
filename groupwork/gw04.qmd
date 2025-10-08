@@ -34,6 +34,29 @@ Suppose that a Markov chain is currently at $\lambda^{(i)}=2$ and the proposal f
 (e) For which of these scenarios is there a 100% acceptance probability? Explain why we’d certainly want to accept $\lambda$ in these scenarios
 
 
-# TBA Wed
+# BR 7.14
 
-# TBA Wed
+Consider a Gamma-Poisson model in which rate $\lambda$ has a Gamma(1,0.1) prior and you observe one Poisson data point,  $Y=4$. In this exercise, you will simulate the posterior model of $\lambda$ using an independence sampler.
+
+(a) Which of the following would make the most reasonable proposal model to use in your independence sampler for  $\lambda$: Normal, Beta, or Exponential? Hint: Recall that  $\lambda > 0$. 
+(b) Using the proposal model that you identified in part a, simulate a tour of 1000  $\lambda$ values. Tune your algorithm until you are satisfied and produce a trace plot of your final results.
+(c) This is a situation where we can derive the exact posterior model of $\lambda$. What is it?
+(d) Plot a histogram of your tour and overlay the exact model. How good is your Markov chain approximation?
+
+# Independence Sampler for truncated normal prior
+
+Metropolis-Hastings and Independence Samplers are powerful when we *don't* have a closed-form solution. Suppose we instead use a truncated normal model for $\lambda$. This pdf *looks* like a normal distribution, but is truncated at lower and/or upper bounds. The code chunk below loads the {truncnorm} package, which gives you access to `dtruncnorm`, `rtruncnorm`, etc, and plots a truncated normal with parameters $\mu=0$, $\sigma=1$ and $a=0$. 
+
+(a) Test different values of `a`, `mean`, and `sd` to get a sense of what each parameter does. Provide explanations of each.
+(b) Tune the truncated normal prior to cover a similar range as the Gamma distribution above
+(b) Modify your independence sampler from the previous question to use a truncated normal prior distribution. Tune your algorithm until you are satisfied and produce a trace plot of your final results.
+(d) Compare your posterior to the posterior from the last question. 
+
+
+```{r}
+library(truncnorm)
+
+ggplot(data = data.frame(x = c(-4, 4)), aes(x = x)) +
+  stat_function(fun = dtruncnorm, 
+                args = list(a = 0, mean = 0, sd = 1)) 
+```

@@ -111,6 +111,13 @@ Subsequently, starting from a current value of $\mu = 3$ and `set.seed(1)`, run 
 (c) `one_mh_iteration_normal(s = 1, current = 3)`
 (d) `one_mh_iteration_normal(s = 3, current = 3)`
 
-# Q7: TBA Wed
+# BR 7.12  (Metropolis-Hastings tour with normal proposals) 
 
-# Q8: TBA Wed
+Upon completing the previous exercise, modify `mh_tour()` to create a new function, `mh_tour_normal()`, which constructs a chain of  $\mu$ values using a Normal proposal model with standard deviation  $s$. Subsequently, using `set.seed(84735)`, run this function under each setting below and construct a trace plot of the chain.
+
+(a) 20 iterations,  s=0.01
+(b) 20 iterations,  s=10
+(c) 1000 iterations,  s=0.01
+(d) 1000 iterations,  s=10
+(e) Contrast the trace plots in a and b. Explain in simple terms why changing the standard deviation of the Normal proposal model causes these differences.
+(f) Reflecting on the above results, tune your Metropolis-Hastings algorithm. That is, identify a reasonable value for standard deviation  $s$ and provide a trace plot as proof.
