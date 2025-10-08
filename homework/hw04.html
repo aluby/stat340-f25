@@ -506,8 +506,7 @@ window.Quarto = {
   <li><a href="#br-7.4-tuning-the-metropolis-hastings" id="toc-br-7.4-tuning-the-metropolis-hastings" class="nav-link" data-scroll-target="#br-7.4-tuning-the-metropolis-hastings">BR 7.4: Tuning the Metropolis-Hastings</a></li>
   <li><a href="#br-7.5-one-iteration-with-uniform-proposal-model" id="toc-br-7.5-one-iteration-with-uniform-proposal-model" class="nav-link" data-scroll-target="#br-7.5-one-iteration-with-uniform-proposal-model">BR 7.5: One iteration with uniform proposal model</a></li>
   <li><a href="#br-7.11-changing-the-proposal-model" id="toc-br-7.11-changing-the-proposal-model" class="nav-link" data-scroll-target="#br-7.11-changing-the-proposal-model">BR 7.11: Changing the proposal model</a></li>
-  <li><a href="#q7-tba-wed" id="toc-q7-tba-wed" class="nav-link" data-scroll-target="#q7-tba-wed">Q7: TBA Wed</a></li>
-  <li><a href="#q8-tba-wed" id="toc-q8-tba-wed" class="nav-link" data-scroll-target="#q8-tba-wed">Q8: TBA Wed</a></li>
+  <li><a href="#br-7.12-metropolis-hastings-tour-with-normal-proposals" id="toc-br-7.12-metropolis-hastings-tour-with-normal-proposals" class="nav-link" data-scroll-target="#br-7.12-metropolis-hastings-tour-with-normal-proposals">BR 7.12 (Metropolis-Hastings tour with normal proposals)</a></li>
   </ul><div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="hw04.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
     </div>
 <!-- main -->
@@ -626,8 +625,16 @@ Note
 <li><code>one_mh_iteration_normal(s = 0.5, current = 3)</code></li>
 <li><code>one_mh_iteration_normal(s = 1, current = 3)</code></li>
 <li><code>one_mh_iteration_normal(s = 3, current = 3)</code></li>
-</ol></section><section id="q7-tba-wed" class="level1"><h1>Q7: TBA Wed</h1>
-</section><section id="q8-tba-wed" class="level1"><h1>Q8: TBA Wed</h1>
+</ol></section><section id="br-7.12-metropolis-hastings-tour-with-normal-proposals" class="level1"><h1>BR 7.12 (Metropolis-Hastings tour with normal proposals)</h1>
+<p>Upon completing the previous exercise, modify <code>mh_tour()</code> to create a new function, <code>mh_tour_normal()</code>, which constructs a chain of <span class="math inline">\(\mu\)</span> values using a Normal proposal model with standard deviation <span class="math inline">\(s\)</span>. Subsequently, using <code>set.seed(84735)</code>, run this function under each setting below and construct a trace plot of the chain.</p>
+<ol type="a">
+<li>20 iterations, s=0.01</li>
+<li>20 iterations, s=10</li>
+<li>1000 iterations, s=0.01</li>
+<li>1000 iterations, s=10</li>
+<li>Contrast the trace plots in a and b. Explain in simple terms why changing the standard deviation of the Normal proposal model causes these differences.</li>
+<li>Reflecting on the above results, tune your Metropolis-Hastings algorithm. That is, identify a reasonable value for standard deviation <span class="math inline">\(s\)</span> and provide a trace plot as proof.</li>
+</ol>
 
 
 <!-- -->
@@ -1219,9 +1226,16 @@ Note
 <span id="cb5-119"><a href="#cb5-119" aria-hidden="true" tabindex="-1"></a>(c) <span class="in">`one_mh_iteration_normal(s = 1, current = 3)`</span></span>
 <span id="cb5-120"><a href="#cb5-120" aria-hidden="true" tabindex="-1"></a>(d) <span class="in">`one_mh_iteration_normal(s = 3, current = 3)`</span></span>
 <span id="cb5-121"><a href="#cb5-121" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-122"><a href="#cb5-122" aria-hidden="true" tabindex="-1"></a><span class="fu"># Q7: TBA Wed</span></span>
+<span id="cb5-122"><a href="#cb5-122" aria-hidden="true" tabindex="-1"></a><span class="fu"># BR 7.12  (Metropolis-Hastings tour with normal proposals) </span></span>
 <span id="cb5-123"><a href="#cb5-123" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-124"><a href="#cb5-124" aria-hidden="true" tabindex="-1"></a><span class="fu"># Q8: TBA Wed</span></span>
+<span id="cb5-124"><a href="#cb5-124" aria-hidden="true" tabindex="-1"></a>Upon completing the previous exercise, modify <span class="in">`mh_tour()`</span> to create a new function, <span class="in">`mh_tour_normal()`</span>, which constructs a chain of  $\mu$ values using a Normal proposal model with standard deviation  $s$. Subsequently, using <span class="in">`set.seed(84735)`</span>, run this function under each setting below and construct a trace plot of the chain.</span>
+<span id="cb5-125"><a href="#cb5-125" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-126"><a href="#cb5-126" aria-hidden="true" tabindex="-1"></a>(a) 20 iterations,  s=0.01</span>
+<span id="cb5-127"><a href="#cb5-127" aria-hidden="true" tabindex="-1"></a>(b) 20 iterations,  s=10</span>
+<span id="cb5-128"><a href="#cb5-128" aria-hidden="true" tabindex="-1"></a>(c) 1000 iterations,  s=0.01</span>
+<span id="cb5-129"><a href="#cb5-129" aria-hidden="true" tabindex="-1"></a>(d) 1000 iterations,  s=10</span>
+<span id="cb5-130"><a href="#cb5-130" aria-hidden="true" tabindex="-1"></a>(e) Contrast the trace plots in a and b. Explain in simple terms why changing the standard deviation of the Normal proposal model causes these differences.</span>
+<span id="cb5-131"><a href="#cb5-131" aria-hidden="true" tabindex="-1"></a>(f) Reflecting on the above results, tune your Metropolis-Hastings algorithm. That is, identify a reasonable value for standard deviation  $s$ and provide a trace plot as proof.</span>
 </code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
