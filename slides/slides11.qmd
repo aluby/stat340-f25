@@ -1,0 +1,521 @@
+---
+title: Implementing Metropolis-Hastings
+subtitle: Day 11
+title-slide-attributes:
+  data-background-color: "#e2583eff"
+  data-slide-number: none
+format: 
+  revealjs:
+    incremental: false
+    scrollable: false
+auto-stretch: true
+editor_options: 
+  chunk_output_type: console
+editor: 
+  markdown: 
+    wrap: 72
+execute: 
+  warning: false
+  message: false
+---
+
+
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+
+library(countdown)
+library(tidyverse)
+library(bayesrules)
+library(janitor)
+library(patchwork)
+library(rstan)
+library(bayesplot)
+
+theme_set(theme_minimal(base_size = 16, base_family = "Atkinson Hyperlegible"))
+```
+
+## But first, grid approximation
+
+Consider the Normal-Normal model for $\mu$ with $Y|\mu \sim N(\mu, 1.3^2)$ and $\mu \sim N(10, 1.2^2)$. Suppose that you observe data $(Y_1, Y_2, Y_3, Y_4) = (7.1, 8.9, 8.4, 8.6)$
+
+(a) Utilize grid approximation with grid values $\mu \in \{5, 6, 7, ..., 15\}$ to approximate the posterior of $\mu$
+
+Recall that 
+$$L(\mu | \vec{y}) = \prod f(y_i | \mu) = \prod \phi(y_i, \mu, 1.3^2)$$
+
+$$L(\mu | \vec{y}) \propto \phi(\bar{y}, \mu, \frac{1.3^2}{n}) $$
+
+## Code
+
+```{r}
+y <- c(7.1, 8.9, 8.4, 8.6)
+
+# Step 1: Define a grid of mu values
+grid_data   <- data.frame(mu_grid = seq(from = 5, to = 15, by = 1))
+
+# Step 2: Evaluate the prior & likelihood at each mu. 
+grid_data <- grid_data %>% 
+  mutate(prior = dnorm(mu_grid, 10, 1.2),
+         likelihood = prod(dnorm(y, mu_grid, 1.3)), # likelihood is product of data points
+         likelihood_2 = dnorm(mean(y), mu_grid, 1.3/2) # based on joint distribution
+         ) 
+
+# Step 3: Approximate the posterior
+grid_data <- grid_data %>% 
+  mutate(unnormalized = likelihood * prior,
+         unnormalized2 = likelihood_2 *prior,
+         posterior = unnormalized / sum(unnormalized), 
+         posterior2 = unnormalized2/sum(unnormalized2))
+
+# Set the seed
+set.seed(84735)
+
+# Step 4: sample from the discretized posterior
+post_sample <- sample_n(grid_data, size = 10000, 
+                        weight = posterior, replace = TRUE)
+
+post_sample2 <- sample_n(grid_data, size = 10000, 
+                        weight = posterior2, replace = TRUE)
+
+```
+
+## Graphs
+
+```{r}
+
+p1 <- ggplot(post_sample, aes(x = mu_grid)) +
+  geom_histogram(aes(y = ..density..)) +
+  labs(title = "V1 likelihood")
+
+p2 <- ggplot(post_sample2, aes(x = mu_grid)) +
+  geom_histogram(aes(y = ..density..)) +
+  labs(title = "V2 likelihood")
+
+p1 + p2
+```
+
+## Which one is correct?
+
+```{r}
+summarize_normal_normal(10, 1.2, 1.3, y_bar = mean(y), n = length(y))
+```
+
+## What happened?
+
+```{r}
+#| eval: false
+
+likelihood = prod(dnorm(y, mu_grid, 1.3))
+```
+
+Because the vectors `y` and `mu_grid` have different lengths, R is "recycling" the shorter vector to match the longer one: 
+
+- `dnorm(y[1], mu_grid[1], 1.3)`
+- `dnorm(y[2], mu_grid[2], 1.3)`
+- `dnorm(y[3], mu_grid[3], 1.3)`
+- `dnorm(y[4], mu_grid[4], 1.3) `
+- `dnorm(y[1], mu_grid[5], 1.3)`
+- `dnorm(y[2], mu_grid[6], 1.3)`
+
+and `prod()` takes the product of the entire 1000-element vector
+
+## "verbose" version
+
+```{r}
+#| eval: false
+
+likelihood = dnorm(y[1], mu_grid, 1.3) * dnorm(y[2], mu_grid, 1.3) * dnorm(y[3], mu_grid, 1.3)* dnorm(y[4], mu_grid, 1.3)
+```
+
+## 
+
+```{r}
+#| output-location: slide
+grid_data   <- data.frame(mu_grid = seq(from = 5, to = 15, by = 1)) |>
+  mutate(prior = dnorm(mu_grid, 10, 1.2),
+         likelihood = dnorm(y[1], mu_grid, 1.3) * dnorm(y[2], mu_grid, 1.3) * dnorm(y[3], mu_grid, 1.3)* dnorm(y[4], mu_grid, 1.3), # likelihood is product of data points
+         unnormalized = likelihood * prior,
+         posterior = unnormalized/sum(unnormalized))
+
+# Set the seed
+set.seed(84735)
+
+# Step 4: sample from the discretized posterior
+post_sample <- sample_n(grid_data, size = 10000, 
+                        weight = posterior, replace = TRUE)
+
+ggplot(post_sample, aes(x = mu_grid)) +
+  geom_histogram(aes(y = ..density..)) +
+  labs(title = "verbose likelihood")
+```
+
+## `map` version
+
+```{r}
+#| eval: false
+
+likelihood = map_dbl(mu_grid, ~prod(dnorm(y, .x, 1.3)))
+```
+
+##
+
+```{r}
+#| output-location: slide
+
+grid_data   <- data.frame(mu_grid = seq(from = 5, to = 15, by = 1)) |>
+  mutate(prior = dnorm(mu_grid, 10, 1.2),
+         likelihood = map_dbl(mu_grid, ~prod(dnorm(y, .x, 1.3))), 
+         unnormalized = likelihood * prior,
+         posterior = unnormalized/sum(unnormalized))
+
+# Set the seed
+set.seed(84735)
+
+# Step 4: sample from the discretized posterior
+post_sample <- sample_n(grid_data, size = 10000, 
+                        weight = posterior, replace = TRUE)
+
+ggplot(post_sample, aes(x = mu_grid)) +
+  geom_histogram(aes(y = ..density..)) +
+  labs(title = "map likelihood")
+```
+
+# tldr: always check your simulation results against "common sense"
+
+## working on the log scale
+
+```{r}
+grid_data   <- data.frame(mu_grid = seq(from = 5, to = 15, length = 5000)) |>
+  mutate(prior = dnorm(mu_grid, 10, 1.2),
+         likelihood = map_dbl(mu_grid, ~prod(dnorm(y, .x, 1.3))), 
+         unnormalized = likelihood * prior,
+         posterior = unnormalized/sum(unnormalized))
+
+grid_data |> head(10) |> gt::gt()
+```
+
+## working on the log scale
+
+```{r}
+grid_data   <- data.frame(mu_grid = seq(from = 5, to = 15, length = 5000)) |>
+  mutate(prior = dnorm(mu_grid, 10, 1.2, log = TRUE),
+         likelihood = map_dbl(mu_grid, ~sum(dnorm(y, .x, 1.3, log = TRUE))), 
+         log_unnormalized = likelihood + prior,
+         unnormalized = exp(log_unnormalized - max(log_unnormalized)),
+         posterior = unnormalized/sum(unnormalized))
+
+grid_data |> head(10) |> gt::gt()
+```
+
+## 
+
+```{r}
+set.seed(84735)
+post_sample <- sample_n(grid_data, size = 10000, 
+                        weight = posterior, replace = TRUE)
+
+ggplot(post_sample, aes(x = mu_grid)) +
+  geom_histogram(aes(y = ..density..)) +
+  labs(title = "log-scale")
+```
+
+# Implementing Metropolis-Hastings {.colorslide}
+
+##
+
+::: callout-note
+
+## Metropolis-Hastings Algorithm
+
+Let parameter $\mu$ have posterior $f(\mu|y) \propto f(\mu) L(\mu | y)$. A Metropolis-Hastings Markov Chain $\{\mu^{(1)}, \mu^{(2)}, ..., \mu^{(n)}\}$ evolves as follows. Let $\mu^{(i)} = \mu$ be the chains location at $i \in \{1, 2, ...., N-1\}$ and identify $\mu^{(i+1)}$ through a two step process: 
+
+(1) Propose a new location. Conditioned on the current location $\mu$, draw a location $\mu'$ from a proposal model with pdf $q(\mu'|\mu)$
+
+(2) Decide whether to go there. Calculate the acceptance probability 
+$$\alpha = \min\{1, \frac{f(\mu') L(\mu'|y) q(\mu|\mu')}{f(\mu) L(\mu|y) q(\mu'|\mu)} \}$$
+Then, 
+
+$$\mu^{(i+1)} = \begin{cases} \mu' & \text{with probability } \alpha \\ \mu & \text{with probability } 1-\alpha \end{cases}$$
+
+:::
+
+## Example
+
+$$\mu \sim N(0, 1^2)$$
+
+$$Y|\mu \sim N(\mu, .75^2)$$
+
+and suppose we observe one data point: $Y = 6.25$.
+
+We'll implement Metropolis-Hastings with $q(\mu' | \mu) = Unif(\mu - 1, \mu + 1)$
+
+## Start at $\mu = 3$
+
+```{r}
+current <- 3
+chain <- c(current)
+```
+
+Propose next step: 
+
+```{r}
+set.seed(8)
+proposal <- runif(1, min = current - 1, max = current + 1)
+proposal
+```
+
+## Compute $\alpha$
+
+```{r}
+dnorm(proposal, 0, 1) * dnorm(6.25, proposal, 0.75)
+dnorm(current, 0, 1) * dnorm(6.25, current, 0.75)
+alpha <- min(1, (dnorm(proposal, 0, 1) * dnorm(6.25, proposal, 0.75)) / (dnorm(current, 0, 1) * dnorm(6.25, current, 0.75)))
+alpha
+```
+
+## Determine next stop
+
+```{r}
+next_stop <- sample(c(proposal, current),
+                    size = 1, prob = c(alpha, 1-alpha))
+next_stop
+```
+
+## Update and save results
+
+```{r}
+current <- next_stop
+current
+chain <- c(chain, next_stop)
+chain
+```
+
+## Do it all again (round 1) {.smaller}
+
+```{r}
+proposal <- runif(1, min = current - 1, max = current + 1)
+proposal
+alpha <- min(1, (dnorm(proposal, 0, 1) * dnorm(6.25, proposal, 0.75)) / (dnorm(current, 0, 1) * dnorm(6.25, current, 0.75)))
+alpha
+next_stop <- sample(c(proposal, current),
+                    size = 1, prob = c(alpha, 1-alpha))
+next_stop
+current <- next_stop
+current
+chain <- c(chain, next_stop)
+chain
+```
+
+## Do it all again (round 2) {.smaller}
+
+```{r}
+proposal <- runif(1, min = current - 1, max = current + 1)
+proposal
+alpha <- min(1, (dnorm(proposal, 0, 1) * dnorm(6.25, proposal, 0.75)) / (dnorm(current, 0, 1) * dnorm(6.25, current, 0.75)))
+alpha
+next_stop <- sample(c(proposal, current),
+                    size = 1, prob = c(alpha, 1-alpha))
+next_stop
+current <- next_stop
+current
+chain <- c(chain, next_stop)
+chain
+```
+
+## Do it all again (round 3) {.smaller}
+
+```{r}
+proposal <- runif(1, min = current - 1, max = current + 1)
+proposal
+alpha <- min(1, (dnorm(proposal, 0, 1) * dnorm(6.25, proposal, 0.75)) / (dnorm(current, 0, 1) * dnorm(6.25, current, 0.75)))
+alpha
+next_stop <- sample(c(proposal, current),
+                    size = 1, prob = c(alpha, 1-alpha))
+next_stop
+current <- next_stop
+current
+chain <- c(chain, next_stop)
+chain
+```
+
+## Do it all again (round 4) {.smaller}
+
+```{r}
+proposal <- runif(1, min = current - 1, max = current + 1)
+proposal
+alpha <- min(1, (dnorm(proposal, 0, 1) * dnorm(6.25, proposal, 0.75)) / (dnorm(current, 0, 1) * dnorm(6.25, current, 0.75)))
+alpha
+next_stop <- sample(c(proposal, current),
+                    size = 1, prob = c(alpha, 1-alpha))
+next_stop
+current <- next_stop
+current
+chain <- c(chain, next_stop)
+chain
+```
+
+## Anatomy of a function
+
+::::: columns
+::: {.column .nonincremental width="50%"}
+- A short but informative **name**, preferably a verb
+- **Arguments** of the function inside `function()`
+- Place the **code** you have developed in body of the function, a `{` block that immediately follows `function(...)`.
+:::
+
+
+::: {.column width="50%"}
+```{r}
+#| echo: true
+#| eval: false
+
+name_of_function <- function(..arguments..) { 
+  # do stuff with arguments 
+  # last result will be returned 
+}
+```
+:::
+:::::
+
+## 
+
+```{r}
+one_mh_iteration <- function(w, current){
+ # STEP 1: Propose the next chain location
+ proposal <- runif(1, min = current - w, max = current + w)
+  
+ # STEP 2: Decide whether or not to go there
+ proposal_plaus <- dnorm(proposal, 0, 1) * dnorm(6.25, proposal, 0.75)
+ current_plaus  <- dnorm(current, 0, 1) * dnorm(6.25, current, 0.75)
+ alpha <- min(1, proposal_plaus / current_plaus)
+ next_stop <- sample(c(proposal, current), 
+                     size = 1, prob = c(alpha, 1-alpha))
+  
+ # Return the results
+ return(data.frame(proposal, alpha, next_stop))
+}
+```
+
+## Four rounds of Metropolis-Hastings {.smaller}
+
+```{r}
+set.seed(8)
+one_mh_iteration(w = 1, current = 3)
+one_mh_iteration(w = 1, current = 2.93259)
+one_mh_iteration(w = 1, current = 3.531906)
+one_mh_iteration(w = 1, current = 3.531906)
+one_mh_iteration(w = 1, current = 3.113653)
+```
+
+This is better, but still requires tracking things "by hand"
+
+## `for` loops in R
+
+::::: columns
+::: {.column .nonincremental width="50%"}
+- Pre-allocate storage for your results
+- Set up a vector of elements to "iterate" over
+- `for` tells R to do the operation(s) once for each element in the vector
+:::
+
+::: {.column width="50%"}
+```{r}
+#| echo: true
+#| eval: false
+
+results <- ... 
+
+for(element in vector){
+  # do something with element
+  # save result 
+}
+
+```
+:::
+:::::
+
+
+## `mh_tour`
+
+```{r}
+mh_tour <- function(N, w){
+  current <- 3 # 1. Start the chain at location 3
+  mu <- rep(0, N) # 2. Pre-allocate storage
+  for(i in 1:N){    # 3. For each element (called i) in the vector 1:N
+    # Simulate one iteration
+    sim <- one_mh_iteration(w = w, current = current)
+    mu[i] <- sim$next_stop#  Record next location
+    current <- sim$next_stop # Reset the current location
+  }
+  # 4. Return the chain locations
+  return(data.frame(iteration = c(1:N), mu))
+}
+```
+
+## `mh_tour`
+
+```{r}
+set.seed(84735)
+mh_simulation_1 <- mh_tour(N = 5000, w = 1)
+mh_simulation_1
+```
+
+## `mh_tour`
+
+```{r}
+#| echo: false
+#| layout-ncol: 2
+
+ggplot(mh_simulation_1, aes(x = iteration, y = mu)) + 
+  geom_line()
+
+ggplot(mh_simulation_1, aes(x = mu)) + 
+  geom_histogram(aes(y = ..density..), color = "white", bins = 20) + 
+  stat_function(fun = dnorm, args = list(4,0.6), color = "darkorange")
+```
+
+## Tuning the sampler
+
+```{r}
+#| cache: true
+set.seed(84735)
+mh_simulation_1 <- mh_tour(N = 5000, w = 1)
+set.seed(84735)
+mh_simulation_2 <- mh_tour(N = 5000, w = .01)
+set.seed(84735)
+mh_simulation_3 <- mh_tour(N = 5000, w = 100)
+```
+
+## Which is $w=1$, $w=.01$, and $w=100$? 
+
+```{r}
+#| echo: false
+#| layout-ncol: 3
+
+ggplot(mh_simulation_3, aes(x = iteration, y = mu)) + 
+  geom_line()
+
+ggplot(mh_simulation_1, aes(x = iteration, y = mu)) + 
+  geom_line()
+
+ggplot(mh_simulation_2, aes(x = iteration, y = mu)) + 
+  geom_line()
+
+
+```
+
+## Independence Sampling
+
+If the parameter we are estimating has a restricted range (eg $\pi \in [0,1]$, $\lambda > 0$), we might not want to use a proposal model that depends on the current value (e.g. $\pi' | \pi \sim Unif(-w,w)$)
+
+::: callout-note
+## Independence Sampling Algorithm
+
+A special case of Metropolis-Hastings that uses hte same proposal model at each iteration, *independent of the chains current location*. The proposal model is $q(\pi')$ as opposed to $q(\pi' | \pi)$. Thus, the acceptance probability simplifies to: 
+
+$$\alpha = \min \{1, \frac{f(\pi') L(\pi'|y) q(\pi)}{f(\pi) L(\pi|y) q(\pi')}\}$$
+:::
+
