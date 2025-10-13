@@ -1,0 +1,24 @@
+---
+title: "Individual HW05"
+author: "Your Name Here"
+---
+
+```{r}
+library(bayesrules) # R package for our textbook
+library(tidyverse) # Collection of packages for tidying and plotting data
+library(janitor) # Helper functions like tidy and tabyl
+library(rstan) # for MCMC
+library(bayesplot) # for plotting
+```
+
+# BR Exercise 8.8
+
+# BR Exercise 8.10
+
+# BR Exercise 8.22
+
+# BR Exercise 8.23
+
+# Q4
+
+# Q5

@@ -1,0 +1,130 @@
+---
+title: "Group Work 03"
+---
+
+```{r}
+library(bayesrules) # R package for our textbook
+library(tidyverse) # Collection of packages for tidying and plotting data
+library(janitor) # Helper functions like tidy and tabyl
+```
+
+
+::: callout-note
+
+The Monday problems are a selection from BR Exercises 8.15-8.17
+:::
+
+# An exact analysis
+
+(a) Bayesians think of the entire Beta(151,852) posterior pdf as an estimate for $\pi$. But for communication purposes, it can be useful to report what values of $\pi$ are typical. Identify and calculate two possible posterior point estimates. 
+
+(b) The posterior estimates above merely capture the typical posterior $\pi$ value, thus miss the bigger picture. It’s important to supplement these estimates with a posterior credible interval. (Bayesians use "credible" instead of "confidence") Calculate a 95% posterior credible interval for $\pi$. Revisiting a plot of the posterior might spark some ideas, and you'll need some R code of the `rXXX`, `qXXX`, `dXXX`, `pXXX` variety. 
+
+(c) How can we interpret this interval, (a,b)?
+
+(d) What would a strict frequentist say if you asked them "What’s the probability that  $\pi$ lies within the Bayesian credible interval?"
+
+(e) A researcher claims that more than 13% of people don’t believe in climate change.  Using your interval from (b), what do you think about this claim?
+
+(f) Calculate and interpret a posterior probability that helps you test this claim. You’ll need some R code of the `rXXX`, `qXXX`, `dXXX`, `pXXX` variety. 
+
+(g) There’s no common cut-off / threshold (eg: 0.05) for interpreting Bayesian posterior probabilities, hence no binary conclusion. Better yet, Bayesian conclusions are more holistic and nuanced. With this in mind, summarize your conclusions about our hypothesis.
+
+# Bayes Factor
+
+(add a bayes factor question)
+
+# BR Exercise 8.21 
+
+(a) Run the following R/stan code to fit an MCMC approximation for the same problem. Make sure you understand all of the pieces of the model fitting code.
+
+```{r}
+library(rstan)
+library(bayesrules)
+library(bayesplot)
+library(broom)
+```
+
+```{r}
+#| eval: false
+
+# Define the Beta-Binomial model in rstan notation
+climate_model <- "
+  data {
+    real<lower=0> alpha;
+    real<lower=0> beta;
+    int<lower=1> n;
+    int<lower=0, upper=n> Y;
+  }
+
+  parameters {
+    real<lower=0, upper=1> pi;
+  }
+
+  model {
+    Y ~ binomial(n, pi);
+    pi ~ beta(alpha, beta);
+  }
+"
+
+# Set the random number seed
+set.seed(84735)
+
+# SIMULATE the posterior
+climate_sim <- stan(
+  model_code = climate_model, 
+  data = list(alpha = 1, beta = 2, Y = 150, n = 1000),
+  chains = 4, iter = 5000*2)
+```
+
+(b) Give the following plots a quick peak. Do you see any red flags?
+
+```{r}
+#| eval: false
+mcmc_trace(climate_sim, pars = "pi")
+mcmc_dens_overlay(climate_sim, pars = "pi")
+mcmc_dens(climate_sim, pars = "pi")
+```
+
+(c) The four chains in `climate_sim` are currently stored as an array. Use the code below to store all the chains in a single data frame. 
+
+```{r}
+#| eval: false
+# Store the array of 4 chains in 1 data frame
+climate_chains <- as.data.frame(
+  climate_sim,
+  pars = "lp__", include = FALSE)
+
+# Check out the results
+dim(climate_chains)
+head(climate_chains)
+```
+
+(d) Recall your exact posterior point estimates of  $\pi$ from earlier. Estimate these posterior features using your MCMC simulation. (How accurate are these estimates?) NOTE: The `sample_mode()` function in {bayesrules} calculates the mode of a sample.
+
+```{r}
+#| eval: false
+climate_chains %>%
+  summarize(___)
+```
+
+(e) Recall your exact 95% posterior credible interval for  $\pi$ from earlier. Estimate this interval using your MCMC simulation. (How accurate is this estimate?)
+
+(f) Recall your exact analysis of the claim that more than 13% of people don’t believe in climate change, i.e.  $\pi > 0.13$. Estimate the posterior probability of this claim using your MCMC simulation. (How accurate is this estimate?)
+
+(g) Play around with the following shortcut functions that can address some, but not all, of our posterior questions. These are applied directly to `climate_sim`, not `climate_chains`. Take notes what they do (leaving comments in your .qmd would be sufficient!) 
+
+```{r}
+#| eval: false
+
+# What is the estimate? The posterior mean, median, or mode?
+tidy(climate_sim, conf.int = TRUE, conf.level = 0.95)
+
+# 
+mcmc_areas(climate_sim, pars = "pi", prob = 0.95)
+```
+
+# TBA Wed
+
+# TBA Wed
+

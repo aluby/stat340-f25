@@ -1,0 +1,126 @@
+---
+title: Posterior estimation and hypothesis testing
+subtitle: Day 13
+title-slide-attributes:
+  data-background-color: "#e2583eff"
+  data-slide-number: none
+format: 
+  revealjs:
+    incremental: false
+    scrollable: false
+auto-stretch: true
+editor_options: 
+  chunk_output_type: console
+editor: 
+  markdown: 
+    wrap: 72
+execute: 
+  warning: false
+  message: false
+---
+
+
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+
+library(countdown)
+library(tidyverse)
+library(bayesrules)
+library(janitor)
+library(patchwork)
+library(rstan)
+library(bayesplot)
+
+theme_set(theme_minimal(base_size = 16, base_family = "Atkinson Hyperlegible"))
+```
+
+## Posterior Inference
+
+### 1. Estimation
+
+<br> 
+
+<br>
+
+### 2. Hypothesis Testing
+
+<br> 
+
+<br>
+
+### 3. Prediction
+
+
+## Running Example
+
+```{r}
+library(bayesrules)
+library(tidyverse)
+data("pulse_of_the_nation")
+```
+
+## What proportion of US adults do not believe in climate change?
+
+```{r}
+pulse_of_the_nation %>%
+  count(climate_change)
+```
+
+::: callout-note
+## Warm up
+
+Let $\pi \sim$ Beta(1,2) and $Y | \pi \sim$ Binom(n, $\pi$). What is the distribution of the posterior $\pi | Y$?
+
+:::
+
+## 
+
+```{r}
+plot_beta_binomial(alpha = 1, beta = 2, y = 150, n = 1000)
+```
+
+## Bayesian vs Frequentist inference {.center}
+
+
+In a **frequentist** analysis, $\pi$ is viewed as a fixed, unknown quantity. We make inferences about $\pi$ using data $Y$
+
+<br>
+
+In a **Bayesian** analysis,  $\pi$ is viewed as a random variable. We make inferences about $\pi$ using the posterior, which combines the prior and likelihood
+
+
+## Example: a quick frequentist analysis
+
+Point estimate: 150/1000
+
+95% frequentist confidence interval: 
+
+$$0.15 \pm 0.02 = (0.13, 0.17)$$
+
+- [ ] There is a 95% chance that $\pi$ is between 0.13 and 0.17
+
+<br> 
+
+- [ ] There's a 95% chance that the survey results we happened to get produced an interval that covers $\pi$
+
+<br>
+
+## Example: a quick frequentist analysis
+
+$H_0: \pi = 0.13$
+
+$H_A: \pi > 0.13$
+
+p-value is 0.0333
+
+- [ ] Given our polling results, there's a 3.3% chance that $\pi$ exceeds 13%
+
+<br> 
+
+- [ ] If in fact $\pi$ were only 0.13, there's a 3.3% chance that we would have gotten a survey where 150 of 1000 people did not believe climate change is real
+
+
+
