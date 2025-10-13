@@ -170,282 +170,219 @@
     ]
   },
   {
-    "objectID": "groupwork/gw01.html",
-    "href": "groupwork/gw01.html",
-    "title": "Group Work 01",
+    "objectID": "groupwork/gw04.html",
+    "href": "groupwork/gw04.html",
+    "title": "Group Work 03",
     "section": "",
-    "text": "Syllabus Q\nWhat is the weirdest/most unique policy or course component that you saw in the syllabus?\n\n\nBR Exercise 2.3\n\n\nBR Exercise 2.5\n\n\nBR Exercise 2.13\n\n\n\n\n\n\nImportant\n\n\n\nThis problem moved to HW2!",
+    "text": "library(bayesrules) # R package for our textbook\nlibrary(tidyverse) # Collection of packages for tidying and plotting data\nlibrary(janitor) # Helper functions like tidy and tabyl\n\n\n\n\n\n\n\nNote\n\n\n\nNo group problems from Friday\n\n\nBR Exercise 7.6: Proposing a new location\nIn each situation below, complete Step 1 of the Metropolis-Hastings algorithm. That is, starting from teh given current chain value \\(\\lambda^{(i)} = \\lambda\\) and with set.seed(84735), use the given proposal model to draw a \\(\\lambda'\\) proposal value for the next value in the chain \\(\\lambda^{(i+1)}\\)\n\n\\(\\lambda = 4.6, \\lambda' | \\lambda \\sim N(\\lambda, 2^2)\\)\n\\(\\lambda = 2.1, \\lambda' | \\lambda \\sim N(\\lambda, 7^2)\\)\n\\(\\lambda = 8.9, \\lambda' | \\lambda \\sim Unif(\\lambda - 2, \\lambda +2)\\)\n\\(\\lambda = 1.2, \\lambda' | \\lambda \\sim Unif(\\lambda - 0.5, \\lambda + 0.5)\\)\n\\(\\lambda = 7.7, \\lambda' | \\lambda \\sim Unif(\\lambda - 3, \\lambda +3)\\)\nDiscuss why these proposal models “make sense”\nBR Exercise 7.7: Calculate the acceptance probability\nSuppose that a Markov chain is currently at \\(\\lambda^{(i)}=2\\) and the proposal for \\(\\lambda^{(i+1)}\\) is \\(\\lambda' = 2.1\\). For each pair of unnnormalized pdf \\(f(\\lambda) L(\\lambda | y)\\) and proposal \\(q(\\lambda' | \\lambda)\\), calculate the acceptance probability \\(\\alpha\\) used in Step 2 of the Metropolis-Hastings algorithm.\n\n\n\\(f(\\lambda) L(\\lambda | y) = \\lambda^{-1}, \\lambda' | \\lambda \\sim N(\\lambda, 2^2)\\) with pdf \\(q(\\lambda'|\\lambda)\\)\n\n\n\\(f(\\lambda) L(\\lambda | y) = e^{3\\lambda}, \\lambda' | \\lambda \\sim N(\\lambda, .5^2)\\) with pdf \\(q(\\lambda'|\\lambda)\\)\n\n\n\\(f(\\lambda) L(\\lambda | y) = e^{-1.9\\lambda}, \\lambda' | \\lambda \\sim Unif(\\lambda - .3, \\lambda + .3)\\) with pdf \\(q(\\lambda'|\\lambda)\\)\n\n\n\\(f(\\lambda) L(\\lambda | y) =e^{-\\lambda^4}, \\lambda' | \\lambda \\sim Exp(\\lambda)\\) with pdf \\(q(\\lambda'|\\lambda)\\)\n\nFor which of these scenarios is there a 100% acceptance probability? Explain why we’d certainly want to accept \\(\\lambda\\) in these scenarios\nBR 7.14\nConsider a Gamma-Poisson model in which rate \\(\\lambda\\) has a Gamma(1,0.1) prior and you observe one Poisson data point, \\(Y=4\\). In this exercise, you will simulate the posterior model of \\(\\lambda\\) using an independence sampler.\n\nWhich of the following would make the most reasonable proposal model to use in your independence sampler for \\(\\lambda\\): Normal, Beta, or Exponential? Hint: Recall that \\(\\lambda &gt; 0\\).\nUsing the proposal model that you identified in part a, simulate a tour of 1000 \\(\\lambda\\) values. Tune your algorithm until you are satisfied and produce a trace plot of your final results.\nThis is a situation where we can derive the exact posterior model of \\(\\lambda\\). What is it?\nPlot a histogram of your tour and overlay the exact model. How good is your Markov chain approximation?\nIndependence Sampler for truncated normal prior\nMetropolis-Hastings and Independence Samplers are powerful when we don’t have a closed-form solution. Suppose we instead use a truncated normal model for \\(\\lambda\\). This pdf looks like a normal distribution, but is truncated at lower and/or upper bounds. The code chunk below loads the {truncnorm} package, which gives you access to dtruncnorm, rtruncnorm, etc, and plots a truncated normal with parameters \\(\\mu=0\\), \\(\\sigma=1\\) and \\(a=0\\).\n\nTest different values of a, mean, and sd to get a sense of what each parameter does. Provide explanations of each.\nTune the truncated normal prior to cover a similar range as the Gamma distribution above\nModify your independence sampler from the previous question to use a truncated normal prior distribution. Tune your algorithm until you are satisfied and produce a trace plot of your final results.\nCompare your posterior to the posterior from the last question.\n\n\nlibrary(truncnorm)\n\nggplot(data = data.frame(x = c(-4, 4)), aes(x = x)) +\n  stat_function(fun = dtruncnorm, \n                args = list(a = 0, mean = 0, sd = 1))",
     "crumbs": [
       "Assignments",
       "Groupwork",
-      "Group Work 01"
+      "Group Work 03"
     ]
   },
   {
-    "objectID": "groupwork/gw02.html",
-    "href": "groupwork/gw02.html",
-    "title": "Group Work 02",
+    "objectID": "groupwork/gw03.html",
+    "href": "groupwork/gw03.html",
+    "title": "Group Work 03",
     "section": "",
-    "text": "library(bayesrules) # R package for our textbook\nlibrary(tidyverse) # Collection of packages for tidying and plotting data\nlibrary(janitor) # Helper functions like tidy and tabyl\n\nBR Exercise 2.13\nBR Exercise 2.18\nBR Exercise 2.17\nMLE\nIf \\(Y \\sim \\text{Binom}(n, \\pi)\\), show that \\(\\hat{\\pi}_{MLE} = \\frac{Y}{n}\\)\nBR Exercise 3.1\nFor each part, use plot_beta and/or summarize_beta to justify your answer\nBR Exercise 3.12\nChoice of prior\nI am interviewing Carleton students about whether or not they have used (knowingly) used ChatGPT on coursework in a non-approved way. I think the proportion has a 90% chance of being less than .25.\n\nChoose an informative prior that you think is reasonable for this belief\n\nI then ask 20 students this question and 15 respond “yes”. Find the posterior using the prior from above, then using the 3 non/weakly informative priors below:\n\nUnif(0,1) prior\nBeta(2,2) prior\n“Reference” prior Beta(.5, .5)\n\nCompare the posteriors for each of the priors above. Do results change if we instead observe 150/200 students responding “yes”?\nBR 4.13\n\n\n\n\n\n\nNote\n\n\n\nFor part (a), you do not need to include your sketch in your submission!",
+    "text": "library(bayesrules) # R package for our textbook\nlibrary(tidyverse) # Collection of packages for tidying and plotting data\nlibrary(janitor) # Helper functions like tidy and tabyl\n\n\n\n\n\n\n\nNote\n\n\n\nNew this week! Trying no group problems on Friday\n\n\nBR Exercise 5.8 (a) and (d): Normal Likelihood Functions\nIn each situation below, we observe the outcomes for a Normal random sample, \\(Y_i | \\mu \\sim N(\\mu, \\sigma^2)\\) with known \\(\\sigma\\). Specify and plot the corresponding likelihood function of \\(\\mu\\).\n\n\n\\((y_1, y_2, y_3) = (-4.3, 0.7, -19.4)\\) and \\(\\sigma = 10\\)\n\n\n\\((y_1, y_2, y_3, y_4, y_5) = (1.6, 0.09, 1.7, 1.1, 1.1)\\) and \\(\\sigma = 0.6\\)\n\nBR Exercise 5.13: Australia\nLet \\(\\mu\\) be the average 3 p.m. temperature in Perth, Australia. Not knowing much about Australian weather, your friend’s prior understanding is that the average temperature is likely around 30 degrees Celsius, though might be anywhere between 10 and 50 degrees Celsius. To learn about \\(\\mu\\), they plan to analyze 1000 days of temperature data. Letting \\(Y_i\\) denote the 3 p.m. temperature on day \\(i\\), they’ll assume that daily temperatures vary Normally around \\(\\mu\\) with a standard deviation of 5 degrees:\n\\[Y_i | \\mu \\sim N(mu, 5^2)\\]\n\nTune and plot a Normal prior for \\(\\mu\\) that reflects your friend’s understanding.\nThe weather_perth data in the {bayesrules} package includes 1000 daily observations of 3 p.m. temperatures in Perth (temp3pm). Plot this data and discuss whether it’s reasonable to assume a Normal model for the temperature data.\nIdentify the posterior model of \\(\\mu\\) and verify your answer using summarize_normal_normal().\nPlot the prior pdf, likelihood function, and posterior pdf of \\(\\mu\\). Describe the evolution in your understanding of \\(\\mu\\) from the prior to the posterior.\nBR Exercise 5.19\nConsider the Bayesian model:\n\\[Y|\\theta \\sim \\text{Geometric}(\\theta)\\] \\[\\theta \\sim \\text{Beta}(\\alpha, \\beta)\\]\n\nDerive the posterior model for \\(\\theta\\) given observed data \\(Y = y\\). If possible, identify the name of the posterior distribution and its parameters\nIs the Beta model a conjugate prior for the Geometric data model?\nBR Exercise 6.7\nConsider the Normal-Normal model for \\(\\mu\\) with \\(Y|\\mu \\sim N(\\mu, 1.3^2)\\) and \\(\\mu \\sim N(10, 1.2^2)\\). Suppose that you observe data \\((Y_1, Y_2, Y_3, Y_4) = (7.1, 8.9, 8.4, 8.6)\\)\n\nUtilize grid approximation with grid values \\(\\mu \\in \\{5, 6, 7, ..., 15\\}\\) to approximate the posterior of \\(\\mu\\)\n\nRepeat part (a) using a grid of 201 equally spaced values between 5 and 15\n\n\n\n\n\n\n\nWarning\n\n\n\nRemember that the likelihood has to take all 4 data points into account!\n\n\nBR 6.17 a, c, d\n\nlibrary(rstan)\nlibrary(bayesplot)\n\nUsing the same normal-normal model:\n\nSimulate the posterior of \\(\\mu\\) with {rstan} using 4 chains and 10,000 iterations per chain\nSkip b for now\nProduce a density plot for all four chains\nWhat is the actual posterior distribution of \\(\\mu |Y\\)? How does the MCMC approximation compare? How does the grid approximation compare? (Try adding an overlaying line to your density plot from (c))",
     "crumbs": [
       "Assignments",
       "Groupwork",
-      "Group Work 02"
+      "Group Work 03"
     ]
   },
   {
-    "objectID": "computing/computing-cheatsheets.html",
-    "href": "computing/computing-cheatsheets.html",
-    "title": "R cheatsheets",
+    "objectID": "computing/r-basics-refresher.html",
+    "href": "computing/r-basics-refresher.html",
+    "title": "R Basics",
     "section": "",
-    "text": "The following cheatsheets come from https://posit.co/resources/cheatsheets. We haven’t covered every function and functionality listed on them, but you might still find them useful as references.",
+    "text": "In your previous statistics course at Carleton, you likely loaded at least one add-on R package. In this course, we’ll use a lot of tools found in the tidyverse of R packages. To load many of these packages at once, you can use the library(&lt;package_name&gt;) command. So to load the tidyverse we run:\n\nlibrary(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.4     ✔ readr     2.1.5\n✔ forcats   1.0.0     ✔ stringr   1.5.1\n✔ ggplot2   3.5.2     ✔ tibble    3.3.0\n✔ lubridate 1.9.4     ✔ tidyr     1.3.1\n✔ purrr     1.1.0     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\n\n\n\n\n\n\n\nNote\n\n\n\nAbove we see a lot of extra info printed when we load the tidyverse. These messages are just telling you what packages are now available to you and warning you that a few functions (e.g., filter) has been replaced by the tidyverse version. We’ll see how to suppress these messages later.",
     "crumbs": [
       "Computing",
-      "Cheatsheets"
+      "R Refresher"
     ]
   },
   {
-    "objectID": "computing/rstudio-stat340.html",
-    "href": "computing/rstudio-stat340.html",
-    "title": "Using R/RStudio for Homework in Stat340",
+    "objectID": "computing/r-basics-refresher.html#loading-r-packages",
+    "href": "computing/r-basics-refresher.html#loading-r-packages",
+    "title": "R Basics",
     "section": "",
-    "text": "In Stat340, I will distribute homework assignment templates in.qmd format.",
+    "text": "In your previous statistics course at Carleton, you likely loaded at least one add-on R package. In this course, we’ll use a lot of tools found in the tidyverse of R packages. To load many of these packages at once, you can use the library(&lt;package_name&gt;) command. So to load the tidyverse we run:\n\nlibrary(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.4     ✔ readr     2.1.5\n✔ forcats   1.0.0     ✔ stringr   1.5.1\n✔ ggplot2   3.5.2     ✔ tibble    3.3.0\n✔ lubridate 1.9.4     ✔ tidyr     1.3.1\n✔ purrr     1.1.0     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\n\n\n\n\n\n\n\nNote\n\n\n\nAbove we see a lot of extra info printed when we load the tidyverse. These messages are just telling you what packages are now available to you and warning you that a few functions (e.g., filter) has been replaced by the tidyverse version. We’ll see how to suppress these messages later.",
     "crumbs": [
       "Computing",
-      "Rstudio in Stat 340"
+      "R Refresher"
     ]
   },
   {
-    "objectID": "computing/rstudio-stat340.html#uploading-files-to-maize",
-    "href": "computing/rstudio-stat340.html#uploading-files-to-maize",
-    "title": "Using R/RStudio for Homework in Stat340",
-    "section": "Uploading files to maize",
-    "text": "Uploading files to maize\n\nClick the “upload” button in the files pane\nSelect the file from your local computer (likely in your Downloads folder if you downloaded from moodle)\nChoose the “Target Directory” – this is the folder on your maize account where the file will be saved. I recommend creating a separate folder for this class.",
+    "objectID": "computing/r-basics-refresher.html#creating-and-naming-objects",
+    "href": "computing/r-basics-refresher.html#creating-and-naming-objects",
+    "title": "R Basics",
+    "section": "Creating and naming objects",
+    "text": "Creating and naming objects\nAll R statements where you create objects have the form:\n\nobject_name &lt;- value\n\nAt first, we’ll be creating a lot of data objects. For example, we an load a data set containing the ratings for each episode of The Office using the code\n\noffice_ratings &lt;- readr::read_csv(\"https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-03-17/office_ratings.csv\")\n\nIn this class you will be creating a lot of objects, so you’ll need to come up with names for those objects. Trying to think of informative/meaningful names for objects is hard, but necessary work! Below are the fundamental rules for naming objects in R:\n\nnames can’t start with a number\nnames are case-sensitive\nsome common letters are used internally by R and should be avoided as variable names (c, q, t, C, D, F, T, I)\nThere are reserved words that R won’t let you use for variable names (for, in, while, if, else, repeat, break, next)\nR will let you use the name of a predefined function—but don’t do it!\n\nYou can always check to see if you the name you want to use is already taken via exists():\nFor example lm exists\n\nexists(\"lm\")\n\n[1] TRUE\n\n\nbut carleton_college doesn’t.\n\nexists(\"carleton_college\")\n\n[1] FALSE\n\n\nThere are also a lot of naming styles out there, and if you have coded in another language, you may have already developed a preference. Below is an illustration by Allison Horst\n\n\n\n\n\n\n\n\nI generally following the tidyverse style guide, so you’ll see that I use only lowercase letters, numbers, and _ (snake case).",
     "crumbs": [
       "Computing",
-      "Rstudio in Stat 340"
+      "R Refresher"
     ]
   },
   {
-    "objectID": "computing/rstudio-stat340.html#accessing-maize-from-off-campus",
-    "href": "computing/rstudio-stat340.html#accessing-maize-from-off-campus",
-    "title": "Using R/RStudio for Homework in Stat340",
-    "section": "Accessing maize from off campus",
-    "text": "Accessing maize from off campus\nIf you are using the maize server, you should be able to access it on campus with only your Carleton ID and password. If you plan to use the maize server and you plan to do any work off campus this term (e.g., while on a field trip, travel for athletics, or just sitting in Little Joy) you need to install Carleton’s VPN to have access.\nTo install the GlobalProtect VPN follow directions provided by ITS.",
+    "objectID": "computing/r-basics-refresher.html#overviews-of-data-frames",
+    "href": "computing/r-basics-refresher.html#overviews-of-data-frames",
+    "title": "R Basics",
+    "section": "Overviews of data frames",
+    "text": "Overviews of data frames\nAbove, you loaded in a data set called office_ratings. Data sets are stored as a special data structure called a data frame. Data frames are the most-commonly used data structure for data analysis in R. For now, think of them like spreadsheets.\nOnce you have your data frame, you can get a quick overview of it using a few commands (below I use data_set as a generic placeholder for the data frame’s name):\n\n\n\n\n\n\nCommand\nDescription\n\n\n\nhead(data_set)\nprint the first 6 rows\n\n\ntail(data_set)\nprint the last 6 rows\n\n\nglimpse(data_set)\na quick overview where columns run down the screen and the data values run across. This allows you to see every column in the data frame.\n\n\nstr(data_set)\na quick overview like glimpse(), but without some of the formatting\n\n\nsummary(data_set)\nquick summary statistics for each column\n\n\ndim(data_set)\nthe number of rows and columns\n\n\nnrow(data_set)\nthe number of rows\n\n\nncol(data_set)\nthe number of columns",
     "crumbs": [
       "Computing",
-      "Rstudio in Stat 340"
+      "R Refresher"
     ]
   },
   {
-    "objectID": "computing/rstudio-stat340.html#installing-latex-not-needed-if-you-are-using-the-maize-server",
-    "href": "computing/rstudio-stat340.html#installing-latex-not-needed-if-you-are-using-the-maize-server",
-    "title": "Using R/RStudio for Homework in Stat340",
-    "section": "Installing LaTeX (not needed if you are using the maize server)",
-    "text": "Installing LaTeX (not needed if you are using the maize server)\nIf you don’t already have a tex package installed on your computer, the easiest option to create pdf’s is to use the tinytex R package. This can be installed with the following R commands:\n\ninstall.packages(\"tinytex\")\ntinytex::install_tinytex()  # install TinyTeX\n\nIf you’d like a standalone LaTeX package that will work with programs other than RStudio, you could install the basic installations of either:\nIf you’d like a stand alone LaTeX package, you could install the basic installations of either:\n\n\nMacTeX for Mac (3.2GB!)\n\nMiKTeX for Windows (190MB)",
+    "objectID": "computing/r-basics-refresher.html#tibbles",
+    "href": "computing/r-basics-refresher.html#tibbles",
+    "title": "R Basics",
+    "section": "Tibbles",
+    "text": "Tibbles\nA tibble, or a tbl_df is another version of a data frame which is used by default in a lot of the tidyverse packages that we’ll use.\n\nTibbles are data.frames that are lazy and surly: they do less (i.e. they don’t change variable names or types, and don’t do partial matching) and complain more (e.g. when a variable does not exist). This forces you to confront problems earlier, typically leading to cleaner, more expressive code. Tibbles also have an enhanced print() method which makes them easier to use with large datasets containing complex objects.\n\n\n\n\n\n\n\nNone Check point\n\n\n\nRun the above commands on the office_ratings data set. Compare and contrast the information returned by each command.\n\n\n\n\n\n\n\n\nTipGetting a spreadsheet\n\n\n\nIn RStudio, you can run the command View(data_set) to pull up a spreadsheet representation of a data frame. You can also click on the name of the data frame in the Environment pane. This can be a great way help you think about the data, and even has some interactive functions (e.g., filtering and searching); however, never include View(data_set) in an .Rmd file!!\n\n\n\n\n\n\n\n\nNoteReview from intro stats\n\n\n\nIn intro stats we used the terms cases (or observations) and variables to describe the rows and columns of a data frame, respectively.",
     "crumbs": [
       "Computing",
-      "Rstudio in Stat 340"
+      "R Refresher"
     ]
   },
   {
-    "objectID": "activities/09-activity.html",
-    "href": "activities/09-activity.html",
-    "title": "Class Examples - Day 9",
+    "objectID": "computing/r-basics-refresher.html#extracting-pieces-of-data-frames",
+    "href": "computing/r-basics-refresher.html#extracting-pieces-of-data-frames",
+    "title": "R Basics",
+    "section": "Extracting pieces of data frames",
+    "text": "Extracting pieces of data frames\nSince data frames are the fundamental data structure for most analyses in R, it’s important to know how to work with them. You already know how to get an overview of a data frame, but that isn’t always very informative. Often, you want to extract pieces of a data frame, such as a specific column or row.\nExtracting rows\nData frames can be indexed by their row/column numbers. To extract elements of a data frame, the basic syntax is data_set[row.index, column.index]. So, to extract the 10th row of office_ratings we run\n\noffice_ratings[10, ]\n\n# A tibble: 1 × 6\n  season episode title    imdb_rating total_votes air_date  \n   &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;          &lt;dbl&gt;       &lt;dbl&gt; &lt;date&gt;    \n1      2       4 The Fire         8.4        2713 2005-10-11\n\n\nNotice that to extract an entire row, we leave the column index position blank.\nWe can also extract multiple rows by creating a vector of row indices. For example, we can extract the first 5 rows via\n\noffice_ratings[1:5, ]\n\n# A tibble: 5 × 6\n  season episode title         imdb_rating total_votes air_date  \n   &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;               &lt;dbl&gt;       &lt;dbl&gt; &lt;date&gt;    \n1      1       1 Pilot                 7.6        3706 2005-03-24\n2      1       2 Diversity Day         8.3        3566 2005-03-29\n3      1       3 Health Care           7.9        2983 2005-04-05\n4      1       4 The Alliance          8.1        2886 2005-04-12\n5      1       5 Basketball            8.4        3179 2005-04-19\n\n\nHere, 1:5 create a sequence of integers from 1 to 5.\nWe could also specify arbitrary row index values by combing the values into a vector. For example, we could extract the 1st, 13th, 64th, and 128th rows via\n\noffice_ratings[c(1, 13, 64, 128), ]\n\n# A tibble: 4 × 6\n  season episode title            imdb_rating total_votes air_date  \n   &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;                  &lt;dbl&gt;       &lt;dbl&gt; &lt;date&gt;    \n1      1       1 Pilot                    7.6        3706 2005-03-24\n2      2       7 The Client               8.6        2631 2005-11-08\n3      4      13 Job Fair                 7.9        1977 2008-05-08\n4      7      11 Classy Christmas         8.9        2138 2010-12-09\n\n\nExtracting columns\nSimilar to extracting rows, we can use a numeric index to extract the columns of a data frame. For example, to extract the 3rd column, we can run\n\noffice_ratings[,3]\n\n# A tibble: 188 × 1\n   title            \n   &lt;chr&gt;            \n 1 Pilot            \n 2 Diversity Day    \n 3 Health Care      \n 4 The Alliance     \n 5 Basketball       \n 6 Hot Girl         \n 7 The Dundies      \n 8 Sexual Harassment\n 9 Office Olympics  \n10 The Fire         \n# ℹ 178 more rows\n\n\nAlternatively, we can pass in the column name in quotes instead of the column number\n\noffice_ratings[,\"title\"]\n\n# A tibble: 188 × 1\n   title            \n   &lt;chr&gt;            \n 1 Pilot            \n 2 Diversity Day    \n 3 Health Care      \n 4 The Alliance     \n 5 Basketball       \n 6 Hot Girl         \n 7 The Dundies      \n 8 Sexual Harassment\n 9 Office Olympics  \n10 The Fire         \n# ℹ 178 more rows\n\n\nNotice that the extracted column is still formatted as a data frame (or tibble). If you want to extract the contents of the column and just have a vector of titles, you have a few options.\n\nYou could use double brackets with the column number:\n\n\noffice_ratings[[3]]\n\n\nYou could use double brackets with the column name in quotes:\n\n\noffice_ratings[[\"title\"]]\n\n\nYou could use the $ extractor with the column name (not in quotes):\n\n\noffice_ratings$title\n\n\n\n\n\n\n\nNone Check point\n\n\n\n\nExtract the 35th row of office_ratings.\nExtract rows 35, 36, 37, and 38 of office_ratings.\nExtract the imdb_rating column from office ratings using the column index number.\nExtract the imdb_rating column from office ratings using the column name.",
+    "crumbs": [
+      "Computing",
+      "R Refresher"
+    ]
+  },
+  {
+    "objectID": "computing/r-basics-refresher.html#lists",
+    "href": "computing/r-basics-refresher.html#lists",
+    "title": "R Basics",
+    "section": "Lists",
+    "text": "Lists\nIt turns out that data frames are special cases of lists, a more general data structure. In a data frame, each column is an element of the data list and each column must be of the same length. In general, lists can be comprised of elements of vastly different lengths and data types.\nAs an example, let’s construct a list of the faculty in the MAST department and what is being taught this winter.\n\nstat_faculty &lt;- c(\"Kelling\", \"Loy\", \"Luby\", \"Poppick\", \"St. Clair\", \"Wadsworth\")\nstat_courses &lt;- c(120, 220, 230, 250, 285, 330)\nmath_faculty &lt;- c(\"Brooke\", \"Davis\", \"Egge\", \"Gomez-Gonzales\", \"Haunsperger\", \"Johnson\", \n                  \"Meyer\", \"Montee\", \"Shrestha\",\"Terry\", \"Thompson\", \"Turnage-Butterbaugh\")\nmath_courses &lt;- c(101, 106, 111, 120, 210, 211, 232, 236, 240, 241, 251, 321, 333, 395)\n\nmast &lt;- list(stat_faculty = stat_faculty, stat_courses = stat_courses, \n             math_faculty = math_faculty, math_courses = math_courses)\n\nOverview of a list\nYou can get an overview of a list a few ways:\n\n\nglimpse(list_name) and str(list_name) list the elements of the list and the first few entries of each element.\n\n\nglimpse(mast)\n\nList of 4\n $ stat_faculty: chr [1:6] \"Kelling\" \"Loy\" \"Luby\" \"Poppick\" ...\n $ stat_courses: num [1:6] 120 220 230 250 285 330\n $ math_faculty: chr [1:12] \"Brooke\" \"Davis\" \"Egge\" \"Gomez-Gonzales\" ...\n $ math_courses: num [1:14] 101 106 111 120 210 211 232 236 240 241 ...\n\n\n\n\nlength(list_name) will tell you how many elements are in the list\n\n\nlength(mast)\n\n[1] 4\n\n\nExtracting elements of a list\nSince data frames are lists, you’ve already seen how to extract elements of a list. For example, to extract the stat_faculty you could run\n\nmast[[1]]\n\n[1] \"Kelling\"   \"Loy\"       \"Luby\"      \"Poppick\"   \"St. Clair\" \"Wadsworth\"\n\n\nor\n\nmast[[\"stat_faculty\"]]\n\n[1] \"Kelling\"   \"Loy\"       \"Luby\"      \"Poppick\"   \"St. Clair\" \"Wadsworth\"\n\n\n\n\n\n\n\n\nNote\n\n\n\nIf you had only used a single bracket above, the returned object would still be a list, which is typically not what we would want.\n\nmast[1]\n\n$stat_faculty\n[1] \"Kelling\"   \"Loy\"       \"Luby\"      \"Poppick\"   \"St. Clair\" \"Wadsworth\"\n\n\n\n\n\n\n\n\n\n\nNone Check point\n\n\n\nExtract the statistics courses offered this term.",
+    "crumbs": [
+      "Computing",
+      "R Refresher"
+    ]
+  },
+  {
+    "objectID": "computing/r-basics-refresher.html#vectors",
+    "href": "computing/r-basics-refresher.html#vectors",
+    "title": "R Basics",
+    "section": "Vectors",
+    "text": "Vectors\nThe columns of the office_ratings data frame and the elements of the mast list were comprised of (atomic) vectors. Unlike lists, all elements within a vector share the same type. For example, all names in the stat_faculty vector were character strings and all ratings in the imdb_rating column were numeric. We’ll deal with a variety of types of vectors in this course, including:\n\nnumeric\ncharacter (text)\nlogical (TRUE/FALSE)\n\nExtracting elements of a vector\nJust like with lists (and therefore data frames), we use brackets to extract elements from a vector. As an example, let’s work with the title column from office_ratings.\n\ntitle &lt;- office_ratings$title # vector of titles\n\nTo extract the 111th title, we run\n\ntitle[111]\n\n[1] \"New Leads\"\n\n\nor two extract the 100th through 111th titles, we run\n\ntitle[100:111]\n\n [1] \"Double Date\"          \"Murder\"               \"Shareholder Meeting\" \n [4] \"Scott's Tots\"         \"Secret Santa\"         \"The Banker\"          \n [7] \"Sabre\"                \"Manager and Salesman\" \"The Delivery: Part 1\"\n[10] \"The Delivery: Part 2\" \"St. Patrick's Day\"    \"New Leads\"           \n\n\nNegative indices\nSometimes, we want to “kick out” elements of our vector. To do this, we can use a negative index value. For example,\n\ntitle[-1]\n\nreturns all but the first title—that is, it kicks out the first title. To kick out multiple elements, we need to negate a vector of indices. For example, below we kick out the first 10 titles\n\ntitle[-c(1:10)]\n\nAnd now we kick out the 5th, 50th, and 150th titles\n\ntitle[-c(5, 50, 150)]\n\nThis idea can be adapted to lists and data frames. For example, to kick out the first row of office_ratings, we run\n\noffice_ratings[-1,]\n\n# A tibble: 187 × 6\n   season episode title             imdb_rating total_votes air_date  \n    &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;                   &lt;dbl&gt;       &lt;dbl&gt; &lt;date&gt;    \n 1      1       2 Diversity Day             8.3        3566 2005-03-29\n 2      1       3 Health Care               7.9        2983 2005-04-05\n 3      1       4 The Alliance              8.1        2886 2005-04-12\n 4      1       5 Basketball                8.4        3179 2005-04-19\n 5      1       6 Hot Girl                  7.8        2852 2005-04-26\n 6      2       1 The Dundies               8.7        3213 2005-09-20\n 7      2       2 Sexual Harassment         8.2        2736 2005-09-27\n 8      2       3 Office Olympics           8.4        2742 2005-10-04\n 9      2       4 The Fire                  8.4        2713 2005-10-11\n10      2       5 Halloween                 8.2        2561 2005-10-18\n# ℹ 177 more rows\n\n\nor to kick out the math courses from the mast list we run\n\nmast[-4]\n\n$stat_faculty\n[1] \"Kelling\"   \"Loy\"       \"Luby\"      \"Poppick\"   \"St. Clair\" \"Wadsworth\"\n\n$stat_courses\n[1] 120 220 230 250 285 330\n\n$math_faculty\n [1] \"Brooke\"              \"Davis\"               \"Egge\"               \n [4] \"Gomez-Gonzales\"      \"Haunsperger\"         \"Johnson\"            \n [7] \"Meyer\"               \"Montee\"              \"Shrestha\"           \n[10] \"Terry\"               \"Thompson\"            \"Turnage-Butterbaugh\"\n\n\nLogical indices\nIt’s great to be able to extract (or omit) elements using indices, but sometimes we don’t know what index value we should use. For example, if you wanted to extract all of the 300-level statistics courses from the stat_courses vector, you would need to manually determine that positions 2:5 meet that requirement. That’s a lot of work! A better alternative is to allow R to find the elements meeting that requirement using logical operators. Below is a table summarizing common logical operators in R.\n\n\nComparison\nMeaning\n\n\n\n&lt;\nless than\n\n\n&gt;\ngreater than\n\n\n&lt;=\nless than or equal to\n\n\n&gt;=\ngreater than or equal to\n\n\n==\nis equal to\n\n\n!=\nnot equal to\n\n\n\nIn order to extract the 300-level statistics courses, we’ll take two steps:\n\nWe’ll determine whether each course is numbered at least 300,\nthen we’ll use that sequence of TRUEs/FALSEs to extract the course.\n\nSo, first we use the logical operator &gt;= to compare stat_courses and 300. This returns TRUE if the element meets the specification and FALSE otherwise.\n\nstat_courses &gt;= 300\n\n[1] FALSE FALSE FALSE FALSE FALSE  TRUE\n\n\nNow, we can use this vector as our index. Only the TRUE elements will be extracted:\n\nstat_courses[stat_courses &gt;= 300]\n\n[1] 330\n\n\nThe same idea can be used with data frames and lists, just remember how to format the brackets and indices!\n\n\n\n\n\n\nNone Check point\n\n\n\n\nExtract all statistics courses below 250 from stat_courses.\nExtract all math courses except for 240 (probability) from math_courses.\nExtract all rows from season 3 of The Office.",
+    "crumbs": [
+      "Computing",
+      "R Refresher"
+    ]
+  },
+  {
+    "objectID": "computing/computing-access.html",
+    "href": "computing/computing-access.html",
+    "title": "Computing Access",
     "section": "",
-    "text": "library(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.4     ✔ readr     2.1.5\n✔ forcats   1.0.0     ✔ stringr   1.5.1\n✔ ggplot2   3.5.2     ✔ tibble    3.2.1\n✔ lubridate 1.9.3     ✔ tidyr     1.3.1\n✔ purrr     1.0.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\nlibrary(patchwork)\nlibrary(bayesrules)\nlibrary(rstan)\n\nLoading required package: StanHeaders\n\nrstan version 2.32.6 (Stan version 2.32.2)\n\nFor execution on a local, multicore CPU with excess RAM we recommend calling\noptions(mc.cores = parallel::detectCores()).\nTo avoid recompilation of unchanged Stan programs, we recommend calling\nrstan_options(auto_write = TRUE)\nFor within-chain threading using `reduce_sum()` or `map_rect()` Stan functions,\nchange `threads_per_chain` option:\nrstan_options(threads_per_chain = 1)\n\n\nAttaching package: 'rstan'\n\nThe following object is masked from 'package:tidyr':\n\n    extract\n\nlibrary(bayesplot)\n\nThis is bayesplot version 1.11.1\n- Online documentation and vignettes at mc-stan.org/bayesplot\n- bayesplot theme set to bayesplot::theme_default()\n   * Does _not_ affect other ggplot2 plots\n   * See ?bayesplot_theme_set for details on theme setting\n\n\nExample 1\n\nfn_model &lt;- \"\n  data {\n    int&lt;lower=0&gt; N;\n    vector[N] y;\n  }\n\n  parameters {\n    real mu;\n    real&lt;lower=0&gt; sigma;\n  }\n\n  model {\n    y ~ normal(mu, sigma);\n    mu ~ normal(0, 1000);\n    sigma ~ exponential(.0001);\n  }\n\"\n\nfn_sim &lt;- stan(model_code = fn_model, \n               data = list(N=2, y = c(-1,1)), \n               chains = 4, iter = 1000*2, seed = 84735)\n\n\nui_model &lt;- \"\n  data {\n    int&lt;lower=0&gt; N;\n    vector[N] y;\n  }\n\n  parameters {\n    real alpha;\n    real beta;\n    real&lt;lower=0&gt; sigma;\n  }\n\n  model {\n    y ~ normal(alpha + beta, sigma);\n    alpha ~ normal(0, 1000);\n    beta ~ normal(0, 1000);\n    sigma ~ exponential(1);\n  }\n\"\n\nui_sim &lt;- stan(model_code = ui_model, \n               data = list(N=100, y = rnorm(100)), \n               chains = 4, iter = 1000*2, seed = 84735)\n\n\ni_model &lt;- \"\n  data {\n    int&lt;lower=0&gt; N;\n    vector[N] y;\n  }\n\n  parameters {\n    real alpha;\n    real beta;\n    real&lt;lower=0&gt; sigma;\n  }\n\n  model {\n    y ~ normal(alpha + beta, sigma);\n    alpha ~ normal(0, 1);\n    beta ~ normal(0, 1);\n    sigma ~ exponential(1);\n  }\n\"\n\ni_sim &lt;- stan(model_code = i_model, \n               data = list(N=100, y = rnorm(100)), \n               chains = 4, iter = 1000*2, seed = 84735)"
+    "text": "I expect you to use RStudio to run R in this course. You have two options for using RStudio:\n\nWe have a Carleton server hosting Rstudio at https://maize.mathcs.carleton.edu/. Your files on this account will be accessible as long as you are a student at Carleton. Use your Carleton credentials to access your account and you need to be running the Carleton VPN (below) to access this server. Use this option if\n\nyour personal computer is old and/or slow\nyou prefer to use school computers (lab or library computers)\n\nYou can also run R/RStudio from your personal computer. If you use a local version of R/RStudio this term, make sure that you have recently updated both R and RStudio.\nTo check your version of R, run the command getRversion() and compare your version to the newest version posted on https://cran.r-project.org/. If you need an update, then install the newer version using the installation directions above.\nIn RStudio, check for updates with the menu option Help &gt; Check for updates. Follow directions if an update is needed.\nFor a fresh download:\n\nDownload the latest version of R for your operating system from https://cran.r-project.org/\nDownload the free RStudio desktop version from https://posit.co/download/rstudio-desktop/\n\nUse the default download and install options for each. For R, download the “precompiled binary” distribution rather than the source code."
   },
   {
-    "objectID": "homework/hw02.html",
-    "href": "homework/hw02.html",
-    "title": "Individual HW02",
+    "objectID": "computing/computing-access.html#rrstudio",
+    "href": "computing/computing-access.html#rrstudio",
+    "title": "Computing Access",
     "section": "",
-    "text": "BR Exercise 2.16\n\n\n\n\n\n\nNote\n\n\n\nIf the link from the textbook doesn’t work, try this link from the internet archive\n\n\n\n\nBR Exercise 2.21\n\n\nBR Exercise 3.8\n\n\nsummarize_beta_binomial\nWrite your own R function that does the same thing as summarize_beta_binomial. It’s OK if your output is formatted differently and you do not need to write formal checks.\n\n\n\n\n\n\nNote\n\n\n\nIf you need a refresher on writing functions in R, I recommend:\n\nR4DS Ch25 for an overview of functions in R with practice problems\nMy Stat220 slides for a quick refresher\n\n\n\n\n\nBR Exercise 3.9\n\n\nBR Exercise 3.10\n\n\nBR Exercise 4.10\n\n\nBR Exercise 4.14\n\n\nBR Exercise 4.18",
+    "text": "I expect you to use RStudio to run R in this course. You have two options for using RStudio:\n\nWe have a Carleton server hosting Rstudio at https://maize.mathcs.carleton.edu/. Your files on this account will be accessible as long as you are a student at Carleton. Use your Carleton credentials to access your account and you need to be running the Carleton VPN (below) to access this server. Use this option if\n\nyour personal computer is old and/or slow\nyou prefer to use school computers (lab or library computers)\n\nYou can also run R/RStudio from your personal computer. If you use a local version of R/RStudio this term, make sure that you have recently updated both R and RStudio.\nTo check your version of R, run the command getRversion() and compare your version to the newest version posted on https://cran.r-project.org/. If you need an update, then install the newer version using the installation directions above.\nIn RStudio, check for updates with the menu option Help &gt; Check for updates. Follow directions if an update is needed.\nFor a fresh download:\n\nDownload the latest version of R for your operating system from https://cran.r-project.org/\nDownload the free RStudio desktop version from https://posit.co/download/rstudio-desktop/\n\nUse the default download and install options for each. For R, download the “precompiled binary” distribution rather than the source code."
+  },
+  {
+    "objectID": "computing/computing-access.html#vpn",
+    "href": "computing/computing-access.html#vpn",
+    "title": "Computing Access",
+    "section": "VPN",
+    "text": "VPN\nIf you plan to use the maize server and you plan to do any work off campus this term (e.g., while on a field trip, travel for athletics, or just sitting in Little Joy) you need to install Carleton’s VPN to have access.\nTo install the GlobalProtect VPN follow directions provided by ITS."
+  },
+  {
+    "objectID": "computing/computing-access.html#git-and-github",
+    "href": "computing/computing-access.html#git-and-github",
+    "title": "Computing Access",
+    "section": "Git and GitHub",
+    "text": "Git and GitHub\nGit is version control software that you install locally on your computer. Git is already installed on the maize RStudio server.\nGithub is a cloud-based service for hosting git projects. It allows multiple users to share and contribute to projects and it is how you will be submitting homework assignments and projects for this class. More information about Github for this class is found on Moodle.\nIf you are using a local install of R/RStudio, then you will need to install Git.\nInstalling Git\nDirections for both Windows & Mac here at http://happygitwithr.com/install-git.html.\n\nIf you are using maize, then there is nothing you need to install.\nWindows users should follow Option 1 in 6.2.\nMac users can follow Option 1 in 6.3 if comfortable, otherwise follow Option 2\nLinux users can follow 6.4."
+  },
+  {
+    "objectID": "computing/computing-access.html#latex",
+    "href": "computing/computing-access.html#latex",
+    "title": "Computing Access",
+    "section": "LaTeX",
+    "text": "LaTeX\nYou need a LaTeX compiler to create a pdf document from a R Markdown file. If you use the maize server, you don’t need to install anything (the server already has a LaTeX compiler). If you are using a local RStudio, you should install a Latex compiler.\nInstalling LaTeX (not needed if you are using the maize server)\nIf you don’t already have a tex package installed on your computer, the easiest option to create pdf’s is to use the tinytex R package. This can be installed with the following R commands:\n\ninstall.packages(\"tinytex\")\ntinytex::install_tinytex()  # install TinyTeX\n\nIf you’d like a stand alone LaTeX package, you could install the basic installations of either:\n\nMacTeX for Mac (3.2GB!)\nMiKTeX for Windows (190MB)\n\n\nAcknowledgements\nThis installation guide was written by Adam Loy and is based on the guide from stat545.com and is licensed under the CC BY-NC 3.0 Creative Commons License."
+  },
+  {
+    "objectID": "computing/computing-setup.html",
+    "href": "computing/computing-setup.html",
+    "title": "Computing Setup for Stat340",
+    "section": "",
+    "text": "For Stat340, I highly recommend using R on your local computer, instead of the maize server. Why?\n\nIt’s likely the 4th time (or more!) that you’ve seen R in a classroom setting\nYou’re graduating soon and won’t be able to access maize\nBayesian statistics is much more computationally expensive than traditional statistics, and your model fitting will run faster on a local installation\n\nFirst, download the most recent versions of R and RStudio for your operating system:\n\nR (https://www.r-project.org/)\nRStudio (https://rstudio.com/products/rstudio/download/)\nQuarto (https://quarto.org/docs/get-started/)\n\nNext, we need to install a version of LaTeX in order to render quarto files to PDF. I recommend using the tinytex installation that is included with quarto. To install it, click on “Terminal” within RStudio and type the following:\nquarto install tinytex\nAfter doing all of the following, you can check that it is working correctly by:\n\nOpen rstudio\nClick “File –&gt; New File –&gt; Quarto document” and choose the “PDF” output option\nMake a small change to the file within the editor and click “render”. If all goes well, you should end up with a PDF document!\n\nFor Stat340 coursework, it will be helpful to have some additional R packages installed. You can install these all at once with:\n\ninstall.packages(c(\"bayesrules\", \"tidyverse\", \"janitor\", \"rstanarm\",\n                   \"bayesplot\", \"tidybayes\", \"broom.mixed\", \"modelr\",\n                   \"e1071\", \"forcats\"), \n                 dependencies = TRUE)",
+    "crumbs": [
+      "Computing",
+      "Setup"
+    ]
+  },
+  {
+    "objectID": "homework/hw01.html",
+    "href": "homework/hw01.html",
+    "title": "Individual HW01",
+    "section": "",
+    "text": "BR Exercise 1.5\n\n\nBR Exercise 1.6\n\n\nBR Exercise 2.2\n\n\nBR Exercise 2.6\n\n\nBR Exercise 2.16\n\n\n\n\n\n\nImportant\n\n\n\nThis problem moved to HW2!",
     "crumbs": [
       "Assignments",
       "Homework",
-      "Individual HW02"
+      "Individual HW01"
     ]
   },
   {
-    "objectID": "homework/gw02-sols.html",
-    "href": "homework/gw02-sols.html",
-    "title": "gw02-sols",
+    "objectID": "homework/hw03.html",
+    "href": "homework/hw03.html",
+    "title": "Individual HW03",
     "section": "",
-    "text": "library(bayesrules) # R package for our textbook\nlibrary(tidyverse) # Collection of packages for tidying and plotting data\nlibrary(janitor) # Helper functions like tidy and tabyl\n\nBR Exercise 2.13\nSee handwritten\n\npi &lt;- c(.4, .5, .6, .7)\nprior &lt;- c(.1, .2, .44, .26)\nlik &lt;- dbinom(47, size = 80, prob = pi)\npost_unnorm &lt;- prior*lik\npost_norm &lt;- prior*lik/sum(post_unnorm)\n\ntibble(pi, prior, lik, post_unnorm, post_norm)\n\n# A tibble: 4 × 5\n     pi prior      lik post_unnorm post_norm\n  &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;       &lt;dbl&gt;     &lt;dbl&gt;\n1   0.4  0.1  0.000301   0.0000301  0.000649\n2   0.5  0.2  0.0264     0.00527    0.114   \n3   0.6  0.44 0.0880     0.0387     0.834   \n4   0.7  0.26 0.00929    0.00242    0.0520  \n\n\nBR Exercise 2.18\nThe smallest Y where \\(P(\\pi = .6 |Y) &gt; .4\\) is 6\n\ntibble(\n  y = 0:10, # possible values of Y\n  p_y = dbinom(y, size = 10, prob = .6)) |&gt; # f(Y|pi = .6)\n  rowwise() |&gt;\n  mutate(\n    norm_constant = (.25*dbinom(y, 10, .2) + .5*dbinom(y, 10, .4) + .25*dbinom(y, 10, .6)), # Normalizing constant for each possible value of Y\n    posterior = (.25*p_y)/norm_constant # posterior: f(pi = .6 | Y)\n  )\n\n# A tibble: 11 × 4\n# Rowwise: \n       y      p_y norm_constant posterior\n   &lt;int&gt;    &lt;dbl&gt;         &lt;dbl&gt;     &lt;dbl&gt;\n 1     0 0.000105       0.0299   0.000877\n 2     1 0.00157        0.0877   0.00449 \n 3     2 0.0106         0.139    0.0191  \n 4     3 0.0425         0.168    0.0630  \n 5     4 0.111          0.175    0.159   \n 6     5 0.201          0.157    0.319   \n 7     6 0.251          0.120    0.523   \n 8     7 0.215          0.0752   0.715   \n 9     8 0.121          0.0356   0.850   \n10     9 0.0403         0.0109   0.928   \n11    10 0.00605        0.00156  0.966   \n\n\nBR Exercise 2.17\n\n# Define possible trees\ntrees &lt;- data.frame(type = c(\"mold\", \"not mold\"))\n\n# Define the prior model\nprior &lt;- c(0.18, .82)\n\n# Simulate 10000 trees \nset.seed(84735)\ntrees_sim &lt;- sample_n(trees, size = 10000, \n                        weight = prior, replace = TRUE)\n\ntrees_sim &lt;- trees_sim %&gt;% \n  mutate(data_model = case_when(type == \"mold\" ~ 0.8,\n                                type == \"not mold\" ~ 0.1))\n\n# Define  tree species\ndata &lt;- c(\"maple\", \"not maple\")\n\n# Simulate species\n\ntrees_sim &lt;- trees_sim %&gt;%\n  group_by(1:n()) %&gt;% \n  mutate(species = sample(data, size = 1, \n                        prob = c(data_model, 1-data_model)))\n\ntrees_sim %&gt;% \n  filter(species == \"maple\") %&gt;% \n  tabyl(type) %&gt;% \n  adorn_totals(\"row\")\n\n     type    n   percent\n     mold 1482 0.6327925\n not mold  860 0.3672075\n    Total 2342 1.0000000\n\n\nMLE\nIf \\(Y \\sim \\text{Binom}(n, \\pi)\\), show that \\(\\hat{\\pi}_{MLE} = \\frac{Y}{n}\\)\n(see handwritten)\nBR Exercise 3.1\nFor each part, use plot_beta and/or summarize_beta to justify your answer\nBR Exercise 3.12\nChoice of prior\nI am interviewing Carleton students about whether or not they have used (knowingly) used ChatGPT on coursework in a non-approved way. I think the proportion has a 90% chance of being less than .25.\n\nChoose an informative prior that you think is reasonable for this belief\n\nI then ask 20 students this question and 15 respond “yes”. Find the posterior using the prior from above, then using the 3 non/weakly informative priors below:\n\nUnif(0,1) prior\nBeta(2,2) prior\n“Reference” prior Beta(.5, .5)\n\nCompare the posteriors for each of the priors above. Do results change if we instead observe 150/200 students responding “yes”?\nBR 4.13\n(see handwritten)",
+    "text": "library(bayesrules) # R package for our textbook\nlibrary(tidyverse) # Collection of packages for tidying and plotting data\nlibrary(janitor) # Helper functions like tidy and tabyl\n\nBR Exercise 5.1 a, d, f\nFor each situation below, tune an appropriate Gamma(s, r) prior model for \\(\\lambda\\)\n\nThe most common value of \\(\\lambda\\) is 4, and the mean is 7.\nThe most common value of \\(\\lambda\\) is 14, and the variance is 6.\nThe mean of \\(\\lambda\\) is 22, and the variance is 3.\nBR Exercise 5.7\nLet \\(\\lambda\\) be the average number of goals scored in a Women’s World Cup game. We’ll analyze \\(\\lambda\\) by the following Gamma-Poisson model: \\[Y_i | \\lambda \\sim \\text{Poisson}(\\lambda)\\] \\[\\lambda \\sim \\text{Gamma}(1, 0.25)\\]\n\nPlot and summarize our prior understanding of \\(\\lambda\\)\n\nWhy is the Poisson model a reasonable choice for \\(Y_i\\)?\nThe wwc_2019_matches data in the {fivethirtyeight} package includes the number of goals scored by the two teams in each 2019 Women’s World Cup match. Define, plot, and discuss the total number of goals scored per game\n\n\nlibrary(fivethirtyeight)\ndata(\"wwc_2019_matches\")\nwwc_2019_matches &lt;- wwc_2019_matches %&gt;% \n  mutate(total_goals = score1 + score2)\n\n\nidentify the posterior model of \\(\\lambda\\) and verify your answer using summarize_gamma_poisson()\n\nPlot the prior, likelihood, and posterior of \\(\\lambda\\). Describe the evolution in your understanding of \\(\\lambda\\) from the prior to posterior.\nBR Exercise 5.15\nBelow are kernels for Normal, Poisson, Gamma, Beta, and Binomial models. Identify the appropriate model with specific parameter values.\n\n\n\\(f(\\theta) \\propto 0.3^\\theta 0.7^{16 - \\theta}\\) for \\(\\theta \\in \\{0, 1, 2 ..., 16\\}\\)\n\n\n\\(f(\\theta) \\propto 1/\\theta!\\) for \\(\\theta \\in \\{0, 1, ..., \\infty\\}\\)\n\n\n\\(f(\\theta) \\propto \\theta^4(1-\\theta)^7\\) for \\(\\theta \\in [0,1]\\)\n\n\\(f(\\theta) \\propto e^{-\\theta^2}\\)\nNormal-normal conjugacy\nVerify that the normal distribution is a conjugate prior for a normal data model.\nNote: the sketch of this proof is given in 5.3.4 and you are welcome to use it. If you use other sources (e.g. for help remembering how to complete the square), please cite them.\nBR Exercise 5.11 (Normal-normal calculation)\nProf. Abebe and Prof. Morales both recently finished their PhDs and are teaching their first statistics classes at Bayesian University. Their colleagues told them that the average final exam score across all students, \\(\\mu\\), varies Normally from year to year with a mean of 80 points and a standard deviation of 4. Further, individual students’ scores \\(Y\\) vary Normally around \\(\\mu\\) with a known standard deviation of 3 points.\n\nProf. Abebe conducts the final exam and observes that his 32 students scored an average of 86 points. Calculate the posterior mean and variance of \\(\\mu\\) using the data from Prof. Abebe’s class.\nProf. Morales conducts the final exam and observes that her 32 students scored an average of 82 points. Calculate the posterior mean and variance of \\(\\mu\\) using the data from Prof. Morales’ class.\nNext, use Prof. Abebe and Prof. Morales’ combined exams to calculate the posterior mean and variance of \\(\\mu\\)\n\nBR Exercise 5.14: Normal-normal simulation\n\nYour friend Alex has read Chapter 4 of this book, but not Chapter 5. Explain to Alex why it’s difficult to simulate a Normal-Normal posterior using the simulation methods we have learned thus far.\nTo prove your point, try (and fail) to simulate the posterior of \\(\\mu\\) for the following model upon observing a single data point \\(Y_1 = 1.1\\):\n\n\\[Y | \\mu \\sim N(\\mu, 1^2)\\] \\[\\mu \\sim N(0,1)\\]\nBR Exercise 6.6: Gamma-Poisson grid approximation\nConsider the Gamma-Poisson model for \\(\\lambda\\) with \\(\\lambda \\sim \\text{Gamma}(20, 5)\\) and \\(Y_i | \\lambda \\sim \\text{Pois}(\\lambda)\\). Suppose you observe \\(n=3\\) data points \\((Y_1, Y_2, Y_3) = (0, 1, 0)\\)\n\nUtilize grid approximation with grid values \\(\\lambda = \\{0, 1, 2, ..., 8\\}\\) to approximate the posterior of \\(\\lambda\\)\n\nRepeat part a using a grid of 201 equally spaced values between 0 and 8.\nBR Exercise 6.15: Gamma-Poisson MCMC (skip traceplots for now)\n\nSimulate the posterior model of \\(\\lambda\\) with RStan using 4 chains and 10000 iterations per chain.\nProduce density plots for all four chains.\nFrom the density plots, what seems to be the most posterior plausible value of \\(\\lambda\\)?\nHearkening back to Chapter 5, specify the theoretical posterior model of \\(\\lambda\\). How does your MCMC approximation compare? (Try adding an overlaying line to your density plot from (c))\nBR Exercise 6.9: Comparing MCMC to grid approximation\n\nWhat drawback(s) do MCMC and grid approximation share?\nWhat advantage(s) do MCMC and grid approximation share?\nWhat is an advantage of grid approximation over MCMC?\nWhat is an advantage of MCMC over grid approximation?",
     "crumbs": [
       "Assignments",
       "Homework",
-      "gw02-sols"
+      "Individual HW03"
     ]
   },
   {
-    "objectID": "course-faq.html",
-    "href": "course-faq.html",
-    "title": "FAQ",
+    "objectID": "homework/hw05.html",
+    "href": "homework/hw05.html",
+    "title": "Individual HW05",
     "section": "",
-    "text": "The best place to come for help is Amanda’s office hours! I can help with anything related to the course. You can also check my calendar for one-on-one appointment slots.\n\n\n\nStudents needing help with their Statistics coursework and R/Rstudio questions can get help from Stats Lab Assistants in the Stats Lab in CMC 304. Stats Lab Assistants are primiarily for Stat 120 (Intro Stats), but they may also be able to assist with general R/Rstudio questions."
+    "text": "library(bayesrules) # R package for our textbook\nlibrary(tidyverse) # Collection of packages for tidying and plotting data\nlibrary(janitor) # Helper functions like tidy and tabyl\nlibrary(rstan) # for MCMC\nlibrary(bayesplot) # for plotting\n\nBR Exercise 8.10\nBR Exercise 8.22\nBR Exercise 8.23\nQ4\nQ5",
+    "crumbs": [
+      "Assignments",
+      "Homework",
+      "Individual HW05"
+    ]
   },
   {
-    "objectID": "course-faq.html#where-can-i-get-help",
-    "href": "course-faq.html#where-can-i-get-help",
-    "title": "FAQ",
-    "section": "",
-    "text": "The best place to come for help is Amanda’s office hours! I can help with anything related to the course. You can also check my calendar for one-on-one appointment slots.\n\n\n\nStudents needing help with their Statistics coursework and R/Rstudio questions can get help from Stats Lab Assistants in the Stats Lab in CMC 304. Stats Lab Assistants are primiarily for Stat 120 (Intro Stats), but they may also be able to assist with general R/Rstudio questions."
+    "objectID": "slides/test.html#quarto",
+    "href": "slides/test.html#quarto",
+    "title": "Untitled",
+    "section": "Quarto",
+    "text": "Quarto\nQuarto enables you to weave together content and executable code into a finished presentation. To learn more about Quarto presentations see https://quarto.org/docs/presentations/."
   },
   {
-    "objectID": "slides/slides06.html#beta-binomial-review",
-    "href": "slides/slides06.html#beta-binomial-review",
-    "title": "Gamma-Poisson model",
-    "section": "Beta-Binomial review",
-    "text": "Beta-Binomial review\n\nPrior: \\(f(\\pi) \\sim \\text{Beta}(\\alpha, \\beta)\\)\nLikelihood: \\(L(\\pi | Y) \\sim \\text{Binomial}(n, \\pi)\\)\nPosterior: \\(f(\\pi |Y) \\sim \\text{Beta}(\\alpha + y, \\beta + n - y)\\)\n\n \n\n\n\n\n\n\nConjugate Prior\n\n\nThe Beta distribution is a conjugate prior for the Binomial likelihood, since the posterior is also Beta"
+    "objectID": "slides/test.html#bullets",
+    "href": "slides/test.html#bullets",
+    "title": "Untitled",
+    "section": "Bullets",
+    "text": "Bullets\nWhen you click the Render button a document will be generated that includes:\n\nContent authored with markdown\nOutput from executable code"
   },
   {
-    "objectID": "slides/slides06.html#non-conjugate-prior-for-binomial-likelihood",
-    "href": "slides/slides06.html#non-conjugate-prior-for-binomial-likelihood",
-    "title": "Gamma-Poisson model",
-    "section": "Non-conjugate prior for Binomial likelihood",
-    "text": "Non-conjugate prior for Binomial likelihood\n\\[f(\\pi) = e - e^\\pi\\]"
-  },
-  {
-    "objectID": "slides/slides06.html#finding-the-posterior",
-    "href": "slides/slides06.html#finding-the-posterior",
-    "title": "Gamma-Poisson model",
-    "section": "Finding the posterior",
-    "text": "Finding the posterior\nAssume \\(Y=10\\) and \\(n=50\\)"
-  },
-  {
-    "objectID": "slides/slides06.html#can-we-use-beta-binomial-model",
-    "href": "slides/slides06.html#can-we-use-beta-binomial-model",
-    "title": "Gamma-Poisson model",
-    "section": "Can we use Beta-Binomial Model?",
-    "text": "Can we use Beta-Binomial Model?\nAt a certain hospital, an average of 6 babies are born each hour. Let \\(Y\\) be the number of babies born between 9 a.m. and 10 a.m. tomorrow."
-  },
-  {
-    "objectID": "slides/slides06.html#poisson-data-model",
-    "href": "slides/slides06.html#poisson-data-model",
-    "title": "Gamma-Poisson model",
-    "section": "Poisson Data model",
-    "text": "Poisson Data model\nLet \\(Y\\) be the number of independent events that occur in a fixed amount of time or space, where \\(\\lambda &gt; 0\\) is the rate at which these events occur. Then the dependence of \\(Y\\) on parameter \\(\\lambda\\) can be modeled by the Poisson. In mathematical notation:\n\\[Y | \\lambda \\sim \\text{Pois}(\\lambda) \\]\nand\n\\[ f(y|\\lambda) =  \\frac{\\lambda^y e^{-\\lambda}}{y!}\\;\\; \\text{ for } y \\in \\{0,1,2,\\ldots\\}\\]\n\\[E(Y | \\lambda) = V(Y | \\lambda) = \\lambda\\]"
-  },
-  {
-    "objectID": "slides/slides06.html#poisson-pmfs",
-    "href": "slides/slides06.html#poisson-pmfs",
-    "title": "Gamma-Poisson model",
-    "section": "Poisson PMFs",
-    "text": "Poisson PMFs"
-  },
-  {
-    "objectID": "slides/slides06.html#joint-likelihood-function",
-    "href": "slides/slides06.html#joint-likelihood-function",
-    "title": "Gamma-Poisson model",
-    "section": "Joint Likelihood Function",
-    "text": "Joint Likelihood Function"
-  },
-  {
-    "objectID": "slides/slides06.html#poisson-likelihood",
-    "href": "slides/slides06.html#poisson-likelihood",
-    "title": "Gamma-Poisson model",
-    "section": "Poisson Likelihood",
-    "text": "Poisson Likelihood\nIf we collect 4 hours of data and observe \\(y_i = 0, 2, 3, 2\\) babies born:"
-  },
-  {
-    "objectID": "slides/slides06.html#section-1",
-    "href": "slides/slides06.html#section-1",
-    "title": "Gamma-Poisson model",
-    "section": "",
-    "text": "plot_poisson_likelihood(y = c(0, 2, 3, 2), lambda_upper_bound = 8)"
-  },
-  {
-    "objectID": "slides/slides06.html#choosing-a-prior",
-    "href": "slides/slides06.html#choosing-a-prior",
-    "title": "Gamma-Poisson model",
-    "section": "Choosing a prior",
-    "text": "Choosing a prior\n\n\\(\\lambda\\) discrete or continuous?\nWhat is the support of \\(\\lambda\\)?\nBe strategic about creating a kernel"
-  },
-  {
-    "objectID": "slides/slides06.html#gamma-model",
-    "href": "slides/slides06.html#gamma-model",
-    "title": "Gamma-Poisson model",
-    "section": "Gamma Model",
-    "text": "Gamma Model\nLet \\(\\lambda\\) be a random variable which can take any value between 0 and \\(\\infty\\), ie. \\(\\lambda \\in [0,\\infty)\\). The Gamma model with shape parameter \\(s &gt; 0\\) and rate parameter \\(r &gt; 0\\) is:\n\\[\\lambda \\sim \\text{Gamma}(s, r)\\]\n\\[f(\\lambda) = \\frac{r^s}{\\Gamma(s)} \\lambda^{s-1} e^{-r\\lambda} \\;\\; \\text{ for } \\lambda &gt; 0 \\]\nwhere constant \\(\\Gamma(s) = \\int_0^\\infty z^{s - 1} e^{-z}dz\\). When \\(s\\) is a positive integer, \\(s \\in \\{1,2,3,\\ldots\\}\\), this constant simplifies to \\(\\Gamma(s) = (s - 1)!\\)."
-  },
-  {
-    "objectID": "slides/slides06.html#section-2",
-    "href": "slides/slides06.html#section-2",
-    "title": "Gamma-Poisson model",
-    "section": "",
-    "text": "Warning\n\n\nThe Gamma is sometimes parameterized by shape \\(s\\) and scale \\(\\theta = \\frac{1}{r}\\)\n\n\n\n\nIn econometrics, the (α, θ) parameterization is common for modeling waiting times … Bayesian statisticians prefer the (α,λ) parameterization, utilizing the gamma distribution as a conjugate prior for several inverse scale parameters, facilitating analytical tractability in posterior distribution computations.\n\n\n\nSource: Wikipedia"
-  },
-  {
-    "objectID": "slides/slides06.html#section-3",
-    "href": "slides/slides06.html#section-3",
-    "title": "Gamma-Poisson model",
-    "section": "",
-    "text": "Exponential Model\n\\[\\lambda \\sim \\text{Exp}(r)\\]\nis a special case of the Gamma with shape parameter \\(s = 1\\), \\(\\text{Gamma}(1,r)\\)\n\\(\\chi^2\\) Model\n\\[\\lambda \\sim \\chi^2(k)\\]\nis a special case of the Gamma with shape \\(s = k/2\\) and rate \\(r=1/2\\)"
-  },
-  {
-    "objectID": "slides/slides06.html#section-4",
-    "href": "slides/slides06.html#section-4",
-    "title": "Gamma-Poisson model",
-    "section": "",
-    "text": "\\(E(\\lambda) = \\frac{s}{r}, \\text{Mode}(\\lambda) = \\frac{s-1}{r} \\text{ for s } \\ge 1, \\text{Var}(\\lambda) = \\frac{s}{r^2}\\)"
-  },
-  {
-    "objectID": "slides/slides06.html#posterior-model",
-    "href": "slides/slides06.html#posterior-model",
-    "title": "Gamma-Poisson model",
-    "section": "Posterior Model",
-    "text": "Posterior Model"
-  },
-  {
-    "objectID": "slides/slides06.html#gamma-poisson-bayesian-model",
-    "href": "slides/slides06.html#gamma-poisson-bayesian-model",
-    "title": "Gamma-Poisson model",
-    "section": "Gamma-Poisson Bayesian Model",
-    "text": "Gamma-Poisson Bayesian Model\n\\[\\lambda \\sim \\text{Gamma}(s, r)\\] \\[ Y_i | \\lambda \\sim \\text{Poisson}(\\lambda)\\]\n\\[\\lambda | Y_1, Y_2, ..., Y_n \\sim \\text{Gamma}(s + \\sum Y_i, r + n)\\]"
-  },
-  {
-    "objectID": "slides/slides06.html#gamma-poisson-model",
-    "href": "slides/slides06.html#gamma-poisson-model",
-    "title": "Gamma-Poisson model",
-    "section": "Gamma-Poisson Model",
-    "text": "Gamma-Poisson Model\n\nplot_gamma_poisson(shape = 10, rate = 2, sum_y = 7, n = 4)"
-  },
-  {
-    "objectID": "slides/slides06.html#gamma-poisson-model-1",
-    "href": "slides/slides06.html#gamma-poisson-model-1",
-    "title": "Gamma-Poisson model",
-    "section": "Gamma-Poisson Model",
-    "text": "Gamma-Poisson Model\n\nsummarize_gamma_poisson(shape = 10, rate = 2, sum_y = 7, n = 4)\n\n      model shape rate     mean     mode       var        sd\n1     prior    10    2 5.000000 4.500000 2.5000000 1.5811388\n2 posterior    17    6 2.833333 2.666667 0.4722222 0.6871843\n\n\nInterpretation:"
-  },
-  {
-    "objectID": "slides/slides06.html#example-tuning-a-gamma-prior",
-    "href": "slides/slides06.html#example-tuning-a-gamma-prior",
-    "title": "Gamma-Poisson model",
-    "section": "Example: tuning a Gamma prior",
-    "text": "Example: tuning a Gamma prior\nThe most likely value of \\(\\lambda\\) is 3.5 and the variance is 2"
-  },
-  {
-    "objectID": "slides/slides06.html#example-gamma-poisson-model",
-    "href": "slides/slides06.html#example-gamma-poisson-model",
-    "title": "Gamma-Poisson model",
-    "section": "Example: Gamma-Poisson model",
-    "text": "Example: Gamma-Poisson model\nAssume a prior of \\(\\lambda \\sim \\text{Gamma}(24, 2)\\) and \\(Y | \\lambda \\sim \\text{Poisson}(\\lambda)\\). If you observe a sample of \\((12, 12, 12, 0)\\), what is the likelihood and posterior?"
-  },
-  {
-    "objectID": "slides/slides06.html#section-5",
-    "href": "slides/slides06.html#section-5",
-    "title": "Gamma-Poisson model",
-    "section": "",
-    "text": "plot_gamma_poisson(shape = 24, rate = 2, sum_y = 36, n = 4)"
-  },
-  {
-    "objectID": "slides/slides06.html#section-6",
-    "href": "slides/slides06.html#section-6",
-    "title": "Gamma-Poisson model",
-    "section": "",
-    "text": "summarize_gamma_poisson(shape = 24, rate = 2, sum_y = 36, n = 4)\n\n      model shape rate mean      mode      var       sd\n1     prior    24    2   12 11.500000 6.000000 2.449490\n2 posterior    60    6   10  9.833333 1.666667 1.290994\n\n\nInterpretation:"
+    "objectID": "slides/test.html#code",
+    "href": "slides/test.html#code",
+    "title": "Untitled",
+    "section": "Code",
+    "text": "Code\nWhen you click the Render button a presentation will be generated that includes both content and the output of embedded code. You can embed code like this:\n\n1 + 1\n\n[1] 2"
   },
   {
     "objectID": "slides/slides11.html#but-first-grid-approximation",
@@ -1579,7 +1516,7 @@
     "href": "index.html",
     "title": "Stat 340: Bayesian Statistics",
     "section": "",
-    "text": "This page contains an outline of the topics, content, and assignments for the term. Note that this schedule will be updated as the term progresses and the timeline of topics and assignments might be updated. Any major changes to due dates will be announced in class and indicated in bold here.\n\n\n\n\n\n\nWEEK\nDOW\nDATE\nPREPARE\nTOPIC\nMATERIALS\nDUE\n\n\n\n1\nM\nMon, Sep 15\n📝complete welcome survey  📚 Bayes Rules Ch1  💻 Join Slack workspace\n\nIntro to Bayesian Thinking\nSlides01\n\n\n\n1\nW\nWed, Sep 17\n📚 Bayes Rules Ch2  💻 Complete computing setup\n\nBayes Rule, R Setup\nSlides02\n\n\n\n1\nF\nFri, Sep 19\n\nProbability and Likelihood Review; Posterior Simulation\nSlides03\n\nHW 1 and GW 1\n\n\n\n2\nM\nMon, Sep 22\n📚 Bayes Rules Ch3 \n\nBeta-Binomial Model\nSlides04\n\n\n\n2\nW\nWed, Sep 24\n📚 Bayes Rules Ch4 \n\nBalance and Sequentiality\nSlides05\n\n\n\n2\nF\nFri, Sep 26\n📚 Bayes Rules Ch5.1-2 \n\nGamma-Gamma\nSlides06\n\nHW 2 and GW 2\n\n\n\n3\nM\nMon, Sep 29\n📚 Bayes Rules Ch5.3-5.6  📝 complete group eval \n\nNormal-Normal\nSlides07\n\n\n\n3\nW\nWed, Oct 1\n📚 Bayes Rules Ch6.1-2 \n\nGrid approximation and Markov Chains\nSlides08\n\n\n\n3\nF\nFri, Oct 3\n📚 Bayes Rules Ch6.3 \n\nDiagnostics\nSlides09\n\nHW 3 and GW 3\n\n\n\n4\nM\nMon, Oct 6\n📚 Bayes Rules Ch7.1-7.3  📝 complete group eval \n\nMCMC I\nSlides10\nHand out computing project\n\n\n4\nW\nWed, Oct 8\n📚 Bayes Rules Ch7.4-7 \n\nMCMC II\nSlides11\n\n\n\n4\nF\nFri, Oct 10\n\nExam I\ntbd\n\nHW 4 and GW 4\n\n\n\n5\nM\nMon, Oct 13\n\nPosterior Inference\ntbd\n\n\n\n5\nW\nWed, Oct 15\n\nPosterior Prediction\ntbd\n\n\n\n5\nF\nFri, Oct 17\n\nRegression\ntbd\nHW5\n\n\n6\nM\nMon, Oct 20\n\n❌ Midterm Break; no class\ntbd\n\n\n\n6\nW\nWed, Oct 22\n\nEvaluating I\ntbd\nComputing Project Due\n\n\n6\nF\nFri, Oct 24\n\nEvaluating II\ntbd\nHW6\n\n\n7\nM\nMon, Oct 27\n\nExtending Regression Model\ntbd\n\n\n\n7\nW\nWed, Oct 29\n\nPoisson Regression\ntbd\n\n\n\n7\nF\nFri, Oct 31\n\nNegative Binomial Regression\ntbd\nHW7\n\n\n8\nM\nMon, Nov 3\n\nLogistic Regression\ntbd\n\n\n\n8\nW\nWed, Nov 5\n\nNaive Bayes Classification\ntbd\n\n\n\n8\nF\nFri, Nov 7\n\nExam II\ntbd\nHW8\n\n\n9\nM\nMon, Nov 10\n\nHierarchical Models I\ntbd\n\n\n\n9\nW\nWed, Nov 12\n\nHierarchical Models II\ntbd\n\n\n\n9\nF\nFri, Nov 14\n\nHierarchical Models III\ntbd\n\n\n\n10\nM\nMon, Nov 17\n\nProject work day\ntbd\nHW 9\n\n\n10\nW\nWed, Nov 19\n\nLightning talks\ntbd\n\n\n\n\nM\nFri, Nov 21\n\nFinal Project Due @ noon\ntbd",
+    "text": "This page contains an outline of the topics, content, and assignments for the term. Note that this schedule will be updated as the term progresses and the timeline of topics and assignments might be updated. Any major changes to due dates will be announced in class and indicated in bold here.\n\n\n\n\n\n\nWEEK\nDOW\nDATE\nPREPARE\nTOPIC\nMATERIALS\nDUE\n\n\n\n1\nM\nMon, Sep 15\n📝complete welcome survey  📚 Bayes Rules Ch1  💻 Join Slack workspace\n\nIntro to Bayesian Thinking\nSlides01\n\n\n\n1\nW\nWed, Sep 17\n📚 Bayes Rules Ch2  💻 Complete computing setup\n\nBayes Rule, R Setup\nSlides02\n\n\n\n1\nF\nFri, Sep 19\n\nProbability and Likelihood Review; Posterior Simulation\nSlides03\n\nHW 1 and GW 1\n\n\n\n2\nM\nMon, Sep 22\n📚 Bayes Rules Ch3 \n\nBeta-Binomial Model\nSlides04\n\n\n\n2\nW\nWed, Sep 24\n📚 Bayes Rules Ch4 \n\nBalance and Sequentiality\nSlides05\n\n\n\n2\nF\nFri, Sep 26\n📚 Bayes Rules Ch5.1-2 \n\nGamma-Gamma\nSlides06\n\nHW 2 and GW 2\n\n\n\n3\nM\nMon, Sep 29\n📚 Bayes Rules Ch5.3-5.6  📝 complete group eval \n\nNormal-Normal\nSlides07\n\n\n\n3\nW\nWed, Oct 1\n📚 Bayes Rules Ch6.1-2 \n\nGrid approximation and Markov Chains\nSlides08\n\n\n\n3\nF\nFri, Oct 3\n📚 Bayes Rules Ch6.3 \n\nDiagnostics\nSlides09\n\nHW 3 and GW 3\n\n\n\n4\nM\nMon, Oct 6\n📚 Bayes Rules Ch7.1-7.3  📝 complete group eval \n\nMCMC I\nSlides10\nHand out computing project\n\n\n4\nW\nWed, Oct 8\n📚 Bayes Rules Ch7.4-7 \n\nMCMC II\nSlides11\n\n\n\n4\nF\nFri, Oct 10\n\nExam I\n\n\nHW 4 and GW 4\n\n\n\n5\nM\nMon, Oct 13\n📚 Bayes Rules Ch8.1-8.2  📝 complete group eval (includes project partner question) \n\nPosterior Inference\n\n\n\n\n5\nW\nWed, Oct 15\n📚 Bayes Rules Ch8.3-8.5  📝 complete anonymous midterm check-in (includes project partner question) \n\nPosterior Prediction\ntbd\n\n\n\n5\nF\nFri, Oct 17\n📚 Bayes Rules Ch9 \n\nRegression\ntbd\nHW5\n\n\n6\nM\nMon, Oct 20\n\n❌ Midterm Break; no class\ntbd\n\n\n\n6\nW\nWed, Oct 22\n\nEvaluating I\ntbd\nComputing Project Due\n\n\n6\nF\nFri, Oct 24\n\nEvaluating II\ntbd\nHW6\n\n\n7\nM\nMon, Oct 27\n\nExtending Regression Model\ntbd\n\n\n\n7\nW\nWed, Oct 29\n\nPoisson Regression\ntbd\n\n\n\n7\nF\nFri, Oct 31\n\nNegative Binomial Regression\ntbd\nHW7\n\n\n8\nM\nMon, Nov 3\n\nLogistic Regression\ntbd\n\n\n\n8\nW\nWed, Nov 5\n\nNaive Bayes Classification\ntbd\n\n\n\n8\nF\nFri, Nov 7\n\nExam II\ntbd\nHW8\n\n\n9\nM\nMon, Nov 10\n\nHierarchical Models I\ntbd\n\n\n\n9\nW\nWed, Nov 12\n\nHierarchical Models II\ntbd\n\n\n\n9\nF\nFri, Nov 14\n\nHierarchical Models III\ntbd\n\n\n\n10\nM\nMon, Nov 17\n\nProject work day\ntbd\nHW 9\n\n\n10\nW\nWed, Nov 19\n\nLightning talks\ntbd\n\n\n\n\nM\nFri, Nov 21\n\nFinal Project Due @ noon\ntbd",
     "crumbs": [
       "Schedule"
     ]
@@ -1589,7 +1526,7 @@
     "href": "projects/proj1.html",
     "title": "Project 1",
     "section": "",
-    "text": "library(bayesrules) # R package for our textbook\nlibrary(tidyverse) # Collection of packages for tidying and plotting data\nlibrary(janitor) # Helper functions like tidy and tabyl\nlibrary(rstan) # for MCMC\nlibrary(bayesplot) # for plotting\n\nThe data in fish_poisson.csv are records of visits to a National Park and comes from the {rethinking} R package. The variable fish_caught gives the number of fish that was caught by a park visitor, and the hours variables gives the total number of hours that they spent in the park. Your task is to estimate the hourly average of fish caught for an individual while they are fishing. You can assume that the hourly number of fish caught is a Poisson distribution.\nHowever, the problem is that not every party tried to fish. So there are two ways that a zero can arise in the data: (1) the individual tried to fish but did not catch any, or (2) the individual did not try to fish at all. If we do not account for this, we’ll end up with an underestimate for fish extraction from the park.\nLet \\(\\theta\\) be the probability that a visitor does not fish. Let \\(\\lambda\\) be the mean number of fish caught, when a visitor is fishing. Then \\(Y|\\lambda \\sim \\text{Pois}(\\lambda)\\).\nThen, the probability of observing zero fish caught is:\n\\[\\theta + (1-\\theta) P(Y = 0 | \\lambda)\\]\nand the probability of observing a nonzero number of fish caught is:\n\\[(1-\\theta) P(Y=y | \\lambda)\\]\nThis is an example of a zero-inflated poisson distribution, and you will implement it for this case study project.\n(Note: Your model should also account for the differing amount of time individuals spend in the park.)\n\nfish_poisson &lt;- read_csv(\"../data/fish_poisson.csv\")\n\nFinding the posterior\nOption 1: Find the posterior distribution of \\(\\lambda\\) analytically\nOption 2: Implement your own MCMC sampler or grid approximation to estimate the posterior distribution of \\(\\lambda\\)\nOption 3: Use the stan starter code below. If you choose this option, you should also answer Question (1) below.\ndata {\n  int&lt;lower=1&gt; N;\n  array[N] int&lt;lower=0&gt; y;\n}\nparameters {\n  real&lt;lower=0, upper=1&gt; theta; // Pr(y = 0)\n  real&lt;lower=0&gt; lambda; // Poisson rate parameter (if y &gt; 0)\n}\nmodel {\n  lambda ~ _____________ ;\n  theta ~ ______________ ;\n\n  for (n in 1 : N) {\n    if (y[n] == 0) {\n      target += log_sum_exp(bernoulli_lpmf(1 | theta),\n                            bernoulli_lpmf(0 | theta)\n                              + poisson_lpmf(y[n] | lambda)); // log(Pr(y = 0))\n    } else {\n      target += bernoulli_lpmf(0 | theta)\n                  + poisson_lpmf(y[n] | lambda); // log(Pr(y &gt; 0))\n      y[n] ~ __________ ; // truncated poisson\n    }\n  }\n}\nQuestions to Consider\n\nThe target += lines in the stan code update the log posterior density for each run through the for loop. We need to include them when we do not use an explicit modeling statement (eg y ~ normal(0,1)). Explain or justify these lines of code. (You may have to dig into the stan reference manual)\nPerform an appropriate EDA to justify the use of a zero-inflated poisson analysis\nHow did you choose your prior distributions? Confirm they are reasonable through simulation.\n(If estimated with MCMC): Are you confident that your MCMC has converged? Provide justification\nWhat do you learn from \\(\\lambda\\)? What do you learn from \\(\\theta\\)? (these should be in context of the data)\nHow is your answer different than a “regular” Bayesian posterior analysis of \\(\\lambda\\)? (ie non zero-inflated)\nWhat would your model predict for a new visitor at the park?\nWhat are the benefits and drawbacks of using a fully specified Bayesian model in this scenario? What do we gain instead of, e.g., splitting up the data into zero fish caught and nonzero fish caught?\nReport\nYour submission should be a &lt;4 page report written in quarto/rmarkdown. Everything should be typed/proofread/labeled/captioned etc.\nEvaluation\nThere are two elements that make this a “project” rather than a “homework problem”:\n\nIt is more open-ended.\n\nIf you think an alternative approach is more appropriate for this data, go for it! There is no “right answer” that I am looking for. However, there are lots of ways to be wrong. You should think through your choices and provide justification for them.\nOn homework, you often have an example from class or the textbook to use as a “model”. On this project, I’m asking you to do something new!\n\n\nPart of your grade will be based on the presentation of your work. All portions of the report should be polished and proofread carefully.",
+    "text": "library(bayesrules) # R package for our textbook\nlibrary(tidyverse) # Collection of packages for tidying and plotting data\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.4     ✔ readr     2.1.5\n✔ forcats   1.0.0     ✔ stringr   1.5.2\n✔ ggplot2   3.5.2     ✔ tibble    3.3.0\n✔ lubridate 1.9.4     ✔ tidyr     1.3.1\n✔ purrr     1.1.0     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\nlibrary(janitor) # Helper functions like tidy and tabyl\n\n\nAttaching package: 'janitor'\n\nThe following objects are masked from 'package:stats':\n\n    chisq.test, fisher.test\n\nlibrary(rstan) # for MCMC\n\nLoading required package: StanHeaders\n\nrstan version 2.32.7 (Stan version 2.32.2)\n\nFor execution on a local, multicore CPU with excess RAM we recommend calling\noptions(mc.cores = parallel::detectCores()).\nTo avoid recompilation of unchanged Stan programs, we recommend calling\nrstan_options(auto_write = TRUE)\nFor within-chain threading using `reduce_sum()` or `map_rect()` Stan functions,\nchange `threads_per_chain` option:\nrstan_options(threads_per_chain = 1)\n\n\nAttaching package: 'rstan'\n\nThe following object is masked from 'package:tidyr':\n\n    extract\n\nlibrary(bayesplot) # for plotting\n\nThis is bayesplot version 1.14.0\n- Online documentation and vignettes at mc-stan.org/bayesplot\n- bayesplot theme set to bayesplot::theme_default()\n   * Does _not_ affect other ggplot2 plots\n   * See ?bayesplot_theme_set for details on theme setting\n\n\ndata {\n  int&lt;lower=1&gt; N;\n  array[N] int&lt;lower=0&gt; y;\n}\nparameters {\n  real&lt;lower=0, upper=1&gt; theta; // Pr(y = 0)\n  real&lt;lower=0&gt; lambda; // Poisson rate parameter (if y &gt; 0)\n}\nmodel {\n  lambda ~ _____________ ;\n\n  for (n in 1 : N) {\n    if (y[n] == 0) {\n      target += log(theta); // log(Pr(y = 0))\n    } else {\n      target += log1m(theta); // log(Pr(y &gt; 0))\n      y[n] ~ __________ ; // truncated poisson\n    }\n  }\n}",
     "crumbs": [
       "Projects",
       "Projects",
@@ -2276,25 +2213,172 @@
     "text": "Multiparameter model"
   },
   {
-    "objectID": "slides/test.html#quarto",
-    "href": "slides/test.html#quarto",
-    "title": "Untitled",
-    "section": "Quarto",
-    "text": "Quarto\nQuarto enables you to weave together content and executable code into a finished presentation. To learn more about Quarto presentations see https://quarto.org/docs/presentations/."
+    "objectID": "slides/slides06.html#beta-binomial-review",
+    "href": "slides/slides06.html#beta-binomial-review",
+    "title": "Gamma-Poisson model",
+    "section": "Beta-Binomial review",
+    "text": "Beta-Binomial review\n\nPrior: \\(f(\\pi) \\sim \\text{Beta}(\\alpha, \\beta)\\)\nLikelihood: \\(L(\\pi | Y) \\sim \\text{Binomial}(n, \\pi)\\)\nPosterior: \\(f(\\pi |Y) \\sim \\text{Beta}(\\alpha + y, \\beta + n - y)\\)\n\n \n\n\n\n\n\n\nConjugate Prior\n\n\nThe Beta distribution is a conjugate prior for the Binomial likelihood, since the posterior is also Beta"
   },
   {
-    "objectID": "slides/test.html#bullets",
-    "href": "slides/test.html#bullets",
-    "title": "Untitled",
-    "section": "Bullets",
-    "text": "Bullets\nWhen you click the Render button a document will be generated that includes:\n\nContent authored with markdown\nOutput from executable code"
+    "objectID": "slides/slides06.html#non-conjugate-prior-for-binomial-likelihood",
+    "href": "slides/slides06.html#non-conjugate-prior-for-binomial-likelihood",
+    "title": "Gamma-Poisson model",
+    "section": "Non-conjugate prior for Binomial likelihood",
+    "text": "Non-conjugate prior for Binomial likelihood\n\\[f(\\pi) = e - e^\\pi\\]"
   },
   {
-    "objectID": "slides/test.html#code",
-    "href": "slides/test.html#code",
-    "title": "Untitled",
-    "section": "Code",
-    "text": "Code\nWhen you click the Render button a presentation will be generated that includes both content and the output of embedded code. You can embed code like this:\n\n1 + 1\n\n[1] 2"
+    "objectID": "slides/slides06.html#finding-the-posterior",
+    "href": "slides/slides06.html#finding-the-posterior",
+    "title": "Gamma-Poisson model",
+    "section": "Finding the posterior",
+    "text": "Finding the posterior\nAssume \\(Y=10\\) and \\(n=50\\)"
+  },
+  {
+    "objectID": "slides/slides06.html#can-we-use-beta-binomial-model",
+    "href": "slides/slides06.html#can-we-use-beta-binomial-model",
+    "title": "Gamma-Poisson model",
+    "section": "Can we use Beta-Binomial Model?",
+    "text": "Can we use Beta-Binomial Model?\nAt a certain hospital, an average of 6 babies are born each hour. Let \\(Y\\) be the number of babies born between 9 a.m. and 10 a.m. tomorrow."
+  },
+  {
+    "objectID": "slides/slides06.html#poisson-data-model",
+    "href": "slides/slides06.html#poisson-data-model",
+    "title": "Gamma-Poisson model",
+    "section": "Poisson Data model",
+    "text": "Poisson Data model\nLet \\(Y\\) be the number of independent events that occur in a fixed amount of time or space, where \\(\\lambda &gt; 0\\) is the rate at which these events occur. Then the dependence of \\(Y\\) on parameter \\(\\lambda\\) can be modeled by the Poisson. In mathematical notation:\n\\[Y | \\lambda \\sim \\text{Pois}(\\lambda) \\]\nand\n\\[ f(y|\\lambda) =  \\frac{\\lambda^y e^{-\\lambda}}{y!}\\;\\; \\text{ for } y \\in \\{0,1,2,\\ldots\\}\\]\n\\[E(Y | \\lambda) = V(Y | \\lambda) = \\lambda\\]"
+  },
+  {
+    "objectID": "slides/slides06.html#poisson-pmfs",
+    "href": "slides/slides06.html#poisson-pmfs",
+    "title": "Gamma-Poisson model",
+    "section": "Poisson PMFs",
+    "text": "Poisson PMFs"
+  },
+  {
+    "objectID": "slides/slides06.html#joint-likelihood-function",
+    "href": "slides/slides06.html#joint-likelihood-function",
+    "title": "Gamma-Poisson model",
+    "section": "Joint Likelihood Function",
+    "text": "Joint Likelihood Function"
+  },
+  {
+    "objectID": "slides/slides06.html#poisson-likelihood",
+    "href": "slides/slides06.html#poisson-likelihood",
+    "title": "Gamma-Poisson model",
+    "section": "Poisson Likelihood",
+    "text": "Poisson Likelihood\nIf we collect 4 hours of data and observe \\(y_i = 0, 2, 3, 2\\) babies born:"
+  },
+  {
+    "objectID": "slides/slides06.html#section-1",
+    "href": "slides/slides06.html#section-1",
+    "title": "Gamma-Poisson model",
+    "section": "",
+    "text": "plot_poisson_likelihood(y = c(0, 2, 3, 2), lambda_upper_bound = 8)"
+  },
+  {
+    "objectID": "slides/slides06.html#choosing-a-prior",
+    "href": "slides/slides06.html#choosing-a-prior",
+    "title": "Gamma-Poisson model",
+    "section": "Choosing a prior",
+    "text": "Choosing a prior\n\n\\(\\lambda\\) discrete or continuous?\nWhat is the support of \\(\\lambda\\)?\nBe strategic about creating a kernel"
+  },
+  {
+    "objectID": "slides/slides06.html#gamma-model",
+    "href": "slides/slides06.html#gamma-model",
+    "title": "Gamma-Poisson model",
+    "section": "Gamma Model",
+    "text": "Gamma Model\nLet \\(\\lambda\\) be a random variable which can take any value between 0 and \\(\\infty\\), ie. \\(\\lambda \\in [0,\\infty)\\). The Gamma model with shape parameter \\(s &gt; 0\\) and rate parameter \\(r &gt; 0\\) is:\n\\[\\lambda \\sim \\text{Gamma}(s, r)\\]\n\\[f(\\lambda) = \\frac{r^s}{\\Gamma(s)} \\lambda^{s-1} e^{-r\\lambda} \\;\\; \\text{ for } \\lambda &gt; 0 \\]\nwhere constant \\(\\Gamma(s) = \\int_0^\\infty z^{s - 1} e^{-z}dz\\). When \\(s\\) is a positive integer, \\(s \\in \\{1,2,3,\\ldots\\}\\), this constant simplifies to \\(\\Gamma(s) = (s - 1)!\\)."
+  },
+  {
+    "objectID": "slides/slides06.html#section-2",
+    "href": "slides/slides06.html#section-2",
+    "title": "Gamma-Poisson model",
+    "section": "",
+    "text": "Warning\n\n\nThe Gamma is sometimes parameterized by shape \\(s\\) and scale \\(\\theta = \\frac{1}{r}\\)\n\n\n\n\nIn econometrics, the (α, θ) parameterization is common for modeling waiting times … Bayesian statisticians prefer the (α,λ) parameterization, utilizing the gamma distribution as a conjugate prior for several inverse scale parameters, facilitating analytical tractability in posterior distribution computations.\n\n\n\nSource: Wikipedia"
+  },
+  {
+    "objectID": "slides/slides06.html#section-3",
+    "href": "slides/slides06.html#section-3",
+    "title": "Gamma-Poisson model",
+    "section": "",
+    "text": "Exponential Model\n\\[\\lambda \\sim \\text{Exp}(r)\\]\nis a special case of the Gamma with shape parameter \\(s = 1\\), \\(\\text{Gamma}(1,r)\\)\n\\(\\chi^2\\) Model\n\\[\\lambda \\sim \\chi^2(k)\\]\nis a special case of the Gamma with shape \\(s = k/2\\) and rate \\(r=1/2\\)"
+  },
+  {
+    "objectID": "slides/slides06.html#section-4",
+    "href": "slides/slides06.html#section-4",
+    "title": "Gamma-Poisson model",
+    "section": "",
+    "text": "\\(E(\\lambda) = \\frac{s}{r}, \\text{Mode}(\\lambda) = \\frac{s-1}{r} \\text{ for s } \\ge 1, \\text{Var}(\\lambda) = \\frac{s}{r^2}\\)"
+  },
+  {
+    "objectID": "slides/slides06.html#posterior-model",
+    "href": "slides/slides06.html#posterior-model",
+    "title": "Gamma-Poisson model",
+    "section": "Posterior Model",
+    "text": "Posterior Model"
+  },
+  {
+    "objectID": "slides/slides06.html#gamma-poisson-bayesian-model",
+    "href": "slides/slides06.html#gamma-poisson-bayesian-model",
+    "title": "Gamma-Poisson model",
+    "section": "Gamma-Poisson Bayesian Model",
+    "text": "Gamma-Poisson Bayesian Model\n\\[\\lambda \\sim \\text{Gamma}(s, r)\\] \\[ Y_i | \\lambda \\sim \\text{Poisson}(\\lambda)\\]\n\\[\\lambda | Y_1, Y_2, ..., Y_n \\sim \\text{Gamma}(s + \\sum Y_i, r + n)\\]"
+  },
+  {
+    "objectID": "slides/slides06.html#gamma-poisson-model",
+    "href": "slides/slides06.html#gamma-poisson-model",
+    "title": "Gamma-Poisson model",
+    "section": "Gamma-Poisson Model",
+    "text": "Gamma-Poisson Model\n\nplot_gamma_poisson(shape = 10, rate = 2, sum_y = 7, n = 4)"
+  },
+  {
+    "objectID": "slides/slides06.html#gamma-poisson-model-1",
+    "href": "slides/slides06.html#gamma-poisson-model-1",
+    "title": "Gamma-Poisson model",
+    "section": "Gamma-Poisson Model",
+    "text": "Gamma-Poisson Model\n\nsummarize_gamma_poisson(shape = 10, rate = 2, sum_y = 7, n = 4)\n\n      model shape rate     mean     mode       var        sd\n1     prior    10    2 5.000000 4.500000 2.5000000 1.5811388\n2 posterior    17    6 2.833333 2.666667 0.4722222 0.6871843\n\n\nInterpretation:"
+  },
+  {
+    "objectID": "slides/slides06.html#example-tuning-a-gamma-prior",
+    "href": "slides/slides06.html#example-tuning-a-gamma-prior",
+    "title": "Gamma-Poisson model",
+    "section": "Example: tuning a Gamma prior",
+    "text": "Example: tuning a Gamma prior\nThe most likely value of \\(\\lambda\\) is 3.5 and the variance is 2"
+  },
+  {
+    "objectID": "slides/slides06.html#example-gamma-poisson-model",
+    "href": "slides/slides06.html#example-gamma-poisson-model",
+    "title": "Gamma-Poisson model",
+    "section": "Example: Gamma-Poisson model",
+    "text": "Example: Gamma-Poisson model\nAssume a prior of \\(\\lambda \\sim \\text{Gamma}(24, 2)\\) and \\(Y | \\lambda \\sim \\text{Poisson}(\\lambda)\\). If you observe a sample of \\((12, 12, 12, 0)\\), what is the likelihood and posterior?"
+  },
+  {
+    "objectID": "slides/slides06.html#section-5",
+    "href": "slides/slides06.html#section-5",
+    "title": "Gamma-Poisson model",
+    "section": "",
+    "text": "plot_gamma_poisson(shape = 24, rate = 2, sum_y = 36, n = 4)"
+  },
+  {
+    "objectID": "slides/slides06.html#section-6",
+    "href": "slides/slides06.html#section-6",
+    "title": "Gamma-Poisson model",
+    "section": "",
+    "text": "summarize_gamma_poisson(shape = 24, rate = 2, sum_y = 36, n = 4)\n\n      model shape rate mean      mode      var       sd\n1     prior    24    2   12 11.500000 6.000000 2.449490\n2 posterior    60    6   10  9.833333 1.666667 1.290994\n\n\nInterpretation:"
+  },
+  {
+    "objectID": "course-faq.html",
+    "href": "course-faq.html",
+    "title": "FAQ",
+    "section": "",
+    "text": "The best place to come for help is Amanda’s office hours! I can help with anything related to the course. You can also check my calendar for one-on-one appointment slots.\n\n\n\nStudents needing help with their Statistics coursework and R/Rstudio questions can get help from Stats Lab Assistants in the Stats Lab in CMC 304. Stats Lab Assistants are primiarily for Stat 120 (Intro Stats), but they may also be able to assist with general R/Rstudio questions."
+  },
+  {
+    "objectID": "course-faq.html#where-can-i-get-help",
+    "href": "course-faq.html#where-can-i-get-help",
+    "title": "FAQ",
+    "section": "",
+    "text": "The best place to come for help is Amanda’s office hours! I can help with anything related to the course. You can also check my calendar for one-on-one appointment slots.\n\n\n\nStudents needing help with their Statistics coursework and R/Rstudio questions can get help from Stats Lab Assistants in the Stats Lab in CMC 304. Stats Lab Assistants are primiarily for Stat 120 (Intro Stats), but they may also be able to assist with general R/Rstudio questions."
   },
   {
     "objectID": "homework/hw04.html",
@@ -2309,181 +2393,109 @@
     ]
   },
   {
-    "objectID": "homework/hw03.html",
-    "href": "homework/hw03.html",
-    "title": "Individual HW03",
+    "objectID": "homework/hw02.html",
+    "href": "homework/hw02.html",
+    "title": "Individual HW02",
     "section": "",
-    "text": "library(bayesrules) # R package for our textbook\nlibrary(tidyverse) # Collection of packages for tidying and plotting data\nlibrary(janitor) # Helper functions like tidy and tabyl\n\nBR Exercise 5.1 a, d, f\nFor each situation below, tune an appropriate Gamma(s, r) prior model for \\(\\lambda\\)\n\nThe most common value of \\(\\lambda\\) is 4, and the mean is 7.\nThe most common value of \\(\\lambda\\) is 14, and the variance is 6.\nThe mean of \\(\\lambda\\) is 22, and the variance is 3.\nBR Exercise 5.7\nLet \\(\\lambda\\) be the average number of goals scored in a Women’s World Cup game. We’ll analyze \\(\\lambda\\) by the following Gamma-Poisson model: \\[Y_i | \\lambda \\sim \\text{Poisson}(\\lambda)\\] \\[\\lambda \\sim \\text{Gamma}(1, 0.25)\\]\n\nPlot and summarize our prior understanding of \\(\\lambda\\)\n\nWhy is the Poisson model a reasonable choice for \\(Y_i\\)?\nThe wwc_2019_matches data in the {fivethirtyeight} package includes the number of goals scored by the two teams in each 2019 Women’s World Cup match. Define, plot, and discuss the total number of goals scored per game\n\n\nlibrary(fivethirtyeight)\ndata(\"wwc_2019_matches\")\nwwc_2019_matches &lt;- wwc_2019_matches %&gt;% \n  mutate(total_goals = score1 + score2)\n\n\nidentify the posterior model of \\(\\lambda\\) and verify your answer using summarize_gamma_poisson()\n\nPlot the prior, likelihood, and posterior of \\(\\lambda\\). Describe the evolution in your understanding of \\(\\lambda\\) from the prior to posterior.\nBR Exercise 5.15\nBelow are kernels for Normal, Poisson, Gamma, Beta, and Binomial models. Identify the appropriate model with specific parameter values.\n\n\n\\(f(\\theta) \\propto 0.3^\\theta 0.7^{16 - \\theta}\\) for \\(\\theta \\in \\{0, 1, 2 ..., 16\\}\\)\n\n\n\\(f(\\theta) \\propto 1/\\theta!\\) for \\(\\theta \\in \\{0, 1, ..., \\infty\\}\\)\n\n\n\\(f(\\theta) \\propto \\theta^4(1-\\theta)^7\\) for \\(\\theta \\in [0,1]\\)\n\n\\(f(\\theta) \\propto e^{-\\theta^2}\\)\nNormal-normal conjugacy\nVerify that the normal distribution is a conjugate prior for a normal data model.\nNote: the sketch of this proof is given in 5.3.4 and you are welcome to use it. If you use other sources (e.g. for help remembering how to complete the square), please cite them.\nBR Exercise 5.11 (Normal-normal calculation)\nProf. Abebe and Prof. Morales both recently finished their PhDs and are teaching their first statistics classes at Bayesian University. Their colleagues told them that the average final exam score across all students, \\(\\mu\\), varies Normally from year to year with a mean of 80 points and a standard deviation of 4. Further, individual students’ scores \\(Y\\) vary Normally around \\(\\mu\\) with a known standard deviation of 3 points.\n\nProf. Abebe conducts the final exam and observes that his 32 students scored an average of 86 points. Calculate the posterior mean and variance of \\(\\mu\\) using the data from Prof. Abebe’s class.\nProf. Morales conducts the final exam and observes that her 32 students scored an average of 82 points. Calculate the posterior mean and variance of \\(\\mu\\) using the data from Prof. Morales’ class.\nNext, use Prof. Abebe and Prof. Morales’ combined exams to calculate the posterior mean and variance of \\(\\mu\\)\n\nBR Exercise 5.14: Normal-normal simulation\n\nYour friend Alex has read Chapter 4 of this book, but not Chapter 5. Explain to Alex why it’s difficult to simulate a Normal-Normal posterior using the simulation methods we have learned thus far.\nTo prove your point, try (and fail) to simulate the posterior of \\(\\mu\\) for the following model upon observing a single data point \\(Y_1 = 1.1\\):\n\n\\[Y | \\mu \\sim N(\\mu, 1^2)\\] \\[\\mu \\sim N(0,1)\\]\nBR Exercise 6.6: Gamma-Poisson grid approximation\nConsider the Gamma-Poisson model for \\(\\lambda\\) with \\(\\lambda \\sim \\text{Gamma}(20, 5)\\) and \\(Y_i | \\lambda \\sim \\text{Pois}(\\lambda)\\). Suppose you observe \\(n=3\\) data points \\((Y_1, Y_2, Y_3) = (0, 1, 0)\\)\n\nUtilize grid approximation with grid values \\(\\lambda = \\{0, 1, 2, ..., 8\\}\\) to approximate the posterior of \\(\\lambda\\)\n\nRepeat part a using a grid of 201 equally spaced values between 0 and 8.\nBR Exercise 6.15: Gamma-Poisson MCMC (skip traceplots for now)\n\nSimulate the posterior model of \\(\\lambda\\) with RStan using 4 chains and 10000 iterations per chain.\nProduce density plots for all four chains.\nFrom the density plots, what seems to be the most posterior plausible value of \\(\\lambda\\)?\nHearkening back to Chapter 5, specify the theoretical posterior model of \\(\\lambda\\). How does your MCMC approximation compare? (Try adding an overlaying line to your density plot from (c))\nBR Exercise 6.9: Comparing MCMC to grid approximation\n\nWhat drawback(s) do MCMC and grid approximation share?\nWhat advantage(s) do MCMC and grid approximation share?\nWhat is an advantage of grid approximation over MCMC?\nWhat is an advantage of MCMC over grid approximation?",
+    "text": "BR Exercise 2.16\n\n\n\n\n\n\nNote\n\n\n\nIf the link from the textbook doesn’t work, try this link from the internet archive\n\n\n\n\nBR Exercise 2.21\n\n\nBR Exercise 3.8\n\n\nsummarize_beta_binomial\nWrite your own R function that does the same thing as summarize_beta_binomial. It’s OK if your output is formatted differently and you do not need to write formal checks.\n\n\n\n\n\n\nNote\n\n\n\nIf you need a refresher on writing functions in R, I recommend:\n\nR4DS Ch25 for an overview of functions in R with practice problems\nMy Stat220 slides for a quick refresher\n\n\n\n\n\nBR Exercise 3.9\n\n\nBR Exercise 3.10\n\n\nBR Exercise 4.10\n\n\nBR Exercise 4.14\n\n\nBR Exercise 4.18",
     "crumbs": [
       "Assignments",
       "Homework",
-      "Individual HW03"
+      "Individual HW02"
     ]
   },
   {
-    "objectID": "homework/hw01.html",
-    "href": "homework/hw01.html",
-    "title": "Individual HW01",
+    "objectID": "activities/09-activity.html",
+    "href": "activities/09-activity.html",
+    "title": "Class Examples - Day 9",
     "section": "",
-    "text": "BR Exercise 1.5\n\n\nBR Exercise 1.6\n\n\nBR Exercise 2.2\n\n\nBR Exercise 2.6\n\n\nBR Exercise 2.16\n\n\n\n\n\n\nImportant\n\n\n\nThis problem moved to HW2!",
-    "crumbs": [
-      "Assignments",
-      "Homework",
-      "Individual HW01"
-    ]
+    "text": "library(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.4     ✔ readr     2.1.5\n✔ forcats   1.0.0     ✔ stringr   1.5.2\n✔ ggplot2   4.0.0     ✔ tibble    3.3.0\n✔ lubridate 1.9.4     ✔ tidyr     1.3.1\n✔ purrr     1.1.0     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\nlibrary(patchwork)\nlibrary(bayesrules)\nlibrary(rstan)\n\nLoading required package: StanHeaders\n\nrstan version 2.32.7 (Stan version 2.32.2)\n\nFor execution on a local, multicore CPU with excess RAM we recommend calling\noptions(mc.cores = parallel::detectCores()).\nTo avoid recompilation of unchanged Stan programs, we recommend calling\nrstan_options(auto_write = TRUE)\nFor within-chain threading using `reduce_sum()` or `map_rect()` Stan functions,\nchange `threads_per_chain` option:\nrstan_options(threads_per_chain = 1)\n\n\nAttaching package: 'rstan'\n\nThe following object is masked from 'package:tidyr':\n\n    extract\n\nlibrary(bayesplot)\n\nThis is bayesplot version 1.14.0\n- Online documentation and vignettes at mc-stan.org/bayesplot\n- bayesplot theme set to bayesplot::theme_default()\n   * Does _not_ affect other ggplot2 plots\n   * See ?bayesplot_theme_set for details on theme setting\n\n\nExample 1\n\nfn_model &lt;- \"\n  data {\n    int&lt;lower=0&gt; N;\n    vector[N] y;\n  }\n\n  parameters {\n    real mu;\n    real&lt;lower=0&gt; sigma;\n  }\n\n  model {\n    y ~ normal(mu, sigma);\n    mu ~ normal(0, 1000);\n    sigma ~ exponential(.0001);\n  }\n\"\n\nfn_sim &lt;- stan(model_code = fn_model, \n               data = list(N=2, y = c(-1,1)), \n               chains = 4, iter = 1000*2, seed = 84735)\n\n\nui_model &lt;- \"\n  data {\n    int&lt;lower=0&gt; N;\n    vector[N] y;\n  }\n\n  parameters {\n    real alpha;\n    real beta;\n    real&lt;lower=0&gt; sigma;\n  }\n\n  model {\n    y ~ normal(alpha + beta, sigma);\n    alpha ~ normal(0, 1000);\n    beta ~ normal(0, 1000);\n    sigma ~ exponential(1);\n  }\n\"\n\nui_sim &lt;- stan(model_code = ui_model, \n               data = list(N=100, y = rnorm(100)), \n               chains = 4, iter = 1000*2, seed = 84735)\n\n\ni_model &lt;- \"\n  data {\n    int&lt;lower=0&gt; N;\n    vector[N] y;\n  }\n\n  parameters {\n    real alpha;\n    real beta;\n    real&lt;lower=0&gt; sigma;\n  }\n\n  model {\n    y ~ normal(alpha + beta, sigma);\n    alpha ~ normal(0, 1);\n    beta ~ normal(0, 1);\n    sigma ~ exponential(1);\n  }\n\"\n\ni_sim &lt;- stan(model_code = i_model, \n               data = list(N=100, y = rnorm(100)), \n               chains = 4, iter = 1000*2, seed = 84735)"
   },
   {
-    "objectID": "computing/computing-setup.html",
-    "href": "computing/computing-setup.html",
-    "title": "Computing Setup for Stat340",
+    "objectID": "computing/rstudio-stat340.html",
+    "href": "computing/rstudio-stat340.html",
+    "title": "Using R/RStudio for Homework in Stat340",
     "section": "",
-    "text": "For Stat340, I highly recommend using R on your local computer, instead of the maize server. Why?\n\nIt’s likely the 4th time (or more!) that you’ve seen R in a classroom setting\nYou’re graduating soon and won’t be able to access maize\nBayesian statistics is much more computationally expensive than traditional statistics, and your model fitting will run faster on a local installation\n\nFirst, download the most recent versions of R and RStudio for your operating system:\n\nR (https://www.r-project.org/)\nRStudio (https://rstudio.com/products/rstudio/download/)\nQuarto (https://quarto.org/docs/get-started/)\n\nNext, we need to install a version of LaTeX in order to render quarto files to PDF. I recommend using the tinytex installation that is included with quarto. To install it, click on “Terminal” within RStudio and type the following:\nquarto install tinytex\nAfter doing all of the following, you can check that it is working correctly by:\n\nOpen rstudio\nClick “File –&gt; New File –&gt; Quarto document” and choose the “PDF” output option\nMake a small change to the file within the editor and click “render”. If all goes well, you should end up with a PDF document!\n\nFor Stat340 coursework, it will be helpful to have some additional R packages installed. You can install these all at once with:\n\ninstall.packages(c(\"bayesrules\", \"tidyverse\", \"janitor\", \"rstanarm\",\n                   \"bayesplot\", \"tidybayes\", \"broom.mixed\", \"modelr\",\n                   \"e1071\", \"forcats\"), \n                 dependencies = TRUE)",
+    "text": "In Stat340, I will distribute homework assignment templates in.qmd format.",
     "crumbs": [
       "Computing",
-      "Setup"
+      "Rstudio in Stat 340"
     ]
   },
   {
-    "objectID": "computing/computing-access.html",
-    "href": "computing/computing-access.html",
-    "title": "Computing Access",
+    "objectID": "computing/rstudio-stat340.html#uploading-files-to-maize",
+    "href": "computing/rstudio-stat340.html#uploading-files-to-maize",
+    "title": "Using R/RStudio for Homework in Stat340",
+    "section": "Uploading files to maize",
+    "text": "Uploading files to maize\n\nClick the “upload” button in the files pane\nSelect the file from your local computer (likely in your Downloads folder if you downloaded from moodle)\nChoose the “Target Directory” – this is the folder on your maize account where the file will be saved. I recommend creating a separate folder for this class.",
+    "crumbs": [
+      "Computing",
+      "Rstudio in Stat 340"
+    ]
+  },
+  {
+    "objectID": "computing/rstudio-stat340.html#accessing-maize-from-off-campus",
+    "href": "computing/rstudio-stat340.html#accessing-maize-from-off-campus",
+    "title": "Using R/RStudio for Homework in Stat340",
+    "section": "Accessing maize from off campus",
+    "text": "Accessing maize from off campus\nIf you are using the maize server, you should be able to access it on campus with only your Carleton ID and password. If you plan to use the maize server and you plan to do any work off campus this term (e.g., while on a field trip, travel for athletics, or just sitting in Little Joy) you need to install Carleton’s VPN to have access.\nTo install the GlobalProtect VPN follow directions provided by ITS.",
+    "crumbs": [
+      "Computing",
+      "Rstudio in Stat 340"
+    ]
+  },
+  {
+    "objectID": "computing/rstudio-stat340.html#installing-latex-not-needed-if-you-are-using-the-maize-server",
+    "href": "computing/rstudio-stat340.html#installing-latex-not-needed-if-you-are-using-the-maize-server",
+    "title": "Using R/RStudio for Homework in Stat340",
+    "section": "Installing LaTeX (not needed if you are using the maize server)",
+    "text": "Installing LaTeX (not needed if you are using the maize server)\nIf you don’t already have a tex package installed on your computer, the easiest option to create pdf’s is to use the tinytex R package. This can be installed with the following R commands:\n\ninstall.packages(\"tinytex\")\ntinytex::install_tinytex()  # install TinyTeX\n\nIf you’d like a standalone LaTeX package that will work with programs other than RStudio, you could install the basic installations of either:\nIf you’d like a stand alone LaTeX package, you could install the basic installations of either:\n\n\nMacTeX for Mac (3.2GB!)\n\nMiKTeX for Windows (190MB)",
+    "crumbs": [
+      "Computing",
+      "Rstudio in Stat 340"
+    ]
+  },
+  {
+    "objectID": "computing/computing-cheatsheets.html",
+    "href": "computing/computing-cheatsheets.html",
+    "title": "R cheatsheets",
     "section": "",
-    "text": "I expect you to use RStudio to run R in this course. You have two options for using RStudio:\n\nWe have a Carleton server hosting Rstudio at https://maize.mathcs.carleton.edu/. Your files on this account will be accessible as long as you are a student at Carleton. Use your Carleton credentials to access your account and you need to be running the Carleton VPN (below) to access this server. Use this option if\n\nyour personal computer is old and/or slow\nyou prefer to use school computers (lab or library computers)\n\nYou can also run R/RStudio from your personal computer. If you use a local version of R/RStudio this term, make sure that you have recently updated both R and RStudio.\nTo check your version of R, run the command getRversion() and compare your version to the newest version posted on https://cran.r-project.org/. If you need an update, then install the newer version using the installation directions above.\nIn RStudio, check for updates with the menu option Help &gt; Check for updates. Follow directions if an update is needed.\nFor a fresh download:\n\nDownload the latest version of R for your operating system from https://cran.r-project.org/\nDownload the free RStudio desktop version from https://posit.co/download/rstudio-desktop/\n\nUse the default download and install options for each. For R, download the “precompiled binary” distribution rather than the source code."
+    "text": "The following cheatsheets come from https://posit.co/resources/cheatsheets. We haven’t covered every function and functionality listed on them, but you might still find them useful as references.",
+    "crumbs": [
+      "Computing",
+      "Cheatsheets"
+    ]
   },
   {
-    "objectID": "computing/computing-access.html#rrstudio",
-    "href": "computing/computing-access.html#rrstudio",
-    "title": "Computing Access",
+    "objectID": "groupwork/gw02.html",
+    "href": "groupwork/gw02.html",
+    "title": "Group Work 02",
     "section": "",
-    "text": "I expect you to use RStudio to run R in this course. You have two options for using RStudio:\n\nWe have a Carleton server hosting Rstudio at https://maize.mathcs.carleton.edu/. Your files on this account will be accessible as long as you are a student at Carleton. Use your Carleton credentials to access your account and you need to be running the Carleton VPN (below) to access this server. Use this option if\n\nyour personal computer is old and/or slow\nyou prefer to use school computers (lab or library computers)\n\nYou can also run R/RStudio from your personal computer. If you use a local version of R/RStudio this term, make sure that you have recently updated both R and RStudio.\nTo check your version of R, run the command getRversion() and compare your version to the newest version posted on https://cran.r-project.org/. If you need an update, then install the newer version using the installation directions above.\nIn RStudio, check for updates with the menu option Help &gt; Check for updates. Follow directions if an update is needed.\nFor a fresh download:\n\nDownload the latest version of R for your operating system from https://cran.r-project.org/\nDownload the free RStudio desktop version from https://posit.co/download/rstudio-desktop/\n\nUse the default download and install options for each. For R, download the “precompiled binary” distribution rather than the source code."
-  },
-  {
-    "objectID": "computing/computing-access.html#vpn",
-    "href": "computing/computing-access.html#vpn",
-    "title": "Computing Access",
-    "section": "VPN",
-    "text": "VPN\nIf you plan to use the maize server and you plan to do any work off campus this term (e.g., while on a field trip, travel for athletics, or just sitting in Little Joy) you need to install Carleton’s VPN to have access.\nTo install the GlobalProtect VPN follow directions provided by ITS."
-  },
-  {
-    "objectID": "computing/computing-access.html#git-and-github",
-    "href": "computing/computing-access.html#git-and-github",
-    "title": "Computing Access",
-    "section": "Git and GitHub",
-    "text": "Git and GitHub\nGit is version control software that you install locally on your computer. Git is already installed on the maize RStudio server.\nGithub is a cloud-based service for hosting git projects. It allows multiple users to share and contribute to projects and it is how you will be submitting homework assignments and projects for this class. More information about Github for this class is found on Moodle.\nIf you are using a local install of R/RStudio, then you will need to install Git.\nInstalling Git\nDirections for both Windows & Mac here at http://happygitwithr.com/install-git.html.\n\nIf you are using maize, then there is nothing you need to install.\nWindows users should follow Option 1 in 6.2.\nMac users can follow Option 1 in 6.3 if comfortable, otherwise follow Option 2\nLinux users can follow 6.4."
-  },
-  {
-    "objectID": "computing/computing-access.html#latex",
-    "href": "computing/computing-access.html#latex",
-    "title": "Computing Access",
-    "section": "LaTeX",
-    "text": "LaTeX\nYou need a LaTeX compiler to create a pdf document from a R Markdown file. If you use the maize server, you don’t need to install anything (the server already has a LaTeX compiler). If you are using a local RStudio, you should install a Latex compiler.\nInstalling LaTeX (not needed if you are using the maize server)\nIf you don’t already have a tex package installed on your computer, the easiest option to create pdf’s is to use the tinytex R package. This can be installed with the following R commands:\n\ninstall.packages(\"tinytex\")\ntinytex::install_tinytex()  # install TinyTeX\n\nIf you’d like a stand alone LaTeX package, you could install the basic installations of either:\n\nMacTeX for Mac (3.2GB!)\nMiKTeX for Windows (190MB)\n\n\nAcknowledgements\nThis installation guide was written by Adam Loy and is based on the guide from stat545.com and is licensed under the CC BY-NC 3.0 Creative Commons License."
-  },
-  {
-    "objectID": "computing/r-basics-refresher.html",
-    "href": "computing/r-basics-refresher.html",
-    "title": "R Basics",
-    "section": "",
-    "text": "In your previous statistics course at Carleton, you likely loaded at least one add-on R package. In this course, we’ll use a lot of tools found in the tidyverse of R packages. To load many of these packages at once, you can use the library(&lt;package_name&gt;) command. So to load the tidyverse we run:\n\nlibrary(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.4     ✔ readr     2.1.5\n✔ forcats   1.0.0     ✔ stringr   1.5.1\n✔ ggplot2   3.5.2     ✔ tibble    3.2.1\n✔ lubridate 1.9.3     ✔ tidyr     1.3.1\n✔ purrr     1.0.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\n\n\n\n\n\n\n\nNote\n\n\n\nAbove we see a lot of extra info printed when we load the tidyverse. These messages are just telling you what packages are now available to you and warning you that a few functions (e.g., filter) has been replaced by the tidyverse version. We’ll see how to suppress these messages later.",
-    "crumbs": [
-      "Computing",
-      "R Refresher"
-    ]
-  },
-  {
-    "objectID": "computing/r-basics-refresher.html#loading-r-packages",
-    "href": "computing/r-basics-refresher.html#loading-r-packages",
-    "title": "R Basics",
-    "section": "",
-    "text": "In your previous statistics course at Carleton, you likely loaded at least one add-on R package. In this course, we’ll use a lot of tools found in the tidyverse of R packages. To load many of these packages at once, you can use the library(&lt;package_name&gt;) command. So to load the tidyverse we run:\n\nlibrary(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.4     ✔ readr     2.1.5\n✔ forcats   1.0.0     ✔ stringr   1.5.1\n✔ ggplot2   3.5.2     ✔ tibble    3.2.1\n✔ lubridate 1.9.3     ✔ tidyr     1.3.1\n✔ purrr     1.0.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\n\n\n\n\n\n\n\nNote\n\n\n\nAbove we see a lot of extra info printed when we load the tidyverse. These messages are just telling you what packages are now available to you and warning you that a few functions (e.g., filter) has been replaced by the tidyverse version. We’ll see how to suppress these messages later.",
-    "crumbs": [
-      "Computing",
-      "R Refresher"
-    ]
-  },
-  {
-    "objectID": "computing/r-basics-refresher.html#creating-and-naming-objects",
-    "href": "computing/r-basics-refresher.html#creating-and-naming-objects",
-    "title": "R Basics",
-    "section": "Creating and naming objects",
-    "text": "Creating and naming objects\nAll R statements where you create objects have the form:\n\nobject_name &lt;- value\n\nAt first, we’ll be creating a lot of data objects. For example, we an load a data set containing the ratings for each episode of The Office using the code\n\noffice_ratings &lt;- readr::read_csv(\"https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-03-17/office_ratings.csv\")\n\nIn this class you will be creating a lot of objects, so you’ll need to come up with names for those objects. Trying to think of informative/meaningful names for objects is hard, but necessary work! Below are the fundamental rules for naming objects in R:\n\nnames can’t start with a number\nnames are case-sensitive\nsome common letters are used internally by R and should be avoided as variable names (c, q, t, C, D, F, T, I)\nThere are reserved words that R won’t let you use for variable names (for, in, while, if, else, repeat, break, next)\nR will let you use the name of a predefined function—but don’t do it!\n\nYou can always check to see if you the name you want to use is already taken via exists():\nFor example lm exists\n\nexists(\"lm\")\n\n[1] TRUE\n\n\nbut carleton_college doesn’t.\n\nexists(\"carleton_college\")\n\n[1] FALSE\n\n\nThere are also a lot of naming styles out there, and if you have coded in another language, you may have already developed a preference. Below is an illustration by Allison Horst\n\n\n\n\n\n\n\n\nI generally following the tidyverse style guide, so you’ll see that I use only lowercase letters, numbers, and _ (snake case).",
-    "crumbs": [
-      "Computing",
-      "R Refresher"
-    ]
-  },
-  {
-    "objectID": "computing/r-basics-refresher.html#overviews-of-data-frames",
-    "href": "computing/r-basics-refresher.html#overviews-of-data-frames",
-    "title": "R Basics",
-    "section": "Overviews of data frames",
-    "text": "Overviews of data frames\nAbove, you loaded in a data set called office_ratings. Data sets are stored as a special data structure called a data frame. Data frames are the most-commonly used data structure for data analysis in R. For now, think of them like spreadsheets.\nOnce you have your data frame, you can get a quick overview of it using a few commands (below I use data_set as a generic placeholder for the data frame’s name):\n\n\n\n\n\n\nCommand\nDescription\n\n\n\nhead(data_set)\nprint the first 6 rows\n\n\ntail(data_set)\nprint the last 6 rows\n\n\nglimpse(data_set)\na quick overview where columns run down the screen and the data values run across. This allows you to see every column in the data frame.\n\n\nstr(data_set)\na quick overview like glimpse(), but without some of the formatting\n\n\nsummary(data_set)\nquick summary statistics for each column\n\n\ndim(data_set)\nthe number of rows and columns\n\n\nnrow(data_set)\nthe number of rows\n\n\nncol(data_set)\nthe number of columns",
-    "crumbs": [
-      "Computing",
-      "R Refresher"
-    ]
-  },
-  {
-    "objectID": "computing/r-basics-refresher.html#tibbles",
-    "href": "computing/r-basics-refresher.html#tibbles",
-    "title": "R Basics",
-    "section": "Tibbles",
-    "text": "Tibbles\nA tibble, or a tbl_df is another version of a data frame which is used by default in a lot of the tidyverse packages that we’ll use.\n\nTibbles are data.frames that are lazy and surly: they do less (i.e. they don’t change variable names or types, and don’t do partial matching) and complain more (e.g. when a variable does not exist). This forces you to confront problems earlier, typically leading to cleaner, more expressive code. Tibbles also have an enhanced print() method which makes them easier to use with large datasets containing complex objects.\n\n\n\n\n\n\n\nNone Check point\n\n\n\nRun the above commands on the office_ratings data set. Compare and contrast the information returned by each command.\n\n\n\n\n\n\n\n\nTipGetting a spreadsheet\n\n\n\nIn RStudio, you can run the command View(data_set) to pull up a spreadsheet representation of a data frame. You can also click on the name of the data frame in the Environment pane. This can be a great way help you think about the data, and even has some interactive functions (e.g., filtering and searching); however, never include View(data_set) in an .Rmd file!!\n\n\n\n\n\n\n\n\nNoteReview from intro stats\n\n\n\nIn intro stats we used the terms cases (or observations) and variables to describe the rows and columns of a data frame, respectively.",
-    "crumbs": [
-      "Computing",
-      "R Refresher"
-    ]
-  },
-  {
-    "objectID": "computing/r-basics-refresher.html#extracting-pieces-of-data-frames",
-    "href": "computing/r-basics-refresher.html#extracting-pieces-of-data-frames",
-    "title": "R Basics",
-    "section": "Extracting pieces of data frames",
-    "text": "Extracting pieces of data frames\nSince data frames are the fundamental data structure for most analyses in R, it’s important to know how to work with them. You already know how to get an overview of a data frame, but that isn’t always very informative. Often, you want to extract pieces of a data frame, such as a specific column or row.\nExtracting rows\nData frames can be indexed by their row/column numbers. To extract elements of a data frame, the basic syntax is data_set[row.index, column.index]. So, to extract the 10th row of office_ratings we run\n\noffice_ratings[10, ]\n\n# A tibble: 1 × 6\n  season episode title    imdb_rating total_votes air_date  \n   &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;          &lt;dbl&gt;       &lt;dbl&gt; &lt;date&gt;    \n1      2       4 The Fire         8.4        2713 2005-10-11\n\n\nNotice that to extract an entire row, we leave the column index position blank.\nWe can also extract multiple rows by creating a vector of row indices. For example, we can extract the first 5 rows via\n\noffice_ratings[1:5, ]\n\n# A tibble: 5 × 6\n  season episode title         imdb_rating total_votes air_date  \n   &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;               &lt;dbl&gt;       &lt;dbl&gt; &lt;date&gt;    \n1      1       1 Pilot                 7.6        3706 2005-03-24\n2      1       2 Diversity Day         8.3        3566 2005-03-29\n3      1       3 Health Care           7.9        2983 2005-04-05\n4      1       4 The Alliance          8.1        2886 2005-04-12\n5      1       5 Basketball            8.4        3179 2005-04-19\n\n\nHere, 1:5 create a sequence of integers from 1 to 5.\nWe could also specify arbitrary row index values by combing the values into a vector. For example, we could extract the 1st, 13th, 64th, and 128th rows via\n\noffice_ratings[c(1, 13, 64, 128), ]\n\n# A tibble: 4 × 6\n  season episode title            imdb_rating total_votes air_date  \n   &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;                  &lt;dbl&gt;       &lt;dbl&gt; &lt;date&gt;    \n1      1       1 Pilot                    7.6        3706 2005-03-24\n2      2       7 The Client               8.6        2631 2005-11-08\n3      4      13 Job Fair                 7.9        1977 2008-05-08\n4      7      11 Classy Christmas         8.9        2138 2010-12-09\n\n\nExtracting columns\nSimilar to extracting rows, we can use a numeric index to extract the columns of a data frame. For example, to extract the 3rd column, we can run\n\noffice_ratings[,3]\n\n# A tibble: 188 × 1\n   title            \n   &lt;chr&gt;            \n 1 Pilot            \n 2 Diversity Day    \n 3 Health Care      \n 4 The Alliance     \n 5 Basketball       \n 6 Hot Girl         \n 7 The Dundies      \n 8 Sexual Harassment\n 9 Office Olympics  \n10 The Fire         \n# ℹ 178 more rows\n\n\nAlternatively, we can pass in the column name in quotes instead of the column number\n\noffice_ratings[,\"title\"]\n\n# A tibble: 188 × 1\n   title            \n   &lt;chr&gt;            \n 1 Pilot            \n 2 Diversity Day    \n 3 Health Care      \n 4 The Alliance     \n 5 Basketball       \n 6 Hot Girl         \n 7 The Dundies      \n 8 Sexual Harassment\n 9 Office Olympics  \n10 The Fire         \n# ℹ 178 more rows\n\n\nNotice that the extracted column is still formatted as a data frame (or tibble). If you want to extract the contents of the column and just have a vector of titles, you have a few options.\n\nYou could use double brackets with the column number:\n\n\noffice_ratings[[3]]\n\n\nYou could use double brackets with the column name in quotes:\n\n\noffice_ratings[[\"title\"]]\n\n\nYou could use the $ extractor with the column name (not in quotes):\n\n\noffice_ratings$title\n\n\n\n\n\n\n\nNone Check point\n\n\n\n\nExtract the 35th row of office_ratings.\nExtract rows 35, 36, 37, and 38 of office_ratings.\nExtract the imdb_rating column from office ratings using the column index number.\nExtract the imdb_rating column from office ratings using the column name.",
-    "crumbs": [
-      "Computing",
-      "R Refresher"
-    ]
-  },
-  {
-    "objectID": "computing/r-basics-refresher.html#lists",
-    "href": "computing/r-basics-refresher.html#lists",
-    "title": "R Basics",
-    "section": "Lists",
-    "text": "Lists\nIt turns out that data frames are special cases of lists, a more general data structure. In a data frame, each column is an element of the data list and each column must be of the same length. In general, lists can be comprised of elements of vastly different lengths and data types.\nAs an example, let’s construct a list of the faculty in the MAST department and what is being taught this winter.\n\nstat_faculty &lt;- c(\"Kelling\", \"Loy\", \"Luby\", \"Poppick\", \"St. Clair\", \"Wadsworth\")\nstat_courses &lt;- c(120, 220, 230, 250, 285, 330)\nmath_faculty &lt;- c(\"Brooke\", \"Davis\", \"Egge\", \"Gomez-Gonzales\", \"Haunsperger\", \"Johnson\", \n                  \"Meyer\", \"Montee\", \"Shrestha\",\"Terry\", \"Thompson\", \"Turnage-Butterbaugh\")\nmath_courses &lt;- c(101, 106, 111, 120, 210, 211, 232, 236, 240, 241, 251, 321, 333, 395)\n\nmast &lt;- list(stat_faculty = stat_faculty, stat_courses = stat_courses, \n             math_faculty = math_faculty, math_courses = math_courses)\n\nOverview of a list\nYou can get an overview of a list a few ways:\n\n\nglimpse(list_name) and str(list_name) list the elements of the list and the first few entries of each element.\n\n\nglimpse(mast)\n\nList of 4\n $ stat_faculty: chr [1:6] \"Kelling\" \"Loy\" \"Luby\" \"Poppick\" ...\n $ stat_courses: num [1:6] 120 220 230 250 285 330\n $ math_faculty: chr [1:12] \"Brooke\" \"Davis\" \"Egge\" \"Gomez-Gonzales\" ...\n $ math_courses: num [1:14] 101 106 111 120 210 211 232 236 240 241 ...\n\n\n\n\nlength(list_name) will tell you how many elements are in the list\n\n\nlength(mast)\n\n[1] 4\n\n\nExtracting elements of a list\nSince data frames are lists, you’ve already seen how to extract elements of a list. For example, to extract the stat_faculty you could run\n\nmast[[1]]\n\n[1] \"Kelling\"   \"Loy\"       \"Luby\"      \"Poppick\"   \"St. Clair\" \"Wadsworth\"\n\n\nor\n\nmast[[\"stat_faculty\"]]\n\n[1] \"Kelling\"   \"Loy\"       \"Luby\"      \"Poppick\"   \"St. Clair\" \"Wadsworth\"\n\n\n\n\n\n\n\n\nNote\n\n\n\nIf you had only used a single bracket above, the returned object would still be a list, which is typically not what we would want.\n\nmast[1]\n\n$stat_faculty\n[1] \"Kelling\"   \"Loy\"       \"Luby\"      \"Poppick\"   \"St. Clair\" \"Wadsworth\"\n\n\n\n\n\n\n\n\n\n\nNone Check point\n\n\n\nExtract the statistics courses offered this term.",
-    "crumbs": [
-      "Computing",
-      "R Refresher"
-    ]
-  },
-  {
-    "objectID": "computing/r-basics-refresher.html#vectors",
-    "href": "computing/r-basics-refresher.html#vectors",
-    "title": "R Basics",
-    "section": "Vectors",
-    "text": "Vectors\nThe columns of the office_ratings data frame and the elements of the mast list were comprised of (atomic) vectors. Unlike lists, all elements within a vector share the same type. For example, all names in the stat_faculty vector were character strings and all ratings in the imdb_rating column were numeric. We’ll deal with a variety of types of vectors in this course, including:\n\nnumeric\ncharacter (text)\nlogical (TRUE/FALSE)\n\nExtracting elements of a vector\nJust like with lists (and therefore data frames), we use brackets to extract elements from a vector. As an example, let’s work with the title column from office_ratings.\n\ntitle &lt;- office_ratings$title # vector of titles\n\nTo extract the 111th title, we run\n\ntitle[111]\n\n[1] \"New Leads\"\n\n\nor two extract the 100th through 111th titles, we run\n\ntitle[100:111]\n\n [1] \"Double Date\"          \"Murder\"               \"Shareholder Meeting\" \n [4] \"Scott's Tots\"         \"Secret Santa\"         \"The Banker\"          \n [7] \"Sabre\"                \"Manager and Salesman\" \"The Delivery: Part 1\"\n[10] \"The Delivery: Part 2\" \"St. Patrick's Day\"    \"New Leads\"           \n\n\nNegative indices\nSometimes, we want to “kick out” elements of our vector. To do this, we can use a negative index value. For example,\n\ntitle[-1]\n\nreturns all but the first title—that is, it kicks out the first title. To kick out multiple elements, we need to negate a vector of indices. For example, below we kick out the first 10 titles\n\ntitle[-c(1:10)]\n\nAnd now we kick out the 5th, 50th, and 150th titles\n\ntitle[-c(5, 50, 150)]\n\nThis idea can be adapted to lists and data frames. For example, to kick out the first row of office_ratings, we run\n\noffice_ratings[-1,]\n\n# A tibble: 187 × 6\n   season episode title             imdb_rating total_votes air_date  \n    &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;                   &lt;dbl&gt;       &lt;dbl&gt; &lt;date&gt;    \n 1      1       2 Diversity Day             8.3        3566 2005-03-29\n 2      1       3 Health Care               7.9        2983 2005-04-05\n 3      1       4 The Alliance              8.1        2886 2005-04-12\n 4      1       5 Basketball                8.4        3179 2005-04-19\n 5      1       6 Hot Girl                  7.8        2852 2005-04-26\n 6      2       1 The Dundies               8.7        3213 2005-09-20\n 7      2       2 Sexual Harassment         8.2        2736 2005-09-27\n 8      2       3 Office Olympics           8.4        2742 2005-10-04\n 9      2       4 The Fire                  8.4        2713 2005-10-11\n10      2       5 Halloween                 8.2        2561 2005-10-18\n# ℹ 177 more rows\n\n\nor to kick out the math courses from the mast list we run\n\nmast[-4]\n\n$stat_faculty\n[1] \"Kelling\"   \"Loy\"       \"Luby\"      \"Poppick\"   \"St. Clair\" \"Wadsworth\"\n\n$stat_courses\n[1] 120 220 230 250 285 330\n\n$math_faculty\n [1] \"Brooke\"              \"Davis\"               \"Egge\"               \n [4] \"Gomez-Gonzales\"      \"Haunsperger\"         \"Johnson\"            \n [7] \"Meyer\"               \"Montee\"              \"Shrestha\"           \n[10] \"Terry\"               \"Thompson\"            \"Turnage-Butterbaugh\"\n\n\nLogical indices\nIt’s great to be able to extract (or omit) elements using indices, but sometimes we don’t know what index value we should use. For example, if you wanted to extract all of the 300-level statistics courses from the stat_courses vector, you would need to manually determine that positions 2:5 meet that requirement. That’s a lot of work! A better alternative is to allow R to find the elements meeting that requirement using logical operators. Below is a table summarizing common logical operators in R.\n\n\nComparison\nMeaning\n\n\n\n&lt;\nless than\n\n\n&gt;\ngreater than\n\n\n&lt;=\nless than or equal to\n\n\n&gt;=\ngreater than or equal to\n\n\n==\nis equal to\n\n\n!=\nnot equal to\n\n\n\nIn order to extract the 300-level statistics courses, we’ll take two steps:\n\nWe’ll determine whether each course is numbered at least 300,\nthen we’ll use that sequence of TRUEs/FALSEs to extract the course.\n\nSo, first we use the logical operator &gt;= to compare stat_courses and 300. This returns TRUE if the element meets the specification and FALSE otherwise.\n\nstat_courses &gt;= 300\n\n[1] FALSE FALSE FALSE FALSE FALSE  TRUE\n\n\nNow, we can use this vector as our index. Only the TRUE elements will be extracted:\n\nstat_courses[stat_courses &gt;= 300]\n\n[1] 330\n\n\nThe same idea can be used with data frames and lists, just remember how to format the brackets and indices!\n\n\n\n\n\n\nNone Check point\n\n\n\n\nExtract all statistics courses below 250 from stat_courses.\nExtract all math courses except for 240 (probability) from math_courses.\nExtract all rows from season 3 of The Office.",
-    "crumbs": [
-      "Computing",
-      "R Refresher"
-    ]
-  },
-  {
-    "objectID": "groupwork/gw03.html",
-    "href": "groupwork/gw03.html",
-    "title": "Group Work 03",
-    "section": "",
-    "text": "library(bayesrules) # R package for our textbook\nlibrary(tidyverse) # Collection of packages for tidying and plotting data\nlibrary(janitor) # Helper functions like tidy and tabyl\n\n\n\n\n\n\n\nNote\n\n\n\nNew this week! Trying no group problems on Friday\n\n\nBR Exercise 5.8 (a) and (d): Normal Likelihood Functions\nIn each situation below, we observe the outcomes for a Normal random sample, \\(Y_i | \\mu \\sim N(\\mu, \\sigma^2)\\) with known \\(\\sigma\\). Specify and plot the corresponding likelihood function of \\(\\mu\\).\n\n\n\\((y_1, y_2, y_3) = (-4.3, 0.7, -19.4)\\) and \\(\\sigma = 10\\)\n\n\n\\((y_1, y_2, y_3, y_4, y_5) = (1.6, 0.09, 1.7, 1.1, 1.1)\\) and \\(\\sigma = 0.6\\)\n\nBR Exercise 5.13: Australia\nLet \\(\\mu\\) be the average 3 p.m. temperature in Perth, Australia. Not knowing much about Australian weather, your friend’s prior understanding is that the average temperature is likely around 30 degrees Celsius, though might be anywhere between 10 and 50 degrees Celsius. To learn about \\(\\mu\\), they plan to analyze 1000 days of temperature data. Letting \\(Y_i\\) denote the 3 p.m. temperature on day \\(i\\), they’ll assume that daily temperatures vary Normally around \\(\\mu\\) with a standard deviation of 5 degrees:\n\\[Y_i | \\mu \\sim N(mu, 5^2)\\]\n\nTune and plot a Normal prior for \\(\\mu\\) that reflects your friend’s understanding.\nThe weather_perth data in the {bayesrules} package includes 1000 daily observations of 3 p.m. temperatures in Perth (temp3pm). Plot this data and discuss whether it’s reasonable to assume a Normal model for the temperature data.\nIdentify the posterior model of \\(\\mu\\) and verify your answer using summarize_normal_normal().\nPlot the prior pdf, likelihood function, and posterior pdf of \\(\\mu\\). Describe the evolution in your understanding of \\(\\mu\\) from the prior to the posterior.\nBR Exercise 5.19\nConsider the Bayesian model:\n\\[Y|\\theta \\sim \\text{Geometric}(\\theta)\\] \\[\\theta \\sim \\text{Beta}(\\alpha, \\beta)\\]\n\nDerive the posterior model for \\(\\theta\\) given observed data \\(Y = y\\). If possible, identify the name of the posterior distribution and its parameters\nIs the Beta model a conjugate prior for the Geometric data model?\nBR Exercise 6.7\nConsider the Normal-Normal model for \\(\\mu\\) with \\(Y|\\mu \\sim N(\\mu, 1.3^2)\\) and \\(\\mu \\sim N(10, 1.2^2)\\). Suppose that you observe data \\((Y_1, Y_2, Y_3, Y_4) = (7.1, 8.9, 8.4, 8.6)\\)\n\nUtilize grid approximation with grid values \\(\\mu \\in \\{5, 6, 7, ..., 15\\}\\) to approximate the posterior of \\(\\mu\\)\n\nRepeat part (a) using a grid of 201 equally spaced values between 5 and 15\n\n\n\n\n\n\n\nWarning\n\n\n\nRemember that the likelihood has to take all 4 data points into account!\n\n\nBR 6.17 a, c, d\n\nlibrary(rstan)\nlibrary(bayesplot)\n\nUsing the same normal-normal model:\n\nSimulate the posterior of \\(\\mu\\) with {rstan} using 4 chains and 10,000 iterations per chain\nSkip b for now\nProduce a density plot for all four chains\nWhat is the actual posterior distribution of \\(\\mu |Y\\)? How does the MCMC approximation compare? How does the grid approximation compare? (Try adding an overlaying line to your density plot from (c))",
+    "text": "library(bayesrules) # R package for our textbook\nlibrary(tidyverse) # Collection of packages for tidying and plotting data\nlibrary(janitor) # Helper functions like tidy and tabyl\n\nBR Exercise 2.13\nBR Exercise 2.18\nBR Exercise 2.17\nMLE\nIf \\(Y \\sim \\text{Binom}(n, \\pi)\\), show that \\(\\hat{\\pi}_{MLE} = \\frac{Y}{n}\\)\nBR Exercise 3.1\nFor each part, use plot_beta and/or summarize_beta to justify your answer\nBR Exercise 3.12\nChoice of prior\nI am interviewing Carleton students about whether or not they have used (knowingly) used ChatGPT on coursework in a non-approved way. I think the proportion has a 90% chance of being less than .25.\n\nChoose an informative prior that you think is reasonable for this belief\n\nI then ask 20 students this question and 15 respond “yes”. Find the posterior using the prior from above, then using the 3 non/weakly informative priors below:\n\nUnif(0,1) prior\nBeta(2,2) prior\n“Reference” prior Beta(.5, .5)\n\nCompare the posteriors for each of the priors above. Do results change if we instead observe 150/200 students responding “yes”?\nBR 4.13\n\n\n\n\n\n\nNote\n\n\n\nFor part (a), you do not need to include your sketch in your submission!",
     "crumbs": [
       "Assignments",
       "Groupwork",
-      "Group Work 03"
+      "Group Work 02"
     ]
   },
   {
-    "objectID": "groupwork/gw04.html",
-    "href": "groupwork/gw04.html",
+    "objectID": "groupwork/gw01.html",
+    "href": "groupwork/gw01.html",
+    "title": "Group Work 01",
+    "section": "",
+    "text": "Syllabus Q\nWhat is the weirdest/most unique policy or course component that you saw in the syllabus?\n\n\nBR Exercise 2.3\n\n\nBR Exercise 2.5\n\n\nBR Exercise 2.13\n\n\n\n\n\n\nImportant\n\n\n\nThis problem moved to HW2!",
+    "crumbs": [
+      "Assignments",
+      "Groupwork",
+      "Group Work 01"
+    ]
+  },
+  {
+    "objectID": "groupwork/gw05.html",
+    "href": "groupwork/gw05.html",
     "title": "Group Work 03",
     "section": "",
-    "text": "library(bayesrules) # R package for our textbook\nlibrary(tidyverse) # Collection of packages for tidying and plotting data\nlibrary(janitor) # Helper functions like tidy and tabyl\n\n\n\n\n\n\n\nNote\n\n\n\nNo group problems from Friday\n\n\nBR Exercise 7.6: Proposing a new location\nIn each situation below, complete Step 1 of the Metropolis-Hastings algorithm. That is, starting from teh given current chain value \\(\\lambda^{(i)} = \\lambda\\) and with set.seed(84735), use the given proposal model to draw a \\(\\lambda'\\) proposal value for the next value in the chain \\(\\lambda^{(i+1)}\\)\n\n\\(\\lambda = 4.6, \\lambda' | \\lambda \\sim N(\\lambda, 2^2)\\)\n\\(\\lambda = 2.1, \\lambda' | \\lambda \\sim N(\\lambda, 7^2)\\)\n\\(\\lambda = 8.9, \\lambda' | \\lambda \\sim Unif(\\lambda - 2, \\lambda +2)\\)\n\\(\\lambda = 1.2, \\lambda' | \\lambda \\sim Unif(\\lambda - 0.5, \\lambda + 0.5)\\)\n\\(\\lambda = 7.7, \\lambda' | \\lambda \\sim Unif(\\lambda - 3, \\lambda +3)\\)\nDiscuss why these proposal models “make sense”\nBR Exercise 7.7: Calculate the acceptance probability\nSuppose that a Markov chain is currently at \\(\\lambda^{(i)}=2\\) and the proposal for \\(\\lambda^{(i+1)}\\) is \\(\\lambda' = 2.1\\). For each pair of unnnormalized pdf \\(f(\\lambda) L(\\lambda | y)\\) and proposal \\(q(\\lambda' | \\lambda)\\), calculate the acceptance probability \\(\\alpha\\) used in Step 2 of the Metropolis-Hastings algorithm.\n\n\n\\(f(\\lambda) L(\\lambda | y) = \\lambda^{-1}, \\lambda' | \\lambda \\sim N(\\lambda, 2^2)\\) with pdf \\(q(\\lambda'|\\lambda)\\)\n\n\n\\(f(\\lambda) L(\\lambda | y) = e^{3\\lambda}, \\lambda' | \\lambda \\sim N(\\lambda, .5^2)\\) with pdf \\(q(\\lambda'|\\lambda)\\)\n\n\n\\(f(\\lambda) L(\\lambda | y) = e^{-1.9\\lambda}, \\lambda' | \\lambda \\sim Unif(\\lambda - .3, \\lambda + .3)\\) with pdf \\(q(\\lambda'|\\lambda)\\)\n\n\n\\(f(\\lambda) L(\\lambda | y) =e^{-\\lambda^4}, \\lambda' | \\lambda \\sim Exp(\\lambda)\\) with pdf \\(q(\\lambda'|\\lambda)\\)\n\nFor which of these scenarios is there a 100% acceptance probability? Explain why we’d certainly want to accept \\(\\lambda\\) in these scenarios\nBR 7.14\nConsider a Gamma-Poisson model in which rate \\(\\lambda\\) has a Gamma(1,0.1) prior and you observe one Poisson data point, \\(Y=4\\). In this exercise, you will simulate the posterior model of \\(\\lambda\\) using an independence sampler.\n\nWhich of the following would make the most reasonable proposal model to use in your independence sampler for \\(\\lambda\\): Normal, Beta, or Exponential? Hint: Recall that \\(\\lambda &gt; 0\\).\nUsing the proposal model that you identified in part a, simulate a tour of 1000 \\(\\lambda\\) values. Tune your algorithm until you are satisfied and produce a trace plot of your final results.\nThis is a situation where we can derive the exact posterior model of \\(\\lambda\\). What is it?\nPlot a histogram of your tour and overlay the exact model. How good is your Markov chain approximation?\nIndependence Sampler for truncated normal prior\nMetropolis-Hastings and Independence Samplers are powerful when we don’t have a closed-form solution. Suppose we instead use a truncated normal model for \\(\\lambda\\). This pdf looks like a normal distribution, but is truncated at lower and/or upper bounds. The code chunk below loads the {truncnorm} package, which gives you access to dtruncnorm, rtruncnorm, etc, and plots a truncated normal with parameters \\(\\mu=0\\), \\(\\sigma=1\\) and \\(a=0\\).\n\nTest different values of a, mean, and sd to get a sense of what each parameter does. Provide explanations of each.\nTune the truncated normal prior to cover a similar range as the Gamma distribution above\nModify your independence sampler from the previous question to use a truncated normal prior distribution. Tune your algorithm until you are satisfied and produce a trace plot of your final results.\nCompare your posterior to the posterior from the last question.\n\n\nlibrary(truncnorm)\n\nggplot(data = data.frame(x = c(-4, 4)), aes(x = x)) +\n  stat_function(fun = dtruncnorm, \n                args = list(a = 0, mean = 0, sd = 1))",
+    "text": "library(bayesrules) # R package for our textbook\nlibrary(tidyverse) # Collection of packages for tidying and plotting data\nlibrary(janitor) # Helper functions like tidy and tabyl\n\nBR Exercise 8.6\nBR Exercise 8.8\nBR Exercise 8.21\nTBA Wed\nTBA Wed",
     "crumbs": [
       "Assignments",
       "Groupwork",
