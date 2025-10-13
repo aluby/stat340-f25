@@ -62,6 +62,8 @@ library(tidyverse)
 data("pulse_of_the_nation")
 ```
 
+Cards Against Humanity's "Pulse of the Nation" project (https://thepulseofthenation.com/) conducted monthly polls into people's social and political views, as well as some silly things. This data includes 1,000 responses to a subset of questions included in the poll conducted in September 2017.
+
 ## What proportion of US adults do not believe in climate change?
 
 ```{r}
@@ -122,5 +124,10 @@ p-value is 0.0333
 
 - [ ] If in fact $\pi$ were only 0.13, there's a 3.3% chance that we would have gotten a survey where 150 of 1000 people did not believe climate change is real
 
+## Rest of today
 
+Explore the Bayesian approach to estimation (with uncertainty) and hypothesis testing, using the `pulse_of_the_nation` data and the climate change question. 
 
+Begin by using the exact posterior, and then extend the ideas to approximate posteriors sampled using MCMC
+
+If you finish, please fill out the two surveys linked on the schedule before leaving class
