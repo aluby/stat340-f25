@@ -6,8 +6,8 @@
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-631ded8afafd89da02f6c04f3e24cdd8.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.8.23">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-f54fa83ccd8f86fe7238c9291c42d766.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.8.24">
 
   <meta name="author" content="Prof Amanda Luby">
   <title>Stat 340 – Posterior estimation and hypothesis testing</title>
@@ -28,6 +28,72 @@
       margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
       vertical-align: middle;
     }
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #767676;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #767676;  padding-left: 4px; }
+    div.sourceCode
+      { color: #545454; background-color: #fefefe; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #545454; } /* Normal */
+    code span.al { color: #7928a1; } /* Alert */
+    code span.an { color: #696969; } /* Annotation */
+    code span.at { color: #a55a00; } /* Attribute */
+    code span.bn { color: #7928a1; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #d91e18; } /* ControlFlow */
+    code span.ch { color: #008000; } /* Char */
+    code span.cn { color: #d91e18; } /* Constant */
+    code span.co { color: #696969; } /* Comment */
+    code span.cv { color: #696969; font-style: italic; } /* CommentVar */
+    code span.do { color: #696969; font-style: italic; } /* Documentation */
+    code span.dt { color: #7928a1; } /* DataType */
+    code span.dv { color: #7928a1; } /* DecVal */
+    code span.er { color: #7928a1; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #a55a00; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #696969; } /* Information */
+    code span.kw { color: #d91e18; } /* Keyword */
+    code span.op { color: #00769e; } /* Operator */
+    code span.ot { color: #d91e18; } /* Other */
+    code span.pp { color: #7928a1; } /* Preprocessor */
+    code span.sc { color: #00769e; } /* SpecialChar */
+    code span.ss { color: #008000; } /* SpecialString */
+    code span.st { color: #008000; } /* String */
+    code span.va { color: #a55a00; } /* Variable */
+    code span.vs { color: #008000; } /* VerbatimString */
+    code span.wa { color: #696969; font-style: italic; } /* Warning */
   </style>
   <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-57853cb6e718b890690f9ea108593c80.css">
   <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
@@ -144,8 +210,98 @@ Prof Amanda Luby
 </div>
 
 </section>
-<section class="slide level2">
+<section id="posterior-inference" class="slide level2">
+<h2>Posterior Inference</h2>
+<h3 id="estimation">1. Estimation</h3>
+<p><br></p>
+<p><br></p>
+<h3 id="hypothesis-testing">2. Hypothesis Testing</h3>
+<p><br></p>
+<p><br></p>
+<h3 id="prediction">3. Prediction</h3>
+</section>
+<section id="running-example" class="slide level2">
+<h2>Running Example</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="fu">library</span>(bayesrules)</span>
+<span id="cb1-2"><a></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-3"><a></a><span class="fu">data</span>(<span class="st">"pulse_of_the_nation"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Cards Against Humanity’s “Pulse of the Nation” project (https://thepulseofthenation.com/) conducted monthly polls into people’s social and political views, as well as some silly things. This data includes 1,000 responses to a subset of questions included in the poll conducted in September 2017.</p>
+</section>
+<section id="what-proportion-of-us-adults-do-not-believe-in-climate-change" class="slide level2">
+<h2>What proportion of US adults do not believe in climate change?</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a>pulse_of_the_nation <span class="sc">%&gt;%</span></span>
+<span id="cb2-2"><a></a>  <span class="fu">count</span>(climate_change)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 2
+  climate_change                    n
+  &lt;fct&gt;                         &lt;int&gt;
+1 Not Real At All                 150
+2 Real and Caused by People       655
+3 Real but not Caused by People   195</code></pre>
+</div>
+</div>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Warm up</strong></p>
+</div>
+<div class="callout-content">
+<p>Let <span class="math inline">\(\pi \sim\)</span> Beta(1,2) and <span class="math inline">\(Y | \pi \sim\)</span> Binom(n, <span class="math inline">\(\pi\)</span>). What is the distribution of the posterior <span class="math inline">\(\pi | Y\)</span>?</p>
+</div>
+</div>
+</div>
+</section>
+<section id="section" class="slide level2">
+<h2></h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a><span class="fu">plot_beta_binomial</span>(<span class="at">alpha =</span> <span class="dv">1</span>, <span class="at">beta =</span> <span class="dv">2</span>, <span class="at">y =</span> <span class="dv">150</span>, <span class="at">n =</span> <span class="dv">1000</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
+</div>
+<img data-src="slides13_files/figure-html/unnamed-chunk-4-1.png" width="672" class="r-stretch"></section>
+<section id="bayesian-vs-frequentist-inference" class="slide level2 center">
+<h2>Bayesian vs Frequentist inference</h2>
+<p>In a <strong>frequentist</strong> analysis, <span class="math inline">\(\pi\)</span> is viewed as a fixed, unknown quantity. We make inferences about <span class="math inline">\(\pi\)</span> using data <span class="math inline">\(Y\)</span></p>
+<p><br></p>
+<p>In a <strong>Bayesian</strong> analysis, <span class="math inline">\(\pi\)</span> is viewed as a random variable. We make inferences about <span class="math inline">\(\pi\)</span> using the posterior, which combines the prior and likelihood</p>
+</section>
+<section id="example-a-quick-frequentist-analysis" class="slide level2">
+<h2>Example: a quick frequentist analysis</h2>
+<p>Point estimate: 150/1000</p>
+<p>95% frequentist confidence interval:</p>
+<p><span class="math display">\[0.15 \pm 0.02 = (0.13, 0.17)\]</span></p>
+<ul class="task-list">
+<li><label><input type="checkbox">There is a 95% chance that <span class="math inline">\(\pi\)</span> is between 0.13 and 0.17</label></li>
+</ul>
+<p><br></p>
+<ul class="task-list">
+<li><label><input type="checkbox">There’s a 95% chance that the survey results we happened to get produced an interval that covers <span class="math inline">\(\pi\)</span></label></li>
+</ul>
+<p><br></p>
+</section>
+<section id="example-a-quick-frequentist-analysis-1" class="slide level2">
+<h2>Example: a quick frequentist analysis</h2>
+<p><span class="math inline">\(H_0: \pi = 0.13\)</span></p>
+<p><span class="math inline">\(H_A: \pi &gt; 0.13\)</span></p>
+<p>p-value is 0.0333</p>
+<ul class="task-list">
+<li><label><input type="checkbox">Given our polling results, there’s a 3.3% chance that <span class="math inline">\(\pi\)</span> exceeds 13%</label></li>
+</ul>
+<p><br></p>
+<ul class="task-list">
+<li><label><input type="checkbox">If in fact <span class="math inline">\(\pi\)</span> were only 0.13, there’s a 3.3% chance that we would have gotten a survey where 150 of 1000 people did not believe climate change is real</label></li>
+</ul>
+</section>
+<section id="rest-of-today" class="slide level2">
+<h2>Rest of today</h2>
+<p>Explore the Bayesian approach to estimation (with uncertainty) and hypothesis testing, using the <code>pulse_of_the_nation</code> data and the climate change question.</p>
+<p>Begin by using the exact posterior, and then extend the ideas to approximate posteriors sampled using MCMC</p>
+<p>If you finish, please fill out the two surveys linked on the schedule before leaving class</p>
 
 
 </section>
@@ -366,44 +522,6 @@ Prof Amanda Luby
         ]
       });
     </script>
-    
-    <script>
-      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
-      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
-      // slide changes (different for each slide format).
-      (function () {
-        // dispatch for htmlwidgets
-        function fireSlideEnter() {
-          const event = window.document.createEvent("Event");
-          event.initEvent("slideenter", true, true);
-          window.document.dispatchEvent(event);
-        }
-
-        function fireSlideChanged(previousSlide, currentSlide) {
-          fireSlideEnter();
-
-          // dispatch for shiny
-          if (window.jQuery) {
-            if (previousSlide) {
-              window.jQuery(previousSlide).trigger("hidden");
-            }
-            if (currentSlide) {
-              window.jQuery(currentSlide).trigger("shown");
-            }
-          }
-        }
-
-        // hookup for slidy
-        if (window.w3c_slidy) {
-          window.w3c_slidy.add_observer(function (slide_num) {
-            // slide_num starts at position 1
-            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
-          });
-        }
-
-      })();
-    </script>
-
     <script id="quarto-html-after-body" type="application/javascript">
       window.document.addEventListener("DOMContentLoaded", function (event) {
         const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")

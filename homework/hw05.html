@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.23">
+<meta name="generator" content="quarto-1.8.24">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="Your Name Here">
 <title>Individual HW05 – Stat 340</title>
@@ -70,9 +70,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-631ded8afafd89da02f6c04f3e24cdd8.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-631ded8afafd89da02f6c04f3e24cdd8.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-631ded8afafd89da02f6c04f3e24cdd8.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-f54fa83ccd8f86fe7238c9291c42d766.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-f54fa83ccd8f86fe7238c9291c42d766.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-f54fa83ccd8f86fe7238c9291c42d766.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap-710808da41c8bbec41991e78ce036138.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
@@ -103,7 +103,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script>
+}</script><script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 </head>
 <body class="nav-sidebar docked quarto-light"><script id="quarto-html-before-body" type="application/javascript">
     const toggleBodyColorMode = (bsSheetEl) => {
@@ -274,7 +299,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Assignments</li><li class="breadcrumb-item"><a href="../homework/hw01.html">Homework</a></li><li class="breadcrumb-item"><a href="../homework/hw05.html">Individual HW05</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Assignments</li><li class="breadcrumb-item"><a href="../homework/gw02-sols.html">Homework</a></li><li class="breadcrumb-item"><a href="../homework/hw05.html">Individual HW05</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -371,6 +396,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       </div>
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 show">
 <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../homework/gw02-sols.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">gw02-sols</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../homework/hw01.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Individual HW01</span></a>
@@ -481,15 +512,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
    
   <ul>
-<li><a href="#br-exercise-8.10" id="toc-br-exercise-8.10" class="nav-link active" data-scroll-target="#br-exercise-8.10">BR Exercise 8.10</a></li>
+<li><a href="#br-exercise-8.7" id="toc-br-exercise-8.7" class="nav-link active" data-scroll-target="#br-exercise-8.7">BR Exercise 8.7</a></li>
+  <li><a href="#br-exercise-8.8" id="toc-br-exercise-8.8" class="nav-link" data-scroll-target="#br-exercise-8.8">BR Exercise 8.8</a></li>
+  <li><a href="#br-exercise-8.21" id="toc-br-exercise-8.21" class="nav-link" data-scroll-target="#br-exercise-8.21">BR Exercise 8.21</a></li>
   <li><a href="#br-exercise-8.22" id="toc-br-exercise-8.22" class="nav-link" data-scroll-target="#br-exercise-8.22">BR Exercise 8.22</a></li>
-  <li><a href="#br-exercise-8.23" id="toc-br-exercise-8.23" class="nav-link" data-scroll-target="#br-exercise-8.23">BR Exercise 8.23</a></li>
-  <li><a href="#q4" id="toc-q4" class="nav-link" data-scroll-target="#q4">Q4</a></li>
-  <li><a href="#q5" id="toc-q5" class="nav-link" data-scroll-target="#q5">Q5</a></li>
+  <li><a href="#q5-tba-wed" id="toc-q5-tba-wed" class="nav-link" data-scroll-target="#q5-tba-wed">Q5 (TBA Wed)</a></li>
+  <li><a href="#q6-tba-wed" id="toc-q6-tba-wed" class="nav-link" data-scroll-target="#q6-tba-wed">Q6 (TBA Wed)</a></li>
   </ul><div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="hw05.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Assignments</li><li class="breadcrumb-item"><a href="../homework/hw01.html">Homework</a></li><li class="breadcrumb-item"><a href="../homework/hw05.html">Individual HW05</a></li></ol></nav><div class="quarto-title">
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Assignments</li><li class="breadcrumb-item"><a href="../homework/gw02-sols.html">Homework</a></li><li class="breadcrumb-item"><a href="../homework/hw05.html">Individual HW05</a></li></ol></nav><div class="quarto-title">
 <div class="quarto-title-block"><div><h1 class="title">Individual HW05</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
 </div>
 
@@ -517,11 +549,42 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://mc-stan.org/rstan/">rstan</a></span><span class="op">)</span> <span class="co"># for MCMC</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://mc-stan.org/bayesplot/">bayesplot</a></span><span class="op">)</span> <span class="co"># for plotting</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<section id="br-exercise-8.10" class="level1"><h1>BR Exercise 8.10</h1>
-</section><section id="br-exercise-8.22" class="level1"><h1>BR Exercise 8.22</h1>
-</section><section id="br-exercise-8.23" class="level1"><h1>BR Exercise 8.23</h1>
-</section><section id="q4" class="level1"><h1>Q4</h1>
-</section><section id="q5" class="level1"><h1>Q5</h1>
+<section id="br-exercise-8.7" class="level1"><h1>BR Exercise 8.7</h1>
+<p>For each situation, find the appropriate credible interval using the “middle” approach</p>
+<ol type="a">
+<li>A 99% credible interval of <span class="math inline">\(\lambda\)</span> where <span class="math inline">\(\lambda | y \sim\)</span> Gamma(1,5)</li>
+<li>A 95% credible interval of <span class="math inline">\(\mu\)</span> where <span class="math inline">\(\mu | y \sim N(10, 2^2)\)</span>
+</li>
+<li>An 80% credible interval of <span class="math inline">\(\mu\)</span> where <span class="math inline">\(\mu | y \sim N(-3, 1^2)\)</span>
+</li>
+</ol></section><section id="br-exercise-8.8" class="level1"><h1>BR Exercise 8.8</h1>
+<p>There’s more than one approach to constructing a 95% credible interval. The “middle 95%” approach reports the range of the middle 95% of the posterior density, from the 2.5th to the 97.5th percentile. The “highest posterior density” approach reports the 95% of posterior values with the highest posterior densities.</p>
+<ol type="a">
+<li>Let <span class="math inline">\(\lambda | y \sim\)</span>Gamma(1,5). Construct the 95% highest posterior density credible interval for <span class="math inline">\(\lambda\)</span>. Represent this interval on a sketch of the posterior pdf. <em>Hint:</em> The sketch itself will help you identify the appropriate CI. Do not try to find a solution that will generalize to any posterior density, just focus on this specific density.</li>
+<li>Repeat part a using the middle 95% approach.</li>
+<li>Compare the two intervals from parts a and b. Are they the same? If not, how do they differ and which is more appropriate here?</li>
+<li>Let <span class="math inline">\(\mu | y \sim N(-13, 2^2)\)</span>. Construct the 95% highest posterior density credible interval for <span class="math inline">\(\mu\)</span>.</li>
+<li>Repeat part d using the middle 95% approach.</li>
+<li>Compare the two intervals from parts d and e. Are they the same? If not, why not?</li>
+</ol></section><section id="br-exercise-8.21" class="level1"><h1>BR Exercise 8.21</h1>
+<p>The loon is a species of bird common to the Ontario region of Canada. Let <span class="math inline">\(\lambda\)</span> denote the typical number of loons observed by a birdwatcher across a 100-hour observation period. To learn about <span class="math inline">\(\lambda\)</span>, we’ll utilize bird counts <span class="math inline">\((Y_1, ..., Y_n)\)</span> collected in <span class="math inline">\(n\)</span> different outings.</p>
+<ol type="a">
+<li>Explain which Bayesian model is appropriate for this analysis: Beta-Binomial, Gamma-Poisson, or Normal-Normal.</li>
+<li>Your prior understanding is that the typical rate of loon sightings is 2 per 100 hours with a standard deviation of 1 per 100-hours. Specify an appropriate prior model for <span class="math inline">\(\lambda\)</span> and explain your reasoning.</li>
+<li>The <code>loons</code> data in the {bayesrules} package contains loon counts in different 100-hour observation periods. How many data points do we have and what’s the average loon count per 100 hours?</li>
+<li>In light of your prior and data, calculate and interpret a (middle) 95% posterior credible interval for <span class="math inline">\(\lambda\)</span>. NOTE: You’ll first need to specify your posterior model of <span class="math inline">\(\lambda\)</span>
+</li>
+</ol></section><section id="br-exercise-8.22" class="level1"><h1>BR Exercise 8.22</h1>
+<p>Let’s continue our analysis of <span class="math inline">\(\lambda\)</span>, the typical rate of loon sightings in a 100-hour observation period. You hypothesize that birdwatchers should anticipate a rate of less than 1 loon per observation period.</p>
+<ol type="a">
+<li>State this as a formal hypothesis test (using <span class="math inline">\(H_0\)</span>, <span class="math inline">\(H_a\)</span>, and <span class="math inline">\(\lambda\)</span> notation)<br>
+</li>
+<li>What decision might you make about these hypotheses utilizing the credible interval from the previous exercise?</li>
+<li>Calculate and interpret the posterior probability that your hypothesis is true.</li>
+<li>Putting this together, explain your conclusion about <span class="math inline">\(\lambda\)</span>
+</li>
+</ol></section><section id="q5-tba-wed" class="level1"><h1>Q5 (TBA Wed)</h1>
+</section><section id="q6-tba-wed" class="level1"><h1>Q6 (TBA Wed)</h1>
 
 
 <!-- -->
@@ -1013,15 +1076,46 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(bayesplot) <span class="co"># for plotting</span></span>
 <span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="fu"># BR Exercise 8.10</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="fu"># BR Exercise 8.7</span></span>
 <span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="fu"># BR Exercise 8.22</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>For each situation, find the appropriate credible interval using the "middle" approach</span>
 <span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="fu"># BR Exercise 8.23</span></span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="fu"># Q4</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>(a) A 99% credible interval of $\lambda$ where $\lambda | y \sim$ Gamma(1,5)</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>(b) A 95% credible interval of $\mu$ where $\mu | y \sim N(10, 2^2)$</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>(c) An 80% credible interval of $\mu$ where $\mu | y \sim N(-3, 1^2)$</span>
 <span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a><span class="fu"># Q5</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a><span class="fu"># BR Exercise 8.8</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>There’s more than one approach to constructing a 95% credible interval. The "middle 95%" approach reports the range of the middle 95% of the posterior density, from the 2.5th to the 97.5th percentile. The "highest posterior density" approach reports the 95% of posterior values with the highest posterior densities.</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>(a) Let $\lambda | y \sim$Gamma(1,5). Construct the 95% highest posterior density credible interval for  $\lambda$. Represent this interval on a sketch of the posterior pdf. *Hint:* The sketch itself will help you identify the appropriate CI. Do not try to find a solution that will generalize to any posterior density, just focus on this specific density.</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>(b)  Repeat part a using the middle 95% approach.</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>(c) Compare the two intervals from parts a and b. Are they the same? If not, how do they differ and which is more appropriate here?</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>(d) Let $\mu | y \sim N(-13, 2^2)$. Construct the 95% highest posterior density credible interval for $\mu$. </span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>(e) Repeat part d using the middle 95% approach.</span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>(f) Compare the two intervals from parts d and e. Are they the same? If not, why not?</span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a><span class="fu"># BR Exercise 8.21</span></span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>The loon is a species of bird common to the Ontario region of Canada. Let  $\lambda$ denote the typical number of loons observed by a birdwatcher across a 100-hour observation period. To learn about  $\lambda$, we’ll utilize bird counts $(Y_1, ..., Y_n)$ collected in $n$ different outings.</span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>(a) Explain which Bayesian model is appropriate for this analysis: Beta-Binomial, Gamma-Poisson, or Normal-Normal.</span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>(b) Your prior understanding is that the typical rate of loon sightings is 2 per 100 hours with a standard deviation of 1 per 100-hours. Specify an appropriate prior model for  $\lambda$ and explain your reasoning.</span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>(c) The <span class="in">`loons`</span> data in the {bayesrules} package contains loon counts in different 100-hour observation periods. How many data points do we have and what’s the average loon count per 100 hours?</span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>(d) In light of your prior and data, calculate and interpret a (middle) 95% posterior credible interval for $\lambda$. NOTE: You’ll first need to specify your posterior model of $\lambda$</span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a><span class="fu"># BR Exercise 8.22</span></span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>Let’s continue our analysis of  $\lambda$, the typical rate of loon sightings in a 100-hour observation period. You hypothesize that birdwatchers should anticipate a rate of less than 1 loon per observation period. </span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>(a) State this as a formal hypothesis test (using $H_0$, $H_a$, and $\lambda$ notation)  </span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a>(b) What decision might you make about these hypotheses utilizing the credible interval from the previous exercise?</span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a>(c) Calculate and interpret the posterior probability that your hypothesis is true.</span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a>(d) Putting this together, explain your conclusion about $\lambda$</span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a><span class="fu"># Q5 (TBA Wed)</span></span>
+<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a><span class="fu"># Q6 (TBA Wed)</span></span>
 </code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
