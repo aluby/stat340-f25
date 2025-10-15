@@ -165,7 +165,32 @@ tidy(climate_sim, conf.int = TRUE, conf.level = 0.95)
 mcmc_areas(climate_sim, pars = "pi", prob = 0.95)
 ```
 
-# TBA Wed
+# BR Exercise 8.18 (slightly modified)
 
-# TBA Wed
+We'll continue with the `pulse_of_the_nation` beta-binomial example from last time. 
 
+(a) Suppose we plan to survey 20 more people and want to predict $Y'$, the number who don't believe in climate change. Use your posterior point estimates from Q1 to provide point estimates for $Y'$
+(b) Use your MCMC simulation (`climate_chains`) to approximate the posterior predictive model of  $Y'$, the number (out of $n=20$) that don’t believe in climate change. 
+
+::: callout-tip
+- The 20,000 chain values capture one source of variability: the posterior variability in $\pi$. To capture the other source, think about the variability in $Y' | \pi$. 
+- Since this is a random process, make sure to add `set.seed` at the beginning of your code chunk
+:::
+
+(c) Construct a graphical summary of the (approximated) posterior predictive model of $Y'$.  Remember that $Y'$ should be integer values from 0 to 20. If it’s not, go back to the previous part and try another technique.
+
+(d) Approximate an 80% prediction interval for $Y'$
+
+(e) Approximate the probability that more than 5 of the 20 people won't believe in climate change
+
+# BR Exercise 8.11 (a) - (c) 
+
+As discussed in Section 8.3, it is sometimes possible to derive an exact posterior predictive model. Such is the case with the conjugate models we have studied thus far. To begin, suppose we observe  $Y=y$ successes in  $n$ trials where  $Y | \pi \sim Bin(n, \pi)$ and $\pi \sim Beta(\alpha, \beta)$. 
+
+(a) Write down the posterior pdf of $\pi | Y$ (should depend on $y, n, \alpha, \beta, \pi$)
+
+(b) Suppose we conduct  $n'$ new trials (where  $n'$ might differ from our original number of trials  $n$) and let  $Y' = y'$ be the observed number of successes in these new trials. Identify the conditional pmf of  $Y' | \pi$,  $f(Y' | \pi)$. (should depend on $y', \pi, n'$)
+
+(c) Prove that the posterior predictive distribution of $Y'$, $f(y' | y)$, is given by: 
+
+$$f(y' | y) = \int f(y' | \pi) f(\pi | y) d\pi = {n' \choose y'} \frac{\Gamma(\alpha + \beta +  n)}{\Gamma(\alpha + y) \Gamma(\beta + n - y )} \frac{\Gamma(\alpha + y + y') \Gamma(\beta + n - y + n' - y')}{\Gamma(\alpha + \beta + n + m)}$$

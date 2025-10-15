@@ -1,0 +1,162 @@
+---
+title: Posterior prediction
+subtitle: Day 14
+title-slide-attributes:
+  data-background-color: "#e2583eff"
+  data-slide-number: none
+format: 
+  revealjs:
+    incremental: false
+    scrollable: false
+auto-stretch: true
+editor_options: 
+  chunk_output_type: console
+editor: 
+  markdown: 
+    wrap: 72
+execute: 
+  warning: false
+  message: false
+---
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+
+library(countdown)
+library(tidyverse)
+library(bayesrules)
+library(janitor)
+library(patchwork)
+library(rstan)
+library(bayesplot)
+
+theme_set(theme_minimal(base_size = 16, base_family = "Atkinson Hyperlegible"))
+```
+
+## Posterior Inference
+
+### 1. Estimation
+
+What is the "best" estimate for parameter $\theta$? How much certainty
+do we have in that estimate?
+
+### 2. Hypothesis Testing
+
+Does our data/model support specific claims about $\theta$?
+
+### 3. Prediction
+
+If we are given new observations, what would our model predict?
+
+
+## Warm-up Example
+
+We are testing a new cookie recipe where the chef adds either **1** or
+**4** "secret ingredients" to a batch. The probability of a cookie
+tester correctly guessing any ingredient is $\pi = 0.5$. After each
+cookie is tested, the chef only tells us $Y$, the number of correctly
+guessed ingredients.
+
+After observing $Y=0$, we obtain the following **posterior model** for
+$\theta$:
+
+|                     |     |     |
+|---------------------|-----|-----|
+| $\theta$            | 1   | 4   |
+| $f(\theta | Y = 0)$ | 0.6 | 0.4 |
+
+Let $Y'$ be the number of correctly tested ingredients for the next cookie tester (with $\theta$ secret ingredients). What's your best guess for $Y'$? 
+
+## More than one possible outcome for $Y'$
+
+```{r}
+#| echo: false
+
+
+theta1_data <- data.frame(
+  theta = factor(1, levels = c(1, 4)),
+  y_prime = 0:4,
+  prob = dbinom(0:4, size = 1, prob = 0.5)
+  )
+
+theta4_data <- data.frame(
+  theta = factor(4, levels = c(1, 4)),
+  y_prime = 0:4,
+  prob = dbinom(0:4, size = 4, prob = 0.5)
+)
+
+theta1_data |>
+  bind_rows(theta4_data) |>
+  ggplot(aes(x = y_prime, y = prob)) +
+  geom_segment(aes(xend = y_prime, yend = 0), size = 0.5) +
+  geom_point(size = 3) +
+  facet_wrap(~ theta) +
+  labs(x = "")
+```
+
+## {.smaller}
+
+::::: columns
+::: {.column width="50%"}
+If $\theta = 1$: 
+
+| y'    |   0  |  1   | 2 | 3 | 4 | 
+|-------|-----|-----|-----|-----|-----|
+| prob | 0.5 | 0.5 | 0 | 0 | 0 |
+:::
+
+::: {.column width="50%"}
+If $\theta = 4$: 
+
+| y'    |   0  |  1   | 2 | 3 | 4 | 
+|-------|-----|-----|-----|-----|-----|
+| p | .0625 | .25 | .375 | .25 | .0625 |
+:::
+:::::
+
+Show that the **posterior predictive** model for Y' is: 
+
+|           y'         |  0   |  1   |  2  |  3   | 4 |
+|---------------------|-----|-----| -----|-----|-----|
+| $f(y' | y = 0)$ | 0.325 | .4 | 0.15 | 0.1 | 0.025 |
+
+## Posterior prediction
+
+To predict a new data outcome $Y'$, we have to consider two sources of variability: 
+
+1. **sampling variability in the data**: $Y'$ can take more than one value. This randomness in $Y'$ depends on $\theta$ and is defined by conditional pdf/pmf $f(y' | \theta)$
+
+2. **posterior variability in the parameter**: Some values of $\theta$ are more plausible than others. The randomness in $\theta$ is defined by the posterior pdf/pmf $f(\theta | y)$
+
+## Posterior prediction
+
+::: callout-note
+## Posterior Predictive Model
+
+Let $Y'$ denote a new outcome of variable $Y$. Let pdf $f(y' | \theta)$ denote the dependence of $Y'$ on $\theta$ and let posterior pdf $f(\theta | y)$ denote the posterior given the original data. Then the **posterior predictive model** for $Y'$ has pdf: 
+
+$$f(y' | y) = \int f(y ' | \theta) f(\theta | y) d\theta$$
+$$f(y' | y) = \sum_\theta f(y ' | \theta) f(\theta | y)$$
+
+:::
+
+## Approximate posterior predictive distributions
+
+We rarely can fully specify $f(y' |y)$. However, we can approximate it with our Markov Chains
+
+```
+     pi
+1     0.142
+2     0.151
+3     0.145
+4     0.161
+5     0.127
+6     0.139
+.       .
+.       .
+.       .
+19999 0.151
+20000 0.149
+```
