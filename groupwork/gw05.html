@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.23">
+<meta name="generator" content="quarto-1.8.24">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <title>Group Work 03 – Stat 340</title>
 <style>
@@ -69,9 +69,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-631ded8afafd89da02f6c04f3e24cdd8.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-631ded8afafd89da02f6c04f3e24cdd8.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-631ded8afafd89da02f6c04f3e24cdd8.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-f54fa83ccd8f86fe7238c9291c42d766.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-f54fa83ccd8f86fe7238c9291c42d766.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-f54fa83ccd8f86fe7238c9291c42d766.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap-710808da41c8bbec41991e78ce036138.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
@@ -396,6 +396,12 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 ">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../homework/gw02-sols.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">gw02-sols</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../homework/hw01.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Individual HW01</span></a>
   </div>
@@ -508,8 +514,8 @@ window.Quarto = {
 <li><a href="#an-exact-analysis" id="toc-an-exact-analysis" class="nav-link active" data-scroll-target="#an-exact-analysis">An exact analysis</a></li>
   <li><a href="#bayes-factor" id="toc-bayes-factor" class="nav-link" data-scroll-target="#bayes-factor">Bayes Factor</a></li>
   <li><a href="#br-exercise-8.21" id="toc-br-exercise-8.21" class="nav-link" data-scroll-target="#br-exercise-8.21">BR Exercise 8.21</a></li>
-  <li><a href="#tba-wed" id="toc-tba-wed" class="nav-link" data-scroll-target="#tba-wed">TBA Wed</a></li>
-  <li><a href="#tba-wed-1" id="toc-tba-wed-1" class="nav-link" data-scroll-target="#tba-wed-1">TBA Wed</a></li>
+  <li><a href="#br-exercise-8.18-slightly-modified" id="toc-br-exercise-8.18-slightly-modified" class="nav-link" data-scroll-target="#br-exercise-8.18-slightly-modified">BR Exercise 8.18 (slightly modified)</a></li>
+  <li><a href="#br-exercise-8.11-a---c" id="toc-br-exercise-8.11-a---c" class="nav-link" data-scroll-target="#br-exercise-8.11-a---c">BR Exercise 8.11 (a) - (c)</a></li>
   </ul><div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="gw05.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
     </div>
 <!-- main -->
@@ -708,8 +714,41 @@ Note
 <span><span class="co"># </span></span>
 <span><span class="fu"><a href="https://mc-stan.org/bayesplot/reference/MCMC-intervals.html">mcmc_areas</a></span><span class="op">(</span><span class="va">climate_sim</span>, pars <span class="op">=</span> <span class="st">"pi"</span>, prob <span class="op">=</span> <span class="fl">0.95</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</section><section id="tba-wed" class="level1"><h1>TBA Wed</h1>
-</section><section id="tba-wed-1" class="level1"><h1>TBA Wed</h1>
+</section><section id="br-exercise-8.18-slightly-modified" class="level1"><h1>BR Exercise 8.18 (slightly modified)</h1>
+<p>We’ll continue with the <code>pulse_of_the_nation</code> beta-binomial example from last time.</p>
+<ol type="a">
+<li>Suppose we plan to survey 20 more people and want to predict <span class="math inline">\(Y'\)</span>, the number who don’t believe in climate change. Use your posterior point estimates from Q1 to provide point estimates for <span class="math inline">\(Y'\)</span>
+</li>
+<li>Use your MCMC simulation (<code>climate_chains</code>) to approximate the posterior predictive model of <span class="math inline">\(Y'\)</span>, the number (out of <span class="math inline">\(n=20\)</span>) that don’t believe in climate change.</li>
+</ol>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>The 20,000 chain values capture one source of variability: the posterior variability in <span class="math inline">\(\pi\)</span>. To capture the other source, think about the variability in <span class="math inline">\(Y' | \pi\)</span>.</li>
+<li>Since this is a random process, make sure to add <code>set.seed</code> at the beginning of your code chunk</li>
+</ul>
+</div>
+</div>
+<ol start="3" type="a">
+<li><p>Construct a graphical summary of the (approximated) posterior predictive model of <span class="math inline">\(Y'\)</span>. Remember that <span class="math inline">\(Y'\)</span> should be integer values from 0 to 20. If it’s not, go back to the previous part and try another technique.</p></li>
+<li><p>Approximate an 80% prediction interval for <span class="math inline">\(Y'\)</span></p></li>
+<li><p>Approximate the probability that more than 5 of the 20 people won’t believe in climate change</p></li>
+</ol></section><section id="br-exercise-8.11-a---c" class="level1"><h1>BR Exercise 8.11 (a) - (c)</h1>
+<p>As discussed in Section 8.3, it is sometimes possible to derive an exact posterior predictive model. Such is the case with the conjugate models we have studied thus far. To begin, suppose we observe <span class="math inline">\(Y=y\)</span> successes in <span class="math inline">\(n\)</span> trials where <span class="math inline">\(Y | \pi \sim Bin(n, \pi)\)</span> and <span class="math inline">\(\pi \sim Beta(\alpha, \beta)\)</span>.</p>
+<ol type="a">
+<li><p>Write down the posterior pdf of <span class="math inline">\(\pi | Y\)</span> (should depend on <span class="math inline">\(y, n, \alpha, \beta, \pi\)</span>)</p></li>
+<li><p>Suppose we conduct <span class="math inline">\(n'\)</span> new trials (where <span class="math inline">\(n'\)</span> might differ from our original number of trials <span class="math inline">\(n\)</span>) and let <span class="math inline">\(Y' = y'\)</span> be the observed number of successes in these new trials. Identify the conditional pmf of <span class="math inline">\(Y' | \pi\)</span>, <span class="math inline">\(f(Y' | \pi)\)</span>. (should depend on <span class="math inline">\(y', \pi, n'\)</span>)</p></li>
+<li><p>Prove that the posterior predictive distribution of <span class="math inline">\(Y'\)</span>, <span class="math inline">\(f(y' | y)\)</span>, is given by:</p></li>
+</ol>
+<p><span class="math display">\[f(y' | y) = \int f(y' | \pi) f(\pi | y) d\pi = {n' \choose y'} \frac{\Gamma(\alpha + \beta +  n)}{\Gamma(\alpha + y) \Gamma(\beta + n - y )} \frac{\Gamma(\alpha + y + y') \Gamma(\beta + n - y + n' - y')}{\Gamma(\alpha + \beta + n + m)}\]</span></p>
 
 
 <!-- -->
@@ -1355,9 +1394,35 @@ Note
 <span id="cb10-181"><a href="#cb10-181" aria-hidden="true" tabindex="-1"></a><span class="fu">mcmc_areas</span>(climate_sim, <span class="at">pars =</span> <span class="st">"pi"</span>, <span class="at">prob =</span> <span class="fl">0.95</span>)</span>
 <span id="cb10-182"><a href="#cb10-182" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb10-183"><a href="#cb10-183" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-184"><a href="#cb10-184" aria-hidden="true" tabindex="-1"></a><span class="fu"># TBA Wed</span></span>
+<span id="cb10-184"><a href="#cb10-184" aria-hidden="true" tabindex="-1"></a><span class="fu"># BR Exercise 8.18 (slightly modified)</span></span>
 <span id="cb10-185"><a href="#cb10-185" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-186"><a href="#cb10-186" aria-hidden="true" tabindex="-1"></a><span class="fu"># TBA Wed</span></span>
+<span id="cb10-186"><a href="#cb10-186" aria-hidden="true" tabindex="-1"></a>We'll continue with the <span class="in">`pulse_of_the_nation`</span> beta-binomial example from last time. </span>
+<span id="cb10-187"><a href="#cb10-187" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-188"><a href="#cb10-188" aria-hidden="true" tabindex="-1"></a>(a) Suppose we plan to survey 20 more people and want to predict $Y'$, the number who don't believe in climate change. Use your posterior point estimates from Q1 to provide point estimates for $Y'$</span>
+<span id="cb10-189"><a href="#cb10-189" aria-hidden="true" tabindex="-1"></a>(b) Use your MCMC simulation (<span class="in">`climate_chains`</span>) to approximate the posterior predictive model of  $Y'$, the number (out of $n=20$) that don’t believe in climate change. </span>
+<span id="cb10-190"><a href="#cb10-190" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-191"><a href="#cb10-191" aria-hidden="true" tabindex="-1"></a>::: callout-tip</span>
+<span id="cb10-192"><a href="#cb10-192" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>The 20,000 chain values capture one source of variability: the posterior variability in $\pi$. To capture the other source, think about the variability in $Y' | \pi$. </span>
+<span id="cb10-193"><a href="#cb10-193" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Since this is a random process, make sure to add <span class="in">`set.seed`</span> at the beginning of your code chunk</span>
+<span id="cb10-194"><a href="#cb10-194" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb10-195"><a href="#cb10-195" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-196"><a href="#cb10-196" aria-hidden="true" tabindex="-1"></a>(c) Construct a graphical summary of the (approximated) posterior predictive model of $Y'$.  Remember that $Y'$ should be integer values from 0 to 20. If it’s not, go back to the previous part and try another technique.</span>
+<span id="cb10-197"><a href="#cb10-197" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-198"><a href="#cb10-198" aria-hidden="true" tabindex="-1"></a>(d) Approximate an 80% prediction interval for $Y'$</span>
+<span id="cb10-199"><a href="#cb10-199" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-200"><a href="#cb10-200" aria-hidden="true" tabindex="-1"></a>(e) Approximate the probability that more than 5 of the 20 people won't believe in climate change</span>
+<span id="cb10-201"><a href="#cb10-201" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-202"><a href="#cb10-202" aria-hidden="true" tabindex="-1"></a><span class="fu"># BR Exercise 8.11 (a) - (c) </span></span>
+<span id="cb10-203"><a href="#cb10-203" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-204"><a href="#cb10-204" aria-hidden="true" tabindex="-1"></a>As discussed in Section 8.3, it is sometimes possible to derive an exact posterior predictive model. Such is the case with the conjugate models we have studied thus far. To begin, suppose we observe  $Y=y$ successes in  $n$ trials where  $Y | \pi \sim Bin(n, \pi)$ and $\pi \sim Beta(\alpha, \beta)$. </span>
+<span id="cb10-205"><a href="#cb10-205" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-206"><a href="#cb10-206" aria-hidden="true" tabindex="-1"></a>(a) Write down the posterior pdf of $\pi | Y$ (should depend on $y, n, \alpha, \beta, \pi$)</span>
+<span id="cb10-207"><a href="#cb10-207" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-208"><a href="#cb10-208" aria-hidden="true" tabindex="-1"></a>(b) Suppose we conduct  $n'$ new trials (where  $n'$ might differ from our original number of trials  $n$) and let  $Y' = y'$ be the observed number of successes in these new trials. Identify the conditional pmf of  $Y' | \pi$,  $f(Y' | \pi)$. (should depend on $y', \pi, n'$)</span>
+<span id="cb10-209"><a href="#cb10-209" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-210"><a href="#cb10-210" aria-hidden="true" tabindex="-1"></a>(c) Prove that the posterior predictive distribution of $Y'$, $f(y' | y)$, is given by: </span>
+<span id="cb10-211"><a href="#cb10-211" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-212"><a href="#cb10-212" aria-hidden="true" tabindex="-1"></a>$$f(y' | y) = \int f(y' | \pi) f(\pi | y) d\pi = {n' \choose y'} \frac{\Gamma(\alpha + \beta +  n)}{\Gamma(\alpha + y) \Gamma(\beta + n - y )} \frac{\Gamma(\alpha + y + y') \Gamma(\beta + n - y + n' - y')}{\Gamma(\alpha + \beta + n + m)}$$</span>
 </code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
