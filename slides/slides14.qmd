@@ -35,7 +35,7 @@ library(bayesplot)
 theme_set(theme_minimal(base_size = 16, base_family = "Atkinson Hyperlegible"))
 ```
 
-## Posterior Inference
+## Posterior Inference {.center}
 
 ### 1. Estimation
 
@@ -51,7 +51,7 @@ Does our data/model support specific claims about $\theta$?
 If we are given new observations, what would our model predict?
 
 
-## Warm-up Example
+## Warm-up Example {.smaller}
 
 We are testing a new cookie recipe where the chef adds either **1** or
 **4** "secret ingredients" to a batch. The probability of a cookie
