@@ -33,7 +33,7 @@ This is an example of a **zero-inflated poisson** distribution, and you will imp
 (*Note:* Your model should also account for the differing amount of time individuals spend in the park.) 
 
 ```{r}
-fish_poisson <- read_csv("../data/fish_poisson.csv")
+fish_poisson <- read_csv("https://aluby.github.io/stat340-f25/data/fish_poisson.csv")
 ```
 
 
