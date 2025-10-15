@@ -516,8 +516,8 @@ window.Quarto = {
   <li><a href="#br-exercise-8.8" id="toc-br-exercise-8.8" class="nav-link" data-scroll-target="#br-exercise-8.8">BR Exercise 8.8</a></li>
   <li><a href="#br-exercise-8.21" id="toc-br-exercise-8.21" class="nav-link" data-scroll-target="#br-exercise-8.21">BR Exercise 8.21</a></li>
   <li><a href="#br-exercise-8.22" id="toc-br-exercise-8.22" class="nav-link" data-scroll-target="#br-exercise-8.22">BR Exercise 8.22</a></li>
-  <li><a href="#q5-tba-wed" id="toc-q5-tba-wed" class="nav-link" data-scroll-target="#q5-tba-wed">Q5 (TBA Wed)</a></li>
-  <li><a href="#q6-tba-wed" id="toc-q6-tba-wed" class="nav-link" data-scroll-target="#q6-tba-wed">Q6 (TBA Wed)</a></li>
+  <li><a href="#posterior-predictive-distribution-of-loon-sightings-modified-slightly" id="toc-posterior-predictive-distribution-of-loon-sightings-modified-slightly" class="nav-link" data-scroll-target="#posterior-predictive-distribution-of-loon-sightings-modified-slightly">8.24: Posterior predictive distribution of Loon sightings (modified slightly)</a></li>
+  <li><a href="#posterior-predictive-normal-normal-with-calculus" id="toc-posterior-predictive-normal-normal-with-calculus" class="nav-link" data-scroll-target="#posterior-predictive-normal-normal-with-calculus">8.13: Posterior predictive Normal-Normal with calculus</a></li>
   </ul><div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="hw05.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
     </div>
 <!-- main -->
@@ -583,8 +583,25 @@ window.Quarto = {
 <li>Calculate and interpret the posterior probability that your hypothesis is true.</li>
 <li>Putting this together, explain your conclusion about <span class="math inline">\(\lambda\)</span>
 </li>
-</ol></section><section id="q5-tba-wed" class="level1"><h1>Q5 (TBA Wed)</h1>
-</section><section id="q6-tba-wed" class="level1"><h1>Q6 (TBA Wed)</h1>
+</ol></section><section id="posterior-predictive-distribution-of-loon-sightings-modified-slightly" class="level1"><h1>8.24: Posterior predictive distribution of Loon sightings (modified slightly)</h1>
+<ol type="a">
+<li>Simulate the posterior model of <span class="math inline">\(\lambda\)</span>, the typical rate of loon sightings per observation period, with {rstan} using 4 chains and 10000 iterations per chain. Perform some MCMC diagnostics to confirm that your simulation has stabilized.</li>
+<li>Use your MCMC simulation to approximate the posterior predictive model of <span class="math inline">\(Y'\)</span>, the number of loons that a birdwatcher will spy in their <em>next</em> observation period. Construct a visualization of this model.</li>
+<li>Summarize your observations/conclusions of the posterior predictive model of <span class="math inline">\(Y'\)</span>
+</li>
+<li>Approximate the probability that the birdwatcher observes 0 loons in their next observation period.</li>
+</ol></section><section id="posterior-predictive-normal-normal-with-calculus" class="level1"><h1>8.13: Posterior predictive Normal-Normal with calculus</h1>
+<p>Let <span class="math inline">\(Y=y\)</span> be an observed data point from a <span class="math inline">\(N(\mu, \sigma^2)\)</span> model. Further, suppose <span class="math inline">\(\sigma\)</span> is known and that <span class="math inline">\(\mu\)</span> is unknown with a <span class="math inline">\(N(\theta, \tau^2)\)</span> prior.</p>
+<ol type="a">
+<li>Identify the posterior pdf of <span class="math inline">\(\mu\)</span> given the observed data, <span class="math inline">\(f(\mu | y)\)</span>
+</li>
+<li>Let <span class="math inline">\(Y' = y'\)</span> be the value of a <em>new</em> data point. Identify the conditional PDF of <span class="math inline">\(Y'\)</span> given <span class="math inline">\(\mu\)</span>, <span class="math inline">\(f(y' | \mu)\)</span>
+</li>
+<li>Identify the posterior predictive pdf of <span class="math inline">\(Y'\)</span>, <span class="math inline">\(f(y' | y)\)</span>
+</li>
+<li>Suppose <span class="math inline">\(y=-10\)</span>, <span class="math inline">\(\sigma=3\)</span>, <span class="math inline">\(\theta=0\)</span> and <span class="math inline">\(\tau = 1\)</span>. Specify and sketch the posterior predictive pdf of <span class="math inline">\(Y'\)</span>
+</li>
+</ol>
 
 
 <!-- -->
@@ -1113,9 +1130,22 @@ window.Quarto = {
 <span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a>(c) Calculate and interpret the posterior probability that your hypothesis is true.</span>
 <span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a>(d) Putting this together, explain your conclusion about $\lambda$</span>
 <span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a><span class="fu"># Q5 (TBA Wed)</span></span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a><span class="fu"># 8.24: Posterior predictive distribution of Loon sightings (modified slightly)</span></span>
 <span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a><span class="fu"># Q6 (TBA Wed)</span></span>
+<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a>(a) Simulate the posterior model of $\lambda$, the typical rate of loon sightings per observation period, with {rstan} using 4 chains and 10000 iterations per chain.</span>
+<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a>Perform some MCMC diagnostics to confirm that your simulation has stabilized.</span>
+<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a>(b) Use your MCMC simulation to approximate the posterior predictive model of $Y'$, the number of loons that a birdwatcher will spy in their *next* observation period. Construct a  visualization of this model.</span>
+<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a>(c) Summarize your observations/conclusions of the posterior predictive model of $Y'$</span>
+<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a>(d) Approximate the probability that the birdwatcher observes 0 loons in their next observation period.</span>
+<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a><span class="fu"># 8.13: Posterior predictive Normal-Normal with calculus</span></span>
+<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a>Let  $Y=y$ be an observed data point from a  $N(\mu, \sigma^2)$ model. Further, suppose $\sigma$ is known and that $\mu$ is unknown with a $N(\theta, \tau^2)$ prior. </span>
+<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a>(a) Identify the posterior pdf of $\mu$ given the observed data, $f(\mu | y)$</span>
+<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a>(b) Let $Y' = y'$ be the value of a *new* data point. Identify the conditional PDF of $Y'$ given $\mu$, $f(y' | \mu)$</span>
+<span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a>(c) Identify the posterior predictive pdf of $Y'$, $f(y' | y)$</span>
+<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a>(d) Suppose $y=-10$, $\sigma=3$, $\theta=0$ and $\tau = 1$. Specify and sketch the posterior predictive pdf of $Y'$</span>
 </code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
