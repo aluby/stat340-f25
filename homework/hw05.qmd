@@ -11,14 +11,43 @@ library(rstan) # for MCMC
 library(bayesplot) # for plotting
 ```
 
+# BR Exercise 8.7
+
+For each situation, find the appropriate credible interval using the "middle" approach
+
+(a) A 99% credible interval of $\lambda$ where $\lambda | y \sim$ Gamma(1,5)
+(b) A 95% credible interval of $\mu$ where $\mu | y \sim N(10, 2^2)$
+(c) An 80% credible interval of $\mu$ where $\mu | y \sim N(-3, 1^2)$
+
 # BR Exercise 8.8
 
-# BR Exercise 8.10
+There’s more than one approach to constructing a 95% credible interval. The "middle 95%" approach reports the range of the middle 95% of the posterior density, from the 2.5th to the 97.5th percentile. The "highest posterior density" approach reports the 95% of posterior values with the highest posterior densities.
+
+(a) Let $\lambda | y \sim$Gamma(1,5). Construct the 95% highest posterior density credible interval for  $\lambda$. Represent this interval on a sketch of the posterior pdf. *Hint:* The sketch itself will help you identify the appropriate CI. Do not try to find a solution that will generalize to any posterior density, just focus on this specific density.
+(b)  Repeat part a using the middle 95% approach.
+(c) Compare the two intervals from parts a and b. Are they the same? If not, how do they differ and which is more appropriate here?
+(d) Let $\mu | y \sim N(-13, 2^2)$. Construct the 95% highest posterior density credible interval for $\mu$. 
+(e) Repeat part d using the middle 95% approach.
+(f) Compare the two intervals from parts d and e. Are they the same? If not, why not?
+
+# BR Exercise 8.21
+
+The loon is a species of bird common to the Ontario region of Canada. Let  $\lambda$ denote the typical number of loons observed by a birdwatcher across a 100-hour observation period. To learn about  $\lambda$, we’ll utilize bird counts $(Y_1, ..., Y_n)$ collected in $n$ different outings.
+
+(a) Explain which Bayesian model is appropriate for this analysis: Beta-Binomial, Gamma-Poisson, or Normal-Normal.
+(b) Your prior understanding is that the typical rate of loon sightings is 2 per 100 hours with a standard deviation of 1 per 100-hours. Specify an appropriate prior model for  $\lambda$ and explain your reasoning.
+(c) The `loons` data in the {bayesrules} package contains loon counts in different 100-hour observation periods. How many data points do we have and what’s the average loon count per 100 hours?
+(d) In light of your prior and data, calculate and interpret a (middle) 95% posterior credible interval for $\lambda$. NOTE: You’ll first need to specify your posterior model of $\lambda$
 
 # BR Exercise 8.22
 
-# BR Exercise 8.23
+Let’s continue our analysis of  $\lambda$, the typical rate of loon sightings in a 100-hour observation period. You hypothesize that birdwatchers should anticipate a rate of less than 1 loon per observation period. 
 
-# Q4
+(a) State this as a formal hypothesis test (using $H_0$, $H_a$, and $\lambda$ notation)  
+(b) What decision might you make about these hypotheses utilizing the credible interval from the previous exercise?
+(c) Calculate and interpret the posterior probability that your hypothesis is true.
+(d) Putting this together, explain your conclusion about $\lambda$
 
-# Q5
+# Q5 (TBA Wed)
+
+# Q6 (TBA Wed)

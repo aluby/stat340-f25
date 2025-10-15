@@ -6,15 +6,30 @@ title: "Group Work 03"
 library(bayesrules) # R package for our textbook
 library(tidyverse) # Collection of packages for tidying and plotting data
 library(janitor) # Helper functions like tidy and tabyl
+library(rstan)
+library(broom)
+
 ```
 
 
 ::: callout-note
+The Monday problems are a selection from BR Exercises 8.15-8.17, packaged in a different format
+:::
 
-The Monday problems are a selection from BR Exercises 8.15-8.17
+
+::: callout-note
+Make sure to remove `#| eval: false` from any code chunks if you copy the whole document using the "code" button
 :::
 
 # An exact analysis
+
+This problem uses the `pulse_of_the_nation` data from slides13
+
+```{r}
+data("pulse_of_the_nation")
+pulse_of_the_nation %>%
+  count(climate_change)
+```
 
 (a) Bayesians think of the entire Beta(151,852) posterior pdf as an estimate for $\pi$. But for communication purposes, it can be useful to report what values of $\pi$ are typical. Identify and calculate two possible posterior point estimates. 
 
@@ -32,11 +47,37 @@ The Monday problems are a selection from BR Exercises 8.15-8.17
 
 # Bayes Factor
 
-(add a bayes factor question)
+::: callout-note
+## Posterior Odds
+
+The **posterior odds** for a hypothesis test $H_0$ against $H_a$ after observing data $Y=y$ is
+
+$$\text{posterior odds} = \frac{P(H_a | Y = y)}{P(H_0 | Y = y)}$$
+:::
+
+::: callout-note
+## Posterior Odds
+
+The **prior odds** for a hypothesis test $H_0$ against $H_a$ is
+
+$$\text{posterior odds} = \frac{P(H_a)}{P(H_0)}$$
+:::
+
+::: callout-note
+## Bayes Factor
+
+In a hypothesis test of two competing hypotheses, $H_a$ vs $H_0$, the **Bayes Factor** is an odds ratio for $H_a$:
+
+$$\text{Bayes Factor} = \frac{\text{posterior odds}}{\text{prior odds}} = \frac{P(H_a |Y) / P(H_0 | Y)}{P(H_a)/P(H_0)}$$
+:::
+
+Calculate the **prior odds**, **posterior odds**, and **Bayes Factor** for the researcher's claim that "more than 13% of people don't believe in climate change". What do these numbers tell you? 
 
 # BR Exercise 8.21 
 
-(a) Run the following R/stan code to fit an MCMC approximation for the same problem. Make sure you understand all of the pieces of the model fitting code.
+Now, let's explore how we can do estimation and hypothesis testing with an approximate posterior sample from MCMC.
+
+(a) Load the following packages, and run the following R/stan code to fit an MCMC approximation for the same problem. Make sure you understand all of the pieces of the model fitting code.
 
 ```{r}
 library(rstan)
