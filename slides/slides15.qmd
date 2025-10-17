@@ -1,0 +1,133 @@
+---
+title: Regression
+subtitle: Day 15
+title-slide-attributes:
+  data-background-color: "#e2583eff"
+  data-slide-number: none
+format: 
+  revealjs:
+    incremental: false
+    scrollable: false
+auto-stretch: true
+editor_options: 
+  chunk_output_type: console
+editor: 
+  markdown: 
+    wrap: 72
+execute: 
+  warning: false
+  message: false
+---
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+
+library(countdown)
+library(tidyverse)
+library(bayesrules)
+library(janitor)
+library(patchwork)
+library(rstan)
+library(bayesplot)
+
+theme_set(theme_minimal(base_size = 16, base_family = "Atkinson Hyperlegible"))
+```
+
+## Plan for today
+
+- Review some key ideas from regression
+- Introduce Bayesian simple linear regression
+
+## Background
+
+Let $Y$ be a response variable and $X = (X_1, X_2, ..., X_p)$ be a set of predictors. Then the normal regression model of $Y$ vs $X$ is: 
+
+$$Y = \beta_0 + \beta_1 X_1 + \beta_2 X2 + ... + \beta_p X_p + \varepsilon$$
+
+where
+
+- $E(Y|X) = \beta_0 + \beta_1 X_1 + \beta_2 X2 + ... + \beta_p X_p$  is the expected or typical $Y$ outcome at the given set of predictor values
+- $\varepsilon$ = residual error, i.e. how much the observed outcome of  $Y$ deviates from the expected outcome. We assume that these errors are Normally distributed around 0 with some standard deviation  $\sigma$
+
+## Example: bikeshare rides against feels like temperature
+
+```{r}
+ggplot(bikes, aes(x = temp_feel, y = rides)) + 
+  geom_point() + 
+  geom_smooth(method = "lm")
+```
+
+## What is the estimated model equation?
+
+```{r}
+model_1 <- lm(rides ~ temp_feel, data = bikes)
+coef(summary(model_1))
+```
+
+
+How do we interpret 81.9? 
+
+(a) For every 1 degree increase in temperature, we expect around 81.9 more riders.
+(b) For every extra rider, we expect temperature to increase by around 81.9 degrees.
+(c) We expect around 81.9 riders on 0-degree days.
+
+## Centered intercept
+
+```{r}
+bikes %>% 
+    summarize(mean(temp_feel))
+```
+
+## Example: bikeshare rides against weekend
+
+```{r}
+ggplot(bikes, aes(x = weekend, y = rides)) + 
+   geom_boxplot()
+```
+
+##  What is the estimated model equation?
+
+```{r}
+model_2 <- lm(rides ~ weekend, data = bikes)
+coef(summary(model_2))
+```
+
+How can we interpret 3712.1?    
+
+(a) We expect 3712 more riders on weekdays than weekends.
+(b) We expect 3712 more riders on weekends than weekdays.
+(c) We expect 3712 riders on weekends
+(d) We expect 3712 riders on weekdays.
+
+## 
+
+How can we interpret -815.3?
+
+(a) For each additional weekend, we expect 815 fewer riders.
+(a) We expect 815 fewer riders on weekdays than weekends.
+(a) We expect 815 fewer riders on weekends than weekdays.
+(a) We expect -815 riders on weekends.
+(a) We expect -815 riders on weekdays.
+
+Predict the number of riders there will be on Saturday. 
+
+
+## Combining the two
+
+```{r}
+ggplot(bikes, aes(x = temp_feel, y = rides, color = weekend)) + 
+  geom_point() +
+  geom_smooth(method = "lm")
+```
+
+## 
+
+```{r}
+model_3 <- lm(rides ~ temp_feel + weekend, data = bikes)
+coef(summary(model_3))
+```
+
+## Make it Bayesian
+
