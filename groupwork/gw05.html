@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.8.24">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>Group Work 03 – Stat 340</title>
+<title>Group Work 05 – Stat 340</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -298,7 +298,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Assignments</li><li class="breadcrumb-item"><a href="../groupwork/gw01.html">Groupwork</a></li><li class="breadcrumb-item"><a href="../groupwork/gw05.html">Group Work 03</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Assignments</li><li class="breadcrumb-item"><a href="../groupwork/gw01.html">Groupwork</a></li><li class="breadcrumb-item"><a href="../groupwork/gw05.html">Group Work 05</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -468,7 +468,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../groupwork/gw05.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Group Work 03</span></a>
+ <span class="menu-text">Group Work 05</span></a>
   </div>
 </li>
       </ul>
@@ -519,8 +519,8 @@ window.Quarto = {
   </ul><div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="gw05.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Assignments</li><li class="breadcrumb-item"><a href="../groupwork/gw01.html">Groupwork</a></li><li class="breadcrumb-item"><a href="../groupwork/gw05.html">Group Work 03</a></li></ol></nav><div class="quarto-title">
-<div class="quarto-title-block"><div><h1 class="title">Group Work 03</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Assignments</li><li class="breadcrumb-item"><a href="../groupwork/gw01.html">Groupwork</a></li><li class="breadcrumb-item"><a href="../groupwork/gw05.html">Group Work 05</a></li></ol></nav><div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title">Group Work 05</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
 </div>
 
 
@@ -748,7 +748,7 @@ Tip
 <li><p>Suppose we conduct <span class="math inline">\(n'\)</span> new trials (where <span class="math inline">\(n'\)</span> might differ from our original number of trials <span class="math inline">\(n\)</span>) and let <span class="math inline">\(Y' = y'\)</span> be the observed number of successes in these new trials. Identify the conditional pmf of <span class="math inline">\(Y' | \pi\)</span>, <span class="math inline">\(f(Y' | \pi)\)</span>. (should depend on <span class="math inline">\(y', \pi, n'\)</span>)</p></li>
 <li><p>Prove that the posterior predictive distribution of <span class="math inline">\(Y'\)</span>, <span class="math inline">\(f(y' | y)\)</span>, is given by:</p></li>
 </ol>
-<p><span class="math display">\[f(y' | y) = \int f(y' | \pi) f(\pi | y) d\pi = {n' \choose y'} \frac{\Gamma(\alpha + \beta +  n)}{\Gamma(\alpha + y) \Gamma(\beta + n - y )} \frac{\Gamma(\alpha + y + y') \Gamma(\beta + n - y + n' - y')}{\Gamma(\alpha + \beta + n + m)}\]</span></p>
+<p><span class="math display">\[f(y' | y) = \int f(y' | \pi) f(\pi | y) d\pi = {n' \choose y'} \frac{\Gamma(\alpha + \beta +  n)}{\Gamma(\alpha + y) \Gamma(\beta + n - y )} \frac{\Gamma(\alpha + y + y') \Gamma(\beta + n - y + n' - y')}{\Gamma(\alpha + \beta + n + n')}\]</span></p>
 
 
 <!-- -->
@@ -1228,7 +1228,7 @@ Tip
   </div>
 </nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Group Work 03"</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Group Work 05"</span></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
@@ -1422,7 +1422,7 @@ Tip
 <span id="cb10-209"><a href="#cb10-209" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-210"><a href="#cb10-210" aria-hidden="true" tabindex="-1"></a>(c) Prove that the posterior predictive distribution of $Y'$, $f(y' | y)$, is given by: </span>
 <span id="cb10-211"><a href="#cb10-211" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-212"><a href="#cb10-212" aria-hidden="true" tabindex="-1"></a>$$f(y' | y) = \int f(y' | \pi) f(\pi | y) d\pi = {n' \choose y'} \frac{\Gamma(\alpha + \beta +  n)}{\Gamma(\alpha + y) \Gamma(\beta + n - y )} \frac{\Gamma(\alpha + y + y') \Gamma(\beta + n - y + n' - y')}{\Gamma(\alpha + \beta + n + m)}$$</span>
+<span id="cb10-212"><a href="#cb10-212" aria-hidden="true" tabindex="-1"></a>$$f(y' | y) = \int f(y' | \pi) f(\pi | y) d\pi = {n' \choose y'} \frac{\Gamma(\alpha + \beta +  n)}{\Gamma(\alpha + y) \Gamma(\beta + n - y )} \frac{\Gamma(\alpha + y + y') \Gamma(\beta + n - y + n' - y')}{\Gamma(\alpha + \beta + n + n')}$$</span>
 </code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
