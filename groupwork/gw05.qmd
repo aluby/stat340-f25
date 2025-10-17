@@ -1,5 +1,5 @@
 ---
-title: "Group Work 03"
+title: "Group Work 05"
 ---
 
 ```{r}
@@ -193,4 +193,4 @@ As discussed in Section 8.3, it is sometimes possible to derive an exact posteri
 
 (c) Prove that the posterior predictive distribution of $Y'$, $f(y' | y)$, is given by: 
 
-$$f(y' | y) = \int f(y' | \pi) f(\pi | y) d\pi = {n' \choose y'} \frac{\Gamma(\alpha + \beta +  n)}{\Gamma(\alpha + y) \Gamma(\beta + n - y )} \frac{\Gamma(\alpha + y + y') \Gamma(\beta + n - y + n' - y')}{\Gamma(\alpha + \beta + n + m)}$$
+$$f(y' | y) = \int f(y' | \pi) f(\pi | y) d\pi = {n' \choose y'} \frac{\Gamma(\alpha + \beta +  n)}{\Gamma(\alpha + y) \Gamma(\beta + n - y )} \frac{\Gamma(\alpha + y + y') \Gamma(\beta + n - y + n' - y')}{\Gamma(\alpha + \beta + n + n')}$$
