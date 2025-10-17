@@ -326,11 +326,142 @@ weekendTRUE  -707.62118 123.643576 -5.723073 1.810601e-08</code></pre>
 </div>
 </div>
 </section>
-<section id="make-it-bayesian" class="slide level2">
-<h2>Make it Bayesian</h2>
-
-
+<section id="section-2" class="slide level2">
+<h2></h2>
+<p>Normal model:</p>
+<p><span class="math display">\[Y_i | \mu, \sigma \sim N(\mu, \sigma^2)\]</span></p>
+<p>Normal regression model:</p>
+<p><span class="math display">\[Y_i | \beta_0, \beta_1, \sigma \sim N(\mu_i, \sigma^2), \text{ with } \mu_i = \beta_0 + \beta_1 X_i\]</span></p>
+<p>Make it Bayesian:</p>
+<p><span class="math display">\[\beta_0 \sim N(m_0, s_0^2)\]</span></p>
+<p><span class="math display">\[\beta_1 \sim N(m_1, s_1^2)\]</span></p>
+<p><span class="math display">\[\sigma \sim \text{Exp}(l)\]</span></p>
 </section>
+<section id="model-building-one-step-at-a-time" class="slide level2">
+<h2>Model building: one step at a time</h2>
+<p>Let <span class="math inline">\(Y\)</span> be a response variable and let <span class="math inline">\(X\)</span> be a predictor or set of predictors. We build a model of <span class="math inline">\(Y\)</span> by <span class="math inline">\(X\)</span> through the following general principles:</p>
+<ul>
+<li>Is <span class="math inline">\(Y\)</span> discrete or continuous? What is an approrpiate data model? (e.g.&nbsp;Normal, Poisson, Binomial, etc)</li>
+<li>Rewrite the mean of <span class="math inline">\(Y\)</span> as a function of predictors <span class="math inline">\(X\)</span></li>
+<li>Identify all unknown parameters (eg <span class="math inline">\(\beta_0, \beta_1, \sigma\)</span>)</li>
+<li>What values might each of these parameters take? What prior models represent those beliefs faithfully?</li>
+</ul>
+</section>
+<section id="prior-likelihood-posterior" class="slide level2">
+<h2>Prior + Likelihood = Posterior</h2>
+<p><span class="math display">\[f(\beta_0, \beta_1, \sigma) = f(\beta_0) f(\beta_1) f(\sigma)\]</span> <span class="math display">\[L(\beta_0, \beta_1, \sigma | \vec{y}) = \prod f(y_i | \beta_0, \beta_1, \sigma)\]</span></p>
+<p><span class="math display">\[f(\beta_0, \beta_1, \sigma | \vec{y}) = \]</span></p>
+</section>
+<section id="simulate-with-rstan" class="slide level2">
+<h2>Simulate with {rstan}</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a><span class="co"># STEP 1: DEFINE the model</span></span>
+<span id="cb12-2"><a></a>stan_bike_model <span class="ot">&lt;-</span> <span class="st">"</span></span>
+<span id="cb12-3"><a></a><span class="st">  data {</span></span>
+<span id="cb12-4"><a></a><span class="st">    int&lt;lower = 0&gt; n;</span></span>
+<span id="cb12-5"><a></a><span class="st">    vector[n] Y;</span></span>
+<span id="cb12-6"><a></a><span class="st">    vector[n] X;</span></span>
+<span id="cb12-7"><a></a><span class="st">  }</span></span>
+<span id="cb12-8"><a></a><span class="st">  parameters {</span></span>
+<span id="cb12-9"><a></a><span class="st">    real beta0;</span></span>
+<span id="cb12-10"><a></a><span class="st">    real beta1;</span></span>
+<span id="cb12-11"><a></a><span class="st">    real&lt;lower = 0&gt; sigma;</span></span>
+<span id="cb12-12"><a></a><span class="st">  }</span></span>
+<span id="cb12-13"><a></a><span class="st">  model {</span></span>
+<span id="cb12-14"><a></a><span class="st">    Y ~ normal(beta0 + beta1 * X, sigma);</span></span>
+<span id="cb12-15"><a></a><span class="st">    beta0 ~ normal(-2000, 1000);</span></span>
+<span id="cb12-16"><a></a><span class="st">    beta1 ~ normal(100, 40);</span></span>
+<span id="cb12-17"><a></a><span class="st">    sigma ~ exponential(1);</span></span>
+<span id="cb12-18"><a></a><span class="st">  }</span></span>
+<span id="cb12-19"><a></a><span class="st">"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="simulate-with-rstan-1" class="slide level2">
+<h2>Simulate with {rstan}</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a><span class="co"># STEP 2: SIMULATE the posterior</span></span>
+<span id="cb13-2"><a></a>stan_bike_sim <span class="ot">&lt;-</span> </span>
+<span id="cb13-3"><a></a>  <span class="fu">stan</span>(<span class="at">model_code =</span> stan_bike_model, </span>
+<span id="cb13-4"><a></a>       <span class="at">data =</span> <span class="fu">list</span>(<span class="at">n =</span> <span class="fu">nrow</span>(bikes), <span class="at">Y =</span> bikes<span class="sc">$</span>rides, <span class="at">X =</span> bikes<span class="sc">$</span>temp_feel), </span>
+<span id="cb13-5"><a></a>       <span class="at">chains =</span> <span class="dv">4</span>, <span class="at">iter =</span> <span class="dv">5000</span><span class="sc">*</span><span class="dv">2</span>, <span class="at">seed =</span> <span class="dv">84735</span>)</span>
+<span id="cb13-6"><a></a></span>
+<span id="cb13-7"><a></a><span class="fu">save</span>(stan_bike_sim, <span class="at">file =</span> <span class="st">"slides/15-bike-fit.rda"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a><span class="fu">library</span>(broom.mixed)</span>
+<span id="cb14-2"><a></a><span class="fu">tidy</span>(stan_bike_sim, <span class="at">conf.int =</span> <span class="cn">TRUE</span>, <span class="at">conf.level =</span> .<span class="dv">8</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 5
+  term  estimate std.error conf.low conf.high
+  &lt;chr&gt;    &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;
+1 beta0  -2177.     334.    -2600.    -1748. 
+2 beta1     81.9      4.78     75.7      87.9
+3 sigma   1283.      41.1    1232.     1336. </code></pre>
+</div>
+</div>
+</section>
+<section id="simulate-with-rstanarm" class="slide level2">
+<h2>Simulate with {rstanarm}</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a><span class="fu">library</span>(rstanarm)</span>
+<span id="cb16-2"><a></a></span>
+<span id="cb16-3"><a></a>bike_model <span class="ot">&lt;-</span> <span class="fu">stan_glm</span>(rides <span class="sc">~</span> temp_feel, <span class="at">data =</span> bikes,</span>
+<span id="cb16-4"><a></a>                       <span class="at">family =</span> gaussian,</span>
+<span id="cb16-5"><a></a>                       <span class="at">prior_intercept =</span> <span class="fu">normal</span>(<span class="dv">5000</span>, <span class="dv">1000</span>),</span>
+<span id="cb16-6"><a></a>                       <span class="at">prior =</span> <span class="fu">normal</span>(<span class="dv">100</span>, <span class="dv">40</span>), </span>
+<span id="cb16-7"><a></a>                       <span class="at">prior_aux =</span> <span class="fu">exponential</span>(<span class="dv">1</span>),</span>
+<span id="cb16-8"><a></a>                       <span class="at">chains =</span> <span class="dv">4</span>, <span class="at">iter =</span> <span class="dv">5000</span><span class="sc">*</span><span class="dv">2</span>, <span class="at">seed =</span> <span class="dv">84735</span>, <span class="at">refresh =</span> <span class="dv">0</span>)</span>
+<span id="cb16-9"><a></a></span>
+<span id="cb16-10"><a></a><span class="fu">tidy</span>(bike_model, <span class="at">conf.int =</span> <span class="cn">TRUE</span>, <span class="at">conf.level =</span> .<span class="dv">8</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 5
+  term        estimate std.error conf.low conf.high
+  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;
+1 (Intercept)  -2185.     217.    -2465.    -1902. 
+2 temp_feel       82.0      3.13     77.9      86.0</code></pre>
+</div>
+</div>
+</section>
+<section id="simulate-with-rstanarm-1" class="slide level2 smaller">
+<h2>Simulate with {rstanarm}</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a></a>bike_model</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>stan_glm
+ family:       gaussian [identity]
+ formula:      rides ~ temp_feel
+ observations: 500
+ predictors:   2
+------
+            Median  MAD_SD 
+(Intercept) -2185.4   216.9
+temp_feel      82.0     3.1
+
+Auxiliary parameter(s):
+      Median MAD_SD
+sigma 795.6   13.8 
+
+------
+* For help interpreting the printed output see ?print.stanreg
+* For info on the priors used see ?prior_summary.stanreg</code></pre>
+</div>
+</div>
+</section>
+<section id="add_fitted_draws" class="slide level2">
+<h2><code>add_fitted_draws</code></h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a></a><span class="fu">library</span>(tidybayes)</span>
+<span id="cb20-2"><a></a><span class="co"># 50 simulated model lines</span></span>
+<span id="cb20-3"><a></a>bikes <span class="sc">%&gt;%</span></span>
+<span id="cb20-4"><a></a>  <span class="fu">add_fitted_draws</span>(bike_model, <span class="at">n =</span> <span class="dv">50</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb20-5"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> temp_feel, <span class="at">y =</span> rides)) <span class="sc">+</span></span>
+<span id="cb20-6"><a></a>    <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> .value, <span class="at">group =</span> .draw), <span class="at">alpha =</span> <span class="fl">0.15</span>) <span class="sc">+</span> </span>
+<span id="cb20-7"><a></a>    <span class="fu">geom_point</span>(<span class="at">data =</span> bikes, <span class="at">size =</span> <span class="fl">0.05</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+
+</div>
+
+
+<img data-src="slides15_files/figure-revealjs/unnamed-chunk-15-1.png" width="960" class="r-stretch"></section>
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
 <div class="footer footer-default">
