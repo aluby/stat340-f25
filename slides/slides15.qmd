@@ -129,5 +129,119 @@ model_3 <- lm(rides ~ temp_feel + weekend, data = bikes)
 coef(summary(model_3))
 ```
 
-## Make it Bayesian
+## 
 
+Normal model: 
+
+$$Y_i | \mu, \sigma \sim N(\mu, \sigma^2)$$
+
+Normal regression model: 
+
+$$Y_i | \beta_0, \beta_1, \sigma \sim N(\mu_i, \sigma^2), \text{ with } \mu_i = \beta_0 + \beta_1 X_i$$
+
+Make it Bayesian: 
+
+$$\beta_0 \sim N(m_0, s_0^2)$$
+
+$$\beta_1 \sim N(m_1, s_1^2)$$
+
+$$\sigma \sim \text{Exp}(l)$$
+
+## Model building: one step at a time
+
+Let $Y$ be a response variable and let $X$ be a predictor or set of predictors. We build a model of $Y$ by $X$ through the following general principles: 
+
+- Is $Y$ discrete or continuous? What is an approrpiate data model? (e.g. Normal, Poisson, Binomial, etc)
+- Rewrite the mean of $Y$ as a function of predictors $X$
+- Identify all unknown parameters (eg $\beta_0, \beta_1, \sigma$)
+- What values might each of these parameters take? What prior models represent those beliefs faithfully?
+
+## Prior + Likelihood = Posterior
+
+$$f(\beta_0, \beta_1, \sigma) = f(\beta_0) f(\beta_1) f(\sigma)$$
+$$L(\beta_0, \beta_1, \sigma | \vec{y}) = \prod f(y_i | \beta_0, \beta_1, \sigma)$$
+
+$$f(\beta_0, \beta_1, \sigma | \vec{y}) = $$
+
+## Simulate with {rstan}
+
+```{r}
+# STEP 1: DEFINE the model
+stan_bike_model <- "
+  data {
+    int<lower = 0> n;
+    vector[n] Y;
+    vector[n] X;
+  }
+  parameters {
+    real beta0;
+    real beta1;
+    real<lower = 0> sigma;
+  }
+  model {
+    Y ~ normal(beta0 + beta1 * X, sigma);
+    beta0 ~ normal(-2000, 1000);
+    beta1 ~ normal(100, 40);
+    sigma ~ exponential(1);
+  }
+"
+```
+
+## Simulate with {rstan}
+
+```{r}
+#| eval: false
+# STEP 2: SIMULATE the posterior
+stan_bike_sim <- 
+  stan(model_code = stan_bike_model, 
+       data = list(n = nrow(bikes), Y = bikes$rides, X = bikes$temp_feel), 
+       chains = 4, iter = 5000*2, seed = 84735)
+
+save(stan_bike_sim, file = "slides/15-bike-fit.rda")
+```
+
+```{r}
+#| echo: false
+
+load("15-bike-fit.rda")
+```
+
+```{r}
+library(broom.mixed)
+tidy(stan_bike_sim, conf.int = TRUE, conf.level = .8)
+```
+
+## Simulate with {rstanarm}
+
+```{r}
+library(rstanarm)
+
+bike_model <- stan_glm(rides ~ temp_feel, data = bikes,
+                       family = gaussian,
+                       prior_intercept = normal(5000, 1000),
+                       prior = normal(100, 40), 
+                       prior_aux = exponential(1),
+                       chains = 4, iter = 5000*2, seed = 84735, refresh = 0)
+
+tidy(bike_model, conf.int = TRUE, conf.level = .8)
+```
+
+## Simulate with {rstanarm} {.smaller}
+
+```{r}
+bike_model
+```
+
+## `add_fitted_draws`
+
+```{r}
+#| warning: false
+#| message: false
+library(tidybayes)
+# 50 simulated model lines
+bikes %>%
+  add_fitted_draws(bike_model, n = 50) %>%
+  ggplot(aes(x = temp_feel, y = rides)) +
+    geom_line(aes(y = .value, group = .draw), alpha = 0.15) + 
+    geom_point(data = bikes, size = 0.05)
+```
