@@ -84,9 +84,9 @@ temp_prior <- stan_glm(
 
 # 200 prior model lines
 weather_perth %>%
-  add_fitted_draws(temp_prior, n = 200) %>%
+  add_epred_draws(temp_prior, ndraws = 200) %>%
   ggplot(aes(x = temp9am, y = temp3pm)) +
-    geom_line(aes(y = .value, group = .draw), alpha = 0.15)
+    geom_line(aes(y = .epred, group = .draw), alpha = 0.15)
 ```
 
 (d) The plot in part c illuminates prior plausible regression lines $\beta_0 + \beta_1 X$. To explore our prior understanding of potential variability from this line, $\sigma$, the following chunk simulates 4 prior plausible sets of temperature data, 1 from each of 4 prior plausible parameter sets in temp_prior. Run it a few times and summarize your observations. 
@@ -96,7 +96,7 @@ weather_perth %>%
 
 # Plot 4 prior simulated datasets
 weather_perth %>%
-  add_predicted_draws(temp_prior, n = 4) %>%
+  add_predicted_draws(temp_prior, ndraws = 4) %>%
   ggplot(aes(x = temp9am, y = temp3pm)) +
     geom_point(aes(y = .prediction, group = .draw), size = 0.1) +
     facet_wrap(~ .draw)
@@ -112,7 +112,6 @@ weather_perth %>%
 #| eval: false
 
 # Simulate the posterior
-temp_posterior <- update(temp_prior, prior_PD = FALSE)
 ```
 
 (b) To ensure that we can "trust" the MCMC posterior simulation results, create trace plots and density plots of the multiple chains.
@@ -128,7 +127,7 @@ temp_posterior <- update(temp_prior, prior_PD = FALSE)
 ## 50 simulated posterior model lines
 
 ___ %>%
-  ___(___, n = 50) %>%
+  ___(___, ndraws = 50) %>%
   ggplot(aes(x = ___, y = ___)) +
     geom_line(aes(y = ___, group = ___), alpha = 0.15) +
     geom_point(data = weather_perth, size = 0.05)
@@ -202,7 +201,7 @@ set.seed(84735)
 one_simulation <- weather_perth %>% 
   mutate(mu = ___ + ___ * ___,
          simulated_temp3am = rnorm(500, mean = mu, sd = ___)) %>% 
-  select(temp9pm, temp3am, simulated_temp3am)
+  select(temp9am, temp3pm, simulated_temp3pm)
 ```
 
 Next, run this chunk of code to create a density plot of the predictions compared to the observed. 

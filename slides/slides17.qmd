@@ -31,6 +31,7 @@ library(janitor)
 library(patchwork)
 library(rstan)
 library(bayesplot)
+library(broom.mixed)
 
 theme_set(theme_minimal(base_size = 16, base_family = "Atkinson Hyperlegible"))
 ```
@@ -42,56 +43,40 @@ theme_set(theme_minimal(base_size = 16, base_family = "Atkinson Hyperlegible"))
 
 ## What is the purpose of exams? 
 
+- Isolate the knowledge that you have in your brain that you can recall "on the fly", as opposed to with reference materials
 - Provide the instructor with feedback about what concepts/topics the class as a whole understands, and which did not go as well. 
 - Provide the student with feedback about what concepts/topics you understand, and which might need more time/practice
 - Result in scores that summarize your performance about a (biased) selection of course material on a specific day
+- Major contributor to your final course grade, which should provide a signal to outsiders about your mastery of the course content
 
-## 
+## How I grade exams {.smaller}
 
-Let $Y_i$ be the $i$th student's exam score, and assume:
+- Take a first pass through all the problems
+  - For open-ended questions, isolate key points that I'm looking for, and try to give out 50% credit if you hit the most important idea
+  - Even if open-ended answer is very very close, take off a small amount of points for even small mistakes
+- Check results of each question. If either test "fails", go back and look at the question and perhaps reassign point distribution. Sometimes make question a bonus point
+  - multiple choice: majority of class got it right
+  - open-ended: majority of class earned majority of the points
+- Check overall distribution: 
+  - Is the median at least in the upper 80's? 
+  - Is the mean not too far from the median?
+  - Is the middle 80% in a reasonable range? 
 
-$$Y_i \sim N(\mu, \sigma^2)$$
-
-## Prior for $\mu$
-
-Typically, I like my exams to have a mean around 86-87%, but feel they are "fair" if the mean is around 85%. In a class like Stat120 that I have taught a bunch, it is almost always between 85-89%. In classes that I don't teach as often, I'm more likely to write an exam that is too hard or too easy, and I think the mean could be as low as 65% or as high as 95%. 
-
-$$\mu \sim N(.85, .1)$$
-
-## Prior for $$\sigma$$
-
-I think most students will score within 10% of the mean (ideally 75-95%), and almost all within 20% of the mean (65-100%).
-
-```{r}
-#| layout-ncol: 2
+## Exam results
 
 
-summarize_gamma(1.5, 5)
-plot_gamma(1.5, 5, mean = TRUE, mode = TRUE)
-```
-
-## 
+- Mean: 84.2%
+- Median: 86.3%
 
 ```{r}
-grades_model <- "
-  data {
-    int<lower=1> n;
-    real<lower=0, upper=1> Y[n];
-  }
+#| echo: false 
 
-  parameters {
-    real<lower=0, upper=1> mu;
-    real<lower=0> sigma;
-  }
+y <- c(56, 54.75, 42, 55.25, 56.25, 56, 52.75, 56.5, 45, 46.25, 56.5, 53.75, 63, 46.25, 43.75, 47.5, 55, 63, 57, 57.25, 62, 52.75, 60.5)/64
 
-  model {
-    Y ~ normal(mu, sigma) T[0,1];
-    mu ~ normal(.85, .1) T[0,1];
-    sigma ~ gamma(1.5, 5);
-  }
-"
+ggplot() + 
+  stat_density(aes(x = y), adjust = 1.5, alpha = .8, fill = "darkblue") +
+  xlim(c(0,1))
 ```
-
 
 
 ## How I interpret exam grades: {.smaller}
@@ -114,4 +99,162 @@ grades_model <- "
 - you can take a 15 minute make-up quiz on Friday of Week 7 to earn back 30% of the points you lost, with corrected grades capped at 88%
 
 
+# Evaluating regression models {.colorslide}
 
+## Last time: normal regression model
+
+Normal regression model: 
+
+$$Y_i | \beta_0, \beta_1, \sigma \sim N(\mu_i, \sigma^2)$$
+
+$$\mu_i = \beta_0 + \beta_1 X_i$$
+
+
+$$\beta_0 \sim N(m_0, s_0^2)$$
+
+$$\beta_1 \sim N(m_1, s_1^2)$$
+
+$$\sigma \sim \text{Exp}(l)$$
+
+## Last time: bikeshare rides against feels like temperature
+
+$$\beta_{0c} \sim N(5000,1000^2)$$
+
+$$\beta_1 \sim N(100,40)$$
+
+$$\sigma \sim \text{Exp}(1)$$
+
+## Setup prior model with {rstanarm}
+
+```{r}
+library(rstanarm)
+bike_prior <- stan_glm(rides ~ temp_feel, 
+                       data = bikes,
+                       family = gaussian,
+                       prior_intercept = normal(5000, 1000),
+                       prior = normal(100, 40), 
+                       prior_aux = exponential(1),
+                       prior_PD = TRUE,
+                       chains = 4, iter = 5000*2, seed = 84735, refresh = 0)
+```
+
+## Check prior understanding
+
+::: callout-warning
+## Warning! 
+
+Slightly different from code in book
+:::
+
+```{r}
+library(tidybayes)
+bikes |>
+  add_epred_draws(bike_prior, ndraws = 200) |>
+  ggplot(aes(x = temp_feel, y = rides)) +
+    geom_line(aes(y = .epred, group = .draw), alpha = 0.15)
+```
+
+## Data
+
+```{r}
+ggplot(bikes, aes(x = temp_feel, y = rides)) + 
+  geom_point() + 
+  geom_smooth(method = "lm")
+```
+
+## Fit with {rstanarm}
+
+```{r}
+bike_posterior <- update(bike_prior, prior_PD = FALSE)
+
+tidy(bike_posterior, effects = c("fixed", "aux"),
+     conf.int = TRUE, conf.level = 0.80)
+```
+
+## Simulated model lines
+
+```{r}
+bikes %>%
+  add_epred_draws(bike_posterior, ndraws = 50) %>%
+  ggplot(aes(x = temp_feel, y = rides)) +
+    geom_line(aes(y = .epred, group = .draw), alpha = 0.15) +
+    geom_point(size = 0.05)
+```
+
+## Posterior prediction: "by hand"
+
+If we know tomorrow is going to be 70 degrees in DC, what is a plausible range for the actual number of rides?
+
+```{r}
+#| output-location: slide
+
+
+# Store the MCMC chains as a data frame
+ bike_chains <- as.data.frame(bike_posterior)
+
+# Simulate the posterior predictive model
+ set.seed(84735)
+ predict_70 <- bike_chains %>% 
+   mutate(y_prediction = rnorm(20000, mean = `(Intercept)` + temp_feel * 70, sd = sigma))
+ head(predict_70, 3)
+```
+
+## Posterior prediction: "by hand"
+
+If we know tomorrow is going to be 70 degrees in DC, what is a plausible range for the actual number of rides?
+  
+```{r}
+# Plot the posterior predictive model
+ ggplot(predict_70, aes(x = y_prediction)) + 
+   geom_density()
+```
+
+## Posterior prediction: shortcut
+
+```{r}
+# Simulate a set of predictions
+set.seed(84735)
+shortcut_prediction <- posterior_predict(
+    bike_posterior, newdata = data.frame(temp_feel = 70))
+
+# Construct a 90% posterior credible interval
+posterior_interval(shortcut_prediction, prob = .8)
+
+# Plot the approximate predictive model
+mcmc_areas(shortcut_prediction, prob = .8)
+```
+
+## Posterior predictive check to assess model fit
+
+We can also use posterior predictions *on the entire original dataset* to evaluate how well our model is performing. 
+
+```{r}
+first_set <- head(bike_chains, 1)
+
+beta_0 <- first_set$`(Intercept)`
+beta_1 <- first_set$temp_feel
+sigma  <- first_set$sigma
+
+set.seed(84735)
+one_simulation <- bikes %>% 
+  mutate(mu = beta_0 + beta_1 * temp_feel,
+         simulated_rides = rnorm(500, mean = mu, sd = sigma)) %>% 
+  select(temp_feel, rides, simulated_rides)
+
+one_simulation
+```
+
+##
+
+```{r}
+ggplot(one_simulation, aes(x = simulated_rides)) + 
+  geom_density(color = "lightblue") + 
+  geom_density(aes(x = rides), color = "darkblue")
+```
+
+## PPCheck: shortcut
+
+```{r}
+pp_check(bike_posterior, nreps = 50) + 
+  xlab("rides")
+```
