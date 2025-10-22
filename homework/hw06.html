@@ -478,6 +478,12 @@ window.Quarto = {
  <span class="menu-text">Group Work 05</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../groupwork/gw06.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Group Work 05</span></a>
+  </div>
+</li>
       </ul>
 </li>
       </ul>
@@ -521,8 +527,8 @@ window.Quarto = {
 <li><a href="#br-exercise-9.9" id="toc-br-exercise-9.9" class="nav-link active" data-scroll-target="#br-exercise-9.9">BR Exercise 9.9</a></li>
   <li><a href="#br-exercise-9.10" id="toc-br-exercise-9.10" class="nav-link" data-scroll-target="#br-exercise-9.10">BR Exercise 9.10</a></li>
   <li><a href="#br-exercise-9.11" id="toc-br-exercise-9.11" class="nav-link" data-scroll-target="#br-exercise-9.11">BR Exercise 9.11</a></li>
-  <li><a href="#tba-wed" id="toc-tba-wed" class="nav-link" data-scroll-target="#tba-wed">TBA Wed</a></li>
-  <li><a href="#tba-wed-1" id="toc-tba-wed-1" class="nav-link" data-scroll-target="#tba-wed-1">TBA Wed</a></li>
+  <li><a href="#br-exercise-9.13" id="toc-br-exercise-9.13" class="nav-link" data-scroll-target="#br-exercise-9.13">BR Exercise 9.13</a></li>
+  <li><a href="#br-exercise-10.15-adapted-to-use-bikes-data" id="toc-br-exercise-10.15-adapted-to-use-bikes-data" class="nav-link" data-scroll-target="#br-exercise-10.15-adapted-to-use-bikes-data">BR Exercise 10.15 (adapted to use <code>bikes</code> data)</a></li>
   </ul><div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="hw06.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
     </div>
 <!-- main -->
@@ -566,8 +572,27 @@ window.Quarto = {
 <p>With the priors in place, let’s examine the data. (a) Plot and discuss the observed relationship between ridership and humidity in the bikes data. (b) Does simple Normal regression seem to be a reasonable approach to modeling this relationship? Explain.</p>
 </section><section id="br-exercise-9.11" class="level1"><h1>BR Exercise 9.11</h1>
 <p>We can now simulate our posterior model of the relationship between ridership and humidity, a balance between our prior understanding and the data. (a) Use <code>stan_glm()</code> to simulate the Normal regression posterior model. Do so with 5 chains run for 8000 iterations each. <em>HINT:</em> You can either do this from scratch or <code><a href="https://rdrr.io/r/stats/update.html">update()</a></code> your prior simulation from Exercise 9.9 using <code>prior_PD = FALSE</code>. (b) Perform and discuss some MCMC diagnostics to determine whether or not we can “trust” these simulation results. (c) Plot 100 posterior model lines for the relationship between ridership and humidity. Compare and contrast these to the prior model lines from Exercise 9.9.</p>
-</section><section id="tba-wed" class="level1"><h1>TBA Wed</h1>
-</section><section id="tba-wed-1" class="level1"><h1>TBA Wed</h1>
+</section><section id="br-exercise-9.13" class="level1"><h1>BR Exercise 9.13</h1>
+<p>Tomorrow is supposed to be 90% humidity in Washington, D.C. What levels of ridership should we expect?</p>
+<ol type="a">
+<li>Without using the <code>posterior_predict()</code> shortcut function, simulate two posterior models:</li>
+</ol>
+<ul>
+<li>the posterior model for the typical number of riders on 90% humidity days</li>
+<li>the posterior predictive model for the number of riders tomorrow.</li>
+</ul>
+<ol start="2" type="a">
+<li>Construct, discuss, and compare density plot visualizations for the two separate posterior models in part a.</li>
+<li>Calculate and interpret an 80% posterior prediction interval for the number of riders tomorrow.</li>
+<li>Use <code>posterior_predict()</code> to confirm the results from your posterior predictive model of tomorrow’s ridership.</li>
+</ol></section><section id="br-exercise-10.15-adapted-to-use-bikes-data" class="level1"><h1>BR Exercise 10.15 (adapted to use <code>bikes</code> data)</h1>
+<p>Before putting too much stock into your regression analysis, step back and consider whether it’s wrong.</p>
+<ol type="a">
+<li>Your posterior simulation contains multiple sets of posterior plausible parameter sets, <span class="math inline">\((\beta_0, \beta_1, \sigma)\)</span>. Use the first of these to simulate a sample of 500 new daily bike rides from the observed humidities.</li>
+<li>Construct a density plot of your simulated sample and superimpose this with a density plot of the actual observed <code>bikes</code> data. What do you notice?</li>
+<li>Think bigger. Use <code><a href="https://mc-stan.org/bayesplot/reference/pp_check.html">pp_check()</a></code> to implement a more complete posterior predictive check.</li>
+<li>Putting this together, do you think that the assumptions of the Normal regression model are reasonable? Explain.</li>
+</ol>
 
 
 <!-- -->
@@ -1085,9 +1110,26 @@ window.Quarto = {
 <span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>(b) Perform and discuss some MCMC diagnostics to determine whether or not we can "trust" these simulation results.</span>
 <span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>(c) Plot 100 posterior model lines for the relationship between ridership and humidity. Compare and contrast these to the prior model lines from Exercise 9.9.</span>
 <span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a><span class="fu"># TBA Wed</span></span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a><span class="fu"># BR Exercise 9.13</span></span>
 <span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a><span class="fu"># TBA Wed</span></span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>Tomorrow is supposed to be 90% humidity in Washington, D.C. What levels of ridership should we expect?</span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>(a) Without using the <span class="in">`posterior_predict()`</span> shortcut function, simulate two posterior models:</span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>the posterior model for the typical number of riders on 90% humidity days</span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>the posterior predictive model for the number of riders tomorrow.</span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a>(b) Construct, discuss, and compare density plot visualizations for the two separate posterior models in part a.</span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a>(c) Calculate and interpret an 80% posterior prediction interval for the number of riders tomorrow.</span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a>(d) Use <span class="in">`posterior_predict()`</span> to confirm the results from your posterior predictive model of tomorrow’s ridership.</span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a><span class="fu"># BR Exercise 10.15 (adapted to use `bikes` data)</span></span>
+<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a>Before putting too much stock into your regression analysis, step back and consider whether it’s wrong.</span>
+<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a>(a) Your posterior simulation contains multiple sets of posterior plausible parameter sets, $(\beta_0, \beta_1, \sigma)$. Use the first of these to simulate a sample of 500 new daily bike rides from the observed humidities.</span>
+<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a>(b) Construct a density plot of your simulated sample and superimpose this with a density plot of the actual observed <span class="in">`bikes`</span> data. What do you notice?</span>
+<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a>(c) Think bigger. Use <span class="in">`pp_check()`</span> to implement a more complete posterior predictive check.</span>
+<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a>(d) Putting this together, do you think that the assumptions of the Normal regression model are reasonable? Explain.</span>
 </code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
