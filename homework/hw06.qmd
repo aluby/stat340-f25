@@ -37,7 +37,23 @@ We can now simulate our posterior model of the relationship between ridership an
 (b) Perform and discuss some MCMC diagnostics to determine whether or not we can "trust" these simulation results.
 (c) Plot 100 posterior model lines for the relationship between ridership and humidity. Compare and contrast these to the prior model lines from Exercise 9.9.
 
-# TBA Wed
+# BR Exercise 9.13
 
-# TBA Wed
+Tomorrow is supposed to be 90% humidity in Washington, D.C. What levels of ridership should we expect?
 
+(a) Without using the `posterior_predict()` shortcut function, simulate two posterior models:
+  - the posterior model for the typical number of riders on 90% humidity days
+  - the posterior predictive model for the number of riders tomorrow.
+(b) Construct, discuss, and compare density plot visualizations for the two separate posterior models in part a.
+(c) Calculate and interpret an 80% posterior prediction interval for the number of riders tomorrow.
+(d) Use `posterior_predict()` to confirm the results from your posterior predictive model of tomorrow’s ridership.
+
+
+# BR Exercise 10.15 (adapted to use `bikes` data)
+
+Before putting too much stock into your regression analysis, step back and consider whether it’s wrong.
+
+(a) Your posterior simulation contains multiple sets of posterior plausible parameter sets, $(\beta_0, \beta_1, \sigma)$. Use the first of these to simulate a sample of 500 new daily bike rides from the observed humidities.
+(b) Construct a density plot of your simulated sample and superimpose this with a density plot of the actual observed `bikes` data. What do you notice?
+(c) Think bigger. Use `pp_check()` to implement a more complete posterior predictive check.
+(d) Putting this together, do you think that the assumptions of the Normal regression model are reasonable? Explain.

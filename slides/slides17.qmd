@@ -1,0 +1,117 @@
+---
+title: Evaluating Regression Models
+subtitle: Day 17
+title-slide-attributes:
+  data-background-color: "#e2583eff"
+  data-slide-number: none
+format: 
+  revealjs:
+    incremental: false
+    scrollable: false
+auto-stretch: true
+editor_options: 
+  chunk_output_type: console
+editor: 
+  markdown: 
+    wrap: 72
+execute: 
+  warning: false
+  message: false
+---
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+
+library(countdown)
+library(tidyverse)
+library(bayesrules)
+library(janitor)
+library(patchwork)
+library(rstan)
+library(bayesplot)
+
+theme_set(theme_minimal(base_size = 16, base_family = "Atkinson Hyperlegible"))
+```
+
+## Plan for today
+
+- Exam recap
+- Evaluating regression models
+
+## What is the purpose of exams? 
+
+- Provide the instructor with feedback about what concepts/topics the class as a whole understands, and which did not go as well. 
+- Provide the student with feedback about what concepts/topics you understand, and which might need more time/practice
+- Result in scores that summarize your performance about a (biased) selection of course material on a specific day
+
+## 
+
+Let $Y_i$ be the $i$th student's exam score, and assume:
+
+$$Y_i \sim N(\mu, \sigma^2)$$
+
+## Prior for $\mu$
+
+Typically, I like my exams to have a mean around 86-87%, but feel they are "fair" if the mean is around 85%. In a class like Stat120 that I have taught a bunch, it is almost always between 85-89%. In classes that I don't teach as often, I'm more likely to write an exam that is too hard or too easy, and I think the mean could be as low as 65% or as high as 95%. 
+
+$$\mu \sim N(.85, .1)$$
+
+## Prior for $$\sigma$$
+
+I think most students will score within 10% of the mean (ideally 75-95%), and almost all within 20% of the mean (65-100%).
+
+```{r}
+#| layout-ncol: 2
+
+
+summarize_gamma(1.5, 5)
+plot_gamma(1.5, 5, mean = TRUE, mode = TRUE)
+```
+
+## 
+
+```{r}
+grades_model <- "
+  data {
+    int<lower=1> n;
+    real<lower=0, upper=1> Y[n];
+  }
+
+  parameters {
+    real<lower=0, upper=1> mu;
+    real<lower=0> sigma;
+  }
+
+  model {
+    Y ~ normal(mu, sigma) T[0,1];
+    mu ~ normal(.85, .1) T[0,1];
+    sigma ~ gamma(1.5, 5);
+  }
+"
+```
+
+
+
+## How I interpret exam grades: {.smaller}
+
+- **High 80s and above**: great job! You demonstrated a really solid understanding of the material. You might have made a few small mistakes or 1-2 larger errors, but I do not have major concerns about your understanding.
+- **70 to mid-80s**: You probably had some high points and some weak points on the exam. I am not overly concerned about your learning, but there is room for improvement. A good final course grade is still well within your reach, but you might want to make some changes in how you're preparing for exams. 
+- **Below 70**: There are either multiple key concepts that you are missing, or you had a bad exam day. To end up with a good final grade in the class, you'll want to make major changes to how you're approaching coursework and/or preparing for the next exam
+
+## Corrections are designed to: 
+
+- give you a chance to revisit key concepts that you missed on the exam
+- mitigate the impact that a bad exam day has on your final grade
+
+**If your score was below 80%**: 
+
+- you can submit written corrections to earn back 30% of the points you lost, with corrected grades capped at 80% 
+
+**If your score was below 88%**: 
+
+- you can take a 15 minute make-up quiz on Friday of Week 7 to earn back 30% of the points you lost, with corrected grades capped at 88%
+
+
+
