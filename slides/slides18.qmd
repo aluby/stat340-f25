@@ -1,0 +1,72 @@
+---
+title: Evaluating Regression Models
+subtitle: Day 18
+title-slide-attributes:
+  data-background-color: "#e2583eff"
+  data-slide-number: none
+format: 
+  revealjs:
+    incremental: false
+    scrollable: false
+auto-stretch: true
+editor_options: 
+  chunk_output_type: console
+editor: 
+  markdown: 
+    wrap: 72
+execute: 
+  warning: false
+  message: false
+---
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+
+library(countdown)
+library(tidyverse)
+library(bayesrules)
+library(janitor)
+library(patchwork)
+library(rstan)
+library(bayesplot)
+library(broom.mixed)
+
+theme_set(theme_minimal(base_size = 16, base_family = "Atkinson Hyperlegible"))
+```
+
+## Midterm check-in {.smaller}
+
+::::: columns
+::: {.column width="50%"}
+**Going well:**
+
+- Homework is manageable/not too difficult/have a good understanding x11
+- Like the mix of HW/GW/quizzes x8
+- Enjoy lectures x4
+- Learning about big picture ideas/Bayesian statistics in general x3
+- Coding x3
+- Combination of computation/math x2
+- Pace of the course 
+- Website organization
+:::
+
+::: {.column width="50%"}
+**Suggested changes:**
+
+- More guidance for exam prep x8
+- Changing due dates x3
+- Keep groups for longer or choose own groups x2
+- Fewer HW questions x2
+- Lecture is "big picture" and hard to directly apply on HW/GW
+- Don't like group work component
+- Longer handout in addition to slides
+- More in-class examples
+:::
+:::::
+
+::: .center
+Overall response rate: 91.3%
+:::
+
