@@ -1396,208 +1396,74 @@
     "text": "Summary\nThree steps to a Bayesian analysis:\n\nConstruct a prior model for the variable of interest (possible values and the relative plausibility of each)\nUpon observing data \\(Y = y\\), define the likelihoood \\(L(\\pi |y) = P(y | \\pi)\\)\nBuild the posterior model of the variable of interest using Bayes Rule, which balances the prior and likelihood: \\[\\text{posterior} = \\frac{\\text{prior} \\cdot \\text{likelihood}}{\\text{normalizing constant}} \\propto \\text{prior} \\cdot \\text{likelihood}\\]"
   },
   {
-    "objectID": "slides/slides09.html#markov-chain-monte-carlo",
-    "href": "slides/slides09.html#markov-chain-monte-carlo",
-    "title": "Care and feeding of your MCMCs",
-    "section": "Markov Chain Monte Carlo",
-    "text": "Markov Chain Monte Carlo\nA MCMC sample \\(\\{ \\theta^{(1)}, \\theta^{(1)}, ..., \\theta^{(N)}\\}\\) is a sequence of values drawn from conditional pdf:\n\\[f(\\theta^{(i+1)}|\\theta^{(i)}, y)\\] when done well, it converges approximately to the posterior \\(f(\\theta |y)\\)"
+    "objectID": "slides/slides-cheat-sheet.html#columns",
+    "href": "slides/slides-cheat-sheet.html#columns",
+    "title": "Slides Cheat Sheet",
+    "section": "Columns",
+    "text": "Columns\n\n\n\nFirst year at Carleton!\nTaught at Swarthmore for 5 years before moving here this fall\nPhD in Statistics & Data Science from Carnegie Mellon University\nGrew up in Minnesota, went to St Ben’s as an undergrad"
   },
   {
-    "objectID": "slides/slides09.html#mcmc-plan",
-    "href": "slides/slides09.html#mcmc-plan",
-    "title": "Care and feeding of your MCMCs",
-    "section": "MCMC plan",
-    "text": "MCMC plan\n\nYesterday: how to find them with {rstan}\nToday: how to evaluate them\nNext week: how they work"
+    "objectID": "slides/slides-cheat-sheet.html#only-graph-from-code",
+    "href": "slides/slides-cheat-sheet.html#only-graph-from-code",
+    "title": "Slides Cheat Sheet",
+    "section": "Only graph from code",
+    "text": "Only graph from code"
   },
   {
-    "objectID": "slides/slides09.html#beta-binomial-example-in-rstan",
-    "href": "slides/slides09.html#beta-binomial-example-in-rstan",
-    "title": "Care and feeding of your MCMCs",
-    "section": "Beta-Binomial Example in {rstan}",
-    "text": "Beta-Binomial Example in {rstan}\n\n# STEP 1: DEFINE the model\nbb_model &lt;- \"\n  data {\n    real&lt;lower=0&gt; alpha;\n    real&lt;lower=0&gt; beta;\n    int&lt;lower=1&gt; n;\n    int&lt;lower=0, upper=n&gt; Y;\n  }\n\n  parameters {\n    real&lt;lower=0, upper=1&gt; pi;\n  }\n\n  model {\n    Y ~ binomial(n, pi);\n    pi ~ beta(alpha, beta);\n  }\n\"\n\n\n# STEP 2: SIMULATE the posterior\nbb_sim &lt;- stan(model_code = bb_model, \n               data = list(alpha = 2, beta = 2, Y = 9, n = 10), \n               chains = 4, iter = 1000*2, seed = 84735)"
+    "objectID": "slides/slides-cheat-sheet.html#background-image-half",
+    "href": "slides/slides-cheat-sheet.html#background-image-half",
+    "title": "Slides Cheat Sheet",
+    "section": "Background Image (half)",
+    "text": "Background Image (half)\n\n\nWhat skills do you need?\n\nprogramming with data\nstatistical modeling\ndomain knowledge\ncommunication"
   },
   {
-    "objectID": "slides/slides09.html#section",
-    "href": "slides/slides09.html#section",
-    "title": "Care and feeding of your MCMCs",
-    "section": "",
-    "text": "bb_sim\n\nInference for Stan model: anon_model.\n4 chains, each with iter=2000; warmup=1000; thin=1; \npost-warmup draws per chain=1000, total post-warmup draws=4000.\n\n      mean se_mean   sd   2.5%   25%   50%   75% 97.5% n_eff Rhat\npi    0.79    0.00 0.11   0.55  0.72  0.80  0.87  0.95  1304    1\nlp__ -7.85    0.02 0.80 -10.13 -8.05 -7.53 -7.33 -7.27  1419    1\n\nSamples were drawn using NUTS(diag_e) at Thu Oct  2 20:42:34 2025.\nFor each parameter, n_eff is a crude measure of effective sample size,\nand Rhat is the potential scale reduction factor on split chains (at \nconvergence, Rhat=1)."
+    "objectID": "slides/slides-cheat-sheet.html#full-size-image",
+    "href": "slides/slides-cheat-sheet.html#full-size-image",
+    "title": "Slides Cheat Sheet",
+    "section": "Full size image",
+    "text": "Full size image\n\n\n\nImage by Adam Loy  adapted from work of Joe Blitzstein, Hanspeter Pfister, and Hadley Wickham"
   },
   {
-    "objectID": "slides/slides09.html#section-1",
-    "href": "slides/slides09.html#section-1",
-    "title": "Care and feeding of your MCMCs",
-    "section": "",
-    "text": "mcmc_dens(bb_sim, pars = \"pi\") +\n  stat_function(fun = dbeta, args = list(11, 3), col = \"darkorange\", linewidth = 2)"
+    "objectID": "slides/slides-cheat-sheet.html#background-image-full-size",
+    "href": "slides/slides-cheat-sheet.html#background-image-full-size",
+    "title": "Slides Cheat Sheet",
+    "section": "Background image (full size)",
+    "text": "Background image (full size)"
   },
   {
-    "objectID": "slides/slides09.html#in-practice-we-dont-know-the-true-posterior",
-    "href": "slides/slides09.html#in-practice-we-dont-know-the-true-posterior",
-    "title": "Care and feeding of your MCMCs",
-    "section": "In practice, we don’t know the true posterior",
-    "text": "In practice, we don’t know the true posterior\n\nWhat does a good markov chain look like?\nHow can we tell if we are getting a reasonable approximation of the posterior?\nHow big should our Markov chain size be?\n\n\n\nSome examples from today are from Statistical Rethinking"
+    "objectID": "slides/slides-cheat-sheet.html#countdown",
+    "href": "slides/slides-cheat-sheet.html#countdown",
+    "title": "Slides Cheat Sheet",
+    "section": "Countdown",
+    "text": "Countdown\n\nWith your neighbor(s):\nChoose two countries to compare to the U.S. voting record in the U.N. over the years.\nWhat did you learn?\n\n\n\n\n−+\n04:00"
   },
   {
-    "objectID": "slides/slides09.html#traceplots",
-    "href": "slides/slides09.html#traceplots",
-    "title": "Care and feeding of your MCMCs",
-    "section": "Traceplots",
-    "text": "Traceplots\n\n\n\nmcmc_trace(bb_sim, pars = \"pi\")\n\n\n\n\n\n\n\n\n\n\nIdeally, \\(\\theta^{(i+1)}\\) does not depend on \\(\\theta^{(i)}\\) too much\nShould look like a “fat hairy caterpillar”"
+    "objectID": "slides/slides-cheat-sheet.html#table-column-widths",
+    "href": "slides/slides-cheat-sheet.html#table-column-widths",
+    "title": "Slides Cheat Sheet",
+    "section": "table column widths",
+    "text": "table column widths\n\n\n\n\n\n\n\n\nCollaboration Allowed\n\n\n\n\nHomework Problems\nYou are allowed and encouraged to collaborate on homework. You may also use outside resources, but your submitted work must be your own and reflect your own understanding .\n\n\nLab Quiz Problems\nNo collaboration is allowed at all . You may use your own notes for resubmissions, but should not use outside resources.\n\n\nPortfolio Projects\nYou are expected to collaborate with your group, but cannot rely on external sources other than to help motivate the questions or provide other background information. Getting answers on significant parts of solutions from outside resources is not allowed.\n\n\nFinal Project\nYou are expected to collaborate with your group, but cannot rely on external sources other than to help motivate the questions or provide other background information. Any outside resources should be properly cited."
   },
   {
-    "objectID": "slides/slides09.html#first-20-draws-burn-in-warmup",
-    "href": "slides/slides09.html#first-20-draws-burn-in-warmup",
-    "title": "Care and feeding of your MCMCs",
-    "section": "First 20 draws (burn-in / warmup)",
-    "text": "First 20 draws (burn-in / warmup)"
+    "objectID": "slides/slides-cheat-sheet.html#use-of-generative-artificial-intelligence-ai",
+    "href": "slides/slides-cheat-sheet.html#use-of-generative-artificial-intelligence-ai",
+    "title": "Slides Cheat Sheet",
+    "section": "Use of generative artificial intelligence (AI)",
+    "text": "Use of generative artificial intelligence (AI)\n\nTreat generative AI, such as ChatGPT or Gemini, the same as other online resources.\nGuiding principles:\n\n(1) Cognitive dimension: Working with AI should not reduce your ability to think clearly. AI should facilitate—rather than hinder—learning.\n(2) Ethical dimension: Students using AI should be transparent about their use and make sure it aligns with academic integrity.\n\n❌ AI tools for writing code: You may not use generative AI to take a “first pass” at a coding task. Do not type coursework prompts directly into AI tools.\n✅ AI tools for debugging code: You may make use of the technology to get help with error messages or trying to fix issues\n❌ AI tools for narrative: Unless instructed otherwise, you may not use generative AI to write narrative on assignments. In general, you may use generative AI as a resource as you complete assignments but not to answer the exercises for you.\n\n\n\nAdapted from Mine Çetinkaya-Rundel"
   },
   {
-    "objectID": "slides/slides09.html#first-200-draws-burn-in-warmup",
-    "href": "slides/slides09.html#first-200-draws-burn-in-warmup",
-    "title": "Care and feeding of your MCMCs",
-    "section": "First 200 draws (burn-in / warmup)",
-    "text": "First 200 draws (burn-in / warmup)"
+    "objectID": "slides/slides-cheat-sheet.html#linktask",
+    "href": "slides/slides-cheat-sheet.html#linktask",
+    "title": "Slides Cheat Sheet",
+    "section": "Link/task",
+    "text": "Link/task\n\nhttps://github.com/stat220-w25\n\n\nFill out the Welcome Survey for collection of your account names, later this week you will be invited to the course organization."
   },
   {
-    "objectID": "slides/slides09.html#mixing-slowly",
-    "href": "slides/slides09.html#mixing-slowly",
-    "title": "Care and feeding of your MCMCs",
-    "section": "“Mixing slowly”",
-    "text": "“Mixing slowly”"
-  },
-  {
-    "objectID": "slides/slides09.html#getting-stuck",
-    "href": "slides/slides09.html#getting-stuck",
-    "title": "Care and feeding of your MCMCs",
-    "section": "“Getting Stuck”",
-    "text": "“Getting Stuck”"
-  },
-  {
-    "objectID": "slides/slides09.html#each-chain-should-converge-on-roughly-the-same-distribution",
-    "href": "slides/slides09.html#each-chain-should-converge-on-roughly-the-same-distribution",
-    "title": "Care and feeding of your MCMCs",
-    "section": "Each chain should converge on roughly the same distribution",
-    "text": "Each chain should converge on roughly the same distribution\n\nmcmc_dens_overlay(bb_sim, pars = \"pi\")"
-  },
-  {
-    "objectID": "slides/slides09.html#how-many-chains-do-you-need",
-    "href": "slides/slides09.html#how-many-chains-do-you-need",
-    "title": "Care and feeding of your MCMCs",
-    "section": "How many chains do you need?",
-    "text": "How many chains do you need?\n\nWhen testing and debugging your model, use 1\nWhen deciding whether your chains are valid, need &gt;1\nWhen you do your final run that you will make inferences from, one long chain or multiple chains is fine\n\n\n\n\n\n\n\nRule of thumb:\n\n\nOne (short) chain to debug, four chains for verification and inference"
-  },
-  {
-    "objectID": "slides/slides09.html#autocorrelation",
-    "href": "slides/slides09.html#autocorrelation",
-    "title": "Care and feeding of your MCMCs",
-    "section": "Autocorrelation",
-    "text": "Autocorrelation\n\nmcmc_acf(bb_sim, pars = \"pi\")"
-  },
-  {
-    "objectID": "slides/slides09.html#slow-mixing-chains-often-have-high-autocorrelation",
-    "href": "slides/slides09.html#slow-mixing-chains-often-have-high-autocorrelation",
-    "title": "Care and feeding of your MCMCs",
-    "section": "Slow mixing chains often have high autocorrelation",
-    "text": "Slow mixing chains often have high autocorrelation"
-  },
-  {
-    "objectID": "slides/slides09.html#effective-sample-size",
-    "href": "slides/slides09.html#effective-sample-size",
-    "title": "Care and feeding of your MCMCs",
-    "section": "Effective Sample Size",
-    "text": "Effective Sample Size\n\n\n\n\n\n\n\\(N_{eff}\\)\n\n\nEffective Sample Size (\\(N_{eff}\\)) quantifies the number of independent samples it would take to produce an equivalently accurate posterior approximation\n\n\n\n\n\n\n\n\n\n\\(N_{eff}/N\\)\n\n\nEffective sample size ratio\n\n\n\n\nneff_ratio(bb_sim, pars = c(\"pi\"))\n\n[1] 0.3260274"
-  },
-  {
-    "objectID": "slides/slides09.html#r-hat",
-    "href": "slides/slides09.html#r-hat",
-    "title": "Care and feeding of your MCMCs",
-    "section": "R-hat",
-    "text": "R-hat\nIdea: In a “good” Markov chain, the variability across all chains is similar to the variability within a given chain. In a “bad” Markov chain, the variability across all chains is bigger than the variability within a given chain"
-  },
-  {
-    "objectID": "slides/slides09.html#r-hat-1",
-    "href": "slides/slides09.html#r-hat-1",
-    "title": "Care and feeding of your MCMCs",
-    "section": "R-hat",
-    "text": "R-hat\n\n\n\n\n\n\nGelman-Rubin convergence diagnostic\n\n\nR-hat \\(\\approx \\sqrt{\\frac{\\text{Var}_{\\text{combined}}}{\\text{Var}_{\\text{within}}}}\\)\nR-hat \\(\\approx\\) 1 is good; R-hat \\(&gt;1\\) indicates the chains have not converged\n\n\n\n\nrhat(bb_sim)\n\n       pi      lp__ \n0.9999668 1.0012277"
-  },
-  {
-    "objectID": "slides/slides09.html#section-2",
-    "href": "slides/slides09.html#section-2",
-    "title": "Care and feeding of your MCMCs",
-    "section": "",
-    "text": "fn_model &lt;- \"\n  data {\n    int&lt;lower=0&gt; N;\n    vector[N] y;\n  }\n\n  parameters {\n    real mu;\n    real&lt;lower=0&gt; sigma;\n  }\n\n  model {\n    y ~ normal(mu, sigma);\n    mu ~ normal(0, 1000);\n    sigma ~ exponential(.0001);\n  }\n\""
-  },
-  {
-    "objectID": "slides/slides09.html#section-3",
-    "href": "slides/slides09.html#section-3",
-    "title": "Care and feeding of your MCMCs",
-    "section": "",
-    "text": "# STEP 2: SIMULATE the posterior\nfn_sim &lt;- stan(model_code = fn_model, \n               data = list(N=2, y = c(-1,1)), \n               chains = 4, iter = 1000*2, seed = 84735)\n\nWarning :There were 521 divergent transitions after warmup. See\nhttps://mc-stan.org/misc/warnings.html#divergent-transitions-after-warmup\nto find out why this is a problem and how to eliminate them.\nWarning :Examine the pairs() plot to diagnose sampling problems\n\nWarning :Bulk Effective Samples Size (ESS) is too low, indicating posterior means and medians may be unreliable.\nRunning the chains for more iterations may help. See\nhttps://mc-stan.org/misc/warnings.html#bulk-ess\nWarning :Tail Effective Samples Size (ESS) is too low, indicating posterior variances and tail quantiles may be unreliable.\nRunning the chains for more iterations may help. See\nhttps://mc-stan.org/misc/warnings.html#tail-ess"
-  },
-  {
-    "objectID": "slides/slides09.html#mu",
-    "href": "slides/slides09.html#mu",
-    "title": "Care and feeding of your MCMCs",
-    "section": "\\(\\mu\\)",
-    "text": "\\(\\mu\\)\nmcmc_trace(fn_sim, pars = \"mu\")\nmcmc_dens_overlay(fn_sim, pars = \"mu\")"
-  },
-  {
-    "objectID": "slides/slides09.html#sigma",
-    "href": "slides/slides09.html#sigma",
-    "title": "Care and feeding of your MCMCs",
-    "section": "\\(\\sigma\\)",
-    "text": "\\(\\sigma\\)\nmcmc_trace(fn_sim, pars = \"sigma\")\nmcmc_dens_overlay(fn_sim, pars = \"sigma\")"
-  },
-  {
-    "objectID": "slides/slides09.html#section-4",
-    "href": "slides/slides09.html#section-4",
-    "title": "Care and feeding of your MCMCs",
-    "section": "",
-    "text": "fn_model2 &lt;- \"\n  data {\n    int&lt;lower=0&gt; N;\n    vector[N] y;\n  }\n\n  parameters {\n    real mu;\n    real&lt;lower=0&gt; sigma;\n  }\n\n  model {\n    y ~ normal(mu, sigma);\n    mu ~ normal(0, 10);\n    sigma ~ exponential(1);\n  }\n\""
-  },
-  {
-    "objectID": "slides/slides09.html#section-5",
-    "href": "slides/slides09.html#section-5",
-    "title": "Care and feeding of your MCMCs",
-    "section": "",
-    "text": "# STEP 2: SIMULATE the posterior\nfn_sim2 &lt;- stan(model_code = fn_model2, \n               data = list(N=2, y = c(-1,1)), \n               chains = 4, iter = 1000*2, seed = 84735)\n\nWarning :There were 3 divergent transitions after warmup. See\nhttps://mc-stan.org/misc/warnings.html#divergent-transitions-after-warmup\nto find out why this is a problem and how to eliminate them.\nWarning :Examine the pairs() plot to diagnose sampling problems"
-  },
-  {
-    "objectID": "slides/slides09.html#mu-1",
-    "href": "slides/slides09.html#mu-1",
-    "title": "Care and feeding of your MCMCs",
-    "section": "\\(\\mu\\)",
-    "text": "\\(\\mu\\)\nmcmc_trace(fn_sim2, pars = \"mu\")\nmcmc_dens_overlay(fn_sim2, pars = \"mu\")"
-  },
-  {
-    "objectID": "slides/slides09.html#sigma-1",
-    "href": "slides/slides09.html#sigma-1",
-    "title": "Care and feeding of your MCMCs",
-    "section": "\\(\\sigma\\)",
-    "text": "\\(\\sigma\\)\nmcmc_trace(fn_sim2, pars = \"sigma\")\nmcmc_dens_overlay(fn_sim2, pars = \"sigma\")"
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Stat 340: Bayesian Statistics",
-    "section": "",
-    "text": "This page contains an outline of the topics, content, and assignments for the term. Note that this schedule will be updated as the term progresses and the timeline of topics and assignments might be updated. Any major changes to due dates will be announced in class and indicated in bold here.\n\n\n\n\n\n\nWEEK\nDOW\nDATE\nPREPARE\nTOPIC\nMATERIALS\nDUE\n\n\n\n1\nM\nMon, Sep 15\n📝complete welcome survey  📚 Bayes Rules Ch1  💻 Join Slack workspace\n\nIntro to Bayesian Thinking\nSlides01\n\n\n\n1\nW\nWed, Sep 17\n📚 Bayes Rules Ch2  💻 Complete computing setup\n\nBayes Rule, R Setup\nSlides02\n\n\n\n1\nF\nFri, Sep 19\n\nProbability and Likelihood Review; Posterior Simulation\nSlides03\n\nHW 1 and GW 1\n\n\n\n2\nM\nMon, Sep 22\n📚 Bayes Rules Ch3 \n\nBeta-Binomial Model\nSlides04\n\n\n\n2\nW\nWed, Sep 24\n📚 Bayes Rules Ch4 \n\nBalance and Sequentiality\nSlides05\n\n\n\n2\nF\nFri, Sep 26\n📚 Bayes Rules Ch5.1-2 \n\nGamma-Gamma\nSlides06\n\nHW 2 and GW 2\n\n\n\n3\nM\nMon, Sep 29\n📚 Bayes Rules Ch5.3-5.6  📝 complete group eval \n\nNormal-Normal\nSlides07\n\n\n\n3\nW\nWed, Oct 1\n📚 Bayes Rules Ch6.1-2 \n\nGrid approximation and Markov Chains\nSlides08\n\n\n\n3\nF\nFri, Oct 3\n📚 Bayes Rules Ch6.3 \n\nDiagnostics\nSlides09\n\nHW 3 and GW 3\n\n\n\n4\nM\nMon, Oct 6\n📚 Bayes Rules Ch7.1-7.3  📝 complete group eval \n\nMCMC I\nSlides10\nHand out computing project\n\n\n4\nW\nWed, Oct 8\n📚 Bayes Rules Ch7.4-7 \n\nMCMC II\nSlides11\n\n\n\n4\nF\nFri, Oct 10\n\nExam I\n\n\nHW 4 and GW 4\n\n\n\n5\nM\nMon, Oct 13\n📚 Bayes Rules Ch8.1-8.2  📝 complete group eval (includes project partner question) \n\nPosterior Inference\nSlides13\n\n\n\n5\nW\nWed, Oct 15\n📚 Bayes Rules Ch8.3-8.5  📝 complete anonymous midterm check-in\n\nPosterior Prediction\nSlides14\n\n\n\n5\nF\nFri, Oct 17\n📚 Bayes Rules Ch9 \n\nRegression\nSlides15\n\nHW 5 and GW 5\n\n\n\n6\nM\nMon, Oct 20\n\n❌ Midterm Break; no class\n\n\n\n\n6\nW\nWed, Oct 22\n📚 Bayes Rules Ch9.5-10.2 \n\nEvaluating I\nSlides17\nComputing Project Due\n\n\n6\nF\nFri, Oct 24\n📚 Bayes Rules Ch10.3-10.4 \n\nEvaluating II\ntbd\n\nHW 6 and GW 6\n\n\n\n7\nM\nMon, Oct 27\n\nExtending Regression Model\ntbd\n\n\n\n7\nW\nWed, Oct 29\n\nPoisson Regression\ntbd\n\n\n\n7\nF\nFri, Oct 31\n\nNegative Binomial Regression\ntbd\n\nHW 7 and GW 7\n\n\n\n8\nM\nMon, Nov 3\n\nLogistic Regression\ntbd\n\n\n\n8\nW\nWed, Nov 5\n\nNaive Bayes Classification\ntbd\n\n\n\n8\nF\nFri, Nov 7\n\nExam II\ntbd\n\nHW 8 and GW 5\n\n\n\n9\nM\nMon, Nov 10\n\nHierarchical Models I\ntbd\n\n\n\n9\nW\nWed, Nov 12\n\nHierarchical Models II\ntbd\n\n\n\n9\nF\nFri, Nov 14\n\nHierarchical Models III\ntbd\n\n\n\n10\nM\nMon, Nov 17\n\nProject work day\ntbd\n\nHW 9 and GW 9\n\n\n\n10\nW\nWed, Nov 19\n\nLightning talks\ntbd\n\n\n\n\nM\nFri, Nov 21\n\nFinal Project Due @ noon\ntbd",
-    "crumbs": [
-      "Schedule"
-    ]
-  },
-  {
-    "objectID": "projects/proj1.html",
-    "href": "projects/proj1.html",
-    "title": "Project 1",
-    "section": "",
-    "text": "library(bayesrules) # R package for our textbook\nlibrary(tidyverse) # Collection of packages for tidying and plotting data\nlibrary(janitor) # Helper functions like tidy and tabyl\nlibrary(rstan) # for MCMC\nlibrary(bayesplot) # for plotting\n\nThe data in fish_poisson.csv are records of visits to a National Park and comes from the {rethinking} R package. The variable fish_caught gives the number of fish that was caught by a park visitor, and the hours variables gives the total number of hours that they spent in the park. Your task is to estimate the hourly average of fish caught for an individual while they are fishing. You can assume that the hourly number of fish caught is a Poisson distribution.\nHowever, the problem is that not every party tried to fish. So there are two ways that a zero can arise in the data: (1) the individual tried to fish but did not catch any, or (2) the individual did not try to fish at all. If we do not account for this, we’ll end up with an underestimate for fish extraction from the park.\nLet \\(\\theta\\) be the probability that a visitor does not fish. Let \\(\\lambda\\) be the mean number of fish caught, when a visitor is fishing. Then \\(Y|\\lambda \\sim \\text{Pois}(\\lambda)\\).\nThen, the probability of observing zero fish caught is:\n\\[\\theta + (1-\\theta) P(Y = 0 | \\lambda)\\]\nand the probability of observing a nonzero number of fish caught is:\n\\[(1-\\theta) P(Y=y | \\lambda)\\]\nThis is an example of a zero-inflated poisson distribution, and you will implement it for this case study project.\n(Note: Your model should also account for the differing amount of time individuals spend in the park.)\n\nfish_poisson &lt;- read_csv(\"https://aluby.github.io/stat340-f25/data/fish_poisson.csv\")\n\nFinding the posterior\nOption 1: Find the posterior distribution of \\(\\lambda\\) analytically\nOption 2: Implement your own MCMC sampler or grid approximation to estimate the posterior distribution of \\(\\lambda\\)\nOption 3: Use the stan starter code below. If you choose this option, you should also answer Question (1) below.\ndata {\n  int&lt;lower=1&gt; N;\n  array[N] int&lt;lower=0&gt; y;\n}\nparameters {\n  real&lt;lower=0, upper=1&gt; theta; // Pr(y = 0)\n  real&lt;lower=0&gt; lambda; // Poisson rate parameter (if y &gt; 0)\n}\nmodel {\n  lambda ~ _____________ ;\n  theta ~ ______________ ;\n\n  for (n in 1 : N) {\n    if (y[n] == 0) {\n      target += log_sum_exp(bernoulli_lpmf(1 | theta),\n                            bernoulli_lpmf(0 | theta)\n                              + poisson_lpmf(y[n] | lambda)); // log(Pr(y = 0))\n    } else {\n      target += bernoulli_lpmf(0 | theta)\n                  + poisson_lpmf(y[n] | lambda); // log(Pr(y &gt; 0))\n      y[n] ~ __________ ; // truncated poisson\n    }\n  }\n}\nQuestions to Consider\n\nThe target += lines in the stan code update the log posterior density for each run through the for loop. We need to include them when we do not use an explicit modeling statement (eg y ~ normal(0,1)). Explain or justify these lines of code. (You may have to dig into the stan reference manual)\nPerform an appropriate EDA to justify the use of a zero-inflated poisson analysis\nHow did you choose your prior distributions? Confirm they are reasonable through simulation.\n(If estimated with MCMC): Are you confident that your MCMC has converged? Provide justification\nWhat do you learn from \\(\\lambda\\)? What do you learn from \\(\\theta\\)? (these should be in context of the data)\nHow is your answer different than a “regular” Bayesian posterior analysis of \\(\\lambda\\)? (ie non zero-inflated)\nWhat would your model predict for a new visitor at the park?\nWhat are the benefits and drawbacks of using a fully specified Bayesian model in this scenario? What do we gain instead of, e.g., splitting up the data into zero fish caught and nonzero fish caught?\nReport\nYour submission should be a &lt;4 page report written in quarto/rmarkdown. Everything should be typed/proofread/labeled/captioned etc.\nEvaluation\nThere are two elements that make this a “project” rather than a “homework problem”:\n\nIt is more open-ended.\n\nIf you think an alternative approach is more appropriate for this data, go for it! There is no “right answer” that I am looking for. However, there are lots of ways to be wrong. You should think through your choices and provide justification for them.\nOn homework, you often have an example from class or the textbook to use as a “model”. On this project, I’m asking you to do something new!\n\n\nPart of your grade will be based on the presentation of your work. All portions of the report should be polished and proofread carefully.",
-    "crumbs": [
-      "Projects",
-      "Projects",
-      "Project 1"
-    ]
+    "objectID": "slides/slides-cheat-sheet.html#handwriting-font",
+    "href": "slides/slides-cheat-sheet.html#handwriting-font",
+    "title": "Slides Cheat Sheet",
+    "section": "handwriting font",
+    "text": "handwriting font\n\nin case you don’t yet have a GitHub account…"
   },
   {
     "objectID": "slides/slides08.html#recap-conjugate-models",
@@ -1782,74 +1648,369 @@
     "text": "Plotting with the {bayesplot} package\n\n# Density plot of the Markov chain values\nmcmc_dens(bb_sim, \n                pars = \"pi\") + \n  yaxis_text(TRUE) + \n  ylab(\"density\")"
   },
   {
-    "objectID": "slides/slides-cheat-sheet.html#columns",
-    "href": "slides/slides-cheat-sheet.html#columns",
-    "title": "Slides Cheat Sheet",
-    "section": "Columns",
-    "text": "Columns\n\n\n\nFirst year at Carleton!\nTaught at Swarthmore for 5 years before moving here this fall\nPhD in Statistics & Data Science from Carnegie Mellon University\nGrew up in Minnesota, went to St Ben’s as an undergrad"
+    "objectID": "projects/proj1.html",
+    "href": "projects/proj1.html",
+    "title": "Project 1",
+    "section": "",
+    "text": "library(bayesrules) # R package for our textbook\nlibrary(tidyverse) # Collection of packages for tidying and plotting data\nlibrary(janitor) # Helper functions like tidy and tabyl\nlibrary(rstan) # for MCMC\nlibrary(bayesplot) # for plotting\n\nThe data in fish_poisson.csv are records of visits to a National Park and comes from the {rethinking} R package. The variable fish_caught gives the number of fish that was caught by a park visitor, and the hours variables gives the total number of hours that they spent in the park. Your task is to estimate the hourly average of fish caught for an individual while they are fishing. You can assume that the hourly number of fish caught is a Poisson distribution.\nHowever, the problem is that not every party tried to fish. So there are two ways that a zero can arise in the data: (1) the individual tried to fish but did not catch any, or (2) the individual did not try to fish at all. If we do not account for this, we’ll end up with an underestimate for fish extraction from the park.\nLet \\(\\theta\\) be the probability that a visitor does not fish. Let \\(\\lambda\\) be the mean number of fish caught, when a visitor is fishing. Then \\(Y|\\lambda \\sim \\text{Pois}(\\lambda)\\).\nThen, the probability of observing zero fish caught is:\n\\[\\theta + (1-\\theta) P(Y = 0 | \\lambda)\\]\nand the probability of observing a nonzero number of fish caught is:\n\\[(1-\\theta) P(Y=y | \\lambda)\\]\nThis is an example of a zero-inflated poisson distribution, and you will implement it for this case study project.\n(Note: Your model should also account for the differing amount of time individuals spend in the park.)\n\nfish_poisson &lt;- read_csv(\"https://aluby.github.io/stat340-f25/data/fish_poisson.csv\")\n\nFinding the posterior\nOption 1: Find the posterior distribution of \\(\\lambda\\) analytically\nOption 2: Implement your own MCMC sampler or grid approximation to estimate the posterior distribution of \\(\\lambda\\)\nOption 3: Use the stan starter code below. If you choose this option, you should also answer Question (1) below.\ndata {\n  int&lt;lower=1&gt; N;\n  array[N] int&lt;lower=0&gt; y;\n}\nparameters {\n  real&lt;lower=0, upper=1&gt; theta; // Pr(y = 0)\n  real&lt;lower=0&gt; lambda; // Poisson rate parameter (if y &gt; 0)\n}\nmodel {\n  lambda ~ _____________ ;\n  theta ~ ______________ ;\n\n  for (n in 1 : N) {\n    if (y[n] == 0) {\n      target += log_sum_exp(bernoulli_lpmf(1 | theta),\n                            bernoulli_lpmf(0 | theta)\n                              + poisson_lpmf(y[n] | lambda)); // log(Pr(y = 0))\n    } else {\n      target += bernoulli_lpmf(0 | theta)\n                  + poisson_lpmf(y[n] | lambda); // log(Pr(y &gt; 0))\n      y[n] ~ __________ ; // truncated poisson\n    }\n  }\n}\nQuestions to Consider\n\nThe target += lines in the stan code update the log posterior density for each run through the for loop. We need to include them when we do not use an explicit modeling statement (eg y ~ normal(0,1)). Explain or justify these lines of code. (You may have to dig into the stan reference manual)\nPerform an appropriate EDA to justify the use of a zero-inflated poisson analysis\nHow did you choose your prior distributions? Confirm they are reasonable through simulation.\n(If estimated with MCMC): Are you confident that your MCMC has converged? Provide justification\nWhat do you learn from \\(\\lambda\\)? What do you learn from \\(\\theta\\)? (these should be in context of the data)\nHow is your answer different than a “regular” Bayesian posterior analysis of \\(\\lambda\\)? (ie non zero-inflated)\nWhat would your model predict for a new visitor at the park?\nWhat are the benefits and drawbacks of using a fully specified Bayesian model in this scenario? What do we gain instead of, e.g., splitting up the data into zero fish caught and nonzero fish caught?\nReport\nYour submission should be a &lt;4 page report written in quarto/rmarkdown. Everything should be typed/proofread/labeled/captioned etc.\nEvaluation\nThere are two elements that make this a “project” rather than a “homework problem”:\n\nIt is more open-ended.\n\nIf you think an alternative approach is more appropriate for this data, go for it! There is no “right answer” that I am looking for. However, there are lots of ways to be wrong. You should think through your choices and provide justification for them.\nOn homework, you often have an example from class or the textbook to use as a “model”. On this project, I’m asking you to do something new!\n\n\nPart of your grade will be based on the presentation of your work. All portions of the report should be polished and proofread carefully.",
+    "crumbs": [
+      "Projects",
+      "Projects",
+      "Project 1"
+    ]
   },
   {
-    "objectID": "slides/slides-cheat-sheet.html#only-graph-from-code",
-    "href": "slides/slides-cheat-sheet.html#only-graph-from-code",
-    "title": "Slides Cheat Sheet",
-    "section": "Only graph from code",
-    "text": "Only graph from code"
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Stat 340: Bayesian Statistics",
+    "section": "",
+    "text": "This page contains an outline of the topics, content, and assignments for the term. Note that this schedule will be updated as the term progresses and the timeline of topics and assignments might be updated. Any major changes to due dates will be announced in class and indicated in bold here.\n\n\n\n\n\n\nWEEK\nDOW\nDATE\nPREPARE\nTOPIC\nMATERIALS\nDUE\n\n\n\n1\nM\nMon, Sep 15\n📝complete welcome survey  📚 Bayes Rules Ch1  💻 Join Slack workspace\n\nIntro to Bayesian Thinking\nSlides01\n\n\n\n1\nW\nWed, Sep 17\n📚 Bayes Rules Ch2  💻 Complete computing setup\n\nBayes Rule, R Setup\nSlides02\n\n\n\n1\nF\nFri, Sep 19\n\nProbability and Likelihood Review; Posterior Simulation\nSlides03\n\nHW 1 and GW 1\n\n\n\n2\nM\nMon, Sep 22\n📚 Bayes Rules Ch3 \n\nBeta-Binomial Model\nSlides04\n\n\n\n2\nW\nWed, Sep 24\n📚 Bayes Rules Ch4 \n\nBalance and Sequentiality\nSlides05\n\n\n\n2\nF\nFri, Sep 26\n📚 Bayes Rules Ch5.1-2 \n\nGamma-Gamma\nSlides06\n\nHW 2 and GW 2\n\n\n\n3\nM\nMon, Sep 29\n📚 Bayes Rules Ch5.3-5.6  📝 complete group eval \n\nNormal-Normal\nSlides07\n\n\n\n3\nW\nWed, Oct 1\n📚 Bayes Rules Ch6.1-2 \n\nGrid approximation and Markov Chains\nSlides08\n\n\n\n3\nF\nFri, Oct 3\n📚 Bayes Rules Ch6.3 \n\nDiagnostics\nSlides09\n\nHW 3 and GW 3\n\n\n\n4\nM\nMon, Oct 6\n📚 Bayes Rules Ch7.1-7.3  📝 complete group eval \n\nMCMC I\nSlides10\nHand out computing project\n\n\n4\nW\nWed, Oct 8\n📚 Bayes Rules Ch7.4-7 \n\nMCMC II\nSlides11\n\n\n\n4\nF\nFri, Oct 10\n\nExam I\n\n\nHW 4 and GW 4\n\n\n\n5\nM\nMon, Oct 13\n📚 Bayes Rules Ch8.1-8.2  📝 complete group eval (includes project partner question) \n\nPosterior Inference\nSlides13\n\n\n\n5\nW\nWed, Oct 15\n📚 Bayes Rules Ch8.3-8.5  📝 complete anonymous midterm check-in\n\nPosterior Prediction\nSlides14\n\n\n\n5\nF\nFri, Oct 17\n📚 Bayes Rules Ch9 \n\nRegression\nSlides15\n\nHW 5 and GW 5\n\n\n\n6\nM\nMon, Oct 20\n\n❌ Midterm Break; no class\n\n\n\n\n6\nW\nWed, Oct 22\n📚 Bayes Rules Ch9.5-10.2 \n\nEvaluating I\nSlides17\nComputing Project Due\n\n\n6\nF\nFri, Oct 24\n📚 Bayes Rules Ch10.3-10.4 \n\nEvaluating II\nSlides18\n\nHW 6 and GW 6\n\n\n\n7\nM\nMon, Oct 27\n\nExtending Regression Model\ntbd\n\n\n\n7\nW\nWed, Oct 29\n\nPoisson Regression\ntbd\n\n\n\n7\nF\nFri, Oct 31\n\nNegative Binomial Regression\ntbd\n\nHW 7 and GW 7\n\n\n\n8\nM\nMon, Nov 3\n\nLogistic Regression\ntbd\n\n\n\n8\nW\nWed, Nov 5\n\nNaive Bayes Classification\ntbd\n\n\n\n8\nF\nFri, Nov 7\n\nExam II\ntbd\n\nHW 8 and GW 5\n\n\n\n9\nM\nMon, Nov 10\n\nHierarchical Models I\ntbd\n\n\n\n9\nW\nWed, Nov 12\n\nHierarchical Models II\ntbd\n\n\n\n9\nF\nFri, Nov 14\n\nHierarchical Models III\ntbd\n\n\n\n10\nM\nMon, Nov 17\n\nProject work day\ntbd\n\nHW 9 and GW 9\n\n\n\n10\nW\nWed, Nov 19\n\nLightning talks\ntbd\n\n\n\n\nM\nFri, Nov 21\n\nFinal Project Due @ noon\ntbd",
+    "crumbs": [
+      "Schedule"
+    ]
   },
   {
-    "objectID": "slides/slides-cheat-sheet.html#background-image-half",
-    "href": "slides/slides-cheat-sheet.html#background-image-half",
-    "title": "Slides Cheat Sheet",
-    "section": "Background Image (half)",
-    "text": "Background Image (half)\n\n\nWhat skills do you need?\n\nprogramming with data\nstatistical modeling\ndomain knowledge\ncommunication"
+    "objectID": "slides/slides09.html#markov-chain-monte-carlo",
+    "href": "slides/slides09.html#markov-chain-monte-carlo",
+    "title": "Care and feeding of your MCMCs",
+    "section": "Markov Chain Monte Carlo",
+    "text": "Markov Chain Monte Carlo\nA MCMC sample \\(\\{ \\theta^{(1)}, \\theta^{(1)}, ..., \\theta^{(N)}\\}\\) is a sequence of values drawn from conditional pdf:\n\\[f(\\theta^{(i+1)}|\\theta^{(i)}, y)\\] when done well, it converges approximately to the posterior \\(f(\\theta |y)\\)"
   },
   {
-    "objectID": "slides/slides-cheat-sheet.html#full-size-image",
-    "href": "slides/slides-cheat-sheet.html#full-size-image",
-    "title": "Slides Cheat Sheet",
-    "section": "Full size image",
-    "text": "Full size image\n\n\n\nImage by Adam Loy  adapted from work of Joe Blitzstein, Hanspeter Pfister, and Hadley Wickham"
+    "objectID": "slides/slides09.html#mcmc-plan",
+    "href": "slides/slides09.html#mcmc-plan",
+    "title": "Care and feeding of your MCMCs",
+    "section": "MCMC plan",
+    "text": "MCMC plan\n\nYesterday: how to find them with {rstan}\nToday: how to evaluate them\nNext week: how they work"
   },
   {
-    "objectID": "slides/slides-cheat-sheet.html#background-image-full-size",
-    "href": "slides/slides-cheat-sheet.html#background-image-full-size",
-    "title": "Slides Cheat Sheet",
-    "section": "Background image (full size)",
-    "text": "Background image (full size)"
+    "objectID": "slides/slides09.html#beta-binomial-example-in-rstan",
+    "href": "slides/slides09.html#beta-binomial-example-in-rstan",
+    "title": "Care and feeding of your MCMCs",
+    "section": "Beta-Binomial Example in {rstan}",
+    "text": "Beta-Binomial Example in {rstan}\n\n# STEP 1: DEFINE the model\nbb_model &lt;- \"\n  data {\n    real&lt;lower=0&gt; alpha;\n    real&lt;lower=0&gt; beta;\n    int&lt;lower=1&gt; n;\n    int&lt;lower=0, upper=n&gt; Y;\n  }\n\n  parameters {\n    real&lt;lower=0, upper=1&gt; pi;\n  }\n\n  model {\n    Y ~ binomial(n, pi);\n    pi ~ beta(alpha, beta);\n  }\n\"\n\n\n# STEP 2: SIMULATE the posterior\nbb_sim &lt;- stan(model_code = bb_model, \n               data = list(alpha = 2, beta = 2, Y = 9, n = 10), \n               chains = 4, iter = 1000*2, seed = 84735)"
   },
   {
-    "objectID": "slides/slides-cheat-sheet.html#countdown",
-    "href": "slides/slides-cheat-sheet.html#countdown",
-    "title": "Slides Cheat Sheet",
-    "section": "Countdown",
-    "text": "Countdown\n\nWith your neighbor(s):\nChoose two countries to compare to the U.S. voting record in the U.N. over the years.\nWhat did you learn?\n\n\n\n\n−+\n04:00"
+    "objectID": "slides/slides09.html#section",
+    "href": "slides/slides09.html#section",
+    "title": "Care and feeding of your MCMCs",
+    "section": "",
+    "text": "bb_sim\n\nInference for Stan model: anon_model.\n4 chains, each with iter=2000; warmup=1000; thin=1; \npost-warmup draws per chain=1000, total post-warmup draws=4000.\n\n      mean se_mean   sd   2.5%   25%   50%   75% 97.5% n_eff Rhat\npi    0.79    0.00 0.11   0.55  0.72  0.80  0.87  0.95  1304    1\nlp__ -7.85    0.02 0.80 -10.13 -8.05 -7.53 -7.33 -7.27  1419    1\n\nSamples were drawn using NUTS(diag_e) at Thu Oct  2 20:42:34 2025.\nFor each parameter, n_eff is a crude measure of effective sample size,\nand Rhat is the potential scale reduction factor on split chains (at \nconvergence, Rhat=1)."
   },
   {
-    "objectID": "slides/slides-cheat-sheet.html#table-column-widths",
-    "href": "slides/slides-cheat-sheet.html#table-column-widths",
-    "title": "Slides Cheat Sheet",
-    "section": "table column widths",
-    "text": "table column widths\n\n\n\n\n\n\n\n\nCollaboration Allowed\n\n\n\n\nHomework Problems\nYou are allowed and encouraged to collaborate on homework. You may also use outside resources, but your submitted work must be your own and reflect your own understanding .\n\n\nLab Quiz Problems\nNo collaboration is allowed at all . You may use your own notes for resubmissions, but should not use outside resources.\n\n\nPortfolio Projects\nYou are expected to collaborate with your group, but cannot rely on external sources other than to help motivate the questions or provide other background information. Getting answers on significant parts of solutions from outside resources is not allowed.\n\n\nFinal Project\nYou are expected to collaborate with your group, but cannot rely on external sources other than to help motivate the questions or provide other background information. Any outside resources should be properly cited."
+    "objectID": "slides/slides09.html#section-1",
+    "href": "slides/slides09.html#section-1",
+    "title": "Care and feeding of your MCMCs",
+    "section": "",
+    "text": "mcmc_dens(bb_sim, pars = \"pi\") +\n  stat_function(fun = dbeta, args = list(11, 3), col = \"darkorange\", linewidth = 2)"
   },
   {
-    "objectID": "slides/slides-cheat-sheet.html#use-of-generative-artificial-intelligence-ai",
-    "href": "slides/slides-cheat-sheet.html#use-of-generative-artificial-intelligence-ai",
-    "title": "Slides Cheat Sheet",
-    "section": "Use of generative artificial intelligence (AI)",
-    "text": "Use of generative artificial intelligence (AI)\n\nTreat generative AI, such as ChatGPT or Gemini, the same as other online resources.\nGuiding principles:\n\n(1) Cognitive dimension: Working with AI should not reduce your ability to think clearly. AI should facilitate—rather than hinder—learning.\n(2) Ethical dimension: Students using AI should be transparent about their use and make sure it aligns with academic integrity.\n\n❌ AI tools for writing code: You may not use generative AI to take a “first pass” at a coding task. Do not type coursework prompts directly into AI tools.\n✅ AI tools for debugging code: You may make use of the technology to get help with error messages or trying to fix issues\n❌ AI tools for narrative: Unless instructed otherwise, you may not use generative AI to write narrative on assignments. In general, you may use generative AI as a resource as you complete assignments but not to answer the exercises for you.\n\n\n\nAdapted from Mine Çetinkaya-Rundel"
+    "objectID": "slides/slides09.html#in-practice-we-dont-know-the-true-posterior",
+    "href": "slides/slides09.html#in-practice-we-dont-know-the-true-posterior",
+    "title": "Care and feeding of your MCMCs",
+    "section": "In practice, we don’t know the true posterior",
+    "text": "In practice, we don’t know the true posterior\n\nWhat does a good markov chain look like?\nHow can we tell if we are getting a reasonable approximation of the posterior?\nHow big should our Markov chain size be?\n\n\n\nSome examples from today are from Statistical Rethinking"
   },
   {
-    "objectID": "slides/slides-cheat-sheet.html#linktask",
-    "href": "slides/slides-cheat-sheet.html#linktask",
-    "title": "Slides Cheat Sheet",
-    "section": "Link/task",
-    "text": "Link/task\n\nhttps://github.com/stat220-w25\n\n\nFill out the Welcome Survey for collection of your account names, later this week you will be invited to the course organization."
+    "objectID": "slides/slides09.html#traceplots",
+    "href": "slides/slides09.html#traceplots",
+    "title": "Care and feeding of your MCMCs",
+    "section": "Traceplots",
+    "text": "Traceplots\n\n\n\nmcmc_trace(bb_sim, pars = \"pi\")\n\n\n\n\n\n\n\n\n\n\nIdeally, \\(\\theta^{(i+1)}\\) does not depend on \\(\\theta^{(i)}\\) too much\nShould look like a “fat hairy caterpillar”"
   },
   {
-    "objectID": "slides/slides-cheat-sheet.html#handwriting-font",
-    "href": "slides/slides-cheat-sheet.html#handwriting-font",
-    "title": "Slides Cheat Sheet",
-    "section": "handwriting font",
-    "text": "handwriting font\n\nin case you don’t yet have a GitHub account…"
+    "objectID": "slides/slides09.html#first-20-draws-burn-in-warmup",
+    "href": "slides/slides09.html#first-20-draws-burn-in-warmup",
+    "title": "Care and feeding of your MCMCs",
+    "section": "First 20 draws (burn-in / warmup)",
+    "text": "First 20 draws (burn-in / warmup)"
+  },
+  {
+    "objectID": "slides/slides09.html#first-200-draws-burn-in-warmup",
+    "href": "slides/slides09.html#first-200-draws-burn-in-warmup",
+    "title": "Care and feeding of your MCMCs",
+    "section": "First 200 draws (burn-in / warmup)",
+    "text": "First 200 draws (burn-in / warmup)"
+  },
+  {
+    "objectID": "slides/slides09.html#mixing-slowly",
+    "href": "slides/slides09.html#mixing-slowly",
+    "title": "Care and feeding of your MCMCs",
+    "section": "“Mixing slowly”",
+    "text": "“Mixing slowly”"
+  },
+  {
+    "objectID": "slides/slides09.html#getting-stuck",
+    "href": "slides/slides09.html#getting-stuck",
+    "title": "Care and feeding of your MCMCs",
+    "section": "“Getting Stuck”",
+    "text": "“Getting Stuck”"
+  },
+  {
+    "objectID": "slides/slides09.html#each-chain-should-converge-on-roughly-the-same-distribution",
+    "href": "slides/slides09.html#each-chain-should-converge-on-roughly-the-same-distribution",
+    "title": "Care and feeding of your MCMCs",
+    "section": "Each chain should converge on roughly the same distribution",
+    "text": "Each chain should converge on roughly the same distribution\n\nmcmc_dens_overlay(bb_sim, pars = \"pi\")"
+  },
+  {
+    "objectID": "slides/slides09.html#how-many-chains-do-you-need",
+    "href": "slides/slides09.html#how-many-chains-do-you-need",
+    "title": "Care and feeding of your MCMCs",
+    "section": "How many chains do you need?",
+    "text": "How many chains do you need?\n\nWhen testing and debugging your model, use 1\nWhen deciding whether your chains are valid, need &gt;1\nWhen you do your final run that you will make inferences from, one long chain or multiple chains is fine\n\n\n\n\n\n\n\nRule of thumb:\n\n\nOne (short) chain to debug, four chains for verification and inference"
+  },
+  {
+    "objectID": "slides/slides09.html#autocorrelation",
+    "href": "slides/slides09.html#autocorrelation",
+    "title": "Care and feeding of your MCMCs",
+    "section": "Autocorrelation",
+    "text": "Autocorrelation\n\nmcmc_acf(bb_sim, pars = \"pi\")"
+  },
+  {
+    "objectID": "slides/slides09.html#slow-mixing-chains-often-have-high-autocorrelation",
+    "href": "slides/slides09.html#slow-mixing-chains-often-have-high-autocorrelation",
+    "title": "Care and feeding of your MCMCs",
+    "section": "Slow mixing chains often have high autocorrelation",
+    "text": "Slow mixing chains often have high autocorrelation"
+  },
+  {
+    "objectID": "slides/slides09.html#effective-sample-size",
+    "href": "slides/slides09.html#effective-sample-size",
+    "title": "Care and feeding of your MCMCs",
+    "section": "Effective Sample Size",
+    "text": "Effective Sample Size\n\n\n\n\n\n\n\\(N_{eff}\\)\n\n\nEffective Sample Size (\\(N_{eff}\\)) quantifies the number of independent samples it would take to produce an equivalently accurate posterior approximation\n\n\n\n\n\n\n\n\n\n\\(N_{eff}/N\\)\n\n\nEffective sample size ratio\n\n\n\n\nneff_ratio(bb_sim, pars = c(\"pi\"))\n\n[1] 0.3260274"
+  },
+  {
+    "objectID": "slides/slides09.html#r-hat",
+    "href": "slides/slides09.html#r-hat",
+    "title": "Care and feeding of your MCMCs",
+    "section": "R-hat",
+    "text": "R-hat\nIdea: In a “good” Markov chain, the variability across all chains is similar to the variability within a given chain. In a “bad” Markov chain, the variability across all chains is bigger than the variability within a given chain"
+  },
+  {
+    "objectID": "slides/slides09.html#r-hat-1",
+    "href": "slides/slides09.html#r-hat-1",
+    "title": "Care and feeding of your MCMCs",
+    "section": "R-hat",
+    "text": "R-hat\n\n\n\n\n\n\nGelman-Rubin convergence diagnostic\n\n\nR-hat \\(\\approx \\sqrt{\\frac{\\text{Var}_{\\text{combined}}}{\\text{Var}_{\\text{within}}}}\\)\nR-hat \\(\\approx\\) 1 is good; R-hat \\(&gt;1\\) indicates the chains have not converged\n\n\n\n\nrhat(bb_sim)\n\n       pi      lp__ \n0.9999668 1.0012277"
+  },
+  {
+    "objectID": "slides/slides09.html#section-2",
+    "href": "slides/slides09.html#section-2",
+    "title": "Care and feeding of your MCMCs",
+    "section": "",
+    "text": "fn_model &lt;- \"\n  data {\n    int&lt;lower=0&gt; N;\n    vector[N] y;\n  }\n\n  parameters {\n    real mu;\n    real&lt;lower=0&gt; sigma;\n  }\n\n  model {\n    y ~ normal(mu, sigma);\n    mu ~ normal(0, 1000);\n    sigma ~ exponential(.0001);\n  }\n\""
+  },
+  {
+    "objectID": "slides/slides09.html#section-3",
+    "href": "slides/slides09.html#section-3",
+    "title": "Care and feeding of your MCMCs",
+    "section": "",
+    "text": "# STEP 2: SIMULATE the posterior\nfn_sim &lt;- stan(model_code = fn_model, \n               data = list(N=2, y = c(-1,1)), \n               chains = 4, iter = 1000*2, seed = 84735)\n\nWarning :There were 521 divergent transitions after warmup. See\nhttps://mc-stan.org/misc/warnings.html#divergent-transitions-after-warmup\nto find out why this is a problem and how to eliminate them.\nWarning :Examine the pairs() plot to diagnose sampling problems\n\nWarning :Bulk Effective Samples Size (ESS) is too low, indicating posterior means and medians may be unreliable.\nRunning the chains for more iterations may help. See\nhttps://mc-stan.org/misc/warnings.html#bulk-ess\nWarning :Tail Effective Samples Size (ESS) is too low, indicating posterior variances and tail quantiles may be unreliable.\nRunning the chains for more iterations may help. See\nhttps://mc-stan.org/misc/warnings.html#tail-ess"
+  },
+  {
+    "objectID": "slides/slides09.html#mu",
+    "href": "slides/slides09.html#mu",
+    "title": "Care and feeding of your MCMCs",
+    "section": "\\(\\mu\\)",
+    "text": "\\(\\mu\\)\nmcmc_trace(fn_sim, pars = \"mu\")\nmcmc_dens_overlay(fn_sim, pars = \"mu\")"
+  },
+  {
+    "objectID": "slides/slides09.html#sigma",
+    "href": "slides/slides09.html#sigma",
+    "title": "Care and feeding of your MCMCs",
+    "section": "\\(\\sigma\\)",
+    "text": "\\(\\sigma\\)\nmcmc_trace(fn_sim, pars = \"sigma\")\nmcmc_dens_overlay(fn_sim, pars = \"sigma\")"
+  },
+  {
+    "objectID": "slides/slides09.html#section-4",
+    "href": "slides/slides09.html#section-4",
+    "title": "Care and feeding of your MCMCs",
+    "section": "",
+    "text": "fn_model2 &lt;- \"\n  data {\n    int&lt;lower=0&gt; N;\n    vector[N] y;\n  }\n\n  parameters {\n    real mu;\n    real&lt;lower=0&gt; sigma;\n  }\n\n  model {\n    y ~ normal(mu, sigma);\n    mu ~ normal(0, 10);\n    sigma ~ exponential(1);\n  }\n\""
+  },
+  {
+    "objectID": "slides/slides09.html#section-5",
+    "href": "slides/slides09.html#section-5",
+    "title": "Care and feeding of your MCMCs",
+    "section": "",
+    "text": "# STEP 2: SIMULATE the posterior\nfn_sim2 &lt;- stan(model_code = fn_model2, \n               data = list(N=2, y = c(-1,1)), \n               chains = 4, iter = 1000*2, seed = 84735)\n\nWarning :There were 3 divergent transitions after warmup. See\nhttps://mc-stan.org/misc/warnings.html#divergent-transitions-after-warmup\nto find out why this is a problem and how to eliminate them.\nWarning :Examine the pairs() plot to diagnose sampling problems"
+  },
+  {
+    "objectID": "slides/slides09.html#mu-1",
+    "href": "slides/slides09.html#mu-1",
+    "title": "Care and feeding of your MCMCs",
+    "section": "\\(\\mu\\)",
+    "text": "\\(\\mu\\)\nmcmc_trace(fn_sim2, pars = \"mu\")\nmcmc_dens_overlay(fn_sim2, pars = \"mu\")"
+  },
+  {
+    "objectID": "slides/slides09.html#sigma-1",
+    "href": "slides/slides09.html#sigma-1",
+    "title": "Care and feeding of your MCMCs",
+    "section": "\\(\\sigma\\)",
+    "text": "\\(\\sigma\\)\nmcmc_trace(fn_sim2, pars = \"sigma\")\nmcmc_dens_overlay(fn_sim2, pars = \"sigma\")"
+  },
+  {
+    "objectID": "slides/slides18.html#midterm-check-in",
+    "href": "slides/slides18.html#midterm-check-in",
+    "title": "Evaluating Regression Models II",
+    "section": "Midterm check-in",
+    "text": "Midterm check-in\n\n\nGoing well:\n\nHomework is manageable/not too difficult/have a good understanding x11\nLike the mix of HW/GW/quizzes x8\nEnjoy lectures x4\nLearning about big picture ideas/Bayesian statistics in general x3\nCoding x3\nCombination of computation/math x2\nPace of the course\nWebsite organization\n\n\nSuggested changes:\n\nMore guidance for exam prep x8\nChanging due dates x3\nKeep groups for longer or choose own groups x2\nFewer HW questions x2\nLecture is “big picture” and hard to directly apply on HW/GW\nDon’t like group work component\nLonger handout in addition to slides\nMore in-class examples\n\n\n\nOverall response rate: 91.3%"
+  },
+  {
+    "objectID": "slides/slides18.html#last-time",
+    "href": "slides/slides18.html#last-time",
+    "title": "Evaluating Regression Models II",
+    "section": "Last Time",
+    "text": "Last Time\n\nPrior predictions for \\(E(Y | X = x, \\beta_0, \\beta_1, \\sigma)\\)\nPosterior predictions for \\(E(Y | X = x, \\beta_0, \\beta_1, \\sigma)\\)\nPosterior predictions for \\(Y_{new} | X = x, \\beta_0, \\beta_1, \\sigma\\)\nPosterior predictive check comparing \\(\\vec{Y}_{new}\\) to \\(\\vec{Y}\\)\n\nToday:\n\nHow can we compare the fits of multiple models?"
+  },
+  {
+    "objectID": "slides/slides18.html#section",
+    "href": "slides/slides18.html#section",
+    "title": "Evaluating Regression Models II",
+    "section": "",
+    "text": "library(rstanarm)\nbike_posterior &lt;- stan_glm(rides ~ temp_feel, \n                       data = bikes,\n                       family = gaussian,\n                       prior_intercept = normal(5000, 1000),\n                       prior = normal(100, 40), \n                       prior_aux = exponential(1),\n                       chains = 4, iter = 5000*2, seed = 84735, refresh = 0)\n\nbike_chains &lt;- as.data.frame(bike_posterior)\n\nhead(bike_chains)\n\n  (Intercept) temp_feel    sigma\n1   -2257.234  82.80264 793.7888\n2   -2482.038  85.36287 781.4378\n3   -1880.359  78.49592 792.1759\n4   -1823.623  77.46205 796.3196\n5   -2176.281  81.88481 789.7430\n6   -2072.439  79.89524 802.1168"
+  },
+  {
+    "objectID": "slides/slides18.html#posterior-predictive-check-comparing-vecy_new-to-vecy",
+    "href": "slides/slides18.html#posterior-predictive-check-comparing-vecy_new-to-vecy",
+    "title": "Evaluating Regression Models II",
+    "section": "Posterior predictive check comparing \\(\\vec{Y}_{new}\\) to \\(\\vec{Y}\\)",
+    "text": "Posterior predictive check comparing \\(\\vec{Y}_{new}\\) to \\(\\vec{Y}\\)\n\npp_check(bike_posterior, nreps = 50) + \n  xlab(\"rides\")"
+  },
+  {
+    "objectID": "slides/slides18.html#section-1",
+    "href": "slides/slides18.html#section-1",
+    "title": "Evaluating Regression Models II",
+    "section": "",
+    "text": "set.seed(84735)\npredictions &lt;- posterior_predict(bike_posterior, newdata = bikes)\ndim(predictions)\n\n[1] 20000   500\n\npredictions[1:5, 1:5]\n\n            1        2        3         4        5\n[1,] 3631.912 1705.638 2593.078 2289.0876 2581.029\n[2,] 4424.195 2240.754 2089.246 2289.7819 1956.553\n[3,] 2846.454 2410.049 2777.521  479.5763 1672.252\n[4,] 2828.605 3400.039 1915.729 2905.4364 3022.158\n[5,] 2093.760 2619.468 3001.867 2703.6252 2750.683"
+  },
+  {
+    "objectID": "slides/slides18.html#how-well-does-the-model-predict-each-individual-point",
+    "href": "slides/slides18.html#how-well-does-the-model-predict-each-individual-point",
+    "title": "Evaluating Regression Models II",
+    "section": "How well does the model predict each individual point?",
+    "text": "How well does the model predict each individual point?\n\nppc_intervals(bikes$rides, yrep = predictions, x = bikes$temp_feel, \n              prob = 0.5, prob_outer = 0.95)"
+  },
+  {
+    "objectID": "slides/slides18.html#how-well-does-the-model-predict-when-temp_feel-approx-70",
+    "href": "slides/slides18.html#how-well-does-the-model-predict-when-temp_feel-approx-70",
+    "title": "Evaluating Regression Models II",
+    "section": "How well does the model predict when temp_feel \\(\\approx\\) 70?",
+    "text": "How well does the model predict when temp_feel \\(\\approx\\) 70?\n\nindex_temp_feel_70 &lt;- (bikes$temp_feel &lt; 71) & (bikes$temp_feel &gt; 69) \nppc_intervals(bikes$rides[index_temp_feel_70], \n              yrep = predictions[ , index_temp_feel_70], \n              x = bikes$temp_feel[index_temp_feel_70], \n              prob = 0.5, prob_outer = 0.95)"
+  },
+  {
+    "objectID": "slides/slides18.html#posterior-predictive-summaries",
+    "href": "slides/slides18.html#posterior-predictive-summaries",
+    "title": "Evaluating Regression Models II",
+    "section": "Posterior predictive summaries",
+    "text": "Posterior predictive summaries\n\nset.seed(84735)\nprediction_summary(bike_posterior, data = bikes)\n\n       mae mae_scaled within_50 within_95\n1 990.0232   1.240512     0.282     0.772"
+  },
+  {
+    "objectID": "slides/slides18.html#new-example-brain-volume-vs-mass",
+    "href": "slides/slides18.html#new-example-brain-volume-vs-mass",
+    "title": "Evaluating Regression Models II",
+    "section": "New Example: brain volume vs mass",
+    "text": "New Example: brain volume vs mass"
+  },
+  {
+    "objectID": "slides/slides18.html#leave-one-out-cross-validation",
+    "href": "slides/slides18.html#leave-one-out-cross-validation",
+    "title": "Evaluating Regression Models II",
+    "section": "Leave-one-out cross validation",
+    "text": "Leave-one-out cross validation\n\nDrop 1 point\nFit line to remaining n-1 points\nPredict dropped point\nScore is error on dropped\nRepeat for all points"
+  },
+  {
+    "objectID": "slides/slides18.html#y-beta_0-beta_1-x",
+    "href": "slides/slides18.html#y-beta_0-beta_1-x",
+    "title": "Evaluating Regression Models II",
+    "section": "\\(y = \\beta_0 + \\beta_1 x\\)",
+    "text": "\\(y = \\beta_0 + \\beta_1 x\\)\n\n\n\nSource: Richard McElreath’s Statistical Rethinking"
+  },
+  {
+    "objectID": "slides/slides18.html#section-2",
+    "href": "slides/slides18.html#section-2",
+    "title": "Evaluating Regression Models II",
+    "section": "",
+    "text": "In sample error: 318\nOut of sample error: 619"
+  },
+  {
+    "objectID": "slides/slides18.html#y-beta_0-beta_1-x-beta_2-x2",
+    "href": "slides/slides18.html#y-beta_0-beta_1-x-beta_2-x2",
+    "title": "Evaluating Regression Models II",
+    "section": "\\(y = \\beta_0 + \\beta_1 x + \\beta_2 x^2\\)",
+    "text": "\\(y = \\beta_0 + \\beta_1 x + \\beta_2 x^2\\)"
+  },
+  {
+    "objectID": "slides/slides18.html#section-3",
+    "href": "slides/slides18.html#section-3",
+    "title": "Evaluating Regression Models II",
+    "section": "",
+    "text": "In sample error: 289\nOut of sample error: 865"
+  },
+  {
+    "objectID": "slides/slides18.html#y-beta_0-beta_1-x-beta_2-x2-beta_3-x3-beta_4-x4-beta_5-x5",
+    "href": "slides/slides18.html#y-beta_0-beta_1-x-beta_2-x2-beta_3-x3-beta_4-x4-beta_5-x5",
+    "title": "Evaluating Regression Models II",
+    "section": "\\(y = \\beta_0 + \\beta_1 x + \\beta_2 x^2 + \\beta_3 x^3 + \\beta_4 x^4 + \\beta_5 x^5\\)",
+    "text": "\\(y = \\beta_0 + \\beta_1 x + \\beta_2 x^2 + \\beta_3 x^3 + \\beta_4 x^4 + \\beta_5 x^5\\)"
+  },
+  {
+    "objectID": "slides/slides18.html#section-4",
+    "href": "slides/slides18.html#section-4",
+    "title": "Evaluating Regression Models II",
+    "section": "",
+    "text": "In sample error: 7\nOut of sample error: 293,840"
+  },
+  {
+    "objectID": "slides/slides18.html#cross-validation",
+    "href": "slides/slides18.html#cross-validation",
+    "title": "Evaluating Regression Models II",
+    "section": "Cross-validation",
+    "text": "Cross-validation\n\n\nFor simple models, more parameters improves the accuracy of predictions within the sample\nBut may reduce accuracy of predictions out of sample\nMost accurate model trades off flexibility with overfitting"
+  },
+  {
+    "objectID": "slides/slides18.html#section-5",
+    "href": "slides/slides18.html#section-5",
+    "title": "Evaluating Regression Models II",
+    "section": "",
+    "text": "k-fold cross-validation algorithm\n\n\n\nCreate folds. Let \\(k\\) be some integer from 2 to our original sample size \\(n\\). Split the data into \\(k\\) non-overlapping folds, or subsets, of roughly equal size.\nTrain and test the model.\n\n\nTrain the model using the combined data in the first \\(k-1\\) folds.\nTest this model on the \\(k^{th}\\) data fold.\nMeasure the prediction quality (e.g., by MAE).\n\n\nRepeat. Repeat step 2 \\(k-1\\) more times, each time leaving out a different fold for testing.\nCalculate cross-validation estimates. Average the \\(k\\) measures to obtain a single cross-validation estimate of prediction quality."
+  },
+  {
+    "objectID": "slides/slides18.html#back-to-bikes-k-fold-cross-validation",
+    "href": "slides/slides18.html#back-to-bikes-k-fold-cross-validation",
+    "title": "Evaluating Regression Models II",
+    "section": "Back to bikes: k-fold cross validation",
+    "text": "Back to bikes: k-fold cross validation\n\nset.seed(84735)\ncv_procedure &lt;- prediction_summary_cv(\n  model = bike_posterior, data = bikes, k = 10)\n\ncv_procedure$folds\n\n   fold       mae mae_scaled within_50 within_95\n1     1  991.9631   1.277705      0.30      0.78\n2     2  962.7993   1.229611      0.26      0.76\n3     3  954.3533   1.216706      0.36      0.78\n4     4 1016.4257   1.306538      0.30      0.76\n5     5 1163.3680   1.504313      0.24      0.72\n6     6  933.3032   1.205557      0.32      0.70\n7     7 1271.1734   1.658216      0.20      0.62\n8     8 1112.8637   1.425591      0.28      0.74\n9     9 1107.1255   1.440725      0.22      0.72\n10   10  788.2030   1.007144      0.30      0.82"
+  },
+  {
+    "objectID": "slides/slides18.html#k-fold-cross-validation-vs-in-sample-prediction-error",
+    "href": "slides/slides18.html#k-fold-cross-validation-vs-in-sample-prediction-error",
+    "title": "Evaluating Regression Models II",
+    "section": "k-fold cross validation vs in-sample prediction error",
+    "text": "k-fold cross validation vs in-sample prediction error\n\ncv_procedure$cv\n\n       mae mae_scaled within_50 within_95\n1 1030.158   1.327211     0.278      0.74\n\n\n\nset.seed(84735)\nprediction_summary(bike_posterior, data = bikes)\n\n       mae mae_scaled within_50 within_95\n1 990.0232   1.240512     0.282     0.772"
+  },
+  {
+    "objectID": "slides/slides18.html#make-it-bayesian",
+    "href": "slides/slides18.html#make-it-bayesian",
+    "title": "Evaluating Regression Models II",
+    "section": "Make it Bayesian",
+    "text": "Make it Bayesian\nRecall that our posterior predictive density is:\n\\[f(y' | \\vec{y}) = \\int \\int \\int f(y'|\\beta_0, \\beta_1, \\sigma) f(\\beta_0, \\beta_1, \\sigma | \\vec{y}) d\\beta_0 d\\beta_1 d\\sigma\\]\n\nIf prediction is “good”, \\(f(y'|\\vec{y})\\) will be higher than if it is bad\nCan work on the log scale for numeric stability\n\n\n\n\n\n\n\nExpected log-predictive density (ELPD)\n\n\nELPD measures the average log posterior predictive pdf, \\(\\log(f(y_{new} | \\vec{y}))\\), across all possible new data points \\(y_{new}\\). The higher the ELPD, the better our model can predict new data points"
+  },
+  {
+    "objectID": "slides/slides18.html#loo",
+    "href": "slides/slides18.html#loo",
+    "title": "Evaluating Regression Models II",
+    "section": "loo",
+    "text": "loo\nThe loo() function in the {rstanarm} package uses leave-one-out cross-validation to estimate the ELPD of a given model:\n\nmodel_elpd &lt;- loo(bike_posterior)\nmodel_elpd$estimates\n\n             Estimate         SE\nelpd_loo -4449.216075 34.0487629\np_loo        6.272283  0.4285804\nlooic     8898.432150 68.0975257"
+  },
+  {
+    "objectID": "slides/slides18.html#summary",
+    "href": "slides/slides18.html#summary",
+    "title": "Evaluating Regression Models II",
+    "section": "Summary",
+    "text": "Summary\n\nPrior predictions for \\(E(Y | X = x, \\beta_0, \\beta_1, \\sigma)\\)\nPosterior predictions for \\(E(Y | X = x, \\beta_0, \\beta_1, \\sigma)\\)\nPosterior predictions for \\(Y_{new} | X = x, \\beta_0, \\beta_1, \\sigma\\)\nPosterior predictive check comparing \\(\\vec{Y}_{new}\\) to \\(\\vec{Y}\\)\nCross-validation compares in-sample posterior predictions \\(Y_{new} | X = x, \\beta_0, \\beta_1, \\sigma\\) to out-of-sample posterior predictions \\(Y_{new} | X = x_i, \\beta_0^{(-i)}, \\beta_1^{(-i)}, \\sigma^{(-i)}\\)\nELPD measures average log-posterior predictive pdf \\(\\log(f(y_{new} | \\vec{y}))\\) across all possible new data points"
   },
   {
     "objectID": "slides/slides17.html#plan-for-today",
