@@ -1,5 +1,5 @@
 ---
-title: Evaluating Regression Models
+title: Evaluating Regression Models II
 subtitle: Day 18
 title-slide-attributes:
   data-background-color: "#e2583eff"
@@ -72,8 +72,221 @@ Overall response rate: 91.3%
 
 ## Last Time
 
+- **Prior predictions** for $E(Y | X = x, \beta_0, \beta_1, \sigma)$
+- **Posterior predictions** for $E(Y | X = x, \beta_0, \beta_1, \sigma)$
+- **Posterior predictions** for $Y_{new} | X = x, \beta_0, \beta_1, \sigma$
+- **Posterior predictive check** comparing $\vec{Y}_{new}$ to $\vec{Y}$
+
+Today: 
+
+- How can we compare the fits of multiple models?
+
 ##
 
+```{r}
+library(rstanarm)
+bike_posterior <- stan_glm(rides ~ temp_feel, 
+                       data = bikes,
+                       family = gaussian,
+                       prior_intercept = normal(5000, 1000),
+                       prior = normal(100, 40), 
+                       prior_aux = exponential(1),
+                       chains = 4, iter = 5000*2, seed = 84735, refresh = 0)
+
+bike_chains <- as.data.frame(bike_posterior)
+
+head(bike_chains)
+```
+
+## Posterior predictive check comparing $\vec{Y}_{new}$ to $\vec{Y}$
+
+```{r}
+pp_check(bike_posterior, nreps = 50) + 
+  xlab("rides")
+```
+
+## 
+
+```{r}
+set.seed(84735)
+predictions <- posterior_predict(bike_posterior, newdata = bikes)
+dim(predictions)
+predictions[1:5, 1:5]
+```
+
+## How well does the model predict each individual point?
+
+```{r}
+ppc_intervals(bikes$rides, yrep = predictions, x = bikes$temp_feel, 
+              prob = 0.5, prob_outer = 0.95)
+```
+
+## How well does the model predict when `temp_feel` $\approx$ 70?
+
+```{r}
+index_temp_feel_70 <- (bikes$temp_feel < 71) & (bikes$temp_feel > 69) 
+ppc_intervals(bikes$rides[index_temp_feel_70], 
+              yrep = predictions[ , index_temp_feel_70], 
+              x = bikes$temp_feel[index_temp_feel_70], 
+              prob = 0.5, prob_outer = 0.95)
+```
+
+## Posterior predictive summaries
+
+```{r}
+set.seed(84735)
+prediction_summary(bike_posterior, data = bikes)
+```
+
+
+## New Example: brain volume vs mass
+
+## Leave-one-out cross validation
+
+(1) Drop 1 point
+(2) Fit line to remaining n-1 points
+(3) Predict dropped point
+(4) Score is error on dropped
+(5) Repeat for all points
+
+
+## $y = \beta_0 + \beta_1 x$
+
+```{r}
+#| echo: false
+
+# source code: https://github.com/rmcelreath/stat_rethinking_2024/blob/main/scripts/07_overfitting_animations.r
+
+```
+
+![](img/linear-anim.gif)
+
 ::: aside
-https://github.com/rmcelreath/stat_rethinking_2024/blob/main/scripts/07_overfitting_animations.r
+Source: Richard McElreath's Statistical Rethinking
 :::
+
+##
+
+### [In sample error: 318]{style="color:skyblue;"}
+### Out of sample error: 619
+
+
+![](img/linear-anim-final.png)
+
+## $y = \beta_0 + \beta_1 x + \beta_2 x^2$
+
+
+![](img/quadratic-anim.gif)
+
+##
+
+### [In sample error: 289]{style="color:skyblue;"}
+### Out of sample error: 865
+
+
+![](img/quadratic-anim-final.png)
+
+## $y = \beta_0 + \beta_1 x + \beta_2 x^2 + \beta_3 x^3 + \beta_4 x^4 + \beta_5 x^5$
+
+
+![](img/five-anim.gif)
+
+##
+
+### [In sample error: 7]{style="color:skyblue;"}
+### Out of sample error: 293,840
+
+
+![](img/five-anim-final.png)
+
+## Cross-validation
+
+::::: columns
+::: {.column width="60%"}
+For simple models, more parameters improves the [accuracy of predictions within the sample]{style="color:skyblue;"}
+
+But may reduce [accuracy of predictions out of sample]{style="color:darkred;"}
+
+Most accurate model trades off flexibility with **overfitting**
+:::
+
+::: {.column width="40%"}
+
+![](img/in-v-out-error.png)
+:::
+:::::
+
+## 
+
+::: callout-note
+## k-fold cross-validation algorithm
+
+1. **Create folds.**
+Let $k$ be some integer from 2 to our original sample size $n$. Split the data into  $k$ non-overlapping folds, or subsets, of roughly equal size.
+
+2. **Train and test the model.**
+
+- Train the model using the combined data in the first $k-1$ folds. 
+- Test this model on the $k^{th}$ data fold.
+- Measure the prediction quality (e.g., by MAE).
+
+3. **Repeat.**
+Repeat step 2  $k-1$ more times, each time leaving out a different fold for testing.
+
+4. **Calculate cross-validation estimates.**
+Average the $k$ measures to obtain a single cross-validation estimate of prediction quality.
+:::
+
+## Back to bikes: k-fold cross validation
+
+```{r}
+set.seed(84735)
+cv_procedure <- prediction_summary_cv(
+  model = bike_posterior, data = bikes, k = 10)
+
+cv_procedure$folds
+```
+
+## k-fold cross validation vs in-sample prediction error
+
+```{r}
+cv_procedure$cv
+```
+
+```{r}
+set.seed(84735)
+prediction_summary(bike_posterior, data = bikes)
+```
+
+## Make it Bayesian
+
+Recall that our posterior predictive density is: 
+
+$$f(y' | \vec{y}) = \int \int \int f(y'|\beta_0, \beta_1, \sigma) f(\beta_0, \beta_1, \sigma | \vec{y}) d\beta_0 d\beta_1 d\sigma$$
+
+- If prediction is "good", $f(y'|\vec{y})$ will be higher than if it is bad
+- Can work on the log scale for numeric stability
+
+::: callout-note
+## Expected log-predictive density (ELPD)
+
+ELPD measures the average log posterior predictive pdf, $\log(f(y_{new} | \vec{y}))$, across all possible new data points $y_{new}$. The higher the ELPD, the better our model can predict *new* data points
+:::
+
+## `loo`
+
+The `loo()` function in the {rstanarm} package uses leave-one-out cross-validation to estimate the ELPD of a given model:
+
+```{r}
+model_elpd <- loo(bike_posterior)
+model_elpd$estimates
+```
+
+## Summary
+
+- **Prior predictions** for $E(Y | X = x, \beta_0, \beta_1, \sigma)$
+- **Posterior predictions** for $E(Y | X = x, \beta_0, \beta_1, \sigma)$
+- **Posterior predictions** for $Y_{new} | X = x, \beta_0, \beta_1, \sigma$
+- **Posterior predictive check** comparing $\vec{Y}_{new}$ to $\vec{Y}$
+- **Cross-validation** compares in-sample posterior predictions $Y_{new} | X = x, \beta_0, \beta_1, \sigma$ to out-of-sample posterior predictions $Y_{new} | X = x_i, \beta_0^{(-i)}, \beta_1^{(-i)}, \sigma^{(-i)}$
+- **ELPD** measures average log-posterior predictive pdf $\log(f(y_{new} | \vec{y}))$ across all possible new data points
