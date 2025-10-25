@@ -1,0 +1,61 @@
+---
+title: "Individual HW07"
+author: "Your Name Here"
+---
+
+```{r}
+library(bayesrules) # R package for our textbook
+library(tidyverse) # Collection of packages for tidying and plotting data
+library(janitor) # Helper functions like tidy and tabyl
+library(rstan) # for MCMC
+library(bayesplot) # for plotting
+library(broom.mixed) # for tidy() for mcmc
+```
+
+# BR 10.3
+
+There are several instances in which data scientists might falsely consider themselves neutral. In this exercise, you will practice how to challenge the false idea of neutrality, an underappreciated skill for data scientists.
+
+(a) How would you respond if your colleague were to tell you “I’m just a neutral observer, so there’s no bias in my data analysis?”
+(b) Your colleague now admits that they are not personally neutral, but they say “my model is neutral.” How do you respond to your colleague now?
+(c) Give an example of when your personal experience or perspective has informed a data analysis.
+
+# BR 10.7 (mini pp check)
+
+Suppose we have a small dataset where predictor $X$ has values $\vec{x} = (12, 10, 4, 8, 6)$ and response variable $Y$ has values $\vec{y} = (20, 17, 4, 11, 9)$.  Based on this data, we built a Bayesian linear regression model of $Y$ vs $X$. 
+
+(a) In our first MCMC draw, $(\beta_0^{(1)}, \beta_1^{(1)}, \sigma^{(1)}) = (-1.8, 2.1, 0.8)$. Explain/show how you would use these values, combined with the data, to generate a prediction for $Y_1$. 
+(b) Using the first MCMC draw, generate predictions for  $(Y_1, Y_2, Y_3, Y_4, Y_5)$. Comment on the difference between the predictions and the observed values
+
+# BR 11.5 (interaction terms)
+
+*Note:* I don't expect you to do this in R! I recommend sketching on a piece of paper and inserting the image into your .rmd/.qmd
+
+(a) Sketch a model that would benefit from including an interaction term between a categorical and quantitative predictor.
+(b) Sketch a model that would not benefit from including an interaction term between a categorical and quantitative predictor.
+(c) Besides visualization, what are two other ways to determine if you should include interaction terms in your model?
+
+# BR 11.11
+
+You will use the `penguins_bayes` data in the {bayesrules} package to build various models of penguin `body_mass_g`. Throughout, we’ll utilize weakly informative priors and a basic understanding that the average penguin weighs somewhere between 3,500 and 4,500 grams. Further, one predictor of interest is penguin species: Adelie, Chinstrap, or Gentoo. 
+
+```{r}
+data(penguins_bayes)
+```
+
+Building from the previous exercise, our next goal is to model `body_mass_g` by `flipper_length_mm` and `species` with an interaction term between these two predictors.
+
+(a) Use `stan_glm()` to simulate the posterior for this model, with four chains at 10,000 iterations each. Provide diagnostics of your MCMC
+(b) Simulate and plot 50 posterior model lines. Briefly describe what you learn from this plot.
+(c) Produce a tidy() summary for this model. Based on the summary, do you have evidence that the interaction terms are necessary for this model? Explain your reasoning.
+**(d) Simulate, plot, and describe the posterior predictive model for the body mass of an Adelie penguin that has a flipper length of 197.**
+**(e) Construct and discuss a `ppc_intervals` plot.**
+
+# TBA Mon
+
+# TBA Mon
+
+# TBA Wed
+
+# TBA Wed
+
