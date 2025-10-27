@@ -1,0 +1,362 @@
+---
+title: Regression III
+subtitle: Day 19
+title-slide-attributes:
+  data-background-color: "#e2583eff"
+  data-slide-number: none
+format: 
+  revealjs:
+    incremental: false
+    scrollable: false
+auto-stretch: true
+editor_options: 
+  chunk_output_type: console
+editor: 
+  markdown: 
+    wrap: 72
+execute: 
+  warning: false
+  message: false
+---
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+
+library(countdown)
+library(tidyverse)
+library(bayesrules)
+library(janitor)
+library(patchwork)
+library(rstan)
+library(bayesplot)
+library(broom.mixed)
+
+theme_set(theme_minimal(base_size = 16, base_family = "Atkinson Hyperlegible"))
+```
+
+## So far:
+
+-   **Prior predictions** for $E(Y | X = x, \beta_0, \beta_1, \sigma)$
+-   **Posterior predictions** for
+    $E(Y | X = x, \beta_0, \beta_1, \sigma)$
+-   **Posterior predictions** for
+    $Y_{new} | X = x, \beta_0, \beta_1, \sigma$
+-   **Posterior predictive check** comparing $\vec{Y}_{new}$ to
+    $\vec{Y}$
+-   **Cross-validation** compares $Y_i$ to out-of-sample posterior
+    predictions
+    $Y_{i} | X = x_i, \beta_0^{(-i)}, \beta_1^{(-i)}, \sigma^{(-i)}$
+
+Today:
+
+-   More on **cross validation**
+-   Make it \~ Bayesian \~
+
+## New Example: brain volume vs mass
+
+ADD GRAPH AND PICTURE
+
+## All polynomial fits side by side
+
+## Leave-one-out cross validation
+
+::: callout-note
+## Leave-one-out cross-validation algorithm
+
+(1) Drop the $i$th data point
+(2) Train and test the model
+    - Train/fit the model using the remaining $i-1$ data points
+    - Predict the fit ($\hat{y}$) on the $i$th data point
+    - Measure the prediction quality (e.g. mean absolute prediction error)
+(3) Repeat for all $n$ data points
+(4) Calculate the cross-validation estimate by averaging the $n$ prediction measures to obtain a single cross-validation estimate of prediction quality
+:::
+
+## All polynomial fits + in and out error
+
+## Leave-one-out cross-validation
+
+::::: columns
+::: {.column width="60%"}
+For simple models, more parameters improves the [accuracy of predictions
+within the sample]{style="color:skyblue;"}
+
+But may reduce [accuracy of predictions out of
+sample]{style="color:darkred;"}
+
+Most accurate model trades off flexibility with **overfitting**
+:::
+
+::: {.column width="40%"}
+![](img/in-v-out-error.png)
+:::
+:::::
+
+## Inference vs prediction
+
+\[ADD TO THIS\]
+
+no "right" answer to balancing in v out prediction
+
+## Example 2: `bikes`
+
+```{r}
+ggplot(bikes, aes(x = temp_feel, y = rides)) + 
+  geom_point()
+```
+
+## Model fitting
+
+```{r}
+library(rstanarm)
+bike_posterior <- stan_glm(rides ~ temp_feel, 
+                       data = bikes,
+                       family = gaussian,
+                       prior_intercept = normal(5000, 1000),
+                       prior = normal(100, 40), 
+                       prior_aux = exponential(1),
+                       chains = 4, iter = 5000*2, seed = 84735, refresh = 0)
+
+bike_chains <- as.data.frame(bike_posterior)
+
+head(bike_chains)
+```
+
+## PP check comparing $\vec{Y}_{new}$ to $\vec{Y}$
+
+```{r}
+pp_check(bike_posterior, nreps = 50) + 
+  xlab("rides")
+```
+
+## In-sample predictive summaries
+
+```{r}
+set.seed(84735)
+prediction_summary(bike_posterior, data = bikes)
+```
+
+## Leave-one-out CV?
+
+```{r}
+#| eval: false
+
+tictoc::tic()
+bike_posterior <- stan_glm(rides ~ temp_feel, 
+                            data = bikes,
+                            family = gaussian,
+                            prior_intercept = normal(5000, 1000),
+                            prior = normal(100, 40), 
+                            prior_aux = exponential(1),
+                            chains = 4, iter = 5000*2, seed = 84735, refresh = 0)
+pred_sum <- prediction_summary(bike_posterior, data = bikes)
+tictoc::toc()
+```
+
+```         
+4.505 sec elapsed
+```
+
+Do we want to do this 500 times?
+
+## Instead of LOO, do $k$ cross-validations
+
+::: callout-note
+## k-fold cross-validation algorithm
+
+1.  **Create folds.** Let $k$ be some integer from 2 to our original
+    sample size $n$. Split the data into $k$ non-overlapping folds, or
+    subsets, of roughly equal size.
+
+2.  **Train and test the model.**
+
+-   Train/fit the model using the combined data in the first $k-1$
+    folds.
+-   Test this model on the $k^{th}$ data fold.
+-   Measure the prediction quality (e.g., by MAE).
+
+3.  **Repeat.** Repeat step 2 $k-1$ more times, each time leaving out a
+    different fold for testing.
+
+4.  **Calculate cross-validation estimates.** Average the $k$ measures
+    to obtain a single cross-validation estimate of prediction quality.
+:::
+
+## `prediction_summary_cv()`
+
+```{r}
+#| eval: false
+set.seed(84735)
+cv_procedure <- prediction_summary_cv(
+  model = bike_posterior, data = bikes, k = 10)
+```
+
+```
+20.408 sec elapsed
+```
+
+```
+   fold       mae mae_scaled within_50 within_95
+1     1 1126.6297  1.4598036      0.20      0.68
+2     2 1000.3435  1.2933144      0.28      0.78
+3     3  963.1230  1.2341508      0.20      0.74
+4     4  932.2679  1.1940262      0.34      0.76
+5     5  756.2178  0.9647868      0.40      0.82
+6     6  943.7142  1.2068220      0.30      0.72
+7     7 1040.8798  1.3443189      0.30      0.72
+8     8 1093.2054  1.4042022      0.24      0.72
+9     9  869.2067  1.1206495      0.30      0.80
+10   10 1129.8950  1.4652812      0.22      0.68
+```
+
+## k-fold cross validation vs in-sample prediction error
+
+```{r}
+#| eval: false
+cv_procedure$cv
+```
+
+```
+       mae mae_scaled within_50 within_95
+1 985.5483   1.268736     0.278     0.742
+```
+
+```{r}
+set.seed(84735)
+prediction_summary(bike_posterior, data = bikes)
+```
+
+## Make it Bayesian
+
+Recall that our posterior predictive density is:
+
+$$f(y' | \vec{y}) = \int \int \int f(y'|\beta_0, \beta_1, \sigma) f(\beta_0, \beta_1, \sigma | \vec{y}) d\beta_0 d\beta_1 d\sigma$$
+
+-   If prediction is "good", $f(y'|\vec{y})$ will be higher than if it
+    is bad
+-   Can work on the log scale for numeric stability
+
+::: callout-note
+## Expected log-predictive density (ELPD)
+
+ELPD measures the average log posterior predictive pdf,
+$\log(f(y_{new} | \vec{y}))$, across all possible new data points
+$y_{new}$. The higher the ELPD, the better our model can predict *new*
+data points
+:::
+
+## `loo`
+
+The `loo()` function in the {rstanarm} package uses leave-one-out
+cross-validation to estimate the ELPD of a given model:
+
+```{r}
+model_elpd <- loo(bike_posterior)
+model_elpd$estimates
+```
+
+## ELPD is really only meaningful when comparing multiple models
+
+::::: columns
+::: {.column width="50%"}
+**Model 1:**
+:::
+
+::: {.column width="50%"}
+**Model 2:**
+:::
+:::::
+
+## Fitting model 2
+
+```{r}
+bike_posterior2 <- stan_glm(rides ~ temp_feel + humidity + weekend, 
+                            data = bikes,
+                            family = gaussian,
+                            prior_intercept = normal(5000, 1000),
+                            prior = normal(100, 40), 
+                            prior_aux = exponential(1),
+                            chains = 4, iter = 5000*2, seed = 84735, refresh = 0)
+```
+
+## MCMC diagnostics
+
+```{r}
+mcmc_trace(bike_posterior2)
+```
+
+## MCMC diagnostics
+
+```{r}
+mcmc_rank_overlay(bike_posterior2) + ylim(c(200, 300))
+```
+
+## MCMC diagnostics
+
+```{r}
+mcmc_dens_overlay(bike_posterior2)
+```
+
+## Posterior predictive check
+
+```{r}
+pp_check(bike_posterior2, nreps = 50) 
+```
+
+## k-fold CV vs in-sample prediction error
+
+```{r}
+#| eval: false
+set.seed(84735)
+cv_procedure2 <- prediction_summary_cv(
+  model = bike_posterior2,
+  data = bikes, 
+  k = 10)
+cv_procedure2$cv
+```
+
+```
+       mae mae_scaled within_50 within_95
+1 900.6496   1.202995     0.268     0.784
+```
+
+```{r}
+set.seed(84735)
+prediction_summary(bike_posterior2, data = bikes)
+```
+
+## elpd
+
+```{r}
+model_elpd2 <- loo(bike_posterior2)
+model_elpd2$estimates
+```
+
+## Model comparison
+
+|                      | One predictor | Three predictors |
+|----------------------|---------------|------------------|
+| In-sample MAE        | 990.02        | 891.17           |
+| In-sample within_95  | 0.772         | 0.792            |
+| 10-fold CV MAE       | 1030.16       | 900.65           |
+| 10-fold CV within_95 | 0.74          | 0.784            |
+| elpd                 | -4449.22      | -4416.94         |
+| elpd SE              | 34.05         | 37.34            |
+
+## Summary
+
+-   **Prior predictions** for $E(Y | X = x, \beta_0, \beta_1, \sigma)$
+-   **Posterior predictions** for
+    $E(Y | X = x, \beta_0, \beta_1, \sigma)$
+-   **Posterior predictions** for
+    $Y_{new} | X = x, \beta_0, \beta_1, \sigma$
+-   **Posterior predictive check** comparing $\vec{Y}_{new}$ to
+    $\vec{Y}$
+-   **Cross-validation** compares in-sample posterior predictions
+    $Y_{new} | X = x, \beta_0, \beta_1, \sigma$ to out-of-sample
+    posterior predictions
+    $Y_{new} | X = x_i, \beta_0^{(-i)}, \beta_1^{(-i)}, \sigma^{(-i)}$
+-   **ELPD** measures average log-posterior predictive pdf
+    $\log(f(y_{new} | \vec{y}))$ across all possible new data points
