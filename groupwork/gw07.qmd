@@ -202,3 +202,9 @@ wollongong %>%
 (a) Examine the `pp_check()` for each model. Which model is the most wrong? The least?
 (b) Which model do you think will have the best “in-sample” prediction error, that is the best predictions of the data points in our `wollongong` sample? Test your guess with a `prediction_summary()` of each model.
 (c) Which model do you think will have the best cross-validated prediction error, that is the best predictions of new data points? Test your guess with a `prediction_summary_cv()$cv` of each model.
+
+
+# TBA Wed
+
+# TBA Wed
+

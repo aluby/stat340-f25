@@ -51,9 +51,40 @@ Building from the previous exercise, our next goal is to model `body_mass_g` by 
 **(d) Simulate, plot, and describe the posterior predictive model for the body mass of an Adelie penguin that has a flipper length of 197.**
 **(e) Construct and discuss a `ppc_intervals` plot.**
 
-# TBA Mon
+# BR 11.3
 
-# TBA Mon
+Consider 4 separate models of `body_mass_g`:
+
+1. `body_mass_g ~ flipper_length_mm`
+2. `body_mass_g ~ species`
+3. `body_mass_g ~ flipper_length_mm + species`
+4. `body_mass_g ~ flipper_length_mm + bill_length_mm + bill_depth_mm`
+
+(a) Simulate these four models using the `stan_glm()` function.
+
+(b) Produce and compare the `pp_check()` plots for the four models.
+
+(c) Use 10-fold cross-validation to assess and compare the posterior predictive quality of the four models using the `prediction_summary_cv()`. *NOTE*: We can only predict body mass for penguins that have complete information on our model predictors. Yet two penguins have NA values for multiple of these predictors. To remove these two penguins, we `select()` our columns of interest before removing penguins with NA values. This way, we don’t throw out penguins just because they’re missing information on variables we don’t care about:
+
+```{r}
+penguins_complete <- penguins_bayes |>
+  select(flipper_length_mm, body_mass_g, species, bill_length_mm, bill_depth_mm) |>
+  na.omit() 
+```
+
+(d) Evaluate and compare the ELPD posterior predictive accuracy of the four models.
+
+(e) In summary, which of these four models is “best?” Explain.
+
+# BR 11.14 (slightly modified)
+
+Build two additional models of penguin `bill_length_mm`. 
+  
+  1. The best predictive model you can 
+  2. A model that balances prediction and inference goals
+
+You get to choose which predictors to use, and whether to include interaction terms. Evaluate and compare these models to the ones you built in the previous problem. Which do you prefer and why?
+
 
 # TBA Wed
 
