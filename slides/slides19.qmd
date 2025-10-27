@@ -32,6 +32,7 @@ library(patchwork)
 library(rstan)
 library(bayesplot)
 library(broom.mixed)
+library(ggrepel)
 
 theme_set(theme_minimal(base_size = 16, base_family = "Atkinson Hyperlegible"))
 ```
@@ -54,11 +55,40 @@ Today:
 -   More on **cross validation**
 -   Make it \~ Bayesian \~
 
-## New Example: brain volume vs mass
+## Example 1: Brain volume vs mass in *homo* genus
 
-ADD GRAPH AND PICTURE
+```{r}
+#| echo: false
+
+
+sppnames <- c( "afarensis","africanus","habilis","boisei",
+               "rudolfensis","ergaster","sapiens")
+brainvolcc <- c( 438 , 452 , 612, 521, 752, 871, 1350 )
+masskg <- c( 37.0 , 35.5 , 34.5 , 41.5 , 55.5 , 61.0 , 53.5 )
+d <- data.frame( species=sppnames , brain=brainvolcc , mass=masskg )
+
+ggplot(d, aes(x = mass, y = brain)) + 
+  geom_point() + 
+  geom_text_repel(aes(label = sppnames))
+```
 
 ## All polynomial fits side by side
+
+```{r}
+#| echo: false
+
+
+p <- ggplot(d, aes(x = mass, y = brain)) + 
+  geom_point() 
+
+(p + geom_smooth(method = "lm", formula = y ~ poly(x, 1), se = FALSE)) +  
+(p + geom_smooth(method = "lm", formula = y ~ poly(x, 2), se = FALSE)) +
+(p + geom_smooth(method = "lm", formula = y ~ poly(x, 3), se = FALSE)) + 
+(p + geom_smooth(method = "lm", formula = y ~ poly(x, 4), se = FALSE)) +
+(p + geom_smooth(method = "lm", formula = y ~ poly(x, 5), se = FALSE)) +
+(p + geom_smooth(method = "lm", formula = y ~ poly(x, 6), se = FALSE)) 
+
+```
 
 ## Leave-one-out cross validation
 
@@ -67,14 +97,45 @@ ADD GRAPH AND PICTURE
 
 (1) Drop the $i$th data point
 (2) Train and test the model
-    - Train/fit the model using the remaining $i-1$ data points
-    - Predict the fit ($\hat{y}$) on the $i$th data point
-    - Measure the prediction quality (e.g. mean absolute prediction error)
+    -   Train/fit the model using the remaining $i-1$ data points
+    -   Predict the fit ($\hat{y}$) on the $i$th data point
+    -   Measure the prediction quality (e.g. mean absolute prediction
+        error)
 (3) Repeat for all $n$ data points
-(4) Calculate the cross-validation estimate by averaging the $n$ prediction measures to obtain a single cross-validation estimate of prediction quality
+(4) Calculate the cross-validation estimate by averaging the $n$
+    prediction measures to obtain a single cross-validation estimate of
+    prediction quality
 :::
 
-## All polynomial fits + in and out error
+## Illustration: second order polynomial fit
+
+![](img/quadratic-anim.gif)
+
+## 
+
+### [In sample error: 289]{style="color:skyblue;"}
+
+### Out of sample error: 865
+
+![](img/quadratic-anim-final.png)
+
+## "In" and "Out" squared error
+
+```{r}
+#| echo: false 
+
+
+p <- ggplot(d, aes(x = mass, y = brain)) + 
+  geom_point() 
+
+(p + geom_smooth(method = "lm", formula = y ~ poly(x, 1), se = FALSE) + ggtitle("In: 318 \nOut: 619")) +  
+(p + geom_smooth(method = "lm", formula = y ~ poly(x, 2), se = FALSE)  + ggtitle("In: 289 \nOut: 865")) +
+(p + geom_smooth(method = "lm", formula = y ~ poly(x, 3), se = FALSE)  + ggtitle("In: 201 \nOut: 12,538")) + 
+(p + geom_smooth(method = "lm", formula = y ~ poly(x, 4), se = FALSE)  + ggtitle("In: 120 \nOut: 25,530")) +
+(p + geom_smooth(method = "lm", formula = y ~ poly(x, 5), se = FALSE)  + ggtitle("In: 7 \nOut: 293,840")) +
+(p + geom_smooth(method = "lm", formula = y ~ poly(x, 6), se = FALSE) + ggtitle("In: 0 \nOut: 814,591")) & theme(title = element_text(size = 14))
+
+```
 
 ## Leave-one-out cross-validation
 
@@ -94,11 +155,20 @@ Most accurate model trades off flexibility with **overfitting**
 :::
 :::::
 
-## Inference vs prediction
+::: callout-tip
+## Warm up Q
 
-\[ADD TO THIS\]
+Which model do you think is best?
+:::
 
-no "right" answer to balancing in v out prediction
+## Inference vs Prediction{.smaller}
+
+|   | **Inference** | **Prediction** |
+|----|----|----|
+| **Primary Goal** | To understand and interpret the relationship between variables | To accurately forecast a future outcome |
+| **Areas of focus** | Coefficients; individual predictions; causal relationships; statistical discernibility | Overall accuracy of model's output for new data |
+| **Model Selection** | Selects the model that best fits the underlying assumptions about how the data was generated | Selects the model that performs best on a test set, even if it's more complex and less interpretable |
+| **Validation** | Residual plots, goodness of fit tests, etc. | Empirical metrics like MSE or MAE on a test set |
 
 ## Example 2: `bikes`
 
@@ -193,11 +263,11 @@ cv_procedure <- prediction_summary_cv(
   model = bike_posterior, data = bikes, k = 10)
 ```
 
-```
+```         
 20.408 sec elapsed
 ```
 
-```
+```         
    fold       mae mae_scaled within_50 within_95
 1     1 1126.6297  1.4598036      0.20      0.68
 2     2 1000.3435  1.2933144      0.28      0.78
@@ -218,7 +288,7 @@ cv_procedure <- prediction_summary_cv(
 cv_procedure$cv
 ```
 
-```
+```         
        mae mae_scaled within_50 within_95
 1 985.5483   1.268736     0.278     0.742
 ```
@@ -250,35 +320,40 @@ data points
 ## `loo`
 
 The `loo()` function in the {rstanarm} package uses leave-one-out
-cross-validation to estimate the ELPD of a given model:
+cross-validation to approximate the ELPD of a given model:
 
 ```{r}
 model_elpd <- loo(bike_posterior)
 model_elpd$estimates
 ```
 
-## ELPD is really only meaningful when comparing multiple models
+## ELPD is most meaningful when comparing multiple models
 
-::::: columns
-::: {.column width="50%"}
 **Model 1:**
-:::
 
-::: {.column width="50%"}
+$$\mu_i = \beta_0 + \beta_1 \times \text{temp_feel}$$
+
+$$Y_i \sim N(\mu_i, \sigma^2)$$
+
 **Model 2:**
-:::
-:::::
+
+$$\mu_i = \beta_0 + \beta_1 \times \text{temp_feel} + \beta_2 \times \text{humidity} + \beta_3 \times \mathbb{I}\{ \text{weekend}\}$$
+
+$$Y_i \sim N(\mu_i, \sigma^2)$$
 
 ## Fitting model 2
 
 ```{r}
-bike_posterior2 <- stan_glm(rides ~ temp_feel + humidity + weekend, 
+bike_posterior2 <- stan_glm(rides ~ temp_feel + humidity +
+                              weekend, 
                             data = bikes,
                             family = gaussian,
                             prior_intercept = normal(5000, 1000),
                             prior = normal(100, 40), 
                             prior_aux = exponential(1),
-                            chains = 4, iter = 5000*2, seed = 84735, refresh = 0)
+                            chains = 4, iter = 5000*2, 
+                            seed = 84735, 
+                            refresh = 0)
 ```
 
 ## MCMC diagnostics
@@ -317,7 +392,7 @@ cv_procedure2 <- prediction_summary_cv(
 cv_procedure2$cv
 ```
 
-```
+```         
        mae mae_scaled within_50 within_95
 1 900.6496   1.202995     0.268     0.784
 ```
@@ -354,9 +429,8 @@ model_elpd2$estimates
     $Y_{new} | X = x, \beta_0, \beta_1, \sigma$
 -   **Posterior predictive check** comparing $\vec{Y}_{new}$ to
     $\vec{Y}$
--   **Cross-validation** compares in-sample posterior predictions
-    $Y_{new} | X = x, \beta_0, \beta_1, \sigma$ to out-of-sample
-    posterior predictions
-    $Y_{new} | X = x_i, \beta_0^{(-i)}, \beta_1^{(-i)}, \sigma^{(-i)}$
+-   **Cross-validation** compares $Y_i$ to out-of-sample posterior
+    predictions
+    $Y_{i} | X = x_i, \beta_0^{(-i)}, \beta_1^{(-i)}, \sigma^{(-i)}$
 -   **ELPD** measures average log-posterior predictive pdf
     $\log(f(y_{new} | \vec{y}))$ across all possible new data points
