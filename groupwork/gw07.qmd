@@ -204,19 +204,70 @@ wollongong %>%
 (c) Which model do you think will have the best cross-validated prediction error, that is the best predictions of new data points? Test your guess with a `prediction_summary_cv()$cv` of each model.
 
 
-# BR 12.2 
+# Explore the Negative Binomial model
 
-Specify whether Poisson regression, Negative Binomial regression, both, or neither fit with each situation described below.
+The `pulse_of_the_nation` data in the {bayesrules} package contains a sample of 1,000 responses to a cards against humanity survey. One of the variables is `books`, which is the number of books each respondent read in the last year. 
 
-(a) The response variable is a count.
-(b) The link is a log.
-(c) The link is the identity.
-(d) We need to account for overdispersion.
-(e) The response is a count variable, and as the expected response increases, the variability also increases.
+```{r}
+#| fig-width: 4
+#| fig-height: 2
+ggplot(pulse_of_the_nation, aes(x = books)) + 
+  geom_histogram(col = "white")
+```
+
+(a) Make an argument for why a Poisson model is a reasonable model for this variable
+(b) Calculate the sample mean and variance of the `books` variable, and make an argument for why it does *not* meet the requirements for a Poisson random variable
+(c) Use the theoretical properties of the negative binomial distribution from the slides to argue that: 
+    - if $r$ is large, the negative binomial has similar properties to the Poisson
+    - if $r$ is small, the negative binomial model is overdispersed in comparison to a Poisson model with the same mean
+(d) Confirm your results from (c) by filling in `____` in the code below to simulate two negative binomial RV's (`v` and `x`) with the same mean as the poisson random variable (`u`). Use $r=1000$ for `v` and $r=1$ for `x`. 
+
+```{r}
+#| eval: false
+
+
+# Simulate the samples
+set.seed(84735)
+sim_data <- tibble(
+  u = rpois(1000, 5),
+  v = rnbinom(1000, mu = ___, size = ___),
+  x = rnbinom(1000, mu = ___, size = ___)
+)
+
+# Plot the samples
+p1 <- ggplot(sim_data, aes(x = u)) + 
+  geom_bar() +
+  lims(x = c(-1, 32), y = c(0, 200)) + 
+  labs(title = "Pois(5)")
+p2 <- ggplot(sim_data, aes(x = v)) + 
+  geom_bar() +
+  lims(x = c(-1, 32), y = c(0, 200)) +
+  labs(title = "NegBinom(5, 10000)")
+p3 <- ggplot(sim_data, aes(x = x)) + 
+  geom_bar() +
+  lims(x = c(-1, 32), y = c(0, 200)) +
+  labs(title = "NegBinom(5, 1)")
+
+p1 + p2 + p3
+```
+
+(e) The stan code below fits a negative binomial regression model with no predictors. Explain why this is equivalent to finding $\mu$ and $r$. Then, add a comment to explain how you would add predictors to this model. 
+
+```{r}
+#| eval: false
+
+
+# Simulate the Negative Binomial regression model with no predictors
+books_nb <- stan_glm(
+    books ~ 1,
+    data = pulse_of_the_nation,
+    family = neg_binomial_2,
+    chains = 4, iter = 5000*2, seed = 84735, refresh = 0)
+```
 
 # BR 12.10 (adapted)
 
-The `airbnb_small` data in the {bayesrules} package contains information on AirBnB rentals in Chicago. This data was originally collated by Trinh and Ameri (2016) and distributed by Legler and Roback (2021). In this open-ended exercise, build, interpret, and evaluate a model of the number of `reviews` an AirBnB property has by its `rating`, `district`, `room_type`, and the number of guests it `accommodates.` 
+The `airbnb_small` data in the {bayesrules} package contains information on AirBnB rentals in Chicago in 2016. This data was originally collated by Trinh and Ameri (2016) and distributed by Legler and Roback (2021). In this open-ended exercise, build, interpret, and evaluate a model of the number of `reviews` an AirBnB property has by its `rating`, `district`, `room_type`, and the number of guests it `accommodates.` 
 
 ```{r}
 library(bayesrules)

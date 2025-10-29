@@ -1,0 +1,324 @@
+---
+title: Poisson and NB Regression
+subtitle: Day 20
+title-slide-attributes:
+  data-background-color: "#e2583eff"
+  data-slide-number: none
+format: 
+  revealjs:
+    incremental: false
+    scrollable: false
+auto-stretch: true
+editor_options: 
+  chunk_output_type: console
+editor: 
+  markdown: 
+    wrap: 72
+execute: 
+  warning: false
+  message: false
+---
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+
+library(countdown)
+library(tidyverse)
+library(tidybayes)
+library(bayesrules)
+library(janitor)
+library(patchwork)
+library(rstan)
+library(rstanarm)
+library(bayesplot)
+library(broom.mixed)
+library(ggrepel)
+
+theme_set(theme_minimal(base_size = 16, base_family = "Atkinson Hyperlegible"))
+```
+
+## Normal Regression
+
+$$Y_i | \vec{X_i} \sim N(\mu_i, \sigma^2)$$
+$$\mu_i = \beta_0 + \beta_1 X_1 + ... + \beta_k X_k$$
+
+## 
+
+::::: columns
+::: {.column width="50%"}
+### Usual Regression Assumptions:
+
+:::
+
+::: {.column width="50%"}
+### Bayesian Checks:
+
+:::
+:::::
+
+## Example 1: number of anti-discrimination laws
+
+The `equality_index` data in the {bayesrules} package includes the observed number of anti-discrimination laws in each state,  $Y$ . Let's model  $Y$ by a state’s `percent_urban` and its `historical` presidential voting patterns. The `historical` variable has 3 levels:
+
+- `dem` = the state typically votes for the Democratic candidate
+- `gop` = the state typically votes for the Republican (GOP) candidate
+- `swing` = the state often swings back and forth between Democratic and Republican candidates
+
+## EDA
+
+```{r}
+#| echo: false 
+
+
+data("equality_index")
+
+p1 <- ggplot(equality_index, aes(x = laws)) + 
+  geom_histogram(col = "white")
+
+p2 <- ggplot(equality_index, aes(y = laws, x = percent_urban)) + 
+  geom_point(size = .5)
+
+p3 <- ggplot(equality_index, aes(y = laws, x = historical)) + 
+  geom_violin(aes(fill = historical), alpha = .6) +
+  geom_point(size = .5) +
+  theme(legend.position = "none")
+
+p1 / (p2 + p3)
+```
+
+## 
+
+```{r}
+equality_index |>
+  filter(laws > 150)
+
+equality <- equality_index |> filter(laws < 150) 
+```
+
+## EDA 
+
+```{r}
+#| echo: false 
+
+p1 <- ggplot(equality, aes(x = laws)) + 
+  geom_histogram(col = "white")
+
+p2 <- ggplot(equality, aes(y = laws, x = percent_urban)) + 
+  geom_point(size = .5)
+
+p3 <- ggplot(equality, aes(y = laws, x = historical)) + 
+  geom_violin(aes(fill = historical), alpha = .6) +
+  geom_point(size = .5) +
+  theme(legend.position = "none")
+
+p1 / (p2 + p3)
+```
+
+## Normal model
+
+```{r}
+# Simulate the posterior Normal regression model
+normal_model <- stan_glm(
+  laws ~ percent_urban + historical, data = equality,
+  family = gaussian,
+  chains = 4, iter = 5000*2, seed = 84735, refresh = 0)
+```
+
+## What priors did I use? {.smaller}
+
+```{r}
+prior_summary(normal_model)
+```
+
+## Posterior predictive check
+
+```{r}
+pp_check(normal_model, plotfun = "hist", nreps = 15)  + 
+  geom_vline(xintercept = 0, col = "darkred", linetype = "dashed")
+```
+
+## "Usual" regression check
+
+```{r}
+#| echo: false
+#| fig-height: 3
+
+p1 <- ggplot() + 
+  geom_histogram(aes(x = normal_model$fitted.values), col = "white", bins = 15) + 
+  labs(x = ".fitted", y = "")
+
+p2 <- ggplot() + 
+  geom_point(aes(x = normal_model$residuals, y = normal_model$fitted.values), size = .5)  + 
+  labs(x = ".residuals", y = ".fitted")
+
+p1 + p2
+```
+
+## Poisson Regression
+
+$$Y_i | \vec{X_i} \sim \text{Pois}(\lambda_i)$$
+$$\log(\lambda_i) = \beta_0 + \beta_1 X_1 + ... + \beta_k X_k$$
+
+## Aside: GLMs
+
+Define **data model** $$Y_i \sim F(\theta)$$
+
+In a GLM, $$g(E(Y_i | \theta)) = \beta_0 + \beta_1 X_1 + ... + \beta_k X_k$$
+
+$g$ is determined by the data model and called the **link function**
+
+::: callout-note
+## Question
+
+What is the link function for normal regression? Poisson regression?
+:::
+
+## Setting up poisson model + check priors
+
+```{r}
+# Simulate the prior Poisson regression model
+poisson_prior <- stan_glm(
+  laws ~ percent_urban + historical, data = equality,
+  family = poisson,
+  prior_PD = TRUE,
+  chains = 4, iter = 5000*2, seed = 84735, refresh = 0)
+```
+
+```{r}
+#| output-location: slide
+
+equality %>% 
+  add_epred_draws(poisson_prior, ndraws = 50) %>%
+  ggplot(aes(x = percent_urban, y = laws, color = historical)) +
+    geom_line(aes(y = .epred, 
+                  group = interaction(historical, .draw)), 
+              alpha = .6, 
+              size = .5) +
+  ylim(c(0,100))
+```
+
+## Fit posterior + pp check
+
+```{r}
+poisson_model <- update(poisson_prior, prior_PD = FALSE)
+```
+
+```{r}
+#| layout-ncol: 2
+
+
+pp_check(poisson_model, plotfun = "hist", nreps = 5) 
+pp_check(poisson_model)
+```
+
+## Interpreting posterior
+
+```{r}
+equality %>%
+  add_epred_draws(poisson_model, ndraws = 50) %>%
+  ggplot(aes(x = percent_urban, y = laws, color = historical)) +
+    geom_line(aes(y = .epred, group = interaction(historical, .draw)), 
+              alpha = .1) +
+    geom_point(data = equality, size = 0.1) + 
+  scale_color_viridis_d(end = .75, option = "plasma")
+```
+
+## Posterior estimates
+
+```{r}
+tidy(poisson_model, conf.int = TRUE, conf.level = 0.80)
+```
+
+::: callout-note
+## Check: 
+
+- What is the equation for the linear predictor?
+- What is the expected value for $Y_i | \vec{X_i}$?
+:::
+
+## How do you interpret $\hat \beta_{\% urban} = 0.0164$
+
+## How do you interpret $\hat \beta_{\% swing} = -0.608$
+
+If `percent_urban` remains constant... 
+
+(a) The number of anti-discrimination laws tends to decrease by roughly 54 percent for every extra swing state.
+(b) swing states tend to have 54 percent as many anti-discrimination laws as dem leaning states.
+(c) swing states tend to have 0.54 fewer anti-discrimination laws than dem leaning states.
+
+## Posterior prediction: Minnesota
+
+```{r}
+equality %>% 
+  filter(state == "minnesota")
+```
+
+## 
+
+```{r}
+# Predict number of laws for each parameter set in the chain
+set.seed(84735)
+as.data.frame(poisson_model) %>% 
+  mutate(log_lambda = `(Intercept)` + percent_urban*73.3 + 
+           historicalgop*0 + historicalswing*0,
+         lambda = exp(log_lambda),
+         y_new = rpois(20000, lambda = lambda)) |>
+  ggplot(aes(x = y_new)) +
+  stat_count() + geom_vline(xintercept = 4, col = "darkred", linetype = "dashed")
+```
+
+## Drawback of Poisson regression
+
+```{r}
+#| echo: false
+#| fig-height: 3
+library(ggh4x)
+
+
+p1 <- pulse_of_the_nation |>
+  filter(books < 200) |>
+  ggplot(aes(x = books)) + 
+  geom_histogram(aes(y = after_stat(density)), col = "white") + 
+  stat_theodensity(distri = "pois", col = "darkorange") +
+  labs( x = "x")
+
+set.seed(102925)
+p2 <- tibble(
+  x = rnbinom(50, mu = 5, size = 2)
+) |>
+  ggplot(aes(x = x)) + 
+  geom_histogram(aes(y = after_stat(density)), bins = 15, col = "white") + 
+  stat_theodensity(distri = "pois", col = "darkorange")
+
+p1 + p2
+
+```
+
+::: callout-note
+## Overdispersion
+
+A random variable  $Y$ is overdispersed if the observed variability in  $Y$ exceeds the variability expected by the assumed probability model of  $Y$ 
+:::
+
+## 
+
+::: callout-note
+## Negative Binomial Probabilty model
+
+Let random variable  $Y$ be some count, $Y \in \{0, 1, ...,\}$, that can be modeled by the Negative Binomial with mean parameter  $\mu$ and reciprocal dispersion parameter $r$: 
+
+$$Y \sim \text{NegBin}(\mu, r)$$
+
+Then $Y$ has conditional pmf
+
+$$f(y | \mu, r) = {y + r -1 \choose k} (\frac{r}{\mu + r})^r (\frac{\mu}{\mu+r})^y$$
+
+and
+
+$$E(Y|\mu, r) = \mu$$ 
+
+$$\text{Var}(Y | \mu, r) = \mu + \frac{\mu^2}{r}$$
+
+:::
