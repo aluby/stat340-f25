@@ -86,7 +86,31 @@ Build two additional models of penguin `bill_length_mm`.
 You get to choose which predictors to use, and whether to include interaction terms. Evaluate and compare these models to the ones you built in the previous problem. Which do you prefer and why?
 
 
-# TBA Wed
+# BR 12.5   
 
-# TBA Wed
+You will explore how the number of eagle sightings in Ontario, Canada has changed over time. Since this context is unfamiliar to us, we’ll utilize weakly informative priors throughout. We’ll balance this prior uncertainty by the `bald_eagles` data in the {bayesrules} package, which includes data on bald eagle sightings during 37 different one-week observation periods.
+
+(a) Construct and discuss a univariate plot of count, the number of eagle sightings across the observation periods.
+(b) Construct and discuss a plot of count versus year.
+(c) In exploring the number of eagle sightings over time, it’s important to consider the fact that the length of the observation periods vary from year to year, ranging from 134 to 248.75 hours. Update your plot from part b to also include information about the observation length in hours and comment on your findings.
+
+# BR 12.7
+
+Consider a Poisson regression model of $Y$ versus $X_1$: year and $X_2$: hours. 
+
+(a) In the bald eagle analysis, why might a Poisson regression approach be more appropriate than a Normal regression approach?
+(b) Simulate the posterior of the Poisson regression model of  $Y$ versus $X_1$ and $X_2$. Check the prior_summary().
+(c) Use careful notation to write out the complete Bayesian structure of the Poisson regression model of  $Y$ versus $X_1$ and $X_2$.
+(d) Complete a `pp_check()` for the Poisson model. Use this to explain whether the model is “good” and, if not, what assumptions it makes that are inappropriate for the bald eagle analysis.
+
+# BR 12.8
+
+The Poisson regression model of bald eagle counts ($Y$) by year ($X_1$) and observation hours ($X_2$), was pretty good. Let’s see if a Negative Binomial approach is even better.
+
+(a) Simulate the model posterior and use a `pp_check()` to confirm whether the Negative Binomial model is reasonable.
+(b) Use careful notation to write out the complete Bayesian structure of the Negative Binomial regression model of  
+$Y$ versus $X_1$ and $X_2$.
+(c) Interpret the posterior median estimates of the regression coefficients on `year` and `hours`. Do so on the unlogged scale.
+(d) Construct and interpret a 95% posterior credible interval for the year coefficient.
+(e) When controlling for the number of observation hours, do we have ample evidence that the rate of eagle sightings has increased over time?
 

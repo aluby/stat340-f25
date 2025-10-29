@@ -204,7 +204,31 @@ wollongong %>%
 (c) Which model do you think will have the best cross-validated prediction error, that is the best predictions of new data points? Test your guess with a `prediction_summary_cv()$cv` of each model.
 
 
-# TBA Wed
+# BR 12.2 
 
-# TBA Wed
+Specify whether Poisson regression, Negative Binomial regression, both, or neither fit with each situation described below.
 
+(a) The response variable is a count.
+(b) The link is a log.
+(c) The link is the identity.
+(d) We need to account for overdispersion.
+(e) The response is a count variable, and as the expected response increases, the variability also increases.
+
+# BR 12.10 (adapted)
+
+The `airbnb_small` data in the {bayesrules} package contains information on AirBnB rentals in Chicago. This data was originally collated by Trinh and Ameri (2016) and distributed by Legler and Roback (2021). In this open-ended exercise, build, interpret, and evaluate a model of the number of `reviews` an AirBnB property has by its `rating`, `district`, `room_type`, and the number of guests it `accommodates.` 
+
+```{r}
+library(bayesrules)
+data(airbnb_small)
+```
+
+Your answer to this problem should include: 
+
+  - an EDA of the response variable 
+  - an explanation of the regression model you used and your priors
+  - evidence that your MCMC sample has converged
+  - evidence that your model adequately fits the data
+  - appropriate inference to answer the question of interest
+  
+  
