@@ -1,5 +1,5 @@
 ---
-title: "Group Work 07"
+title: "Group Work 08"
 ---
 
 ```{r}
@@ -23,46 +23,15 @@ Calculate and interpret the odds for each event of interest below.
 (c) The log(odds) that your bus will be on time are 0.
 (d) The log(odds) that a person is left-handed are -1.386.
 
-# Fri 
+# BR 13.14 (adapted)
 
-```{r}
-p1 <- pulse_of_the_nation %>%
-  ggplot(aes(x = age, y = ghosts)) +
-  geom_violin()
+We return to the `pulse_of_the_nation` survey data in the {bayesrules} package which includes a variable on whether or not a person believes in `ghosts` (spooky!) You are going to build a logistic regression model using `age`, `education`, and `books` as predictors. 
 
-
-p2 <- pulse_of_the_nation %>%
-  ggplot(aes(y = education, fill = ghosts)) +
-  geom_bar(position = "fill")
-
-p3 <- pulse_of_the_nation %>%
-  ggplot(aes(x = books, y = ghosts)) +
-  geom_violin()
-
-# Combine plots
-p1 + p2 + p3
-```
-
-```{r}
-ghost_posterior <- stan_glm(
-  ghosts ~ age + education + books,
-  data = pulse_of_the_nation,
-  family = binomial(link = "logit"),
-  chains = 4, iter = 2000, refresh = 0
-)
-
-tidy(ghost_posterior, conf.int = TRUE)
-
-mcmc_trace(ghost_posterior)
-mcmc_dens_overlay(ghost_posterior)
-mcmc_acf(ghost_posterior)
-
-proportion <- function(x){mean(x == 1)}
-pp_check(ghost_posterior, nreps = 100,
-         plotfun = "stat", stat = "proportion") 
-
-pp_check(ghost_posterior, plotfun = "error_scatter_avg_vs_x") 
-```
+(a) Perform an appropriate EDA of the relationship between `ghosts` and each of the predictors
+(b) Specify the full Bayesian model 
+(c) Fit the model specified in (b) using `stan_glm`. Include MCMC convergence diagnostics.
+(d) Report the `tidy` coefficient table with 90% credible intervals and interpret the coefficients in context
+(e) Check the fit of the model using an appropriate posterior predictive check
 
 
 # Mon

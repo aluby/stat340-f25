@@ -35,14 +35,195 @@ library(rstanarm)
 library(bayesplot)
 library(broom.mixed)
 library(ggrepel)
-
+library(ggridges)
 theme_set(theme_minimal(base_size = 16, base_family = "Atkinson Hyperlegible"))
 ```
 
-# odds, log odds, probability
+## Plan for today: 
 
-# connection to GLM 
+- Just the basics
+- Review big idea of logistic regression
+- Compile questions as you work
 
-# Visualization
+## Example: can we predict if it will rain tomorrow based on whether it rained today?
 
+```{r}
+weather_perth |>
+  ggplot(aes(x = raintoday, fill = raintomorrow)) + 
+  geom_bar(position = "fill")
+```
 
+## Example: can we predict if it will rain tomorrow based on whether it rained today?
+
+```{r}
+weather_perth |>
+  ggplot(aes(x = raintoday, y = raintomorrow, col = raintomorrow)) + 
+  geom_jitter()
+```
+
+## Example: can we predict if it will rain tomorrow based on **today**'s 9am humidity?
+
+```{r}
+library(ggridges)
+
+weather_perth |>
+  ggplot(aes(x = humidity9am, y = raintomorrow, fill = raintomorrow)) + 
+  geom_density_ridges()
+```
+
+## Example: can we predict if it will rain tomorrow based on **today**'s 9am humidity?
+
+```{r}
+weather_perth |>
+  ggplot(aes(x = humidity9am, y = raintomorrow, col = raintomorrow)) + 
+  geom_jitter() +
+  theme(legend.position = "none")
+```
+
+## Treat response as 0/1
+
+```{r}
+weather_perth |>
+  ggplot(aes(x = humidity9am, y = ifelse(raintomorrow == "Yes", 1, 0), col = raintomorrow)) + 
+  geom_jitter() +
+  theme(legend.position = "none") +
+  labs(
+    y = "raintomorrow (numeric)"
+  )
+```
+
+## Create "brackets"
+
+```{r}
+weather_brackets <- weather_perth |>
+  mutate(
+    humidity_bracket = cut(humidity9am, breaks = seq(10, 100, by = 10))
+  ) |>
+  group_by(humidity_bracket) |>
+  summarize(rain_rate = mean(raintomorrow == "Yes")) 
+
+weather_brackets
+```
+
+Goal: express y-axis as something that can be represented by a linear combination of predictors
+
+## Empirical P(rain) for each humidity bracket
+
+```{r}
+#| echo: false
+weather_brackets |>
+  ggplot(aes(x = humidity_bracket, y = rain_rate)) + 
+  geom_point() + 
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5))
+```
+
+## Odds of rain for each humidity bracket
+
+```{r}
+#| echo: false
+weather_brackets |>
+  ggplot(aes(x = humidity_bracket, y = rain_rate/(1-rain_rate))) + 
+  geom_point() + 
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5))
+```
+
+## Log-Odds of rain for each humidity bracket
+
+```{r}
+weather_brackets |>
+  ggplot(aes(x = humidity_bracket, y = log(rain_rate/(1-rain_rate)))) + 
+  geom_point() + 
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5))
+```
+
+## GLM?
+
+## Log-odds, odds, and probability scales
+
+```{r}
+#| echo: false
+
+logreg <- glm(raintomorrow ~ humidity9am, family = "binomial", data = weather_perth)
+
+p1 <- augment(logreg) |>
+  ggplot(aes(x = humidity9am, y = .fitted)) + 
+  geom_line() + 
+  labs(y = "log(odds of rain)")
+
+p2 <- augment(logreg) |>
+  ggplot(aes(x = humidity9am, y = exp(.fitted))) + 
+  geom_line() + 
+  labs(y = "odds of rain")
+
+p3 <- augment(logreg) |>
+  ggplot(aes(x = humidity9am, y = exp(.fitted)/(1+exp(.fitted)))) + 
+  geom_line() + 
+  labs(y = "probability of rain") + 
+  ylim(c(0,1))
+
+p1 + p2 + p3
+```
+
+## Interpretation {.smaller}
+
+If $Y \sim Bern(\pi)$ with predictors $X_1, ..., X_p$ and 
+
+$$\log \frac{\pi}{1- \pi} = \beta_0 + \beta_1 X_1 + \beta_2 X_2 + .... + \beta_p X_p$$
+
+- $\beta_0$ gives the log-odds of $Y$ and $e^{\beta_0}$ gives the odds when all $X_k=0$
+- $\beta_1$: if $\text{odds}_x$ represents the odds of $Y$ when $X_1 = x$ and $\text{odds}_{x+1}$ represents the odds when $X_1 = x+1$, and all other $X_k$ are held constant, $\beta_1$ is the linear change in log odds and $e^{\beta_1}$ is the multiplicative change in odds when $X_1$ increases by 1: 
+
+$$ \beta_1 = \log\text{odds}_{x+1} = \text{odds}_{x}$$ 
+
+$$ e^{\beta_1} = \frac{\text{odds}_{x+1}}{\text{odds}_{x}}$$
+
+## Fitting the model
+
+```{r}
+#| cache: true
+
+# Run a prior simulation
+rain_model_prior <- stan_glm(raintomorrow ~ humidity9am,
+                             data = weather_perth, family = binomial,
+                             prior_intercept = normal(-1.4, 0.7),
+                             prior = normal(0.07, 0.035),
+                             chains = 4, iter = 5000*2, 
+                             seed = 84735, refresh =0,
+                             prior_PD = TRUE)
+
+# Simulate the model
+rain_model_1 <- update(rain_model_prior, prior_PD = FALSE)
+```
+
+## Various posterior predictions
+
+```{r}
+#| layout-ncol: 2
+#| output-location: slide
+
+weather_perth %>%
+  add_linpred_draws(rain_model_1, ndraws = 100) %>%
+  ggplot(aes(x = humidity9am, y = raintomorrow)) +
+    geom_line(aes(y = .linpred, group = .draw), alpha = 0.15) + ylab("")
+
+weather_perth %>%
+  add_epred_draws(rain_model_1, ndraws = 100) %>%
+  ggplot(aes(x = humidity9am, y = raintomorrow)) +
+    geom_line(aes(y = .epred, group = .draw), alpha = 0.15) + ylab("")
+
+weather_perth %>%
+  add_epred_draws(rain_model_1, ndraws = 100) %>%
+  ggplot(aes(x = humidity9am, y = raintomorrow)) +
+    geom_line(aes(y = .epred/(1-.epred), group = .draw), alpha = 0.15) + ylab("")
+
+weather_perth %>%
+  add_predicted_draws(rain_model_1, ndraws = 1) %>%
+  ggplot(aes(x = humidity9am, y = raintomorrow)) +
+    geom_jitter(aes(y = .prediction, group = .draw), alpha = 0.15) + ylab("")
+```
+
+## Monday
+
+- Logistic regression as a classifier
+- Classifier performance
+- Naive bayes classifier
