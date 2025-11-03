@@ -1,0 +1,45 @@
+---
+title: "Final Project"
+execute: 
+  echo: true
+  warning: false
+  message: false
+---
+
+🚧 Under construction 🚧
+
+# What is the project?
+
+The primary goal of the project is to demonstrate competency with the content of the course and show me that you can apply Bayesian thinking and ideas to new settings. The new setting might be a new, complicated dataset, or it might be a new method that we did not talk about in class, but you'd like to explore.
+
+1. Modeling Project
+    - You will analyze a dataset using a Bayesian modeling approach. 
+    - Your data should be relatively complicated and you should use a model that was not accessible to you after 230/250 (e.g. a hierarchical model, mixture model, etc)
+    - Your final project should be motivated by real data and the emphasis should be on comparing different models and drawing real-world conclusions about the data
+    
+2. Methods Project
+    - You will explore a Bayesian method or model that we did not talk about in class
+    - You should still include a "real world" data example
+    - The emphasis of your project may be on explaining the method or summarizing the papers you read, rather than on the conclusions from the data analysis
+    
+    
+All projects should include: 
+
+ - Some math explaining the modeling approach
+ - Analyzing data in R
+ - Bayesian tools
+ 
+# Examples for datasets
+
+🚧 Under construction 🚧
+ 
+# Possible topics for new methods (links to come):
+ 
+ - Pareto Smoothed Importance Sampling or WAIC
+ - Bayesian Additive Regression Trees (BART)
+ - Bayesian Decision Theory
+ - Dirichlet Processes
+ 
+ 
+ 
+ 
