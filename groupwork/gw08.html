@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.23">
+<meta name="generator" content="quarto-1.8.24">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <title>Group Work 08 – Stat 340</title>
 <style>
@@ -69,9 +69,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-631ded8afafd89da02f6c04f3e24cdd8.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-631ded8afafd89da02f6c04f3e24cdd8.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-631ded8afafd89da02f6c04f3e24cdd8.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-f54fa83ccd8f86fe7238c9291c42d766.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-f54fa83ccd8f86fe7238c9291c42d766.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-f54fa83ccd8f86fe7238c9291c42d766.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap-710808da41c8bbec41991e78ce036138.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
@@ -371,6 +371,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 ">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../homework/gw02-sols.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">gw02-sols</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../homework/hw01.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Individual HW01</span></a>
   </div>
@@ -518,8 +524,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
 <li><a href="#br-13.2" id="toc-br-13.2" class="nav-link active" data-scroll-target="#br-13.2">BR 13.2</a></li>
   <li><a href="#br-13.14-adapted" id="toc-br-13.14-adapted" class="nav-link" data-scroll-target="#br-13.14-adapted">BR 13.14 (adapted)</a></li>
-  <li><a href="#mon" id="toc-mon" class="nav-link" data-scroll-target="#mon">Mon</a></li>
-  <li><a href="#mon-1" id="toc-mon-1" class="nav-link" data-scroll-target="#mon-1">Mon</a></li>
+  <li><a href="#br-13.5" id="toc-br-13.5" class="nav-link" data-scroll-target="#br-13.5">BR 13.5</a></li>
+  <li><a href="#br-14.814.9-adapted" id="toc-br-14.814.9-adapted" class="nav-link" data-scroll-target="#br-14.814.9-adapted">BR 14.8/14.9 (adapted)</a></li>
   <li><a href="#wed" id="toc-wed" class="nav-link" data-scroll-target="#wed">Wed</a></li>
   <li><a href="#wed-1" id="toc-wed-1" class="nav-link" data-scroll-target="#wed-1">Wed</a></li>
   </ul><div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="gw08.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
@@ -566,9 +572,44 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Fit the model specified in (b) using <code>stan_glm</code>. Include MCMC convergence diagnostics.</li>
 <li>Report the <code>tidy</code> coefficient table with 90% credible intervals and interpret the coefficients in context</li>
 <li>Check the fit of the model using an appropriate posterior predictive check</li>
-</ol></section><section id="mon" class="level1"><h1>Mon</h1>
-</section><section id="mon-1" class="level1"><h1>Mon</h1>
-</section><section id="wed" class="level1"><h1>Wed</h1>
+</ol></section><section id="br-13.5" class="level1"><h1>BR 13.5</h1>
+<p>The confusion matrix below summarizes the performance of a logistic model in classifying the beliefs of 1000 survey respondents, using a probability cut-off of 0.5.</p>
+<table class="caption-top table">
+<thead><tr class="header">
+<th></th>
+<th>y=0</th>
+<th>y=1</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>predict FALSE</td>
+<td>50</td>
+<td>300</td>
+</tr>
+<tr class="even">
+<td>predict TRUE</td>
+<td>30</td>
+<td>620</td>
+</tr>
+</tbody>
+</table>
+<ol type="a">
+<li>Calculate and interpret the model’s overall accuracy.</li>
+<li>Calculate and interpret the model’s sensitivity.</li>
+<li>Calculate and interpret the model’s specificity.</li>
+<li>Suppose that researchers want to improve their ability to identify people that do <em>not</em> believe in climate change. How might they adjust their probability cut-off: Increase it or decrease it? Why?</li>
+</ol></section><section id="br-14.814.9-adapted" class="level1"><h1>BR 14.8/14.9 (adapted)</h1>
+<p>The <code>fake_news</code> data in the {bayesrules} package contains information about 150 news articles, some real news and some fake news. In the next exercises, our goal will be to develop a model that helps us classify an article’s type, real or fake, using whether an article’s title has an exclamation point (<code>title_has_excl</code>), the number of words in the title (<code>title_words</code>), and the percent of words in the article that have a negative sentiment (<code>negative</code>).</p>
+<ol type="a">
+<li>In using naive Bayes classification to classify an article’s type based on its title_words, we assume that the number of title_words are conditionally Normal. Do you think this is a fair assumption in this analysis?</li>
+<li>Suppose a new article is posted online and its title has 15 words. Utilize naive Bayes classification to calculate the posterior probability that the article is real. Do so from scratch, without using <code>naiveBayes()</code> with <code><a href="https://rdrr.io/r/stats/predict.html">predict()</a></code>.</li>
+<li>Check your work to part c using <code>naiveBayes()</code> with <code><a href="https://rdrr.io/r/stats/predict.html">predict()</a></code>.</li>
+<li>Construct a cross-validated confusion matrix for the naive bayes model</li>
+<li>Starting from weakly informative priors, use <code><a href="https://mc-stan.org/rstanarm/reference/stan_glm.html">stan_glm()</a></code> to simulate the posterior logistic regression model of news type by all three predictors: <code>title_words</code>, <code>negative</code>, and <code>title_has_excl.</code> You should confirm the model is adequete with MCMC diagnostics and a <code>pp_check</code>.</li>
+<li>Using a probability cutoff of 0.5, obtain cross-validated estimates of the sensitivity and specificity for the logistic regression model.</li>
+<li>Compare the cross-validated metrics of the logistic regression model to those of naive_model_4. Which model is better at detecting fake news?</li>
+<li>If our goal is to best detect when an article is fake, which of the four models should we use?</li>
+</ol></section><section id="wed" class="level1"><h1>Wed</h1>
 </section><section id="wed-1" class="level1"><h1>Wed</h1>
 
 
@@ -1075,22 +1116,45 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a><span class="fu"># BR 13.14 (adapted)</span></span>
 <span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>We return to the <span class="in">`pulse_of_the_nation`</span> survey data in the {bayesrules} package which includes a variable on whether or not a person believes in <span class="in">`ghosts`</span> (spooky!) You are going to build a logistic regression model using <span class="in">`age`</span>, <span class="in">`education`</span>, and <span class="in">`books`</span> as predictors. </span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>We return to the <span class="in">`pulse_of_the_nation`</span> survey data in the {bayesrules} package which includes a variable on whether or not a person believes in <span class="in">`ghosts`</span> (spooky!) You are going to build a logistic regression model using <span class="in">`age`</span>, <span class="in">`education`</span>, and <span class="in">`books`</span> as predictors.</span>
 <span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>(a) Perform an appropriate EDA of the relationship between <span class="in">`ghosts`</span> and each of the predictors</span>
-<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>(b) Specify the full Bayesian model </span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>(b) Specify the full Bayesian model</span>
 <span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>(c) Fit the model specified in (b) using <span class="in">`stan_glm`</span>. Include MCMC convergence diagnostics.</span>
 <span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>(d) Report the <span class="in">`tidy`</span> coefficient table with 90% credible intervals and interpret the coefficients in context</span>
 <span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>(e) Check the fit of the model using an appropriate posterior predictive check</span>
 <span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a><span class="fu"># Mon</span></span>
-<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a><span class="fu"># Mon</span></span>
-<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a><span class="fu"># Wed</span></span>
-<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a><span class="fu"># Wed</span></span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a><span class="fu"># BR 13.5</span></span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>The confusion matrix below summarizes the performance of a logistic model in classifying the beliefs of 1000 survey respondents, using a probability cut-off of 0.5.</span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span>               <span class="pp">|</span> y=0 <span class="pp">|</span> y=1 <span class="pp">|</span></span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a><span class="pp">|---------------|-----|-----|</span></span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> predict FALSE <span class="pp">|</span> 50  <span class="pp">|</span> 300 <span class="pp">|</span></span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> predict TRUE  <span class="pp">|</span> 30  <span class="pp">|</span> 620 <span class="pp">|</span></span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>(a) Calculate and interpret the model’s overall accuracy.</span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>(b) Calculate and interpret the model’s sensitivity.</span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a>(c)  Calculate and interpret the model’s specificity.</span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a>(d) Suppose that researchers want to improve their ability to identify people that do *not* believe in climate change. How might they adjust their probability cut-off: Increase it or decrease it? Why?</span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a><span class="fu"># BR 14.8/14.9 (adapted)</span></span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a>The <span class="in">`fake_news`</span> data in the {bayesrules} package contains information about 150 news articles, some real news and some fake news. In the next exercises, our goal will be to develop a model that helps us classify an article’s type, real or fake, using whether an article’s title has an exclamation point (<span class="in">`title_has_excl`</span>), the number of words in the title (<span class="in">`title_words`</span>), and the percent of words in the article that have a negative sentiment (<span class="in">`negative`</span>). </span>
+<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a>(a) In using naive Bayes classification to classify an article’s type based on its title_words, we assume that the number of title_words are conditionally Normal. Do you think this is a fair assumption in this analysis?</span>
+<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a>(b) Suppose a new article is posted online and its title has 15 words. Utilize naive Bayes classification to calculate the posterior probability that the article is real. Do so from scratch, without using <span class="in">`naiveBayes()`</span> with <span class="in">`predict()`</span>.</span>
+<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a>(c) Check your work to part c using <span class="in">`naiveBayes()`</span> with <span class="in">`predict()`</span>.</span>
+<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a>(d) Construct a cross-validated confusion matrix for the naive bayes model</span>
+<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a>(e) Starting from weakly informative priors, use <span class="in">`stan_glm()`</span> to simulate the posterior logistic regression model of news type by all three predictors: <span class="in">`title_words`</span>, <span class="in">`negative`</span>, and <span class="in">`title_has_excl.`</span> You should confirm the model is adequete with MCMC diagnostics and a <span class="in">`pp_check`</span>. </span>
+<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a>(f) Using a probability cutoff of 0.5, obtain cross-validated estimates of the sensitivity and specificity for the logistic regression model.</span>
+<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a>(g) Compare the cross-validated metrics of the logistic regression model to those of naive_model_4. Which model is better at detecting fake news?</span>
+<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a>(h) If our goal is to best detect when an article is fake, which of the four models should we use?</span>
+<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a><span class="fu"># Wed</span></span>
+<span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a><span class="fu"># Wed</span></span>
 </code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
