@@ -1,0 +1,41 @@
+---
+title: Dirichlet + Multinomial Model
+subtitle: Day 23
+title-slide-attributes:
+  data-background-color: "#e2583eff"
+  data-slide-number: none
+format: 
+  revealjs:
+    incremental: false
+    scrollable: false
+auto-stretch: true
+editor_options: 
+  chunk_output_type: console
+editor: 
+  markdown: 
+    wrap: 72
+execute: 
+  warning: false
+  message: false
+---
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+
+library(countdown)
+library(tidyverse)
+library(tidybayes)
+library(bayesrules)
+library(janitor)
+library(patchwork)
+library(rstan)
+library(rstanarm)
+library(bayesplot)
+library(broom.mixed)
+library(ggrepel)
+
+theme_set(theme_minimal(base_size = 16, base_family = "Atkinson Hyperlegible"))
+```
+

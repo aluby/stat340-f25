@@ -1,0 +1,311 @@
+---
+title: Classification 
+subtitle: Day 22
+title-slide-attributes:
+  data-background-color: "#e2583eff"
+  data-slide-number: none
+format: 
+  revealjs:
+    incremental: false
+    scrollable: false
+auto-stretch: true
+editor_options: 
+  chunk_output_type: console
+editor: 
+  markdown: 
+    wrap: 72
+execute: 
+  warning: false
+  message: false
+---
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+
+library(countdown)
+library(tidyverse)
+library(tidybayes)
+library(bayesrules)
+library(janitor)
+library(patchwork)
+library(rstan)
+library(rstanarm)
+library(bayesplot)
+library(broom.mixed)
+library(ggrepel)
+
+theme_set(theme_minimal(base_size = 16, base_family = "Atkinson Hyperlegible"))
+```
+
+## Classification
+
+- walk through ppcheck
+- classification rule (p>.5)
+- confusion matrix
+- sensitivity and specificity
+
+# Naive Bayes {.colorslide}
+
+## Goal: classify penguin species on Palmer archipelago
+
+$$Y = \begin{cases} \text{Adelie} \\ \text{Chinstrap} \\ \text{Gentoo} \end{cases}$$
+
+using 
+
+$$X_1 = \begin{cases} 1 & \text{if above avg weight (>4200g)} \\ 0 & \text{otherwise} \end{cases}$$
+
+## *Prior* to observing any characteristics:
+
+```{r}
+penguins_bayes |>
+  tabyl(species)
+```
+
+We'll use this as our **prior probability model**
+
+## Classifying `species` based on `above_average_weight`
+
+```{r}
+penguins_bayes |> 
+  drop_na(above_average_weight) |>
+  ggplot(aes(x = species, fill = above_average_weight)) + 
+  geom_bar(position = "fill")
+```
+
+## 
+
+```{r}
+penguins_bayes |> 
+  drop_na(above_average_weight) |>
+  tabyl(species, above_average_weight) |>
+  adorn_percentages() |> 
+  adorn_ns()
+```
+
+::: callout-tip
+## Practice
+
+If we come across a below average weight penguin ($X_1 = 0$), what is the likelihood of each species?
+:::
+
+## 
+
+::: callout-tip
+## Practice
+
+Verify the following posterior model for $Y$ given $X_1 = 0$
+
+| Y          | A     | C     | G     | Total |
+|------------|-------|-------|-------|-------|
+| P(Y\|X1=0) | 0.654 | 0.315 | 0.031 | 1     |
+
+:::
+
+
+## What if predictor is quantitative?
+
+::: callout-tip
+## Practice
+
+If we observe a penguin with a 50mm bill: 
+
+- Which species is most likely? 
+- How might we calculate $L(Y | X_2 = 50)$?
+
+:::
+
+
+```{r}
+ggplot(penguins_bayes, aes(x = bill_length_mm, fill = species)) +
+  geom_density(alpha = 0.7) +
+  geom_vline(xintercept = 50, linetype = "dashed")
+```
+
+## "Naive" Bayes assumes quantitative predictors are continuous and conditionally Normal: {.smaller}
+
+$$X_2 | (Y=A) \sim N(\mu_A, \sigma_A^2)$$
+
+$$X_2 | (Y=C) \sim N(\mu_C, \sigma_C^2)$$
+
+$$X_2 | (Y=G) \sim N(\mu_G, \sigma_G^2)$$
+
+```{r}
+penguins_bayes |>
+  group_by(species) |>
+  summarize(mean = mean(bill_length_mm, na.rm = TRUE), 
+            sd = sd(bill_length_mm, na.rm = TRUE))
+```
+
+## Assumed likelihoods
+
+```{r}
+#| echo: false
+
+
+ggplot(penguins_bayes, aes(x = bill_length_mm, color = species)) + 
+  stat_function(fun = dnorm, args = list(mean = 38.8, sd = 2.66), 
+                aes(color = "Adelie")) +
+  stat_function(fun = dnorm, args = list(mean = 48.8, sd = 3.34),
+                aes(color = "Chinstrap")) +
+  stat_function(fun = dnorm, args = list(mean = 47.5, sd = 3.08),
+                aes(color = "Gentoo")) + 
+  geom_vline(xintercept = 50, linetype = "dashed")
+```
+
+## $L(Y | X_2 = 50)$
+
+```{r}
+# L(Y = A | X_2 = 50)
+dnorm(50, mean = 38.8, sd = 2.66)
+
+# L(Y = C | X_2 = 50)
+dnorm(50, mean = 48.8, sd = 3.34)
+
+# L(Y = G | X_2 = 50)
+dnorm(50, mean = 47.5, sd = 3.08)
+```
+
+## Prior $\times$ Likeilihood $\propto$ Posterior
+
+Our prior understanding was that the penguin was most likely an Adelie. But the data (a 50mm bill length) is most consistent with Chinstraps. The posterior model balances these 2 conflicting pieces of evidence:
+
+| Y           | A      | C      | G      | Total |
+|-------------|--------|--------|--------|-------|
+| P(Y)        |        |        |        |       |
+| L(Y\|X2=50) |        |        |        |       |
+| P(Y\|X2=50) | 0.0002 | 0.3972 | 0.6026 | 1     |
+
+## Two predictors
+
+```{r}
+#| echo: false
+
+
+ggplot(penguins_bayes, aes(x = bill_length_mm, y = flipper_length_mm, col = species)) + 
+  geom_point()
+```
+
+::: callout-tip
+## Check-in
+
+If we only had `bill_length_mm`, which species would we have trouble distinguishing? What if we only had `flipper_length_mm`?
+:::
+
+## "Naive" Bayes assumes predictors are **conditionally independent**
+
+$$f(x_2, x_3 | y) = f(x_2 | y) f(x_3 |y)$$
+
+$$L(Y|X_2, X_3) =$$
+
+## If we see a penguin with a 50mm long bill and a 195mm long flipper, what is the likelihood of each species? 
+
+```{r}
+penguins_bayes |>
+  group_by(species) |>
+  summarize(mean = mean(flipper_length_mm, na.rm = TRUE), 
+            sd = sd(flipper_length_mm, na.rm = TRUE))
+```
+
+## 
+
+```{r}
+# L(Y = A | X_2 = 50)L(Y = A | X_3 = 195)
+dnorm(50, mean = 38.8, sd = 2.66) * dnorm(195, mean = 190, sd = 6.54)
+
+# L(Y = C | X_2 = 50)L(Y = C | X_3 = 195)
+dnorm(50, mean = 48.8, sd = 3.34) * dnorm(195, mean = 196, sd = 7.13)
+ 
+# L(Y = G | X_2 = 50)L(Y = G | X_3 = 195)
+dnorm(50, mean = 47.5, sd = 3.08) * dnorm(195, mean = 217, sd = 6.48)
+```
+
+## Balancing with the prior
+
+| Y           | A      | C      | G      | Total |
+|-------------|--------|--------|--------|-------|
+| P(Y)        |        |        |        |       |
+| L(Y\|X2=50, X3=195) |        |        |        |       |
+| P(Y\|X2=50, X3=195) | 0.0003 | 0.9944 | 0.0052 | 1     |
+
+## Shortcut: `naiveBayes()` in {e1071} {.smaller}
+
+```{r}
+library(e1071)
+naive_model <- naiveBayes(species ~ bill_length_mm + flipper_length_mm, 
+                          data = penguins_bayes)
+naive_model
+```
+
+##
+
+```{r}
+predict(naive_model, 
+        newdata = data.frame(bill_length_mm = 50, flipper_length_mm = 195), 
+        type = "raw")
+
+predict(naive_model, 
+        newdata = data.frame(bill_length_mm = 50, flipper_length_mm = 195), 
+        type = "class")
+```
+
+## Cross-validation
+
+```{r}
+set.seed(84735)
+naive_classification_summary_cv(
+  model = naive_model, 
+  data = penguins_bayes, 
+  y = "species", 
+  k = 10)$cv
+```
+
+## Classification Regions
+
+```{r}
+grid_data <- expand_grid(
+    bill_length_mm = seq(30, 60, length = 100),
+    flipper_length_mm = seq(170, 240, length = 100)) %>%
+  mutate(classification = predict(naive_model, newdata = .))
+
+head(grid_data)
+```
+
+## Classification Regions
+
+```{r}
+#| output-location: slide
+
+
+ggplot(grid_data, aes(x = flipper_length_mm, 
+                      y = bill_length_mm, 
+                      color = classification)) +
+  geom_point(alpha = 0.2) + 
+  geom_point(data = penguins_bayes, aes(x = flipper_length_mm, 
+                                        y = bill_length_mm, 
+                                        color = species))
+```
+
+## Comparison to only 1 predictor
+
+```{r}
+naive_model_1 <- naiveBayes(species ~ bill_length_mm , 
+                          data = penguins_bayes)
+```
+
+```{r}
+#| echo: false
+grid_data <- expand_grid(
+    bill_length_mm = seq(30, 60, length = 100),
+    flipper_length_mm = seq(170, 240, length = 100)) %>%
+  mutate(classification = predict(naive_model_1, newdata = .))
+
+ggplot(grid_data, aes(x = flipper_length_mm, 
+                      y = bill_length_mm, 
+                      color = classification)) +
+  geom_point(alpha = 0.2) + 
+  geom_point(data = penguins_bayes, aes(x = flipper_length_mm, 
+                                        y = bill_length_mm, 
+                                        color = species))
+```

@@ -26,7 +26,12 @@ A guest that is new to a hotel and has only canceled a booking 1 time before, ha
 (a) Simulate, plot, and discuss the posterior predictive model of $Y$, whether or not the guest will cancel this booking.s
 (b) Come up with the features of another fictitious booking that’s more likely to be canceled than the booking in part a. Support your claim by simulating, plotting, and comparing this booking’s posterior predictive model of$Y$ to that in part a.
 
-# TBA Mon
+# BR 13.8
+
+(a) How good is your model at anticipating whether a hotel booking will be canceled? Evaluate the classification accuracy using both the in-sample and cross-validation approaches, along with a 0.5 probability cut-off.
+(b) Are the cross-validated and in-sample assessments of classification accuracy similar? Explain why this makes sense in the context of this analysis.
+(c) Interpret the cross-validated overall accuracy, sensitivity, and specificity measures in the context of this analysis.
+(d) Thinking like a hotel booking agent, you’d like to increase the sensitivity of your classifications to 0.75. Identify a probability cut-off that you could use to achieve this level while maintaining the highest possible specificity.
 
 # TBA Mon
 
