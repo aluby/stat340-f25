@@ -226,7 +226,7 @@ Prof Amanda Luby
 6         1      0  198. </code></pre>
 </div>
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<p><img data-src="slides22_files/figure-revealjs/unnamed-chunk-2-1.png" width="960"></p>
+<p><img data-src="slides22_files/figure-html/unnamed-chunk-2-1.png" width="672"></p>
 </div>
 </div>
 </div>
@@ -261,14 +261,14 @@ Prof Amanda Luby
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="slides22_files/figure-revealjs/unnamed-chunk-4-1.png" width="768"></p>
+<p><img data-src="slides22_files/figure-html/unnamed-chunk-4-1.png" width="768"></p>
 </figure>
 </div>
 </div>
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="slides22_files/figure-revealjs/unnamed-chunk-4-2.png" width="768"></p>
+<p><img data-src="slides22_files/figure-html/unnamed-chunk-4-2.png" width="768"></p>
 </figure>
 </div>
 </div>
@@ -282,7 +282,7 @@ Prof Amanda Luby
 <span id="cb3-3"><a></a><span class="fu">pp_check</span>(ai_detector, <span class="at">plotfun =</span> <span class="st">"stat"</span>, <span class="at">stat =</span> <span class="st">"proportion_ai"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
 </div>
-<img data-src="slides22_files/figure-revealjs/unnamed-chunk-5-1.png" width="960" class="r-stretch"></section>
+<img data-src="slides22_files/figure-html/unnamed-chunk-5-1.png" width="672" class="r-stretch"></section>
 <section id="posterior-prediction-by-hand" class="slide level2">
 <h2>Posterior prediction by hand</h2>
 <div class="cell">
@@ -311,22 +311,23 @@ Prof Amanda Luby
 <h2></h2>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a>ai_classifications <span class="ot">&lt;-</span> ai_generated <span class="sc">|&gt;</span></span>
-<span id="cb8-2"><a></a>  <span class="fu">mutate</span>(</span>
-<span id="cb8-3"><a></a>    <span class="at">ai_prob =</span> <span class="fu">colMeans</span>(ai_pred),</span>
-<span id="cb8-4"><a></a>    <span class="at">ai_class =</span> <span class="fu">as.numeric</span>(ai_prob <span class="sc">&gt;=</span> <span class="fl">0.5</span>) </span>
-<span id="cb8-5"><a></a>  ) </span>
-<span id="cb8-6"><a></a></span>
-<span id="cb8-7"><a></a><span class="fu">head</span>(ai_classifications)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb8-2"><a></a>  <span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(prob, length_mu, length_sd)) <span class="sc">|&gt;</span></span>
+<span id="cb8-3"><a></a>  <span class="fu">mutate</span>(</span>
+<span id="cb8-4"><a></a>    <span class="at">ai_prob =</span> <span class="fu">colMeans</span>(ai_pred),</span>
+<span id="cb8-5"><a></a>    <span class="at">ai_class =</span> <span class="fu">as.numeric</span>(ai_prob <span class="sc">&gt;=</span> <span class="fl">0.5</span>) </span>
+<span id="cb8-6"><a></a>  ) </span>
+<span id="cb8-7"><a></a></span>
+<span id="cb8-8"><a></a><span class="fu">head</span>(ai_classifications)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 8
-  ai_labels  prob length_mu length_sd emdash length ai_prob ai_class
-      &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;  &lt;int&gt;  &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;
-1         0  0.08        85        25      0   57.0  0.0128        0
-2         0  0.08        85        25      0   95.3  0.120         0
-3         0  0.08        85        25      0  121.   0.418         0
-4         0  0.08        85        25      0   58.8  0.0126        0
-5         0  0.08        85        25      0   64.5  0.0186        0
-6         0  0.08        85        25      0  149.   0.812         1</code></pre>
+<pre><code># A tibble: 6 × 5
+  ai_labels emdash length ai_prob ai_class
+      &lt;dbl&gt;  &lt;int&gt;  &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;
+1         0      0   57.0  0.0128        0
+2         0      0   95.3  0.120         0
+3         0      0  121.   0.418         0
+4         0      0   58.8  0.0126        0
+5         0      0   64.5  0.0186        0
+6         0      0  149.   0.812         1</code></pre>
 </div>
 </div>
 </section>
@@ -457,7 +458,7 @@ Prof Amanda Luby
 <span id="cb18-4"><a></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="st">"fill"</span>) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
 </div>
-<img data-src="slides22_files/figure-revealjs/unnamed-chunk-12-1.png" width="960" class="r-stretch"></section>
+<img data-src="slides22_files/figure-html/unnamed-chunk-12-1.png" width="672" class="r-stretch"></section>
 <section id="section-1" class="slide level2">
 <h2></h2>
 <div class="cell">
@@ -543,7 +544,7 @@ Prof Amanda Luby
 </div>
 </div>
 
-<img data-src="slides22_files/figure-revealjs/unnamed-chunk-14-1.png" width="960" class="r-stretch"></section>
+<img data-src="slides22_files/figure-html/unnamed-chunk-14-1.png" width="672" class="r-stretch"></section>
 <section id="naive-bayes-assumes-quantitative-predictors-are-continuous-and-conditionally-normal" class="slide level2 smaller">
 <h2>“Naive” Bayes assumes quantitative predictors are continuous and conditionally Normal:</h2>
 <p><span class="math display">\[X_2 | (Y=A) \sim N(\mu_A, \sigma_A^2)\]</span></p>
@@ -567,7 +568,7 @@ Prof Amanda Luby
 <section id="assumed-likelihoods" class="slide level2">
 <h2>Assumed likelihoods</h2>
 
-<img data-src="slides22_files/figure-revealjs/unnamed-chunk-16-1.png" width="960" class="r-stretch"></section>
+<img data-src="slides22_files/figure-html/unnamed-chunk-16-1.png" width="672" class="r-stretch"></section>
 <section id="ly-x_2-50" class="slide level2">
 <h2><span class="math inline">\(L(Y | X_2 = 50)\)</span></h2>
 <div class="cell">
@@ -629,7 +630,7 @@ Prof Amanda Luby
 <section id="two-predictors" class="slide level2">
 <h2>Two predictors</h2>
 
-<img data-src="slides22_files/figure-revealjs/unnamed-chunk-18-1.png" width="960" class="r-stretch"><div class="callout callout-tip callout-titled callout-style-default">
+<img data-src="slides22_files/figure-html/unnamed-chunk-18-1.png" width="672" class="r-stretch"><div class="callout callout-tip callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
 <div class="callout-icon-container">
@@ -851,7 +852,7 @@ Levels: Adelie Chinstrap Gentoo</code></pre>
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="slides22_files/figure-revealjs/unnamed-chunk-26-1.png" width="960"></p>
+<p><img data-src="slides22_files/figure-html/unnamed-chunk-26-1.png" width="672"></p>
 </figure>
 </div>
 </div>
@@ -864,7 +865,7 @@ Levels: Adelie Chinstrap Gentoo</code></pre>
 
 
 
-<img data-src="slides22_files/figure-revealjs/unnamed-chunk-28-1.png" width="960" class="r-stretch"></section></section>
+<img data-src="slides22_files/figure-html/unnamed-chunk-28-1.png" width="672" class="r-stretch"></section></section>
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
 <div class="footer footer-default">
@@ -1082,44 +1083,6 @@ Levels: Adelie Chinstrap Gentoo</code></pre>
         ]
       });
     </script>
-    
-    <script>
-      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
-      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
-      // slide changes (different for each slide format).
-      (function () {
-        // dispatch for htmlwidgets
-        function fireSlideEnter() {
-          const event = window.document.createEvent("Event");
-          event.initEvent("slideenter", true, true);
-          window.document.dispatchEvent(event);
-        }
-
-        function fireSlideChanged(previousSlide, currentSlide) {
-          fireSlideEnter();
-
-          // dispatch for shiny
-          if (window.jQuery) {
-            if (previousSlide) {
-              window.jQuery(previousSlide).trigger("hidden");
-            }
-            if (currentSlide) {
-              window.jQuery(currentSlide).trigger("shown");
-            }
-          }
-        }
-
-        // hookup for slidy
-        if (window.w3c_slidy) {
-          window.w3c_slidy.add_observer(function (slide_num) {
-            // slide_num starts at position 1
-            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
-          });
-        }
-
-      })();
-    </script>
-
     <script id="quarto-html-after-body" type="application/javascript">
       window.document.addEventListener("DOMContentLoaded", function (event) {
         const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
