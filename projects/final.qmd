@@ -32,14 +32,32 @@ All projects should include:
 # Examples for datasets
 
 🚧 Under construction 🚧
+
+- Sports datasets, where players are nested in positions (or teams) and teams are nested within divisions, etc. 
+    - model P(shot made) using a hierarchical logistic regression
+    - model P(make playoffs) based on historical data (e.g. hierarchical levels are years)
+    - Good place to start: [SCORE network](https://data.scorenetwork.org/) 
+- Education datasets
+    - Schools are nested within districts are nested within states. Some predictor variables are at the school level and others are at the district or state level.
+- Survey datasets
+    - Respondents might be nested within households within census tracts within states, etc. Some predictor variables at each level.
  
-# Possible topics for new methods (links to come):
- 
+# Possible topics for new methods 
+
+🚧 Under construction 🚧
+
+  - Bayesian Decision Theory
+    - One way Bayesian methods can be used is to make an "optimal" decision. This involves defining a "loss function" and calculating the "risk" 
  - Pareto Smoothed Importance Sampling or WAIC
+    - Pareto Smoothed Importance Sampling is a Bayesian approximation to leave-one-out cross validation that is implemented in the Stan [`loo`](https://mc-stan.org/loo/reference/loo.html) procedures. [WAIC](https://mc-stan.org/loo/reference/waic.html) is a Bayesian information criterion (kind of like AIC or BIC). 
+    - Vehtari, A., Simpson, D., Gelman, A., Yao, Y., & Gabry, J. (2024). [Pareto smoothed importance sampling](https://www.jmlr.org/papers/v25/19-556.html). Journal of Machine Learning Research, 25(72), 1-58.
+    - Watanabe, S., & Opper, M. (2010). [Asymptotic equivalence of Bayes cross validation and widely applicable information criterion in singular learning theory](https://www.jmlr.org/papers/volume11/watanabe10a/watanabe10a.pdf). Journal of machine learning research, 11(12).
  - Bayesian Additive Regression Trees (BART)
- - Bayesian Decision Theory
- - Dirichlet Processes
- 
+    - BART combines regression trees (a popular machine learning approach) with Bayesian estimation and shrinkage priors. This allows for great predictive performance without the typical assumptions needed for regression, while still allowing for formal statistical inference using the Bayesian framework. 
+    - Hill, J., Linero, A., & Murray, J. (2020). [Bayesian additive regression trees: A review and look forward](https://www.annualreviews.org/content/journals/10.1146/annurev-statistics-031219-041110). Annual Review of Statistics and Its Application, 7(1), 251-278.
+  
+You are also welcome to choose your own topic! Just please speak with me in advance so we can calibrate your plans. 
+
  
  
  
