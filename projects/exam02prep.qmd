@@ -1,0 +1,168 @@
+---
+title: "Exam II Review"
+---
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+
+
+library(bayesrules)
+library(tidyverse)
+library(patchwork)
+library(rstan)
+library(rstanarm)
+library(bayesplot)
+library(tidybayes)
+theme_set(theme_minimal(base_family = "Atkinson Hyperlegible"))
+```
+
+# Topics/Skills
+
+- Posterior Inference
+    - Estimation (credible intervals)
+    - Hypothesis Testing (probabilities, Bayes Factors)
+- Posterior Prediction
+    - Variability in the parameters + variability in the data generating process
+- Normal Regression
+    - Extension of normal-normal Bayesian model
+    - Expressing prior distributions 
+    - Inference and interpretation for parameters
+- Evaluating regression models
+    - Posterior predictive checks: if simulated $Y$ values from our Bayesian model are similar to the observed $Y$, we have reason to believe our model assumptions are reasonable
+    - Posterior predictive summaries of the distance between predicted and observed $Y$'s (MAE) or how often posterior prediction intervals capture the observed $Y$ (`within_50` and `within_95`)
+    - In-sample vs out-of-sample validation
+    - Bias/variance tradeoff and overfitting
+- Poisson/Negative Binomial regression for counts
+    - Extension of Poisson-Gamma Bayesian model with predictors
+    - Overdispersion: what it is and how to fix it
+    - Expressing as a GLM
+- Logistic regression
+    - $Y$ is binary
+    - Interpreting parameters on log-odds, odds, and probability scales
+    - Classification
+    - Sensitivity and specificity
+- Naive Bayes
+    - Why is it naive? 
+    - Why is it Bayes?
+
+# Practice Problems
+
+::: callout-note
+## Note
+
+These are not exhaustive or representative, just meant to give you a sample of the format and type of questions that I might ask
+:::
+
+```{r}
+#| echo: false
+
+
+pulse_data <- pulse_of_the_nation |>
+  select(income, party, transformers)
+
+head(pulse_data)
+```
+
+
+```{r}
+#| fig-height: 2
+#| echo: false
+#| warning: false
+#| message: false
+
+
+p1 <- ggplot(pulse_data, aes(x = transformers)) + 
+  geom_histogram()
+
+p2 <- ggplot(pulse_data, aes(x = log(income), y = transformers, col = party)) + 
+  geom_jitter()
+
+p1 + p2 + scale_color_viridis_d(end = .75, option = "plasma")
+```
+
+1. What is the most appropriate distribution for $Y_i | \vec{\theta}, X_i$, where $\vec{\theta}$ is all regression parameters?
+
+  (a) Poisson
+  (b) Binomial
+  (c) Normal
+  
+2. The {rstanarm} code below fits the regression model. Write out the formal mathematical equation for the model.
+
+```{r}
+#| echo: false
+#| cache: true
+
+
+pulse_mod <- stan_glm(
+  transformers ~ log(income) + party,
+  data = pulse_data,
+  family = poisson,
+  prior_intercept = normal(0,1),
+  chains = 4, iter = 5000*2, 
+  seed = 84735, refresh =0
+)
+```
+
+```{r}
+#| eval: false
+pulse_mod <- stan_glm(
+  transformers ~ log(income) + party,
+  data = pulse_data,
+  family = ___________,
+  prior_intercept = normal(0,1),
+  chains = 4, iter = 5000*2, 
+  seed = 84735, refresh =0
+)
+```
+
+
+3. Write out all priors for the model.  
+
+4. Below are the traceplots and density overlays for this model. What do these plots tell you (check all that apply)
+
+  - [ ] They prove definitively that the MCMC has converged
+  - [ ] They show that the model fits our data well
+  - [ ] They demonstrate serious concerns about the mixing of our MCMC chains
+  - [ ] They demonstrate strong predictive performance
+
+```{r}
+#| echo: false
+p1 <- mcmc_trace(pulse_mod, facet_args = list(nrow = 1))
+p2 <- mcmc_dens_overlay(pulse_mod, facet_args = list(nrow = 1))
+
+p1/p2
+```
+
+5. Below is a posterior predictive check. Describe the difference between the data that is plotted in the first (dark blue) histogram compared to the other panels. 
+
+```{r}
+#| message: false
+pp_check(pulse_mod, plotfun = "hist")
+```
+
+6. Based on the posterior predictive check above, do you have any concerns about the model?
+
+7. I would like to find the posterior predictive distribution for a new data point, and begin with the following code. 
+
+  (a) Describe the new data point (what is the value for `income`? what is the value for `party`?)
+  (b) There are two major problems with this graph. Describe what the two issues are, and/or fix the code so that the resulting plot would show the appropriate posterior predictive distribution.
+
+```{r}
+#| fig-width: 4
+#| fig-height: 3
+#| mesage: false
+#| warning: false
+
+
+as_data_frame(pulse_mod) |>
+  mutate(
+    y_new = `(Intercept)` + `log(income)`*100 
+  ) |>
+  ggplot(aes(x = y_new)) + 
+  geom_density()
+```
+
+8. We approximated the posterior predictive distribution with MCMC (thankfully). Write out the mathematical expression for the posterior predictive distribution, $f(y_{new}|y)$. 
+
