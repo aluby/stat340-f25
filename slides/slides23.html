@@ -10,7 +10,7 @@
   <meta name="generator" content="quarto-1.8.24">
 
   <meta name="author" content="Prof Amanda Luby">
-  <title>Stat 340 – Dirichlet + Multinomial Model</title>
+  <title>Stat 340 – Dirichlet Distribution + Case Study</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -28,6 +28,72 @@
       margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
       vertical-align: middle;
     }
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #767676;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #767676;  padding-left: 4px; }
+    div.sourceCode
+      { color: #545454; background-color: #fefefe; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #545454; } /* Normal */
+    code span.al { color: #7928a1; } /* Alert */
+    code span.an { color: #696969; } /* Annotation */
+    code span.at { color: #a55a00; } /* Attribute */
+    code span.bn { color: #7928a1; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #d91e18; } /* ControlFlow */
+    code span.ch { color: #008000; } /* Char */
+    code span.cn { color: #d91e18; } /* Constant */
+    code span.co { color: #696969; } /* Comment */
+    code span.cv { color: #696969; font-style: italic; } /* CommentVar */
+    code span.do { color: #696969; font-style: italic; } /* Documentation */
+    code span.dt { color: #7928a1; } /* DataType */
+    code span.dv { color: #7928a1; } /* DecVal */
+    code span.er { color: #7928a1; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #a55a00; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #696969; } /* Information */
+    code span.kw { color: #d91e18; } /* Keyword */
+    code span.op { color: #00769e; } /* Operator */
+    code span.ot { color: #d91e18; } /* Other */
+    code span.pp { color: #7928a1; } /* Preprocessor */
+    code span.sc { color: #00769e; } /* SpecialChar */
+    code span.ss { color: #008000; } /* SpecialString */
+    code span.st { color: #008000; } /* String */
+    code span.va { color: #a55a00; } /* Variable */
+    code span.vs { color: #008000; } /* VerbatimString */
+    code span.wa { color: #696969; font-style: italic; } /* Warning */
   </style>
   <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-57853cb6e718b890690f9ea108593c80.css">
   <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
@@ -129,7 +195,7 @@
     <div class="slides">
 
 <section id="title-slide" data-background-color="#e2583eff" data-slide-number="none" class="quarto-title-block center">
-  <h1 class="title">Dirichlet + Multinomial Model</h1>
+  <h1 class="title">Dirichlet Distribution + Case Study</h1>
   <p class="subtitle">Day 23</p>
 
 <div class="quarto-title-authors">
@@ -144,11 +210,289 @@ Prof Amanda Luby
 </div>
 
 </section>
-<section class="slide level2">
+<section id="motivating-example-inferring-a-childs-strategy-from-the-choice-that-they-made" class="slide level2">
+<h2>Motivating example: Inferring a child’s strategy from the choice that they made</h2>
+<p><img data-src="img/boxes-apparatus.png"></p>
 
+<aside><div>
+<p>Source: McElreath’s <a href="https://github.com/rmcelreath/stat_rethinking_2024">Stat Rethinking</a> book and course</p>
+</div></aside></section>
+<section id="section" class="slide level2">
+<h2></h2>
 
+<img data-src="img/boxes-1.png" class="r-stretch"></section>
+<section id="section-1" class="slide level2">
+<h2></h2>
+
+<img data-src="img/boxes-2.png" class="r-stretch"></section>
+<section id="section-2" class="slide level2">
+<h2></h2>
+
+<img data-src="img/boxes-3.png" class="r-stretch"></section>
+<section id="section-3" class="slide level2">
+<h2></h2>
+
+<img data-src="img/boxes-4.png" class="r-stretch"></section>
+<section id="section-4" class="slide level2">
+<h2></h2>
+
+<img data-src="img/boxes-5.png" class="r-stretch"></section>
+<section id="section-5" class="slide level2">
+<h2></h2>
+
+<img data-src="img/boxes-6.png" class="r-stretch"></section>
+<section id="section-6" class="slide level2">
+<h2></h2>
+
+<img data-src="img/boxes-7.png" class="r-stretch"></section>
+<section id="majority-first" class="slide level2">
+<h2>Majority First</h2>
+
+<img data-src="img/boxes-majority-first.png" class="r-stretch"></section>
+<section id="minority-first" class="slide level2">
+<h2>Minority First</h2>
+
+<img data-src="img/boxes-minority-first.png" class="r-stretch"></section>
+<section id="section-7" class="slide level2">
+<h2></h2>
+
+<img data-src="img/boxes-summary.png" class="r-stretch"></section>
+<section id="social-conformity" class="slide level2">
+<h2>Social conformity</h2>
+<ul>
+<li>Do children copy the majority? If so, how does this develop?</li>
+<li>Problem: can’t observe strategy, only choice</li>
+<li>Majority choice is consistent with many strategies
+<ul>
+<li>Randomly choose tube (p=1/3)</li>
+<li>Randomly choose tube that was successful (p=1/2)</li>
+</ul></li>
+</ul>
+</section>
+<section>
+<section id="data-generating-process-vs-glm" class="title-slide slide level1 center">
+<h1>Data generating process vs GLM</h1>
 
 </section>
+<section id="section-8" class="slide level2">
+<h2></h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a>Boxes <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(<span class="st">"https://raw.githubusercontent.com/rmcelreath/rethinking/refs/heads/master/data/Boxes.csv"</span>)</span>
+<span id="cb1-2"><a></a></span>
+<span id="cb1-3"><a></a>Boxes</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 629 × 5
+       y gender   age majority_first culture
+   &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;          &lt;dbl&gt;   &lt;dbl&gt;
+ 1     1      1     6              0       2
+ 2     3      1     8              0       2
+ 3     2      2     8              1       2
+ 4     1      1     6              0       2
+ 5     2      1     5              1       2
+ 6     2      2     7              1       2
+ 7     2      2     6              0       2
+ 8     1      1     6              1       2
+ 9     3      1     8              0       2
+10     2      1     5              1       2
+# ℹ 619 more rows</code></pre>
+</div>
+</div>
+</section>
+<section id="observable-choice-seems-correlated-with-majority_first-but-is-unobservable-strategy" class="slide level2">
+<h2>Observable (choice) seems correlated with <code>majority_first</code>, but is unobservable (strategy)?</h2>
+<p>1 = “unchosen”, 2 = “majority”, 3 = “minority”</p>
+
+<img data-src="slides23_files/figure-revealjs/unnamed-chunk-3-1.png" width="960" class="r-stretch"></section>
+<section id="model-setup" class="slide level2">
+<h2>Model setup</h2>
+<p>Y: 1 = “unchosen”, 2 = “majority”, 3 = “minority”</p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p>5 different strategies:</p>
+<ul>
+<li>Majority</li>
+<li>Minority</li>
+<li>Maverick (choose the one that nobody chose)</li>
+<li>Random</li>
+<li>Follow first: copy the color that was demonstrated first</li>
+</ul>
+</div><div class="column fragment" style="width:50%;">
+<p>Know probabilities within each strategy:</p>
+<ul>
+<li>If Majority strategy, <span class="math inline">\(P(Y=2) = 1\)</span></li>
+<li>If Minority strategy, <span class="math inline">\(P(Y=3) = 1\)</span></li>
+<li>If Maverick strategy, <span class="math inline">\(P(Y=1) = 1\)</span></li>
+<li>If Random strategy, <span class="math display">\[P(Y=1) = P(Y=2) = P(Y=3) = 1/3\]</span></li>
+<li>If “follow first” strategy, let <span class="math inline">\(X=x\)</span> be the tube picked first. <span class="math inline">\(P(Y=y) = 1\)</span> for <span class="math inline">\(y=x\)</span>.</li>
+</ul>
+</div></div>
+</section>
+<section id="model-setup-1" class="slide level2">
+<h2>Model setup</h2>
+<p><span class="math display">\[Y_i \sim \text{Categorical}(\theta)\]</span></p>
+<p>Where <span class="math inline">\(\theta\)</span> is a vector of probabilities for each outcome <span class="math inline">\(Y\)</span>.</p>
+<p>We’ve just talked through all possibilities for <span class="math inline">\(P(Y|S=s)\)</span>, where <span class="math inline">\(S\)</span> indicates one of the strategies. There is also some probability for each of the strategies, <span class="math inline">\(p_s\)</span>.</p>
+<p>Then, <span class="math inline">\(\theta_i = P(Y_i) = \sum_{s=1}^5 p_s P(Y_i | S=s)\)</span></p>
+<p>Prior for <span class="math inline">\(p_s\)</span>?</p>
+</section>
+<section id="beta-distribution" class="slide level2">
+<h2>Beta distribution</h2>
+
+<img data-src="slides23_files/figure-revealjs/unnamed-chunk-4-1.png" width="960" class="r-stretch"></section>
+<section id="random-draws-from-dirichlet37" class="slide level2">
+<h2>10 Random Draws from Dirichlet(3,7)</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="fu">set.seed</span>(<span class="dv">110525</span>)</span>
+<span id="cb3-2"><a></a>brms<span class="sc">::</span><span class="fu">rdirichlet</span>(<span class="at">n =</span> <span class="dv">10</span>, <span class="at">alpha =</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">7</span>)) <span class="sc">|&gt;</span> <span class="fu">data.frame</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb3-3"><a></a>    <span class="fu">set_names</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb3-4"><a></a>    <span class="fu">mutate</span>(<span class="at">total =</span> <span class="st">`</span><span class="at">1</span><span class="st">`</span> <span class="sc">+</span> <span class="st">`</span><span class="at">2</span><span class="st">`</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>           1         2 total
+1  0.1908882 0.8091118     1
+2  0.2728575 0.7271425     1
+3  0.7295211 0.2704789     1
+4  0.2725396 0.7274604     1
+5  0.2620264 0.7379736     1
+6  0.4134384 0.5865616     1
+7  0.1594910 0.8405090     1
+8  0.3100098 0.6899902     1
+9  0.5744486 0.4255514     1
+10 0.4848761 0.5151239     1</code></pre>
+</div>
+</div>
+<p>Dirichlet(3,7) = [Beta(3,7), Beta(7,3)]</p>
+</section>
+<section id="dirichlet-is-multivariate-beta" class="slide level2">
+<h2>Dirichlet is multivariate Beta</h2>
+
+<img data-src="slides23_files/figure-revealjs/unnamed-chunk-6-1.png" width="960" class="r-stretch"></section>
+<section id="random-draws-from-dirichlet3-7-2" class="slide level2">
+<h2>Random draws from Dirichlet(3, 7, 2):</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a>brms<span class="sc">::</span><span class="fu">rdirichlet</span>(<span class="at">n =</span> <span class="dv">3</span>, <span class="at">alpha =</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">7</span>, <span class="dv">2</span>)) <span class="sc">|&gt;</span> <span class="fu">data.frame</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb5-2"><a></a>    <span class="fu">set_names</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb5-3"><a></a>    <span class="fu">mutate</span>(<span class="at">total =</span> <span class="st">`</span><span class="at">1</span><span class="st">`</span> <span class="sc">+</span> <span class="st">`</span><span class="at">2</span><span class="st">`</span> <span class="sc">+</span> <span class="st">`</span><span class="at">3</span><span class="st">`</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>           1         2          3 total
+1 0.27025836 0.6837385 0.04600314     1
+2 0.08839628 0.8644940 0.04710976     1
+3 0.15799433 0.7241628 0.11784288     1</code></pre>
+</div>
+</div>
+</section>
+<section id="random-draws-from-dirichlet3-7-2-2-9-1" class="slide level2">
+<h2>Random draws from Dirichlet(3, 7, 2, 2, 9, 1):</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a>brms<span class="sc">::</span><span class="fu">rdirichlet</span>(<span class="at">n =</span> <span class="dv">3</span>, <span class="at">alpha =</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">7</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">9</span>, <span class="dv">1</span>)) <span class="sc">|&gt;</span> <span class="fu">data.frame</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb7-2"><a></a>    <span class="fu">set_names</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb7-3"><a></a>    <span class="fu">mutate</span>(<span class="at">total =</span> <span class="st">`</span><span class="at">1</span><span class="st">`</span> <span class="sc">+</span> <span class="st">`</span><span class="at">2</span><span class="st">`</span> <span class="sc">+</span> <span class="st">`</span><span class="at">3</span><span class="st">`</span> <span class="sc">+</span> <span class="st">`</span><span class="at">4</span><span class="st">`</span> <span class="sc">+</span> <span class="st">`</span><span class="at">5</span><span class="st">`</span> <span class="sc">+</span> <span class="st">`</span><span class="at">6</span><span class="st">`</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>           1         2          3          4         5           6 total
+1 0.12074238 0.2805766 0.05186538 0.05819175 0.4791264 0.009497429     1
+2 0.13002591 0.3788208 0.12850388 0.11097203 0.2360018 0.015675563     1
+3 0.03178582 0.3585516 0.05868408 0.05437978 0.2996539 0.196944769     1</code></pre>
+</div>
+</div>
+</section>
+<section id="dirichlet3-7-2" class="slide level2">
+<h2>Dirichlet(3, 7, 2)</h2>
+
+<img data-src="slides23_files/figure-revealjs/unnamed-chunk-9-1.png" width="960" class="r-stretch"></section>
+<section id="columns-are-correlated-with-each-other" class="slide level2">
+<h2>Columns are correlated with each other</h2>
+
+<img data-src="slides23_files/figure-revealjs/unnamed-chunk-10-1.png" width="960" class="r-stretch"></section>
+<section id="section-9" class="slide level2">
+<h2></h2>
+
+<img data-src="slides23_files/figure-revealjs/unnamed-chunk-11-1.png" width="960" class="r-stretch"></section>
+<section id="dirichlet-distribution" class="slide level2">
+<h2>Dirichlet distribution</h2>
+<p>Let <span class="math inline">\(\vec{\theta} = (\theta_1, ... \theta_k)\)</span> be a random vector of length <span class="math inline">\(K \ge 2\)</span>, where each element <span class="math inline">\(\theta_i &gt; 0\)</span> and <span class="math inline">\(\sum \theta_i = 1\)</span>. The <strong>Dirichlet model</strong> with concentration parameter <span class="math inline">\(\vec{\alpha} = (\alpha_1, ..., \alpha_k)\)</span> is:</p>
+<p><span class="math display">\[\vec{\theta} \sim \text{Dirichlet}(\vec{\alpha})\]</span></p>
+<p><span class="math display">\[f(\vec{\theta}) = \frac{1}{B(\vec{\alpha})} \prod_{i=1}^K \theta_i^{\alpha_i - 1}\]</span></p>
+<p>where <span class="math inline">\(B(\vec{\alpha})\)</span> is the multivariate Beta function <span class="math inline">\(B(\vec{\alpha}) = \frac{\prod \Gamma(\alpha_i)}{\Gamma(\alpha_0)}\)</span> and <span class="math inline">\(\alpha_0 = \sum \alpha_i\)</span>.</p>
+<p>When <span class="math inline">\(k=2\)</span>, the Dirichlet distribution simplifies to the Beta(<span class="math inline">\(\alpha_1, \alpha_2\)</span>).</p>
+</section>
+<section id="dirichlet-distribution-is-conjugate-for-categoricalmultinomial-distribution" class="slide level2">
+<h2>Dirichlet distribution is conjugate for categorical/multinomial distribution</h2>
+<p><span class="math display">\[p \sim \text{Dirichlet}(\alpha_1, \alpha_2, ..., \alpha_k)\]</span></p>
+<p><span class="math display">\[Y | p \sim \text{Categorical}(p)\text{ or Multinomial}(p)\]</span></p>
+<p>and let <span class="math inline">\(c_i\)</span> be the number of occurrences of category <span class="math inline">\(i\)</span> in <span class="math inline">\(Y\)</span>. Then:</p>
+<p><span class="math display">\[p | Y \sim \text{Dirichlet}(c_1 + \alpha_1, c_2 + \alpha_2, ..., c_k + \alpha_k)\]</span></p>
+</section>
+<section id="prior-p_s-sim-dirichlet4-4-4-4-4" class="slide level2">
+<h2>Prior: <span class="math inline">\(p_s \sim Dirichlet(4, 4, 4, 4, 4)\)</span></h2>
+
+<img data-src="slides23_files/figure-revealjs/unnamed-chunk-12-1.png" width="960" class="r-stretch"></section>
+<section id="stan-model-for-strategies" class="slide level2">
+<h2>Stan Model for Strategies</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a>Boxes_model <span class="ot">&lt;-</span> <span class="st">"data{</span></span>
+<span id="cb9-2"><a></a><span class="st">    int N;</span></span>
+<span id="cb9-3"><a></a><span class="st">    int y[N];</span></span>
+<span id="cb9-4"><a></a><span class="st">    int majority_first[N];</span></span>
+<span id="cb9-5"><a></a><span class="st">}</span></span>
+<span id="cb9-6"><a></a><span class="st">parameters{</span></span>
+<span id="cb9-7"><a></a><span class="st">    simplex[5] p;</span></span>
+<span id="cb9-8"><a></a><span class="st">}</span></span>
+<span id="cb9-9"><a></a><span class="st">model{</span></span>
+<span id="cb9-10"><a></a><span class="st">    vector[5] phi;</span></span>
+<span id="cb9-11"><a></a><span class="st">    </span></span>
+<span id="cb9-12"><a></a><span class="st">    // prior</span></span>
+<span id="cb9-13"><a></a><span class="st">    p ~ dirichlet( rep_vector(4,5) );</span></span>
+<span id="cb9-14"><a></a><span class="st">    </span></span>
+<span id="cb9-15"><a></a><span class="st">    // probability of data</span></span>
+<span id="cb9-16"><a></a><span class="st">    for ( i in 1:N ) {</span></span>
+<span id="cb9-17"><a></a><span class="st">        if ( y[i]==2 ) phi[1]=1; else phi[1]=0; // majority</span></span>
+<span id="cb9-18"><a></a><span class="st">        if ( y[i]==3 ) phi[2]=1; else phi[2]=0; // minority</span></span>
+<span id="cb9-19"><a></a><span class="st">        if ( y[i]==1 ) phi[3]=1; else phi[3]=0; // maverick</span></span>
+<span id="cb9-20"><a></a><span class="st">        phi[4]=1.0/3.0;                         // random</span></span>
+<span id="cb9-21"><a></a><span class="st">        if ( majority_first[i]==1 )             // follow first</span></span>
+<span id="cb9-22"><a></a><span class="st">            if ( y[i]==2 ) phi[5]=1; else phi[5]=0;</span></span>
+<span id="cb9-23"><a></a><span class="st">        else</span></span>
+<span id="cb9-24"><a></a><span class="st">            if ( y[i]==3 ) phi[5]=1; else phi[5]=0;</span></span>
+<span id="cb9-25"><a></a><span class="st">        </span></span>
+<span id="cb9-26"><a></a><span class="st">        // compute log( p_s * Pr(y_i|s )</span></span>
+<span id="cb9-27"><a></a><span class="st">        for ( j in 1:5 ) phi[j] = log(p[j]) + log(phi[j]);</span></span>
+<span id="cb9-28"><a></a><span class="st">        // compute average log-probability of y_i</span></span>
+<span id="cb9-29"><a></a><span class="st">        target += log_sum_exp( phi );</span></span>
+<span id="cb9-30"><a></a><span class="st">    }</span></span>
+<span id="cb9-31"><a></a><span class="st">}"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="fit-the-model" class="slide level2">
+<h2>Fit the model</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a>data_list <span class="ot">=</span> <span class="fu">list</span>(</span>
+<span id="cb10-2"><a></a>  <span class="at">N =</span> <span class="fu">nrow</span>(Boxes),</span>
+<span id="cb10-3"><a></a>  <span class="at">y =</span> Boxes<span class="sc">$</span>y,</span>
+<span id="cb10-4"><a></a>  <span class="at">majority_first =</span> Boxes<span class="sc">$</span>majority_first</span>
+<span id="cb10-5"><a></a>)</span>
+<span id="cb10-6"><a></a></span>
+<span id="cb10-7"><a></a>model_fit <span class="ot">&lt;-</span> <span class="fu">stan</span>(<span class="at">model_code =</span> Boxes_model, </span>
+<span id="cb10-8"><a></a>                  <span class="at">data =</span> data_list, </span>
+<span id="cb10-9"><a></a>                  <span class="at">chains =</span> <span class="dv">4</span>, </span>
+<span id="cb10-10"><a></a>                  <span class="at">iter =</span> <span class="dv">2</span><span class="sc">*</span><span class="dv">5000</span>, </span>
+<span id="cb10-11"><a></a>                  <span class="at">seed =</span> <span class="dv">110525</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="diagnostics" class="slide level2">
+<h2>Diagnostics</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a><span class="fu">mcmc_trace</span>(model_fit)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+
+</div>
+<img data-src="slides23_files/figure-revealjs/unnamed-chunk-16-1.png" width="960" class="r-stretch"></section>
+<section id="pstrategy" class="slide level2">
+<h2>P(Strategy)</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a><span class="fu">mcmc_dens</span>(model_fit)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+
+</div>
+
+
+<img data-src="slides23_files/figure-revealjs/unnamed-chunk-17-1.png" width="960" class="r-stretch"></section></section>
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
 <div class="footer footer-default">

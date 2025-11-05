@@ -2200,6 +2200,18 @@
     ]
   },
   {
+    "objectID": "projects/proj1.html",
+    "href": "projects/proj1.html",
+    "title": "Project 1",
+    "section": "",
+    "text": "library(bayesrules) # R package for our textbook\nlibrary(tidyverse) # Collection of packages for tidying and plotting data\nlibrary(janitor) # Helper functions like tidy and tabyl\nlibrary(rstan) # for MCMC\nlibrary(bayesplot) # for plotting\n\nThe data in fish_poisson.csv are records of visits to a National Park and comes from the {rethinking} R package. The variable fish_caught gives the number of fish that was caught by a park visitor, and the hours variables gives the total number of hours that they spent in the park. Your task is to estimate the hourly average of fish caught for an individual while they are fishing. You can assume that the hourly number of fish caught is a Poisson distribution.\nHowever, the problem is that not every party tried to fish. So there are two ways that a zero can arise in the data: (1) the individual tried to fish but did not catch any, or (2) the individual did not try to fish at all. If we do not account for this, we’ll end up with an underestimate for fish extraction from the park.\nLet \\(\\theta\\) be the probability that a visitor does not fish. Let \\(\\lambda\\) be the mean number of fish caught, when a visitor is fishing. Then \\(Y|\\lambda \\sim \\text{Pois}(\\lambda)\\).\nThen, the probability of observing zero fish caught is:\n\\[\\theta + (1-\\theta) P(Y = 0 | \\lambda)\\]\nand the probability of observing a nonzero number of fish caught is:\n\\[(1-\\theta) P(Y=y | \\lambda)\\]\nThis is an example of a zero-inflated poisson distribution, and you will implement it for this case study project.\n(Note: Your model should also account for the differing amount of time individuals spend in the park.)\n\nfish_poisson &lt;- read_csv(\"https://aluby.github.io/stat340-f25/data/fish_poisson.csv\")\n\nFinding the posterior\nOption 1: Find the posterior distribution of \\(\\lambda\\) analytically\nOption 2: Implement your own MCMC sampler or grid approximation to estimate the posterior distribution of \\(\\lambda\\)\nOption 3: Use the stan starter code below. If you choose this option, you should also answer Question (1) below.\ndata {\n  int&lt;lower=1&gt; N;\n  array[N] int&lt;lower=0&gt; y;\n}\nparameters {\n  real&lt;lower=0, upper=1&gt; theta; // Pr(y = 0)\n  real&lt;lower=0&gt; lambda; // Poisson rate parameter (if y &gt; 0)\n}\nmodel {\n  lambda ~ _____________ ;\n  theta ~ ______________ ;\n\n  for (n in 1 : N) {\n    if (y[n] == 0) {\n      target += log_sum_exp(bernoulli_lpmf(1 | theta),\n                            bernoulli_lpmf(0 | theta)\n                              + poisson_lpmf(y[n] | lambda)); // log(Pr(y = 0))\n    } else {\n      target += bernoulli_lpmf(0 | theta)\n                  + poisson_lpmf(y[n] | lambda); // log(Pr(y &gt; 0))\n      y[n] ~ __________ ; // truncated poisson\n    }\n  }\n}\nQuestions to Consider\n\nThe target += lines in the stan code update the log posterior density for each run through the for loop. We need to include them when we do not use an explicit modeling statement (eg y ~ normal(0,1)). Explain or justify these lines of code. (You may have to dig into the stan reference manual)\nPerform an appropriate EDA to justify the use of a zero-inflated poisson analysis\nHow did you choose your prior distributions? Confirm they are reasonable through simulation.\n(If estimated with MCMC): Are you confident that your MCMC has converged? Provide justification\nWhat do you learn from \\(\\lambda\\)? What do you learn from \\(\\theta\\)? (these should be in context of the data)\nHow is your answer different than a “regular” Bayesian posterior analysis of \\(\\lambda\\)? (ie non zero-inflated)\nWhat would your model predict for a new visitor at the park?\nWhat are the benefits and drawbacks of using a fully specified Bayesian model in this scenario? What do we gain instead of, e.g., splitting up the data into zero fish caught and nonzero fish caught?\nReport\nYour submission should be a &lt;4 page report written in quarto/rmarkdown. Everything should be typed/proofread/labeled/captioned etc.\nEvaluation\nThere are two elements that make this a “project” rather than a “homework problem”:\n\nIt is more open-ended.\n\nIf you think an alternative approach is more appropriate for this data, go for it! There is no “right answer” that I am looking for. However, there are lots of ways to be wrong. You should think through your choices and provide justification for them.\nOn homework, you often have an example from class or the textbook to use as a “model”. On this project, I’m asking you to do something new!\n\n\nPart of your grade will be based on the presentation of your work. All portions of the report should be polished and proofread carefully.",
+    "crumbs": [
+      "Projects",
+      "Projects",
+      "Project 1"
+    ]
+  },
+  {
     "objectID": "projects/final.html",
     "href": "projects/final.html",
     "title": "Final Project",
@@ -2212,16 +2224,194 @@
     ]
   },
   {
-    "objectID": "projects/proj1.html",
-    "href": "projects/proj1.html",
-    "title": "Project 1",
+    "objectID": "projects/exam02prep.html",
+    "href": "projects/exam02prep.html",
+    "title": "Exam II Review",
     "section": "",
-    "text": "library(bayesrules) # R package for our textbook\nlibrary(tidyverse) # Collection of packages for tidying and plotting data\nlibrary(janitor) # Helper functions like tidy and tabyl\nlibrary(rstan) # for MCMC\nlibrary(bayesplot) # for plotting\n\nThe data in fish_poisson.csv are records of visits to a National Park and comes from the {rethinking} R package. The variable fish_caught gives the number of fish that was caught by a park visitor, and the hours variables gives the total number of hours that they spent in the park. Your task is to estimate the hourly average of fish caught for an individual while they are fishing. You can assume that the hourly number of fish caught is a Poisson distribution.\nHowever, the problem is that not every party tried to fish. So there are two ways that a zero can arise in the data: (1) the individual tried to fish but did not catch any, or (2) the individual did not try to fish at all. If we do not account for this, we’ll end up with an underestimate for fish extraction from the park.\nLet \\(\\theta\\) be the probability that a visitor does not fish. Let \\(\\lambda\\) be the mean number of fish caught, when a visitor is fishing. Then \\(Y|\\lambda \\sim \\text{Pois}(\\lambda)\\).\nThen, the probability of observing zero fish caught is:\n\\[\\theta + (1-\\theta) P(Y = 0 | \\lambda)\\]\nand the probability of observing a nonzero number of fish caught is:\n\\[(1-\\theta) P(Y=y | \\lambda)\\]\nThis is an example of a zero-inflated poisson distribution, and you will implement it for this case study project.\n(Note: Your model should also account for the differing amount of time individuals spend in the park.)\n\nfish_poisson &lt;- read_csv(\"https://aluby.github.io/stat340-f25/data/fish_poisson.csv\")\n\nFinding the posterior\nOption 1: Find the posterior distribution of \\(\\lambda\\) analytically\nOption 2: Implement your own MCMC sampler or grid approximation to estimate the posterior distribution of \\(\\lambda\\)\nOption 3: Use the stan starter code below. If you choose this option, you should also answer Question (1) below.\ndata {\n  int&lt;lower=1&gt; N;\n  array[N] int&lt;lower=0&gt; y;\n}\nparameters {\n  real&lt;lower=0, upper=1&gt; theta; // Pr(y = 0)\n  real&lt;lower=0&gt; lambda; // Poisson rate parameter (if y &gt; 0)\n}\nmodel {\n  lambda ~ _____________ ;\n  theta ~ ______________ ;\n\n  for (n in 1 : N) {\n    if (y[n] == 0) {\n      target += log_sum_exp(bernoulli_lpmf(1 | theta),\n                            bernoulli_lpmf(0 | theta)\n                              + poisson_lpmf(y[n] | lambda)); // log(Pr(y = 0))\n    } else {\n      target += bernoulli_lpmf(0 | theta)\n                  + poisson_lpmf(y[n] | lambda); // log(Pr(y &gt; 0))\n      y[n] ~ __________ ; // truncated poisson\n    }\n  }\n}\nQuestions to Consider\n\nThe target += lines in the stan code update the log posterior density for each run through the for loop. We need to include them when we do not use an explicit modeling statement (eg y ~ normal(0,1)). Explain or justify these lines of code. (You may have to dig into the stan reference manual)\nPerform an appropriate EDA to justify the use of a zero-inflated poisson analysis\nHow did you choose your prior distributions? Confirm they are reasonable through simulation.\n(If estimated with MCMC): Are you confident that your MCMC has converged? Provide justification\nWhat do you learn from \\(\\lambda\\)? What do you learn from \\(\\theta\\)? (these should be in context of the data)\nHow is your answer different than a “regular” Bayesian posterior analysis of \\(\\lambda\\)? (ie non zero-inflated)\nWhat would your model predict for a new visitor at the park?\nWhat are the benefits and drawbacks of using a fully specified Bayesian model in this scenario? What do we gain instead of, e.g., splitting up the data into zero fish caught and nonzero fish caught?\nReport\nYour submission should be a &lt;4 page report written in quarto/rmarkdown. Everything should be typed/proofread/labeled/captioned etc.\nEvaluation\nThere are two elements that make this a “project” rather than a “homework problem”:\n\nIt is more open-ended.\n\nIf you think an alternative approach is more appropriate for this data, go for it! There is no “right answer” that I am looking for. However, there are lots of ways to be wrong. You should think through your choices and provide justification for them.\nOn homework, you often have an example from class or the textbook to use as a “model”. On this project, I’m asking you to do something new!\n\n\nPart of your grade will be based on the presentation of your work. All portions of the report should be polished and proofread carefully.",
+    "text": "Posterior Inference\n\nEstimation (credible intervals)\nHypothesis Testing (probabilities, Bayes Factors)\n\n\nPosterior Prediction\n\nVariability in the parameters + variability in the data generating process\n\n\nNormal Regression\n\nExtension of normal-normal Bayesian model\nExpressing prior distributions\nInference and interpretation for parameters\n\n\nEvaluating regression models\n\nPosterior predictive checks: if simulated \\(Y\\) values from our Bayesian model are similar to the observed \\(Y\\), we have reason to believe our model assumptions are reasonable\nPosterior predictive summaries of the distance between predicted and observed \\(Y\\)’s (MAE) or how often posterior prediction intervals capture the observed \\(Y\\) (within_50 and within_95)\nIn-sample vs out-of-sample validation\nBias/variance tradeoff and overfitting\n\n\nPoisson/Negative Binomial regression for counts\n\nExtension of Poisson-Gamma Bayesian model with predictors\nOverdispersion: what it is and how to fix it\nExpressing as a GLM\n\n\nLogistic regression\n\n\n\\(Y\\) is binary\nInterpreting parameters on log-odds, odds, and probability scales\nClassification\nSensitivity and specificity\n\n\nNaive Bayes\n\nWhy is it naive?\nWhy is it Bayes?\n\n\n\n\nIdentifying prior/likelihood distributions from a problem setup\nDifference between posterior and a likelihood/prior and being careful about notation\nWriting out a likelihood from a PDF\n\\(f(\\theta | y) \\propto f(\\theta) L(\\theta | y)\\)\nWhy we need/prefer MCMC to solving things analytically\nInformative vs diffuse priors and when each is appropriate",
     "crumbs": [
       "Projects",
       "Projects",
-      "Project 1"
+      "Exam II Review"
     ]
+  },
+  {
+    "objectID": "projects/exam02prep.html#topics-since-exam-01-will-be-the-emphasis",
+    "href": "projects/exam02prep.html#topics-since-exam-01-will-be-the-emphasis",
+    "title": "Exam II Review",
+    "section": "",
+    "text": "Posterior Inference\n\nEstimation (credible intervals)\nHypothesis Testing (probabilities, Bayes Factors)\n\n\nPosterior Prediction\n\nVariability in the parameters + variability in the data generating process\n\n\nNormal Regression\n\nExtension of normal-normal Bayesian model\nExpressing prior distributions\nInference and interpretation for parameters\n\n\nEvaluating regression models\n\nPosterior predictive checks: if simulated \\(Y\\) values from our Bayesian model are similar to the observed \\(Y\\), we have reason to believe our model assumptions are reasonable\nPosterior predictive summaries of the distance between predicted and observed \\(Y\\)’s (MAE) or how often posterior prediction intervals capture the observed \\(Y\\) (within_50 and within_95)\nIn-sample vs out-of-sample validation\nBias/variance tradeoff and overfitting\n\n\nPoisson/Negative Binomial regression for counts\n\nExtension of Poisson-Gamma Bayesian model with predictors\nOverdispersion: what it is and how to fix it\nExpressing as a GLM\n\n\nLogistic regression\n\n\n\\(Y\\) is binary\nInterpreting parameters on log-odds, odds, and probability scales\nClassification\nSensitivity and specificity\n\n\nNaive Bayes\n\nWhy is it naive?\nWhy is it Bayes?",
+    "crumbs": [
+      "Projects",
+      "Projects",
+      "Exam II Review"
+    ]
+  },
+  {
+    "objectID": "projects/exam02prep.html#major-ideas-that-are-not-going-away-and-you-should-be-confident-doing",
+    "href": "projects/exam02prep.html#major-ideas-that-are-not-going-away-and-you-should-be-confident-doing",
+    "title": "Exam II Review",
+    "section": "",
+    "text": "Identifying prior/likelihood distributions from a problem setup\nDifference between posterior and a likelihood/prior and being careful about notation\nWriting out a likelihood from a PDF\n\\(f(\\theta | y) \\propto f(\\theta) L(\\theta | y)\\)\nWhy we need/prefer MCMC to solving things analytically\nInformative vs diffuse priors and when each is appropriate",
+    "crumbs": [
+      "Projects",
+      "Projects",
+      "Exam II Review"
+    ]
+  },
+  {
+    "objectID": "slides/slides23.html#motivating-example-inferring-a-childs-strategy-from-the-choice-that-they-made",
+    "href": "slides/slides23.html#motivating-example-inferring-a-childs-strategy-from-the-choice-that-they-made",
+    "title": "Dirichlet Distribution + Case Study",
+    "section": "Motivating example: Inferring a child’s strategy from the choice that they made",
+    "text": "Motivating example: Inferring a child’s strategy from the choice that they made\n\n\n\nSource: McElreath’s Stat Rethinking book and course"
+  },
+  {
+    "objectID": "slides/slides23.html#majority-first",
+    "href": "slides/slides23.html#majority-first",
+    "title": "Dirichlet Distribution + Case Study",
+    "section": "Majority First",
+    "text": "Majority First"
+  },
+  {
+    "objectID": "slides/slides23.html#minority-first",
+    "href": "slides/slides23.html#minority-first",
+    "title": "Dirichlet Distribution + Case Study",
+    "section": "Minority First",
+    "text": "Minority First"
+  },
+  {
+    "objectID": "slides/slides23.html#social-conformity",
+    "href": "slides/slides23.html#social-conformity",
+    "title": "Dirichlet Distribution + Case Study",
+    "section": "Social conformity",
+    "text": "Social conformity\n\nDo children copy the majority? If so, how does this develop?\nProblem: can’t observe strategy, only choice\nMajority choice is consistent with many strategies\n\nRandomly choose tube (p=1/3)\nRandomly choose tube that was successful (p=1/2)"
+  },
+  {
+    "objectID": "slides/slides23.html#section-8",
+    "href": "slides/slides23.html#section-8",
+    "title": "Dirichlet Distribution + Case Study",
+    "section": "",
+    "text": "Boxes &lt;- read_delim(\"https://raw.githubusercontent.com/rmcelreath/rethinking/refs/heads/master/data/Boxes.csv\")\n\nBoxes\n\n# A tibble: 629 × 5\n       y gender   age majority_first culture\n   &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;          &lt;dbl&gt;   &lt;dbl&gt;\n 1     1      1     6              0       2\n 2     3      1     8              0       2\n 3     2      2     8              1       2\n 4     1      1     6              0       2\n 5     2      1     5              1       2\n 6     2      2     7              1       2\n 7     2      2     6              0       2\n 8     1      1     6              1       2\n 9     3      1     8              0       2\n10     2      1     5              1       2\n# ℹ 619 more rows"
+  },
+  {
+    "objectID": "slides/slides23.html#observable-choice-seems-correlated-with-majority_first-but-is-unobservable-strategy",
+    "href": "slides/slides23.html#observable-choice-seems-correlated-with-majority_first-but-is-unobservable-strategy",
+    "title": "Dirichlet Distribution + Case Study",
+    "section": "Observable (choice) seems correlated with majority_first, but is unobservable (strategy)?",
+    "text": "Observable (choice) seems correlated with majority_first, but is unobservable (strategy)?\n1 = “unchosen”, 2 = “majority”, 3 = “minority”"
+  },
+  {
+    "objectID": "slides/slides23.html#model-setup",
+    "href": "slides/slides23.html#model-setup",
+    "title": "Dirichlet Distribution + Case Study",
+    "section": "Model setup",
+    "text": "Model setup\nY: 1 = “unchosen”, 2 = “majority”, 3 = “minority”\n\n\n5 different strategies:\n\nMajority\nMinority\nMaverick (choose the one that nobody chose)\nRandom\nFollow first: copy the color that was demonstrated first\n\n\nKnow probabilities within each strategy:\n\nIf Majority strategy, \\(P(Y=2) = 1\\)\nIf Minority strategy, \\(P(Y=3) = 1\\)\nIf Maverick strategy, \\(P(Y=1) = 1\\)\nIf Random strategy, \\[P(Y=1) = P(Y=2) = P(Y=3) = 1/3\\]\nIf “follow first” strategy, let \\(X=x\\) be the tube picked first. \\(P(Y=y) = 1\\) for \\(y=x\\)."
+  },
+  {
+    "objectID": "slides/slides23.html#model-setup-1",
+    "href": "slides/slides23.html#model-setup-1",
+    "title": "Dirichlet Distribution + Case Study",
+    "section": "Model setup",
+    "text": "Model setup\n\\[Y_i \\sim \\text{Categorical}(\\theta)\\]\nWhere \\(\\theta\\) is a vector of probabilities for each outcome \\(Y\\).\nWe’ve just talked through all possibilities for \\(P(Y|S=s)\\), where \\(S\\) indicates one of the strategies. There is also some probability for each of the strategies, \\(p_s\\).\nThen, \\(\\theta_i = P(Y_i) = \\sum_{s=1}^5 p_s P(Y_i | S=s)\\)\nPrior for \\(p_s\\)?"
+  },
+  {
+    "objectID": "slides/slides23.html#beta-distribution",
+    "href": "slides/slides23.html#beta-distribution",
+    "title": "Dirichlet Distribution + Case Study",
+    "section": "Beta distribution",
+    "text": "Beta distribution"
+  },
+  {
+    "objectID": "slides/slides23.html#random-draws-from-dirichlet37",
+    "href": "slides/slides23.html#random-draws-from-dirichlet37",
+    "title": "Dirichlet Distribution + Case Study",
+    "section": "10 Random Draws from Dirichlet(3,7)",
+    "text": "10 Random Draws from Dirichlet(3,7)\n\nset.seed(110525)\nbrms::rdirichlet(n = 10, alpha = c(3, 7)) |&gt; data.frame() |&gt; \n    set_names(1:2) |&gt; \n    mutate(total = `1` + `2`)\n\n           1         2 total\n1  0.1908882 0.8091118     1\n2  0.2728575 0.7271425     1\n3  0.7295211 0.2704789     1\n4  0.2725396 0.7274604     1\n5  0.2620264 0.7379736     1\n6  0.4134384 0.5865616     1\n7  0.1594910 0.8405090     1\n8  0.3100098 0.6899902     1\n9  0.5744486 0.4255514     1\n10 0.4848761 0.5151239     1\n\n\nDirichlet(3,7) = [Beta(3,7), Beta(7,3)]"
+  },
+  {
+    "objectID": "slides/slides23.html#dirichlet-is-multivariate-beta",
+    "href": "slides/slides23.html#dirichlet-is-multivariate-beta",
+    "title": "Dirichlet Distribution + Case Study",
+    "section": "Dirichlet is multivariate Beta",
+    "text": "Dirichlet is multivariate Beta"
+  },
+  {
+    "objectID": "slides/slides23.html#random-draws-from-dirichlet3-7-2",
+    "href": "slides/slides23.html#random-draws-from-dirichlet3-7-2",
+    "title": "Dirichlet Distribution + Case Study",
+    "section": "Random draws from Dirichlet(3, 7, 2):",
+    "text": "Random draws from Dirichlet(3, 7, 2):\n\nbrms::rdirichlet(n = 3, alpha = c(3, 7, 2)) |&gt; data.frame() |&gt; \n    set_names(1:3) |&gt; \n    mutate(total = `1` + `2` + `3`)\n\n           1         2          3 total\n1 0.27025836 0.6837385 0.04600314     1\n2 0.08839628 0.8644940 0.04710976     1\n3 0.15799433 0.7241628 0.11784288     1"
+  },
+  {
+    "objectID": "slides/slides23.html#random-draws-from-dirichlet3-7-2-2-9-1",
+    "href": "slides/slides23.html#random-draws-from-dirichlet3-7-2-2-9-1",
+    "title": "Dirichlet Distribution + Case Study",
+    "section": "Random draws from Dirichlet(3, 7, 2, 2, 9, 1):",
+    "text": "Random draws from Dirichlet(3, 7, 2, 2, 9, 1):\n\nbrms::rdirichlet(n = 3, alpha = c(3, 7, 2, 2, 9, 1)) |&gt; data.frame() |&gt; \n    set_names(1:6) |&gt; \n    mutate(total = `1` + `2` + `3` + `4` + `5` + `6`)\n\n           1         2          3          4         5           6 total\n1 0.12074238 0.2805766 0.05186538 0.05819175 0.4791264 0.009497429     1\n2 0.13002591 0.3788208 0.12850388 0.11097203 0.2360018 0.015675563     1\n3 0.03178582 0.3585516 0.05868408 0.05437978 0.2996539 0.196944769     1"
+  },
+  {
+    "objectID": "slides/slides23.html#dirichlet3-7-2",
+    "href": "slides/slides23.html#dirichlet3-7-2",
+    "title": "Dirichlet Distribution + Case Study",
+    "section": "Dirichlet(3, 7, 2)",
+    "text": "Dirichlet(3, 7, 2)"
+  },
+  {
+    "objectID": "slides/slides23.html#columns-are-correlated-with-each-other",
+    "href": "slides/slides23.html#columns-are-correlated-with-each-other",
+    "title": "Dirichlet Distribution + Case Study",
+    "section": "Columns are correlated with each other",
+    "text": "Columns are correlated with each other"
+  },
+  {
+    "objectID": "slides/slides23.html#dirichlet-distribution",
+    "href": "slides/slides23.html#dirichlet-distribution",
+    "title": "Dirichlet Distribution + Case Study",
+    "section": "Dirichlet distribution",
+    "text": "Dirichlet distribution\nLet \\(\\vec{\\theta} = (\\theta_1, ... \\theta_k)\\) be a random vector of length \\(K \\ge 2\\), where each element \\(\\theta_i &gt; 0\\) and \\(\\sum \\theta_i = 1\\). The Dirichlet model with concentration parameter \\(\\vec{\\alpha} = (\\alpha_1, ..., \\alpha_k)\\) is:\n\\[\\vec{\\theta} \\sim \\text{Dirichlet}(\\vec{\\alpha})\\]\n\\[f(\\vec{\\theta}) = \\frac{1}{B(\\vec{\\alpha})} \\prod_{i=1}^K \\theta_i^{\\alpha_i - 1}\\]\nwhere \\(B(\\vec{\\alpha})\\) is the multivariate Beta function \\(B(\\vec{\\alpha}) = \\frac{\\prod \\Gamma(\\alpha_i)}{\\Gamma(\\alpha_0)}\\) and \\(\\alpha_0 = \\sum \\alpha_i\\).\nWhen \\(k=2\\), the Dirichlet distribution simplifies to the Beta(\\(\\alpha_1, \\alpha_2\\))."
+  },
+  {
+    "objectID": "slides/slides23.html#dirichlet-distribution-is-conjugate-for-categoricalmultinomial-distribution",
+    "href": "slides/slides23.html#dirichlet-distribution-is-conjugate-for-categoricalmultinomial-distribution",
+    "title": "Dirichlet Distribution + Case Study",
+    "section": "Dirichlet distribution is conjugate for categorical/multinomial distribution",
+    "text": "Dirichlet distribution is conjugate for categorical/multinomial distribution\n\\[p \\sim \\text{Dirichlet}(\\alpha_1, \\alpha_2, ..., \\alpha_k)\\]\n\\[Y | p \\sim \\text{Categorical}(p)\\text{ or Multinomial}(p)\\]\nand let \\(c_i\\) be the number of occurrences of category \\(i\\) in \\(Y\\). Then:\n\\[p | Y \\sim \\text{Dirichlet}(c_1 + \\alpha_1, c_2 + \\alpha_2, ..., c_k + \\alpha_k)\\]"
+  },
+  {
+    "objectID": "slides/slides23.html#prior-p_s-sim-dirichlet4-4-4-4-4",
+    "href": "slides/slides23.html#prior-p_s-sim-dirichlet4-4-4-4-4",
+    "title": "Dirichlet Distribution + Case Study",
+    "section": "Prior: \\(p_s \\sim Dirichlet(4, 4, 4, 4, 4)\\)",
+    "text": "Prior: \\(p_s \\sim Dirichlet(4, 4, 4, 4, 4)\\)"
+  },
+  {
+    "objectID": "slides/slides23.html#stan-model-for-strategies",
+    "href": "slides/slides23.html#stan-model-for-strategies",
+    "title": "Dirichlet Distribution + Case Study",
+    "section": "Stan Model for Strategies",
+    "text": "Stan Model for Strategies\n\nBoxes_model &lt;- \"data{\n    int N;\n    int y[N];\n    int majority_first[N];\n}\nparameters{\n    simplex[5] p;\n}\nmodel{\n    vector[5] phi;\n    \n    // prior\n    p ~ dirichlet( rep_vector(4,5) );\n    \n    // probability of data\n    for ( i in 1:N ) {\n        if ( y[i]==2 ) phi[1]=1; else phi[1]=0; // majority\n        if ( y[i]==3 ) phi[2]=1; else phi[2]=0; // minority\n        if ( y[i]==1 ) phi[3]=1; else phi[3]=0; // maverick\n        phi[4]=1.0/3.0;                         // random\n        if ( majority_first[i]==1 )             // follow first\n            if ( y[i]==2 ) phi[5]=1; else phi[5]=0;\n        else\n            if ( y[i]==3 ) phi[5]=1; else phi[5]=0;\n        \n        // compute log( p_s * Pr(y_i|s )\n        for ( j in 1:5 ) phi[j] = log(p[j]) + log(phi[j]);\n        // compute average log-probability of y_i\n        target += log_sum_exp( phi );\n    }\n}\""
+  },
+  {
+    "objectID": "slides/slides23.html#fit-the-model",
+    "href": "slides/slides23.html#fit-the-model",
+    "title": "Dirichlet Distribution + Case Study",
+    "section": "Fit the model",
+    "text": "Fit the model\n\ndata_list = list(\n  N = nrow(Boxes),\n  y = Boxes$y,\n  majority_first = Boxes$majority_first\n)\n\nmodel_fit &lt;- stan(model_code = Boxes_model, \n                  data = data_list, \n                  chains = 4, \n                  iter = 2*5000, \n                  seed = 110525)"
+  },
+  {
+    "objectID": "slides/slides23.html#diagnostics",
+    "href": "slides/slides23.html#diagnostics",
+    "title": "Dirichlet Distribution + Case Study",
+    "section": "Diagnostics",
+    "text": "Diagnostics\n\nmcmc_trace(model_fit)"
+  },
+  {
+    "objectID": "slides/slides23.html#pstrategy",
+    "href": "slides/slides23.html#pstrategy",
+    "title": "Dirichlet Distribution + Case Study",
+    "section": "P(Strategy)",
+    "text": "P(Strategy)\n\nmcmc_dens(model_fit)"
   },
   {
     "objectID": "slides/slides08.html#recap-conjugate-models",
