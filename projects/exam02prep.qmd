@@ -20,6 +20,8 @@ theme_set(theme_minimal(base_family = "Atkinson Hyperlegible"))
 
 # Topics/Skills
 
+## Topics since exam 01 (will be the emphasis)
+
 - Posterior Inference
     - Estimation (credible intervals)
     - Hypothesis Testing (probabilities, Bayes Factors)
@@ -46,6 +48,15 @@ theme_set(theme_minimal(base_family = "Atkinson Hyperlegible"))
 - Naive Bayes
     - Why is it naive? 
     - Why is it Bayes?
+
+## Major ideas that are not going away and you should be confident doing
+
+- Identifying prior/likelihood distributions from a problem setup
+- Difference between posterior and a likelihood/prior and being careful about notation
+- Writing out a likelihood from a PDF
+- $f(\theta | y) \propto f(\theta) L(\theta | y)$
+- Why we need/prefer MCMC to solving things analytically 
+- Informative vs diffuse priors and when each is appropriate
 
 # Practice Problems
 
