@@ -1,5 +1,5 @@
 ---
-title: Dirichlet + Multinomial Model Case Study
+title: Dirichlet Distribution + Case Study
 subtitle: Day 23
 title-slide-attributes:
   data-background-color: "#e2583eff"
@@ -10,7 +10,7 @@ format:
     scrollable: false
 auto-stretch: true
 editor_options: 
-  chunk_output_type: console
+  chunk_output_type: inline
 editor: 
   markdown: 
     wrap: 72
@@ -40,13 +40,63 @@ theme_set(theme_minimal(base_size = 16, base_family = "Atkinson Hyperlegible"))
 clrs <- viridis::viridis(6, end = .75, option = "plasma")
 ```
 
-## Dirichlet class assignment example from McElreath
+## Motivating example: Inferring a child's strategy from the choice that they made
+
+![](img/boxes-apparatus.png)
+
+
+::: aside
+Source: McElreath's [Stat Rethinking](https://github.com/rmcelreath/stat_rethinking_2024) book and course
+:::
+
+##
+
+![](img/boxes-1.png)
+
+##
+
+![](img/boxes-2.png)
 
 ## 
+
+![](img/boxes-3.png)
+
+##
+
+![](img/boxes-4.png)
+
+##
+
+![](img/boxes-5.png)
+
+##
+
+![](img/boxes-6.png)
+
+##
+
+![](img/boxes-7.png)
+
+
+## Majority First
+
+![](img/boxes-majority-first.png)
+
+## Minority First
+
+![](img/boxes-minority-first.png)
+
+## 
+
+![](img/boxes-summary.png)
+
+## Social conformity
 
 - Do children copy the majority? If so, how does this develop? 
 - Problem: can't observe strategy, only choice
 - Majority choice is consistent with many strategies
+    - Randomly choose tube (p=1/3)
+    - Randomly choose tube that was successful (p=1/2)
 
 # Data generating process vs GLM
 
@@ -58,9 +108,14 @@ Boxes <- read_delim("https://raw.githubusercontent.com/rmcelreath/rethinking/ref
 Boxes
 ```
 
-##
+## Observable (choice) seems correlated with `majority_first`, but is unobservable (strategy)?
+
+1 = "unchosen", 2 = "majority", 3 = "minority"
 
 ```{r}
+#| echo: false
+
+
 ggplot(Boxes, aes(x = majority_first, fill = factor(y))) + 
   geom_bar() +
   scale_fill_viridis_d(end = .75, option = "plasma")
@@ -68,11 +123,47 @@ ggplot(Boxes, aes(x = majority_first, fill = factor(y))) +
 
 ## Model setup
 
-## Prior for $p_j$?
+Y: 1 = "unchosen", 2 = "majority", 3 = "minority"
+
+::::: columns
+::: {.column width="50%"}
+5 different strategies: 
+
+  - Majority
+  - Minority
+  - Maverick (choose the one that nobody chose)
+  - Random
+  - Follow first: copy the color that was demonstrated first
+:::
+
+::: {.column width="50%" .fragment}
+Know probabilities within each strategy:
+
+- If Majority strategy, $P(Y=2) = 1$ 
+- If Minority strategy, $P(Y=3) = 1$
+- If Maverick strategy, $P(Y=1) = 1$
+- If Random strategy, 
+  $$P(Y=1) = P(Y=2) = P(Y=3) = 1/3$$
+- If "follow first" strategy, let $X=x$ be the tube picked first. $P(Y=y) = 1$ for $y=x$. 
+:::
+::::
+
+## Model setup
+
+$$Y_i \sim \text{Categorical}(\theta)$$
+
+Where $\theta$ is a vector of probabilities for each outcome $Y$.  
+
+We've just talked through all possibilities for $P(Y|S=s)$, where $S$ indicates one of the strategies. There is also some probability for each of the strategies, $p_s$. 
+
+Then, $\theta_i = P(Y_i) = \sum_{s=1}^5 p_s P(Y_i | S=s)$
+
+Prior for $p_s$?
 
 ## Beta distribution
 
 ```{r}
+#| echo: false
 ggplot() +
   stat_function(
     geom = "area", 
@@ -81,12 +172,11 @@ ggplot() +
   labs(x = "Probability or proportion", y = NULL, title = "Beta(3, 7)") 
 ```
 
-## 
+## 10 Random Draws from Dirichlet(3,7)
 
 ```{r}
 set.seed(110525)
-brms::rdirichlet(n = 10, alpha = c(3, 7)) |> 
-    data.frame() |> 
+brms::rdirichlet(n = 10, alpha = c(3, 7)) |> data.frame() |> 
     set_names(1:2) |> 
     mutate(total = `1` + `2`)
 ```
@@ -96,6 +186,9 @@ Dirichlet(3,7) = [Beta(3,7), Beta(7,3)]
 ## Dirichlet is multivariate Beta
 
 ```{r}
+#| echo: false
+
+
 brms::rdirichlet(n = 1e5, alpha = c(3, 7)) |> 
     data.frame() |> 
     set_names(c("alpha[1]", "alpha[2]")) |> 
@@ -107,25 +200,28 @@ brms::rdirichlet(n = 1e5, alpha = c(3, 7)) |>
     facet_wrap(vars(name))
 ```
 
-## Dirichlet is multivariate Beta
+## Random draws from Dirichlet(3, 7, 2):
 
 ```{r}
-brms::rdirichlet(n = 3, alpha = c(3, 7, 2)) |> 
-    data.frame() |> 
+brms::rdirichlet(n = 3, alpha = c(3, 7, 2)) |> data.frame() |> 
     set_names(1:3) |> 
     mutate(total = `1` + `2` + `3`)
 ```
 
+## Random draws from Dirichlet(3, 7, 2, 2, 9, 1):
+
 ```{r}
-brms::rdirichlet(n = 3, alpha = c(3, 7, 2, 2, 9, 1)) |> 
-    data.frame() |> 
+brms::rdirichlet(n = 3, alpha = c(3, 7, 2, 2, 9, 1)) |> data.frame() |> 
     set_names(1:6) |> 
     mutate(total = `1` + `2` + `3` + `4` + `5` + `6`)
 ```
 
-## 
+## Dirichlet(3, 7, 2)
 
 ```{r}
+#| echo: false
+
+
 plot_dirichlet_3_7_2 <- withr::with_seed(1234, {
   brms::rdirichlet(n = 1e5, alpha = c(3, 7, 2)) |> 
     data.frame() |> 
@@ -185,7 +281,7 @@ scat_mat
 ##
 
 ```{r}
-#| eval: false
+#| echo: false
 library(ggtern)
 # First triangle: random points
 withr::with_seed(1234, {
@@ -197,14 +293,10 @@ withr::with_seed(1234, {
 tern1 <- draws_3_7_2 |> 
   ggtern(aes(x = x, y = y, z = z)) +
   geom_point(size = 0.2, alpha = 0.1, color = clrs[5]) +
-  scale_L_continuous(breaks = 0:5 / 5, labels = 0:5 / 5, name = "α[1]") +
-  scale_T_continuous(breaks = 0:5 / 5, labels = 0:5 / 5, name = "α[2]") +
-  scale_R_continuous(breaks = 0:5 / 5, labels = 0:5 / 5, name = "α[3]") +
-  theme(
-    tern.axis.title.L = element_markdown(face = "bold", color = clrs[1], size = rel(1.2)),
-    tern.axis.title.T = element_markdown(face = "bold", color = clrs[2], size = rel(1.2)),
-    tern.axis.title.R = element_markdown(face = "bold", color = clrs[4], size = rel(1.2))
-  )
+  scale_L_continuous(breaks = 0:5 / 5, labels = 0:5 / 5, name = "alpha[1]") +
+  scale_T_continuous(breaks = 0:5 / 5, labels = 0:5 / 5, name = "alpha[2]") +
+  scale_R_continuous(breaks = 0:5 / 5, labels = 0:5 / 5, name = "alpha[3]")
+
 
 # Second triangle: actual densities
 # Plotting the results from ddirichlet() is more difficult than using dbeta() or
@@ -239,14 +331,10 @@ tern2 <- ggtern(data = df, aes(x = x, y = y, z = z)) +
     values = scales::rescale(x = c(0, 1, 3, 8, 13), from = c(0, 13)),
     guide = "none"
   ) +
-  scale_L_continuous(breaks = 0:5 / 5, labels = 0:5 / 5, name = "α[1]") +
-  scale_T_continuous(breaks = 0:5 / 5, labels = 0:5 / 5, name = "α[2]") +
-  scale_R_continuous(breaks = 0:5 / 5, labels = 0:5 / 5, name = "α[3]") +
-  theme(
-    tern.axis.title.L = element_markdown(face = "bold", color = clrs[1], size = rel(1.2)),
-    tern.axis.title.T = element_markdown(face = "bold", color = clrs[2], size = rel(1.2)),
-    tern.axis.title.R = element_markdown(face = "bold", color = clrs[4], size = rel(1.2))
-  )
+  scale_L_continuous(breaks = 0:5 / 5, labels = 0:5 / 5, name = "alpha[1]") +
+  scale_T_continuous(breaks = 0:5 / 5, labels = 0:5 / 5, name = "alpha[2]") +
+  scale_R_continuous(breaks = 0:5 / 5, labels = 0:5 / 5, name = "alpha[3]") 
+  
 
 # ggtern objects don't work with {patchwork} or gridExtra::grid.arrange() or
 # {cowplot} or any of the plot-combining packages, but {ggtern} comes with its
@@ -254,13 +342,53 @@ tern2 <- ggtern(data = df, aes(x = x, y = y, z = z)) +
 ggtern::grid.arrange(tern1, tern2, ncol = 2)
 ```
 
-## Model
+## Dirichlet distribution 
 
-```{stan}
-#| output.var: boxes_model
-#| echo: true
+Let $\vec{\theta} = (\theta_1, ... \theta_k)$ be a random vector of length $K \ge 2$, where each element $\theta_i > 0$ and $\sum \theta_i = 1$. The **Dirichlet model** with concentration parameter $\vec{\alpha} = (\alpha_1, ..., \alpha_k)$ is: 
 
-data{
+$$\vec{\theta} \sim \text{Dirichlet}(\vec{\alpha})$$
+
+$$f(\vec{\theta}) = \frac{1}{B(\vec{\alpha})} \prod_{i=1}^K \theta_i^{\alpha_i - 1}$$
+
+where $B(\vec{\alpha})$ is the multivariate Beta function $B(\vec{\alpha}) = \frac{\prod \Gamma(\alpha_i)}{\Gamma(\alpha_0)}$ and $\alpha_0 = \sum \alpha_i$.
+
+When $k=2$, the Dirichlet distribution simplifies to the Beta($\alpha_1, \alpha_2$). 
+
+## Dirichlet distribution is conjugate for categorical/multinomial distribution
+
+$$p \sim \text{Dirichlet}(\alpha_1, \alpha_2, ..., \alpha_k)$$
+
+$$Y | p \sim \text{Categorical}(p)\text{ or Multinomial}(p)$$
+
+and let $c_i$ be the number of occurrences of category $i$ in $Y$. Then:
+
+$$p | Y \sim \text{Dirichlet}(c_1 + \alpha_1, c_2 + \alpha_2, ..., c_k + \alpha_k)$$
+
+## Prior: $p_s \sim Dirichlet(4, 4, 4, 4, 4)$
+
+```{r}
+#| echo: false
+
+
+plot_dirichlet_45 <- withr::with_seed(1234, {
+  brms::rdirichlet(n = 1e5, alpha = c(4, 4, 4, 4, 4)) |> 
+    data.frame() |> 
+    set_names(paste0("alpha[", 1:5, "]")) |> 
+    pivot_longer(everything()) |> 
+    ggplot(aes(x = value, fill = name)) +
+    geom_density(bounds = c(0, 1), color = NA) +
+    scale_x_continuous(breaks = seq(0, 1, by = 0.2)) +
+    scale_fill_manual(values = clrs[1:5], guide = "none") +
+    labs(x = "Probability or proportion", y = NULL, title = "Dirichlet(3, 7, 2)") +
+    facet_wrap(vars(name), scales = "free_y")
+})
+plot_dirichlet_45
+```
+
+## Stan Model for Strategies
+
+```{r}
+Boxes_model <- "data{
     int N;
     int y[N];
     int majority_first[N];
@@ -290,6 +418,44 @@ model{
         // compute average log-probability of y_i
         target += log_sum_exp( phi );
     }
-}
+}"
 ```
 
+## Fit the model
+
+```{r}
+#| eval: false
+
+
+data_list = list(
+  N = nrow(Boxes),
+  y = Boxes$y,
+  majority_first = Boxes$majority_first
+)
+
+model_fit <- stan(model_code = Boxes_model, 
+                  data = data_list, 
+                  chains = 4, 
+                  iter = 2*5000, 
+                  seed = 110525)
+
+
+```
+
+## Diagnostics
+
+```{r}
+#| echo: false
+
+load("23-boxes-model.rda")
+```
+
+```{r}
+mcmc_trace(model_fit)
+```
+
+## P(Strategy)
+
+```{r}
+mcmc_dens(model_fit)
+```
