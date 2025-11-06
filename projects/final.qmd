@@ -33,6 +33,8 @@ All projects should include:
 
 🚧 Under construction 🚧
 
+## General ideas
+
 - Sports datasets, where players are nested in positions (or teams) and teams are nested within divisions, etc. 
     - model P(shot made) using a hierarchical logistic regression
     - model P(make playoffs) based on historical data (e.g. hierarchical levels are years)
@@ -42,6 +44,26 @@ All projects should include:
 - Survey datasets
     - Respondents might be nested within households within census tracts within states, etc. Some predictor variables at each level.
  
+## More specific ideas
+
+### 
+
+> In 2014, a paper was published that was entitled "[Female hurricanes are deadlier than male hurricanes](https://www.pnas.org/doi/10.1073/pnas.1402786111)." As the title suggests,the paper claimed that hurricanes with female names have caused greater loss of life, and the explanation given is that people unconsciously rate female hurricanes as less dangerous and so are less likely to evacuate. 
+
+> Statisticians severely criticized the paper after publication. Here, you’ll explore the complete data used in the paper and consider the hypothesis that hurricanes with female names are deadlier. 
+
+```{r}
+
+```
+
+(From Stat Rethinking Problem 11H1)
+
+### 
+
+> One hypothesis from developmental psychology, usually attributed to Carol Gilligan, proposes that women and men have different average tendencies in moral reasoning. Like most hypotheses in social psychology, it is merely descriptive. The notion is that women are more concerned with care (avoiding harm), while men are more concerned with justice and rights. Culture-bound nonsense? Yes. Descriptively accurate? Maybe. Evaluate this hypothesis, using the `Trolley` data, supposing that contact provides a proxy for physical harm. Are women more or less bothered by contact than are men, in these data? Figure out the model(s) that is needed to address this question.
+
+(From Stat Rethinking Problem 11H5)
+
 # Possible topics for new methods 
 
 🚧 Under construction 🚧
@@ -55,8 +77,11 @@ All projects should include:
  - Bayesian Additive Regression Trees (BART)
     - BART combines regression trees (a popular machine learning approach) with Bayesian estimation and shrinkage priors. This allows for great predictive performance without the typical assumptions needed for regression, while still allowing for formal statistical inference using the Bayesian framework. 
     - Hill, J., Linero, A., & Murray, J. (2020). [Bayesian additive regression trees: A review and look forward](https://www.annualreviews.org/content/journals/10.1146/annurev-statistics-031219-041110). Annual Review of Statistics and Its Application, 7(1), 251-278.
-  
+  - Learn how to incorporate measurement error into a Bayesian model
+      - When we fit models, we use the response and predictor variables "as-is". But often, these variables have error associated with them. (For example, if we are modeling average income based on average education for each state, both predictors will have some standard error, since they are also estimated)
 You are also welcome to choose your own topic! Just please speak with me in advance so we can calibrate your plans. 
+      - I really like the Stat Rethinking textbook for a demo of these models for a particular case study
+  - Learn how to use Bayesian models for missing data
 
  
  

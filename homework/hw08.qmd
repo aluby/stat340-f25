@@ -33,6 +33,64 @@ A guest that is new to a hotel and has only canceled a booking 1 time before, ha
 (c) Interpret the cross-validated overall accuracy, sensitivity, and specificity measures in the context of this analysis.
 (d) Thinking like a hotel booking agent, you’d like to increase the sensitivity of your classifications to 0.75. Identify a probability cut-off that you could use to achieve this level while maintaining the highest possible specificity.
 
-# TBA Mon
+# Social conformity model
 
-# TBA Wed
+The code chunk below fits the strategy model that we discussed in class on Wednesday. Start by running the code and make sure you understand each piece. Then, answer the following questions.
+
+(a) How sensitive are the results to the choice of prior? Fit the model using (i) a very strong Dirichlet prior and (ii) a weaker Dirichlet prior to justify your answer
+(b) How sensitive are the results to the strategy options defined? Fit the model using a different set of strategies (you should include at least 1 new strategy, but can remove as many as you wish) and compare to the results from class to justify your answer.
+
+```{r}
+library(tidyverse)
+library(rstan)
+library(bayesplot)
+
+Boxes <- read_delim("https://raw.githubusercontent.com/rmcelreath/rethinking/refs/heads/master/data/Boxes.csv")
+
+Boxes_model <- "data{
+    int N;
+    int y[N];
+    int majority_first[N];
+}
+parameters{
+    simplex[5] p;
+}
+model{
+    vector[5] phi;
+    
+    // prior
+    p ~ dirichlet( rep_vector(4,5) );
+    
+    // probability of data
+    for ( i in 1:N ) {
+        if ( y[i]==2 ) phi[1]=1; else phi[1]=0; // majority
+        if ( y[i]==3 ) phi[2]=1; else phi[2]=0; // minority
+        if ( y[i]==1 ) phi[3]=1; else phi[3]=0; // maverick
+        phi[4]=1.0/3.0;                         // random
+        if ( majority_first[i]==1 )             // follow first
+            if ( y[i]==2 ) phi[5]=1; else phi[5]=0;
+        else
+            if ( y[i]==3 ) phi[5]=1; else phi[5]=0;
+        
+        // compute log( p_s * Pr(y_i|s )
+        for ( j in 1:5 ) phi[j] = log(p[j]) + log(phi[j]);
+        // compute average log-probability of y_i
+        target += log_sum_exp( phi );
+    }
+}"
+
+data_list = list(
+  N = nrow(Boxes),
+  y = Boxes$y,
+  majority_first = Boxes$majority_first
+)
+
+model_fit <- stan(model_code = Boxes_model, 
+                  data = data_list, 
+                  chains = 4, 
+                  iter = 2*5000, 
+                  seed = 110525)
+
+as.data.frame(model_fit) |>
+  mcmc_areas(regex_pars = "p\\[", prob = .8)
+```

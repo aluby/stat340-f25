@@ -63,4 +63,9 @@ The `fake_news` data in the {bayesrules} package contains information about 150 
 
 # Wed
 
+**no more this week!**
+
 # Wed
+
+**no more this week!**
+
