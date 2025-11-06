@@ -40,7 +40,13 @@ The code chunk below fits the strategy model that we discussed in class on Wedne
 (a) How sensitive are the results to the choice of prior? Fit the model using (i) a very strong Dirichlet prior and (ii) a weaker Dirichlet prior to justify your answer
 (b) How sensitive are the results to the strategy options defined? Fit the model using a different set of strategies (you should include at least 1 new strategy, but can remove as many as you wish) and compare to the results from class to justify your answer.
 
+::: callout-warning
+
+This model takes a long time to run! Feel free to run your models locally, and then save any images you want to include. Then add `#| eval: false` to your chunk when rendering and include your images separately. This will greatly speed up the time it takes to render your final PDF file. I've included an example here.
+:::
+
 ```{r}
+#| eval: false 
 library(tidyverse)
 library(rstan)
 library(bayesplot)
@@ -92,5 +98,8 @@ model_fit <- stan(model_code = Boxes_model,
                   seed = 110525)
 
 as.data.frame(model_fit) |>
-  mcmc_areas(regex_pars = "p\\[", prob = .8)
+  mcmc_areas(regex_pars = "p\\[", prob = .8) +
+  theme_minimal()
 ```
+
+![](img/hw08-strategy-ps.png)
