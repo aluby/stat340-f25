@@ -282,6 +282,7 @@ scat_mat
 
 ```{r}
 #| echo: false
+#| eval: false
 library(ggtern)
 # First triangle: random points
 withr::with_seed(1234, {
