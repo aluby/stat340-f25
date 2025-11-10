@@ -1,0 +1,54 @@
+---
+title: "hw09"
+---
+
+```{r}
+#| warning: false
+#| message: false
+
+library(bayesrules) # R package for our textbook
+library(tidyverse) # Collection of packages for tidying and plotting data
+library(janitor) # Helper functions like tabyl
+library(rstan) # for fitting models
+library(rstanarm) # for fitting standard regression models
+library(broom.mixed) # for tidy() function
+library(bayesplot) # helpful plotting functions
+library(tidybayes) # helpful for wrangling Bayesian model output
+library(patchwork)
+```
+
+# Exercise 15.3 (Hierarchical data) 
+
+Interested in the impact of sleep deprivation on reaction time, Belenky et al. (2003) enlisted 18 subjects in a study. The subjects got a regular night’s sleep on “day 0” of the study, and were then restricted to 3 hours of sleep per night for the next 9 days. Each day, researchers recorded the subjects’ reaction times (in ms) on a series of tests. The results are provided in the `sleepstudy` dataset in the {lme4} package.
+
+This data is hierarchical. Draw a diagram in the spirit of Figure 15.8 that captures the hierarchical framework. Think: What are the “groups?”
+
+```{r}
+lme4::sleepstudy
+```
+
+# Exercise 16.1 (Shrinkage) 
+
+The plot below illustrates the distribution of critic ratings for 7 coffee shops. Suppose we were to model coffee shop ratings using three different approaches: complete pooled, no pooled, and hierarchical. For each model, sketch what the posterior mean ratings for the 7 coffee shops might look like on the plot below.
+
+![](https://www.bayesrulesbook.com/bookdown_files/figure-html/unnamed-chunk-696-1.png)
+
+# Exercise 16.2 (Grouping variable or predictor?)
+
+(a) The `climbers_sub` data in the {bayesrules} package contains outcomes for 2076 climbers that have sought to summit a Himalayan mountain peak. In a model of climber `success`, is `expedition_id` a potential predictor or a grouping variable? Explain.
+(b) In a model of climber `success`, is `season` a potential predictor or a grouping variable? Explain.
+(c) The `coffee_ratings` data in the {bayesrules} package contains ratings for 1339 different coffee batches. In a model of coffee ratings (`total_cup_points`), is `processing_method` a potential predictor or a grouping variable? Explain.
+(d) In a model of coffee ratings (`total_cup_points`), is `farm_name` a potential predictor or a grouping variable? Explain.
+
+Exercise 16.3 (Speed typing: interpret the coefficients) 
+
+Alicia loves typing. To share the appreciation, she invites four friends to each take 20 speed-typing tests. Let  $Y_{ij}$ be the time it takes friend  $j$ to complete test  $i$.
+
+(a) In modeling  $Y_{ij}$, explain why it’s important to account for the grouping structure introduced by observing each friend multiple times.
+(b) Suppose we were to model the outcomes  $Y_{ij}$ by (16.5). Interpret the meaning of all model coefficients in terms of what they might illuminate about typing speeds:  
+
+- $\mu_j$: 
+- $\mu$:
+- $\sigma_y$:
+- $\sigma_\mu$:
+

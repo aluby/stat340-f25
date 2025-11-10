@@ -1,0 +1,63 @@
+---
+title: "Group Work 09"
+---
+
+```{r}
+#| warning: false
+#| message: false
+
+
+library(bayesrules) # R package for our textbook
+library(tidyverse) # Collection of packages for tidying and plotting data
+library(janitor) # Helper functions like tabyl
+library(rstan) # for fitting models
+library(rstanarm) # for fitting standard regression models
+library(broom.mixed) # for tidy() function
+library(bayesplot) # helpful plotting functions
+library(tidybayes) # helpful for wrangling Bayesian model output
+library(patchwork)
+```
+
+# BR 16.6 (Big words: getting to know the data) 
+
+Recall from Section 16.7 the Abdul Latif Jameel Poverty Action Lab (J-PAL) study into the effectiveness of a digital vocabulary learning program, the Big Word Club (BWC) (Kalil, Mayer, and Oreopoulos 2020). In our analysis of this program, we’ll utilize weakly informative priors with a baseline understanding that the average student saw 0 change in their vocabulary scores throughout the program. We’ll balance these priors by the big_word_club data in the bayesrules package. For each student participant, big_word_club includes a school_id and the percentage change in vocabulary scores over the course of the study period (score_pct_change). We keep only the students that participated in the BWC program (treat == 1), and thus eliminate the control group.
+
+```{r}
+data("big_word_club")
+big_word_club <- big_word_club %>% 
+  filter(treat == 1) %>% 
+  select(school_id, score_pct_change) %>% 
+  na.omit()
+```
+
+(a) How many schools participated in the Big Word Club?
+(b) What’s the range in the number of student participants per school?
+(c) On average, at which school did students exhibit the greatest improvement in vocabulary? The least?
+(d) Construct and discuss a plot which illustrates the variability in score_pct_change within and between schools.
+
+# BR Exercise 16.7 (Big words: setting up the model) 
+
+In the next exercises you will explore a hierarchical one-way ANOVA model (16.12) of  $Y_{ij}$, the percentage change in vocabulary scores, for student $i$ in school $j$. 
+
+(a) Why is a hierarchical model, vs a complete or no pooled model, appropriate in our analysis of the BWC program? 
+(b) Compare and contrast the meanings of model parameters  $\mu$ and  $\mu_j$ in the context of this vocabulary study.
+(c) Compare and contrast the meanings of model parameters  $\sigma_y$ and $\sigma_\mu$ in the context of this vocabulary study.
+
+# BR 16.8
+
+Exercise 16.8 (Big words: simulating the model)
+
+(a) Simulate the hierarchical posterior model of parameters ($\mu_j, \mu, \sigma_y, \sigma_\mu$) using 4 chains, each of length 10000.
+(b) Construct and discuss Markov chain trace, density, and autocorrelation plots.
+(c) Construct and discuss a pp_check() of the chain output.
+
+# BR 16.11
+
+Suppose we continue the vocabulary study at each of Schools 6 and 17 (which participated in the current study) and Bayes Prep, a school which is new to the study. In this exercise you’ll make predictions about  $Y_{new, j}$, the vocabulary performance of a student that’s new to the study from each of these three schools  $j$.
+
+(a) *Without* using the `posterior_predict()` shortcut function, simulate posterior predictive models of$Y_{new, j}$ for School 6 and Bayes Prep. Display the first 6 posterior predictions for both schools.
+(b) Using your simulations from part (a), construct, interpret, and compare the 80% posterior predictive intervals of $Y_{new, j}$ for School 6 and Bayes Prep.
+(c) Using `posterior_predict()` this time, simulate posterior predictive models of  $Y_{new, j}$ for each of School 6, School 17, and Bayes Prep. Illustrate your simulation results using `mcmc_areas()` and discuss your findings.
+(d) Finally, construct, plot, and discuss the 80% posterior prediction intervals for all schools in the original study.
+
+
