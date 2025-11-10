@@ -18,46 +18,38 @@ library(tidybayes) # helpful for wrangling Bayesian model output
 library(patchwork)
 ```
 
-# BR 16.6 (Big words: getting to know the data) 
+# Exercise 15.3 (Hierarchical data) 
 
-Recall from Section 16.7 the Abdul Latif Jameel Poverty Action Lab (J-PAL) study into the effectiveness of a digital vocabulary learning program, the Big Word Club (BWC) (Kalil, Mayer, and Oreopoulos 2020). In our analysis of this program, we’ll utilize weakly informative priors with a baseline understanding that the average student saw 0 change in their vocabulary scores throughout the program. We’ll balance these priors by the big_word_club data in the bayesrules package. For each student participant, big_word_club includes a school_id and the percentage change in vocabulary scores over the course of the study period (score_pct_change). We keep only the students that participated in the BWC program (treat == 1), and thus eliminate the control group.
+Interested in the impact of sleep deprivation on reaction time, Belenky et al. (2003) enlisted 18 subjects in a study. The subjects got a regular night’s sleep on “day 0” of the study, and were then restricted to 3 hours of sleep per night for the next 9 days. Each day, researchers recorded the subjects’ reaction times (in ms) on a series of tests. The results are provided in the `sleepstudy` dataset in the {lme4} package.
+
+This data is hierarchical. Draw a diagram in the spirit of Figure 15.8 that captures the hierarchical framework. Think: What are the “groups?”
 
 ```{r}
-data("big_word_club")
-big_word_club <- big_word_club %>% 
-  filter(treat == 1) %>% 
-  select(school_id, score_pct_change) %>% 
-  na.omit()
+lme4::sleepstudy
 ```
 
-(a) How many schools participated in the Big Word Club?
-(b) What’s the range in the number of student participants per school?
-(c) On average, at which school did students exhibit the greatest improvement in vocabulary? The least?
-(d) Construct and discuss a plot which illustrates the variability in score_pct_change within and between schools.
+# Exercise 16.1 (Shrinkage) 
 
-# BR Exercise 16.7 (Big words: setting up the model) 
+The plot below illustrates the distribution of critic ratings for 7 coffee shops. Suppose we were to model coffee shop ratings using three different approaches: complete pooled, no pooled, and hierarchical. For each model, sketch what the posterior mean ratings for the 7 coffee shops might look like on the plot below.
 
-In the next exercises you will explore a hierarchical one-way ANOVA model (16.12) of  $Y_{ij}$, the percentage change in vocabulary scores, for student $i$ in school $j$. 
+![](https://www.bayesrulesbook.com/bookdown_files/figure-html/unnamed-chunk-696-1.png)
 
-(a) Why is a hierarchical model, vs a complete or no pooled model, appropriate in our analysis of the BWC program? 
-(b) Compare and contrast the meanings of model parameters  $\mu$ and  $\mu_j$ in the context of this vocabulary study.
-(c) Compare and contrast the meanings of model parameters  $\sigma_y$ and $\sigma_\mu$ in the context of this vocabulary study.
+# Exercise 16.2 (Grouping variable or predictor?)
 
-# BR 16.8
+(a) The `climbers_sub` data in the {bayesrules} package contains outcomes for 2076 climbers that have sought to summit a Himalayan mountain peak. In a model of climber `success`, is `expedition_id` a potential predictor or a grouping variable? Explain.
+(b) In a model of climber `success`, is `season` a potential predictor or a grouping variable? Explain.
+(c) The `coffee_ratings` data in the {bayesrules} package contains ratings for 1339 different coffee batches. In a model of coffee ratings (`total_cup_points`), is `processing_method` a potential predictor or a grouping variable? Explain.
+(d) In a model of coffee ratings (`total_cup_points`), is `farm_name` a potential predictor or a grouping variable? Explain.
 
-Exercise 16.8 (Big words: simulating the model)
+Exercise 16.3 (Speed typing: interpret the coefficients) 
 
-(a) Simulate the hierarchical posterior model of parameters ($\mu_j, \mu, \sigma_y, \sigma_\mu$) using 4 chains, each of length 10000.
-(b) Construct and discuss Markov chain trace, density, and autocorrelation plots.
-(c) Construct and discuss a pp_check() of the chain output.
+Alicia loves typing. To share the appreciation, she invites four friends to each take 20 speed-typing tests. Let  $Y_{ij}$ be the time it takes friend  $j$ to complete test  $i$.
 
-# BR 16.11
+(a) In modeling  $Y_{ij}$, explain why it’s important to account for the grouping structure introduced by observing each friend multiple times.
+(b) Suppose we were to model the outcomes  $Y_{ij}$ by (16.5). Interpret the meaning of all model coefficients in terms of what they might illuminate about typing speeds:  
 
-Suppose we continue the vocabulary study at each of Schools 6 and 17 (which participated in the current study) and Bayes Prep, a school which is new to the study. In this exercise you’ll make predictions about  $Y_{new, j}$, the vocabulary performance of a student that’s new to the study from each of these three schools  $j$.
-
-(a) *Without* using the `posterior_predict()` shortcut function, simulate posterior predictive models of$Y_{new, j}$ for School 6 and Bayes Prep. Display the first 6 posterior predictions for both schools.
-(b) Using your simulations from part (a), construct, interpret, and compare the 80% posterior predictive intervals of $Y_{new, j}$ for School 6 and Bayes Prep.
-(c) Using `posterior_predict()` this time, simulate posterior predictive models of  $Y_{new, j}$ for each of School 6, School 17, and Bayes Prep. Illustrate your simulation results using `mcmc_areas()` and discuss your findings.
-(d) Finally, construct, plot, and discuss the 80% posterior prediction intervals for all schools in the original study.
-
+- $\mu_j$: 
+- $\mu$:
+- $\sigma_y$:
+- $\sigma_\mu$:
 
