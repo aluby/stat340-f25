@@ -59,6 +59,11 @@ Suppose we continue the vocabulary study at each of Schools 6 and 17 (which part
 (c) Using `posterior_predict()` this time, simulate posterior predictive models of  $Y_{new, j}$ for each of School 6, School 17, and Bayes Prep. Illustrate your simulation results using `mcmc_areas()` and discuss your findings.
 (d) Finally, construct, plot, and discuss the 80% posterior prediction intervals for all schools in the original study.
 
+# BR 17.7 (adapted)
 
-
+(a) Simulate the posteriors from model (1) and (2) from BR exercise 17.6
+(b) Report a posterior predictive check from each model. Which do you prefer? 
+(c) Using model (2), identify the person whose reaction time changes the *most* with sleep deprivation. Report their posterior median regression model
+(d) Using model (2), identify the person who has the *slowest* baseline reaction time. Report their posterior median regression model
+(e) Simulate, plot, and discuss the posterior predictive model (under both 1 and 2) of reaction time after 5 days of sleep deprivation for two subjects: you and Subject 308. 
 

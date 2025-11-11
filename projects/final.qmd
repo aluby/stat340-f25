@@ -46,7 +46,7 @@ All projects should include:
  
 ## More specific ideas
 
-### 
+### Are female hurricanes deadlier than male hurricanes?
 
 > In 2014, a paper was published that was entitled "[Female hurricanes are deadlier than male hurricanes](https://www.pnas.org/doi/10.1073/pnas.1402786111)." As the title suggests,the paper claimed that hurricanes with female names have caused greater loss of life, and the explanation given is that people unconsciously rate female hurricanes as less dangerous and so are less likely to evacuate. 
 
@@ -58,11 +58,16 @@ All projects should include:
 
 (From Stat Rethinking Problem 11H1)
 
-### 
+### Another developmental psychology question
 
 > One hypothesis from developmental psychology, usually attributed to Carol Gilligan, proposes that women and men have different average tendencies in moral reasoning. Like most hypotheses in social psychology, it is merely descriptive. The notion is that women are more concerned with care (avoiding harm), while men are more concerned with justice and rights. Culture-bound nonsense? Yes. Descriptively accurate? Maybe. Evaluate this hypothesis, using the `Trolley` data, supposing that contact provides a proxy for physical harm. Are women more or less bothered by contact than are men, in these data? Figure out the model(s) that is needed to address this question.
 
 (From Stat Rethinking Problem 11H5)
+
+### Bayes Rules
+
+We are not going to do any long homework exercises from Ch18 or Ch19 of *Bayes Rules*, and we're only looking at `sleepstudy` from Ch17. You can pick one of the longer exercises as a starting point, but I'll want to see your final project go a bit beyond the prescribed questions. (Possible datasets: `voices`, `coffee_ratings_small`, `book_banning`, `basketball`, `climbing`; or `spotify` or `big_word_club` using one of the extensions from Ch19)
+
 
 # Possible topics for new methods 
 
@@ -70,6 +75,7 @@ All projects should include:
 
   - Bayesian Decision Theory
     - One way Bayesian methods can be used is to make an "optimal" decision. This involves defining a "loss function" and calculating the "risk" 
+        - Steorts, B. (2016)  [Ch5: Bayesian Risk and Minimaxity](https://www2.stat.duke.edu/~rcs46/books/babybayes-master.pdf)
  - Pareto Smoothed Importance Sampling or WAIC
     - Pareto Smoothed Importance Sampling is a Bayesian approximation to leave-one-out cross validation that is implemented in the Stan [`loo`](https://mc-stan.org/loo/reference/loo.html) procedures. [WAIC](https://mc-stan.org/loo/reference/waic.html) is a Bayesian information criterion (kind of like AIC or BIC). 
     - Vehtari, A., Simpson, D., Gelman, A., Yao, Y., & Gabry, J. (2024). [Pareto smoothed importance sampling](https://www.jmlr.org/papers/v25/19-556.html). Journal of Machine Learning Research, 25(72), 1-58.

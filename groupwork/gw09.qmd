@@ -25,7 +25,7 @@ Interested in the impact of sleep deprivation on reaction time, Belenky et al. (
 This data is hierarchical. Draw a diagram in the spirit of Figure 15.8 that captures the hierarchical framework. Think: What are the “groups?”
 
 ```{r}
-lme4::sleepstudy
+lme4::sleepstudy |> head(10)
 ```
 
 # Exercise 16.1 (Shrinkage) 
@@ -41,7 +41,7 @@ The plot below illustrates the distribution of critic ratings for 7 coffee shops
 (c) The `coffee_ratings` data in the {bayesrules} package contains ratings for 1339 different coffee batches. In a model of coffee ratings (`total_cup_points`), is `processing_method` a potential predictor or a grouping variable? Explain.
 (d) In a model of coffee ratings (`total_cup_points`), is `farm_name` a potential predictor or a grouping variable? Explain.
 
-Exercise 16.3 (Speed typing: interpret the coefficients) 
+# Exercise 16.3 (Speed typing: interpret the coefficients) 
 
 Alicia loves typing. To share the appreciation, she invites four friends to each take 20 speed-typing tests. Let  $Y_{ij}$ be the time it takes friend  $j$ to complete test  $i$.
 
@@ -53,3 +53,33 @@ Alicia loves typing. To share the appreciation, she invites four friends to each
 - $\sigma_y$:
 - $\sigma_\mu$:
 
+# BR 17.1
+
+To test the relationship between reaction times and sleep deprivation, researchers enlisted 3 people in a 10-day study. Let $Y_{ij}$ denote the reaction time (in ms) to a given stimulus and  $X_{ij}$ be the number of days of sleep deprivation for the $i$th observation on subject  $j$. For each set of assumptions below, use mathematical notation to represent an appropriate Bayesian hierarchical model of  $Y_{ij}$ vs $X_{ij}$.
+
+(a) Not only do some people tend to react more quickly than others, sleep deprivation might impact some people’s reaction times more than others.
+(b) Though some people tend to react more quickly than others, the impact of sleep deprivation on reaction time is the same for all.
+(c) Nobody has inherently faster reaction times, though sleep deprivation might impact some people’s reaction times more than others.
+
+# BR 17.6
+
+::: callout-note
+## Note:
+
+In the group exercise, you'll write out the model and do an EDA. You will fit the models on the individual homework this week
+:::
+
+You will explore this relationship in more depth here. To this end, suppose researchers tell us that on a typical day, the average person should have a reaction time of roughly 250ms to the stimulus used in the sleep study. Beyond this baseline, we’ll balance weakly informative priors with the `sleepstudy` data from the {lme4} package to better understand reaction times. Specifically, consider two possible models as expressed by `stan_glmer()` syntax:
+
+1. `Reaction ~ Days + (1 | Subject)`
+2. `Reaction ~ Days + (Days | Subject)`
+
+(a) What’s the grouping variable in the `sleepstudy` data and why is it important to incorporate this grouping structure into our analysis?
+(b) Use formal notation to define the hierarchical regression structure of models 1 and 2.
+(c) Summarize the key differences between models 1 and 2. Root this discussion in the sleep study.
+(d) Using the `sleepstudy` data, construct and discuss a plot that helps you explore which model is more appropriate: 1 or 2.
+
+```{r}
+library(lme4)
+data(sleepstudy)
+```
