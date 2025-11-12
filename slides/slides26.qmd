@@ -1,0 +1,576 @@
+---
+title: Normal Hierarchical Models with Predictors
+subtitle: Day 26
+title-slide-attributes:
+  data-background-color: "#e2583eff"
+  data-slide-number: none
+format: 
+  revealjs:
+    incremental: false
+    scrollable: false
+auto-stretch: true
+editor_options: 
+  chunk_output_type: inline
+editor: 
+  markdown: 
+    wrap: 72
+execute: 
+  warning: false
+  message: false
+---
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+
+library(countdown)
+library(tidyverse)
+library(tidybayes)
+library(bayesrules)
+library(janitor)
+library(patchwork)
+library(rstan)
+library(rstanarm)
+library(bayesplot)
+library(broom.mixed)
+library(ggrepel)
+
+theme_set(theme_minimal(base_size = 16, base_family = "Atkinson Hyperlegible"))
+clrs <- viridis::viridis(6, end = .75, option = "plasma")
+```
+
+## Goals for final project (modeling)
+
+- Be able to write down math of the model that you fit
+- Be able to pull out results at global and group level in order to make plots and draw inferences
+
+## `cherry_blossom_runners`
+
+```{r}
+#| echo: false
+cherry_blossom_sample |>
+  filter(runner %in% 25:36) |> 
+  ggplot(aes(x = age, y = net, color = runner)) + 
+  geom_point() + 
+  facet_wrap(~runner) + 
+  theme(legend.position = "none") + 
+  scale_color_viridis_d(end = .75, option = "plasma")
+```
+
+##
+
+::: callout-warning
+## Warning! 
+
+Many built in functions that we like (`add_linpred_draws`, etc.) require no missing values in the data. So it can help to `select` your variables of interest, and then `drop_na` rows in your dataset. Make sure to name this something new instead of overwriting the original data, just in case.
+:::
+
+```{r}
+runners <- cherry_blossom_sample |>
+  select(runner, age, net) |>
+  drop_na()
+```
+
+##
+
+### Complete Pooling
+
+- assumes one "pool" of data
+- ignores variability *within* runners
+- violates independence assumption of linear regression
+
+### No pooling
+
+- separately fit a linear model for each runner
+- ignores variability *across* runners
+- "throws out" majority of data for each model fit
+
+## Partial pooling (via *Hierarchical Model*)
+
+- acknowledge the grouping structure of the data
+- allows to fit *individual* variability, but also the *shared information* across all individuals/groups
+
+![](img/partial_pool_diagram.png)
+
+## Complete pooling
+
+```{r}
+#| echo: false
+
+
+ggplot(runners, aes(x = age, y = net)) + 
+  geom_point() + 
+  geom_smooth(method = "lm") +
+  theme(legend.position = "none") + 
+  scale_color_viridis_d(end = .75, option = "plasma")
+```
+
+## No pooling
+
+```{r}
+#| echo: false
+runners |>
+  filter(runner %in% 25:36) |> 
+  ggplot(aes(x = age, y = net, color = runner)) + 
+  geom_point() + 
+  geom_smooth(method = "lm") +
+  facet_wrap(~runner) + 
+  theme(legend.position = "none") + 
+  scale_color_viridis_d(end = .75, option = "plasma")
+```
+
+## Hierarchical model with varying intercepts: idea
+
+```{r}
+#| echo: false
+runners |>
+  filter(runner %in% 25:36) |> 
+  ggplot(aes(x = age, y = net, color = runner)) + 
+  geom_point() + 
+  facet_wrap(~runner) + 
+  theme(legend.position = "none") + 
+  scale_color_viridis_d(end = .75, option = "plasma")
+```
+
+# Hierarchical model with varying intercepts: model
+
+## Layer 1: within runners
+
+$$
+\begin{aligned}
+Y_{i_j} &\sim N(\mu_{i_j}, \sigma_y) \\
+\mu_{i_j} &= \beta_{0_j} + \beta_1 X_{i_j}
+\end{aligned}
+$$
+- $\beta_{0_j}$ is the runner-specific intercept for runner $j$. It is group-specific.
+- $\beta_1$ is the global coefficient (i.e. no subscripts) for the effect of age on race time. It is global and shared across all runners.
+- $\sigma_y$ is the within-runner variability for the regression model. It measures the strength of the relationship between an individual runner's age and their race time. It is also global and shared across all runners.
+
+## Layer 2: between runneres
+
+$$
+\beta_{0_j} \sim N(\beta_0, \sigma_0)
+$$
+
+- $\beta_0$ is the global average intercept across all runners, or the average runner's race time
+- $\sigma_0$ is the between-runner variability around that global average, or how much race times bounce around the average
+
+## Layer 3: global parameters
+
+- $\beta_0$: Average race time for all runners
+- $\beta_1$: Effect of age on race time for all runners
+- $\sigma_y$: Within-runner variability of race time
+- $\sigma_0$: Between-runner variability of average runner race time
+
+## Hierarchical model with varying intercepts: fully specified model
+
+$$
+\begin{aligned}
+Y_{i_j} &\sim \mathcal{N}(\mu_{i_j}, \sigma_y) & \text{Race times within runners } j \\
+\mu_{i_j} &= \beta_{0_j} + \beta_1 X_{i_j} & \text{Linear model of within-runner variation} \\
+\beta_{0_j} &\sim \mathcal{N}(\beta_0, \sigma_0) & \text{Variability in average times between runners} \\
+\\
+\beta_0 &\sim \text{Some prior} & \text{Global priors} \\
+\beta_1 &\sim \text{Some prior} \\
+\sigma_y &\sim \text{Some prior} \\
+\sigma_0 &\sim \text{Some prior}
+\end{aligned}
+$$
+
+## Alternative approach: offsets
+
+$$
+\beta_{0_j} = \beta_0 + b_{0_j}
+$$
+
+These offsets come from a normal distribution with some standard deviation $\sigma_0$:
+
+$$
+b_{0_j} \sim \mathcal{N}(0, \sigma_0)
+$$
+
+## 
+
+We can add these offsets directly to the model:
+
+$$
+\begin{aligned}
+Y_{i_j} &\sim \mathcal{N}(\mu_{i_j}, \sigma_y) & \text{Race times within runners } j \\
+\mu_{i_j} &= (\beta_0 + b_{0_j}) + \beta_1 X_{i_j} & \text{Linear model of within-runner variation} \\
+b_{0_j} &\sim \mathcal{N}(0, \sigma_0) & \text{Random runner offsets} \\
+\\
+\beta_0 &\sim \text{Some prior} & \text{Global priors} \\
+\beta_1 &\sim \text{Some prior} \\
+\sigma_y &\sim \text{Some prior} \\
+\sigma_0 &\sim \text{Some prior}
+\end{aligned}
+$$
+
+## Fit the model
+
+```{r}
+#| cache: true
+model_running_ranint <- stan_glmer(
+  net ~ age + (1 | runner), 
+  data = runners, 
+  family = gaussian,
+  prior_intercept = normal(100, 10),
+  prior = normal(0, 2.5, autoscale = TRUE), 
+  prior_aux = exponential(1, autoscale = TRUE),
+  prior_covariance = decov(reg = 1, conc = 1, shape = 1, scale = 1),
+  chains = 4, cores = 4, iter = 5000*2, seed = 84735, refresh = 0)
+```
+
+::: callout-warning
+## Warning! 
+
+Hierarchical models can run slow. Add `#| cache: true`  to your chunk when rendering to get quarto to save the results for you and speed up rendering. 
+:::
+
+## 
+
+```{r}
+model_running_ranint |> 
+  tidy(effects = c("fixed"),
+       conf.int = TRUE, conf.level = 0.8)
+```
+
+- There is an 80% probability that the **global intercept** is between 6.38 and 38.56 minutes
+- The typical runner slows down by about 1.23 minutes on average. There's an 80% probability that this slowdown is between .85 and 1.52 minutes
+- This is very different than the complete pooling approach, which found **no** significant slowdown
+
+## **Typical** runner (mean model)
+
+```{r}
+runners |> 
+  add_linpred_draws(model_running_ranint, ndraws = 100, re_formula = NA) |>
+  ggplot(aes(x = age, y = net)) +
+  stat_lineribbon(aes(y = .linpred), fill = clrs[4], color = clrs[4], alpha = 0.2) +
+  labs(x = "Age", y = "Race time")
+```
+
+## **Individual** runners (mean model; not predictions)
+
+```{r}
+runners |> 
+  filter(runner %in% c("4", "5")) |>
+  add_linpred_draws(model_running_ranint, ndraws = 100) |>
+  ggplot(aes(x = age, y = net, col = runner, fill = runner)) +
+  stat_lineribbon(aes(y = .linpred), alpha = 0.2) +
+  labs(x = "Age", y = "Race time", col = "") + 
+  scale_fill_viridis_d(end = .75, option = "plasma") + scale_color_viridis_d(end = .75, option = "plasma") 
+```
+
+
+## **Individual** runners (predictions)
+
+```{r}
+runners |> 
+  filter(runner %in% c("4", "5")) |>
+  add_predicted_draws(model_running_ranint, ndraws = 100) |>
+  ggplot(aes(x = age, y = net, col = runner, fill = runner)) +
+  stat_lineribbon(aes(y = .prediction), alpha = 0.2) +
+  labs(x = "Age", y = "Race time", col = "") + 
+  scale_fill_viridis_d(end = .75, option = "plasma") + scale_color_viridis_d(end = .75, option = "plasma") 
+```
+
+## Variance decomposition
+
+```{r}
+model_running_ranint |> 
+  tidy(effects = c("ran_pars"),
+       conf.int = TRUE, conf.level = 0.8)
+```
+
+- The $\sigma_y$ term here is __________ , which means that within any runner, their race times vary by  __________ minutes around their individual race time average. 
+- $\sigma_0$, on the other hand, is ____________, which means that average runner speeds vary or bounce around by `r ______________ minutes across runners. There's thus more variation between runners than within individual runners.
+
+## Variance decomposition
+
+If we square these terms and make ratios of the values, we can see how much of the total model variation comes from within-runner and between-runner variation:
+
+```{r}
+model_running_ranint |> 
+  tidy(effects = c("ran_pars"),
+       conf.int = TRUE, conf.level = 0.8) |>
+  mutate(sigma_2 = estimate^2, 
+          props = sigma_2 / sum(sigma_2))
+```
+
+Neat! 87% of the variability in race times comes from between-runner differences, while 13% comes from variations within individual runners.
+
+
+# Hierarchical Models with varying intercepts and slopes {.colorslide}
+
+## Is random intercepts enough?
+
+```{r}
+#| echo: false
+
+p1 <- runners |> 
+  ggplot(aes(x = age, y = net, group = runner)) + 
+  geom_smooth(method = "lm", se = FALSE, size = 0.5, color = clrs[1]) +
+  coord_cartesian(ylim = c(60, 125)) +
+  labs(title = "Observed data (OLS Ests)")
+
+p2 <- runners |> 
+  add_linpred_draws(model_running_ranint, ndraws = 100)  |> 
+  summarize(.linpred = mean(.linpred)) |> 
+  ggplot(aes(x = age, y = net)) +
+  geom_line(aes(y = .linpred, group = runner),
+            size = 0.5, color = clrs[3]) +
+  coord_cartesian(ylim = c(60, 125)) +
+  labs(title = "Random intercepts only")
+
+p1 | p2
+```
+
+## Model building: Layer 1
+
+Getting random slopes into the model requires some tinkering with the formal model structure
+
+With layer 1 (within-runner variation), we now use $\beta_{1_j}$ instead of the global $\beta_1$ term from before, showing that each runner $j$ gets their own $\beta_1$:
+
+$$
+\begin{aligned}
+Y_{i_j} &\sim {N}(\mu_{i_j}, \sigma_y) \\
+\mu_{i_j} &= \beta_{0_j} + \beta_{1_j} X_{i_j}
+\end{aligned}
+$$
+
+## Model building: Layer 2
+
+In the non-offset-based syntax, we can then say that both $\beta_{0_j}$ and $\beta_{1_j}$ follow some random distribution with coefficient-specific variance ($\sigma_0$ and $\sigma_1$ now instead of just $\sigma_0$):
+
+$$
+\begin{aligned}
+\beta_{0_j} \sim {N}(\beta_0, \sigma_0) \\
+\beta_{1_j} \sim {N}(\beta_1, \sigma_1)
+\end{aligned}
+$$
+
+## Model building: Layer 2 continued
+
+Life gets a little trickier with these terms because $\beta_{0_j}$ and $\beta_{1_j}$ are correlated and move together within each runner. So we have to consider them together:
+
+$$
+\left(
+  \begin{array}{c} 
+  \beta_{0_j} \\
+  \beta_{1_j}
+  \end{array}
+\right) 
+\sim {N}
+\left( 
+  \left(
+    \begin{array}{c}
+    \beta_0 \\
+    \beta_1 \\
+    \end{array}
+  \right)
+  , \,\Sigma
+\right)
+$$
+
+Written like this, we can draw values for $\beta_{0_j}$ and $\beta_{1_j}$ from a multivariate (or joint) normal distribution with a shared covariance $\Sigma$:
+
+$$
+\Sigma = 
+\left(
+  \begin{array}{cc}
+     \text{Var}_{\beta_0} & \text{Cov}_{\beta_0, \beta_1} \\ 
+     \text{Cov}_{\beta_0, \beta_1} & \text{Var}_{\beta_1}
+  \end{array}
+\right)
+$$
+
+## Easier to express beliefs about correlation than covariance, so decompose further:
+
+$$
+\begin{aligned}
+\rho_{\beta_0, \beta_1} &= \frac{\sigma_{\beta_0, \beta_1}}{\sigma_{\beta_0} \sigma_{\beta_0}} \\
+\sigma_{\beta_0, \beta_1} &= \rho_{\beta_0, \beta_1}\, \sigma_{\beta_0} \sigma_{\beta_0}
+\end{aligned}
+$$
+so we can rewrite $\Sigma$ as:
+
+$$
+\Sigma = 
+\left(
+  \begin{array}{cc}
+     \sigma^2_{0} & \rho_{0, 1}\, \sigma_{0} \sigma_{1} \\ 
+     \dots & \sigma^2_{1}
+  \end{array}
+\right)
+$$
+
+## Full model: {.smaller}
+
+$$
+\begin{aligned}
+Y_{i_j} &\sim \mathcal{N}(\mu_{i_j}, \sigma_y) & \text{Race times within runners } j \\
+\mu_{i_j} &= \beta_{0_j} + \beta_{1_j} X_{i_j} & \text{Linear model of within-runner variation} \\
+\left(
+  \begin{array}{c} 
+  \beta_{0_j} \\
+  \beta_{1_j}
+  \end{array}
+\right) 
+&\sim \mathcal{N}
+\left( 
+  \left(
+    \begin{array}{c}
+    \beta_0 \\
+    \beta_1 \\
+    \end{array}
+  \right)
+  , \,
+  \left(
+  \begin{array}{cc}
+     \sigma^2_{0} & \rho_{0, 1}\, \sigma_{0} \sigma_{1} \\ 
+     \dots & \sigma^2_{1}
+  \end{array}
+\right)
+\right) & \text{Variability in average runner intercepts and slopes} \\
+\\
+\beta_{0_c} &\sim \mathcal{N}(100, 10) & \text{Prior for global average} \\
+\beta_1 &\sim \mathcal{N}(2.5, 1) & \text{Prior for global age effect} \\
+\sigma_y &\sim \operatorname{Exponential}(1/10) & \text{Prior for within-runner variability} \\
+\sigma_0 &\sim \operatorname{Exponential}(1/10) & \text{Prior for between-runner intercept variability} \\
+\sigma_1 &\sim \operatorname{Exponential}(1/10) & \text{Prior for between-runner slope variability} \\
+\rho &\sim \operatorname{LKJ}(1) & \text{Prior for between-runner variability} 
+\end{aligned}
+$$
+
+## Offset-based notation {.smaller}
+
+$$
+\begin{aligned}
+Y_{i_j} &\sim \mathcal{N}(\mu_{i_j}, \sigma_y) & \text{Race times within runners } j \\
+\mu_{i_j} &= (\beta_{0c} + b_{0_j}) + (\beta_1 + b_{1_j}) X_{i_j} & \text{Linear model of within-runner variation} \\
+\left(
+  \begin{array}{c} 
+  b_{0_j} \\
+  b_{1_j}
+  \end{array}
+\right) 
+&\sim \mathcal{N}
+\left( 
+  \left(
+    \begin{array}{c}
+    0 \\
+    0 \\
+    \end{array}
+  \right)
+  , \,
+  \left(
+  \begin{array}{cc}
+     \sigma^2_{0} & \rho_{0, 1}\, \sigma_{0} \sigma_{1} \\ 
+     \dots & \sigma^2_{1}
+  \end{array}
+\right)
+\right) & \text{Variability in average runner intercepts and slopes} \\
+\\
+\beta_{0_c} &\sim \mathcal{N}(100, 10) & \text{Prior for global average} \\
+\beta_1 &\sim \mathcal{N}(2.5, 1) & \text{Prior for global age effect} \\
+\sigma_y &\sim \operatorname{Exponential}(1/10) & \text{Prior for within-runner variability} \\
+\sigma_0 &\sim \operatorname{Exponential}(1/10) & \text{Prior for between-runner intercept variability} \\
+\sigma_1 &\sim \operatorname{Exponential}(1/10) & \text{Prior for between-runner slope variability} \\
+\rho &\sim \operatorname{LKJ}(1) & \text{Prior for between-runner variability} 
+\end{aligned}
+$$
+
+## Setting priors in {rstanarm}
+
+- $\beta_{0,c}$: `prior_intercept`
+- $\beta_{\square}$: `prior`
+- $\sigma_\square$: `prior_aux`
+- $\Sigma$: `prior_covariance = decov(reg = 1, conc = 1, shape = 1, scale = 1)`
+
+## LKJ prior for correlation
+
+## Fitting the model
+
+```{r}
+#| cache: true
+model_running_ranslope <- stan_glmer(
+  net ~ age + (1 + age | runner), 
+  data = runners, 
+  family = gaussian,
+  prior_intercept = normal(100, 10),
+  prior = normal(2.5, 1), 
+  prior_aux = exponential(1, autoscale = TRUE),
+  prior_covariance = decov(reg = 1, conc = 1, shape = 1, scale = 1),
+  chains = 4, cores = 4, iter = 5000*2, seed = 84735, refresh = 0, adapt_delta = 0.9)
+```
+
+::: callout-tip
+## `adapt_delta`
+
+
+:::
+
+## Global parameters
+
+```{r}
+model_running_ranslope |> 
+  tidy(effects = c("fixed"),
+       conf.int = TRUE, conf.level = 0.8)
+```
+
+- $\beta_0$ isis the overall global intercept for all runners. There's an 80% chance that it's between 3.5 and 33.4 minutes.
+- $\beta_1$ shows that a typical runner slows down by a posterior mean of 1.31 minutes each year. There's an 80% chance that the effect is between 1.04 and 1.6 minutes, which is "significant" and substantial. It's also really close to the 1.36-year effect we found with just random intercepts.
+
+## **Typical** runner (mean model)
+
+```{r}
+runners |> 
+  add_linpred_draws(model_running_ranslope, ndraws = 100, re_formula = NA) |>
+  ggplot(aes(x = age, y = net)) +
+  stat_lineribbon(aes(y = .linpred), fill = clrs[4], color = clrs[4], alpha = 0.2) +
+  labs(x = "Age", y = "Race time")
+```
+
+## **Individual** runners (mean model; not predictions)
+
+```{r}
+runners |> 
+  filter(runner %in% c("4", "5")) |>
+  add_linpred_draws(model_running_ranslope, ndraws = 100) |>
+  ggplot(aes(x = age, y = net, col = runner, fill = runner)) +
+  stat_lineribbon(aes(y = .linpred), alpha = 0.2) +
+  labs(x = "Age", y = "Race time", col = "") + 
+  scale_fill_viridis_d(end = .75, option = "plasma") + scale_color_viridis_d(end = .75, option = "plasma") 
+```
+
+
+## **Individual** runners (predictions)
+
+```{r}
+runners |> 
+  filter(runner %in% c("4", "5")) |>
+  add_predicted_draws(model_running_ranslope, ndraws = 100) |>
+  ggplot(aes(x = age, y = net, col = runner, fill = runner)) +
+  stat_lineribbon(aes(y = .prediction), alpha = 0.2) +
+  labs(x = "Age", y = "Race time", col = "") + 
+  scale_fill_viridis_d(end = .75, option = "plasma") + scale_color_viridis_d(end = .75, option = "plasma") 
+```
+
+
+## Variance terms {.smaller}
+
+```{r warning=FALSE}
+model_running_ranslope |> 
+  tidy(effects = c("ran_pars"),  conf.int = TRUE, conf.level = 0.8)
+```
+
+
+
+- $\sigma_y$ is __________, which means that within any runner, their race times vary by ___________ minutes around their individual race time average. 
+- $\sigma_0$ is __________, which means that average runner speeds vary or bounce around by __________ minutes across runners. 
+- $\sigma_1$ is __________, which means that average age effects vary by __________ minutes across runners. 
+- $\rho$ is __________, which means the correlation between runner-specific slopes and intercepts is __________
+
+
+
