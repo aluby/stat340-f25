@@ -143,8 +143,9 @@ Y_{i_j} &\sim N(\mu_{i_j}, \sigma_y) \\
 \mu_{i_j} &= \beta_{0_j} + \beta_1 X_{i_j}
 \end{aligned}
 $$
+
 - $\beta_{0_j}$ is the runner-specific intercept for runner $j$. It is group-specific.
-- $\beta_1$ is the global coefficient (i.e. no subscripts) for the effect of age on race time. It is global and shared across all runners.
+- $\beta_1$ is the global coefficient (no subscripts) for the effect of age on race time. It is shared across all runners.
 - $\sigma_y$ is the within-runner variability for the regression model. It measures the strength of the relationship between an individual runner's age and their race time. It is also global and shared across all runners.
 
 ## Layer 2: between runneres
@@ -167,9 +168,9 @@ $$
 
 $$
 \begin{aligned}
-Y_{i_j} &\sim \mathcal{N}(\mu_{i_j}, \sigma_y) & \text{Race times within runners } j \\
+Y_{i_j} &\sim {N}(\mu_{i_j}, \sigma_y) & \text{Race times within runners } j \\
 \mu_{i_j} &= \beta_{0_j} + \beta_1 X_{i_j} & \text{Linear model of within-runner variation} \\
-\beta_{0_j} &\sim \mathcal{N}(\beta_0, \sigma_0) & \text{Variability in average times between runners} \\
+\beta_{0_j} &\sim {N}(\beta_0, \sigma_0) & \text{Variability in average times between runners} \\
 \\
 \beta_0 &\sim \text{Some prior} & \text{Global priors} \\
 \beta_1 &\sim \text{Some prior} \\
@@ -187,7 +188,7 @@ $$
 These offsets come from a normal distribution with some standard deviation $\sigma_0$:
 
 $$
-b_{0_j} \sim \mathcal{N}(0, \sigma_0)
+b_{0_j} \sim {N}(0, \sigma_0)
 $$
 
 ## 
@@ -196,9 +197,9 @@ We can add these offsets directly to the model:
 
 $$
 \begin{aligned}
-Y_{i_j} &\sim \mathcal{N}(\mu_{i_j}, \sigma_y) & \text{Race times within runners } j \\
+Y_{i_j} &\sim {N}(\mu_{i_j}, \sigma_y) & \text{Race times within runners } j \\
 \mu_{i_j} &= (\beta_0 + b_{0_j}) + \beta_1 X_{i_j} & \text{Linear model of within-runner variation} \\
-b_{0_j} &\sim \mathcal{N}(0, \sigma_0) & \text{Random runner offsets} \\
+b_{0_j} &\sim {N}(0, \sigma_0) & \text{Random runner offsets} \\
 \\
 \beta_0 &\sim \text{Some prior} & \text{Global priors} \\
 \beta_1 &\sim \text{Some prior} \\
@@ -250,7 +251,7 @@ runners |>
   labs(x = "Age", y = "Race time")
 ```
 
-## **Individual** runners (mean model; not predictions)
+## **Individual** runners (mean model)
 
 ```{r}
 runners |> 
@@ -284,11 +285,10 @@ model_running_ranint |>
 ```
 
 - The $\sigma_y$ term here is __________ , which means that within any runner, their race times vary by  __________ minutes around their individual race time average. 
-- $\sigma_0$, on the other hand, is ____________, which means that average runner speeds vary or bounce around by `r ______________ minutes across runners. There's thus more variation between runners than within individual runners.
+- $\sigma_0$, on the other hand, is ____________, which means that average runner speeds vary or bounce around by ______________ minutes across runners. There's thus more variation between runners than within individual runners.
 
 ## Variance decomposition
 
-If we square these terms and make ratios of the values, we can see how much of the total model variation comes from within-runner and between-runner variation:
 
 ```{r}
 model_running_ranint |> 
@@ -409,7 +409,7 @@ $$
 
 $$
 \begin{aligned}
-Y_{i_j} &\sim \mathcal{N}(\mu_{i_j}, \sigma_y) & \text{Race times within runners } j \\
+Y_{i_j} &\sim {N}(\mu_{i_j}, \sigma_y) & \text{Race times within runners } j \\
 \mu_{i_j} &= \beta_{0_j} + \beta_{1_j} X_{i_j} & \text{Linear model of within-runner variation} \\
 \left(
   \begin{array}{c} 
@@ -417,7 +417,7 @@ Y_{i_j} &\sim \mathcal{N}(\mu_{i_j}, \sigma_y) & \text{Race times within runners
   \beta_{1_j}
   \end{array}
 \right) 
-&\sim \mathcal{N}
+&\sim {N}
 \left( 
   \left(
     \begin{array}{c}
@@ -434,8 +434,8 @@ Y_{i_j} &\sim \mathcal{N}(\mu_{i_j}, \sigma_y) & \text{Race times within runners
 \right)
 \right) & \text{Variability in average runner intercepts and slopes} \\
 \\
-\beta_{0_c} &\sim \mathcal{N}(100, 10) & \text{Prior for global average} \\
-\beta_1 &\sim \mathcal{N}(2.5, 1) & \text{Prior for global age effect} \\
+\beta_{0_c} &\sim {N}(100, 10) & \text{Prior for global average} \\
+\beta_1 &\sim {N}(2.5, 1) & \text{Prior for global age effect} \\
 \sigma_y &\sim \operatorname{Exponential}(1/10) & \text{Prior for within-runner variability} \\
 \sigma_0 &\sim \operatorname{Exponential}(1/10) & \text{Prior for between-runner intercept variability} \\
 \sigma_1 &\sim \operatorname{Exponential}(1/10) & \text{Prior for between-runner slope variability} \\
@@ -447,7 +447,7 @@ $$
 
 $$
 \begin{aligned}
-Y_{i_j} &\sim \mathcal{N}(\mu_{i_j}, \sigma_y) & \text{Race times within runners } j \\
+Y_{i_j} &\sim {N}(\mu_{i_j}, \sigma_y) & \text{Race times within runners } j \\
 \mu_{i_j} &= (\beta_{0c} + b_{0_j}) + (\beta_1 + b_{1_j}) X_{i_j} & \text{Linear model of within-runner variation} \\
 \left(
   \begin{array}{c} 
@@ -455,7 +455,7 @@ Y_{i_j} &\sim \mathcal{N}(\mu_{i_j}, \sigma_y) & \text{Race times within runners
   b_{1_j}
   \end{array}
 \right) 
-&\sim \mathcal{N}
+&\sim {N}
 \left( 
   \left(
     \begin{array}{c}
@@ -472,8 +472,8 @@ Y_{i_j} &\sim \mathcal{N}(\mu_{i_j}, \sigma_y) & \text{Race times within runners
 \right)
 \right) & \text{Variability in average runner intercepts and slopes} \\
 \\
-\beta_{0_c} &\sim \mathcal{N}(100, 10) & \text{Prior for global average} \\
-\beta_1 &\sim \mathcal{N}(2.5, 1) & \text{Prior for global age effect} \\
+\beta_{0_c} &\sim {N}(100, 10) & \text{Prior for global average} \\
+\beta_1 &\sim {N}(2.5, 1) & \text{Prior for global age effect} \\
 \sigma_y &\sim \operatorname{Exponential}(1/10) & \text{Prior for within-runner variability} \\
 \sigma_0 &\sim \operatorname{Exponential}(1/10) & \text{Prior for between-runner intercept variability} \\
 \sigma_1 &\sim \operatorname{Exponential}(1/10) & \text{Prior for between-runner slope variability} \\
@@ -519,7 +519,7 @@ model_running_ranslope |>
        conf.int = TRUE, conf.level = 0.8)
 ```
 
-- $\beta_0$ isis the overall global intercept for all runners. There's an 80% chance that it's between 3.5 and 33.4 minutes.
+- $\beta_0$ is the overall global intercept for all runners. There's an 80% chance that it's between 3.5 and 33.4 minutes.
 - $\beta_1$ shows that a typical runner slows down by a posterior mean of 1.31 minutes each year. There's an 80% chance that the effect is between 1.04 and 1.6 minutes, which is "significant" and substantial. It's also really close to the 1.36-year effect we found with just random intercepts.
 
 ## **Typical** runner (mean model)
@@ -532,7 +532,7 @@ runners |>
   labs(x = "Age", y = "Race time")
 ```
 
-## **Individual** runners (mean model; not predictions)
+## **Individual** runners (mean model)
 
 ```{r}
 runners |> 
