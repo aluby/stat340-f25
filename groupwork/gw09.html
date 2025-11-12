@@ -568,6 +568,9 @@ window.Quarto = {
 <li><a href="#exercise-15.3-hierarchical-data" id="toc-exercise-15.3-hierarchical-data" class="nav-link active" data-scroll-target="#exercise-15.3-hierarchical-data">Exercise 15.3 (Hierarchical data)</a></li>
   <li><a href="#exercise-16.1-shrinkage" id="toc-exercise-16.1-shrinkage" class="nav-link" data-scroll-target="#exercise-16.1-shrinkage">Exercise 16.1 (Shrinkage)</a></li>
   <li><a href="#exercise-16.2-grouping-variable-or-predictor" id="toc-exercise-16.2-grouping-variable-or-predictor" class="nav-link" data-scroll-target="#exercise-16.2-grouping-variable-or-predictor">Exercise 16.2 (Grouping variable or predictor?)</a></li>
+  <li><a href="#exercise-16.3-speed-typing-interpret-the-coefficients" id="toc-exercise-16.3-speed-typing-interpret-the-coefficients" class="nav-link" data-scroll-target="#exercise-16.3-speed-typing-interpret-the-coefficients">Exercise 16.3 (Speed typing: interpret the coefficients)</a></li>
+  <li><a href="#br-17.1" id="toc-br-17.1" class="nav-link" data-scroll-target="#br-17.1">BR 17.1</a></li>
+  <li><a href="#br-17.6" id="toc-br-17.6" class="nav-link" data-scroll-target="#br-17.6">BR 17.6</a></li>
   </ul><div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="gw09.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
     </div>
 <!-- main -->
@@ -601,189 +604,19 @@ window.Quarto = {
 <p>Interested in the impact of sleep deprivation on reaction time, Belenky et al.&nbsp;(2003) enlisted 18 subjects in a study. The subjects got a regular night’s sleep on “day 0” of the study, and were then restricted to 3 hours of sleep per night for the next 9 days. Each day, researchers recorded the subjects’ reaction times (in ms) on a series of tests. The results are provided in the <code>sleepstudy</code> dataset in the {lme4} package.</p>
 <p>This data is hierarchical. Draw a diagram in the spirit of Figure 15.8 that captures the hierarchical framework. Think: What are the “groups?”</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">lme4</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/lme4/man/sleepstudy.html">sleepstudy</a></span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">lme4</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/lme4/man/sleepstudy.html">sleepstudy</a></span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>    Reaction Days Subject
-1   249.5600    0     308
-2   258.7047    1     308
-3   250.8006    2     308
-4   321.4398    3     308
-5   356.8519    4     308
-6   414.6901    5     308
-7   382.2038    6     308
-8   290.1486    7     308
-9   430.5853    8     308
-10  466.3535    9     308
-11  222.7339    0     309
-12  205.2658    1     309
-13  202.9778    2     309
-14  204.7070    3     309
-15  207.7161    4     309
-16  215.9618    5     309
-17  213.6303    6     309
-18  217.7272    7     309
-19  224.2957    8     309
-20  237.3142    9     309
-21  199.0539    0     310
-22  194.3322    1     310
-23  234.3200    2     310
-24  232.8416    3     310
-25  229.3074    4     310
-26  220.4579    5     310
-27  235.4208    6     310
-28  255.7511    7     310
-29  261.0125    8     310
-30  247.5153    9     310
-31  321.5426    0     330
-32  300.4002    1     330
-33  283.8565    2     330
-34  285.1330    3     330
-35  285.7973    4     330
-36  297.5855    5     330
-37  280.2396    6     330
-38  318.2613    7     330
-39  305.3495    8     330
-40  354.0487    9     330
-41  287.6079    0     331
-42  285.0000    1     331
-43  301.8206    2     331
-44  320.1153    3     331
-45  316.2773    4     331
-46  293.3187    5     331
-47  290.0750    6     331
-48  334.8177    7     331
-49  293.7469    8     331
-50  371.5811    9     331
-51  234.8606    0     332
-52  242.8118    1     332
-53  272.9613    2     332
-54  309.7688    3     332
-55  317.4629    4     332
-56  309.9976    5     332
-57  454.1619    6     332
-58  346.8311    7     332
-59  330.3003    8     332
-60  253.8644    9     332
-61  283.8424    0     333
-62  289.5550    1     333
-63  276.7693    2     333
-64  299.8097    3     333
-65  297.1710    4     333
-66  338.1665    5     333
-67  332.0265    6     333
-68  348.8399    7     333
-69  333.3600    8     333
-70  362.0428    9     333
-71  265.4731    0     334
-72  276.2012    1     334
-73  243.3647    2     334
-74  254.6723    3     334
-75  279.0244    4     334
-76  284.1912    5     334
-77  305.5248    6     334
-78  331.5229    7     334
-79  335.7469    8     334
-80  377.2990    9     334
-81  241.6083    0     335
-82  273.9472    1     335
-83  254.4907    2     335
-84  270.8021    3     335
-85  251.4519    4     335
-86  254.6362    5     335
-87  245.4523    6     335
-88  235.3110    7     335
-89  235.7541    8     335
-90  237.2466    9     335
-91  312.3666    0     337
-92  313.8058    1     337
-93  291.6112    2     337
-94  346.1222    3     337
-95  365.7324    4     337
-96  391.8385    5     337
-97  404.2601    6     337
-98  416.6923    7     337
-99  455.8643    8     337
-100 458.9167    9     337
-101 236.1032    0     349
-102 230.3167    1     349
-103 238.9256    2     349
-104 254.9220    3     349
-105 250.7103    4     349
-106 269.7744    5     349
-107 281.5648    6     349
-108 308.1020    7     349
-109 336.2806    8     349
-110 351.6451    9     349
-111 256.2968    0     350
-112 243.4543    1     350
-113 256.2046    2     350
-114 255.5271    3     350
-115 268.9165    4     350
-116 329.7247    5     350
-117 379.4445    6     350
-118 362.9184    7     350
-119 394.4872    8     350
-120 389.0527    9     350
-121 250.5265    0     351
-122 300.0576    1     351
-123 269.8939    2     351
-124 280.5891    3     351
-125 271.8274    4     351
-126 304.6336    5     351
-127 287.7466    6     351
-128 266.5955    7     351
-129 321.5418    8     351
-130 347.5655    9     351
-131 221.6771    0     352
-132 298.1939    1     352
-133 326.8785    2     352
-134 346.8555    3     352
-135 348.7402    4     352
-136 352.8287    5     352
-137 354.4266    6     352
-138 360.4326    7     352
-139 375.6406    8     352
-140 388.5417    9     352
-141 271.9235    0     369
-142 268.4369    1     369
-143 257.2424    2     369
-144 277.6566    3     369
-145 314.8222    4     369
-146 317.2135    5     369
-147 298.1353    6     369
-148 348.1229    7     369
-149 340.2800    8     369
-150 366.5131    9     369
-151 225.2640    0     370
-152 234.5235    1     370
-153 238.9008    2     370
-154 240.4730    3     370
-155 267.5373    4     370
-156 344.1937    5     370
-157 281.1481    6     370
-158 347.5855    7     370
-159 365.1630    8     370
-160 372.2288    9     370
-161 269.8804    0     371
-162 272.4428    1     371
-163 277.8989    2     371
-164 281.7895    3     371
-165 279.1705    4     371
-166 284.5120    5     371
-167 259.2658    6     371
-168 304.6306    7     371
-169 350.7807    8     371
-170 369.4692    9     371
-171 269.4117    0     372
-172 273.4740    1     372
-173 297.5968    2     372
-174 310.6316    3     372
-175 287.1726    4     372
-176 329.6076    5     372
-177 334.4818    6     372
-178 343.2199    7     372
-179 369.1417    8     372
-180 364.1236    9     372</code></pre>
+<pre><code>   Reaction Days Subject
+1  249.5600    0     308
+2  258.7047    1     308
+3  250.8006    2     308
+4  321.4398    3     308
+5  356.8519    4     308
+6  414.6901    5     308
+7  382.2038    6     308
+8  290.1486    7     308
+9  430.5853    8     308
+10 466.3535    9     308</code></pre>
 </div>
 </div>
 </section><section id="exercise-16.1-shrinkage" class="level1"><h1>Exercise 16.1 (Shrinkage)</h1>
@@ -795,8 +628,7 @@ window.Quarto = {
 <li>In a model of climber <code>success</code>, is <code>season</code> a potential predictor or a grouping variable? Explain.</li>
 <li>The <code>coffee_ratings</code> data in the {bayesrules} package contains ratings for 1339 different coffee batches. In a model of coffee ratings (<code>total_cup_points</code>), is <code>processing_method</code> a potential predictor or a grouping variable? Explain.</li>
 <li>In a model of coffee ratings (<code>total_cup_points</code>), is <code>farm_name</code> a potential predictor or a grouping variable? Explain.</li>
-</ol>
-<p>Exercise 16.3 (Speed typing: interpret the coefficients)</p>
+</ol></section><section id="exercise-16.3-speed-typing-interpret-the-coefficients" class="level1"><h1>Exercise 16.3 (Speed typing: interpret the coefficients)</h1>
 <p>Alicia loves typing. To share the appreciation, she invites four friends to each take 20 speed-typing tests. Let <span class="math inline">\(Y_{ij}\)</span> be the time it takes friend <span class="math inline">\(j\)</span> to complete test <span class="math inline">\(i\)</span>.</p>
 <ol type="a">
 <li>In modeling <span class="math inline">\(Y_{ij}\)</span>, explain why it’s important to account for the grouping structure introduced by observing each friend multiple times.</li>
@@ -811,7 +643,41 @@ window.Quarto = {
 <span class="math inline">\(\sigma_y\)</span>:</li>
 <li>
 <span class="math inline">\(\sigma_\mu\)</span>:</li>
-</ul>
+</ul></section><section id="br-17.1" class="level1"><h1>BR 17.1</h1>
+<p>To test the relationship between reaction times and sleep deprivation, researchers enlisted 3 people in a 10-day study. Let <span class="math inline">\(Y_{ij}\)</span> denote the reaction time (in ms) to a given stimulus and <span class="math inline">\(X_{ij}\)</span> be the number of days of sleep deprivation for the <span class="math inline">\(i\)</span>th observation on subject <span class="math inline">\(j\)</span>. For each set of assumptions below, use mathematical notation to represent an appropriate Bayesian hierarchical model of <span class="math inline">\(Y_{ij}\)</span> vs <span class="math inline">\(X_{ij}\)</span>.</p>
+<ol type="a">
+<li>Not only do some people tend to react more quickly than others, sleep deprivation might impact some people’s reaction times more than others.</li>
+<li>Though some people tend to react more quickly than others, the impact of sleep deprivation on reaction time is the same for all.</li>
+<li>Nobody has inherently faster reaction times, though sleep deprivation might impact some people’s reaction times more than others.</li>
+</ol></section><section id="br-17.6" class="level1"><h1>BR 17.6</h1>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Note:
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>In the group exercise, you’ll write out the model and do an EDA. You will fit the models on the individual homework this week</p>
+</div>
+</div>
+<p>You will explore this relationship in more depth here. To this end, suppose researchers tell us that on a typical day, the average person should have a reaction time of roughly 250ms to the stimulus used in the sleep study. Beyond this baseline, we’ll balance weakly informative priors with the <code>sleepstudy</code> data from the {lme4} package to better understand reaction times. Specifically, consider two possible models as expressed by <code><a href="https://mc-stan.org/rstanarm/reference/stan_glmer.html">stan_glmer()</a></code> syntax:</p>
+<ol type="1">
+<li><code>Reaction ~ Days + (1 | Subject)</code></li>
+<li><code>Reaction ~ Days + (Days | Subject)</code></li>
+</ol>
+<ol type="a">
+<li>What’s the grouping variable in the <code>sleepstudy</code> data and why is it important to incorporate this grouping structure into our analysis?</li>
+<li>Use formal notation to define the hierarchical regression structure of models 1 and 2.</li>
+<li>Summarize the key differences between models 1 and 2. Root this discussion in the sleep study.</li>
+<li>Using the <code>sleepstudy</code> data, construct and discuss a plot that helps you explore which model is more appropriate: 1 or 2.</li>
+</ol>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/lme4/lme4/">lme4</a></span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">sleepstudy</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
 
 
 <!-- -->
@@ -1290,60 +1156,91 @@ window.Quarto = {
       </a>
   </div>
 </nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Group Work 09"</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(bayesrules) <span class="co"># R package for our textbook</span></span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse) <span class="co"># Collection of packages for tidying and plotting data</span></span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(janitor) <span class="co"># Helper functions like tabyl</span></span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rstan) <span class="co"># for fitting models</span></span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rstanarm) <span class="co"># for fitting standard regression models</span></span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom.mixed) <span class="co"># for tidy() function</span></span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(bayesplot) <span class="co"># helpful plotting functions</span></span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidybayes) <span class="co"># helpful for wrangling Bayesian model output</span></span>
-<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span>
-<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a><span class="fu"># Exercise 15.3 (Hierarchical data) </span></span>
-<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>Interested in the impact of sleep deprivation on reaction time, Belenky et al. (2003) enlisted 18 subjects in a study. The subjects got a regular night’s sleep on “day 0” of the study, and were then restricted to 3 hours of sleep per night for the next 9 days. Each day, researchers recorded the subjects’ reaction times (in ms) on a series of tests. The results are provided in the <span class="in">`sleepstudy`</span> dataset in the {lme4} package.</span>
-<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>This data is hierarchical. Draw a diagram in the spirit of Figure 15.8 that captures the hierarchical framework. Think: What are the “groups?”</span>
-<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>lme4<span class="sc">::</span>sleepstudy</span>
-<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a><span class="fu"># Exercise 16.1 (Shrinkage) </span></span>
-<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>The plot below illustrates the distribution of critic ratings for 7 coffee shops. Suppose we were to model coffee shop ratings using three different approaches: complete pooled, no pooled, and hierarchical. For each model, sketch what the posterior mean ratings for the 7 coffee shops might look like on the plot below.</span>
-<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a><span class="al">![](https://www.bayesrulesbook.com/bookdown_files/figure-html/unnamed-chunk-696-1.png)</span></span>
-<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a><span class="fu"># Exercise 16.2 (Grouping variable or predictor?)</span></span>
-<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a>(a) The <span class="in">`climbers_sub`</span> data in the {bayesrules} package contains outcomes for 2076 climbers that have sought to summit a Himalayan mountain peak. In a model of climber <span class="in">`success`</span>, is <span class="in">`expedition_id`</span> a potential predictor or a grouping variable? Explain.</span>
-<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a>(b) In a model of climber <span class="in">`success`</span>, is <span class="in">`season`</span> a potential predictor or a grouping variable? Explain.</span>
-<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a>(c) The <span class="in">`coffee_ratings`</span> data in the {bayesrules} package contains ratings for 1339 different coffee batches. In a model of coffee ratings (<span class="in">`total_cup_points`</span>), is <span class="in">`processing_method`</span> a potential predictor or a grouping variable? Explain.</span>
-<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a>(d) In a model of coffee ratings (<span class="in">`total_cup_points`</span>), is <span class="in">`farm_name`</span> a potential predictor or a grouping variable? Explain.</span>
-<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a>Exercise 16.3 (Speed typing: interpret the coefficients) </span>
-<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a>Alicia loves typing. To share the appreciation, she invites four friends to each take 20 speed-typing tests. Let  $Y_{ij}$ be the time it takes friend  $j$ to complete test  $i$.</span>
-<span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a>(a) In modeling  $Y_{ij}$, explain why it’s important to account for the grouping structure introduced by observing each friend multiple times.</span>
-<span id="cb4-53"><a href="#cb4-53" aria-hidden="true" tabindex="-1"></a>(b) Suppose we were to model the outcomes  $Y_{ij}$ by (16.5). Interpret the meaning of all model coefficients in terms of what they might illuminate about typing speeds:  </span>
-<span id="cb4-54"><a href="#cb4-54" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-55"><a href="#cb4-55" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$\mu_j$: </span>
-<span id="cb4-56"><a href="#cb4-56" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$\mu$:</span>
-<span id="cb4-57"><a href="#cb4-57" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$\sigma_y$:</span>
-<span id="cb4-58"><a href="#cb4-58" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$\sigma_\mu$:</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Group Work 09"</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(bayesrules) <span class="co"># R package for our textbook</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse) <span class="co"># Collection of packages for tidying and plotting data</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(janitor) <span class="co"># Helper functions like tabyl</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rstan) <span class="co"># for fitting models</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rstanarm) <span class="co"># for fitting standard regression models</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom.mixed) <span class="co"># for tidy() function</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(bayesplot) <span class="co"># helpful plotting functions</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidybayes) <span class="co"># helpful for wrangling Bayesian model output</span></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a><span class="fu"># Exercise 15.3 (Hierarchical data) </span></span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>Interested in the impact of sleep deprivation on reaction time, Belenky et al. (2003) enlisted 18 subjects in a study. The subjects got a regular night’s sleep on “day 0” of the study, and were then restricted to 3 hours of sleep per night for the next 9 days. Each day, researchers recorded the subjects’ reaction times (in ms) on a series of tests. The results are provided in the <span class="in">`sleepstudy`</span> dataset in the {lme4} package.</span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>This data is hierarchical. Draw a diagram in the spirit of Figure 15.8 that captures the hierarchical framework. Think: What are the “groups?”</span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>lme4<span class="sc">::</span>sleepstudy <span class="sc">|&gt;</span> <span class="fu">head</span>(<span class="dv">10</span>)</span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a><span class="fu"># Exercise 16.1 (Shrinkage) </span></span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a>The plot below illustrates the distribution of critic ratings for 7 coffee shops. Suppose we were to model coffee shop ratings using three different approaches: complete pooled, no pooled, and hierarchical. For each model, sketch what the posterior mean ratings for the 7 coffee shops might look like on the plot below.</span>
+<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a><span class="al">![](https://www.bayesrulesbook.com/bookdown_files/figure-html/unnamed-chunk-696-1.png)</span></span>
+<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a><span class="fu"># Exercise 16.2 (Grouping variable or predictor?)</span></span>
+<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a>(a) The <span class="in">`climbers_sub`</span> data in the {bayesrules} package contains outcomes for 2076 climbers that have sought to summit a Himalayan mountain peak. In a model of climber <span class="in">`success`</span>, is <span class="in">`expedition_id`</span> a potential predictor or a grouping variable? Explain.</span>
+<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a>(b) In a model of climber <span class="in">`success`</span>, is <span class="in">`season`</span> a potential predictor or a grouping variable? Explain.</span>
+<span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a>(c) The <span class="in">`coffee_ratings`</span> data in the {bayesrules} package contains ratings for 1339 different coffee batches. In a model of coffee ratings (<span class="in">`total_cup_points`</span>), is <span class="in">`processing_method`</span> a potential predictor or a grouping variable? Explain.</span>
+<span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a>(d) In a model of coffee ratings (<span class="in">`total_cup_points`</span>), is <span class="in">`farm_name`</span> a potential predictor or a grouping variable? Explain.</span>
+<span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-48"><a href="#cb5-48" aria-hidden="true" tabindex="-1"></a><span class="fu"># Exercise 16.3 (Speed typing: interpret the coefficients) </span></span>
+<span id="cb5-49"><a href="#cb5-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-50"><a href="#cb5-50" aria-hidden="true" tabindex="-1"></a>Alicia loves typing. To share the appreciation, she invites four friends to each take 20 speed-typing tests. Let  $Y_{ij}$ be the time it takes friend  $j$ to complete test  $i$.</span>
+<span id="cb5-51"><a href="#cb5-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-52"><a href="#cb5-52" aria-hidden="true" tabindex="-1"></a>(a) In modeling  $Y_{ij}$, explain why it’s important to account for the grouping structure introduced by observing each friend multiple times.</span>
+<span id="cb5-53"><a href="#cb5-53" aria-hidden="true" tabindex="-1"></a>(b) Suppose we were to model the outcomes  $Y_{ij}$ by (16.5). Interpret the meaning of all model coefficients in terms of what they might illuminate about typing speeds:  </span>
+<span id="cb5-54"><a href="#cb5-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-55"><a href="#cb5-55" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$\mu_j$: </span>
+<span id="cb5-56"><a href="#cb5-56" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$\mu$:</span>
+<span id="cb5-57"><a href="#cb5-57" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$\sigma_y$:</span>
+<span id="cb5-58"><a href="#cb5-58" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$\sigma_\mu$:</span>
+<span id="cb5-59"><a href="#cb5-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-60"><a href="#cb5-60" aria-hidden="true" tabindex="-1"></a><span class="fu"># BR 17.1</span></span>
+<span id="cb5-61"><a href="#cb5-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-62"><a href="#cb5-62" aria-hidden="true" tabindex="-1"></a>To test the relationship between reaction times and sleep deprivation, researchers enlisted 3 people in a 10-day study. Let $Y_{ij}$ denote the reaction time (in ms) to a given stimulus and  $X_{ij}$ be the number of days of sleep deprivation for the $i$th observation on subject  $j$. For each set of assumptions below, use mathematical notation to represent an appropriate Bayesian hierarchical model of  $Y_{ij}$ vs $X_{ij}$.</span>
+<span id="cb5-63"><a href="#cb5-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-64"><a href="#cb5-64" aria-hidden="true" tabindex="-1"></a>(a) Not only do some people tend to react more quickly than others, sleep deprivation might impact some people’s reaction times more than others.</span>
+<span id="cb5-65"><a href="#cb5-65" aria-hidden="true" tabindex="-1"></a>(b) Though some people tend to react more quickly than others, the impact of sleep deprivation on reaction time is the same for all.</span>
+<span id="cb5-66"><a href="#cb5-66" aria-hidden="true" tabindex="-1"></a>(c) Nobody has inherently faster reaction times, though sleep deprivation might impact some people’s reaction times more than others.</span>
+<span id="cb5-67"><a href="#cb5-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-68"><a href="#cb5-68" aria-hidden="true" tabindex="-1"></a><span class="fu"># BR 17.6</span></span>
+<span id="cb5-69"><a href="#cb5-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-70"><a href="#cb5-70" aria-hidden="true" tabindex="-1"></a>::: callout-note</span>
+<span id="cb5-71"><a href="#cb5-71" aria-hidden="true" tabindex="-1"></a><span class="fu">## Note:</span></span>
+<span id="cb5-72"><a href="#cb5-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-73"><a href="#cb5-73" aria-hidden="true" tabindex="-1"></a>In the group exercise, you'll write out the model and do an EDA. You will fit the models on the individual homework this week</span>
+<span id="cb5-74"><a href="#cb5-74" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb5-75"><a href="#cb5-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-76"><a href="#cb5-76" aria-hidden="true" tabindex="-1"></a>You will explore this relationship in more depth here. To this end, suppose researchers tell us that on a typical day, the average person should have a reaction time of roughly 250ms to the stimulus used in the sleep study. Beyond this baseline, we’ll balance weakly informative priors with the <span class="in">`sleepstudy`</span> data from the {lme4} package to better understand reaction times. Specifically, consider two possible models as expressed by <span class="in">`stan_glmer()`</span> syntax:</span>
+<span id="cb5-77"><a href="#cb5-77" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-78"><a href="#cb5-78" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span><span class="in">`Reaction ~ Days + (1 | Subject)`</span></span>
+<span id="cb5-79"><a href="#cb5-79" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span><span class="in">`Reaction ~ Days + (Days | Subject)`</span></span>
+<span id="cb5-80"><a href="#cb5-80" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-81"><a href="#cb5-81" aria-hidden="true" tabindex="-1"></a>(a) What’s the grouping variable in the <span class="in">`sleepstudy`</span> data and why is it important to incorporate this grouping structure into our analysis?</span>
+<span id="cb5-82"><a href="#cb5-82" aria-hidden="true" tabindex="-1"></a>(b) Use formal notation to define the hierarchical regression structure of models 1 and 2.</span>
+<span id="cb5-83"><a href="#cb5-83" aria-hidden="true" tabindex="-1"></a>(c) Summarize the key differences between models 1 and 2. Root this discussion in the sleep study.</span>
+<span id="cb5-84"><a href="#cb5-84" aria-hidden="true" tabindex="-1"></a>(d) Using the <span class="in">`sleepstudy`</span> data, construct and discuss a plot that helps you explore which model is more appropriate: 1 or 2.</span>
+<span id="cb5-85"><a href="#cb5-85" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-88"><a href="#cb5-88" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb5-89"><a href="#cb5-89" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lme4)</span>
+<span id="cb5-90"><a href="#cb5-90" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(sleepstudy)</span>
+<span id="cb5-91"><a href="#cb5-91" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 </code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->

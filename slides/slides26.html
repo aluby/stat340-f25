@@ -1,0 +1,1277 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-html/tabby.min.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-f54fa83ccd8f86fe7238c9291c42d766.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.8.24">
+
+  <meta name="author" content="Prof Amanda Luby">
+  <title>Stat 340 – Normal Hierarchical Models with Predictors</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #767676;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #767676;  padding-left: 4px; }
+    div.sourceCode
+      { color: #545454; background-color: #fefefe; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #545454; } /* Normal */
+    code span.al { color: #7928a1; } /* Alert */
+    code span.an { color: #696969; } /* Annotation */
+    code span.at { color: #a55a00; } /* Attribute */
+    code span.bn { color: #7928a1; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #d91e18; } /* ControlFlow */
+    code span.ch { color: #008000; } /* Char */
+    code span.cn { color: #d91e18; } /* Constant */
+    code span.co { color: #696969; } /* Comment */
+    code span.cv { color: #696969; font-style: italic; } /* CommentVar */
+    code span.do { color: #696969; font-style: italic; } /* Documentation */
+    code span.dt { color: #7928a1; } /* DataType */
+    code span.dv { color: #7928a1; } /* DecVal */
+    code span.er { color: #7928a1; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #a55a00; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #696969; } /* Information */
+    code span.kw { color: #d91e18; } /* Keyword */
+    code span.op { color: #00769e; } /* Operator */
+    code span.ot { color: #d91e18; } /* Other */
+    code span.pp { color: #7928a1; } /* Preprocessor */
+    code span.sc { color: #00769e; } /* SpecialChar */
+    code span.ss { color: #008000; } /* SpecialString */
+    code span.st { color: #008000; } /* String */
+    code span.va { color: #a55a00; } /* Variable */
+    code span.vs { color: #008000; } /* VerbatimString */
+    code span.wa { color: #696969; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-57853cb6e718b890690f9ea108593c80.css">
+  <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+</head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" data-background-color="#e2583eff" data-slide-number="none" class="quarto-title-block center">
+  <h1 class="title">Normal Hierarchical Models with Predictors</h1>
+  <p class="subtitle">Day 26</p>
+
+<div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+Prof Amanda Luby 
+</div>
+        <p class="quarto-title-affiliation">
+            Carleton College <br> Stat 340 - Fall 2025
+          </p>
+    </div>
+</div>
+
+</section>
+<section id="goals-for-final-project-modeling" class="slide level2">
+<h2>Goals for final project (modeling)</h2>
+<ul>
+<li>Be able to write down math of the model that you fit</li>
+<li>Be able to pull out results at global and group level in order to make plots and draw inferences</li>
+</ul>
+</section>
+<section id="cherry_blossom_runners" class="slide level2">
+<h2><code>cherry_blossom_runners</code></h2>
+
+<img data-src="slides26_files/figure-revealjs/unnamed-chunk-2-1.png" width="960" class="r-stretch"></section>
+<section id="section" class="slide level2">
+<h2></h2>
+<div class="callout callout-warning callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Warning!</strong></p>
+</div>
+<div class="callout-content">
+<p>Many built in functions that we like (<code>add_linpred_draws</code>, etc.) require no missing values in the data. So it can help to <code>select</code> your variables of interest, and then <code>drop_na</code> rows in your dataset. Make sure to name this something new instead of overwriting the original data, just in case.</p>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a>runners <span class="ot">&lt;-</span> cherry_blossom_sample <span class="sc">|&gt;</span></span>
+<span id="cb1-2"><a></a>  <span class="fu">select</span>(runner, age, net) <span class="sc">|&gt;</span></span>
+<span id="cb1-3"><a></a>  <span class="fu">drop_na</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="section-1" class="slide level2">
+<h2></h2>
+<h3 id="complete-pooling">Complete Pooling</h3>
+<ul>
+<li>assumes one “pool” of data</li>
+<li>ignores variability <em>within</em> runners</li>
+<li>violates independence assumption of linear regression</li>
+</ul>
+<h3 id="no-pooling">No pooling</h3>
+<ul>
+<li>separately fit a linear model for each runner</li>
+<li>ignores variability <em>across</em> runners</li>
+<li>“throws out” majority of data for each model fit</li>
+</ul>
+</section>
+<section id="partial-pooling-via-hierarchical-model" class="slide level2">
+<h2>Partial pooling (via <em>Hierarchical Model</em>)</h2>
+<ul>
+<li>acknowledge the grouping structure of the data</li>
+<li>allows to fit <em>individual</em> variability, but also the <em>shared information</em> across all individuals/groups</li>
+</ul>
+
+<img data-src="img/partial_pool_diagram.png" class="r-stretch"></section>
+<section id="complete-pooling-1" class="slide level2">
+<h2>Complete pooling</h2>
+
+<img data-src="slides26_files/figure-revealjs/unnamed-chunk-4-1.png" width="960" class="r-stretch"></section>
+<section id="no-pooling-1" class="slide level2">
+<h2>No pooling</h2>
+
+<img data-src="slides26_files/figure-revealjs/unnamed-chunk-5-1.png" width="960" class="r-stretch"></section>
+<section id="hierarchical-model-with-varying-intercepts-idea" class="slide level2">
+<h2>Hierarchical model with varying intercepts: idea</h2>
+
+<img data-src="slides26_files/figure-revealjs/unnamed-chunk-6-1.png" width="960" class="r-stretch"></section>
+<section>
+<section id="hierarchical-model-with-varying-intercepts-model" class="title-slide slide level1 center">
+<h1>Hierarchical model with varying intercepts: model</h1>
+
+</section>
+<section id="layer-1-within-runners" class="slide level2">
+<h2>Layer 1: within runners</h2>
+<p><span class="math display">\[
+\begin{aligned}
+Y_{i_j} &amp;\sim N(\mu_{i_j}, \sigma_y) \\
+\mu_{i_j} &amp;= \beta_{0_j} + \beta_1 X_{i_j}
+\end{aligned}
+\]</span></p>
+<ul>
+<li><span class="math inline">\(\beta_{0_j}\)</span> is the runner-specific intercept for runner <span class="math inline">\(j\)</span>. It is group-specific.</li>
+<li><span class="math inline">\(\beta_1\)</span> is the global coefficient (no subscripts) for the effect of age on race time. It is shared across all runners.</li>
+<li><span class="math inline">\(\sigma_y\)</span> is the within-runner variability for the regression model. It measures the strength of the relationship between an individual runner’s age and their race time. It is also global and shared across all runners.</li>
+</ul>
+</section>
+<section id="layer-2-between-runneres" class="slide level2">
+<h2>Layer 2: between runneres</h2>
+<p><span class="math display">\[
+\beta_{0_j} \sim N(\beta_0, \sigma_0)
+\]</span></p>
+<ul>
+<li><span class="math inline">\(\beta_0\)</span> is the global average intercept across all runners, or the average runner’s race time</li>
+<li><span class="math inline">\(\sigma_0\)</span> is the between-runner variability around that global average, or how much race times bounce around the average</li>
+</ul>
+</section>
+<section id="layer-3-global-parameters" class="slide level2">
+<h2>Layer 3: global parameters</h2>
+<ul>
+<li><span class="math inline">\(\beta_0\)</span>: Average race time for all runners</li>
+<li><span class="math inline">\(\beta_1\)</span>: Effect of age on race time for all runners</li>
+<li><span class="math inline">\(\sigma_y\)</span>: Within-runner variability of race time</li>
+<li><span class="math inline">\(\sigma_0\)</span>: Between-runner variability of average runner race time</li>
+</ul>
+</section>
+<section id="hierarchical-model-with-varying-intercepts-fully-specified-model" class="slide level2">
+<h2>Hierarchical model with varying intercepts: fully specified model</h2>
+<p><span class="math display">\[
+\begin{aligned}
+Y_{i_j} &amp;\sim {N}(\mu_{i_j}, \sigma_y) &amp; \text{Race times within runners } j \\
+\mu_{i_j} &amp;= \beta_{0_j} + \beta_1 X_{i_j} &amp; \text{Linear model of within-runner variation} \\
+\beta_{0_j} &amp;\sim {N}(\beta_0, \sigma_0) &amp; \text{Variability in average times between runners} \\
+\\
+\beta_0 &amp;\sim \text{Some prior} &amp; \text{Global priors} \\
+\beta_1 &amp;\sim \text{Some prior} \\
+\sigma_y &amp;\sim \text{Some prior} \\
+\sigma_0 &amp;\sim \text{Some prior}
+\end{aligned}
+\]</span></p>
+</section>
+<section id="alternative-approach-offsets" class="slide level2">
+<h2>Alternative approach: offsets</h2>
+<p><span class="math display">\[
+\beta_{0_j} = \beta_0 + b_{0_j}
+\]</span></p>
+<p>These offsets come from a normal distribution with some standard deviation <span class="math inline">\(\sigma_0\)</span>:</p>
+<p><span class="math display">\[
+b_{0_j} \sim {N}(0, \sigma_0)
+\]</span></p>
+</section>
+<section id="section-2" class="slide level2">
+<h2></h2>
+<p>We can add these offsets directly to the model:</p>
+<p><span class="math display">\[
+\begin{aligned}
+Y_{i_j} &amp;\sim {N}(\mu_{i_j}, \sigma_y) &amp; \text{Race times within runners } j \\
+\mu_{i_j} &amp;= (\beta_0 + b_{0_j}) + \beta_1 X_{i_j} &amp; \text{Linear model of within-runner variation} \\
+b_{0_j} &amp;\sim {N}(0, \sigma_0) &amp; \text{Random runner offsets} \\
+\\
+\beta_0 &amp;\sim \text{Some prior} &amp; \text{Global priors} \\
+\beta_1 &amp;\sim \text{Some prior} \\
+\sigma_y &amp;\sim \text{Some prior} \\
+\sigma_0 &amp;\sim \text{Some prior}
+\end{aligned}
+\]</span></p>
+</section>
+<section id="fit-the-model" class="slide level2">
+<h2>Fit the model</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a>model_running_ranint <span class="ot">&lt;-</span> <span class="fu">stan_glmer</span>(</span>
+<span id="cb2-2"><a></a>  net <span class="sc">~</span> age <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">|</span> runner), </span>
+<span id="cb2-3"><a></a>  <span class="at">data =</span> runners, </span>
+<span id="cb2-4"><a></a>  <span class="at">family =</span> gaussian,</span>
+<span id="cb2-5"><a></a>  <span class="at">prior_intercept =</span> <span class="fu">normal</span>(<span class="dv">100</span>, <span class="dv">10</span>),</span>
+<span id="cb2-6"><a></a>  <span class="at">prior =</span> <span class="fu">normal</span>(<span class="dv">0</span>, <span class="fl">2.5</span>, <span class="at">autoscale =</span> <span class="cn">TRUE</span>), </span>
+<span id="cb2-7"><a></a>  <span class="at">prior_aux =</span> <span class="fu">exponential</span>(<span class="dv">1</span>, <span class="at">autoscale =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb2-8"><a></a>  <span class="at">prior_covariance =</span> <span class="fu">decov</span>(<span class="at">reg =</span> <span class="dv">1</span>, <span class="at">conc =</span> <span class="dv">1</span>, <span class="at">shape =</span> <span class="dv">1</span>, <span class="at">scale =</span> <span class="dv">1</span>),</span>
+<span id="cb2-9"><a></a>  <span class="at">chains =</span> <span class="dv">4</span>, <span class="at">cores =</span> <span class="dv">4</span>, <span class="at">iter =</span> <span class="dv">5000</span><span class="sc">*</span><span class="dv">2</span>, <span class="at">seed =</span> <span class="dv">84735</span>, <span class="at">refresh =</span> <span class="dv">0</span>)</span>
+<span id="cb2-10"><a></a></span>
+<span id="cb2-11"><a></a><span class="fu">save</span>(model_running_ranint, <span class="at">file =</span> <span class="st">"26-ranint.rda"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="fu">load</span>(<span class="st">"26-ranint.rda"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="callout callout-warning callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Warning!</strong></p>
+</div>
+<div class="callout-content">
+<p>Hierarchical models can run slow. Add <code>#| cache: true</code> to your chunk when rendering to get quarto to save the results for you and speed up rendering. Or use the <code>save</code> and <code>load</code> approach here with <code>#| eval: false</code></p>
+</div>
+</div>
+</div>
+</section>
+<section id="section-3" class="slide level2">
+<h2></h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a>model_running_ranint <span class="sc">|&gt;</span> </span>
+<span id="cb4-2"><a></a>  <span class="fu">tidy</span>(<span class="at">effects =</span> <span class="fu">c</span>(<span class="st">"fixed"</span>),</span>
+<span id="cb4-3"><a></a>       <span class="at">conf.int =</span> <span class="cn">TRUE</span>, <span class="at">conf.level =</span> <span class="fl">0.8</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 5
+  term        estimate std.error conf.low conf.high
+  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;
+1 (Intercept)    22.5     12.5      6.38      38.6 
+2 age             1.24     0.223    0.953      1.53</code></pre>
+</div>
+</div>
+<ul>
+<li>There is an 80% probability that the <strong>global intercept</strong> is between 6.38 and 38.56 minutes</li>
+<li>The typical runner slows down by about 1.23 minutes on average. There’s an 80% probability that this slowdown is between .85 and 1.52 minutes</li>
+<li>This is very different than the complete pooling approach, which found <strong>no</strong> significant slowdown</li>
+</ul>
+</section>
+<section id="typical-runner-mean-model" class="slide level2">
+<h2><strong>Typical</strong> runner (mean model)</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a>runners <span class="sc">|&gt;</span> </span>
+<span id="cb6-2"><a></a>  <span class="fu">add_linpred_draws</span>(model_running_ranint, <span class="at">ndraws =</span> <span class="dv">100</span>, <span class="at">re_formula =</span> <span class="cn">NA</span>) <span class="sc">|&gt;</span></span>
+<span id="cb6-3"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> age, <span class="at">y =</span> net)) <span class="sc">+</span></span>
+<span id="cb6-4"><a></a>  <span class="fu">stat_lineribbon</span>(<span class="fu">aes</span>(<span class="at">y =</span> .linpred), <span class="at">fill =</span> clrs[<span class="dv">4</span>], <span class="at">color =</span> clrs[<span class="dv">4</span>], <span class="at">alpha =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb6-5"><a></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Age"</span>, <span class="at">y =</span> <span class="st">"Race time"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+
+</div>
+<img data-src="slides26_files/figure-revealjs/unnamed-chunk-10-1.png" width="960" class="r-stretch"></section>
+<section id="individual-runners-mean-model" class="slide level2">
+<h2><strong>Individual</strong> runners (mean model)</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a>runners <span class="sc">|&gt;</span> </span>
+<span id="cb7-2"><a></a>  <span class="fu">filter</span>(runner <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"4"</span>, <span class="st">"5"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb7-3"><a></a>  <span class="fu">add_linpred_draws</span>(model_running_ranint, <span class="at">ndraws =</span> <span class="dv">100</span>) <span class="sc">|&gt;</span></span>
+<span id="cb7-4"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> age, <span class="at">y =</span> net, <span class="at">col =</span> runner, <span class="at">fill =</span> runner)) <span class="sc">+</span></span>
+<span id="cb7-5"><a></a>  <span class="fu">stat_lineribbon</span>(<span class="fu">aes</span>(<span class="at">y =</span> .linpred), <span class="at">alpha =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb7-6"><a></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Age"</span>, <span class="at">y =</span> <span class="st">"Race time"</span>, <span class="at">col =</span> <span class="st">""</span>) <span class="sc">+</span> </span>
+<span id="cb7-7"><a></a>  <span class="fu">scale_fill_viridis_d</span>(<span class="at">end =</span> .<span class="dv">75</span>, <span class="at">option =</span> <span class="st">"plasma"</span>) <span class="sc">+</span> <span class="fu">scale_color_viridis_d</span>(<span class="at">end =</span> .<span class="dv">75</span>, <span class="at">option =</span> <span class="st">"plasma"</span>) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+
+</div>
+<img data-src="slides26_files/figure-revealjs/unnamed-chunk-11-1.png" width="960" class="r-stretch"></section>
+<section id="individual-runners-predictions" class="slide level2">
+<h2><strong>Individual</strong> runners (predictions)</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a>runners <span class="sc">|&gt;</span> </span>
+<span id="cb8-2"><a></a>  <span class="fu">filter</span>(runner <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"4"</span>, <span class="st">"5"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb8-3"><a></a>  <span class="fu">add_predicted_draws</span>(model_running_ranint, <span class="at">ndraws =</span> <span class="dv">100</span>) <span class="sc">|&gt;</span></span>
+<span id="cb8-4"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> age, <span class="at">y =</span> net, <span class="at">col =</span> runner, <span class="at">fill =</span> runner)) <span class="sc">+</span></span>
+<span id="cb8-5"><a></a>  <span class="fu">stat_lineribbon</span>(<span class="fu">aes</span>(<span class="at">y =</span> .prediction), <span class="at">alpha =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb8-6"><a></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Age"</span>, <span class="at">y =</span> <span class="st">"Race time"</span>, <span class="at">col =</span> <span class="st">""</span>) <span class="sc">+</span> </span>
+<span id="cb8-7"><a></a>  <span class="fu">scale_fill_viridis_d</span>(<span class="at">end =</span> .<span class="dv">75</span>, <span class="at">option =</span> <span class="st">"plasma"</span>) <span class="sc">+</span> <span class="fu">scale_color_viridis_d</span>(<span class="at">end =</span> .<span class="dv">75</span>, <span class="at">option =</span> <span class="st">"plasma"</span>) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+
+</div>
+<img data-src="slides26_files/figure-revealjs/unnamed-chunk-12-1.png" width="960" class="r-stretch"></section>
+<section id="variance-decomposition" class="slide level2">
+<h2>Variance decomposition</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a>model_running_ranint <span class="sc">|&gt;</span> </span>
+<span id="cb9-2"><a></a>  <span class="fu">tidy</span>(<span class="at">effects =</span> <span class="fu">c</span>(<span class="st">"ran_pars"</span>),</span>
+<span id="cb9-3"><a></a>       <span class="at">conf.int =</span> <span class="cn">TRUE</span>, <span class="at">conf.level =</span> <span class="fl">0.8</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 3
+  term                    group    estimate
+  &lt;chr&gt;                   &lt;chr&gt;       &lt;dbl&gt;
+1 sd_(Intercept).runner   runner      13.3 
+2 sd_Observation.Residual Residual     5.26</code></pre>
+</div>
+</div>
+<ul>
+<li>The <span class="math inline">\(\sigma_y\)</span> term here is __________ , which means that within any runner, their race times vary by __________ minutes around their individual race time average.</li>
+<li><span class="math inline">\(\sigma_0\)</span>, on the other hand, is ____________, which means that average runner speeds vary or bounce around by ______________ minutes across runners. There’s thus more variation between runners than within individual runners.</li>
+</ul>
+</section>
+<section id="variance-decomposition-1" class="slide level2">
+<h2>Variance decomposition</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a>model_running_ranint <span class="sc">|&gt;</span> </span>
+<span id="cb11-2"><a></a>  <span class="fu">tidy</span>(<span class="at">effects =</span> <span class="fu">c</span>(<span class="st">"ran_pars"</span>),</span>
+<span id="cb11-3"><a></a>       <span class="at">conf.int =</span> <span class="cn">TRUE</span>, <span class="at">conf.level =</span> <span class="fl">0.8</span>) <span class="sc">|&gt;</span></span>
+<span id="cb11-4"><a></a>  <span class="fu">mutate</span>(<span class="at">sigma_2 =</span> estimate<span class="sc">^</span><span class="dv">2</span>, </span>
+<span id="cb11-5"><a></a>          <span class="at">props =</span> sigma_2 <span class="sc">/</span> <span class="fu">sum</span>(sigma_2))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 5
+  term                    group    estimate sigma_2 props
+  &lt;chr&gt;                   &lt;chr&gt;       &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;
+1 sd_(Intercept).runner   runner      13.3    176.  0.865
+2 sd_Observation.Residual Residual     5.26    27.6 0.135</code></pre>
+</div>
+</div>
+<p>Neat! 87% of the variability in race times comes from between-runner differences, while 13% comes from variations within individual runners.</p>
+</section></section>
+<section>
+<section id="hierarchical-models-with-varying-intercepts-and-slopes" class="title-slide slide level1 colorslide center">
+<h1>Hierarchical Models with varying intercepts and slopes</h1>
+
+</section>
+<section id="is-random-intercepts-enough" class="slide level2">
+<h2>Is random intercepts enough?</h2>
+
+<img data-src="slides26_files/figure-revealjs/unnamed-chunk-15-1.png" width="960" class="r-stretch"></section>
+<section id="model-building-layer-1" class="slide level2">
+<h2>Model building: Layer 1</h2>
+<p>Getting random slopes into the model requires some tinkering with the formal model structure</p>
+<p>With layer 1 (within-runner variation), we now use <span class="math inline">\(\beta_{1_j}\)</span> instead of the global <span class="math inline">\(\beta_1\)</span> term from before, showing that each runner <span class="math inline">\(j\)</span> gets their own <span class="math inline">\(\beta_1\)</span>:</p>
+<p><span class="math display">\[
+\begin{aligned}
+Y_{i_j} &amp;\sim {N}(\mu_{i_j}, \sigma_y) \\
+\mu_{i_j} &amp;= \beta_{0_j} + \beta_{1_j} X_{i_j}
+\end{aligned}
+\]</span></p>
+</section>
+<section id="model-building-layer-2" class="slide level2">
+<h2>Model building: Layer 2</h2>
+<p>In the non-offset-based syntax, we can then say that both <span class="math inline">\(\beta_{0_j}\)</span> and <span class="math inline">\(\beta_{1_j}\)</span> follow some random distribution with coefficient-specific variance (<span class="math inline">\(\sigma_0\)</span> and <span class="math inline">\(\sigma_1\)</span> now instead of just <span class="math inline">\(\sigma_0\)</span>):</p>
+<p><span class="math display">\[
+\begin{aligned}
+\beta_{0_j} \sim {N}(\beta_0, \sigma_0) \\
+\beta_{1_j} \sim {N}(\beta_1, \sigma_1)
+\end{aligned}
+\]</span></p>
+</section>
+<section id="model-building-layer-2-continued" class="slide level2">
+<h2>Model building: Layer 2 continued</h2>
+<p>Life gets a little trickier with these terms because <span class="math inline">\(\beta_{0_j}\)</span> and <span class="math inline">\(\beta_{1_j}\)</span> are correlated and move together within each runner. So we have to consider them together:</p>
+<p><span class="math display">\[
+\left(
+  \begin{array}{c}
+  \beta_{0_j} \\
+  \beta_{1_j}
+  \end{array}
+\right)
+\sim {N}
+\left(
+  \left(
+    \begin{array}{c}
+    \beta_0 \\
+    \beta_1 \\
+    \end{array}
+  \right)
+  , \,\Sigma
+\right)
+\]</span></p>
+<p>Written like this, we can draw values for <span class="math inline">\(\beta_{0_j}\)</span> and <span class="math inline">\(\beta_{1_j}\)</span> from a multivariate (or joint) normal distribution with a shared covariance <span class="math inline">\(\Sigma\)</span>:</p>
+<p><span class="math display">\[
+\Sigma =
+\left(
+  \begin{array}{cc}
+     \text{Var}_{\beta_0} &amp; \text{Cov}_{\beta_0, \beta_1} \\
+     \text{Cov}_{\beta_0, \beta_1} &amp; \text{Var}_{\beta_1}
+  \end{array}
+\right)
+\]</span></p>
+</section>
+<section id="easier-to-express-beliefs-about-correlation-than-covariance-so-decompose-further" class="slide level2">
+<h2>Easier to express beliefs about correlation than covariance, so decompose further:</h2>
+<p><span class="math display">\[
+\begin{aligned}
+\rho_{\beta_0, \beta_1} &amp;= \frac{\sigma_{\beta_0, \beta_1}}{\sigma_{\beta_0} \sigma_{\beta_0}} \\
+\sigma_{\beta_0, \beta_1} &amp;= \rho_{\beta_0, \beta_1}\, \sigma_{\beta_0} \sigma_{\beta_0}
+\end{aligned}
+\]</span> so we can rewrite <span class="math inline">\(\Sigma\)</span> as:</p>
+<p><span class="math display">\[
+\Sigma =
+\left(
+  \begin{array}{cc}
+     \sigma^2_{0} &amp; \rho_{0, 1}\, \sigma_{0} \sigma_{1} \\
+     \dots &amp; \sigma^2_{1}
+  \end{array}
+\right)
+\]</span></p>
+</section>
+<section id="full-model" class="slide level2 smaller">
+<h2>Full model:</h2>
+<p><span class="math display">\[
+\begin{aligned}
+Y_{i_j} &amp;\sim {N}(\mu_{i_j}, \sigma_y) &amp; \text{Race times within runners } j \\
+\mu_{i_j} &amp;= \beta_{0_j} + \beta_{1_j} X_{i_j} &amp; \text{Linear model of within-runner variation} \\
+\left(
+  \begin{array}{c}
+  \beta_{0_j} \\
+  \beta_{1_j}
+  \end{array}
+\right)
+&amp;\sim {N}
+\left(
+  \left(
+    \begin{array}{c}
+    \beta_0 \\
+    \beta_1 \\
+    \end{array}
+  \right)
+  , \,
+  \left(
+  \begin{array}{cc}
+     \sigma^2_{0} &amp; \rho_{0, 1}\, \sigma_{0} \sigma_{1} \\
+     \dots &amp; \sigma^2_{1}
+  \end{array}
+\right)
+\right) &amp; \text{Variability in average runner intercepts and slopes} \\
+\\
+\beta_{0_c} &amp;\sim {N}(100, 10) &amp; \text{Prior for global average} \\
+\beta_1 &amp;\sim {N}(2.5, 1) &amp; \text{Prior for global age effect} \\
+\sigma_y &amp;\sim \operatorname{Exponential}(1/10) &amp; \text{Prior for within-runner variability} \\
+\sigma_0 &amp;\sim \operatorname{Exponential}(1/10) &amp; \text{Prior for between-runner intercept variability} \\
+\sigma_1 &amp;\sim \operatorname{Exponential}(1/10) &amp; \text{Prior for between-runner slope variability} \\
+\rho &amp;\sim \operatorname{LKJ}(1) &amp; \text{Prior for between-runner variability}
+\end{aligned}
+\]</span></p>
+</section>
+<section id="offset-based-notation" class="slide level2 smaller">
+<h2>Offset-based notation</h2>
+<p><span class="math display">\[
+\begin{aligned}
+Y_{i_j} &amp;\sim {N}(\mu_{i_j}, \sigma_y) &amp; \text{Race times within runners } j \\
+\mu_{i_j} &amp;= (\beta_{0c} + b_{0_j}) + (\beta_1 + b_{1_j}) X_{i_j} &amp; \text{Linear model of within-runner variation} \\
+\left(
+  \begin{array}{c}
+  b_{0_j} \\
+  b_{1_j}
+  \end{array}
+\right)
+&amp;\sim {N}
+\left(
+  \left(
+    \begin{array}{c}
+    0 \\
+    0 \\
+    \end{array}
+  \right)
+  , \,
+  \left(
+  \begin{array}{cc}
+     \sigma^2_{0} &amp; \rho_{0, 1}\, \sigma_{0} \sigma_{1} \\
+     \dots &amp; \sigma^2_{1}
+  \end{array}
+\right)
+\right) &amp; \text{Variability in average runner intercepts and slopes} \\
+\\
+\beta_{0_c} &amp;\sim {N}(100, 10) &amp; \text{Prior for global average} \\
+\beta_1 &amp;\sim {N}(2.5, 1) &amp; \text{Prior for global age effect} \\
+\sigma_y &amp;\sim \operatorname{Exponential}(1/10) &amp; \text{Prior for within-runner variability} \\
+\sigma_0 &amp;\sim \operatorname{Exponential}(1/10) &amp; \text{Prior for between-runner intercept variability} \\
+\sigma_1 &amp;\sim \operatorname{Exponential}(1/10) &amp; \text{Prior for between-runner slope variability} \\
+\rho &amp;\sim \operatorname{LKJ}(1) &amp; \text{Prior for between-runner variability}
+\end{aligned}
+\]</span></p>
+</section>
+<section id="setting-priors-in-rstanarm" class="slide level2">
+<h2>Setting priors in {rstanarm}</h2>
+<ul>
+<li><span class="math inline">\(\beta_{0,c}\)</span>: <code>prior_intercept</code></li>
+<li><span class="math inline">\(\beta_{\square}\)</span>: <code>prior</code></li>
+<li><span class="math inline">\(\sigma_\square\)</span>: <code>prior_aux</code></li>
+<li><span class="math inline">\(\Sigma\)</span>: <code>prior_covariance = decov(reg = 1, conc = 1, shape = 1, scale = 1)</code></li>
+</ul>
+</section>
+<section id="lkj-prior-for-correlation" class="slide level2">
+<h2>LKJ prior for correlation</h2>
+<p>If LKJ = 1, uniform correlations</p>
+<p>If LKJ &gt;&gt;&gt; 1, correlations much closer to 0</p>
+
+<img data-src="https://bayesf22-notebook.classes.andrewheiss.com/bayes-rules/17-chapter_files/figure-html/unnamed-chunk-23-1.png" class="r-stretch"></section>
+<section id="section-4" class="slide level2">
+<h2></h2>
+<p><code>prior_covariance = decov(reg = 1, conc = 1, shape = 1, scale = 1)</code></p>
+<ul>
+<li><code>reg</code> = LKJ parameter</li>
+<li><code>conc</code> = concentration hyperparameter for dirichlet distribution on variance components</li>
+<li><code>shape</code> and <code>scale</code> = gamma hyperparameters for individual variance components</li>
+</ul>
+</section>
+<section id="fitting-the-model" class="slide level2">
+<h2>Fitting the model</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a>model_running_ranslope <span class="ot">&lt;-</span> <span class="fu">stan_glmer</span>(</span>
+<span id="cb13-2"><a></a>  net <span class="sc">~</span> age <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">+</span> age <span class="sc">|</span> runner), </span>
+<span id="cb13-3"><a></a>  <span class="at">data =</span> runners, </span>
+<span id="cb13-4"><a></a>  <span class="at">family =</span> gaussian,</span>
+<span id="cb13-5"><a></a>  <span class="at">prior_intercept =</span> <span class="fu">normal</span>(<span class="dv">100</span>, <span class="dv">10</span>),</span>
+<span id="cb13-6"><a></a>  <span class="at">prior =</span> <span class="fu">normal</span>(<span class="fl">2.5</span>, <span class="dv">1</span>), </span>
+<span id="cb13-7"><a></a>  <span class="at">prior_aux =</span> <span class="fu">exponential</span>(<span class="dv">1</span>, <span class="at">autoscale =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb13-8"><a></a>  <span class="at">prior_covariance =</span> <span class="fu">decov</span>(<span class="at">reg =</span> <span class="dv">1</span>, <span class="at">conc =</span> <span class="dv">1</span>, <span class="at">shape =</span> <span class="dv">1</span>, <span class="at">scale =</span> <span class="dv">1</span>),</span>
+<span id="cb13-9"><a></a>  <span class="at">chains =</span> <span class="dv">4</span>, <span class="at">cores =</span> <span class="dv">4</span>, <span class="at">iter =</span> <span class="dv">5000</span><span class="sc">*</span><span class="dv">2</span>, <span class="at">seed =</span> <span class="dv">84735</span>, <span class="at">refresh =</span> <span class="dv">0</span>, <span class="at">adapt_delta =</span> <span class="fl">0.9</span>)</span>
+<span id="cb13-10"><a></a></span>
+<span id="cb13-11"><a></a><span class="fu">save</span>(model_running_ranslope, <span class="at">file =</span> <span class="st">"26-ranslope.rda"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a><span class="fu">load</span>(<span class="st">"26-ranslope.rda"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong><code>adapt_delta</code></strong></p>
+</div>
+<div class="callout-content">
+<p><code>adapt_delta</code> is a tuning parameter for the MCMC algorithm (default is 0.95). Closer to 1 = much slower but more stable.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="global-parameters" class="slide level2">
+<h2>Global parameters</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a>model_running_ranslope <span class="sc">|&gt;</span> </span>
+<span id="cb15-2"><a></a>  <span class="fu">tidy</span>(<span class="at">effects =</span> <span class="fu">c</span>(<span class="st">"fixed"</span>),</span>
+<span id="cb15-3"><a></a>       <span class="at">conf.int =</span> <span class="cn">TRUE</span>, <span class="at">conf.level =</span> <span class="fl">0.8</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 5
+  term        estimate std.error conf.low conf.high
+  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;
+1 (Intercept)    18.6     11.8       3.51     33.4 
+2 age             1.32     0.217     1.04      1.60</code></pre>
+</div>
+</div>
+<ul>
+<li><span class="math inline">\(\beta_0\)</span> is the overall global intercept for all runners. There’s an 80% chance that it’s between 3.5 and 33.4 minutes.</li>
+<li><span class="math inline">\(\beta_1\)</span> shows that a typical runner slows down by a posterior mean of 1.31 minutes each year. There’s an 80% chance that the effect is between 1.04 and 1.6 minutes, which is “significant” and substantial. It’s also really close to the 1.36-year effect we found with just random intercepts.</li>
+</ul>
+</section>
+<section id="typical-runner-mean-model-1" class="slide level2">
+<h2><strong>Typical</strong> runner (mean model)</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a></a>runners <span class="sc">|&gt;</span> </span>
+<span id="cb17-2"><a></a>  <span class="fu">add_linpred_draws</span>(model_running_ranslope, <span class="at">ndraws =</span> <span class="dv">100</span>, <span class="at">re_formula =</span> <span class="cn">NA</span>) <span class="sc">|&gt;</span></span>
+<span id="cb17-3"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> age, <span class="at">y =</span> net)) <span class="sc">+</span></span>
+<span id="cb17-4"><a></a>  <span class="fu">stat_lineribbon</span>(<span class="fu">aes</span>(<span class="at">y =</span> .linpred), <span class="at">fill =</span> clrs[<span class="dv">4</span>], <span class="at">color =</span> clrs[<span class="dv">4</span>], <span class="at">alpha =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb17-5"><a></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Age"</span>, <span class="at">y =</span> <span class="st">"Race time"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+
+</div>
+<img data-src="slides26_files/figure-revealjs/unnamed-chunk-20-1.png" width="960" class="r-stretch"></section>
+<section id="individual-runners-mean-model-1" class="slide level2">
+<h2><strong>Individual</strong> runners (mean model)</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a></a>runners <span class="sc">|&gt;</span> </span>
+<span id="cb18-2"><a></a>  <span class="fu">filter</span>(runner <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"4"</span>, <span class="st">"5"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb18-3"><a></a>  <span class="fu">add_linpred_draws</span>(model_running_ranslope, <span class="at">ndraws =</span> <span class="dv">100</span>) <span class="sc">|&gt;</span></span>
+<span id="cb18-4"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> age, <span class="at">y =</span> net, <span class="at">col =</span> runner, <span class="at">fill =</span> runner)) <span class="sc">+</span></span>
+<span id="cb18-5"><a></a>  <span class="fu">stat_lineribbon</span>(<span class="fu">aes</span>(<span class="at">y =</span> .linpred), <span class="at">alpha =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb18-6"><a></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Age"</span>, <span class="at">y =</span> <span class="st">"Race time"</span>, <span class="at">col =</span> <span class="st">""</span>) <span class="sc">+</span> </span>
+<span id="cb18-7"><a></a>  <span class="fu">scale_fill_viridis_d</span>(<span class="at">end =</span> .<span class="dv">75</span>, <span class="at">option =</span> <span class="st">"plasma"</span>) <span class="sc">+</span> <span class="fu">scale_color_viridis_d</span>(<span class="at">end =</span> .<span class="dv">75</span>, <span class="at">option =</span> <span class="st">"plasma"</span>) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+
+</div>
+<img data-src="slides26_files/figure-revealjs/unnamed-chunk-21-1.png" width="960" class="r-stretch"></section>
+<section id="individual-runners-predictions-1" class="slide level2">
+<h2><strong>Individual</strong> runners (predictions)</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a></a>runners <span class="sc">|&gt;</span> </span>
+<span id="cb19-2"><a></a>  <span class="fu">filter</span>(runner <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"4"</span>, <span class="st">"5"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb19-3"><a></a>  <span class="fu">add_predicted_draws</span>(model_running_ranslope, <span class="at">ndraws =</span> <span class="dv">100</span>) <span class="sc">|&gt;</span></span>
+<span id="cb19-4"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> age, <span class="at">y =</span> net, <span class="at">col =</span> runner, <span class="at">fill =</span> runner)) <span class="sc">+</span></span>
+<span id="cb19-5"><a></a>  <span class="fu">stat_lineribbon</span>(<span class="fu">aes</span>(<span class="at">y =</span> .prediction), <span class="at">alpha =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb19-6"><a></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Age"</span>, <span class="at">y =</span> <span class="st">"Race time"</span>, <span class="at">col =</span> <span class="st">""</span>) <span class="sc">+</span> </span>
+<span id="cb19-7"><a></a>  <span class="fu">scale_fill_viridis_d</span>(<span class="at">end =</span> .<span class="dv">75</span>, <span class="at">option =</span> <span class="st">"plasma"</span>) <span class="sc">+</span> <span class="fu">scale_color_viridis_d</span>(<span class="at">end =</span> .<span class="dv">75</span>, <span class="at">option =</span> <span class="st">"plasma"</span>) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+
+</div>
+<img data-src="slides26_files/figure-revealjs/unnamed-chunk-22-1.png" width="960" class="r-stretch"></section>
+<section id="variance-terms" class="slide level2 smaller">
+<h2>Variance terms</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a></a>model_running_ranslope <span class="sc">|&gt;</span> </span>
+<span id="cb20-2"><a></a>  <span class="fu">tidy</span>(<span class="at">effects =</span> <span class="fu">c</span>(<span class="st">"ran_pars"</span>),  <span class="at">conf.int =</span> <span class="cn">TRUE</span>, <span class="at">conf.level =</span> <span class="fl">0.8</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 3
+  term                       group    estimate
+  &lt;chr&gt;                      &lt;chr&gt;       &lt;dbl&gt;
+1 sd_(Intercept).runner      runner     1.32  
+2 sd_age.runner              runner     0.250 
+3 cor_(Intercept).age.runner runner    -0.0795
+4 sd_Observation.Residual    Residual   5.16  </code></pre>
+</div>
+</div>
+<ul>
+<li><span class="math inline">\(\sigma_y\)</span> is __________, which means that within any runner, their race times vary by ___________ minutes around their individual race time average.</li>
+<li><span class="math inline">\(\sigma_0\)</span> is __________, which means that average runner speeds vary or bounce around by __________ minutes across runners.</li>
+<li><span class="math inline">\(\sigma_1\)</span> is __________, which means that average age effects vary by __________ minutes across runners.</li>
+<li><span class="math inline">\(\rho\)</span> is __________, which means the correlation between runner-specific slopes and intercepts is __________</li>
+</ul>
+</section>
+<section id="wait-a-second" class="slide level2">
+<h2>Wait a second</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a></a>runner_summaries_ranslope <span class="ot">&lt;-</span> model_running_ranslope <span class="sc">|&gt;</span></span>
+<span id="cb22-2"><a></a>  <span class="fu">spread_draws</span>(<span class="st">`</span><span class="at">(Intercept)</span><span class="st">`</span>, b[term, runner], <span class="st">`</span><span class="at">age</span><span class="st">`</span>) <span class="sc">|&gt;</span></span>
+<span id="cb22-3"><a></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> term, <span class="at">names_glue =</span> <span class="st">"b_{term}"</span>,</span>
+<span id="cb22-4"><a></a>              <span class="at">values_from =</span> b) <span class="sc">%&gt;%</span> </span>
+<span id="cb22-5"><a></a>  <span class="fu">mutate</span>(<span class="at">runner_intercept =</span> <span class="st">`</span><span class="at">(Intercept)</span><span class="st">`</span> <span class="sc">+</span> <span class="st">`</span><span class="at">b_(Intercept)</span><span class="st">`</span>,</span>
+<span id="cb22-6"><a></a>         <span class="at">runner_age =</span> age <span class="sc">+</span> b_age) <span class="sc">|&gt;</span></span>
+<span id="cb22-7"><a></a>  <span class="fu">group_by</span>(runner) <span class="sc">|&gt;</span></span>
+<span id="cb22-8"><a></a>  <span class="fu">summarize</span>(<span class="at">runner_intercept =</span> <span class="fu">median</span>(runner_intercept),</span>
+<span id="cb22-9"><a></a>            <span class="at">runner_age =</span> <span class="fu">median</span>(runner_age))</span>
+<span id="cb22-10"><a></a></span>
+<span id="cb22-11"><a></a><span class="fu">head</span>(runner_summaries_ranslope)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 3
+  runner    runner_intercept runner_age
+  &lt;chr&gt;                &lt;dbl&gt;      &lt;dbl&gt;
+1 runner:1              18.6      1.06 
+2 runner:10             18.6      1.75 
+3 runner:11             18.6      1.32 
+4 runner:12             18.5      0.978
+5 runner:13             18.6      1.16 
+6 runner:14             18.6      1.39 </code></pre>
+</div>
+</div>
+</section>
+<section id="wait-a-second-1" class="slide level2">
+<h2>Wait a second</h2>
+
+<img data-src="slides26_files/figure-revealjs/unnamed-chunk-25-1.png" width="960" class="r-stretch"></section>
+<section id="posterior-predictive-checks" class="slide level2">
+<h2>Posterior predictive checks</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a></a>p1 <span class="ot">&lt;-</span> <span class="fu">pp_check</span>(model_running_ranint) <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Random Intercepts"</span>)</span>
+<span id="cb24-2"><a></a>p2 <span class="ot">&lt;-</span> <span class="fu">pp_check</span>(model_running_ranslope) <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Random Slopes"</span>)</span>
+<span id="cb24-3"><a></a></span>
+<span id="cb24-4"><a></a>p1 <span class="sc">+</span> p2</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+
+</div>
+<img data-src="slides26_files/figure-revealjs/unnamed-chunk-26-1.png" width="960" class="r-stretch"></section>
+<section id="prediction-summaries" class="slide level2">
+<h2>Prediction summaries</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a></a><span class="co"># Calculate prediction summaries</span></span>
+<span id="cb25-2"><a></a><span class="fu">set.seed</span>(<span class="dv">84735</span>)</span>
+<span id="cb25-3"><a></a><span class="fu">prediction_summary</span>(<span class="at">model =</span> model_running_ranint, <span class="at">data =</span> runners)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      mae mae_scaled within_50 within_95
+1 2.58843  0.4493517 0.6864865  0.972973</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a></a><span class="fu">prediction_summary</span>(<span class="at">model =</span> model_running_ranslope, <span class="at">data =</span> runners)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       mae mae_scaled within_50 within_95
+1 2.533069  0.4461603 0.7081081  0.972973</code></pre>
+</div>
+</div>
+</section>
+<section id="out-of-sample" class="slide level2">
+<h2>out-of-sample</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a></a><span class="co"># Calculate ELPD for the 2 models</span></span>
+<span id="cb29-2"><a></a>elpd_hierarchical_1 <span class="ot">&lt;-</span> <span class="fu">loo</span>(model_running_ranint)</span>
+<span id="cb29-3"><a></a>elpd_hierarchical_2 <span class="ot">&lt;-</span> <span class="fu">loo</span>(model_running_ranslope)</span>
+<span id="cb29-4"><a></a></span>
+<span id="cb29-5"><a></a></span>
+<span id="cb29-6"><a></a><span class="co"># Compare the ELPD</span></span>
+<span id="cb29-7"><a></a><span class="fu">loo_compare</span>(elpd_hierarchical_1, elpd_hierarchical_2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                       elpd_diff se_diff
+model_running_ranslope  0.0       0.0   
+model_running_ranint   -1.6       1.4   </code></pre>
+</div>
+</div>
+
+
+</section></section>
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
+<div class="footer footer-default">
+<p><a href="aluby.github.io/stat340-f25">aluby.github.io/stat340-f25</a></p>
+</div>
+</div></div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="../site_libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="../site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="../site_libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="../site_libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
+  <script src="../site_libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="../site_libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="../site_libs/revealjs/plugin/search/search.js"></script>
+  <script src="../site_libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="../site_libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': false,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'jumpToSlide': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"8\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'chalkboard': {"buttons":true},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'fade',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1050,
+
+        height: 700,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        math: {
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealChalkboard, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    
+    <script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        // dispatch for htmlwidgets
+        function fireSlideEnter() {
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
+        }
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+          fireSlideEnter();
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
+            }
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
+            }
+          }
+        }
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+          });
+        }
+
+      })();
+    </script>
+
+    <script id="quarto-html-after-body" type="application/javascript">
+      window.document.addEventListener("DOMContentLoaded", function (event) {
+        const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+        tabsets.forEach(function(tabset) {
+          const tabby = new Tabby('#' + tabset.id);
+        });
+        const isCodeAnnotation = (el) => {
+          for (const clz of el.classList) {
+            if (clz.startsWith('code-annotation-')) {                     
+              return true;
+            }
+          }
+          return false;
+        }
+        const onCopySuccess = function(e) {
+          // button target
+          const button = e.trigger;
+          // don't keep focus
+          button.blur();
+          // flash "checked"
+          button.classList.add('code-copy-button-checked');
+          var currentTitle = button.getAttribute("title");
+          button.setAttribute("title", "Copied!");
+          let tooltip;
+          if (window.bootstrap) {
+            button.setAttribute("data-bs-toggle", "tooltip");
+            button.setAttribute("data-bs-placement", "left");
+            button.setAttribute("data-bs-title", "Copied!");
+            tooltip = new bootstrap.Tooltip(button, 
+              { trigger: "manual", 
+                customClass: "code-copy-button-tooltip",
+                offset: [0, -8]});
+            tooltip.show();    
+          }
+          setTimeout(function() {
+            if (tooltip) {
+              tooltip.hide();
+              button.removeAttribute("data-bs-title");
+              button.removeAttribute("data-bs-toggle");
+              button.removeAttribute("data-bs-placement");
+            }
+            button.setAttribute("title", currentTitle);
+            button.classList.remove('code-copy-button-checked');
+          }, 1000);
+          // clear code selection
+          e.clearSelection();
+        }
+        const getTextToCopy = function(trigger) {
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+        }
+        const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+          text: getTextToCopy
+        });
+        clipboard.on('success', onCopySuccess);
+        if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+          const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+            text: getTextToCopy,
+            container: window.document.getElementById('quarto-embedded-source-code-modal')
+          });
+          clipboardModal.on('success', onCopySuccess);
+        }
+          var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+          var mailtoRegex = new RegExp(/^mailto:/);
+            var filterRegex = new RegExp("https:\/\/aluby\.github\.io\/stat340-f25\/");
+          var isInternal = (href) => {
+              return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          }
+          // Inspect non-navigation links and adorn them if external
+         var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+          for (var i=0; i<links.length; i++) {
+            const link = links[i];
+            if (!isInternal(link.href)) {
+              // undo the damage that might have been done by quarto-nav.js in the case of
+              // links that we want to consider external
+              if (link.dataset.originalHref !== undefined) {
+                link.href = link.dataset.originalHref;
+              }
+            }
+          }
+        function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+          const config = {
+            allowHTML: true,
+            maxWidth: 500,
+            delay: 100,
+            arrow: false,
+            appendTo: function(el) {
+                return el.closest('section.slide') || el.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'light-border',
+            placement: 'bottom-start',
+          };
+          if (contentFn) {
+            config.content = contentFn;
+          }
+          if (onTriggerFn) {
+            config.onTrigger = onTriggerFn;
+          }
+          if (onUntriggerFn) {
+            config.onUntrigger = onUntriggerFn;
+          }
+            config['offset'] = [0,0];
+            config['maxWidth'] = 700;
+          window.tippy(el, config); 
+        }
+        const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+        for (var i=0; i<noterefs.length; i++) {
+          const ref = noterefs[i];
+          tippyHover(ref, function() {
+            // use id or data attribute instead here
+            let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+            try { href = new URL(href).hash; } catch {}
+            const id = href.replace(/^#\/?/, "");
+            const note = window.document.getElementById(id);
+            if (note) {
+              return note.innerHTML;
+            } else {
+              return "";
+            }
+          });
+        }
+        const findCites = (el) => {
+          const parentEl = el.parentElement;
+          if (parentEl) {
+            const cites = parentEl.dataset.cites;
+            if (cites) {
+              return {
+                el,
+                cites: cites.split(' ')
+              };
+            } else {
+              return findCites(el.parentElement)
+            }
+          } else {
+            return undefined;
+          }
+        };
+        var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+        for (var i=0; i<bibliorefs.length; i++) {
+          const ref = bibliorefs[i];
+          const citeInfo = findCites(ref);
+          if (citeInfo) {
+            tippyHover(citeInfo.el, function() {
+              var popup = window.document.createElement('div');
+              citeInfo.cites.forEach(function(cite) {
+                var citeDiv = window.document.createElement('div');
+                citeDiv.classList.add('hanging-indent');
+                citeDiv.classList.add('csl-entry');
+                var biblioDiv = window.document.getElementById('ref-' + cite);
+                if (biblioDiv) {
+                  citeDiv.innerHTML = biblioDiv.innerHTML;
+                }
+                popup.appendChild(citeDiv);
+              });
+              return popup.innerHTML;
+            });
+          }
+        }
+      });
+      </script>
+    
+
+</body></html>
