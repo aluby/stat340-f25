@@ -18,6 +18,12 @@ library(tidybayes) # helpful for wrangling Bayesian model output
 library(patchwork)
 ```
 
+::: callout-note
+## Important!
+
+This HW/GW/Quiz will be due on Monday of Week 10, instead of the usual Friday. Sorry for any confusion!
+:::
+
 # Exercise 15.3 (Hierarchical data) 
 
 Interested in the impact of sleep deprivation on reaction time, Belenky et al. (2003) enlisted 18 subjects in a study. The subjects got a regular night’s sleep on “day 0” of the study, and were then restricted to 3 hours of sleep per night for the next 9 days. Each day, researchers recorded the subjects’ reaction times (in ms) on a series of tests. The results are provided in the `sleepstudy` dataset in the {lme4} package.
@@ -83,3 +89,5 @@ You will explore this relationship in more depth here. To this end, suppose rese
 library(lme4)
 data(sleepstudy)
 ```
+
+# TBA Friday

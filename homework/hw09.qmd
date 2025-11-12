@@ -17,6 +17,12 @@ library(tidybayes) # helpful for wrangling Bayesian model output
 library(patchwork)
 ```
 
+::: callout-note
+## Important!
+
+This HW/GW/Quiz will be due on Monday of Week 10, instead of the usual Friday. Sorry for any confusion!
+:::
+
 # BR 16.6 (Big words: getting to know the data) 
 
 Recall from Section 16.7 the Abdul Latif Jameel Poverty Action Lab (J-PAL) study into the effectiveness of a digital vocabulary learning program, the Big Word Club (BWC) (Kalil, Mayer, and Oreopoulos 2020). In our analysis of this program, we’ll utilize weakly informative priors with a baseline understanding that the average student saw 0 change in their vocabulary scores throughout the program. We’ll balance these priors by the big_word_club data in the bayesrules package. For each student participant, big_word_club includes a school_id and the percentage change in vocabulary scores over the course of the study period (score_pct_change). We keep only the students that participated in the BWC program (treat == 1), and thus eliminate the control group.
@@ -67,3 +73,4 @@ Suppose we continue the vocabulary study at each of Schools 6 and 17 (which part
 (d) Using model (2), identify the person who has the *slowest* baseline reaction time. Report their posterior median regression model
 (e) Simulate, plot, and discuss the posterior predictive model (under both 1 and 2) of reaction time after 5 days of sleep deprivation for two subjects: you and Subject 308. 
 
+# TBA Friday
