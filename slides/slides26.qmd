@@ -211,7 +211,7 @@ $$
 ## Fit the model
 
 ```{r}
-#| cache: true
+#| eval: false
 model_running_ranint <- stan_glmer(
   net ~ age + (1 | runner), 
   data = runners, 
@@ -221,12 +221,18 @@ model_running_ranint <- stan_glmer(
   prior_aux = exponential(1, autoscale = TRUE),
   prior_covariance = decov(reg = 1, conc = 1, shape = 1, scale = 1),
   chains = 4, cores = 4, iter = 5000*2, seed = 84735, refresh = 0)
+
+save(model_running_ranint, file = "26-ranint.rda")
+```
+
+```{r}
+load("26-ranint.rda")
 ```
 
 ::: callout-warning
 ## Warning! 
 
-Hierarchical models can run slow. Add `#| cache: true`  to your chunk when rendering to get quarto to save the results for you and speed up rendering. 
+Hierarchical models can run slow. Add `#| cache: true`  to your chunk when rendering to get quarto to save the results for you and speed up rendering. Or use the `save` and `load` approach here with `#| eval: false`
 :::
 
 ## 
@@ -490,10 +496,43 @@ $$
 
 ## LKJ prior for correlation
 
+If LKJ = 1, uniform correlations
+
+If LKJ >>> 1, correlations much closer to 0
+
+```{r}
+#| eval: false
+#| echo: false
+
+
+library(ggdist)
+tibble(eta = c(0.5, 1, 5, 15)) |> 
+  mutate(prior = glue::glue("lkjcorr({eta})")) |>
+  mutate(prior_nice = fct_inorder(glue::glue("LKJ(η = {eta})"))) |> 
+  parse_dist(prior) |> 
+  marginalize_lkjcorr(K = 2) |>  # K = dimension of correlation matrix; ours is 2x2 here
+  ggplot(aes(y = 0, dist = .dist, args = .args)) +
+  stat_slab(fill = clrs[5]) +
+  labs(x = "rho") +
+  theme(axis.title.x = element_markdown(), axis.text.y = element_blank(), 
+        axis.title.y = element_blank(), axis.ticks.y = element_blank(),
+        panel.grid = element_blank()) +
+  facet_wrap(vars(prior_nice), nrow = 1)
+```
+![](https://bayesf22-notebook.classes.andrewheiss.com/bayes-rules/17-chapter_files/figure-html/unnamed-chunk-23-1.png)
+
+## 
+
+`prior_covariance = decov(reg = 1, conc = 1, shape = 1, scale = 1)`
+
+- `reg` = LKJ parameter
+- `conc` = concentration hyperparameter for dirichlet distribution on variance components
+- `shape` and `scale` = gamma hyperparameters for individual variance components
+
 ## Fitting the model
 
 ```{r}
-#| cache: true
+#| eval: false
 model_running_ranslope <- stan_glmer(
   net ~ age + (1 + age | runner), 
   data = runners, 
@@ -503,12 +542,18 @@ model_running_ranslope <- stan_glmer(
   prior_aux = exponential(1, autoscale = TRUE),
   prior_covariance = decov(reg = 1, conc = 1, shape = 1, scale = 1),
   chains = 4, cores = 4, iter = 5000*2, seed = 84735, refresh = 0, adapt_delta = 0.9)
+
+save(model_running_ranslope, file = "26-ranslope.rda")
+```
+
+```{r}
+load("26-ranslope.rda")
 ```
 
 ::: callout-tip
 ## `adapt_delta`
 
-
+`adapt_delta` is a tuning parameter for the MCMC algorithm (default is 0.95). Closer to 1 = much slower but more stable. 
 :::
 
 ## Global parameters
@@ -572,5 +617,66 @@ model_running_ranslope |>
 - $\sigma_1$ is __________, which means that average age effects vary by __________ minutes across runners. 
 - $\rho$ is __________, which means the correlation between runner-specific slopes and intercepts is __________
 
+## Wait a second
 
+```{r}
+runner_summaries_ranslope <- model_running_ranslope |>
+  spread_draws(`(Intercept)`, b[term, runner], `age`) |>
+  pivot_wider(names_from = term, names_glue = "b_{term}",
+              values_from = b) %>% 
+  mutate(runner_intercept = `(Intercept)` + `b_(Intercept)`,
+         runner_age = age + b_age) |>
+  group_by(runner) |>
+  summarize(runner_intercept = median(runner_intercept),
+            runner_age = median(runner_age))
+
+head(runner_summaries_ranslope)
+```
+
+## Wait a second
+
+```{r}
+#| echo: false 
+runners |>
+  filter(runner %in% 25:36) |>
+  ggplot(aes(y = net, x = age, group = runner)) + 
+  geom_point() +
+  geom_abline(data = runner_summaries_ranslope |>
+                      mutate(runner = str_remove(runner, "runner:")) |>
+                filter(runner %in% 25:36), 
+              color = "gray",
+              aes(intercept = runner_intercept, slope = runner_age)) + 
+  lims(x = c(50, 61), y = c(50, 135)) + 
+  facet_wrap(~runner)
+```
+
+## Posterior predictive checks
+
+```{r}
+p1 <- pp_check(model_running_ranint) + labs(title = "Random Intercepts")
+p2 <- pp_check(model_running_ranslope) + labs(title = "Random Slopes")
+
+p1 + p2
+```
+
+## Prediction summaries
+
+```{r}
+# Calculate prediction summaries
+set.seed(84735)
+prediction_summary(model = model_running_ranint, data = runners)
+prediction_summary(model = model_running_ranslope, data = runners)
+```
+
+## out-of-sample
+
+```{r}
+# Calculate ELPD for the 2 models
+elpd_hierarchical_1 <- loo(model_running_ranint)
+elpd_hierarchical_2 <- loo(model_running_ranslope)
+
+
+# Compare the ELPD
+loo_compare(elpd_hierarchical_1, elpd_hierarchical_2)
+```
 
