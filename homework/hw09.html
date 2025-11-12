@@ -570,6 +570,7 @@ window.Quarto = {
   <li><a href="#br-16.8" id="toc-br-16.8" class="nav-link" data-scroll-target="#br-16.8">BR 16.8</a></li>
   <li><a href="#br-16.11" id="toc-br-16.11" class="nav-link" data-scroll-target="#br-16.11">BR 16.11</a></li>
   <li><a href="#br-17.7-adapted" id="toc-br-17.7-adapted" class="nav-link" data-scroll-target="#br-17.7-adapted">BR 17.7 (adapted)</a></li>
+  <li><a href="#tba-friday" id="toc-tba-friday" class="nav-link" data-scroll-target="#tba-friday">TBA Friday</a></li>
   </ul><div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="hw09.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
     </div>
 <!-- main -->
@@ -598,6 +599,19 @@ window.Quarto = {
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://mc-stan.org/bayesplot/">bayesplot</a></span><span class="op">)</span> <span class="co"># helpful plotting functions</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://mjskay.github.io/tidybayes/">tidybayes</a></span><span class="op">)</span> <span class="co"># helpful for wrangling Bayesian model output</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://patchwork.data-imaginist.com">patchwork</a></span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Important!
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This HW/GW/Quiz will be due on Monday of Week 10, instead of the usual Friday. Sorry for any confusion!</p>
+</div>
 </div>
 <section id="br-16.6-big-words-getting-to-know-the-data" class="level1"><h1>BR 16.6 (Big words: getting to know the data)</h1>
 <p>Recall from Section 16.7 the Abdul Latif Jameel Poverty Action Lab (J-PAL) study into the effectiveness of a digital vocabulary learning program, the Big Word Club (BWC) (Kalil, Mayer, and Oreopoulos 2020). In our analysis of this program, we’ll utilize weakly informative priors with a baseline understanding that the average student saw 0 change in their vocabulary scores throughout the program. We’ll balance these priors by the big_word_club data in the bayesrules package. For each student participant, big_word_club includes a school_id and the percentage change in vocabulary scores over the course of the study period (score_pct_change). We keep only the students that participated in the BWC program (treat == 1), and thus eliminate the control group.</p>
@@ -640,7 +654,7 @@ window.Quarto = {
 <li>Using model (2), identify the person whose reaction time changes the <em>most</em> with sleep deprivation. Report their posterior median regression model</li>
 <li>Using model (2), identify the person who has the <em>slowest</em> baseline reaction time. Report their posterior median regression model</li>
 <li>Simulate, plot, and discuss the posterior predictive model (under both 1 and 2) of reaction time after 5 days of sleep deprivation for two subjects: you and Subject 308.</li>
-</ol>
+</ol></section><section id="tba-friday" class="level1"><h1>TBA Friday</h1>
 
 
 <!-- -->
@@ -1138,55 +1152,63 @@ window.Quarto = {
 <span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span>
 <span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a><span class="fu"># BR 16.6 (Big words: getting to know the data) </span></span>
-<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>Recall from Section 16.7 the Abdul Latif Jameel Poverty Action Lab (J-PAL) study into the effectiveness of a digital vocabulary learning program, the Big Word Club (BWC) (Kalil, Mayer, and Oreopoulos 2020). In our analysis of this program, we’ll utilize weakly informative priors with a baseline understanding that the average student saw 0 change in their vocabulary scores throughout the program. We’ll balance these priors by the big_word_club data in the bayesrules package. For each student participant, big_word_club includes a school_id and the percentage change in vocabulary scores over the course of the study period (score_pct_change). We keep only the students that participated in the BWC program (treat == 1), and thus eliminate the control group.</span>
-<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">"big_word_club"</span>)</span>
-<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>big_word_club <span class="ot">&lt;-</span> big_word_club <span class="sc">%&gt;%</span> </span>
-<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(treat <span class="sc">==</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(school_id, score_pct_change) <span class="sc">%&gt;%</span> </span>
-<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">na.omit</span>()</span>
-<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>(a) How many schools participated in the Big Word Club?</span>
-<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>(b) What’s the range in the number of student participants per school?</span>
-<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>(c) On average, at which school did students exhibit the greatest improvement in vocabulary? The least?</span>
-<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>(d) Construct and discuss a plot which illustrates the variability in score_pct_change within and between schools.</span>
-<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a><span class="fu"># BR Exercise 16.7 (Big words: setting up the model) </span></span>
-<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a>In the next exercises you will explore a hierarchical one-way ANOVA model (16.12) of  $Y_{ij}$, the percentage change in vocabulary scores, for student $i$ in school $j$. </span>
-<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a>(a) Why is a hierarchical model, vs a complete or no pooled model, appropriate in our analysis of the BWC program? </span>
-<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a>(b) Compare and contrast the meanings of model parameters  $\mu$ and  $\mu_j$ in the context of this vocabulary study.</span>
-<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a>(c) Compare and contrast the meanings of model parameters  $\sigma_y$ and $\sigma_\mu$ in the context of this vocabulary study.</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>::: callout-note</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a><span class="fu">## Important!</span></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>This HW/GW/Quiz will be due on Monday of Week 10, instead of the usual Friday. Sorry for any confusion!</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a><span class="fu"># BR 16.6 (Big words: getting to know the data) </span></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>Recall from Section 16.7 the Abdul Latif Jameel Poverty Action Lab (J-PAL) study into the effectiveness of a digital vocabulary learning program, the Big Word Club (BWC) (Kalil, Mayer, and Oreopoulos 2020). In our analysis of this program, we’ll utilize weakly informative priors with a baseline understanding that the average student saw 0 change in their vocabulary scores throughout the program. We’ll balance these priors by the big_word_club data in the bayesrules package. For each student participant, big_word_club includes a school_id and the percentage change in vocabulary scores over the course of the study period (score_pct_change). We keep only the students that participated in the BWC program (treat == 1), and thus eliminate the control group.</span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">"big_word_club"</span>)</span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>big_word_club <span class="ot">&lt;-</span> big_word_club <span class="sc">%&gt;%</span> </span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(treat <span class="sc">==</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(school_id, score_pct_change) <span class="sc">%&gt;%</span> </span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>  <span class="fu">na.omit</span>()</span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>(a) How many schools participated in the Big Word Club?</span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a>(b) What’s the range in the number of student participants per school?</span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a>(c) On average, at which school did students exhibit the greatest improvement in vocabulary? The least?</span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a>(d) Construct and discuss a plot which illustrates the variability in score_pct_change within and between schools.</span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a><span class="fu"># BR Exercise 16.7 (Big words: setting up the model) </span></span>
 <span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a><span class="fu"># BR 16.8</span></span>
+<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a>In the next exercises you will explore a hierarchical one-way ANOVA model (16.12) of  $Y_{ij}$, the percentage change in vocabulary scores, for student $i$ in school $j$. </span>
 <span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a>Exercise 16.8 (Big words: simulating the model)</span>
-<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a>(a) Simulate the hierarchical posterior model of parameters ($\mu_j, \mu, \sigma_y, \sigma_\mu$) using 4 chains, each of length 10000.</span>
-<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a>(b) Construct and discuss Markov chain trace, density, and autocorrelation plots.</span>
-<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a>(c) Construct and discuss a pp_check() of the chain output.</span>
+<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a>(a) Why is a hierarchical model, vs a complete or no pooled model, appropriate in our analysis of the BWC program? </span>
+<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a>(b) Compare and contrast the meanings of model parameters  $\mu$ and  $\mu_j$ in the context of this vocabulary study.</span>
+<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a>(c) Compare and contrast the meanings of model parameters  $\sigma_y$ and $\sigma_\mu$ in the context of this vocabulary study.</span>
+<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a><span class="fu"># BR 16.8</span></span>
 <span id="cb3-56"><a href="#cb3-56" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-57"><a href="#cb3-57" aria-hidden="true" tabindex="-1"></a><span class="fu"># BR 16.11</span></span>
+<span id="cb3-57"><a href="#cb3-57" aria-hidden="true" tabindex="-1"></a>Exercise 16.8 (Big words: simulating the model)</span>
 <span id="cb3-58"><a href="#cb3-58" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-59"><a href="#cb3-59" aria-hidden="true" tabindex="-1"></a>Suppose we continue the vocabulary study at each of Schools 6 and 17 (which participated in the current study) and Bayes Prep, a school which is new to the study. In this exercise you’ll make predictions about  $Y_{new, j}$, the vocabulary performance of a student that’s new to the study from each of these three schools  $j$.</span>
-<span id="cb3-60"><a href="#cb3-60" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-61"><a href="#cb3-61" aria-hidden="true" tabindex="-1"></a>(a) *Without* using the <span class="in">`posterior_predict()`</span> shortcut function, simulate posterior predictive models of$Y_{new, j}$ for School 6 and Bayes Prep. Display the first 6 posterior predictions for both schools.</span>
-<span id="cb3-62"><a href="#cb3-62" aria-hidden="true" tabindex="-1"></a>(b) Using your simulations from part (a), construct, interpret, and compare the 80% posterior predictive intervals of $Y_{new, j}$ for School 6 and Bayes Prep.</span>
-<span id="cb3-63"><a href="#cb3-63" aria-hidden="true" tabindex="-1"></a>(c) Using <span class="in">`posterior_predict()`</span> this time, simulate posterior predictive models of  $Y_{new, j}$ for each of School 6, School 17, and Bayes Prep. Illustrate your simulation results using <span class="in">`mcmc_areas()`</span> and discuss your findings.</span>
-<span id="cb3-64"><a href="#cb3-64" aria-hidden="true" tabindex="-1"></a>(d) Finally, construct, plot, and discuss the 80% posterior prediction intervals for all schools in the original study.</span>
-<span id="cb3-65"><a href="#cb3-65" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-66"><a href="#cb3-66" aria-hidden="true" tabindex="-1"></a><span class="fu"># BR 17.7 (adapted)</span></span>
-<span id="cb3-67"><a href="#cb3-67" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-68"><a href="#cb3-68" aria-hidden="true" tabindex="-1"></a>(a) Simulate the posteriors from model (1) and (2) from BR exercise 17.6</span>
-<span id="cb3-69"><a href="#cb3-69" aria-hidden="true" tabindex="-1"></a>(b) Report a posterior predictive check from each model. Which do you prefer? </span>
-<span id="cb3-70"><a href="#cb3-70" aria-hidden="true" tabindex="-1"></a>(c) Using model (2), identify the person whose reaction time changes the *most* with sleep deprivation. Report their posterior median regression model</span>
-<span id="cb3-71"><a href="#cb3-71" aria-hidden="true" tabindex="-1"></a>(d) Using model (2), identify the person who has the *slowest* baseline reaction time. Report their posterior median regression model</span>
-<span id="cb3-72"><a href="#cb3-72" aria-hidden="true" tabindex="-1"></a>(e) Simulate, plot, and discuss the posterior predictive model (under both 1 and 2) of reaction time after 5 days of sleep deprivation for two subjects: you and Subject 308. </span>
+<span id="cb3-59"><a href="#cb3-59" aria-hidden="true" tabindex="-1"></a>(a) Simulate the hierarchical posterior model of parameters ($\mu_j, \mu, \sigma_y, \sigma_\mu$) using 4 chains, each of length 10000.</span>
+<span id="cb3-60"><a href="#cb3-60" aria-hidden="true" tabindex="-1"></a>(b) Construct and discuss Markov chain trace, density, and autocorrelation plots.</span>
+<span id="cb3-61"><a href="#cb3-61" aria-hidden="true" tabindex="-1"></a>(c) Construct and discuss a pp_check() of the chain output.</span>
+<span id="cb3-62"><a href="#cb3-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-63"><a href="#cb3-63" aria-hidden="true" tabindex="-1"></a><span class="fu"># BR 16.11</span></span>
+<span id="cb3-64"><a href="#cb3-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-65"><a href="#cb3-65" aria-hidden="true" tabindex="-1"></a>Suppose we continue the vocabulary study at each of Schools 6 and 17 (which participated in the current study) and Bayes Prep, a school which is new to the study. In this exercise you’ll make predictions about  $Y_{new, j}$, the vocabulary performance of a student that’s new to the study from each of these three schools  $j$.</span>
+<span id="cb3-66"><a href="#cb3-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-67"><a href="#cb3-67" aria-hidden="true" tabindex="-1"></a>(a) *Without* using the <span class="in">`posterior_predict()`</span> shortcut function, simulate posterior predictive models of$Y_{new, j}$ for School 6 and Bayes Prep. Display the first 6 posterior predictions for both schools.</span>
+<span id="cb3-68"><a href="#cb3-68" aria-hidden="true" tabindex="-1"></a>(b) Using your simulations from part (a), construct, interpret, and compare the 80% posterior predictive intervals of $Y_{new, j}$ for School 6 and Bayes Prep.</span>
+<span id="cb3-69"><a href="#cb3-69" aria-hidden="true" tabindex="-1"></a>(c) Using <span class="in">`posterior_predict()`</span> this time, simulate posterior predictive models of  $Y_{new, j}$ for each of School 6, School 17, and Bayes Prep. Illustrate your simulation results using <span class="in">`mcmc_areas()`</span> and discuss your findings.</span>
+<span id="cb3-70"><a href="#cb3-70" aria-hidden="true" tabindex="-1"></a>(d) Finally, construct, plot, and discuss the 80% posterior prediction intervals for all schools in the original study.</span>
+<span id="cb3-71"><a href="#cb3-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-72"><a href="#cb3-72" aria-hidden="true" tabindex="-1"></a><span class="fu"># BR 17.7 (adapted)</span></span>
+<span id="cb3-73"><a href="#cb3-73" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-74"><a href="#cb3-74" aria-hidden="true" tabindex="-1"></a>(a) Simulate the posteriors from model (1) and (2) from BR exercise 17.6</span>
+<span id="cb3-75"><a href="#cb3-75" aria-hidden="true" tabindex="-1"></a>(b) Report a posterior predictive check from each model. Which do you prefer? </span>
+<span id="cb3-76"><a href="#cb3-76" aria-hidden="true" tabindex="-1"></a>(c) Using model (2), identify the person whose reaction time changes the *most* with sleep deprivation. Report their posterior median regression model</span>
+<span id="cb3-77"><a href="#cb3-77" aria-hidden="true" tabindex="-1"></a>(d) Using model (2), identify the person who has the *slowest* baseline reaction time. Report their posterior median regression model</span>
+<span id="cb3-78"><a href="#cb3-78" aria-hidden="true" tabindex="-1"></a>(e) Simulate, plot, and discuss the posterior predictive model (under both 1 and 2) of reaction time after 5 days of sleep deprivation for two subjects: you and Subject 308. </span>
+<span id="cb3-79"><a href="#cb3-79" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-80"><a href="#cb3-80" aria-hidden="true" tabindex="-1"></a><span class="fu"># TBA Friday</span></span>
 </code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->

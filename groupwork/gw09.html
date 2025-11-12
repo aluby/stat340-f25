@@ -571,6 +571,7 @@ window.Quarto = {
   <li><a href="#exercise-16.3-speed-typing-interpret-the-coefficients" id="toc-exercise-16.3-speed-typing-interpret-the-coefficients" class="nav-link" data-scroll-target="#exercise-16.3-speed-typing-interpret-the-coefficients">Exercise 16.3 (Speed typing: interpret the coefficients)</a></li>
   <li><a href="#br-17.1" id="toc-br-17.1" class="nav-link" data-scroll-target="#br-17.1">BR 17.1</a></li>
   <li><a href="#br-17.6" id="toc-br-17.6" class="nav-link" data-scroll-target="#br-17.6">BR 17.6</a></li>
+  <li><a href="#tba-friday" id="toc-tba-friday" class="nav-link" data-scroll-target="#tba-friday">TBA Friday</a></li>
   </ul><div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="gw09.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
     </div>
 <!-- main -->
@@ -599,6 +600,19 @@ window.Quarto = {
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://mc-stan.org/bayesplot/">bayesplot</a></span><span class="op">)</span> <span class="co"># helpful plotting functions</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://mjskay.github.io/tidybayes/">tidybayes</a></span><span class="op">)</span> <span class="co"># helpful for wrangling Bayesian model output</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://patchwork.data-imaginist.com">patchwork</a></span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Important!
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This HW/GW/Quiz will be due on Monday of Week 10, instead of the usual Friday. Sorry for any confusion!</p>
+</div>
 </div>
 <section id="exercise-15.3-hierarchical-data" class="level1"><h1>Exercise 15.3 (Hierarchical data)</h1>
 <p>Interested in the impact of sleep deprivation on reaction time, Belenky et al.&nbsp;(2003) enlisted 18 subjects in a study. The subjects got a regular night’s sleep on “day 0” of the study, and were then restricted to 3 hours of sleep per night for the next 9 days. Each day, researchers recorded the subjects’ reaction times (in ms) on a series of tests. The results are provided in the <code>sleepstudy</code> dataset in the {lme4} package.</p>
@@ -678,6 +692,7 @@ window.Quarto = {
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/lme4/lme4/">lme4</a></span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">sleepstudy</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
+</section><section id="tba-friday" class="level1"><h1>TBA Friday</h1>
 
 
 <!-- -->
@@ -1176,71 +1191,79 @@ window.Quarto = {
 <span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span>
 <span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a><span class="fu"># Exercise 15.3 (Hierarchical data) </span></span>
-<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>Interested in the impact of sleep deprivation on reaction time, Belenky et al. (2003) enlisted 18 subjects in a study. The subjects got a regular night’s sleep on “day 0” of the study, and were then restricted to 3 hours of sleep per night for the next 9 days. Each day, researchers recorded the subjects’ reaction times (in ms) on a series of tests. The results are provided in the <span class="in">`sleepstudy`</span> dataset in the {lme4} package.</span>
-<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>This data is hierarchical. Draw a diagram in the spirit of Figure 15.8 that captures the hierarchical framework. Think: What are the “groups?”</span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>::: callout-note</span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a><span class="fu">## Important!</span></span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>This HW/GW/Quiz will be due on Monday of Week 10, instead of the usual Friday. Sorry for any confusion!</span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>lme4<span class="sc">::</span>sleepstudy <span class="sc">|&gt;</span> <span class="fu">head</span>(<span class="dv">10</span>)</span>
-<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a><span class="fu"># Exercise 15.3 (Hierarchical data) </span></span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>Interested in the impact of sleep deprivation on reaction time, Belenky et al. (2003) enlisted 18 subjects in a study. The subjects got a regular night’s sleep on “day 0” of the study, and were then restricted to 3 hours of sleep per night for the next 9 days. Each day, researchers recorded the subjects’ reaction times (in ms) on a series of tests. The results are provided in the <span class="in">`sleepstudy`</span> dataset in the {lme4} package.</span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>This data is hierarchical. Draw a diagram in the spirit of Figure 15.8 that captures the hierarchical framework. Think: What are the “groups?”</span>
 <span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a><span class="fu"># Exercise 16.1 (Shrinkage) </span></span>
-<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a>The plot below illustrates the distribution of critic ratings for 7 coffee shops. Suppose we were to model coffee shop ratings using three different approaches: complete pooled, no pooled, and hierarchical. For each model, sketch what the posterior mean ratings for the 7 coffee shops might look like on the plot below.</span>
-<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a><span class="al">![](https://www.bayesrulesbook.com/bookdown_files/figure-html/unnamed-chunk-696-1.png)</span></span>
+<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a>lme4<span class="sc">::</span>sleepstudy <span class="sc">|&gt;</span> <span class="fu">head</span>(<span class="dv">10</span>)</span>
+<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a><span class="fu"># Exercise 16.2 (Grouping variable or predictor?)</span></span>
+<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a><span class="fu"># Exercise 16.1 (Shrinkage) </span></span>
 <span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a>(a) The <span class="in">`climbers_sub`</span> data in the {bayesrules} package contains outcomes for 2076 climbers that have sought to summit a Himalayan mountain peak. In a model of climber <span class="in">`success`</span>, is <span class="in">`expedition_id`</span> a potential predictor or a grouping variable? Explain.</span>
-<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a>(b) In a model of climber <span class="in">`success`</span>, is <span class="in">`season`</span> a potential predictor or a grouping variable? Explain.</span>
-<span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a>(c) The <span class="in">`coffee_ratings`</span> data in the {bayesrules} package contains ratings for 1339 different coffee batches. In a model of coffee ratings (<span class="in">`total_cup_points`</span>), is <span class="in">`processing_method`</span> a potential predictor or a grouping variable? Explain.</span>
-<span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a>(d) In a model of coffee ratings (<span class="in">`total_cup_points`</span>), is <span class="in">`farm_name`</span> a potential predictor or a grouping variable? Explain.</span>
-<span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-48"><a href="#cb5-48" aria-hidden="true" tabindex="-1"></a><span class="fu"># Exercise 16.3 (Speed typing: interpret the coefficients) </span></span>
-<span id="cb5-49"><a href="#cb5-49" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-50"><a href="#cb5-50" aria-hidden="true" tabindex="-1"></a>Alicia loves typing. To share the appreciation, she invites four friends to each take 20 speed-typing tests. Let  $Y_{ij}$ be the time it takes friend  $j$ to complete test  $i$.</span>
-<span id="cb5-51"><a href="#cb5-51" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-52"><a href="#cb5-52" aria-hidden="true" tabindex="-1"></a>(a) In modeling  $Y_{ij}$, explain why it’s important to account for the grouping structure introduced by observing each friend multiple times.</span>
-<span id="cb5-53"><a href="#cb5-53" aria-hidden="true" tabindex="-1"></a>(b) Suppose we were to model the outcomes  $Y_{ij}$ by (16.5). Interpret the meaning of all model coefficients in terms of what they might illuminate about typing speeds:  </span>
-<span id="cb5-54"><a href="#cb5-54" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-55"><a href="#cb5-55" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$\mu_j$: </span>
-<span id="cb5-56"><a href="#cb5-56" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$\mu$:</span>
-<span id="cb5-57"><a href="#cb5-57" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$\sigma_y$:</span>
-<span id="cb5-58"><a href="#cb5-58" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$\sigma_\mu$:</span>
-<span id="cb5-59"><a href="#cb5-59" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-60"><a href="#cb5-60" aria-hidden="true" tabindex="-1"></a><span class="fu"># BR 17.1</span></span>
-<span id="cb5-61"><a href="#cb5-61" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-62"><a href="#cb5-62" aria-hidden="true" tabindex="-1"></a>To test the relationship between reaction times and sleep deprivation, researchers enlisted 3 people in a 10-day study. Let $Y_{ij}$ denote the reaction time (in ms) to a given stimulus and  $X_{ij}$ be the number of days of sleep deprivation for the $i$th observation on subject  $j$. For each set of assumptions below, use mathematical notation to represent an appropriate Bayesian hierarchical model of  $Y_{ij}$ vs $X_{ij}$.</span>
-<span id="cb5-63"><a href="#cb5-63" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-64"><a href="#cb5-64" aria-hidden="true" tabindex="-1"></a>(a) Not only do some people tend to react more quickly than others, sleep deprivation might impact some people’s reaction times more than others.</span>
-<span id="cb5-65"><a href="#cb5-65" aria-hidden="true" tabindex="-1"></a>(b) Though some people tend to react more quickly than others, the impact of sleep deprivation on reaction time is the same for all.</span>
-<span id="cb5-66"><a href="#cb5-66" aria-hidden="true" tabindex="-1"></a>(c) Nobody has inherently faster reaction times, though sleep deprivation might impact some people’s reaction times more than others.</span>
+<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a>The plot below illustrates the distribution of critic ratings for 7 coffee shops. Suppose we were to model coffee shop ratings using three different approaches: complete pooled, no pooled, and hierarchical. For each model, sketch what the posterior mean ratings for the 7 coffee shops might look like on the plot below.</span>
+<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a><span class="al">![](https://www.bayesrulesbook.com/bookdown_files/figure-html/unnamed-chunk-696-1.png)</span></span>
+<span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a><span class="fu"># Exercise 16.2 (Grouping variable or predictor?)</span></span>
+<span id="cb5-48"><a href="#cb5-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-49"><a href="#cb5-49" aria-hidden="true" tabindex="-1"></a>(a) The <span class="in">`climbers_sub`</span> data in the {bayesrules} package contains outcomes for 2076 climbers that have sought to summit a Himalayan mountain peak. In a model of climber <span class="in">`success`</span>, is <span class="in">`expedition_id`</span> a potential predictor or a grouping variable? Explain.</span>
+<span id="cb5-50"><a href="#cb5-50" aria-hidden="true" tabindex="-1"></a>(b) In a model of climber <span class="in">`success`</span>, is <span class="in">`season`</span> a potential predictor or a grouping variable? Explain.</span>
+<span id="cb5-51"><a href="#cb5-51" aria-hidden="true" tabindex="-1"></a>(c) The <span class="in">`coffee_ratings`</span> data in the {bayesrules} package contains ratings for 1339 different coffee batches. In a model of coffee ratings (<span class="in">`total_cup_points`</span>), is <span class="in">`processing_method`</span> a potential predictor or a grouping variable? Explain.</span>
+<span id="cb5-52"><a href="#cb5-52" aria-hidden="true" tabindex="-1"></a>(d) In a model of coffee ratings (<span class="in">`total_cup_points`</span>), is <span class="in">`farm_name`</span> a potential predictor or a grouping variable? Explain.</span>
+<span id="cb5-53"><a href="#cb5-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-54"><a href="#cb5-54" aria-hidden="true" tabindex="-1"></a><span class="fu"># Exercise 16.3 (Speed typing: interpret the coefficients) </span></span>
+<span id="cb5-55"><a href="#cb5-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-56"><a href="#cb5-56" aria-hidden="true" tabindex="-1"></a>Alicia loves typing. To share the appreciation, she invites four friends to each take 20 speed-typing tests. Let  $Y_{ij}$ be the time it takes friend  $j$ to complete test  $i$.</span>
+<span id="cb5-57"><a href="#cb5-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-58"><a href="#cb5-58" aria-hidden="true" tabindex="-1"></a>(a) In modeling  $Y_{ij}$, explain why it’s important to account for the grouping structure introduced by observing each friend multiple times.</span>
+<span id="cb5-59"><a href="#cb5-59" aria-hidden="true" tabindex="-1"></a>(b) Suppose we were to model the outcomes  $Y_{ij}$ by (16.5). Interpret the meaning of all model coefficients in terms of what they might illuminate about typing speeds:  </span>
+<span id="cb5-60"><a href="#cb5-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-61"><a href="#cb5-61" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$\mu_j$: </span>
+<span id="cb5-62"><a href="#cb5-62" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$\mu$:</span>
+<span id="cb5-63"><a href="#cb5-63" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$\sigma_y$:</span>
+<span id="cb5-64"><a href="#cb5-64" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$\sigma_\mu$:</span>
+<span id="cb5-65"><a href="#cb5-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-66"><a href="#cb5-66" aria-hidden="true" tabindex="-1"></a><span class="fu"># BR 17.1</span></span>
 <span id="cb5-67"><a href="#cb5-67" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-68"><a href="#cb5-68" aria-hidden="true" tabindex="-1"></a><span class="fu"># BR 17.6</span></span>
+<span id="cb5-68"><a href="#cb5-68" aria-hidden="true" tabindex="-1"></a>To test the relationship between reaction times and sleep deprivation, researchers enlisted 3 people in a 10-day study. Let $Y_{ij}$ denote the reaction time (in ms) to a given stimulus and  $X_{ij}$ be the number of days of sleep deprivation for the $i$th observation on subject  $j$. For each set of assumptions below, use mathematical notation to represent an appropriate Bayesian hierarchical model of  $Y_{ij}$ vs $X_{ij}$.</span>
 <span id="cb5-69"><a href="#cb5-69" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-70"><a href="#cb5-70" aria-hidden="true" tabindex="-1"></a>::: callout-note</span>
-<span id="cb5-71"><a href="#cb5-71" aria-hidden="true" tabindex="-1"></a><span class="fu">## Note:</span></span>
-<span id="cb5-72"><a href="#cb5-72" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-73"><a href="#cb5-73" aria-hidden="true" tabindex="-1"></a>In the group exercise, you'll write out the model and do an EDA. You will fit the models on the individual homework this week</span>
-<span id="cb5-74"><a href="#cb5-74" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb5-70"><a href="#cb5-70" aria-hidden="true" tabindex="-1"></a>(a) Not only do some people tend to react more quickly than others, sleep deprivation might impact some people’s reaction times more than others.</span>
+<span id="cb5-71"><a href="#cb5-71" aria-hidden="true" tabindex="-1"></a>(b) Though some people tend to react more quickly than others, the impact of sleep deprivation on reaction time is the same for all.</span>
+<span id="cb5-72"><a href="#cb5-72" aria-hidden="true" tabindex="-1"></a>(c) Nobody has inherently faster reaction times, though sleep deprivation might impact some people’s reaction times more than others.</span>
+<span id="cb5-73"><a href="#cb5-73" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-74"><a href="#cb5-74" aria-hidden="true" tabindex="-1"></a><span class="fu"># BR 17.6</span></span>
 <span id="cb5-75"><a href="#cb5-75" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-76"><a href="#cb5-76" aria-hidden="true" tabindex="-1"></a>You will explore this relationship in more depth here. To this end, suppose researchers tell us that on a typical day, the average person should have a reaction time of roughly 250ms to the stimulus used in the sleep study. Beyond this baseline, we’ll balance weakly informative priors with the <span class="in">`sleepstudy`</span> data from the {lme4} package to better understand reaction times. Specifically, consider two possible models as expressed by <span class="in">`stan_glmer()`</span> syntax:</span>
-<span id="cb5-77"><a href="#cb5-77" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-78"><a href="#cb5-78" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span><span class="in">`Reaction ~ Days + (1 | Subject)`</span></span>
-<span id="cb5-79"><a href="#cb5-79" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span><span class="in">`Reaction ~ Days + (Days | Subject)`</span></span>
-<span id="cb5-80"><a href="#cb5-80" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-81"><a href="#cb5-81" aria-hidden="true" tabindex="-1"></a>(a) What’s the grouping variable in the <span class="in">`sleepstudy`</span> data and why is it important to incorporate this grouping structure into our analysis?</span>
-<span id="cb5-82"><a href="#cb5-82" aria-hidden="true" tabindex="-1"></a>(b) Use formal notation to define the hierarchical regression structure of models 1 and 2.</span>
-<span id="cb5-83"><a href="#cb5-83" aria-hidden="true" tabindex="-1"></a>(c) Summarize the key differences between models 1 and 2. Root this discussion in the sleep study.</span>
-<span id="cb5-84"><a href="#cb5-84" aria-hidden="true" tabindex="-1"></a>(d) Using the <span class="in">`sleepstudy`</span> data, construct and discuss a plot that helps you explore which model is more appropriate: 1 or 2.</span>
-<span id="cb5-85"><a href="#cb5-85" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-88"><a href="#cb5-88" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb5-89"><a href="#cb5-89" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lme4)</span>
-<span id="cb5-90"><a href="#cb5-90" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(sleepstudy)</span>
-<span id="cb5-91"><a href="#cb5-91" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb5-76"><a href="#cb5-76" aria-hidden="true" tabindex="-1"></a>::: callout-note</span>
+<span id="cb5-77"><a href="#cb5-77" aria-hidden="true" tabindex="-1"></a><span class="fu">## Note:</span></span>
+<span id="cb5-78"><a href="#cb5-78" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-79"><a href="#cb5-79" aria-hidden="true" tabindex="-1"></a>In the group exercise, you'll write out the model and do an EDA. You will fit the models on the individual homework this week</span>
+<span id="cb5-80"><a href="#cb5-80" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb5-81"><a href="#cb5-81" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-82"><a href="#cb5-82" aria-hidden="true" tabindex="-1"></a>You will explore this relationship in more depth here. To this end, suppose researchers tell us that on a typical day, the average person should have a reaction time of roughly 250ms to the stimulus used in the sleep study. Beyond this baseline, we’ll balance weakly informative priors with the <span class="in">`sleepstudy`</span> data from the {lme4} package to better understand reaction times. Specifically, consider two possible models as expressed by <span class="in">`stan_glmer()`</span> syntax:</span>
+<span id="cb5-83"><a href="#cb5-83" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-84"><a href="#cb5-84" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span><span class="in">`Reaction ~ Days + (1 | Subject)`</span></span>
+<span id="cb5-85"><a href="#cb5-85" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span><span class="in">`Reaction ~ Days + (Days | Subject)`</span></span>
+<span id="cb5-86"><a href="#cb5-86" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-87"><a href="#cb5-87" aria-hidden="true" tabindex="-1"></a>(a) What’s the grouping variable in the <span class="in">`sleepstudy`</span> data and why is it important to incorporate this grouping structure into our analysis?</span>
+<span id="cb5-88"><a href="#cb5-88" aria-hidden="true" tabindex="-1"></a>(b) Use formal notation to define the hierarchical regression structure of models 1 and 2.</span>
+<span id="cb5-89"><a href="#cb5-89" aria-hidden="true" tabindex="-1"></a>(c) Summarize the key differences between models 1 and 2. Root this discussion in the sleep study.</span>
+<span id="cb5-90"><a href="#cb5-90" aria-hidden="true" tabindex="-1"></a>(d) Using the <span class="in">`sleepstudy`</span> data, construct and discuss a plot that helps you explore which model is more appropriate: 1 or 2.</span>
+<span id="cb5-91"><a href="#cb5-91" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-94"><a href="#cb5-94" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb5-95"><a href="#cb5-95" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lme4)</span>
+<span id="cb5-96"><a href="#cb5-96" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(sleepstudy)</span>
+<span id="cb5-97"><a href="#cb5-97" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb5-98"><a href="#cb5-98" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-99"><a href="#cb5-99" aria-hidden="true" tabindex="-1"></a><span class="fu"># TBA Friday</span></span>
 </code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
