@@ -53,6 +53,7 @@ All projects should include:
 > Statisticians severely criticized the paper after publication. Here, you’ll explore the complete data used in the paper and consider the hypothesis that hurricanes with female names are deadlier. 
 
 ```{r}
+library(tidyverse)
 hurricanes <- read_delim("https://raw.githubusercontent.com/rmcelreath/rethinking/refs/heads/master/data/Hurricanes.csv")
 ```
 
