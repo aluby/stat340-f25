@@ -114,5 +114,33 @@ You are also welcome to choose your own topic! Just please speak with me in adva
   - Learn how to use Bayesian models for missing data
 
  
+
+# Lightning talks
+ 
+ We will have 3 lightning talks from 12:05-12:20 on Monday of Week 10, and everybody else will go on Wednesday of Week 10. 
+ 
+ Each project will have a 5 minute slot. Please prepare ~4 minutes and leave a minute for a quick question. 
+ 
+ - Every group member should contribute
+ - You should demonstrate progress on at least one aspect of the project (data prep, setting up a model, background reading on a method, etc.) but your project doesn't have to be "complete" 
+ - It's OK to give us the high level conceptual overview of a method instead of getting into the weeds
+ - If you're stuck on something or want feedback on what to do next, you can include that! We'll do some peer review which will maybe help with this. 
+ - Please don't over-fill your slides with text or math
+ - Graphs should be readable from the back of the room with appropriate labels
+ - You should tell us what your plan is for the rest of the project. 
+ 
+
+The presentation will make up a portion of your final project grade and will be graded on the following
+
+ - Have you made progress on at least one aspect of the project? (10 points)
+ - Do you have an appropriate plan for completing the project that you told us about? 
+    - I will use the descriptions under the "Method" and "Modeling" projects above to assess this. (10 points)
+ - Was your presentation high-quality? (10 points) 
+    - Did every group member contribute? 
+    - Were your slides organized well? 
+    - Were graphs professional and readable? 
+    - Was the presentation timed correctly?
+ - Did you do the assigned peer review? (10 points, individual score)
+ 
  
  
