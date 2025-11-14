@@ -82,7 +82,7 @@ In this problem, you'll work with a subset of the [2011 FBI "Black Box" study](h
 ```{r}
 #| fig-width: 8
 #| fig-height: 3
-responses <- read_csv("../data/blackbox_responses.csv") # replace with "https://https://aluby.github.io/stat340-f25/data/blackbox_responses.csv"
+responses <- read_csv("https://aluby.github.io/stat340-f25/data/blackbox_responses.csv") 
 
 p1 <- responses |>
   group_by(ex_id) |>
