@@ -570,7 +570,7 @@ window.Quarto = {
   <li><a href="#br-16.8" id="toc-br-16.8" class="nav-link" data-scroll-target="#br-16.8">BR 16.8</a></li>
   <li><a href="#br-16.11" id="toc-br-16.11" class="nav-link" data-scroll-target="#br-16.11">BR 16.11</a></li>
   <li><a href="#br-17.7-adapted" id="toc-br-17.7-adapted" class="nav-link" data-scroll-target="#br-17.7-adapted">BR 17.7 (adapted)</a></li>
-  <li><a href="#tba-friday" id="toc-tba-friday" class="nav-link" data-scroll-target="#tba-friday">TBA Friday</a></li>
+  <li><a href="#irt-for-forensic-fingerprint-examiners" id="toc-irt-for-forensic-fingerprint-examiners" class="nav-link" data-scroll-target="#irt-for-forensic-fingerprint-examiners">IRT for Forensic Fingerprint Examiners</a></li>
   </ul><div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="hw09.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
     </div>
 <!-- main -->
@@ -654,7 +654,45 @@ window.Quarto = {
 <li>Using model (2), identify the person whose reaction time changes the <em>most</em> with sleep deprivation. Report their posterior median regression model</li>
 <li>Using model (2), identify the person who has the <em>slowest</em> baseline reaction time. Report their posterior median regression model</li>
 <li>Simulate, plot, and discuss the posterior predictive model (under both 1 and 2) of reaction time after 5 days of sleep deprivation for two subjects: you and Subject 308.</li>
-</ol></section><section id="tba-friday" class="level1"><h1>TBA Friday</h1>
+</ol></section><section id="irt-for-forensic-fingerprint-examiners" class="level1"><h1>IRT for Forensic Fingerprint Examiners</h1>
+<p>In forensic fingerprint analysis, individual examiners look at a pair of fingerprint images and try to decide if they came from the same source or not. They can also make “inconclusive” determinations if there is not enough information in the images to decide either way. In large(ish) research studies, some examiners report conclusive decisions far more than others, and some questions (pairs of images) receive far more inconclusives than others. Some researchers have hypothesized that, since examiners knew they were participating in a study to determine their error rate, they may have been “strategic” and reported more inconclusives than they typically do in casework. Since not every examiner answers every question, figuring out which inconclusives are due to the questions, and which inconclusives are due to the answers is harder than it initially appears.</p>
+<p>In this problem, you’ll work with a subset of the <a href="https://www.fbi.gov/file-repository/laboratory/testresponses.txt/view">2011 FBI “Black Box” study</a> of fingerprint examiners, called <code>blackbox_responses</code>. The distribution of <code>pct_conclusive</code> by examiner and question are shown in the histograms below:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">responses</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"../data/blackbox_responses.csv"</span><span class="op">)</span> <span class="co"># replace with "https://https://aluby.github.io/stat340-f25/data/blackbox_responses.csv"</span></span>
+<span></span>
+<span><span class="va">p1</span> <span class="op">&lt;-</span> <span class="va">responses</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">ex_id</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span></span>
+<span>    pct_conclusive <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">conclusive</span><span class="op">)</span></span>
+<span>  <span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">pct_conclusive</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span>bins <span class="op">=</span> <span class="fl">15</span>, col <span class="op">=</span> <span class="st">"white"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Examiners"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">p2</span> <span class="op">&lt;-</span> <span class="va">responses</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">q_id</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span></span>
+<span>    pct_conclusive <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">conclusive</span><span class="op">)</span></span>
+<span>  <span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">pct_conclusive</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span>bins <span class="op">=</span> <span class="fl">15</span>, col <span class="op">=</span> <span class="st">"white"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Questions"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">p1</span> <span class="op">+</span> <span class="va">p2</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><img src="hw09_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="768"></p>
+</figure>
+</div>
+</div>
+</div>
+<ol type="a">
+<li>Compute the percent conclusive for each participant and for each question. Identify the 5 participants who were the <em>most</em> and <em>least</em> conclusive; and the questions that were the <em>most</em> and <em>least</em> conclusive</li>
+<li>Take a peek at the data and explain why looking at the percent correct for each participant or each question won’t give us ideal estimates for tendencies to be conclusive (<em>Hint:</em> look at how many questions there are, and how many questions each participant answered)</li>
+<li>Fit an IRT model to this data using either {rstanarm} or Stan (I recommend <em>not</em> fitting a discrimination parameter). Report the fixed effects table and interpret any fixed effect parameters.</li>
+<li>Identify the 5 participants who were the <em>most</em> and <em>least</em> conclusive; and the questions that were the <em>most</em> and <em>least</em> conclusive according to the IRT-like model.</li>
+<li>Explain any differences between your answers to (a) and (d)</li>
+</ol>
 
 
 <!-- -->
@@ -1133,82 +1171,118 @@ window.Quarto = {
       </a>
   </div>
 </nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Individual Homework 09"</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(bayesrules) <span class="co"># R package for our textbook</span></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse) <span class="co"># Collection of packages for tidying and plotting data</span></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(janitor) <span class="co"># Helper functions like tabyl</span></span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rstan) <span class="co"># for fitting models</span></span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rstanarm) <span class="co"># for fitting standard regression models</span></span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom.mixed) <span class="co"># for tidy() function</span></span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(bayesplot) <span class="co"># helpful plotting functions</span></span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidybayes) <span class="co"># helpful for wrangling Bayesian model output</span></span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>::: callout-note</span>
-<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a><span class="fu">## Important!</span></span>
-<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>This HW/GW/Quiz will be due on Monday of Week 10, instead of the usual Friday. Sorry for any confusion!</span>
-<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a><span class="fu"># BR 16.6 (Big words: getting to know the data) </span></span>
-<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>Recall from Section 16.7 the Abdul Latif Jameel Poverty Action Lab (J-PAL) study into the effectiveness of a digital vocabulary learning program, the Big Word Club (BWC) (Kalil, Mayer, and Oreopoulos 2020). In our analysis of this program, we’ll utilize weakly informative priors with a baseline understanding that the average student saw 0 change in their vocabulary scores throughout the program. We’ll balance these priors by the big_word_club data in the bayesrules package. For each student participant, big_word_club includes a school_id and the percentage change in vocabulary scores over the course of the study period (score_pct_change). We keep only the students that participated in the BWC program (treat == 1), and thus eliminate the control group.</span>
-<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">"big_word_club"</span>)</span>
-<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>big_word_club <span class="ot">&lt;-</span> big_word_club <span class="sc">%&gt;%</span> </span>
-<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(treat <span class="sc">==</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(school_id, score_pct_change) <span class="sc">%&gt;%</span> </span>
-<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>  <span class="fu">na.omit</span>()</span>
-<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>(a) How many schools participated in the Big Word Club?</span>
-<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a>(b) What’s the range in the number of student participants per school?</span>
-<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a>(c) On average, at which school did students exhibit the greatest improvement in vocabulary? The least?</span>
-<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a>(d) Construct and discuss a plot which illustrates the variability in score_pct_change within and between schools.</span>
-<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a><span class="fu"># BR Exercise 16.7 (Big words: setting up the model) </span></span>
-<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a>In the next exercises you will explore a hierarchical one-way ANOVA model (16.12) of  $Y_{ij}$, the percentage change in vocabulary scores, for student $i$ in school $j$. </span>
-<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a>(a) Why is a hierarchical model, vs a complete or no pooled model, appropriate in our analysis of the BWC program? </span>
-<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a>(b) Compare and contrast the meanings of model parameters  $\mu$ and  $\mu_j$ in the context of this vocabulary study.</span>
-<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a>(c) Compare and contrast the meanings of model parameters  $\sigma_y$ and $\sigma_\mu$ in the context of this vocabulary study.</span>
-<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a><span class="fu"># BR 16.8</span></span>
-<span id="cb3-56"><a href="#cb3-56" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-57"><a href="#cb3-57" aria-hidden="true" tabindex="-1"></a>Exercise 16.8 (Big words: simulating the model)</span>
-<span id="cb3-58"><a href="#cb3-58" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-59"><a href="#cb3-59" aria-hidden="true" tabindex="-1"></a>(a) Simulate the hierarchical posterior model of parameters ($\mu_j, \mu, \sigma_y, \sigma_\mu$) using 4 chains, each of length 10000.</span>
-<span id="cb3-60"><a href="#cb3-60" aria-hidden="true" tabindex="-1"></a>(b) Construct and discuss Markov chain trace, density, and autocorrelation plots.</span>
-<span id="cb3-61"><a href="#cb3-61" aria-hidden="true" tabindex="-1"></a>(c) Construct and discuss a pp_check() of the chain output.</span>
-<span id="cb3-62"><a href="#cb3-62" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-63"><a href="#cb3-63" aria-hidden="true" tabindex="-1"></a><span class="fu"># BR 16.11</span></span>
-<span id="cb3-64"><a href="#cb3-64" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-65"><a href="#cb3-65" aria-hidden="true" tabindex="-1"></a>Suppose we continue the vocabulary study at each of Schools 6 and 17 (which participated in the current study) and Bayes Prep, a school which is new to the study. In this exercise you’ll make predictions about  $Y_{new, j}$, the vocabulary performance of a student that’s new to the study from each of these three schools  $j$.</span>
-<span id="cb3-66"><a href="#cb3-66" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-67"><a href="#cb3-67" aria-hidden="true" tabindex="-1"></a>(a) *Without* using the <span class="in">`posterior_predict()`</span> shortcut function, simulate posterior predictive models of$Y_{new, j}$ for School 6 and Bayes Prep. Display the first 6 posterior predictions for both schools.</span>
-<span id="cb3-68"><a href="#cb3-68" aria-hidden="true" tabindex="-1"></a>(b) Using your simulations from part (a), construct, interpret, and compare the 80% posterior predictive intervals of $Y_{new, j}$ for School 6 and Bayes Prep.</span>
-<span id="cb3-69"><a href="#cb3-69" aria-hidden="true" tabindex="-1"></a>(c) Using <span class="in">`posterior_predict()`</span> this time, simulate posterior predictive models of  $Y_{new, j}$ for each of School 6, School 17, and Bayes Prep. Illustrate your simulation results using <span class="in">`mcmc_areas()`</span> and discuss your findings.</span>
-<span id="cb3-70"><a href="#cb3-70" aria-hidden="true" tabindex="-1"></a>(d) Finally, construct, plot, and discuss the 80% posterior prediction intervals for all schools in the original study.</span>
-<span id="cb3-71"><a href="#cb3-71" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-72"><a href="#cb3-72" aria-hidden="true" tabindex="-1"></a><span class="fu"># BR 17.7 (adapted)</span></span>
-<span id="cb3-73"><a href="#cb3-73" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-74"><a href="#cb3-74" aria-hidden="true" tabindex="-1"></a>(a) Simulate the posteriors from model (1) and (2) from BR exercise 17.6</span>
-<span id="cb3-75"><a href="#cb3-75" aria-hidden="true" tabindex="-1"></a>(b) Report a posterior predictive check from each model. Which do you prefer? </span>
-<span id="cb3-76"><a href="#cb3-76" aria-hidden="true" tabindex="-1"></a>(c) Using model (2), identify the person whose reaction time changes the *most* with sleep deprivation. Report their posterior median regression model</span>
-<span id="cb3-77"><a href="#cb3-77" aria-hidden="true" tabindex="-1"></a>(d) Using model (2), identify the person who has the *slowest* baseline reaction time. Report their posterior median regression model</span>
-<span id="cb3-78"><a href="#cb3-78" aria-hidden="true" tabindex="-1"></a>(e) Simulate, plot, and discuss the posterior predictive model (under both 1 and 2) of reaction time after 5 days of sleep deprivation for two subjects: you and Subject 308. </span>
-<span id="cb3-79"><a href="#cb3-79" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-80"><a href="#cb3-80" aria-hidden="true" tabindex="-1"></a><span class="fu"># TBA Friday</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Individual Homework 09"</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(bayesrules) <span class="co"># R package for our textbook</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse) <span class="co"># Collection of packages for tidying and plotting data</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(janitor) <span class="co"># Helper functions like tabyl</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rstan) <span class="co"># for fitting models</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rstanarm) <span class="co"># for fitting standard regression models</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom.mixed) <span class="co"># for tidy() function</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(bayesplot) <span class="co"># helpful plotting functions</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidybayes) <span class="co"># helpful for wrangling Bayesian model output</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>::: callout-note</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a><span class="fu">## Important!</span></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>This HW/GW/Quiz will be due on Monday of Week 10, instead of the usual Friday. Sorry for any confusion!</span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a><span class="fu"># BR 16.6 (Big words: getting to know the data) </span></span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>Recall from Section 16.7 the Abdul Latif Jameel Poverty Action Lab (J-PAL) study into the effectiveness of a digital vocabulary learning program, the Big Word Club (BWC) (Kalil, Mayer, and Oreopoulos 2020). In our analysis of this program, we’ll utilize weakly informative priors with a baseline understanding that the average student saw 0 change in their vocabulary scores throughout the program. We’ll balance these priors by the big_word_club data in the bayesrules package. For each student participant, big_word_club includes a school_id and the percentage change in vocabulary scores over the course of the study period (score_pct_change). We keep only the students that participated in the BWC program (treat == 1), and thus eliminate the control group.</span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">"big_word_club"</span>)</span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>big_word_club <span class="ot">&lt;-</span> big_word_club <span class="sc">%&gt;%</span> </span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(treat <span class="sc">==</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(school_id, score_pct_change) <span class="sc">%&gt;%</span> </span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a>  <span class="fu">na.omit</span>()</span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a>(a) How many schools participated in the Big Word Club?</span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a>(b) What’s the range in the number of student participants per school?</span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a>(c) On average, at which school did students exhibit the greatest improvement in vocabulary? The least?</span>
+<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a>(d) Construct and discuss a plot which illustrates the variability in score_pct_change within and between schools.</span>
+<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a><span class="fu"># BR Exercise 16.7 (Big words: setting up the model) </span></span>
+<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a>In the next exercises you will explore a hierarchical one-way ANOVA model (16.12) of  $Y_{ij}$, the percentage change in vocabulary scores, for student $i$ in school $j$. </span>
+<span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a>(a) Why is a hierarchical model, vs a complete or no pooled model, appropriate in our analysis of the BWC program? </span>
+<span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a>(b) Compare and contrast the meanings of model parameters  $\mu$ and  $\mu_j$ in the context of this vocabulary study.</span>
+<span id="cb4-53"><a href="#cb4-53" aria-hidden="true" tabindex="-1"></a>(c) Compare and contrast the meanings of model parameters  $\sigma_y$ and $\sigma_\mu$ in the context of this vocabulary study.</span>
+<span id="cb4-54"><a href="#cb4-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-55"><a href="#cb4-55" aria-hidden="true" tabindex="-1"></a><span class="fu"># BR 16.8</span></span>
+<span id="cb4-56"><a href="#cb4-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-57"><a href="#cb4-57" aria-hidden="true" tabindex="-1"></a>Exercise 16.8 (Big words: simulating the model)</span>
+<span id="cb4-58"><a href="#cb4-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-59"><a href="#cb4-59" aria-hidden="true" tabindex="-1"></a>(a) Simulate the hierarchical posterior model of parameters ($\mu_j, \mu, \sigma_y, \sigma_\mu$) using 4 chains, each of length 10000.</span>
+<span id="cb4-60"><a href="#cb4-60" aria-hidden="true" tabindex="-1"></a>(b) Construct and discuss Markov chain trace, density, and autocorrelation plots.</span>
+<span id="cb4-61"><a href="#cb4-61" aria-hidden="true" tabindex="-1"></a>(c) Construct and discuss a pp_check() of the chain output.</span>
+<span id="cb4-62"><a href="#cb4-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-63"><a href="#cb4-63" aria-hidden="true" tabindex="-1"></a><span class="fu"># BR 16.11</span></span>
+<span id="cb4-64"><a href="#cb4-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-65"><a href="#cb4-65" aria-hidden="true" tabindex="-1"></a>Suppose we continue the vocabulary study at each of Schools 6 and 17 (which participated in the current study) and Bayes Prep, a school which is new to the study. In this exercise you’ll make predictions about  $Y_{new, j}$, the vocabulary performance of a student that’s new to the study from each of these three schools  $j$.</span>
+<span id="cb4-66"><a href="#cb4-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-67"><a href="#cb4-67" aria-hidden="true" tabindex="-1"></a>(a) *Without* using the <span class="in">`posterior_predict()`</span> shortcut function, simulate posterior predictive models of$Y_{new, j}$ for School 6 and Bayes Prep. Display the first 6 posterior predictions for both schools.</span>
+<span id="cb4-68"><a href="#cb4-68" aria-hidden="true" tabindex="-1"></a>(b) Using your simulations from part (a), construct, interpret, and compare the 80% posterior predictive intervals of $Y_{new, j}$ for School 6 and Bayes Prep.</span>
+<span id="cb4-69"><a href="#cb4-69" aria-hidden="true" tabindex="-1"></a>(c) Using <span class="in">`posterior_predict()`</span> this time, simulate posterior predictive models of  $Y_{new, j}$ for each of School 6, School 17, and Bayes Prep. Illustrate your simulation results using <span class="in">`mcmc_areas()`</span> and discuss your findings.</span>
+<span id="cb4-70"><a href="#cb4-70" aria-hidden="true" tabindex="-1"></a>(d) Finally, construct, plot, and discuss the 80% posterior prediction intervals for all schools in the original study.</span>
+<span id="cb4-71"><a href="#cb4-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-72"><a href="#cb4-72" aria-hidden="true" tabindex="-1"></a><span class="fu"># BR 17.7 (adapted)</span></span>
+<span id="cb4-73"><a href="#cb4-73" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-74"><a href="#cb4-74" aria-hidden="true" tabindex="-1"></a>(a) Simulate the posteriors from model (1) and (2) from BR exercise 17.6</span>
+<span id="cb4-75"><a href="#cb4-75" aria-hidden="true" tabindex="-1"></a>(b) Report a posterior predictive check from each model. Which do you prefer? </span>
+<span id="cb4-76"><a href="#cb4-76" aria-hidden="true" tabindex="-1"></a>(c) Using model (2), identify the person whose reaction time changes the *most* with sleep deprivation. Report their posterior median regression model</span>
+<span id="cb4-77"><a href="#cb4-77" aria-hidden="true" tabindex="-1"></a>(d) Using model (2), identify the person who has the *slowest* baseline reaction time. Report their posterior median regression model</span>
+<span id="cb4-78"><a href="#cb4-78" aria-hidden="true" tabindex="-1"></a>(e) Simulate, plot, and discuss the posterior predictive model (under both 1 and 2) of reaction time after 5 days of sleep deprivation for two subjects: you and Subject 308. </span>
+<span id="cb4-79"><a href="#cb4-79" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-80"><a href="#cb4-80" aria-hidden="true" tabindex="-1"></a><span class="fu"># IRT for Forensic Fingerprint Examiners</span></span>
+<span id="cb4-81"><a href="#cb4-81" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-82"><a href="#cb4-82" aria-hidden="true" tabindex="-1"></a>In forensic fingerprint analysis, individual examiners look at a pair of fingerprint images and try to decide if they came from the same source or not. They can also make "inconclusive" determinations if there is not enough information in the images to decide either way. In large(ish) research studies, some examiners report conclusive decisions far more than others, and some questions (pairs of images) receive far more inconclusives than others. Some researchers have hypothesized that, since examiners knew they were participating in a study to determine their error rate, they may have been "strategic" and reported more inconclusives than they typically do in casework. Since not every examiner answers every question, figuring out which inconclusives are due to the questions, and which inconclusives are due to the answers is harder than it initially appears. </span>
+<span id="cb4-83"><a href="#cb4-83" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-84"><a href="#cb4-84" aria-hidden="true" tabindex="-1"></a>In this problem, you'll work with a subset of the <span class="co">[</span><span class="ot">2011 FBI "Black Box" study</span><span class="co">](https://www.fbi.gov/file-repository/laboratory/testresponses.txt/view)</span> of fingerprint examiners, called <span class="in">`blackbox_responses`</span>. The distribution of <span class="in">`pct_conclusive`</span> by examiner and question are shown in the histograms below:</span>
+<span id="cb4-85"><a href="#cb4-85" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-88"><a href="#cb4-88" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb4-89"><a href="#cb4-89" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-width: 8</span></span>
+<span id="cb4-90"><a href="#cb4-90" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-height: 3</span></span>
+<span id="cb4-91"><a href="#cb4-91" aria-hidden="true" tabindex="-1"></a>responses <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"../data/blackbox_responses.csv"</span>) <span class="co"># replace with "https://https://aluby.github.io/stat340-f25/data/blackbox_responses.csv"</span></span>
+<span id="cb4-92"><a href="#cb4-92" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-93"><a href="#cb4-93" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> responses <span class="sc">|&gt;</span></span>
+<span id="cb4-94"><a href="#cb4-94" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(ex_id) <span class="sc">|&gt;</span></span>
+<span id="cb4-95"><a href="#cb4-95" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb4-96"><a href="#cb4-96" aria-hidden="true" tabindex="-1"></a>    <span class="at">pct_conclusive =</span> <span class="fu">mean</span>(conclusive)</span>
+<span id="cb4-97"><a href="#cb4-97" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb4-98"><a href="#cb4-98" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> pct_conclusive)) <span class="sc">+</span> </span>
+<span id="cb4-99"><a href="#cb4-99" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">15</span>, <span class="at">col =</span> <span class="st">"white"</span>) <span class="sc">+</span></span>
+<span id="cb4-100"><a href="#cb4-100" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Examiners"</span>)</span>
+<span id="cb4-101"><a href="#cb4-101" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-102"><a href="#cb4-102" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> responses <span class="sc">|&gt;</span></span>
+<span id="cb4-103"><a href="#cb4-103" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(q_id) <span class="sc">|&gt;</span></span>
+<span id="cb4-104"><a href="#cb4-104" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb4-105"><a href="#cb4-105" aria-hidden="true" tabindex="-1"></a>    <span class="at">pct_conclusive =</span> <span class="fu">mean</span>(conclusive)</span>
+<span id="cb4-106"><a href="#cb4-106" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb4-107"><a href="#cb4-107" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> pct_conclusive)) <span class="sc">+</span> </span>
+<span id="cb4-108"><a href="#cb4-108" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">15</span>, <span class="at">col =</span> <span class="st">"white"</span>) <span class="sc">+</span></span>
+<span id="cb4-109"><a href="#cb4-109" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Questions"</span>)</span>
+<span id="cb4-110"><a href="#cb4-110" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-111"><a href="#cb4-111" aria-hidden="true" tabindex="-1"></a>p1 <span class="sc">+</span> p2</span>
+<span id="cb4-112"><a href="#cb4-112" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb4-113"><a href="#cb4-113" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-114"><a href="#cb4-114" aria-hidden="true" tabindex="-1"></a>(a) Compute the percent conclusive for each participant and for each question. Identify the 5 participants who were the *most* and *least* conclusive; and the questions that were the *most* and *least* conclusive</span>
+<span id="cb4-115"><a href="#cb4-115" aria-hidden="true" tabindex="-1"></a>(b) Take a peek at the data and explain why looking at the percent correct for each participant or each question won't give us ideal estimates for tendencies to be conclusive (*Hint:* look at how many questions there are, and how many questions each participant answered)</span>
+<span id="cb4-116"><a href="#cb4-116" aria-hidden="true" tabindex="-1"></a>(c) Fit an IRT model to this data using either {rstanarm} or Stan (I recommend *not* fitting a discrimination parameter). Report the fixed effects table and interpret any fixed effect parameters.</span>
+<span id="cb4-117"><a href="#cb4-117" aria-hidden="true" tabindex="-1"></a>(d) Identify the 5 participants who were the *most* and *least* conclusive; and the questions that were the *most* and *least* conclusive according to the IRT-like model. </span>
+<span id="cb4-118"><a href="#cb4-118" aria-hidden="true" tabindex="-1"></a>(e) Explain any differences between your answers to (a) and (d) </span>
 </code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
