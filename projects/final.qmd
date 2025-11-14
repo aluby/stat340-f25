@@ -53,7 +53,7 @@ All projects should include:
 > Statisticians severely criticized the paper after publication. Here, you’ll explore the complete data used in the paper and consider the hypothesis that hurricanes with female names are deadlier. 
 
 ```{r}
-
+hurricanes <- read_delim("https://raw.githubusercontent.com/rmcelreath/rethinking/refs/heads/master/data/Hurricanes.csv")
 ```
 
 (From Stat Rethinking Problem 11H1)
@@ -63,6 +63,29 @@ All projects should include:
 > One hypothesis from developmental psychology, usually attributed to Carol Gilligan, proposes that women and men have different average tendencies in moral reasoning. Like most hypotheses in social psychology, it is merely descriptive. The notion is that women are more concerned with care (avoiding harm), while men are more concerned with justice and rights. Culture-bound nonsense? Yes. Descriptively accurate? Maybe. Evaluate this hypothesis, using the `Trolley` data, supposing that contact provides a proxy for physical harm. Are women more or less bothered by contact than are men, in these data? Figure out the model(s) that is needed to address this question.
 
 (From Stat Rethinking Problem 11H5)
+
+These data comprise outcomes of experimental ethical dilemmas that are often called 'trolley' problems. Data kindly provided by Fiery Cushman.
+
+ - `case`: a code that combines treatment and story labels
+ - `response`: participant's rating of appropriateness of action in story
+ - `order`: integer order story appeared, within participant
+ - `id`: participant id (factor)
+ - `age`: participant's age in years
+ - `male`: participant's gender; 1 for male, 0 for female
+ - `edu`: participant's highest educational level
+ - `action`: treatment code for story with action (1) or inaction (0)
+ - `intention`: treatment code for intent (1) or lack of intent (0)
+ - `contact`: treatmetn code for contact action (1) or lack of contact (0)
+ - `story`: factor label for basic scenario modified by treatments
+ - `action2`: alternative coding of action that is union of action and contact variables
+
+Cushman et al. 2006. *Psychological Science* 17:1082--1089.
+
+The response here is `response`, which is a rating from 1-7. This does not fit any of the response distributions we've talked about in this class, but is instead an **ordered** response. You should explore how to fit an ordinal regression model (e.g. [here](https://cran.r-project.org/web/packages/rstanarm/vignettes/polr.html)) for this data.
+
+```{r}
+Trolley <- read_delim("https://raw.githubusercontent.com/rmcelreath/rethinking/refs/heads/master/data/Trolley.csv")
+```
 
 ### Bayes Rules
 

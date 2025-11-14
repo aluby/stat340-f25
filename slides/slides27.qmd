@@ -70,11 +70,28 @@ exam_results <- expand_grid(student_id = 1:n_students,
   select(student_id, question_id, correct)
 ```
 
-## Data/problem
+## Data
 
 - 150 students take a 25 question final exam
 - Each question is scored as correct (1) or incorect (0)
-- What can we learn from this data beyond the student scores? 
+
+```{r}
+#| echo: false
+
+
+exam_results |>
+  group_by(student_id) |>
+  summarize(
+    pct_correct = mean(correct)
+  ) |> 
+  ggplot(aes(x = pct_correct)) + 
+  geom_histogram(bins = 15, col = "white")
+```
+
+## What can we learn from this data?
+  
+  - P(Correct)
+  - P(Correct) for students or questions
   - Are some questions harder than others? 
   - Do scores reflect actual proficiency?
   - Are some questions "better" at separating skill levels than others?
@@ -85,7 +102,8 @@ $$Y \sim \text{Binomial}(150*25, \pi)$$
 $$\pi \sim \text{Beta}(\alpha, \beta)$$
 
 ```{r}
-summarize_beta_binomial(.5, .5, y = sum(exam_results$correct), n = nrow(exam_results))
+summarize_beta_binomial(.5, .5, y = sum(exam_results$correct), 
+                        n = nrow(exam_results))
 ```
 
 ::: callout-tip
@@ -170,6 +188,11 @@ p1 + p2
 
 ## Week 9: Hierarchical Logistic Regression
 
+$$Y_i \sim \text{Bernoulli}(\pi_i)$$
+
+$$\pi_i = \beta_{0i}$$
+$$\beta_{0i} \sim N(0, \sigma_\beta^2)$$
+
 ```{r}
 #| eval: false
 student_hlm <- stan_glmer(
@@ -226,6 +249,13 @@ p1 + p2
 ```
 
 ## Solution: incorporate predictors for questions
+
+$$Y_{ij} \sim \text{Bernoulli}(\pi_{ij})$$
+
+$$\pi_i = \beta_{0i} + \beta_{0j}$$
+$$\beta_{0i} \sim N(0, \sigma_1^2)$$
+
+$$\beta_{0j} \sim N(0, \sigma_2^2)$$
 
 ::: callout-tip
 ## Check in:
@@ -299,17 +329,73 @@ Error in `model.frame.default()`:
 ```
 
 ```{r}
-posterior_predict(student_hlm, newdata = data.frame(student_id = rep("Amanda", 25))) |> colMeans() |> round(2)
+posterior_predict(student_hlm, newdata = data.frame(student_id = rep("Amanda", 25))) |> 
+  colMeans() |> round(2)
 posterior_predict(student_irt, newdata = data.frame(student_id = rep("Amanda", 25),
-                                                    question_id = 1:25)) |> colMeans() |> round(2)
+                                                    question_id = 1:25)) |> 
+  colMeans() |> round(2)
 ```
 
-## Strong/weak students; Hard/easy questions
+## Relationship between percent correct and predictors from model
 
+```{r}
+#| echo: false
+
+
+student_summary <- student_irt |>
+  spread_draws(`(Intercept)`, b[term, student_id]) |>
+  filter(str_detect(student_id, "student")) |>
+  pivot_wider(names_from = term, names_glue = "theta_{term}",
+              values_from = b) %>% 
+  mutate(theta = `theta_(Intercept)`,
+         student_id = as.integer(str_remove(student_id, "student_id:"))) |>
+  group_by(student_id) |>
+  summarize(median = median(theta),
+            lower = quantile(theta, probs = .1),
+            upper = quantile(theta, probs = .9))
+
+p1 <- exam_results |>
+  group_by(student_id) |>
+  summarize(pct_correct = mean(correct)) |>
+  left_join(student_summary, by = "student_id") |>
+  ggplot(aes(x = jitter(pct_correct), y = median, ymin = lower, ymax = upper)) + 
+  geom_pointrange(alpha = .4) +
+  labs(
+    x = "pct correct",
+    y = "student estimate"
+  )
+  
+
+item_summary <- student_irt |>
+  spread_draws(`(Intercept)`, b[term, question_id]) |>
+  filter(str_detect(question_id, "question")) |>
+  pivot_wider(names_from = term, names_glue = "b_{term}",
+              values_from = b) %>% 
+  mutate(b = `(Intercept)` + `b_(Intercept)`,
+         question_id = as.integer(str_remove(question_id, "question_id:"))) |>
+  group_by(question_id) |>
+  summarize(median = median(b),
+            lower = quantile(b, probs = .1),
+            upper = quantile(b, probs = .9)) 
+  
+
+p2 <- exam_results |>
+  group_by(question_id) |>
+  summarize(pct_correct = mean(correct)) |>
+  left_join(item_summary, by = "question_id") |>
+  ggplot(aes(x = jitter(pct_correct), y = median, ymin = lower, ymax = upper)) + 
+  geom_pointrange(alpha = .4) +
+  labs(
+    x = "pct correct",
+    y = "question estimate"
+  )
+
+p1 + p2
+```
 
 ## 
 
-This model separates the strong/weak students and the hard/easy questions. But I also suspect some questions were better than others at sorting out the students who *really* understood the material from those who didn't
+I suspect some questions were better than others at sorting out the students who *really* understood the material from those who didn't
 
 Alternative formulation of the model: 
 
@@ -388,13 +474,16 @@ p2 <- expand_grid(
 p1 + p2 + plot_layout(guides = 'collect')
 ```
 
-## 
+## How do we identify the model?
 
 Without Bayes
 
-XYZ 
+- "Fix" one of the $b$'s as zero (reference category)
+- Constrain all of the $b$'s to sum to a certain number
 
-With Bayes: $\mu_\theta = 0$
+With Bayes: 
+
+$$\mu_\theta = 0$$
 
 ## Adding "discrimination" parameter
 
@@ -435,7 +524,11 @@ model {
 }
 ```
 
-## Is this a GLM?
+::: callout-tip
+## Check:
+
+Is this a GLM?
+:::
 
 ##
 
@@ -523,7 +616,7 @@ disc_estimates <- as.data.frame(model_fit) |>
   select(starts_with("a[")) |>
   colMeans()
 
-disc_estimates
+disc_estimates |> round(2)
 ```
 
 - Item 4, 5, 7, 14, 18, 19, 21, 24, 25 all have $a > 2$
@@ -583,6 +676,7 @@ $$b_j \sim N(b_j, \sigma_j^2)$$
 
 ```{r}
 #| eval: false
+#| echo: false
 save(student_glm, file = "27-student-glm.Rda")
 save(student_hlm, file = "27-student-hlm.Rda")
 save(student_irt, file = "27-student-irt.Rda")

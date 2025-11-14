@@ -73,11 +73,41 @@ Suppose we continue the vocabulary study at each of Schools 6 and 17 (which part
 (d) Using model (2), identify the person who has the *slowest* baseline reaction time. Report their posterior median regression model
 (e) Simulate, plot, and discuss the posterior predictive model (under both 1 and 2) of reaction time after 5 days of sleep deprivation for two subjects: you and Subject 308. 
 
-# TBA Friday
+# IRT for Forensic Fingerprint Examiners
 
-(a) Compute the percent correct for each participant and for each question. Identify the top 3 and worst 3 participants; and hardest 3 and easiest 3 questions. 
-(b) Take a peek at the data and explain why looking at the percent correct for each participant or each question won't give us ideal estimates of skill or item easiness (*Hint:* look at how many questions there are, and how many questions each participant answered)
-(c) Fit an IRT model to this data using either {rstanarm} or Stan
-(d) Identify the top 3 performers and the worst 3 performers based on their estimated proficiency. Compare this to (a)
-(e) Identify the hardest 3 and easiest 3 questions based on their estimated easiness. Compare this to (a)
+In forensic fingerprint analysis, individual examiners look at a pair of fingerprint images and try to decide if they came from the same source or not. They can also make "inconclusive" determinations if there is not enough information in the images to decide either way. In large(ish) research studies, some examiners report conclusive decisions far more than others, and some questions (pairs of images) receive far more inconclusives than others. Some researchers have hypothesized that, since examiners knew they were participating in a study to determine their error rate, they may have been "strategic" and reported more inconclusives than they typically do in casework. Since not every examiner answers every question, figuring out which inconclusives are due to the questions, and which inconclusives are due to the answers is harder than it initially appears. 
+
+In this problem, you'll work with a subset of the [2011 FBI "Black Box" study](https://www.fbi.gov/file-repository/laboratory/testresponses.txt/view) of fingerprint examiners, called `blackbox_responses`. The distribution of `pct_conclusive` by examiner and question are shown in the histograms below:
+
+```{r}
+#| fig-width: 8
+#| fig-height: 3
+responses <- read_csv("../data/blackbox_responses.csv") # replace with "https://https://aluby.github.io/stat340-f25/data/blackbox_responses.csv"
+
+p1 <- responses |>
+  group_by(ex_id) |>
+  summarize(
+    pct_conclusive = mean(conclusive)
+  ) |>
+  ggplot(aes(x = pct_conclusive)) + 
+  geom_histogram(bins = 15, col = "white") +
+  labs(title = "Examiners")
+
+p2 <- responses |>
+  group_by(q_id) |>
+  summarize(
+    pct_conclusive = mean(conclusive)
+  ) |>
+  ggplot(aes(x = pct_conclusive)) + 
+  geom_histogram(bins = 15, col = "white") +
+  labs(title = "Questions")
+
+p1 + p2
+```
+
+(a) Compute the percent conclusive for each participant and for each question. Identify the 5 participants who were the *most* and *least* conclusive; and the questions that were the *most* and *least* conclusive
+(b) Take a peek at the data and explain why looking at the percent correct for each participant or each question won't give us ideal estimates for tendencies to be conclusive (*Hint:* look at how many questions there are, and how many questions each participant answered)
+(c) Fit an IRT model to this data using either {rstanarm} or Stan (I recommend *not* fitting a discrimination parameter). Report the fixed effects table and interpret any fixed effect parameters.
+(d) Identify the 5 participants who were the *most* and *least* conclusive; and the questions that were the *most* and *least* conclusive according to the IRT-like model. 
+(e) Explain any differences between your answers to (a) and (d) 
 
