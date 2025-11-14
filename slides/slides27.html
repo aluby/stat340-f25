@@ -361,18 +361,18 @@ https://mc-stan.org/misc/warnings.html#tail-ess</code></pre>
 <span id="cb13-2"><a></a>  <span class="fu">colMeans</span>() <span class="sc">|&gt;</span> <span class="fu">round</span>(<span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   1    2    3    4    5    6    7    8    9   10   11   12   13   14   15   16 
-0.64 0.64 0.64 0.64 0.63 0.64 0.64 0.64 0.63 0.65 0.64 0.64 0.65 0.65 0.65 0.64 
+0.59 0.60 0.58 0.60 0.60 0.59 0.60 0.59 0.59 0.60 0.57 0.59 0.58 0.59 0.59 0.58 
   17   18   19   20   21   22   23   24   25 
-0.65 0.65 0.64 0.63 0.64 0.64 0.66 0.65 0.65 </code></pre>
+0.58 0.59 0.59 0.59 0.59 0.59 0.60 0.60 0.62 </code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a><span class="fu">posterior_predict</span>(student_irt, <span class="at">newdata =</span> <span class="fu">data.frame</span>(<span class="at">student_id =</span> <span class="fu">rep</span>(<span class="st">"Amanda"</span>, <span class="dv">25</span>),</span>
 <span id="cb15-2"><a></a>                                                    <span class="at">question_id =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">25</span>)) <span class="sc">|&gt;</span> </span>
 <span id="cb15-3"><a></a>  <span class="fu">colMeans</span>() <span class="sc">|&gt;</span> <span class="fu">round</span>(<span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   1    2    3    4    5    6    7    8    9   10   11   12   13   14   15   16 
-0.98 0.61 0.07 0.96 0.19 0.22 1.00 0.95 0.85 0.96 1.00 0.84 0.81 0.50 0.72 0.82 
+0.25 0.44 0.69 0.98 0.34 0.90 0.54 0.91 0.01 0.52 0.98 0.99 0.46 0.41 0.29 0.16 
   17   18   19   20   21   22   23   24   25 
-0.17 0.15 0.92 0.48 0.50 0.05 1.00 0.35 0.94 </code></pre>
+0.63 0.93 0.76 0.10 1.00 0.92 0.72 0.78 0.01 </code></pre>
 </div>
 </div>
 </section>
