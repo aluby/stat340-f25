@@ -74,3 +74,10 @@ Suppose we continue the vocabulary study at each of Schools 6 and 17 (which part
 (e) Simulate, plot, and discuss the posterior predictive model (under both 1 and 2) of reaction time after 5 days of sleep deprivation for two subjects: you and Subject 308. 
 
 # TBA Friday
+
+(a) Compute the percent correct for each participant and for each question. Identify the top 3 and worst 3 participants; and hardest 3 and easiest 3 questions. 
+(b) Take a peek at the data and explain why looking at the percent correct for each participant or each question won't give us ideal estimates of skill or item easiness (*Hint:* look at how many questions there are, and how many questions each participant answered)
+(c) Fit an IRT model to this data using either {rstanarm} or Stan
+(d) Identify the top 3 performers and the worst 3 performers based on their estimated proficiency. Compare this to (a)
+(e) Identify the hardest 3 and easiest 3 questions based on their estimated easiness. Compare this to (a)
+

@@ -1,0 +1,590 @@
+---
+title: "Case study: Item Response Theory"
+subtitle: Day 27
+title-slide-attributes:
+  data-background-color: "#e2583eff"
+  data-slide-number: none
+format: 
+  revealjs:
+    incremental: false
+    scrollable: false
+auto-stretch: true
+editor_options: 
+  chunk_output_type: inline
+editor: 
+  markdown: 
+    wrap: 72
+execute: 
+  warning: false
+  message: false
+---
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+
+library(countdown)
+library(tidyverse)
+library(tidybayes)
+library(bayesrules)
+library(janitor)
+library(patchwork)
+library(rstan)
+library(rstanarm)
+library(bayesplot)
+library(broom.mixed)
+library(ggrepel)
+
+theme_set(theme_minimal(base_size = 16, base_family = "Atkinson Hyperlegible"))
+clrs <- viridis::viridis(6, end = .75, option = "plasma")
+```
+
+```{r}
+#| echo: false
+set.seed(11132025)
+
+n_students <- 150
+n_questions <- 25
+
+student_params <- tibble(
+  student_id = 1:n_students,
+  theta = rnorm(n_students, mean = 1, sd = 1.5)
+)
+
+question_params <- tibble(
+  question_id = 1:n_questions,
+  b = rnorm(n_questions, mean = -.5, sd = 3),
+  a = rlnorm(n_questions, meanlog = 0, sdlog = .75)
+)
+
+exam_results <- expand_grid(student_id = 1:n_students,
+                          question_id = 1:n_questions) %>%
+  left_join(student_params, by = "student_id") %>%
+  left_join(question_params, by = "question_id") %>%
+  mutate(
+    log_odds = b + a * theta,
+    probability = plogis(log_odds),
+    correct = rbinom(n(), size = 1, prob = probability)
+  ) |>
+  select(student_id, question_id, correct)
+```
+
+## Data/problem
+
+- 150 students take a 25 question final exam
+- Each question is scored as correct (1) or incorect (0)
+- What can we learn from this data beyond the student scores? 
+  - Are some questions harder than others? 
+  - Do scores reflect actual proficiency?
+  - Are some questions "better" at separating skill levels than others?
+
+## Week 2: Beta-Binomial Model
+
+$$Y \sim \text{Binomial}(150*25, \pi)$$
+$$\pi \sim \text{Beta}(\alpha, \beta)$$
+
+```{r}
+summarize_beta_binomial(.5, .5, y = sum(exam_results$correct), n = nrow(exam_results))
+```
+
+::: callout-tip
+## Warm-up
+
+Someone needs to take the final exam late! What will our model predict for their score? 
+:::
+
+## Week 7: Logistic Regression
+
+$$Y_i \sim \text{Bernoulli}(\pi_i)$$
+
+$$\pi_i = \beta_1 \mathbb{1}\{X_i = 1\} + \beta_2 \mathbb{1}\{X_i = 2\} + ... + \beta_{150} \mathbb{1}\{X_i = 150\}$$
+
+```{r}
+#| eval: false
+student_glm <- stan_glm(
+  correct ~ factor(student_id), 
+  data = exam_results,
+  family = binomial
+)
+```
+
+```
+Warning :The largest R-hat is 1.09, indicating chains have not mixed.
+Running the chains for more iterations may help. See
+https://mc-stan.org/misc/warnings.html#r-hat
+Warning :Bulk Effective Samples Size (ESS) is too low, indicating posterior means and medians may be unreliable.
+Running the chains for more iterations may help. See
+https://mc-stan.org/misc/warnings.html#bulk-ess
+Warning :Tail Effective Samples Size (ESS) is too low, indicating posterior variances and tail quantiles may be unreliable.
+Running the chains for more iterations may help. See
+https://mc-stan.org/misc/warnings.html#tail-ess
+```
+
+## How'd we do?
+
+```{r}
+#| echo: false
+load("27-student-glm.Rda")
+```
+
+```{r}
+pp_check(student_glm, plotfun = "bars")
+```
+
+## PP checks for students/questions tell a different story
+
+```{r}
+#| echo: false
+pps_1 <- pp_check(student_glm, 
+                  plotfun = "bars_grouped", 
+                  group = exam_results$student_id, nreps = 100)
+
+ppq_1 <- pp_check(student_glm, 
+                  plotfun = "bars_grouped", 
+                  group = exam_results$question_id, nreps = 100)
+
+p1 <- pps_1$data |>
+  filter(group %in% 1:8) |>
+  ggplot(aes(x = x, y = y_obs)) + 
+  geom_col() + 
+  geom_pointrange(aes(y = m, ymin = l, ymax = h)) + 
+  facet_wrap(vars(group), ncol = 4) +
+  labs(
+    title = "PPC per student"
+  )
+
+p2 <- ppq_1$data |>
+  filter(group %in% 1:8) |>
+  ggplot(aes(x = x, y = y_obs)) + 
+  geom_col() + 
+  geom_pointrange(aes(y = m, ymin = l, ymax = h)) + 
+  facet_wrap(vars(group), ncol = 4) +
+  labs(
+    title = "PPC per question"
+  )
+
+p1 + p2
+```
+
+
+## Week 9: Hierarchical Logistic Regression
+
+```{r}
+#| eval: false
+student_hlm <- stan_glmer(
+  correct ~ (1|student_id), 
+  data = exam_results,
+  family = binomial
+)
+```
+
+## PP Check
+
+```{r}
+#| echo: false
+load("27-student-hlm.Rda")
+```
+
+```{r}
+pp_check(student_hlm, plotfun = "bars")
+```
+
+## PP Check
+
+```{r}
+#| echo: false
+pps_2 <- pp_check(student_hlm, 
+                  plotfun = "bars_grouped", 
+                  group = exam_results$student_id, nreps = 100)
+
+ppq_2 <- pp_check(student_hlm, 
+                  plotfun = "bars_grouped", 
+                  group = exam_results$question_id, nreps = 100)
+
+p1 <- pps_2$data |>
+  filter(group %in% 1:8) |>
+  ggplot(aes(x = x, y = y_obs)) + 
+  geom_col() + 
+  geom_pointrange(aes(y = m, ymin = l, ymax = h)) + 
+  facet_wrap(vars(group), ncol = 4) +
+  labs(
+    title = "PPC per student"
+  )
+
+p2 <- ppq_2$data |>
+  filter(group %in% 1:8) |>
+  ggplot(aes(x = x, y = y_obs)) + 
+  geom_col() + 
+  geom_pointrange(aes(y = m, ymin = l, ymax = h)) + 
+  facet_wrap(vars(group), ncol = 4) +
+  labs(
+    title = "PPC per question"
+  )
+
+p1 + p2
+```
+
+## Solution: incorporate predictors for questions
+
+::: callout-tip
+## Check in:
+
+How many parameters is this model estimating?
+:::
+
+##
+
+```{r}
+#| eval: false
+student_irt <- stan_glmer(
+  correct ~ (1|student_id) + (1|question_id), 
+  data = exam_results,
+  family = binomial
+)
+```
+
+```{r}
+load("27-student-irt.Rda")
+```
+
+```{r}
+pp_check(student_irt, plotfun = "bars")
+```
+
+## 
+
+```{r}
+#| echo: false 
+pps_3 <- pp_check(student_irt, 
+                  plotfun = "bars_grouped", 
+                  group = exam_results$student_id, nreps = 100)
+
+ppq_3 <- pp_check(student_irt, 
+                  plotfun = "bars_grouped", 
+                  group = exam_results$question_id, nreps = 100)
+
+p1 <- pps_3$data |>
+  filter(group %in% 1:8) |>
+  ggplot(aes(x = x, y = y_obs)) + 
+  geom_col() + 
+  geom_pointrange(aes(y = m, ymin = l, ymax = h)) + 
+  facet_wrap(vars(group), ncol = 4) +
+  labs(
+    title = "PPC per student"
+  )
+
+p2 <- ppq_3$data |>
+  filter(group %in% 1:8) |>
+  ggplot(aes(x = x, y = y_obs)) + 
+  geom_col() + 
+  geom_pointrange(aes(y = m, ymin = l, ymax = h)) + 
+  facet_wrap(vars(group), ncol = 4) +
+  labs(
+    title = "PPC per question"
+  )
+
+p1 + p2
+```
+
+## Comparison of predictions {.smaller}
+
+```{r}
+#| eval: false
+posterior_predict(student_glm, newdata = data.frame(student_id = "Amanda"))
+```
+```
+Error in `model.frame.default()`:
+! factor factor(student_id) has new level Amanda
+```
+
+```{r}
+posterior_predict(student_hlm, newdata = data.frame(student_id = rep("Amanda", 25))) |> colMeans() |> round(2)
+posterior_predict(student_irt, newdata = data.frame(student_id = rep("Amanda", 25),
+                                                    question_id = 1:25)) |> colMeans() |> round(2)
+```
+
+## Strong/weak students; Hard/easy questions
+
+
+## 
+
+This model separates the strong/weak students and the hard/easy questions. But I also suspect some questions were better than others at sorting out the students who *really* understood the material from those who didn't
+
+Alternative formulation of the model: 
+
+$$Y_{ij} \sim \text{Bernoulli}(\pi_{ij})$$
+
+$$\pi_{ij} = \text{logistic}(\theta_i + b_j)$$
+
+$$\theta_i \sim N(\mu_\theta, \sigma_\theta^2)$$
+
+$$b_j \sim N(b_j, \sigma_j^2)$$
+
+
+## Interpretation
+
+```{r}
+#| echo: false
+
+
+expand_grid(
+  theta = seq(-5, 5, by = .1), 
+  b = c(-2, 2)
+) |>
+  mutate(
+    difficulty = ifelse(b == -2, "hard question", "easy question"),
+    prob = plogis(theta + b)
+  ) |>
+  ggplot(aes(x = theta, y = prob, col = difficulty)) + 
+  geom_line() + 
+  labs(
+    x = expression(theta),
+    y = "P(Correct)"
+  ) + 
+  scale_color_viridis_d(end = .75, option = "plasma")
+```
+
+## Identifiability
+
+```{r}
+#| echo: false
+
+
+p1 <- expand_grid(
+  theta = seq(-5, 5, by = .1), 
+  b = c(-2, 2)
+) |>
+  mutate(
+    difficulty = ifelse(b == -2, "hard question", "easy question"),
+    prob = plogis(theta + b)
+  ) |>
+  ggplot(aes(x = theta, y = prob, col = difficulty)) + 
+  geom_line() + 
+  labs(
+    x = expression(theta),
+    y = "P(Correct)",
+    title = "b = -2, 2"
+  ) + 
+  scale_color_viridis_d(end = .75, option = "plasma")
+
+p2 <- expand_grid(
+  theta = seq(-5, 5, by = .1), 
+  b = c(0, 4)
+) |>
+  mutate(
+    difficulty = ifelse(b == 0, "hard question", "easy question"),
+    prob = plogis(theta + b)
+  ) |>
+  ggplot(aes(x = theta, y = prob, col = difficulty)) + 
+  geom_line() + 
+  labs(
+    x = expression(theta),
+    y = "P(Correct)",
+    title = "b = 0, 4"
+  ) + 
+  scale_color_viridis_d(end = .75, option = "plasma")
+
+p1 + p2 + plot_layout(guides = 'collect')
+```
+
+## 
+
+Without Bayes
+
+XYZ 
+
+With Bayes: $\mu_\theta = 0$
+
+## Adding "discrimination" parameter
+
+```{r}
+#| echo: false
+
+
+expand_grid(
+  theta = seq(-5, 5, by = .1), 
+  b = -1,
+  a = c(.25, 3)
+) |>
+  mutate(
+    difficulty = ifelse(a == 3, "discriminating", "non discriminating"),
+    prob = plogis(a*(theta + b))
+  ) |>
+  ggplot(aes(x = theta, y = prob, col = difficulty)) + 
+  geom_line() + 
+  labs(
+    x = expression(theta),
+    y = "P(Correct)",
+    title = "b = -1"
+  ) + 
+  scale_color_viridis_d(end = .75, option = "plasma")
+```
+
+## In stan
+
+```
+model {
+  theta ~ normal(0, 1);
+  b ~ normal(0, sigma_b);
+  a ~ lognormal(0, sigma_a);
+  mu_b ~ cauchy(0, 5);
+  sigma_b ~ cauchy(0, 5);
+  sigma_a ~ cauchy(0, 5);
+  y ~ bernoulli_logit(a[jj] .* (theta[ii] - (b[jj] + mu_b)));
+}
+```
+
+## Is this a GLM?
+
+##
+
+{{< video https://www.youtube.com/embed/6pDH66X3ClA?si=IsolyWEfJizfItxS width="100%" height="100%" >}}
+
+## In stan {.smaller}
+
+```{r}
+irt_model_code <- "
+data {
+  int<lower=1> I;                     // number of students
+  int<lower=1> J;                     // number of questions
+  int<lower=1> N;                     // number of observations
+  array[N] int<lower=1, upper=I> ii;  // student for observation n
+  array[N] int<lower=1, upper=J> jj;  // question for observation n
+  array[N] int<lower=0, upper=1> y;   // correctness for observation n
+}
+parameters {
+  real mu_b;                // mean question difficulty
+  vector[I] theta;             // ability for j - mean
+  vector[J] b;                 // difficulty for k
+  vector<lower=0>[J] a;       // discrimination of k
+  real<lower=0> sigma_b;    // scale of difficulties
+  real<lower=0> sigma_a;   // scale of log discrimination
+}
+model {
+  theta ~ normal(0, 1);
+  b ~ normal(0, sigma_b);
+  a ~ lognormal(0, sigma_a);
+  mu_b ~ cauchy(0, 5);
+  sigma_b ~ cauchy(0, 5);
+  sigma_a ~ cauchy(0, 5);
+  y ~ bernoulli_logit(a[jj] .* (theta[ii] + (b[jj] + mu_b)));
+}
+"
+```
+
+## Fit the model
+
+```{r}
+#| eval: false
+irt_data_list = list(
+  I = 150,
+  J = 25,
+  N = nrow(exam_results),
+  y = exam_results$correct,
+  ii = exam_results$student_id,
+  jj = exam_results$question_id
+)
+
+model_fit <- stan(model_code = irt_model_code, 
+                  data = irt_data_list, 
+                  chains = 4, 
+                  iter = 2*2000, 
+                  seed = 111425)
+```
+
+
+## 
+
+```{r}
+#| echo: false
+load("27-2pl-irt.Rda")
+p1 <- mcmc_trace(model_fit, pars = c("mu_b", "sigma_b", "b[1]", "b[6]"), facet_args = list(ncol = 4))
+p2 <- mcmc_dens_overlay(model_fit, pars = c("mu_b", "sigma_b", "b[1]", "b[6]"),  facet_args = list(ncol = 4))
+
+p1/p2
+```
+
+## 
+
+```{r}
+#| echo: false
+
+p1 <- mcmc_trace(model_fit, pars = c("sigma_a", "a[1]", "a[6]", "a[15]"),  facet_args = list(ncol = 4))
+p2 <- mcmc_dens_overlay(model_fit, pars = c("sigma_a", "a[1]", "a[6]", "a[15]"),  facet_args = list(ncol = 4))
+
+p1/p2
+```
+
+## Using discrimination parameter to select items
+
+```{r}
+disc_estimates <- as.data.frame(model_fit) |>
+  select(starts_with("a[")) |>
+  colMeans()
+
+disc_estimates
+```
+
+- Item 4, 5, 7, 14, 18, 19, 21, 24, 25 all have $a > 2$
+
+## Designing a new test
+
+```{r}
+#| echo: false
+
+
+items_to_pick <- c(4, 5, 7, 14, 18, 19, 21, 24, 25)
+
+diff_estimates <- as.data.frame(model_fit) |>
+  select(starts_with("b[")) |>
+  colMeans()
+
+items <- tibble(
+  question_id = 1:25,
+  a = disc_estimates, 
+  b = -diff_estimates
+)
+
+expand_grid(
+  theta = seq(-5, 5, by = .1),
+  question_id = 1:25
+) |>
+  left_join(items) |>
+  mutate(
+    prob = plogis(a*(theta + b))
+  ) |>
+  ggplot(aes(x = theta, y = prob, col = question_id %in% items_to_pick, group = question_id)) + 
+  geom_line(alpha = .7) + 
+  theme(legend.position = "none") + 
+  scale_color_viridis_d(end = .75, option = "plasma")
+```
+
+
+## Adding group-level covariates
+
+
+$$\theta_i \sim N(\mu_\theta, \sigma_\theta^2)$$
+
+$$\theta_i = \beta_1 X_{1i} + \beta_2 X_{2i}$$
+
+$$b_j \sim N(b_j, \sigma_j^2)$$
+
+## Other examples of this type of modeling {.smaller}
+
+- Latent scale of strong $\leftrightarrow$ weak 
+    - Locate submissions to a contest (questions) as well as the raters of those submissions (students)
+    - Locate sports teams (students) based on their performance against opponents (questions)
+- Latent scale of liberal $\leftrightarrow$ conservative 
+    - Locate judges (students) on the scale based on their rulings (questions)
+    - Locate survey respondents (students) and survey questions
+- Latent scale of cautious $\leftrightarrow$ overconfident 
+    - Locate forensic scientists (students) and pieces of evidence (questions) based on how often they are conclusive
+
+```{r}
+#| eval: false
+save(student_glm, file = "27-student-glm.Rda")
+save(student_hlm, file = "27-student-hlm.Rda")
+save(student_irt, file = "27-student-irt.Rda")
+save(model_fit, file = "27-2pl-irt.Rda")
+```
