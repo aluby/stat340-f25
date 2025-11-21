@@ -2432,6 +2432,102 @@
     ]
   },
   {
+    "objectID": "projects/final.html#research-question-5",
+    "href": "projects/final.html#research-question-5",
+    "title": "Final Project",
+    "section": "Research Question (5)",
+    "text": "Research Question (5)\n\nIs the research question clearly stated in a way that is easily understood?",
+    "crumbs": [
+      "Projects",
+      "Projects",
+      "Final Project"
+    ]
+  },
+  {
+    "objectID": "projects/final.html#backgroundsignificance-5",
+    "href": "projects/final.html#backgroundsignificance-5",
+    "title": "Final Project",
+    "section": "Background/significance (5)",
+    "text": "Background/significance (5)\n\nDoes the introduction contain the necessary background for the problem and outline why the work is significant/interesting?",
+    "crumbs": [
+      "Projects",
+      "Projects",
+      "Final Project"
+    ]
+  },
+  {
+    "objectID": "projects/final.html#data-description-5",
+    "href": "projects/final.html#data-description-5",
+    "title": "Final Project",
+    "section": "Data description (5)",
+    "text": "Data description (5)\n\nIs it clear what the dataset contains and how the data were obtained?\nHave you included some EDA to motivate the model/method chosen?\nIs the dataset properly cited?",
+    "crumbs": [
+      "Projects",
+      "Projects",
+      "Final Project"
+    ]
+  },
+  {
+    "objectID": "projects/final.html#modelmethods-20",
+    "href": "projects/final.html#modelmethods-20",
+    "title": "Final Project",
+    "section": "Model/Methods (20)",
+    "text": "Model/Methods (20)\nIf modeling project:\n\nIs the model appropriate for the situation?\nIs the model clearly stated and fully specified?\nAre there mathematical expressions for all priors, likelihoods, and posteriors?\nIs all mathematical notation clear and consistent?\nIs model fitting discussed?\nDid you define a simpler model for comparison?\nIs it clear how this model will be used to answer your research question?\nIf methods project\n\nDoes the method include a substantial Bayesian component?\nDoes your explanation of the method demonstrate a sophisticated understanding of the course content?\nIs all mathematical notation clear and consistent?\nHave you emphasized conceptual understanding of the method, rather than including a bunch of equations with no narrative?\nHave you explained why this method is necessary, and/or how the method improves upon simpler methods?\nHave you explained the type of data the method is useful for?",
+    "crumbs": [
+      "Projects",
+      "Projects",
+      "Final Project"
+    ]
+  },
+  {
+    "objectID": "projects/final.html#computation-10",
+    "href": "projects/final.html#computation-10",
+    "title": "Final Project",
+    "section": "Computation (10)",
+    "text": "Computation (10)\n\nIs analysis correctly implemented via MCMC?\nAre there sufficient details about the MCMC sampler given?\nIs the analysis reproducible?",
+    "crumbs": [
+      "Projects",
+      "Projects",
+      "Final Project"
+    ]
+  },
+  {
+    "objectID": "projects/final.html#results-10",
+    "href": "projects/final.html#results-10",
+    "title": "Final Project",
+    "section": "Results (10)",
+    "text": "Results (10)\n\nAre convergence diagnostics discussed and interpreted? (It’s OK to move graphs to appendix)\nIs the relevant posterior distribution summarized (either graphically or numerically?)\n(If appropriate), was a posterior predictive check performed?\nDid you formally compare your main model/method toa simpler baseline model/method using appropriate metrics?\nIs the research question answered using posterior analysis?",
+    "crumbs": [
+      "Projects",
+      "Projects",
+      "Final Project"
+    ]
+  },
+  {
+    "objectID": "projects/final.html#discussion-and-conclusions-20",
+    "href": "projects/final.html#discussion-and-conclusions-20",
+    "title": "Final Project",
+    "section": "Discussion and conclusions (20)",
+    "text": "Discussion and conclusions (20)\n\nDo interpretations accompany all reported numbers, graphs, and tables?\nAre the interpretations entirely correct?\nAre the interpretations clear?\nDo the conclusions follow logically from the results?\nAre potential shortcomings discussed or addressed? Future ideas outlined?",
+    "crumbs": [
+      "Projects",
+      "Projects",
+      "Final Project"
+    ]
+  },
+  {
+    "objectID": "projects/final.html#polish-and-professionalism-20",
+    "href": "projects/final.html#polish-and-professionalism-20",
+    "title": "Final Project",
+    "section": "Polish and Professionalism (20)",
+    "text": "Polish and Professionalism (20)\nFigures and tables\n\nAre all figures/tables properly polished and sized?\nDo all figures and/or tables have informative captions?\nWriting and mechanics\n\nIs the paper engaging and interesting to read?\nIs the writing high quality?\nGrammar, spelling and capitalization\nFormatting\n\nIs there a well-written abstract that summarizes the paper?\nAre sections organized logically? Are there any missing sections?\nAre section headings distinct from the main text?\nAre appropriate citations included?\nAre citations properly formatted? (Note: Statistics journals generally follow APA style guidelines, but I don’t care what style you pick as long as there are in-text citations, a bibliography or reference list at the end, and you are consistent. )\nCode appendix or link\n\nIs the code organized and provided (either in an appendix or linked repository) so that I can run it?",
+    "crumbs": [
+      "Projects",
+      "Projects",
+      "Final Project"
+    ]
+  },
+  {
     "objectID": "projects/proj1.html",
     "href": "projects/proj1.html",
     "title": "Project 1",
