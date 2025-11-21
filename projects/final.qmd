@@ -142,5 +142,89 @@ The presentation will make up a portion of your final project grade and will be 
     - Was the presentation timed correctly?
  - Did you do the assigned peer review? (10 points, individual score)
  
- 
+
+# Rubric 
+
+## Research Question (5)
+
+- [ ] Is the research question clearly stated in a way that is easily understood?
+
+## Background/significance (5) 
+
+- [ ] Does the introduction contain the necessary background for the problem and outline why the work is significant/interesting? 
+
+## Data description (5) 
+
+- [ ] Is it clear what the dataset contains and how the data were obtained? 
+- [ ] Have you included some EDA to motivate the model/method chosen?
+- [ ] Is the dataset properly cited? 
+
+## Model/Methods (20)
+
+### If **modeling** project: 
+
+- [ ] Is the model appropriate for the situation?
+- [ ] Is the model clearly stated and fully specified? 
+- [ ] Are there mathematical expressions for all priors, likelihoods, and posteriors?
+- [ ] Is all mathematical notation clear and consistent?
+- [ ] Is model fitting discussed?
+- [ ] Did you define a simpler model for comparison?
+- [ ] Is it clear how this model will be used to answer your research question?
+
+### If **methods** project
+
+- [ ] Does the method include a substantial Bayesian component? 
+- [ ] Does your explanation of the method demonstrate a sophisticated understanding of the course content? 
+- [ ] Is all mathematical notation clear and consistent? 
+- [ ] Have you emphasized conceptual understanding of the method, rather than including a bunch of equations with no narrative?
+- [ ] Have you explained why this method is necessary, and/or how the method improves upon simpler methods?
+- [ ] Have you explained the type of data the method is useful for? 
+
+## Computation (10)
+
+- [ ] Is analysis correctly implemented via MCMC?
+- [ ] Are there sufficient details about the MCMC sampler given?
+- [ ] Is the analysis reproducible?
+
+## Results (10)
+
+- [ ] Are convergence diagnostics discussed and interpreted? (It's OK to move graphs to appendix)
+- [ ] Is the relevant posterior distribution summarized (either graphically or numerically?)
+- [ ] (If appropriate), was a posterior predictive check performed?
+- [ ] Did you formally compare your main model/method toa simpler baseline model/method using appropriate metrics?
+- [ ] Is the research question answered using posterior analysis? 
+
+## Discussion and conclusions (20)
+
+- [ ] Do interpretations accompany all reported numbers, graphs, and tables?
+- [ ] Are the interpretations entirely correct?
+- [ ] Are the interpretations clear?
+- [ ] Do the conclusions follow logically from the results?
+- [ ] Are potential shortcomings discussed or addressed? Future ideas outlined? 
+
+## Polish and Professionalism (20)
+
+###  Figures and tables 
+
+- [ ] Are all figures/tables properly polished and sized?
+- [ ] Do all figures and/or tables have informative captions? 
+
+
+### Writing and mechanics
+
+- [ ] Is the paper engaging and interesting to read?
+- [ ] Is the writing high quality? 
+- [ ] Grammar, spelling and capitalization
+
+### Formatting
+
+- [ ] Is there a well-written abstract that summarizes the paper?
+- [ ] Are sections organized logically? Are there any missing sections?
+- [ ] Are section headings distinct from the main text?
+- [ ] Are appropriate citations included?
+- [ ] Are citations properly formatted? (*Note:* Statistics journals generally follow APA style guidelines, but I don't care what style you pick as long as there are in-text citations, a bibliography or reference list at the end, and you are consistent. )
+
+### Code appendix or link
+
+- [ ] Is the code organized and provided (either in an appendix or linked repository) so that I can run it?
  
