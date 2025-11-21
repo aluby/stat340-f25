@@ -226,5 +226,5 @@ The presentation will make up a portion of your final project grade and will be 
 
 ### Code appendix or link
 
-- [ ] Is the code organized and provided (either in an appendix or linked repository) so that I can run it?
+- [ ] Is the code organized and provided (either in an included .Rmd or linked repository) so that I can run it?
  
