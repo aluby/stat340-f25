@@ -6,8 +6,6 @@ execute:
   message: false
 ---
 
-🚧 Under construction 🚧
-
 # What is the project?
 
 The primary goal of the project is to demonstrate competency with the content of the course and show me that you can apply Bayesian thinking and ideas to new settings. The new setting might be a new, complicated dataset, or it might be a new method that we did not talk about in class, but you'd like to explore.
@@ -30,8 +28,6 @@ All projects should include:
  - Bayesian tools
  
 # Examples for datasets
-
-🚧 Under construction 🚧
 
 ## General ideas
 
@@ -94,8 +90,6 @@ We are not going to do any long homework exercises from Ch18 or Ch19 of *Bayes R
 
 
 # Possible topics for new methods 
-
-🚧 Under construction 🚧
 
   - Bayesian Decision Theory
     - One way Bayesian methods can be used is to make an "optimal" decision. This involves defining a "loss function" and calculating the "risk" 
