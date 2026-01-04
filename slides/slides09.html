@@ -6,8 +6,8 @@
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-f54fa83ccd8f86fe7238c9291c42d766.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.8.24">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-631ded8afafd89da02f6c04f3e24cdd8.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.8.23">
 
   <meta name="author" content="Prof Amanda Luby">
   <title>Stat 340 – Care and feeding of your MCMCs</title>
@@ -279,7 +279,7 @@ convergence, Rhat=1).</code></pre>
 <span id="cb4-2"><a></a>  <span class="fu">stat_function</span>(<span class="at">fun =</span> dbeta, <span class="at">args =</span> <span class="fu">list</span>(<span class="dv">11</span>, <span class="dv">3</span>), <span class="at">col =</span> <span class="st">"darkorange"</span>, <span class="at">linewidth =</span> <span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
 </div>
-<img data-src="slides09_files/figure-revealjs/unnamed-chunk-5-1.png" width="960" class="r-stretch"></section>
+<img data-src="slides09_files/figure-html/unnamed-chunk-5-1.png" width="672" class="r-stretch"></section>
 <section id="in-practice-we-dont-know-the-true-posterior" class="slide level2">
 <h2>In practice, we don’t know the true posterior</h2>
 <ul>
@@ -300,7 +300,7 @@ convergence, Rhat=1).</code></pre>
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="slides09_files/figure-revealjs/unnamed-chunk-6-1.png" width="960"></p>
+<p><img data-src="slides09_files/figure-html/unnamed-chunk-6-1.png" width="672"></p>
 </figure>
 </div>
 </div>
@@ -315,11 +315,11 @@ convergence, Rhat=1).</code></pre>
 <section id="first-20-draws-burn-in-warmup" class="slide level2">
 <h2>First 20 draws (burn-in / warmup)</h2>
 
-<img data-src="slides09_files/figure-revealjs/unnamed-chunk-7-1.png" width="960" class="r-stretch"></section>
+<img data-src="slides09_files/figure-html/unnamed-chunk-7-1.png" width="672" class="r-stretch"></section>
 <section id="first-200-draws-burn-in-warmup" class="slide level2">
 <h2>First 200 draws (burn-in / warmup)</h2>
 
-<img data-src="slides09_files/figure-revealjs/unnamed-chunk-8-1.png" width="960" class="r-stretch"></section>
+<img data-src="slides09_files/figure-html/unnamed-chunk-8-1.png" width="672" class="r-stretch"></section>
 <section id="mixing-slowly" class="slide level2">
 <h2>“Mixing slowly”</h2>
 
@@ -334,7 +334,7 @@ convergence, Rhat=1).</code></pre>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a><span class="fu">mcmc_dens_overlay</span>(bb_sim, <span class="at">pars =</span> <span class="st">"pi"</span>) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
 </div>
-<img data-src="slides09_files/figure-revealjs/unnamed-chunk-9-1.png" width="960" class="r-stretch"></section>
+<img data-src="slides09_files/figure-html/unnamed-chunk-9-1.png" width="672" class="r-stretch"></section>
 <section id="how-many-chains-do-you-need" class="slide level2">
 <h2>How many chains do you need?</h2>
 <ul>
@@ -362,7 +362,7 @@ convergence, Rhat=1).</code></pre>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a><span class="fu">mcmc_acf</span>(bb_sim, <span class="at">pars =</span> <span class="st">"pi"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
 </div>
-<img data-src="slides09_files/figure-revealjs/unnamed-chunk-10-1.png" width="960" class="r-stretch"></section>
+<img data-src="slides09_files/figure-html/unnamed-chunk-10-1.png" width="672" class="r-stretch"></section>
 <section id="slow-mixing-chains-often-have-high-autocorrelation" class="slide level2">
 <h2>Slow mixing chains often have high autocorrelation</h2>
 
@@ -485,10 +485,10 @@ https://mc-stan.org/misc/warnings.html#tail-ess</code></pre>
 <div class="cell quarto-layout-panel" data-layout-ncol="2">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<p><img data-src="slides09_files/figure-revealjs/unnamed-chunk-16-1.png" width="960"></p>
+<p><img data-src="slides09_files/figure-html/unnamed-chunk-16-1.png" width="672"></p>
 </div>
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<p><img data-src="slides09_files/figure-revealjs/unnamed-chunk-16-2.png" width="960"></p>
+<p><img data-src="slides09_files/figure-html/unnamed-chunk-16-2.png" width="672"></p>
 </div>
 </div>
 </div>
@@ -500,10 +500,10 @@ https://mc-stan.org/misc/warnings.html#tail-ess</code></pre>
 <div class="cell quarto-layout-panel" data-layout-ncol="2">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<p><img data-src="slides09_files/figure-revealjs/unnamed-chunk-17-1.png" width="960"></p>
+<p><img data-src="slides09_files/figure-html/unnamed-chunk-17-1.png" width="672"></p>
 </div>
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<p><img data-src="slides09_files/figure-revealjs/unnamed-chunk-17-2.png" width="960"></p>
+<p><img data-src="slides09_files/figure-html/unnamed-chunk-17-2.png" width="672"></p>
 </div>
 </div>
 </div>
@@ -550,10 +550,10 @@ Warning :Examine the pairs() plot to diagnose sampling problems</code></pre>
 <div class="cell quarto-layout-panel" data-layout-ncol="2">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<p><img data-src="slides09_files/figure-revealjs/unnamed-chunk-21-1.png" width="960"></p>
+<p><img data-src="slides09_files/figure-html/unnamed-chunk-21-1.png" width="672"></p>
 </div>
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<p><img data-src="slides09_files/figure-revealjs/unnamed-chunk-21-2.png" width="960"></p>
+<p><img data-src="slides09_files/figure-html/unnamed-chunk-21-2.png" width="672"></p>
 </div>
 </div>
 </div>
@@ -565,10 +565,10 @@ Warning :Examine the pairs() plot to diagnose sampling problems</code></pre>
 <div class="cell quarto-layout-panel" data-layout-ncol="2">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<p><img data-src="slides09_files/figure-revealjs/unnamed-chunk-22-1.png" width="960"></p>
+<p><img data-src="slides09_files/figure-html/unnamed-chunk-22-1.png" width="672"></p>
 </div>
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<p><img data-src="slides09_files/figure-revealjs/unnamed-chunk-22-2.png" width="960"></p>
+<p><img data-src="slides09_files/figure-html/unnamed-chunk-22-2.png" width="672"></p>
 </div>
 </div>
 </div>
@@ -792,44 +792,6 @@ Warning :Examine the pairs() plot to diagnose sampling problems</code></pre>
         ]
       });
     </script>
-    
-    <script>
-      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
-      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
-      // slide changes (different for each slide format).
-      (function () {
-        // dispatch for htmlwidgets
-        function fireSlideEnter() {
-          const event = window.document.createEvent("Event");
-          event.initEvent("slideenter", true, true);
-          window.document.dispatchEvent(event);
-        }
-
-        function fireSlideChanged(previousSlide, currentSlide) {
-          fireSlideEnter();
-
-          // dispatch for shiny
-          if (window.jQuery) {
-            if (previousSlide) {
-              window.jQuery(previousSlide).trigger("hidden");
-            }
-            if (currentSlide) {
-              window.jQuery(currentSlide).trigger("shown");
-            }
-          }
-        }
-
-        // hookup for slidy
-        if (window.w3c_slidy) {
-          window.w3c_slidy.add_observer(function (slide_num) {
-            // slide_num starts at position 1
-            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
-          });
-        }
-
-      })();
-    </script>
-
     <script id="quarto-html-after-body" type="application/javascript">
       window.document.addEventListener("DOMContentLoaded", function (event) {
         const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
